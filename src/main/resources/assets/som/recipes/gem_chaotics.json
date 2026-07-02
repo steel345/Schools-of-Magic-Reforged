@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:sandpaper",
+      "data": 32767
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "gemGarnet"
+    }
+  ],
+  "result": {
+    "item": "som:gem_chaotics",
+    "data": 1
+  }
+}

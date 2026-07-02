@@ -1,0 +1,16 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "CC"
+                ],
+    "key":  {
+                "C":  {
+                          "item":  "som:ingot",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{Damage:9}"
+                      }
+            },
+    "result":  {
+                   "item":  "som:halfslab_void"
+               }
+}

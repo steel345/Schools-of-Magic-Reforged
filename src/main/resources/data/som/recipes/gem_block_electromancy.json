@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["SSS","SSS","SSS"],"key":{"S":{"item":"som:gem_electromancy"}},"result":{"item":"som:gem_block","nbt":"{BlockStateTag:{type:\"electromancy\"}}"}}

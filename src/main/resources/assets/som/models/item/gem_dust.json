@@ -1,0 +1,22 @@
+{
+  "parent": "item/generated",
+  "textures": { "layer0": "som:items/dust_pyromancy" },
+  "overrides": [
+    {"predicate": {"som:variant": 0.00000}, "model": "som:item/gem_dust_pyromancy"},
+    {"predicate": {"som:variant": 0.06250}, "model": "som:item/gem_dust_heliomancy"},
+    {"predicate": {"som:variant": 0.12500}, "model": "som:item/gem_dust_aeromancy"},
+    {"predicate": {"som:variant": 0.18750}, "model": "som:item/gem_dust_geomancy"},
+    {"predicate": {"som:variant": 0.25000}, "model": "som:item/gem_dust_animancy"},
+    {"predicate": {"som:variant": 0.31250}, "model": "som:item/gem_dust_electromancy"},
+    {"predicate": {"som:variant": 0.37500}, "model": "som:item/gem_dust_hydromancy"},
+    {"predicate": {"som:variant": 0.43750}, "model": "som:item/gem_dust_cryomancy"},
+    {"predicate": {"som:variant": 0.50000}, "model": "som:item/gem_dust_hieromancy"},
+    {"predicate": {"som:variant": 0.56250}, "model": "som:item/gem_dust_chaotics"},
+    {"predicate": {"som:variant": 0.62500}, "model": "som:item/gem_dust_auramancy"},
+    {"predicate": {"som:variant": 0.68750}, "model": "som:item/gem_dust_astromancy"},
+    {"predicate": {"som:variant": 0.75000}, "model": "som:item/gem_dust_infernality"},
+    {"predicate": {"som:variant": 0.81250}, "model": "som:item/gem_dust_spectromancy"},
+    {"predicate": {"som:variant": 0.87500}, "model": "som:item/gem_dust_umbramancy"},
+    {"predicate": {"som:variant": 0.93750}, "model": "som:item/gem_dust_necromancy"}
+  ]
+}

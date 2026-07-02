@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/leather_orange",
+    "layer1": "som:items/links_4"
+  }
+}

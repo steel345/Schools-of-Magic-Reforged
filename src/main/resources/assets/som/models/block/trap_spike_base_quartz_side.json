@@ -1,0 +1,13 @@
+{
+    "parent": "som:block/ore3",
+    "textures": {
+        "block_side": "minecraft:block/chiseled_quartz_block",
+        "block_top": "minecraft:block/chiseled_quartz_block_top",
+        "block_bottom": "minecraft:block/chiseled_quartz_block_top",
+        "ore_side": "som:blocks/air",
+        "ore_side2": "som:blocks/spear_hole",
+        "ore_top": "som:blocks/air",
+        "ore_bottom": "som:blocks/air",
+        "particle": "minecraft:block/chiseled_quartz_block"
+    }
+}

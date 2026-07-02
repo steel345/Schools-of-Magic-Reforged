@@ -1,0 +1,11 @@
+{
+  "parent": "som:som/root",
+  "display": {
+    "icon": { "item": "som:magic_letter" },
+    "title": { "translate": "advancements.som.youre_a_wizard.title" },
+    "description": { "translate": "advancements.som.youre_a_wizard.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": { "get_item": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "items": [ "som:magic_letter" ] } ] } } },
+  "requirements": [ [ "get_item" ] ]
+}

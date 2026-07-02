@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "CVC",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "gemTurquoise"
+    },
+    "V": {
+      "item": "minecraft:sandstone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "som:tile_turquoise"
+  }
+}

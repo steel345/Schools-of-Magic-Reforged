@@ -1,0 +1,77 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "0": "som:blocks/gem_ruby",
+    "particle": "som:blocks/gem_ruby"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        5.5,
+        5.5
+      ],
+      "to": [
+        2,
+        10.5,
+        10.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#0",
+          "uv": [
+            0,
+            0,
+            5,
+            5
+          ]
+        },
+        "east": {
+          "texture": "#0",
+          "uv": [
+            0,
+            0,
+            5,
+            5
+          ]
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            0,
+            0,
+            5,
+            5
+          ]
+        },
+        "west": {
+          "texture": "#0",
+          "uv": [
+            0,
+            0,
+            5,
+            5
+          ]
+        },
+        "up": {
+          "texture": "#0",
+          "uv": [
+            0,
+            0,
+            5,
+            5
+          ]
+        },
+        "down": {
+          "texture": "#0",
+          "uv": [
+            0,
+            0,
+            5,
+            5
+          ]
+        }
+      }
+    }
+  ]
+}

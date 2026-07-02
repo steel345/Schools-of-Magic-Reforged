@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H  ",
+    "HH ",
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:hardened_clay_bricks",
+       "data": 14
+    }
+  },
+  "result": {
+    "item": "som:stairs_hardened_clay_bricks_black",
+    "data": 0,
+    "count": 4
+  }
+}

@@ -1,0 +1,19 @@
+{
+   "type": "som:potion_charm",
+   "pattern": [
+      " A ",
+      "A A",
+      " B "
+   ],
+   "key": {
+      "A": {
+         "item": "minecraft:string"
+      },
+      "B": {
+         "item": "som:potion_crystal"
+      }
+   },
+   "result": {
+      "item": "som:potion_charm"
+   }
+}

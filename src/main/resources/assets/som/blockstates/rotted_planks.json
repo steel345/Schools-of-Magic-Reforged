@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "type=oak": { "model": "som:block/rotted_planks_oak"},
+        "type=dark_oak": { "model": "som:block/rotted_planks_dark_oak"},
+        "type=birch": { "model": "som:block/rotted_planks_birch"},
+        "type=jungle": { "model": "som:block/rotted_planks_jungle"},
+        "type=acacia": { "model": "som:block/rotted_planks_acacia"},
+        "type=spruce": { "model": "som:block/rotted_planks_spruce"},
+        "type=ash": { "model": "som:block/rotted_planks_ash"},
+        "type=elder": { "model": "som:block/rotted_planks_elder"},
+        "type=pine": { "model": "som:block/rotted_planks_pine"},
+        "type=willow": { "model": "som:block/rotted_planks_willow"},
+        "type=yew": { "model": "som:block/rotted_planks_yew"},
+        "type=verde": { "model": "som:block/rotted_planks_verde"}
+    }
+}

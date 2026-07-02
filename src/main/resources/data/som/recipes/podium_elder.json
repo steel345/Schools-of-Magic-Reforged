@@ -1,0 +1,25 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "CAC",
+                    " S ",
+                    "CAC"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:magic_bookshelf",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"elder\"}}"
+                      },
+                "C":  {
+                          "item":  "som:log_elder"
+                      },
+                "A":  {
+                          "item":  "som:halfslab_elder"
+                      }
+            },
+    "result":  {
+                   "item":  "som:podium",
+                   "nbt":  "{BlockStateTag:{type:\"elder\"}}"
+               }
+}

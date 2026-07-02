@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HH",
+    "HH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:gypsum",
+       "data": 0
+    }
+  },
+  "result": {
+    "item": "som:gypsum",
+    "data": 3,
+    "count": 4
+  }
+}

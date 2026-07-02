@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "som:block/mud_marble_pedestal"
+    },
+    "facing=east": {
+      "model": "som:block/mud_marble_pedestal",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "som:block/mud_marble_pedestal",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "som:block/mud_marble_pedestal",
+      "y": 270
+    }
+  }
+}

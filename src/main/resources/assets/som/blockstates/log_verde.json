@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "som:block/logverde"
+    },
+    "axis=x": {
+      "model": "som:block/logverde_bark",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z": {
+      "model": "som:block/logverde_bark",
+      "x": 90
+    }
+  }
+}

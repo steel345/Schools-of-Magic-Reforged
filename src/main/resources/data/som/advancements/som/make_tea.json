@@ -1,0 +1,37 @@
+{
+  "parent": "som:som/soggy_pages",
+  "display": {
+    "icon": {
+      "item": "som:teapot"
+    },
+    "title": {
+      "translate": "advancements.som.make_tea.title"
+    },
+    "description": {
+      "translate": "advancements.som.make_tea.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "som:teacup"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}

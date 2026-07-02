@@ -1,0 +1,12 @@
+﻿{
+    "type": "forge:add_features",
+    "biomes": "#minecraft:is_overworld",
+    "features": [
+        "som:ore_pyromancy", "som:ore_geomancy", "som:ore_umbramancy", "som:ore_hieromancy",
+        "som:ore_hydromancy", "som:ore_aeromancy", "som:ore_cryomancy", "som:ore_astromancy",
+        "som:ore_animancy",
+        "som:ore_copper_upper", "som:ore_copper_middle", "som:ore_copper_small",
+        "som:ore_silver_upper", "som:ore_silver_middle", "som:ore_silver_small"
+    ],
+    "step": "underground_ores"
+}

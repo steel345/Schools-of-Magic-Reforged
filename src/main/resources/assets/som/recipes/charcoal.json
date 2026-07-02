@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:charcoal"
+    }
+  },
+  "result": {
+    "item": "som:block_charcoal",
+    "data": 0
+  }
+}

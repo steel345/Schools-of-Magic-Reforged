@@ -1,0 +1,16 @@
+{
+    "type":  "minecraft:random_selector",
+    "config":  {
+                   "features":  [
+                                    {
+                                        "chance":  0.32,
+                                        "feature":  "som:magic_tree_willow_checked"
+                                    },
+                                    {
+                                        "chance":  0.34,
+                                        "feature":  "som:swamp_oak_checked"
+                                    }
+                                ],
+                   "default":  "som:magic_tree_yew_checked"
+               }
+}

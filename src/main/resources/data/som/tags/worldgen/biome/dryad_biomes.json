@@ -1,0 +1,30 @@
+{
+    "replace": false,
+    "values": [
+        "#minecraft:is_forest",
+        "#minecraft:is_taiga",
+        "#minecraft:is_jungle",
+        "#minecraft:is_savanna",
+        "minecraft:plains",
+        "minecraft:sunflower_plains",
+        "minecraft:grove",
+        "minecraft:meadow",
+        "som:acolyte_woods",
+        "som:fae_acolyte_woods",
+        "som:vermilion_grove",
+        "som:fae_vermilion_grove",
+        "som:bastion_woods",
+        "som:fae_bastion_woods",
+        "som:boiling_marsh",
+        "som:wetlands",
+        "som:fae_wetlands",
+        "som:sinister_swamp",
+        "som:fae_sinister_swamp",
+        "som:magic_desert",
+        "som:banded_desert",
+        "som:desert_canyons",
+        "som:desert_river_canyons",
+        "som:desert_uplands",
+        "som:mountainous_jungle"
+    ]
+}

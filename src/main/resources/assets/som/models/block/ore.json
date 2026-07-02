@@ -1,0 +1,66 @@
+{
+    "parent": "block/block",
+    "elements": [
+        {
+            "name": "block",
+            "from": [ 0.0, 0.0, 0.0 ],
+            "to": [ 16.0, 16.0, 16.0 ],
+            "faces": {
+                "north": { "texture": "#block", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "north" },
+                "east": { "texture": "#block", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "east" },
+                "south": { "texture": "#block", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "south" },
+                "west": { "texture": "#block", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "west" },
+                "up": { "texture": "#block", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "up" },
+                "down": { "texture": "#block", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "ore_north",
+            "from": [ 0.0, 0.0, -0.1 ],
+            "to": [ 16.0, 16.0, -0.1 ],
+            "faces": {
+                "north": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "north" }
+            }
+        },
+        {
+            "name": "ore_south",
+            "from": [ 0.0, 0.0, 16.1 ],
+            "to": [ 16.0, 16.0, 16.1 ],
+            "faces": {
+                "south": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "south" }
+            }
+        },
+        {
+            "name": "ore_east",
+            "from": [ 16.1, 0.0, 0.0 ],
+            "to": [ 16.1, 16.0, 16.0 ],
+            "faces": {
+                "east": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "east" }
+            }
+        },
+        {
+            "name": "ore_west",
+            "from": [ -0.1, 0.0, 0.0 ],
+            "to": [ -0.1, 16.0, 16.0 ],
+            "faces": {
+                "west": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "west" }
+            }
+        },
+        {
+            "name": "ore_top",
+            "from": [ 0.0, 16.1, 0.0 ],
+            "to": [ 16.0, 16.1, 16.0 ],
+            "faces": {
+                "up": { "texture": "#ore_top", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "up" }
+            }
+        },
+        {
+            "name": "ore_bottom",
+            "from": [ 0.0, -0.1, 0.0 ],
+            "to": [ 16.0, -0.1, 16.0 ],
+            "faces": {
+                "down": { "texture": "#ore_bottom", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "cullface": "down" }
+            }
+        }
+    ]
+}

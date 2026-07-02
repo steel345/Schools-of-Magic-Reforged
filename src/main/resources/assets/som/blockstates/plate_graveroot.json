@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/plategraveroot" },
+        "facing=south": { "model": "som:block/plategraveroot", "y": 180 },
+        "facing=west":  { "model": "som:block/plategraveroot", "y": 270 },
+        "facing=east":  { "model": "som:block/plategraveroot", "y": 90 }
+    }
+}

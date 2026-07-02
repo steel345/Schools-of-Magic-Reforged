@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "som:planks",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "som:stair_pine",
+    "data": 0,
+    "count": 4
+  }
+}

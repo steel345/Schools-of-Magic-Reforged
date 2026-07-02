@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "som:leaves_ash",
+    "som:leaves_elder",
+    "som:leaves_hanging_willow",
+    "som:leaves_palm",
+    "som:leaves_pine",
+    "som:leaves_verde",
+    "som:leaves_willow",
+    "som:leaves_yew",
+    "som:magic_leaves1",
+    "som:magic_leaves2"
+  ]
+}

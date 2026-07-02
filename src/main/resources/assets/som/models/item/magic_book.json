@@ -1,0 +1,104 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/book_pyromancy"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "som:item/magic_book_pyromancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2
+      },
+      "model": "som:item/magic_book_heliomancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3
+      },
+      "model": "som:item/magic_book_aeromancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4
+      },
+      "model": "som:item/magic_book_geomancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5
+      },
+      "model": "som:item/magic_book_animancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 6
+      },
+      "model": "som:item/magic_book_electromancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7
+      },
+      "model": "som:item/magic_book_hydromancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 8
+      },
+      "model": "som:item/magic_book_cryomancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9
+      },
+      "model": "som:item/magic_book_hieromancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 10
+      },
+      "model": "som:item/magic_book_chaotics"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 11
+      },
+      "model": "som:item/magic_book_auramancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 12
+      },
+      "model": "som:item/magic_book_astromancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 13
+      },
+      "model": "som:item/magic_book_infernality"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 14
+      },
+      "model": "som:item/magic_book_spectromancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 15
+      },
+      "model": "som:item/magic_book_umbramancy"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 16
+      },
+      "model": "som:item/magic_book_necromancy"
+    }
+  ]
+}

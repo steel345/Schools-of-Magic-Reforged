@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["X","X","S"],
+  "key": {
+    "X": {"type":"som:blockstate_variant","item":"som:fae_stone","key":"variant","value":"cobble"},"S":{"item":"minecraft:stick"}
+  },
+  "result": { "item": "minecraft:stone_sword" }
+}

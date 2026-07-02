@@ -1,0 +1,1 @@
+Projectile: A lobbed orb that arcs through the air and bursts where it lands or strikes.<~><~>Bolt: A swift, straight bolt that streaks to whatever you aim it at.<~><~>Touch: The magic waits in your hand and discharges into the first creature or block you meet.<~><~>Self: The working turns inward, taking hold upon the caster.

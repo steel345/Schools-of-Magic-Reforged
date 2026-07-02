@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "powered=false": { "model": "som:block/pressure_plate_yew" },
+    "powered=true":  { "model": "som:block/pressure_plate_yew_down" }
+  }
+}

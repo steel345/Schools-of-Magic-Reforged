@@ -1,0 +1,8 @@
+{
+    "type": "forge:add_features",
+    "biomes": [
+        "som:banded_desert"
+    ],
+    "features": "som:big_acacia",
+    "step": "vegetal_decoration"
+}

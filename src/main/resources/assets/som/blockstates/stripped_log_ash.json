@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "som:block/stripped_log_ash" },
+    "axis=z": { "model": "som:block/stripped_log_ash", "x": 90 },
+    "axis=x": { "model": "som:block/stripped_log_ash", "x": 90, "y": 90 }
+  }
+}

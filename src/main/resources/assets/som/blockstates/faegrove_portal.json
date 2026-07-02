@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "axis=x": { "model": "som:block/faegrove_portal_ns" },
+    "axis=z": { "model": "som:block/faegrove_portal_ew" }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "XXX","X X","X X" ],
+  "key": {
+    "X": { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:0}" }
+  },
+  "result": { "item": "som:leggings_silver", "count": 1 }
+}

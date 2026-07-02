@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "type=ash": { "model": "som:block/planksash"},
+        "type=elder": { "model": "som:block/plankselder"},
+        "type=pine": { "model": "som:block/plankspine"},
+        "type=willow": { "model": "som:block/plankswillow"},
+        "type=yew": { "model": "som:block/planksyew"},
+        "type=verde": { "model": "som:block/planksverde"}
+    }
+}

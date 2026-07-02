@@ -1,0 +1,11 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/mushroom_dark_0" },
+    "age=1": { "model": "som:block/mushroom_dark_1" },
+    "age=2": { "model": "som:block/mushroom_dark_2" },
+    "age=3": { "model": "som:block/mushroom_dark_3" },
+    "age=4": { "model": "som:block/mushroom_dark_4" },
+    "age=5": { "model": "som:block/mushroom_dark_5" },
+    "age=6": { "model": "som:block/mushroom_dark_6" }
+    }
+}

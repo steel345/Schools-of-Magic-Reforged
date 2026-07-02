@@ -1,0 +1,2 @@
+{ "parent": "minecraft:block/pressure_plate_down",
+  "textures": { "texture": "som:blocks/planks_yew" } }

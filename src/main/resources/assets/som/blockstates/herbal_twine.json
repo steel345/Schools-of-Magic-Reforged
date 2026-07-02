@@ -1,0 +1,619 @@
+{
+    "variants": {
+        "age=0,type=none": {
+            "model": "som:block/herbaltwine"
+        },
+        "age=1,type=none": {
+            "model": "som:block/herbaltwine"
+        },
+        "age=2,type=none": {
+            "model": "som:block/herbaltwine"
+        },
+        "age=3,type=none": {
+            "model": "som:block/herbaltwine"
+        },
+        "age=4,type=none": {
+            "model": "som:block/herbaltwine"
+        },
+        "age=0,type=pyromancy": {
+            "model": "som:block/dryingpyracantha0"
+        },
+        "age=1,type=pyromancy": {
+            "model": "som:block/dryingpyracantha1"
+        },
+        "age=2,type=pyromancy": {
+            "model": "som:block/dryingpyracantha2"
+        },
+        "age=3,type=pyromancy": {
+            "model": "som:block/dryingpyracantha3"
+        },
+        "age=4,type=pyromancy": {
+            "model": "som:block/dryingpyracantha4"
+        },
+        "age=0,type=heliomancy": {
+            "model": "som:block/dryingmarigold0"
+        },
+        "age=1,type=heliomancy": {
+            "model": "som:block/dryingmarigold1"
+        },
+        "age=2,type=heliomancy": {
+            "model": "som:block/dryingmarigold2"
+        },
+        "age=3,type=heliomancy": {
+            "model": "som:block/dryingmarigold3"
+        },
+        "age=4,type=heliomancy": {
+            "model": "som:block/dryingmarigold4"
+        },
+        "age=0,type=aeromancy": {
+            "model": "som:block/dryingyarrow0"
+        },
+        "age=1,type=aeromancy": {
+            "model": "som:block/dryingyarrow1"
+        },
+        "age=2,type=aeromancy": {
+            "model": "som:block/dryingyarrow2"
+        },
+        "age=3,type=aeromancy": {
+            "model": "som:block/dryingyarrow3"
+        },
+        "age=4,type=aeromancy": {
+            "model": "som:block/dryingyarrow4"
+        },
+        "age=0,type=geomancy": {
+            "model": "som:block/dryingclover0"
+        },
+        "age=1,type=geomancy": {
+            "model": "som:block/dryingclover1"
+        },
+        "age=2,type=geomancy": {
+            "model": "som:block/dryingclover2"
+        },
+        "age=3,type=geomancy": {
+            "model": "som:block/dryingclover3"
+        },
+        "age=4,type=geomancy": {
+            "model": "som:block/dryingclover4"
+        },
+        "age=0,type=animancy": {
+            "model": "som:block/dryingmandrake0"
+        },
+        "age=1,type=animancy": {
+            "model": "som:block/dryingmandrake1"
+        },
+        "age=2,type=animancy": {
+            "model": "som:block/dryingmandrake2"
+        },
+        "age=3,type=animancy": {
+            "model": "som:block/dryingmandrake3"
+        },
+        "age=4,type=animancy": {
+            "model": "som:block/dryingmandrake4"
+        },
+        "age=0,type=electromancy": {
+            "model": "som:block/dryingfoxglove0"
+        },
+        "age=1,type=electromancy": {
+            "model": "som:block/dryingfoxglove1"
+        },
+        "age=2,type=electromancy": {
+            "model": "som:block/dryingfoxglove2"
+        },
+        "age=3,type=electromancy": {
+            "model": "som:block/dryingfoxglove3"
+        },
+        "age=4,type=electromancy": {
+            "model": "som:block/dryingfoxglove4"
+        },
+        "age=0,type=hydromancy": {
+            "model": "som:block/dryinglotus0"
+        },
+        "age=1,type=hydromancy": {
+            "model": "som:block/dryinglotus1"
+        },
+        "age=2,type=hydromancy": {
+            "model": "som:block/dryinglotus2"
+        },
+        "age=3,type=hydromancy": {
+            "model": "som:block/dryinglotus3"
+        },
+        "age=4,type=hydromancy": {
+            "model": "som:block/dryinglotus4"
+        },
+        "age=0,type=cryomancy": {
+            "model": "som:block/dryingsnowbell0"
+        },
+        "age=1,type=cryomancy": {
+            "model": "som:block/dryingsnowbell1"
+        },
+        "age=2,type=cryomancy": {
+            "model": "som:block/dryingsnowbell2"
+        },
+        "age=3,type=cryomancy": {
+            "model": "som:block/dryingsnowbell3"
+        },
+        "age=4,type=cryomancy": {
+            "model": "som:block/dryingsnowbell4"
+        },
+        "age=0,type=hieromancy": {
+            "model": "som:block/dryinglavender0"
+        },
+        "age=1,type=hieromancy": {
+            "model": "som:block/dryinglavender1"
+        },
+        "age=2,type=hieromancy": {
+            "model": "som:block/dryinglavender2"
+        },
+        "age=3,type=hieromancy": {
+            "model": "som:block/dryinglavender3"
+        },
+        "age=4,type=hieromancy": {
+            "model": "som:block/dryinglavender4"
+        },
+        "age=0,type=chaotics": {
+            "model": "som:block/dryinglithop0"
+        },
+        "age=1,type=chaotics": {
+            "model": "som:block/dryinglithop1"
+        },
+        "age=2,type=chaotics": {
+            "model": "som:block/dryinglithop2"
+        },
+        "age=3,type=chaotics": {
+            "model": "som:block/dryinglithop3"
+        },
+        "age=4,type=chaotics": {
+            "model": "som:block/dryinglithop4"
+        },
+        "age=0,type=auramancy": {
+            "model": "som:block/dryingmallow0"
+        },
+        "age=1,type=auramancy": {
+            "model": "som:block/dryingmallow1"
+        },
+        "age=2,type=auramancy": {
+            "model": "som:block/dryingmallow2"
+        },
+        "age=3,type=auramancy": {
+            "model": "som:block/dryingmallow3"
+        },
+        "age=4,type=auramancy": {
+            "model": "som:block/dryingmallow4"
+        },
+        "age=0,type=astromancy": {
+            "model": "som:block/dryingjimsonweed0"
+        },
+        "age=1,type=astromancy": {
+            "model": "som:block/dryingjimsonweed1"
+        },
+        "age=2,type=astromancy": {
+            "model": "som:block/dryingjimsonweed2"
+        },
+        "age=3,type=astromancy": {
+            "model": "som:block/dryingjimsonweed3"
+        },
+        "age=4,type=astromancy": {
+            "model": "som:block/dryingjimsonweed4"
+        },
+        "age=0,type=infernality": {
+            "model": "som:block/dryinghemlock0"
+        },
+        "age=1,type=infernality": {
+            "model": "som:block/dryinghemlock1"
+        },
+        "age=2,type=infernality": {
+            "model": "som:block/dryinghemlock2"
+        },
+        "age=3,type=infernality": {
+            "model": "som:block/dryinghemlock3"
+        },
+        "age=4,type=infernality": {
+            "model": "som:block/dryinghemlock4"
+        },
+        "age=0,type=spectromancy": {
+            "model": "som:block/dryingwormwood0"
+        },
+        "age=1,type=spectromancy": {
+            "model": "som:block/dryingwormwood1"
+        },
+        "age=2,type=spectromancy": {
+            "model": "som:block/dryingwormwood2"
+        },
+        "age=3,type=spectromancy": {
+            "model": "som:block/dryingwormwood3"
+        },
+        "age=4,type=spectromancy": {
+            "model": "som:block/dryingwormwood4"
+        },
+        "age=0,type=umbramancy": {
+            "model": "som:block/dryingnightshade0"
+        },
+        "age=1,type=umbramancy": {
+            "model": "som:block/dryingnightshade1"
+        },
+        "age=2,type=umbramancy": {
+            "model": "som:block/dryingnightshade2"
+        },
+        "age=3,type=umbramancy": {
+            "model": "som:block/dryingnightshade3"
+        },
+        "age=4,type=umbramancy": {
+            "model": "som:block/dryingnightshade4"
+        },
+        "age=0,type=necromancy": {
+            "model": "som:block/dryinggravegrass0"
+        },
+        "age=1,type=necromancy": {
+            "model": "som:block/dryinggravegrass1"
+        },
+        "age=2,type=necromancy": {
+            "model": "som:block/dryinggravegrass2"
+        },
+        "age=3,type=necromancy": {
+            "model": "som:block/dryinggravegrass3"
+        },
+        "age=4,type=necromancy": {
+            "model": "som:block/dryinggravegrass4"
+        },
+        "age=0,type=graveroot": {
+            "model": "som:block/dryinggraveroot0"
+        },
+        "age=1,type=graveroot": {
+            "model": "som:block/dryinggraveroot1"
+        },
+        "age=2,type=graveroot": {
+            "model": "som:block/dryinggraveroot2"
+        },
+        "age=3,type=graveroot": {
+            "model": "som:block/dryinggraveroot3"
+        },
+        "age=4,type=graveroot": {
+            "model": "som:block/dryinggraveroot4"
+        },
+        "age=0,type=sunflower": {
+            "model": "som:block/dryingsunflower0"
+        },
+        "age=1,type=sunflower": {
+            "model": "som:block/dryingsunflower1"
+        },
+        "age=2,type=sunflower": {
+            "model": "som:block/dryingsunflower2"
+        },
+        "age=3,type=sunflower": {
+            "model": "som:block/dryingsunflower3"
+        },
+        "age=4,type=sunflower": {
+            "model": "som:block/dryingsunflower4"
+        },
+        "age=0,type=rose": {
+            "model": "som:block/dryingrose0"
+        },
+        "age=1,type=rose": {
+            "model": "som:block/dryingrose1"
+        },
+        "age=2,type=rose": {
+            "model": "som:block/dryingrose2"
+        },
+        "age=3,type=rose": {
+            "model": "som:block/dryingrose3"
+        },
+        "age=4,type=rose": {
+            "model": "som:block/dryingrose4"
+        },
+        "age=0,type=lilac": {
+            "model": "som:block/dryinglilac0"
+        },
+        "age=1,type=lilac": {
+            "model": "som:block/dryinglilac1"
+        },
+        "age=2,type=lilac": {
+            "model": "som:block/dryinglilac2"
+        },
+        "age=3,type=lilac": {
+            "model": "som:block/dryinglilac3"
+        },
+        "age=4,type=lilac": {
+            "model": "som:block/dryinglilac4"
+        },
+        "age=0,type=peony": {
+            "model": "som:block/dryingpeony0"
+        },
+        "age=1,type=peony": {
+            "model": "som:block/dryingpeony1"
+        },
+        "age=2,type=peony": {
+            "model": "som:block/dryingpeony2"
+        },
+        "age=3,type=peony": {
+            "model": "som:block/dryingpeony3"
+        },
+        "age=4,type=peony": {
+            "model": "som:block/dryingpeony4"
+        },
+        "age=0,type=nightberry": {
+            "model": "som:block/dryingnightberry0"
+        },
+        "age=1,type=nightberry": {
+            "model": "som:block/dryingnightberry1"
+        },
+        "age=2,type=nightberry": {
+            "model": "som:block/dryingnightberry2"
+        },
+        "age=3,type=nightberry": {
+            "model": "som:block/dryingnightberry3"
+        },
+        "age=4,type=nightberry": {
+            "model": "som:block/dryingnightberry4"
+        },
+        "age=0,type=fireberry": {
+            "model": "som:block/dryingfireberry0"
+        },
+        "age=1,type=fireberry": {
+            "model": "som:block/dryingfireberry1"
+        },
+        "age=2,type=fireberry": {
+            "model": "som:block/dryingfireberry2"
+        },
+        "age=3,type=fireberry": {
+            "model": "som:block/dryingfireberry3"
+        },
+        "age=4,type=fireberry": {
+            "model": "som:block/dryingfireberry4"
+        },
+        "age=0,type=oleander": {
+            "model": "som:block/dryingoleander0"
+        },
+        "age=1,type=oleander": {
+            "model": "som:block/dryingoleander1"
+        },
+        "age=2,type=oleander": {
+            "model": "som:block/dryingoleander2"
+        },
+        "age=3,type=oleander": {
+            "model": "som:block/dryingoleander3"
+        },
+        "age=4,type=oleander": {
+            "model": "som:block/dryingoleander4"
+        },
+        "age=0,type=wheat": {
+            "model": "som:block/dryingwheat0"
+        },
+        "age=1,type=wheat": {
+            "model": "som:block/dryingwheat1"
+        },
+        "age=2,type=wheat": {
+            "model": "som:block/dryingwheat2"
+        },
+        "age=3,type=wheat": {
+            "model": "som:block/dryingwheat3"
+        },
+        "age=4,type=wheat": {
+            "model": "som:block/dryingwheat4"
+        },
+        "age=0,type=sage": {
+            "model": "som:block/dryingsage0"
+        },
+        "age=1,type=sage": {
+            "model": "som:block/dryingsage1"
+        },
+        "age=2,type=sage": {
+            "model": "som:block/dryingsage2"
+        },
+        "age=3,type=sage": {
+            "model": "som:block/dryingsage3"
+        },
+        "age=4,type=sage": {
+            "model": "som:block/dryingsage4"
+        },
+        "age=0,type=valleylily": {
+            "model": "som:block/dryingvalleylily0"
+        },
+        "age=1,type=valleylily": {
+            "model": "som:block/dryingvalleylily1"
+        },
+        "age=2,type=valleylily": {
+            "model": "som:block/dryingvalleylily2"
+        },
+        "age=3,type=valleylily": {
+            "model": "som:block/dryingvalleylily3"
+        },
+        "age=4,type=valleylily": {
+            "model": "som:block/dryingvalleylily4"
+        },
+        "age=0,type=mistletoe": {
+            "model": "som:block/dryingmistletoe0"
+        },
+        "age=1,type=mistletoe": {
+            "model": "som:block/dryingmistletoe1"
+        },
+        "age=2,type=mistletoe": {
+            "model": "som:block/dryingmistletoe2"
+        },
+        "age=3,type=mistletoe": {
+            "model": "som:block/dryingmistletoe3"
+        },
+        "age=4,type=mistletoe": {
+            "model": "som:block/dryingmistletoe4"
+        },
+        "age=0,type=bladderwort": {
+            "model": "som:block/dryingbladderwort0"
+        },
+        "age=1,type=bladderwort": {
+            "model": "som:block/dryingbladderwort1"
+        },
+        "age=2,type=bladderwort": {
+            "model": "som:block/dryingbladderwort2"
+        },
+        "age=3,type=bladderwort": {
+            "model": "som:block/dryingbladderwort3"
+        },
+        "age=4,type=bladderwort": {
+            "model": "som:block/dryingbladderwort4"
+        },
+        "age=0,type=flytrap": {
+            "model": "som:block/dryingvenus0"
+        },
+        "age=1,type=flytrap": {
+            "model": "som:block/dryingvenus1"
+        },
+        "age=2,type=flytrap": {
+            "model": "som:block/dryingvenus2"
+        },
+        "age=3,type=flytrap": {
+            "model": "som:block/dryingvenus3"
+        },
+        "age=4,type=flytrap": {
+            "model": "som:block/dryingvenus4"
+        },
+        "age=0,type=carrot": {
+            "model": "som:block/dryingcarrot0"
+        },
+        "age=1,type=carrot": {
+            "model": "som:block/dryingcarrot1"
+        },
+        "age=2,type=carrot": {
+            "model": "som:block/dryingcarrot2"
+        },
+        "age=3,type=carrot": {
+            "model": "som:block/dryingcarrot3"
+        },
+        "age=4,type=carrot": {
+            "model": "som:block/dryingcarrot4"
+        },
+        "age=0,type=hydrangea": {
+            "model": "som:block/dryinghydrangea0"
+        },
+        "age=1,type=hydrangea": {
+            "model": "som:block/dryinghydrangea1"
+        },
+        "age=2,type=hydrangea": {
+            "model": "som:block/dryinghydrangea2"
+        },
+        "age=3,type=hydrangea": {
+            "model": "som:block/dryinghydrangea3"
+        },
+        "age=4,type=hydrangea": {
+            "model": "som:block/dryinghydrangea4"
+        },
+        "age=0,type=mandrake": {
+            "model": "som:block/dryingmandrakeroot0"
+        },
+        "age=1,type=mandrake": {
+            "model": "som:block/dryingmandrakeroot1"
+        },
+        "age=2,type=mandrake": {
+            "model": "som:block/dryingmandrakeroot2"
+        },
+        "age=3,type=mandrake": {
+            "model": "som:block/dryingmandrakeroot3"
+        },
+        "age=4,type=mandrake": {
+            "model": "som:block/dryingmandrakeroot4"
+        },
+        "age=0,type=bramble": {
+            "model": "som:block/dryingbramble0"
+        },
+        "age=1,type=bramble": {
+            "model": "som:block/dryingbramble1"
+        },
+        "age=2,type=bramble": {
+            "model": "som:block/dryingbramble2"
+        },
+        "age=3,type=bramble": {
+            "model": "som:block/dryingbramble3"
+        },
+        "age=4,type=bramble": {
+            "model": "som:block/dryingbramble4"
+        },
+        "age=0,type=creosote": {
+            "model": "som:block/dryingcreosote0"
+        },
+        "age=1,type=creosote": {
+            "model": "som:block/dryingcreosote1"
+        },
+        "age=2,type=creosote": {
+            "model": "som:block/dryingcreosote2"
+        },
+        "age=3,type=creosote": {
+            "model": "som:block/dryingcreosote3"
+        },
+        "age=4,type=creosote": {
+            "model": "som:block/dryingcreosote4"
+        },
+        "age=0,type=brittlebush": {
+            "model": "som:block/dryingbrittle0"
+        },
+        "age=1,type=brittlebush": {
+            "model": "som:block/dryingbrittle1"
+        },
+        "age=2,type=brittlebush": {
+            "model": "som:block/dryingbrittle2"
+        },
+        "age=3,type=brittlebush": {
+            "model": "som:block/dryingbrittle3"
+        },
+        "age=4,type=brittlebush": {
+            "model": "som:block/dryingbrittle4"
+        },
+        "age=0,type=beanstalk": {
+            "model": "som:block/dryingbeanstalk0"
+        },
+        "age=1,type=beanstalk": {
+            "model": "som:block/dryingbeanstalk1"
+        },
+        "age=2,type=beanstalk": {
+            "model": "som:block/dryingbeanstalk2"
+        },
+        "age=3,type=beanstalk": {
+            "model": "som:block/dryingbeanstalk3"
+        },
+        "age=4,type=beanstalk": {
+            "model": "som:block/dryingbeanstalk4"
+        },
+        "age=0,type=sugarcane": {
+            "model": "som:block/dryingsugarcane0"
+        },
+        "age=1,type=sugarcane": {
+            "model": "som:block/dryingsugarcane1"
+        },
+        "age=2,type=sugarcane": {
+            "model": "som:block/dryingsugarcane2"
+        },
+        "age=3,type=sugarcane": {
+            "model": "som:block/dryingsugarcane3"
+        },
+        "age=4,type=sugarcane": {
+            "model": "som:block/dryingsugarcane4"
+        },
+        "age=0,type=cattail": {
+            "model": "som:block/dryingcattail0"
+        },
+        "age=1,type=cattail": {
+            "model": "som:block/dryingcattail1"
+        },
+        "age=2,type=cattail": {
+            "model": "som:block/dryingcattail2"
+        },
+        "age=3,type=cattail": {
+            "model": "som:block/dryingcattail3"
+        },
+        "age=4,type=cattail": {
+            "model": "som:block/dryingcattail4"
+        },
+        "age=0,type=palm": {
+            "model": "som:block/dryingpalm0"
+        },
+        "age=1,type=palm": {
+            "model": "som:block/dryingpalm1"
+        },
+        "age=2,type=palm": {
+            "model": "som:block/dryingpalm2"
+        },
+        "age=3,type=palm": {
+            "model": "som:block/dryingpalm3"
+        },
+        "age=4,type=palm": {
+            "model": "som:block/dryingpalm4"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "variant=normal": [
+            { "model": "som:block/fae_stone_normal" },
+            { "model": "som:block/fae_stone_mirror" },
+            { "model": "som:block/fae_stone_normal", "y": 180 },
+            { "model": "som:block/fae_stone_mirror", "y": 180 },
+            { "model": "som:block/fae_stone_normal", "x": 180 },
+            { "model": "som:block/fae_stone_mirror", "x": 180 },
+            { "model": "som:block/fae_stone_normal", "x": 180, "y": 180 },
+            { "model": "som:block/fae_stone_mirror", "x": 180, "y": 180 }
+        ],
+        "variant=cobble": { "model": "som:block/fae_cobble"},
+        "variant=mossy_cobble": { "model": "som:block/fae_mossy_cobble"},
+        "variant=bricks": { "model": "som:block/fae_bricks"},
+        "variant=mossy_bricks": { "model": "som:block/fae_mossy_bricks"},
+        "variant=chiseled_bricks": { "model": "som:block/fae_chiseled_bricks"},
+        "variant=cracked_bricks": { "model": "som:block/fae_cracked_bricks"}
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "type": "forge:add_spawns",
+    "biomes": "#som:dryad_biomes",
+    "spawners": {
+        "type": "som:som_dryad",
+        "weight": 8,
+        "minCount": 1,
+        "maxCount": 1
+    }
+}

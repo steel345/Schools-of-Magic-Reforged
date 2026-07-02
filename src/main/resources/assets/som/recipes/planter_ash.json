@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "ASA",
+    "AAA"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:dye",
+       "data": 15
+    },
+    "C": {
+      "item": "minecraft:dirt",
+      "data": 0
+    },
+    "A": 
+      {
+        "item": "som:halfslab_ash",
+        "data": 0
+      }
+  },
+  "result": {
+    "item": "som:planter",
+    "data": 6
+  }
+}

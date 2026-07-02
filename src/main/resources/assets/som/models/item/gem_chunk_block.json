@@ -1,0 +1,101 @@
+{
+  "parent": "som:block/gem_chunk_pyromancy",
+  "overrides": [
+    {
+      "predicate": {
+        "som:gem_block_variant": 0
+      },
+      "model": "som:block/gem_chunk_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.0625
+      },
+      "model": "som:block/gem_chunk_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.125
+      },
+      "model": "som:block/gem_chunk_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.1875
+      },
+      "model": "som:block/gem_chunk_geomancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.25
+      },
+      "model": "som:block/gem_chunk_animancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.3125
+      },
+      "model": "som:block/gem_chunk_electromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.375
+      },
+      "model": "som:block/gem_chunk_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.4375
+      },
+      "model": "som:block/gem_chunk_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.5
+      },
+      "model": "som:block/gem_chunk_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.5625
+      },
+      "model": "som:block/gem_chunk_chaotics"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.625
+      },
+      "model": "som:block/gem_chunk_auramancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.6875
+      },
+      "model": "som:block/gem_chunk_astromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.75
+      },
+      "model": "som:block/gem_chunk_infernality"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.8125
+      },
+      "model": "som:block/gem_chunk_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.875
+      },
+      "model": "som:block/gem_chunk_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.9375
+      },
+      "model": "som:block/gem_chunk_necromancy"
+    }
+  ]
+}

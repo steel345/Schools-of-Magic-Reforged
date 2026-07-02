@@ -1,0 +1,27 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    " S ",
+                    "CPC",
+                    " S "
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:mud_marble",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"normal\"}}"
+                      },
+                "C":  {
+                          "item":  "som:mud_marble",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"chiseled_bricks\"}}"
+                      },
+                "P":  {
+                          "item":  "som:mud_marble_pillar"
+                      }
+            },
+    "result":  {
+                   "count":  5,
+                   "item":  "som:mud_marble_keystone"
+               }
+}

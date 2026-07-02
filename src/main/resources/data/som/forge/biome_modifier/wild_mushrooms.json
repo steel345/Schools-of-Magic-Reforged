@@ -1,0 +1,9 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "som:acolyte_woods",
+    "som:bastion_woods"
+  ],
+  "features": "som:wild_mushrooms",
+  "step": "vegetal_decoration"
+}

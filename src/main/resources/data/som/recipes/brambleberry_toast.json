@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "som:bottle",
+      "type": "forge:partial_nbt",
+      "nbt": "{Damage:12}"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "som:brambleberry_toast"
+  }
+}

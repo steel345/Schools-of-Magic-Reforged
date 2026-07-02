@@ -1,0 +1,17 @@
+﻿{
+  "parent": "som:block/tile_jade_full",
+  "overrides": [
+    { "predicate": { "som:tile_variant": 0 }, "model": "som:item/tile_jade_facade" },
+    { "predicate": { "som:tile_variant": 0.083333 }, "model": "som:item/tile_jade_full" },
+    { "predicate": { "som:tile_variant": 0.166667 }, "model": "som:item/tile_jade_big" },
+    { "predicate": { "som:tile_variant": 0.25 }, "model": "som:item/tile_jade_medium" },
+    { "predicate": { "som:tile_variant": 0.333333 }, "model": "som:item/tile_jade_small" },
+    { "predicate": { "som:tile_variant": 0.416667 }, "model": "som:item/tile_jade_fish_scale" },
+    { "predicate": { "som:tile_variant": 0.5 }, "model": "som:item/tile_jade_herringbone" },
+    { "predicate": { "som:tile_variant": 0.583333 }, "model": "som:item/tile_jade_horizontal" },
+    { "predicate": { "som:tile_variant": 0.666667 }, "model": "som:item/tile_jade_diamond" },
+    { "predicate": { "som:tile_variant": 0.75 }, "model": "som:item/tile_jade_mixed" },
+    { "predicate": { "som:tile_variant": 0.833333 }, "model": "som:item/tile_jade_bubble" },
+    { "predicate": { "som:tile_variant": 0.916667 }, "model": "som:item/tile_jade_damaged" }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "som:block/wall_side_flowering",
+    "textures": {
+        "wall_flower": "som:blocks/hydrangea_wall_flower_side",
+        "wall_leaf": "som:blocks/hydrangea_wall_leaf_side"
+    }
+}

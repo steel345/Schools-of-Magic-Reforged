@@ -1,0 +1,3 @@
+  Throw a Potion Crystal into a brazier. This rite needs no crafting table beneath the brazier, only the crystal and the fire.
+<~><~>  While the fire burns it takes on the crystal's hue, and every creature standing within its radius is steeped in the potion's effect.
+<~><~>  The crystal has many charges. The flame will die down naturally, once the fire is gone so is the effect and a charge is consumed from the crystal.

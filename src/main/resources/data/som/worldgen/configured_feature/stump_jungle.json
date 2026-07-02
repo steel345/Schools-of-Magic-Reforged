@@ -1,0 +1,8 @@
+{
+    "type": "som:stump",
+    "config": {
+        "state": {
+            "Name": "minecraft:jungle_log"
+        }
+    }
+}

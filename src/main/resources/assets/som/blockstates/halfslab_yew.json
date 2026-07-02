@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "som:block/slab_bottom_yew"
+    },
+    "type=top": {
+      "model": "som:block/slab_top_yew"
+    },
+    "type=double": {
+      "model": "som:block/planksyew"
+    }
+  }
+}

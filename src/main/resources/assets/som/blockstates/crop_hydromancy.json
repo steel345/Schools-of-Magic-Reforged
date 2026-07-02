@@ -1,0 +1,12 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/croplotus0" },
+    "age=1": { "model": "som:block/croplotus1" },
+    "age=2": { "model": "som:block/croplotus2" },
+    "age=3": { "model": "som:block/croplotus3" },
+    "age=4": { "model": "som:block/croplotus4" },
+    "age=5": { "model": "som:block/croplotus5" },
+    "age=6": { "model": "som:block/croplotus6" },
+    "age=7": { "model": "som:block/croplotus7" }
+    }
+}

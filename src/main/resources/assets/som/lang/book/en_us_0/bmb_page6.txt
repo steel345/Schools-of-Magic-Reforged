@@ -1,0 +1,5 @@
+  The most basic metals a Magician must start with are Iron, Copper, Silver, and Gold.
+<~><~>  Since the great upheaval of the world's depths, these metals have settled at new levels. Iron is found from around Y 56 down toward bedrock, most plentiful near Y 16, and again high in the mountains above Y 80. Copper and Silver share much the same spread, common in the mid-depths and the peaks alike. Gold lies deeper, below Y 32 and richest near the bottom of the world, though it remains far more abundant in the Badlands, a fact that drove our ancestors to carve great mines into those hills.
+<~><~>  These are all adequate metals, however Steel, a far more durable metal, can be derived from the combination of Charcoal and Iron.
+<~><~>  Steel Amalgam can be created by crafting a block of Charcoal, placing it and heating it with Fire, Lava, Campfire or Magma, and then leaving an Iron Ingot to slowly melt into it. It can then be smelted into Steel Ingots in a Furnace.
+<~><~>  And should you seek the rarer Magic Gem Ores, dig deep near the bottom of the world, below Y 16 and richest toward bedrock, the very same depths where Diamonds are found.

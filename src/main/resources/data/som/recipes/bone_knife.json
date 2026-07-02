@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B",
+    "A "
+  ],
+  "key": {
+    "A": { "item": "minecraft:bone" },
+    "B": { "item": "som:item_obsidian_shard" }
+  },
+  "result": { "item": "som:bone_knife" }
+}

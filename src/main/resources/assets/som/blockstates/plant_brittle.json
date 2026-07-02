@@ -1,0 +1,6 @@
+{
+    "variants": {
+    "grown=grown": { "model": "som:block/plantbrittle" },
+    "grown=dead": { "model": "som:block/plantbrittle_dead" }
+    }
+}

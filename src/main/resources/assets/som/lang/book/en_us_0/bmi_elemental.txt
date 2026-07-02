@@ -1,0 +1,3 @@
+  The Gem set into a wand attunes it to a single magic element, granting +5% spell power to that element's school.
+<~><~>  A Supercharged Diamond attunes to no one element, and instead grants +5% power to every school at once.
+<~><~>  A Gold handle deepens this attunement, strengthening the elemental bonus further.

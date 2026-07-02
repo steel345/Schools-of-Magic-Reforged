@@ -1,0 +1,6 @@
+{
+    "type": "forge:add_features",
+    "biomes": "#minecraft:is_nether",
+    "features": ["som:ore_infernality","som:ore_spectromancy"],
+    "step": "underground_ores"
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platemallow" },
+        "facing=south": { "model": "som:block/platemallow", "y": 180 },
+        "facing=west":  { "model": "som:block/platemallow", "y": 270 },
+        "facing=east":  { "model": "som:block/platemallow", "y": 90 }
+    }
+}

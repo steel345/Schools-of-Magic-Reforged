@@ -1,0 +1,9 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/dryinglavender0" },
+    "age=1": { "model": "som:block/dryinglavender1" },
+    "age=2": { "model": "som:block/dryinglavender2" },
+    "age=3": { "model": "som:block/dryinglavender3" },
+    "age=4": { "model": "som:block/dryinglavender4" }
+    }
+}

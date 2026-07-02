@@ -1,0 +1,1 @@
+{ "type": "minecraft:smelting", "ingredient": { "type": "forge:partial_nbt", "item": "som:mud_marble_ore", "nbt": "{BlockStateTag:{type:\"iron\"}}" }, "result": "minecraft:iron_ingot", "experience": 0.7, "cookingtime": 200 }

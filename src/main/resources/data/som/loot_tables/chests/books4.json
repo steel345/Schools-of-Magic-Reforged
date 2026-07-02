@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "books4",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:11}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:12}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:13}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:14}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

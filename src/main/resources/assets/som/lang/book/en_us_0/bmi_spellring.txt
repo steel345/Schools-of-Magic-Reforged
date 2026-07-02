@@ -1,0 +1,3 @@
+  An Apprentice Ring lets you cast with no wand in hand, but only while it is worn in your ring slot and only has up to 4 spell slots.
+<~><~>  While worn, your spell slot (by defalt your first slot) will appear the hotbar with a purple tint. Right click that slot with anything, or an empty hand and that casts the selected spell, which overrides the usual right click interaction of whatever you are holding. Some spells are channeled while held, others release on attack.
+<~><~>  Hold V to open the spell ring and scroll to choose a spell. Sneak and press a number key to turn that slot into a spellslot, to remove sneak and press the same number again.

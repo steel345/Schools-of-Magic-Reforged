@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platelilac" },
+        "facing=south": { "model": "som:block/platelilac", "y": 180 },
+        "facing=west":  { "model": "som:block/platelilac", "y": 270 },
+        "facing=east":  { "model": "som:block/platelilac", "y": 90 }
+    }
+}

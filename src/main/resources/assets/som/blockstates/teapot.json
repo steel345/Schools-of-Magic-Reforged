@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "boiling=false,facing=north": { "model": "som:block/objectteapot" },
+        "boiling=false,facing=south": { "model": "som:block/objectteapot", "y": 180 },
+        "boiling=false,facing=west":  { "model": "som:block/objectteapot", "y": 270 },
+        "boiling=false,facing=east":  { "model": "som:block/objectteapot", "y": 90 },
+        "boiling=true,facing=north": { "model": "som:block/objectteapot" },
+        "boiling=true,facing=south": { "model": "som:block/objectteapot", "y": 180 },
+        "boiling=true,facing=west":  { "model": "som:block/objectteapot", "y": 270 },
+        "boiling=true,facing=east":  { "model": "som:block/objectteapot", "y": 90 }
+    }
+}

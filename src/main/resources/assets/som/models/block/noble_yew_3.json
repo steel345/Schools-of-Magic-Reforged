@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "som:blocks/log_yew_top",
+        "front": "som:blocks/yew_type3",
+        "side": "som:blocks/log_yew",
+        "bottom": "som:blocks/log_yew_top"
+    }
+}

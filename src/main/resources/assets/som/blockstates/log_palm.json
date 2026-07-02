@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "som:block/palm_mid" },
+        "axis=z":   { "model": "som:block/palm_mid", "x": 90 },
+        "axis=x":   { "model": "som:block/palm_mid", "x": 90, "y": 90 }
+    }
+}

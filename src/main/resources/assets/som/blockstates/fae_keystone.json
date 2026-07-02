@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=up":    { "model": "som:block/fae_keystone", "x": 90 },
+        "facing=down":  { "model": "som:block/fae_keystone", "x": 90, "y": 180 },
+        "facing=east":  { "model": "som:block/fae_keystone", "y": 90 },
+        "facing=west":  { "model": "som:block/fae_keystone", "y": 270 },
+        "facing=south": { "model": "som:block/fae_keystone", "y": 180 },
+        "facing=north": { "model": "som:block/fae_keystone" }
+    }
+}

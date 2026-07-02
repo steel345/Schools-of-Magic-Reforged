@@ -1,0 +1,8 @@
+{
+    "parent": "block/farmland",
+    "textures": {
+        "particle": "som:blocks/blockmud",
+        "dirt": "som:blocks/blockmud",
+        "top": "som:blocks/blockmud"
+    }
+}

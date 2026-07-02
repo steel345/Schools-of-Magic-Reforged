@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#minecraft:is_overworld",
+    "som:acolyte_woods", "som:banded_desert", "som:bastion_woods", "som:boiling_marsh",
+    "som:desert_canyons", "som:desert_river_canyons", "som:desert_uplands",
+    "som:magic_desert", "som:mountainous_jungle", "som:river_lands", "som:sinister_swamp",
+    "som:vermilion_grove", "som:wetlands",
+    "som:fae_acolyte_woods", "som:fae_bastion_woods", "som:fae_sinister_swamp",
+    "som:fae_vermilion_grove", "som:fae_wetlands"
+  ]
+}

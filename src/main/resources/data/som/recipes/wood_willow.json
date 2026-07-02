@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["##","##"], "key": { "#": { "item": "som:log_willow" } }, "result": { "item": "som:wood_willow", "count": 3 } }

@@ -1,0 +1,2 @@
+{ "parent": "minecraft:block/template_orientable_trapdoor_top",
+  "textures": { "texture": "som:blocks/trapdoor_willow" } }

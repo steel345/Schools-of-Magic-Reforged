@@ -1,0 +1,71 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 4,
+    "xz_spread": 7,
+    "y_spread": 0,
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "minecraft:poppy"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "minecraft:dandelion"
+                }
+              },
+              {
+                "weight": 2,
+                "data": {
+                  "Name": "som:mushroom_grey"
+                }
+              },
+              {
+                "weight": 3,
+                "data": {
+                  "Name": "minecraft:fern"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "som:magic_plant",
+                  "Properties": {
+                    "type": "pyromancy"
+                  }
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "som:magic_plant",
+                  "Properties": {
+                    "type": "geomancy"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    }
+  }
+}

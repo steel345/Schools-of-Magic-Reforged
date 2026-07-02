@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "som:block/rotted_slab_bottom_pine"
+    },
+    "type=top": {
+      "model": "som:block/rotted_slab_top_pine"
+    },
+    "type=double": {
+      "model": "som:block/rotted_planks_pine"
+    }
+  }
+}

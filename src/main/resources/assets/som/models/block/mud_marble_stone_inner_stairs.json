@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "som:blocks/mud_marble_b",
+        "top": "som:blocks/mud_marble_b",
+        "side": "som:blocks/mud_marble_b"
+    }
+}

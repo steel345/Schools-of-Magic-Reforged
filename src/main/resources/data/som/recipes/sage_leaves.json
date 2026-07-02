@@ -1,0 +1,14 @@
+﻿{
+    "type":  "minecraft:crafting_shapeless",
+    "ingredients":  [
+                        {
+                            "item":  "som:dried_plant",
+                            "type":  "forge:partial_nbt",
+                            "nbt":  "{Damage:29}"
+                        }
+                    ],
+    "result":  {
+                   "item":  "som:item_sage_leaves",
+                   "count":  3
+               }
+}

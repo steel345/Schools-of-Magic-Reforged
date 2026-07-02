@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/slab_top",
+    "textures": {
+        "bottom": "som:blocks/hard_clay_brick",
+        "top": "som:blocks/hard_clay_brick",
+        "side": "som:blocks/hard_clay_brick"
+    }
+}

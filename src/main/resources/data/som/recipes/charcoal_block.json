@@ -1,0 +1,15 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "S"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:block_charcoal"
+                      }
+            },
+    "result":  {
+                   "count":  9,
+                   "item":  "minecraft:charcoal"
+               }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:tile_turquoise",
+      "type": "forge:partial_nbt",
+      "nbt": "{BlockStateTag:{variant:\"bubble\"}}"
+    }
+  ],
+  "result": {
+    "item": "som:tile_turquoise",
+    "nbt": "{BlockStateTag:{variant:\"damaged\"}}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:book" },
+    { "item": "minecraft:purple_dye" },
+    { "item": "som:item_porcelain" },
+    { "type": "forge:partial_nbt", "item": "som:crushed_plant", "nbt": { "Damage": 20 } }
+  ],
+  "result": { "item": "som:tea_makers_guide" }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "som:blocks/fae_pillar_top",
+        "side": "som:blocks/fae_pillar_side"
+    }
+}

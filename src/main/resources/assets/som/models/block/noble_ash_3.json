@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "som:blocks/log_ash_top",
+        "front": "som:blocks/ash_type3",
+        "side": "som:blocks/log_ash",
+        "bottom": "som:blocks/log_ash_top"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "som:blocks/log_pine_top",
+        "front": "som:blocks/pine_type1",
+        "side": "som:blocks/log_pine",
+        "bottom": "som:blocks/log_pine_top"
+    }
+}

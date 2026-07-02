@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "category": "decorations", "pattern": ["X X","SSS","SSS"], "key": { "X": { "item": "minecraft:chain" }, "S": { "item": "som:stripped_log_elder" } }, "result": { "item": "som:vermilion_hanging_sign", "count": 6 } }

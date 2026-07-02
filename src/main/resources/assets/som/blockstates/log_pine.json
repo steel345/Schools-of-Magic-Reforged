@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "som:block/logpine"
+    },
+    "axis=x": {
+      "model": "som:block/logpine_bark",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z": {
+      "model": "som:block/logpine_bark",
+      "x": 90
+    }
+  }
+}

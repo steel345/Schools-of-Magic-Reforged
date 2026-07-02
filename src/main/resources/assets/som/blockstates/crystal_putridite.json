@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "facing=up,age=0": { "model": "som:block/crystal_putridite_0" },
+        "facing=down,age=0": { "model": "som:block/crystal_putridite_0", "x": 180 },
+        "facing=north,age=0": { "model": "som:block/crystal_putridite_0", "x": 90 },
+        "facing=south,age=0": { "model": "som:block/crystal_putridite_0", "x": 90, "y": 180 },
+        "facing=east,age=0": { "model": "som:block/crystal_putridite_0", "x": 90, "y": 90 },
+        "facing=west,age=0": { "model": "som:block/crystal_putridite_0", "x": 90, "y": 270 },
+        "facing=up,age=1": { "model": "som:block/crystal_putridite_1" },
+        "facing=down,age=1": { "model": "som:block/crystal_putridite_1", "x": 180 },
+        "facing=north,age=1": { "model": "som:block/crystal_putridite_1", "x": 90 },
+        "facing=south,age=1": { "model": "som:block/crystal_putridite_1", "x": 90, "y": 180 },
+        "facing=east,age=1": { "model": "som:block/crystal_putridite_1", "x": 90, "y": 90 },
+        "facing=west,age=1": { "model": "som:block/crystal_putridite_1", "x": 90, "y": 270 },
+        "facing=up,age=2": { "model": "som:block/crystal_putridite_2" },
+        "facing=down,age=2": { "model": "som:block/crystal_putridite_2", "x": 180 },
+        "facing=north,age=2": { "model": "som:block/crystal_putridite_2", "x": 90 },
+        "facing=south,age=2": { "model": "som:block/crystal_putridite_2", "x": 90, "y": 180 },
+        "facing=east,age=2": { "model": "som:block/crystal_putridite_2", "x": 90, "y": 90 },
+        "facing=west,age=2": { "model": "som:block/crystal_putridite_2", "x": 90, "y": 270 },
+        "facing=up,age=3": { "model": "som:block/crystal_putridite_3" },
+        "facing=down,age=3": { "model": "som:block/crystal_putridite_3", "x": 180 },
+        "facing=north,age=3": { "model": "som:block/crystal_putridite_3", "x": 90 },
+        "facing=south,age=3": { "model": "som:block/crystal_putridite_3", "x": 90, "y": 180 },
+        "facing=east,age=3": { "model": "som:block/crystal_putridite_3", "x": 90, "y": 90 },
+        "facing=west,age=3": { "model": "som:block/crystal_putridite_3", "x": 90, "y": 270 }
+    }
+}

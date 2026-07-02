@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "som:block/obsidian_pressure_plate_up" },
+        "powered=true": { "model": "som:block/obsidian_pressure_plate_down" }
+    }
+}

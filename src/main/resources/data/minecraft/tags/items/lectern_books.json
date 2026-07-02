@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:magic_book",
+    "som:basic_spellbook",
+    "som:intermediate_spellbook",
+    "som:advanced_spellbook",
+    "som:complete_spellbook",
+    "som:spellbook"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "variant=normal": { "model": "som:block/gypsum_normal" },
+        "variant=cobble": { "model": "som:block/gypsum_cobble"},
+        "variant=mossy_cobble": { "model": "som:block/gypsum_mossy_cobble"},
+        "variant=bricks": { "model": "som:block/gypsum_bricks"},
+        "variant=mossy_bricks": { "model": "som:block/gypsum_mossy_bricks"},
+        "variant=chiseled_bricks": { "model": "som:block/gypsum_chiseled_bricks"},
+        "variant=cracked_bricks": { "model": "som:block/gypsum_cracked_bricks"}
+    }
+}

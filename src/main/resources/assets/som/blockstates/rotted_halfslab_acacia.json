@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "som:block/rotted_slab_bottom_acacia"
+    },
+    "type=top": {
+      "model": "som:block/rotted_slab_top_acacia"
+    },
+    "type=double": {
+      "model": "som:block/rotted_planks_acacia"
+    }
+  }
+}

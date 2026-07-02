@@ -1,0 +1,27 @@
+{
+    "pools": [
+        {
+            "name": "magic_books",
+            "rolls": 1,
+            "bonus_rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "som:magic_book",
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 7
+                        }
+                    ]
+                },
+                {
+                    "type": "loot_table",
+                    "weight": 5,
+                    "name": "som:books4"
+                }
+            ]
+        }
+    ]
+}

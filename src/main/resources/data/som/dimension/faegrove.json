@@ -1,0 +1,18 @@
+{
+  "type": "som:faegrove",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "som:faegrove",
+    "biome_source": {
+      "type": "som:fae_grove",
+      "labyrinth": "som:labyrinth",
+      "acolyte": "som:fae_acolyte_woods",
+      "others": [
+        "som:fae_bastion_woods",
+        "som:fae_sinister_swamp",
+        "som:fae_wetlands",
+        "som:fae_vermilion_grove"
+      ]
+    }
+  }
+}

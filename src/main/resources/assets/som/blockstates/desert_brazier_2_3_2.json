@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "som:block/desert_brazier_2_3_2", "y": 180 }
+    }
+}

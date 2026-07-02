@@ -1,0 +1,18 @@
+{
+    "structures": [
+        {
+            "structure": "som:mini_heliomancy",
+            "weight": 1
+        }
+    ],
+    "placement": {
+        "type": "minecraft:random_spread",
+        "spacing": 40,
+        "separation": 12,
+        "salt": 71000000,
+        "exclusion_zone": {
+            "other_set": "som:ziggurat",
+            "chunk_count": 10
+        }
+    }
+}

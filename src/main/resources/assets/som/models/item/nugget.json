@@ -1,0 +1,12 @@
+{
+  "parent": "item/generated",
+  "textures": { "layer0": "som:items/nugget_silver" },
+  "overrides": [
+    {"predicate": {"som:variant": 0.00000}, "model": "som:item/nugget_silver"},
+    {"predicate": {"som:variant": 0.12500}, "model": "som:item/nugget_copper"},
+    {"predicate": {"som:variant": 0.25000}, "model": "som:item/nugget_bronze"},
+    {"predicate": {"som:variant": 0.37500}, "model": "som:item/nugget_brass"},
+    {"predicate": {"som:variant": 0.50000}, "model": "som:item/nugget_steel"},
+    {"predicate": {"som:variant": 0.56250}, "model": "som:item/nugget_tenebrium"}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:flowers",
+    "som:plant_rose",
+    "som:plant_valleylily",
+    "som:plant_oleander",
+    "som:plant_sage",
+    "som:plant_mistletoe"
+  ]
+}

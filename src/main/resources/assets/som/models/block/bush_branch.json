@@ -1,0 +1,39 @@
+{
+    "parent": "block/block",
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "particle": "som:blocks/bush_leaf_full",
+        "0": "som:blocks/bush_branch_r",
+        "1": "som:blocks/bush_branch_l"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 8.0, -3.0, 0.0 ], 
+            "to": [ 8.0, 19.0, 16.0 ], 
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "z", "angle": 45.0 },
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 0.0, 16.0 ], "tintindex": 0 },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "rotation": 180, "tintindex": 0 },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 0.0, 22.0 ], "tintindex": 0 },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "tintindex": 0 },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 0.0, 16.0 ], "tintindex": 0 },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 0.0, 16.0 ], "tintindex": 0 }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 8.0, -3.0, 0.0 ], 
+            "to": [ 8.0, 19.0, 16.0 ], 
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "z", "angle": -45.0 },
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 0.0, 22.0 ], "tintindex": 0 },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "rotation": 180, "tintindex": 0 },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 0.0, 22.0 ], "tintindex": 0 },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "tintindex": 0 },
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 0.0, 16.0 ], "tintindex": 0 },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 0.0, 16.0 ], "tintindex": 0 }
+            }
+        }
+    ]
+}

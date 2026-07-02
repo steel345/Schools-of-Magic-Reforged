@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "som:items/teacup_liquid",
+        "layer1": "som:items/teacup"
+     }
+}

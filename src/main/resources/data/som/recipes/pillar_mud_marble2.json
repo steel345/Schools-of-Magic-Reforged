@@ -1,0 +1,18 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "H",
+                    "H"
+                ],
+    "key":  {
+                "H":  {
+                          "item":  "som:mud_marble",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"normal\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  2,
+                   "item":  "som:mud_marble_pillar"
+               }
+}

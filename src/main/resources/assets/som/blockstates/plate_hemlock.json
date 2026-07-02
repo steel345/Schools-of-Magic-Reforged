@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platehemlock" },
+        "facing=south": { "model": "som:block/platehemlock", "y": 180 },
+        "facing=west":  { "model": "som:block/platehemlock", "y": 270 },
+        "facing=east":  { "model": "som:block/platehemlock", "y": 90 }
+    }
+}

@@ -1,0 +1,4 @@
+{
+    "parent": "item/generated",
+    "textures": { "layer0": "som:items/ring_silver", "layer1": "som:items/ring_gems/gem_electromancy" }
+}

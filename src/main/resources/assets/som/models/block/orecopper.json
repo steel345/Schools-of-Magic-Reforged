@@ -1,0 +1,10 @@
+{
+  "parent": "som:block/ore",
+  "textures": {
+    "block": "minecraft:block/stone",
+    "ore_side": "som:blocks/orecopper",
+    "ore_top": "som:blocks/orecopper",
+    "ore_bottom": "som:blocks/orecopper",
+    "particle": "som:blocks/orecopper"
+  }
+}

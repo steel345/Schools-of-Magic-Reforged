@@ -1,0 +1,17 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "som:fae_stone",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"normal\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  6,
+                   "item":  "som:halfslab_fae_stone"
+               }
+}

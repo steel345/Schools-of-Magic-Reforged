@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H",
+    "H"
+  ],
+  "key": {
+    "H": {
+      "item": "som:fae_stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "som:fae_pillar",
+    "count": 2
+  }
+}

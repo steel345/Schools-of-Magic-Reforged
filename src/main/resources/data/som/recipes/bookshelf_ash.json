@@ -1,0 +1,27 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "ZYZ",
+                    "XXX",
+                    "ZYZ"
+                ],
+    "key":  {
+                "Z":  [
+                          {
+                              "item":  "som:log_ash"
+                          }
+                      ],
+                "Y":  [
+                          {
+                              "item":"som:planks_ash"
+                          }
+                      ],
+                "X":  {
+                          "item":  "minecraft:book"
+                      }
+            },
+    "result":  {
+                   "item":  "som:magic_bookshelf",
+                   "nbt":  "{BlockStateTag:{type:\"ash\"}}"
+               }
+}

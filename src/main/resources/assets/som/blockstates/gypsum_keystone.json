@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=up":    { "model": "som:block/gypsum_keystone", "x": 90 },
+        "facing=down":  { "model": "som:block/gypsum_keystone", "x": 90, "y": 180 },
+        "facing=east":  { "model": "som:block/gypsum_keystone", "y": 90 },
+        "facing=west":  { "model": "som:block/gypsum_keystone", "y": 270 },
+        "facing=south": { "model": "som:block/gypsum_keystone", "y": 180 },
+        "facing=north": { "model": "som:block/gypsum_keystone" }
+    }
+}

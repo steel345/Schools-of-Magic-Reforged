@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/palm_leaves" },
+        "facing=south": { "model": "som:block/palm_leaves", "y": 180 },
+        "facing=west":  { "model": "som:block/palm_leaves", "y": 270 },
+        "facing=east":  { "model": "som:block/palm_leaves", "y": 90 }
+    }
+}

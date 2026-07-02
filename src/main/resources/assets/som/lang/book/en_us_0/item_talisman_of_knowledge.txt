@@ -1,0 +1,1 @@
+  Worn in your talisman slot, the Talisman of Knowledge trades raw experience for prepared magic. Press the talisman key and it spends levels to fill a Spell Charge of the tier you are on, costing one level for tier one, two for tier two, and so on.

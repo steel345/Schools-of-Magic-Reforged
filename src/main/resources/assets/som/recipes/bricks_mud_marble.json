@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HH",
+    "HH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:mud_marble",
+       "data": 0
+    }
+  },
+  "result": {
+    "item": "som:mud_marble",
+    "data": 3,
+    "count": 4
+  }
+}

@@ -1,0 +1,1 @@
+{"type":"som:nbt_smelting","ingredient":{"item":"som:ore_steel"},"result":{"item":"som:ingot","nbt":"{Damage:8}"},"experience":1.5,"cookingtime":200}

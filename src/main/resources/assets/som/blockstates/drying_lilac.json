@@ -1,0 +1,9 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/dryinglilac0" },
+    "age=1": { "model": "som:block/dryinglilac1" },
+    "age=2": { "model": "som:block/dryinglilac2" },
+    "age=3": { "model": "som:block/dryinglilac3" },
+    "age=4": { "model": "som:block/dryinglilac4" }
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "som:rotted_halfslab_pine",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                { "condition": "minecraft:block_state_property", "block": "som:rotted_halfslab_pine", "properties": { "type": "double" } }
+              ],
+              "count": 2,
+              "add": false
+            },
+            { "function": "minecraft:explosion_decay" }
+          ]
+        }
+      ],
+      "conditions": [
+        { "condition": "minecraft:survives_explosion" }
+      ]
+    }
+  ]
+}

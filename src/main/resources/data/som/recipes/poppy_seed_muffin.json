@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:wheat" },
+    { "item": "minecraft:egg" },
+    { "item": "minecraft:sugar" },
+    {
+      "type": "forge:partial_nbt",
+      "item": "som:bottle",
+      "nbt": { "Damage": 7 }
+    }
+  ],
+  "result": {
+    "item": "som:poppy_seed_muffin"
+  }
+}

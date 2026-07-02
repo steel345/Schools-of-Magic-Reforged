@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "minecraft:double_plant",
+        "data": 4
+      }
+  },
+  "result": {
+    "item": "som:wall_rose"
+  }
+}

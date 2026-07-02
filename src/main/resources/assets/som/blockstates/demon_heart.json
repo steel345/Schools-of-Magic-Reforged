@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "som:block/demon_heart"
+    },
+    "facing=south": {
+      "model": "som:block/demon_heart",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "som:block/demon_heart",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "som:block/demon_heart",
+      "y": 90
+    }
+  }
+}

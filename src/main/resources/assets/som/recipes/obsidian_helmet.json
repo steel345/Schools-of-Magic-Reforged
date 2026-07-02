@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    "C C"
+  ],
+  "key": {
+    "S": {
+      "item": "som:item",
+      "data": 2
+    },
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "ingotObsidian"
+    }
+  },
+  "result": {
+    "item": "som:helmet_obsidian"
+  }
+}

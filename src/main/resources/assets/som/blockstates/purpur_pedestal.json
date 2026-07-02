@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "som:block/purpur_pedestal",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "som:block/purpur_pedestal"
+    },
+    "facing=south": {
+      "model": "som:block/purpur_pedestal",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "som:block/purpur_pedestal",
+      "y": 270
+    }
+  }
+}

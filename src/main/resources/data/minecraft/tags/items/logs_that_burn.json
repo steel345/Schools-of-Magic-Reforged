@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+        "som:log_palm", "som:palm_top",
+        "som:log_ash", "som:log_elder", "som:log_pine",
+        "som:log_willow", "som:log_yew", "som:log_verde",
+        "som:stripped_log_ash", "som:stripped_log_elder", "som:stripped_log_pine",
+        "som:stripped_log_willow", "som:stripped_log_yew", "som:stripped_log_verde",
+        "som:wood_ash", "som:wood_elder", "som:wood_pine",
+        "som:wood_willow", "som:wood_yew", "som:wood_verde",
+        "som:stripped_wood_ash", "som:stripped_wood_elder", "som:stripped_wood_pine",
+        "som:stripped_wood_willow", "som:stripped_wood_yew", "som:stripped_wood_verde"
+    ]
+}

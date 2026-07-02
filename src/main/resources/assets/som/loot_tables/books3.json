@@ -1,0 +1,21 @@
+{
+    "pools": [
+        {
+            "name": "books3",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "som:magic_book",
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 15
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C ",
+    "CC"
+  ],
+  "key": {
+    "C": {
+      "item": "som:ingot",
+      "data": 4
+    }
+  },
+  "result": {
+    "item": "som:stair_void"
+  }
+}

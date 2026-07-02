@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:dried_plant",
+      "data":29
+    }
+  ],
+  "result": {
+    "item": "som:item",
+    "data": 9,
+    "count": 3
+  }
+}

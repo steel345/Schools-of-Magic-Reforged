@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "type=pyromancy": {
+      "model": "som:block/ore_gem_fae_pyromancy"
+    },
+    "type=heliomancy": {
+      "model": "som:block/ore_gem_fae_heliomancy"
+    },
+    "type=aeromancy": {
+      "model": "som:block/ore_gem_fae_aeromancy"
+    },
+    "type=geomancy": {
+      "model": "som:block/ore_gem_fae_geomancy"
+    },
+    "type=animancy": {
+      "model": "som:block/ore_gem_fae_animancy"
+    },
+    "type=electromancy": {
+      "model": "som:block/ore_gem_fae_electromancy"
+    },
+    "type=hydromancy": {
+      "model": "som:block/ore_gem_fae_hydromancy"
+    },
+    "type=cryomancy": {
+      "model": "som:block/ore_gem_fae_cryomancy"
+    },
+    "type=hieromancy": {
+      "model": "som:block/ore_gem_fae_hieromancy"
+    },
+    "type=chaotics": {
+      "model": "som:block/ore_gem_fae_chaotics"
+    },
+    "type=auramancy": {
+      "model": "som:block/ore_gem_fae_auramancy"
+    },
+    "type=astromancy": {
+      "model": "som:block/ore_gem_fae_astromancy"
+    },
+    "type=infernality": {
+      "model": "som:block/ore_gem_fae_infernality"
+    },
+    "type=spectromancy": {
+      "model": "som:block/ore_gem_fae_spectromancy"
+    },
+    "type=umbramancy": {
+      "model": "som:block/ore_gem_fae_umbramancy"
+    },
+    "type=necromancy": {
+      "model": "som:block/ore_gem_fae_necromancy"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "type": "forge:add_features",
+    "biomes": ["minecraft:the_end","minecraft:end_highlands","minecraft:end_midlands","minecraft:end_barrens","minecraft:small_end_islands"],
+    "features": "som:ore_chaotics",
+    "step": "underground_ores"
+}

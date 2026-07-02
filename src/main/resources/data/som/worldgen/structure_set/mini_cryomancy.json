@@ -1,0 +1,18 @@
+{
+    "structures": [
+        {
+            "structure": "som:mini_cryomancy",
+            "weight": 1
+        }
+    ],
+    "placement": {
+        "type": "minecraft:random_spread",
+        "spacing": 40,
+        "separation": 12,
+        "salt": 71010662,
+        "exclusion_zone": {
+            "other_set": "som:ziggurat",
+            "chunk_count": 10
+        }
+    }
+}

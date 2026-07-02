@@ -1,0 +1,10 @@
+{
+  "type": "som:add_table",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/allay"
+    }
+  ],
+  "additional_loot_table": "som:inject/allay_dust"
+}

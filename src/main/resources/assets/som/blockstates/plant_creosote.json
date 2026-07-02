@@ -1,0 +1,6 @@
+{
+    "variants": {
+    "grown=grown": { "model": "som:block/plantcreosote" },
+    "grown=dead": { "model": "som:block/plantcreosote_dead" }
+    }
+}

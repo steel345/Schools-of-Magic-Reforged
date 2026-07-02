@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "som:block/slab_bottom_gypsum_bricks"
+        },
+        "type=top": {
+            "model": "som:block/slab_top_gypsum_bricks"
+        },
+        "type=double": {
+            "model": "som:block/gypsum_bricks"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "#"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "som:log_pine"
+                      }
+            },
+    "result":  {
+                   "item":"som:planks_pine","count":4
+               }
+}

@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "som:block/slab_bottom_hardbrick"
+        },
+        "type=top": {
+            "model": "som:block/slab_top_hardbrick"
+        },
+        "type=double": {
+            "model": "som:block/doubleslab_full_hardbrick"
+        }
+    }
+}

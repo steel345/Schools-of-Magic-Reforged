@@ -1,0 +1,7 @@
+{
+    "parent": "dynamictrees:block/smartmodel/branch",
+    "textures": {
+        "bark": "som:blocks/log_elder",
+        "rings": "som:blocks/log_elder_top"
+    }
+}

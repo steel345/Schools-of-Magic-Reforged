@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "som:gypsum"
+  },
+  "result": "som:cobbled_gypsum_pedestal",
+  "count": 1
+}

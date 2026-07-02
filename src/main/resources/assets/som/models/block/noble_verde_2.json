@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "som:blocks/log_verde_top",
+        "front": "som:blocks/verde_type2",
+        "side": "som:blocks/log_verde",
+        "bottom": "som:blocks/log_verde_top"
+    }
+}

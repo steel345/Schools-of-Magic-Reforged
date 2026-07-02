@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "som:planks_elder"
+    }
+  },
+  "result": {
+    "item": "som:boat_elder"
+  }
+}

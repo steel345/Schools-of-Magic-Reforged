@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SAS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "ingotSteel"
+    },
+    "A": 
+      {
+        "type": "forge:ore_dict",
+        "ore": "stickWood"
+      }
+  },
+  "result": {
+    "item": "som:mortnpest",
+    "data": 0
+  }
+}

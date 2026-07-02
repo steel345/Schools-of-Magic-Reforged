@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "som:blocks/fae_keystone",
+        "up": "som:blocks/fae_keystone",
+        "north": "som:blocks/fae_keystone_face",
+        "south": "som:blocks/fae_keystone_face",
+        "east": "som:blocks/fae_keystone_side",
+        "west": "som:blocks/fae_keystone_side",
+        "particle": "som:blocks/fae_keystone_face"
+     }
+}

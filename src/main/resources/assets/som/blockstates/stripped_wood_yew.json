@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y": { "model": "som:block/stripped_wood_yew" },
+        "axis=x": { "model": "som:block/stripped_wood_yew", "x": 90, "y": 90 },
+        "axis=z": { "model": "som:block/stripped_wood_yew", "x": 90 }
+    }
+}

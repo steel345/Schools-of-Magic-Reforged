@@ -1,0 +1,11 @@
+{
+  "parent": "som:som/podium",
+  "display": {
+    "icon": { "item": "som:podium", "nbt": "{BlockStateTag:{type:\"oak\"}}" },
+    "title": { "translate": "advancements.som.portable_library.title" },
+    "description": { "translate": "advancements.som.portable_library.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": { "get_item": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "items": [ "som:podium" ] } ] } } },
+  "requirements": [ [ "get_item" ] ]
+}

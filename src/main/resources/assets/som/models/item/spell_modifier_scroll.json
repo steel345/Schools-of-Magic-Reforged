@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "som:items/scroll_seal",
+        "layer1": "som:items/scroll"
+     }
+}

@@ -1,0 +1,8 @@
+{
+    "type": "som:stump",
+    "config": {
+        "state": {
+            "Name": "som:log_willow"
+        }
+    }
+}

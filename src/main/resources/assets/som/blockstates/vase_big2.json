@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=north,half=lower": { "model": "som:block/vase_big_bottom2" },
+        "facing=south,half=lower": { "model": "som:block/vase_big_bottom2", "y": 180 },
+        "facing=west,half=lower":  { "model": "som:block/vase_big_bottom2", "y": 270 },
+        "facing=east,half=lower":  { "model": "som:block/vase_big_bottom2", "y": 90 },
+        "facing=north,half=middle": { "model": "som:block/vase_big_mid2" },
+        "facing=south,half=middle": { "model": "som:block/vase_big_mid2", "y": 180 },
+        "facing=west,half=middle":  { "model": "som:block/vase_big_mid2", "y": 270 },
+        "facing=east,half=middle":  { "model": "som:block/vase_big_mid2", "y": 90 },
+        "facing=north,half=upper": { "model": "som:block/vase_big_top2" },
+        "facing=south,half=upper": { "model": "som:block/vase_big_top2", "y": 180 },
+        "facing=west,half=upper":  { "model": "som:block/vase_big_top2", "y": 270 },
+        "facing=east,half=upper":  { "model": "som:block/vase_big_top2", "y": 90 }
+    }
+}

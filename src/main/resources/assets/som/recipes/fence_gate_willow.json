@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence_gate",
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "som:planks",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "som:fence_gate_willow",
+      "data": 0
+  }
+}

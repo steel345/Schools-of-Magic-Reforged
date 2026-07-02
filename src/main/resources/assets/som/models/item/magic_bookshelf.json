@@ -1,0 +1,77 @@
+{
+  "parent": "som:block/bookshelf_oak",
+  "overrides": [
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0
+      },
+      "model": "som:item/magic_bookshelf_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.0833
+      },
+      "model": "som:item/magic_bookshelf_spruce"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.1667
+      },
+      "model": "som:item/magic_bookshelf_birch"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.25
+      },
+      "model": "som:item/magic_bookshelf_jungle"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.3333
+      },
+      "model": "som:item/magic_bookshelf_acacia"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.4167
+      },
+      "model": "som:item/magic_bookshelf_dark_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5
+      },
+      "model": "som:item/magic_bookshelf_ash"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5833
+      },
+      "model": "som:item/magic_bookshelf_elder"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.6667
+      },
+      "model": "som:item/magic_bookshelf_pine"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.75
+      },
+      "model": "som:item/magic_bookshelf_willow"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.8333
+      },
+      "model": "som:item/magic_bookshelf_yew"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.9167
+      },
+      "model": "som:item/magic_bookshelf_verde"
+    }
+  ]
+}

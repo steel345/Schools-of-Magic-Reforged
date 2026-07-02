@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/coconut", "y": 180 },
+        "facing=south": { "model": "som:block/coconut" },
+        "facing=west":  { "model": "som:block/coconut", "y": 90 },
+        "facing=east":  { "model": "som:block/coconut", "y": 270 }
+    }
+}

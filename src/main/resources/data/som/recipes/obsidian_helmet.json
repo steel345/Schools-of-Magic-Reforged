@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": [" S ","SCS","C C"], "key": { "S": { "item": "som:item_obsidian_shard" }, "C": { "type": "forge:partial_nbt", "item": "som:ingot", "nbt": "{Damage:9}" } }, "result": { "item": "som:helmet_obsidian" } }

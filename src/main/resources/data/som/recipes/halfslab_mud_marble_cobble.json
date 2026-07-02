@@ -1,0 +1,17 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "som:mud_marble",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"cobble\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  6,
+                   "item":  "som:halfslab_mud_marble_cobble"
+               }
+}

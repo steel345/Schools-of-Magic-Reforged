@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["XXX","X X","XXX"],
+  "key": {
+    "X": {"type":"som:blockstate_variant","item":"som:mud_marble","key":"variant","value":"cobble"}
+  },
+  "result": { "item": "minecraft:furnace" }
+}

@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "type=slowness":      { "model": "som:block/dark_crystal" },
+    "type=blindness":     { "model": "som:block/dark_crystal" },
+    "type=flamability":   { "model": "som:block/dark_crystal" },
+    "type=hallucination": { "model": "som:block/dark_crystal" },
+    "type=rising":        { "model": "som:block/dark_crystal" },
+    "type=spinning":      { "model": "som:block/dark_crystal" },
+    "type=vulnerability": { "model": "som:block/dark_crystal" }
+  }
+}

@@ -1,0 +1,3 @@
+  The Puffer Toxin effect poisons a creature, draining its health over time and reducing it's maximum health.
+<~><~>  This effect can be acheived using a Pufferfish.
+<~><~>  Puffer Toxin is a Hydromancy effect in the school of Evocation.

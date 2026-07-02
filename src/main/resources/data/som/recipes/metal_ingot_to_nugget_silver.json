@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"som:ingot","type":"forge:partial_nbt","nbt":"{Damage:0}"}],"result":{"item":"som:nugget","count":9,"nbt":"{Damage:0}"}}

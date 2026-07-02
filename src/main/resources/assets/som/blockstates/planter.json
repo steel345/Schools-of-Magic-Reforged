@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "type=oak": {
+      "model": "som:block/planteroak"
+    },
+    "type=spruce": {
+      "model": "som:block/planterspru"
+    },
+    "type=birch": {
+      "model": "som:block/planterbirch"
+    },
+    "type=jungle": {
+      "model": "som:block/planterjun"
+    },
+    "type=acacia": {
+      "model": "som:block/planteraca"
+    },
+    "type=dark_oak": {
+      "model": "som:block/planterdoak"
+    },
+    "type=ash": {
+      "model": "som:block/planterash"
+    },
+    "type=elder": {
+      "model": "som:block/planterelder"
+    },
+    "type=pine": {
+      "model": "som:block/planterpine"
+    },
+    "type=willow": {
+      "model": "som:block/planterwill"
+    },
+    "type=yew": {
+      "model": "som:block/planteryew"
+    },
+    "type=verde": {
+      "model": "som:block/planterverd"
+    }
+  }
+}

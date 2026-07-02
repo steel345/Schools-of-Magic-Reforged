@@ -1,0 +1,11 @@
+{
+  "parent": "som:som/root",
+  "display": {
+    "icon": { "item": "som:tea_makers_guide" },
+    "title": { "translate": "advancements.som.soggy_pages.title" },
+    "description": { "translate": "advancements.som.soggy_pages.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": { "get_item": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "items": [ "som:tea_makers_guide" ] } ] } } },
+  "requirements": [ [ "get_item" ] ]
+}

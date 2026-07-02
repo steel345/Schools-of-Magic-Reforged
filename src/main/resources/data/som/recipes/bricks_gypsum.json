@@ -1,0 +1,19 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "HH",
+                    "HH"
+                ],
+    "key":  {
+                "H":  {
+                          "item":  "som:gypsum",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"normal\"}}"
+                      }
+            },
+    "result":  {
+                   "item":  "som:gypsum",
+                   "count":  4,
+                   "nbt":  "{BlockStateTag:{variant:\"bricks\"}}"
+               }
+}

@@ -1,0 +1,19 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "W#W",
+                    "W#W"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "minecraft:stick"
+                      },
+                "W":  {
+                          "item":"som:planks_willow"
+                      }
+            },
+    "result":  {
+                   "count":  3,
+                   "item":  "som:fence_willow"
+               }
+}

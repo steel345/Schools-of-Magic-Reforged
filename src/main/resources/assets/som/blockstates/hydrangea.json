@@ -1,0 +1,115 @@
+{
+    "multipart": [
+        {   "when": { "up": "true" },
+            "apply": { "model": "som:block/hydrangea_branch_up"}
+        },
+        {   "when": { "down": "true" },
+            "apply": { "model": "som:block/hydrangea_branch_down"}
+        },
+        {   "when": { "north": "true" },
+            "apply": { "model": "som:block/hydrangea_branch"}
+        },
+        {   "when": { "east": "true"},
+            "apply": { "model": "som:block/hydrangea_branch", "y": 90 }
+        },
+        {   "when": { "south": "true"},
+            "apply": { "model": "som:block/hydrangea_branch", "y": 180 }
+        },
+        {   "when": { "west": "true"},
+            "apply": { "model": "som:block/hydrangea_branch", "y": 270 }
+        },
+        {   "when": { "north": "false", "leaves": "1|2" },
+            "apply": { "model": "som:block/hydrangea_twig"}
+        },
+        {   "when": { "east": "false", "leaves": "1|2" },
+            "apply": { "model": "som:block/hydrangea_twig", "y": 90 }
+        },
+        {   "when": { "south": "false", "leaves": "1|2" },
+            "apply": { "model": "som:block/hydrangea_twig", "y": 180 }
+        },
+        {   "when": { "west": "false", "leaves": "1|2" },
+            "apply": { "model": "som:block/hydrangea_twig", "y": 270 }
+        },
+        {   "when": { "up": "false", "leaves": "1|2" },
+            "apply": { "model": "som:block/hydrangea_twig", "x": 270 }
+        },
+        {   "when": { "north": "false", "down": "true", "leaves": "2" },
+            "apply": { "model": "som:block/hydrangea_side_full" }
+        },
+        {   "when": { "east": "false", "down": "true", "leaves": "2" },
+            "apply": { "model": "som:block/hydrangea_side_full", "y": 90 }
+        },
+        {   "when": { "south": "false", "down": "true", "leaves": "2" },
+            "apply": { "model": "som:block/hydrangea_side_full", "y": 180 }
+        },
+        {   "when": { "west": "false", "down": "true", "leaves": "2" },
+            "apply": { "model": "som:block/hydrangea_side_full", "y": 270 }
+        },
+        {   "when": { "up": "false", "leaves": "1|2" },
+            "apply": { "model": "som:block/hydrangea_side_full", "x": 270 }
+        },
+        {   "when": { "OR": [
+                { "north": "false", "down": "false", "leaves": "1|2" },
+                { "north": "false", "leaves": "1" }
+            ]},
+            "apply": { "model": "som:block/hydrangea_side_short" }
+        },
+        {   "when": { "OR": [
+                { "east": "false", "down": "false", "leaves": "1|2" },
+                { "east": "false", "leaves": "1" }
+            ]},
+            "apply": { "model": "som:block/hydrangea_side_short", "y": 90 }
+        },
+        {   "when": { "OR": [
+                { "south": "false", "down": "false", "leaves": "1|2" },
+                { "south": "false", "leaves": "1" }
+            ]},
+            "apply": { "model": "som:block/hydrangea_side_short", "y": 180 }
+        },
+        {   "when": { "OR": [
+                { "west": "false", "down": "false", "leaves": "1|2" },
+                { "west": "false", "leaves": "1" }
+            ]},
+            "apply": { "model": "som:block/hydrangea_side_short", "y": 270 }
+        },
+        {   "when": { "north": "false", "down": "true", "leaves": "2", "flowering": true },
+            "apply": { "model": "som:block/hydrangea_flowers_full" }
+        },
+        {   "when": { "east": "false", "down": "true", "leaves": "2", "flowering": true },
+            "apply": { "model": "som:block/hydrangea_flowers_full", "y": 90 }
+        },
+        {   "when": { "south": "false", "down": "true", "leaves": "2", "flowering": true },
+            "apply": { "model": "som:block/hydrangea_flowers_full", "y": 180 }
+        },
+        {   "when": { "west": "false", "down": "true", "leaves": "2", "flowering": true },
+            "apply": { "model": "som:block/hydrangea_flowers_full", "y": 270 }
+        },
+        {   "when": { "up": "false", "leaves": "1|2", "flowering": true },
+            "apply": { "model": "som:block/hydrangea_flowers_full", "x": 270 }
+        },
+        {   "when": { "OR": [
+                { "north": "false", "down": "false", "leaves": "1|2", "flowering": true },
+                { "north": "false", "leaves": "1", "flowering": true }
+            ]},
+            "apply": { "model": "som:block/hydrangea_flowers_short" }
+        },
+        {   "when": { "OR": [
+                { "east": "false", "down": "false", "leaves": "1|2", "flowering": true },
+                { "east": "false", "leaves": "1", "flowering": true }
+            ]},
+            "apply": { "model": "som:block/hydrangea_flowers_short", "y": 90 }
+        },
+        {   "when": { "OR": [
+                { "south": "false", "down": "false", "leaves": "1|2", "flowering": true },
+                { "south": "false", "leaves": "1", "flowering": true }
+            ]},
+            "apply": { "model": "som:block/hydrangea_flowers_short", "y": 180 }
+        },
+        {   "when": { "OR": [
+                { "west": "false", "down": "false", "leaves": "1|2", "flowering": true },
+                { "west": "false", "leaves": "1", "flowering": true }
+            ]},
+            "apply": { "model": "som:block/hydrangea_flowers_short", "y": 270 }
+        }
+    ]
+}

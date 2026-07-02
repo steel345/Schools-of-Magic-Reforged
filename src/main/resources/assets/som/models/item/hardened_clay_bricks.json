@@ -1,0 +1,101 @@
+{
+  "parent": "som:block/hardened_clay_bricks_red",
+  "overrides": [
+    {
+      "predicate": {
+        "som:magic_type": 0
+      },
+      "model": "som:item/hardened_clay_bricks_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.0625
+      },
+      "model": "som:item/hardened_clay_bricks_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.125
+      },
+      "model": "som:item/hardened_clay_bricks_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.1875
+      },
+      "model": "som:item/hardened_clay_bricks_geomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.25
+      },
+      "model": "som:item/hardened_clay_bricks_animancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.3125
+      },
+      "model": "som:item/hardened_clay_bricks_electromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.375
+      },
+      "model": "som:item/hardened_clay_bricks_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.4375
+      },
+      "model": "som:item/hardened_clay_bricks_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.5
+      },
+      "model": "som:item/hardened_clay_bricks_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.5625
+      },
+      "model": "som:item/hardened_clay_bricks_chaotics"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.625
+      },
+      "model": "som:item/hardened_clay_bricks_auramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.6875
+      },
+      "model": "som:item/hardened_clay_bricks_astromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.75
+      },
+      "model": "som:item/hardened_clay_bricks_infernality"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.8125
+      },
+      "model": "som:item/hardened_clay_bricks_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.875
+      },
+      "model": "som:item/hardened_clay_bricks_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.9375
+      },
+      "model": "som:item/hardened_clay_bricks_necromancy"
+    }
+  ]
+}

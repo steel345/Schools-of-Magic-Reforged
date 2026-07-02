@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "entries": [
+    "som:dungeon_seeds",
+    "som:dungeon_legendaries",
+    "som:dungeon_mob_drops",
+    "som:dungeon_gems",
+    "som:dungeon_ingots",
+    "som:dungeon_bottles",
+    "som:nether_legendaries",
+    "som:nether_gems",
+    "som:nether_ingots",
+    "som:library_scrolls",
+    "som:allay_dust"
+  ]
+}

@@ -1,0 +1,25 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "CAC",
+                    " S ",
+                    "CAC"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:magic_bookshelf",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"oak\"}}"
+                      },
+                "C":  {
+                          "item":  "minecraft:oak_log"
+                      },
+                "A":  {
+                          "item":  "minecraft:oak_slab"
+                      }
+            },
+    "result":  {
+                   "item":  "som:podium",
+                   "nbt":  "{BlockStateTag:{type:\"oak\"}}"
+               }
+}

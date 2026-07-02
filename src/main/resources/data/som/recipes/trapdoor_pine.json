@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["###","###"], "key": { "#": { "item":"som:planks_pine" } }, "result": { "item": "som:trapdoor_pine", "count": 2 } }

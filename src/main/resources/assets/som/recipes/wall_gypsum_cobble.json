@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "som:gypsum",
+        "data": 1
+      }
+  },
+  "result": {
+    "item": "som:gypsum_cobble_wall",
+    "count": 6
+  }
+}

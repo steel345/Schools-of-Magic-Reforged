@@ -1,0 +1,12 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/cropgraveroot0" },
+    "age=1": { "model": "som:block/cropgraveroot1" },
+    "age=2": { "model": "som:block/cropgraveroot2" },
+    "age=3": { "model": "som:block/cropgraveroot3" },
+    "age=4": { "model": "som:block/cropgraveroot4" },
+    "age=5": { "model": "som:block/cropgraveroot5" },
+    "age=6": { "model": "som:block/cropgraveroot6" },
+    "age=7": { "model": "som:block/cropgraveroot7" }
+    }
+}

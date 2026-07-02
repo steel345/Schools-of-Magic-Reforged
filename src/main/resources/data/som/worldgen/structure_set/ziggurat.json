@@ -1,0 +1,18 @@
+{
+    "structures": [
+        {
+            "structure": "som:ziggurat",
+            "weight": 1
+        }
+    ],
+    "placement": {
+        "type": "minecraft:random_spread",
+        "spacing": 32,
+        "separation": 12,
+        "salt": 80124001,
+        "exclusion_zone": {
+            "other_set": "minecraft:villages",
+            "chunk_count": 10
+        }
+    }
+}

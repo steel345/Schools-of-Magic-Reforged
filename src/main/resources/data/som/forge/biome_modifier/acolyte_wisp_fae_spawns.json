@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "som:fae_acolyte_woods",
+  "spawners": {
+    "type": "som:som_acolyte_wisp",
+    "weight": 14,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

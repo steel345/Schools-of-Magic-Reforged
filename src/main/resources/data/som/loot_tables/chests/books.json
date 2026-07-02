@@ -1,0 +1,192 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "magic_books",
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1,
+        "max": 1
+      },
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:0,CustomModelData:1}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:1,CustomModelData:2}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:2,CustomModelData:3}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:3,CustomModelData:4}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:4,CustomModelData:5}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:5,CustomModelData:6}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:6,CustomModelData:7}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:7,CustomModelData:8}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:8,CustomModelData:9}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:9,CustomModelData:10}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:10,CustomModelData:11}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:11,CustomModelData:12}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:12,CustomModelData:13}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:13,CustomModelData:14}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:14,CustomModelData:15}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:15,CustomModelData:16}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

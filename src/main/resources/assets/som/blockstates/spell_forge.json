@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "half=lower,facing=north": { "model": "som:block/spell_forge" },
+    "half=lower,facing=south": { "model": "som:block/spell_forge" },
+    "half=lower,facing=east":  { "model": "som:block/spell_forge" },
+    "half=lower,facing=west":  { "model": "som:block/spell_forge" },
+    "half=middle,facing=north": { "model": "som:block/spell_forge" },
+    "half=middle,facing=south": { "model": "som:block/spell_forge" },
+    "half=middle,facing=east":  { "model": "som:block/spell_forge" },
+    "half=middle,facing=west":  { "model": "som:block/spell_forge" },
+    "half=upper,facing=north": { "model": "som:block/spell_forge" },
+    "half=upper,facing=south": { "model": "som:block/spell_forge" },
+    "half=upper,facing=east":  { "model": "som:block/spell_forge" },
+    "half=upper,facing=west":  { "model": "som:block/spell_forge" }
+  }
+}

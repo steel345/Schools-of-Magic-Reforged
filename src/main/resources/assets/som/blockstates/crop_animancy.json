@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "age=0": { "model": "som:block/cropmandrake0" },
+        "age=1": { "model": "som:block/cropmandrake1" },
+        "age=2": { "model": "som:block/cropmandrake2" },
+        "age=3": { "model": "som:block/cropmandrake3" },
+        "age=4": { "model": "som:block/cropmandrake4" },
+        "age=5": { "model": "som:block/cropmandrake5" },
+        "age=6": { "model": "som:block/cropmandrake6" },
+        "age=7": { "model": "som:block/cropmandrake7" }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/objectmortnpest" },
+        "facing=south": { "model": "som:block/objectmortnpest", "y": 180 },
+        "facing=west":  { "model": "som:block/objectmortnpest", "y": 270 },
+        "facing=east":  { "model": "som:block/objectmortnpest", "y": 90 }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "variants": {
+    "facing=south,type=0": { "model": "som:block/plantprickly" },
+    "facing=west,type=0": { "model": "som:block/plantprickly", "y": 90 },
+    "facing=north,type=0": { "model": "som:block/plantprickly", "y": 180 }, 
+    "facing=east,type=0": { "model": "som:block/plantprickly", "y": 270 },
+    "facing=south,type=1": { "model": "som:block/plantprickly2" },
+    "facing=west,type=1": { "model": "som:block/plantprickly2", "y": 90 }, 
+    "facing=north,type=1": { "model": "som:block/plantprickly2", "y": 180 }, 
+    "facing=east,type=1": { "model": "som:block/plantprickly2", "y": 270 },
+    "facing=south,type=2": { "model": "som:block/plantprickly3" },
+    "facing=west,type=2": { "model": "som:block/plantprickly3", "y": 90 },
+    "facing=north,type=2": { "model": "som:block/plantprickly3", "y": 180 }, 
+    "facing=east,type=2": { "model": "som:block/plantprickly3", "y": 270 }
+    }
+}

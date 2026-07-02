@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "type=pyromancy": { "model": "som:block/hardened_clay_bricks_red_crack" },
+        "type=heliomancy": { "model": "som:block/hardened_clay_bricks_orange_crack" },
+        "type=aeromancy": { "model": "som:block/hardened_clay_bricks_yellow_crack" },
+        "type=geomancy": { "model": "som:block/hardened_clay_bricks_lime_crack" },
+        "type=animancy": { "model": "som:block/hardened_clay_bricks_green_crack" },
+        "type=electromancy": { "model": "som:block/hardened_clay_bricks_cyan_crack" },
+        "type=cryomancy": { "model": "som:block/hardened_clay_bricks_blue_crack" },
+        "type=hieromancy": { "model": "som:block/hardened_clay_bricks_purple_crack" },
+        "type=chaotics": { "model": "som:block/hardened_clay_bricks_magenta_crack" },
+        "type=auramancy": { "model": "som:block/hardened_clay_bricks_pink_crack" },
+        "type=astromancy": { "model": "som:block/hardened_clay_bricks_white_crack" },
+        "type=infernality": { "model": "som:block/hardened_clay_bricks_lgray_crack" },
+        "type=spectromancy": { "model": "som:block/hardened_clay_bricks_gray_crack" },
+        "type=umbramancy": { "model": "som:block/hardened_clay_bricks_black_crack" },
+        "type=necromancy": { "model": "som:block/hardened_clay_bricks_brown_crack" },
+        "type=hydromancy": { "model": "som:block/hardened_clay_bricks_lblue_crack" }
+    }
+}

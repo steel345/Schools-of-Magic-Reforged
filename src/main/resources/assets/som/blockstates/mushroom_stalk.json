@@ -1,0 +1,7 @@
+{
+    "variants": {
+    "type=0": { "model": "som:block/mushroom6" },
+    "type=1": { "model": "som:block/mushroom8" },
+    "type=2": { "model": "som:block/mushroom4" }
+    }
+}

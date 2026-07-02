@@ -1,0 +1,8 @@
+{
+    "type": "som:dead_log",
+    "config": {
+        "state": {
+            "Name": "minecraft:jungle_log"
+        }
+    }
+}

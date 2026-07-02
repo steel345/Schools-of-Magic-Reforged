@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:sandpaper"
+    },
+    {
+      "item": "som:gem_chunk",
+      "type": "forge:partial_nbt",
+      "nbt": "{Damage:2}"
+    }
+  ],
+  "result": {
+    "item": "som:gem_aeromancy",
+    "nbt": "{BlockStateTag:{type:\"polished\"}}"
+  }
+}

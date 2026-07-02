@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "CPC",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "som:fae_stone",
+       "data": 0
+    },
+    "C": {
+      "item": "som:fae_stone",
+      "data": 6
+    },
+    "P": {
+      "item": "som:fae_pillar"
+    }
+  },
+  "result": {
+    "item": "som:fae_keystone",
+    "count": 5
+  }
+}

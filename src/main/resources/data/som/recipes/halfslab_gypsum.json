@@ -1,0 +1,17 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "som:gypsum",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"normal\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  6,
+                   "item":  "som:halfslab_gypsum_stone"
+               }
+}

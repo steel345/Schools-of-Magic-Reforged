@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "som:plant_rose"
+      }
+  },
+  "result": {
+    "item": "som:wall_rose"
+  }
+}

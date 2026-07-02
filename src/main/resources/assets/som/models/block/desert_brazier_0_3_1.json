@@ -1,0 +1,66 @@
+{
+    "parent": "block/block",
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "0": "som:blocks/light",
+        "1": "som:blocks/hard_clay_brick_orange",
+        "2": "som:blocks/desert_brazier_side_c",
+        "3": "som:blocks/desert_brazier_top_bot",
+        "4": "som:blocks/desert_brazier_top_midr",
+        "particle": "som:blocks/desert_brazier_top_midr"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 7.0, 0.0, 8.0 ], 
+            "to": [ 9.0, 8.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 8.0, 2.0, 16.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+                "south": { "texture": "#1", "uv": [ 7.0, 0.0, 9.0, 8.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+                "up": { "texture": "#1", "uv": [ 7.0, 0.0, 9.0, 8.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 8.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 0.0, 0.0, 8.0 ], 
+            "to": [ 7.0, 8.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 9.0, 8.0, 16.0, 16.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 7.0, 8.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 7.0, 8.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 7.0, 8.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 9.0, 0.0, 8.0 ], 
+            "to": [ 16.0, 8.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 0.0, 8.0, 7.0, 16.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+                "south": { "texture": "#1", "uv": [ 9.0, 0.0, 16.0, 8.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+                "up": { "texture": "#1", "uv": [ 9.0, 0.0, 16.0, 8.0 ] },
+                "down": { "texture": "#2", "uv": [ 0.0, 0.0, 7.0, 8.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 0.0, 8.0, 0.0 ], 
+            "to": [ 16.0, 16.0, 12.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 8.0 ] },
+                "east": { "texture": "#1", "uv": [ 4.0, 0.0, 16.0, 8.0 ] },
+                "south": { "texture": "#3", "uv": [ 16.0, 4.0, 0.0, 12.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 12.0, 8.0 ] },
+                "up": { "texture": "#4", "uv": [ 4.0, 0.0, 16.0, 16.0 ], "rotation": 270 },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 12.0 ], "rotation": 180 }
+            }
+        }
+    ]
+}

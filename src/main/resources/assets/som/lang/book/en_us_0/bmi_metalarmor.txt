@@ -1,0 +1,3 @@
+  Beyond iron, you can forge armor and tools from Silver, Bronze, Brass and Steel, each crafted just like its iron version but with the matching ingot.
+<~><~>  Silver is enchantable as chainmail, and its blades bite a third deeper into the undead. Bronze carries gold's knack for magic yet far outlasts it. Brass strikes and guards a little harder, but is brittle, shattering when it breaks and wounding the wearer. Steel is the plainest of the five, trading a touch of protection and bite for nothing in return.
+<~><~>  Each ingot also answers to a school of magic: Tenebrium for evocation, Steel for transfiguration, Silver for abjuration, Brass for illusion, Bronze for divination, and Copper for conjuration.

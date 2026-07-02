@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["SS"], "key": { "S": {"item":"som:item_obsidian_shard"} }, "result": { "item": "som:obsidian_pressure_plate" } }

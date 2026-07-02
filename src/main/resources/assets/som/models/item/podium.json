@@ -1,0 +1,77 @@
+{
+  "parent": "som:block/podium_oak",
+  "overrides": [
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0
+      },
+      "model": "som:item/podium_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.0833
+      },
+      "model": "som:item/podium_spruce"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.1667
+      },
+      "model": "som:item/podium_birch"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.25
+      },
+      "model": "som:item/podium_jungle"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.3333
+      },
+      "model": "som:item/podium_acacia"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.4167
+      },
+      "model": "som:item/podium_dark_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5
+      },
+      "model": "som:item/podium_ash"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5833
+      },
+      "model": "som:item/podium_elder"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.6667
+      },
+      "model": "som:item/podium_pine"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.75
+      },
+      "model": "som:item/podium_willow"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.8333
+      },
+      "model": "som:item/podium_yew"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.9167
+      },
+      "model": "som:item/podium_verde"
+    }
+  ]
+}

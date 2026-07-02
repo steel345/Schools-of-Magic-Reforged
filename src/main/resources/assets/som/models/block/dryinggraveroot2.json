@@ -1,0 +1,68 @@
+{
+    "parent": "block/block",
+    "ambientocclusion": false,
+    "textures": {
+        "0": "som:blocks/dryinggraverootskull2",
+        "1": "som:blocks/dryinggraverootplant2",
+        "particle": "som:blocks/dryinggraverootplant2"
+    },
+    "elements": [
+        {
+            "name": "skull",
+            "from": [ 4.0, 1.0, 4.0 ], 
+            "to": [ 12.0, 9.0, 12.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 8.0, 8.0 ] },
+                "east": { "texture": "#0", "uv": [ 8.0, 0.0, 16.0, 8.0 ] },
+                "south": { "texture": "#0", "uv": [ 8.0, 0.0, 16.0, 8.0 ] },
+                "west": { "texture": "#0", "uv": [ 8.0, 0.0, 16.0, 8.0 ] },
+                "up": { "texture": "#0", "uv": [ 0.0, 8.0, 8.0, 16.0 ] },
+                "down": { "texture": "#0", "uv": [ 8.0, 8.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "top1",
+            "from": [ 4.0, 9.0, 8.0 ], 
+            "to": [ 12.0, 16.0, 8.0 ], 
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 4.0, 0.0, 12.0, 7.0 ] },
+                "south": { "texture": "#1", "uv": [ 4.0, 0.0, 12.0, 7.0 ] }
+            }
+        },
+        {
+            "name": "top2",
+            "from": [ 4.0, 9.0, 8.0 ], 
+            "to": [ 12.0, 16.0, 8.0 ], 
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": -45.0, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 4.0, 0.0, 12.0, 7.0 ] },
+                "south": { "texture": "#1", "uv": [ 4.0, 0.0, 12.0, 7.0 ] }
+            }
+        },
+        {
+            "name": "root1",
+            "from": [ 4.0, -4.0, 8.0 ], 
+            "to": [ 12.0, 1.0, 8.0 ], 
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": -45.0, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 4.0, 11.0, 12.0, 16.0 ] },
+                "south": { "texture": "#1", "uv": [ 4.0, 11.0, 12.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "root2",
+            "from": [ 4.0, -4.0, 8.0 ], 
+            "to": [ 12.0, 1.0, 8.0 ], 
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 4.0, 11.0, 12.0, 16.0 ] },
+                "south": { "texture": "#1", "uv": [ 4.0, 11.0, 12.0, 16.0 ] }
+            }
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "ingredients":  [
+                        {
+                            "item":  "som:mud_marble",
+                            "type":  "forge:partial_nbt",
+                            "nbt":  "{BlockStateTag:{variant:\"bricks\"}}"
+                        },
+                        {
+                            "item":  "minecraft:vine"
+                        }
+                    ],
+    "result":  {
+                   "item":  "som:mud_marble",
+                   "count":  1,
+                   "nbt":  "{BlockStateTag:{variant:\"mossy_bricks\"}}"
+               }
+}

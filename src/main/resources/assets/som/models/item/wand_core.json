@@ -1,0 +1,80 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/twigoak"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:variant": 0
+      },
+      "model": "som:item/wand_core_oak"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.08333
+      },
+      "model": "som:item/wand_core_spruce"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.16667
+      },
+      "model": "som:item/wand_core_birch"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.25
+      },
+      "model": "som:item/wand_core_jungle"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.33333
+      },
+      "model": "som:item/wand_core_acacia"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.41667
+      },
+      "model": "som:item/wand_core_dark_oak"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.5
+      },
+      "model": "som:item/wand_core_ash"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.58333
+      },
+      "model": "som:item/wand_core_elder"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.66667
+      },
+      "model": "som:item/wand_core_pine"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.75
+      },
+      "model": "som:item/wand_core_willow"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.83333
+      },
+      "model": "som:item/wand_core_yew"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.91667
+      },
+      "model": "som:item/wand_core_verde"
+    }
+  ]
+}

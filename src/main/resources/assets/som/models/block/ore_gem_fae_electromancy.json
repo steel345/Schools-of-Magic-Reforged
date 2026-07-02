@@ -1,0 +1,10 @@
+{
+  "parent": "som:block/ore",
+  "textures": {
+    "block": "som:blocks/fae_stone",
+    "ore_side": "som:blocks/ore_electromancy",
+    "ore_top": "som:blocks/ore_electromancy",
+    "ore_bottom": "som:blocks/ore_electromancy",
+    "particle": "som:blocks/ore_electromancy"
+  }
+}

@@ -1,0 +1,2 @@
+  This spell uses the power of the sun to dry blocks such as Wet Sponges, Herbs on Herbal Twine, Clay, Heads, Grass, Farmland, and Cauldrons. Can also be used to remove the moisture from rotted planks and revert them back to regular planks.
+<~><~>  Very useful for the impatient herbalist.

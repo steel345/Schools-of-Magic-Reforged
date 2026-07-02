@@ -1,0 +1,101 @@
+{
+  "parent": "som:block/ore_gem_gypsum_pyromancy",
+  "overrides": [
+    {
+      "predicate": {
+        "som:ore_element": 0
+      },
+      "model": "som:item/ore_gem_gypsum_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.0625
+      },
+      "model": "som:item/ore_gem_gypsum_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.125
+      },
+      "model": "som:item/ore_gem_gypsum_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.1875
+      },
+      "model": "som:item/ore_gem_gypsum_geomancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.25
+      },
+      "model": "som:item/ore_gem_gypsum_animancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.3125
+      },
+      "model": "som:item/ore_gem_gypsum_electromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.375
+      },
+      "model": "som:item/ore_gem_gypsum_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.4375
+      },
+      "model": "som:item/ore_gem_gypsum_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.5
+      },
+      "model": "som:item/ore_gem_gypsum_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.5625
+      },
+      "model": "som:item/ore_gem_gypsum_chaotics"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.625
+      },
+      "model": "som:item/ore_gem_gypsum_auramancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.6875
+      },
+      "model": "som:item/ore_gem_gypsum_astromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.75
+      },
+      "model": "som:item/ore_gem_gypsum_infernality"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.8125
+      },
+      "model": "som:item/ore_gem_gypsum_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.875
+      },
+      "model": "som:item/ore_gem_gypsum_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.9375
+      },
+      "model": "som:item/ore_gem_gypsum_necromancy"
+    }
+  ]
+}

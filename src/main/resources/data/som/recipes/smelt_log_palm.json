@@ -1,0 +1,1 @@
+{ "type": "minecraft:smelting", "ingredient": { "item": "som:log_palm" }, "result": "minecraft:charcoal", "experience": 0.15, "cookingtime": 200 }

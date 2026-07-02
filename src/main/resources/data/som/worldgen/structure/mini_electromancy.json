@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "electromancy",
+    "biomes":  "#som:has_structure/mini_electromancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

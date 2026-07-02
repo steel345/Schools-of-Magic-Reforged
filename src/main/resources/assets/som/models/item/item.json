@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": { "layer0": "som:items/itemdiamonddust" },
+  "overrides": [
+    {"predicate": {"som:variant": 0.00000}, "model": "som:item/item_diamond_dust"},
+    {"predicate": {"som:variant": 0.07143}, "model": "som:item/item_porcelain"},
+    {"predicate": {"som:variant": 0.14286}, "model": "som:item/item_obsidian_shard"},
+    {"predicate": {"som:variant": 0.21429}, "model": "som:item/item_ice_shard"},
+    {"predicate": {"som:variant": 0.28571}, "model": "som:item/item_ocotillo_flowers"},
+    {"predicate": {"som:variant": 0.35714}, "model": "som:item/item_aloe_paste"},
+    {"predicate": {"som:variant": 0.42857}, "model": "som:item/item_graveroot_pulp"},
+    {"predicate": {"som:variant": 0.50000}, "model": "som:item/item_mandrake_pulp"},
+    {"predicate": {"som:variant": 0.57143}, "model": "som:item/item_lithop_pulp"},
+    {"predicate": {"som:variant": 0.64286}, "model": "som:item/item_sage_leaves"},
+    {"predicate": {"som:variant": 0.71429}, "model": "som:item/item_brittle_leaves"},
+    {"predicate": {"som:variant": 0.78571}, "model": "som:item/item_creosote_leaves"},
+    {"predicate": {"som:variant": 0.85714}, "model": "som:item/item_shamrock"},
+    {"predicate": {"som:variant": 0.92857}, "model": "som:item/item_hydrangea_flowers"}
+  ]
+}

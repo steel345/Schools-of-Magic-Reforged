@@ -1,0 +1,7 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "som:blocks/leaves_ash",
+        "particle": "som:blocks/leaves_ash"
+    }
+}

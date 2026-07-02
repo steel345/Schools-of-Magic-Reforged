@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/plateempty" },
+        "facing=south": { "model": "som:block/plateempty", "y": 180 },
+        "facing=west":  { "model": "som:block/plateempty", "y": 270 },
+        "facing=east":  { "model": "som:block/plateempty", "y": 90 }
+    }
+}

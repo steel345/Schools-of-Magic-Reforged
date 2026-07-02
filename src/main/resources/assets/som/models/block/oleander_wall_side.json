@@ -1,0 +1,7 @@
+{
+    "parent": "som:block/wall_side_flowering",
+    "textures": {
+        "wall_flower": "som:blocks/oleander_wall_flower_side",
+        "wall_leaf": "som:blocks/oleander_wall_leaf_side"
+    }
+}

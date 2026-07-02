@@ -1,0 +1,9 @@
+  A modifier is always stirred in before the herbs, and it shapes the brew as a whole:
+<~><~>  Honey makes a sweeter, gentler tea that lingers longer.
+<~>  Sugar quickens the brew, though it fades sooner.
+<~>  Glowstone Dust empowers it, deepening the effect.
+<~>  Redstone makes the effect linger far longer.
+<~>  Milk soothes the brew, keeping it calm and safe.
+<~>  Blaze Powder overcharges it with raw, restless power.
+<~>  Amethyst Dust refines it, coaxing out a hidden second effect.
+<~>  Fermented Spider Eye corrupts it into something darker and unpredictable.

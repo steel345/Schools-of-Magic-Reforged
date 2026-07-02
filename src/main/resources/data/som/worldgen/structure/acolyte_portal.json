@@ -1,0 +1,7 @@
+{
+  "type": "som:acolyte_portal",
+  "biomes": "#som:has_structure/acolyte_portal",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "spawn_overrides": {}
+}

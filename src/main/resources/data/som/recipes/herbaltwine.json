@@ -1,0 +1,23 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "ASA",
+                    "PAP",
+                    "ASA"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "minecraft:grass"
+                      },
+                "P":  {
+                          "item":  "minecraft:wheat"
+                      },
+                "A":  {
+                          "item":  "minecraft:string"
+                      }
+            },
+    "result":  {
+                   "count":  5,
+                   "item":  "som:herbal_twine"
+               }
+}

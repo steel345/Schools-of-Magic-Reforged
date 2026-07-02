@@ -1,0 +1,11 @@
+{
+  "parent": "som:som/basic_arcana",
+  "display": {
+    "icon": { "item": "som:wand_apprentice" },
+    "title": { "translate": "advancements.som.apprentice_wand.title" },
+    "description": { "translate": "advancements.som.apprentice_wand.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": { "get_item": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "items": [ "som:wand_apprentice" ] } ] } } },
+  "requirements": [ [ "get_item" ] ]
+}

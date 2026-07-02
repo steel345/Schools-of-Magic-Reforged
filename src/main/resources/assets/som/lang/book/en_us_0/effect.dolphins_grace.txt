@@ -1,0 +1,3 @@
+  The Dolphin's Grace effect lets you swim through water with great speed.
+<~><~>  This effect can be acheived using a Fish Tail, which is dropped by Cod and Salmon.
+<~><~>  Dolphin's Grace is a Hydromancy effect in the school of Conjuration.

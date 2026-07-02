@@ -1,0 +1,4 @@
+  The Podium is a Magician's workbench for the written word, and it may be fashioned from most any wood, as shown in the recipe on the previous page.
+<~><~>  Place a Spellbook or your own Grimoire upon it and the tome will open and hover above the Podium for you to read.
+<~><~>  Right-click the Podium to open its interface, which is divided into several tabs, each devoted to a different task.
+<~><~>  While the book rests open you may also turn its leaves by hand. Right-click the outer corner of a page to leaf forward or back, and left-click a page with an empty hand to return at once to the Table of Contents.

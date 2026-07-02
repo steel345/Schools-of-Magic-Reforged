@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["###"],"key":{"#":{"item":"som:rotted_planks","type":"forge:partial_nbt","nbt":"{BlockStateTag:{type:\"birch\"}}"}},"result":{"item":"som:rotted_halfslab_birch","count":6}}

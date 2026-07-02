@@ -1,0 +1,6 @@
+{
+    "parent": "som:block/metal_fence_post",
+    "textures": {
+        "texture": "som:blocks/ancient_void_fence"
+    }
+}

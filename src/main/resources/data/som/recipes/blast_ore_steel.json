@@ -1,0 +1,7 @@
+{
+  "type": "som:nbt_blasting",
+  "ingredient": { "item": "som:ore_steel" },
+  "result": { "item": "som:ingot", "nbt": "{Damage:8}" },
+  "experience": 1.5,
+  "cookingtime": 100
+}

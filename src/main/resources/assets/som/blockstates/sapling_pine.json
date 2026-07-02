@@ -1,0 +1,6 @@
+{
+    "variants": {
+    "stage=0": { "model": "som:block/saplingpine" },
+    "stage=1": { "model": "som:block/saplingpine" }
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "parent": "som:som/ziggu_what",
+  "display": {
+    "icon": { "item": "som:demon_heart" },
+    "title": { "translate": "advancements.som.beat_me_to_death.title" },
+    "description": { "translate": "advancements.som.beat_me_to_death.description" },
+    "frame": "goal", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [ { "items": [ "som:demon_heart" ] } ] }
+    }
+  },
+  "requirements": [ [ "get_item" ] ]
+}

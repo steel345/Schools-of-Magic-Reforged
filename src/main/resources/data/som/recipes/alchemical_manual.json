@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:book" },
+    { "item": "som:item_diamond_dust" },
+    { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:8}" },
+    { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:4}" }
+  ],
+  "result": { "item": "som:alchemical_manual", "count": 1 }
+}

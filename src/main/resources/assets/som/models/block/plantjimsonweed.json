@@ -1,0 +1,7 @@
+{
+    "parent": "som:block/tinted_cross",
+    "textures": {
+        "leaf": "som:blocks/plant_jimsonweed_leaves",
+        "flower": "som:blocks/plant_jimsonweed_flowers"
+    }
+}

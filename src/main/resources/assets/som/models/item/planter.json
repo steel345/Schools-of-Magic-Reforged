@@ -1,0 +1,77 @@
+{
+  "parent": "som:block/planteroak",
+  "overrides": [
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0
+      },
+      "model": "som:item/planter_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.0833
+      },
+      "model": "som:item/planter_spruce"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.1667
+      },
+      "model": "som:item/planter_birch"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.25
+      },
+      "model": "som:item/planter_jungle"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.3333
+      },
+      "model": "som:item/planter_acacia"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.4167
+      },
+      "model": "som:item/planter_dark_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5
+      },
+      "model": "som:item/planter_ash"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5833
+      },
+      "model": "som:item/planter_elder"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.6667
+      },
+      "model": "som:item/planter_pine"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.75
+      },
+      "model": "som:item/planter_willow"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.8333
+      },
+      "model": "som:item/planter_yew"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.9167
+      },
+      "model": "som:item/planter_verde"
+    }
+  ]
+}

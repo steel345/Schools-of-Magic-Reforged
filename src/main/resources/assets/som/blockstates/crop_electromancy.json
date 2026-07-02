@@ -1,0 +1,12 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/cropfoxglove0" },
+    "age=1": { "model": "som:block/cropfoxglove1" },
+    "age=2": { "model": "som:block/cropfoxglove2" },
+    "age=3": { "model": "som:block/cropfoxglove3" },
+    "age=4": { "model": "som:block/cropfoxglove4" },
+    "age=5": { "model": "som:block/cropfoxglove5" },
+    "age=6": { "model": "som:block/cropfoxglove6" },
+    "age=7": { "model": "som:block/cropfoxglove7" }
+    }
+}

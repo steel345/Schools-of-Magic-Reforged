@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:hardened_clay_bricks",
+       "data": 13
+    }
+  },
+  "result": {
+    "item": "som:halfslab_hardened_clay_bricks_gray",
+    "data": 0,
+    "count": 6
+  }
+}

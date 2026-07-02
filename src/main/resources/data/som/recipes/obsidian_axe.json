@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["CC","CS"," S"], "key": { "C": {"item":"som:item_obsidian_shard"}, "S": {"item":"minecraft:stick"} }, "result": { "item": "som:axe_obsidian" } }

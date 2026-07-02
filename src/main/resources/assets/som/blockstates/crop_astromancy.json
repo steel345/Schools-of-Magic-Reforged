@@ -1,0 +1,12 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/cropjimsonweed0" },
+    "age=1": { "model": "som:block/cropjimsonweed1" },
+    "age=2": { "model": "som:block/cropjimsonweed2" },
+    "age=3": { "model": "som:block/cropjimsonweed3" },
+    "age=4": { "model": "som:block/cropjimsonweed4" },
+    "age=5": { "model": "som:block/cropjimsonweed5" },
+    "age=6": { "model": "som:block/cropjimsonweed6" },
+    "age=7": { "model": "som:block/cropjimsonweed7" }
+    }
+}

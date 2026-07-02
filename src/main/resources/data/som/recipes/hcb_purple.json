@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "HH",
+                    "HH"
+                ],
+    "key":  {
+                "H":  {
+                          "item":  "minecraft:purple_terracotta"
+                      }
+            },
+    "result":  {
+                   "item":  "som:hardened_clay_bricks",
+                   "count":  4,
+                   "nbt":  "{BlockStateTag:{type:\"hieromancy\"}}"
+               }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "som:blocks/hard_clay_brick_lblue",
+        "top": "som:blocks/hard_clay_brick_lblue",
+        "side": "som:blocks/hard_clay_brick_lblue"
+    }
+}

@@ -1,0 +1,1 @@
+{"type":"som:nbt_stonecutting","ingredient":{"item":"som:mud_marble","type":"forge:partial_nbt","nbt":"{BlockStateTag:{variant:\"normal\"}}"},"result":{"item":"som:mud_marble","nbt":"{BlockStateTag:{variant:\"cobble\"}}"}}

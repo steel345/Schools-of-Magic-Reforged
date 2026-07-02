@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "S",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "som:item",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "som:shovel_obsidian"
+  }
+}

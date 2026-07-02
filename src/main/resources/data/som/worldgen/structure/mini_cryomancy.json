@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "cryomancy",
+    "biomes":  "#som:has_structure/mini_cryomancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

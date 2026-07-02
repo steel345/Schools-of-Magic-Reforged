@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"som:gem_block","type":"forge:partial_nbt","nbt":"{BlockStateTag:{type:\"electromancy\"}}"}],"result":{"item":"som:gem_electromancy","count":9,"nbt":"{BlockStateTag:{type:\"polished\"}}"}}

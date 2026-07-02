@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "som:mud_marble",
+        "data": 0
+      }
+  },
+  "result": {
+    "item": "som:mud_marble_stone_wall",
+    "count": 4
+  }
+}

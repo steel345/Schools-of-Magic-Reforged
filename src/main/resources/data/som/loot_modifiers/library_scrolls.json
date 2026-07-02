@@ -1,0 +1,19 @@
+{
+  "type": "som:add_table",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/stronghold_library"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/stronghold_crossing"
+        }
+      ]
+    }
+  ],
+  "additional_loot_table": "som:chests/library_extras"
+}

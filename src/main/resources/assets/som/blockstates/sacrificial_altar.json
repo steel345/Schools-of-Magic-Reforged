@@ -1,0 +1,43 @@
+{
+  "variants": {
+    "facing=north,part=center": {
+      "model": "som:block/sacrificial_altar"
+    },
+    "facing=south,part=center": {
+      "model": "som:block/sacrificial_altar",
+      "y": 180
+    },
+    "facing=west,part=center": {
+      "model": "som:block/sacrificial_altar",
+      "y": 270
+    },
+    "facing=east,part=center": {
+      "model": "som:block/sacrificial_altar",
+      "y": 90
+    },
+    "facing=north,part=left": {
+      "model": "som:block/sacrificial_altar_part"
+    },
+    "facing=north,part=right": {
+      "model": "som:block/sacrificial_altar_part"
+    },
+    "facing=south,part=left": {
+      "model": "som:block/sacrificial_altar_part"
+    },
+    "facing=south,part=right": {
+      "model": "som:block/sacrificial_altar_part"
+    },
+    "facing=east,part=left": {
+      "model": "som:block/sacrificial_altar_part"
+    },
+    "facing=east,part=right": {
+      "model": "som:block/sacrificial_altar_part"
+    },
+    "facing=west,part=left": {
+      "model": "som:block/sacrificial_altar_part"
+    },
+    "facing=west,part=right": {
+      "model": "som:block/sacrificial_altar_part"
+    }
+  }
+}

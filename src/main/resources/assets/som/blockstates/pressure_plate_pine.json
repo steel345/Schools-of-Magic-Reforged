@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "powered=false": { "model": "som:block/pressure_plate_pine" },
+    "powered=true":  { "model": "som:block/pressure_plate_pine_down" }
+  }
+}

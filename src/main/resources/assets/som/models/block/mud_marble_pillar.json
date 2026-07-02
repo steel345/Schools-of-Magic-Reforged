@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "som:blocks/mud_marble_pillar_top",
+        "side": "som:blocks/mud_marble_pillar_side"
+    }
+}

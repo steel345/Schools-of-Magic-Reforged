@@ -1,0 +1,36 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "All rights reserved by PaleImitations; 1.20.1 port by Steel345"
+issueTrackerURL = ""
+
+[[mods]]
+modId = "som"
+version = "1.0.19"
+displayName = "Schools of Magic"
+logoFile = "logo.png"
+credits = "Original mod by PaleImitations. Chinese translation by mc_mso, Polish translation by Trozuu, Russian translation by Salvia."
+authors = "Steel345"
+description = '''
+In this first version of the Schools of Magic mod, a budding magician can learn the secrets of magic with their wand and cauldron in hand.
+'''
+
+[[dependencies.som]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.som]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,1.21)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.som]]
+modId = "terrablender"
+mandatory = false
+versionRange = "[3.0.0,)"
+ordering = "AFTER"
+side = "BOTH"

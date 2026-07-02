@@ -1,0 +1,20 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "SAS",
+                    "S S",
+                    "SSS"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "minecraft:glass"
+                      },
+                "A":  {
+                          "item":  "minecraft:gold_nugget"
+                      }
+            },
+    "result":  {
+                   "count":  3,
+                   "item":  "som:bottle_empty"
+               }
+}

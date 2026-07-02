@@ -1,0 +1,41 @@
+{
+  "parent": "som:block/planksash",
+  "overrides": [
+    {
+      "predicate": {
+        "som:wood_type": 0
+      },
+      "model": "som:item/planks_ash"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.166667
+      },
+      "model": "som:item/planks_elder"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.333333
+      },
+      "model": "som:item/planks_pine"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.5
+      },
+      "model": "som:item/planks_willow"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.666667
+      },
+      "model": "som:item/planks_yew"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.833333
+      },
+      "model": "som:item/planks_verde"
+    }
+  ]
+}

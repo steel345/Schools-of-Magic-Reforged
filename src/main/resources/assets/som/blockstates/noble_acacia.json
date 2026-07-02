@@ -1,0 +1,20 @@
+{
+    "variants": {
+    "face=0,facing=south": { "model": "som:block/noble_acacia_0" },
+    "face=0,facing=west": { "model": "som:block/noble_acacia_0", "y": 90 },
+    "face=0,facing=north": { "model": "som:block/noble_acacia_0", "y": 180 }, 
+    "face=0,facing=east": { "model": "som:block/noble_acacia_0", "y": 270 },
+    "face=1,facing=south": { "model": "som:block/noble_acacia_1" },
+    "face=1,facing=west": { "model": "som:block/noble_acacia_1", "y": 90 }, 
+    "face=1,facing=north": { "model": "som:block/noble_acacia_1", "y": 180 }, 
+    "face=1,facing=east": { "model": "som:block/noble_acacia_1", "y": 270 },
+    "face=2,facing=south": { "model": "som:block/noble_acacia_2" },
+    "face=2,facing=west": { "model": "som:block/noble_acacia_2", "y": 90 },
+    "face=2,facing=north": { "model": "som:block/noble_acacia_2", "y": 180 }, 
+    "face=2,facing=east": { "model": "som:block/noble_acacia_2", "y": 270 },
+    "face=3,facing=south": { "model": "som:block/noble_acacia_3" },  
+    "face=3,facing=west": { "model": "som:block/noble_acacia_3", "y": 90 }, 
+    "face=3,facing=north": { "model": "som:block/noble_acacia_3", "y": 180 }, 
+    "face=3,facing=east": { "model": "som:block/noble_acacia_3", "y": 270 }
+    }
+}

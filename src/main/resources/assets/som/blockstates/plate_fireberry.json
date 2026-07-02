@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platefireberry" },
+        "facing=south": { "model": "som:block/platefireberry", "y": 180 },
+        "facing=west":  { "model": "som:block/platefireberry", "y": 270 },
+        "facing=east":  { "model": "som:block/platefireberry", "y": 90 }
+    }
+}

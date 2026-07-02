@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BCB",
+        " B ",
+        " A "
+    ],
+    "key": {
+        "A": { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:6}" },
+        "B": { "item": "som:nugget", "type": "forge:partial_nbt", "nbt": "{Damage:6}" },
+        "C": { "item": "minecraft:redstone" }
+    },
+    "result": { "item": "som:brass_whistle" }
+}

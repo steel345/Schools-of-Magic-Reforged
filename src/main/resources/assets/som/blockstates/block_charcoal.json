@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "on_fire=false": {
+      "model": "som:block/block_charcoal"
+    },
+    "on_fire=true": {
+      "model": "som:block/block_charcoal_fire"
+    }
+  }
+}

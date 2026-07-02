@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "on_fire=false": {
+      "model": "som:block/ore_scorched_iron"
+    },
+    "on_fire=true": {
+      "model": "som:block/ore_scorched_iron_fire"
+    }
+  }
+}

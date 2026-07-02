@@ -1,0 +1,47 @@
+{
+  "parent": "som:block/gypsum_normal",
+  "overrides": [
+    {
+      "predicate": {
+        "som:fae_variant": 0
+      },
+      "model": "som:item/gypsum_normal"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.142857
+      },
+      "model": "som:item/gypsum_cobble"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.285714
+      },
+      "model": "som:item/gypsum_mossy_cobble"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.428571
+      },
+      "model": "som:item/gypsum_bricks"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.571429
+      },
+      "model": "som:item/gypsum_mossy_bricks"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.714286
+      },
+      "model": "som:item/gypsum_cracked_bricks"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.857143
+      },
+      "model": "som:item/gypsum_chiseled_bricks"
+    }
+  ]
+}

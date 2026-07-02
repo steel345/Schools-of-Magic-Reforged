@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "tree": {
+            "0": {
+                "model": "som:block/leavesash"
+            },
+            "1": {
+                "model": "som:block/leaveselder"
+            },
+            "2": {
+                "model": "som:block/leavespine"
+            },
+            "3": {
+                "model": "som:block/leaveswillow"
+            },
+            "4": {
+                "model": "som:block/leavesyew"
+            },
+            "5": {
+                "model": "som:block/leavesverde"
+            }
+        },
+        "hydro": {
+            "1": {},
+            "2": {},
+            "3": {},
+            "4": {}
+        }
+    }
+}

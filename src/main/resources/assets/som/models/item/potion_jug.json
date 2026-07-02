@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "som:items/potion_jug_overlay",
+        "layer1": "som:items/potion_jug"
+     }
+}

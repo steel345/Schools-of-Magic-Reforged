@@ -1,0 +1,23 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "ACA",
+                    "ASA",
+                    "AAA"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "minecraft:bone_meal"
+                      },
+                "C":  {
+                          "item":  "minecraft:dirt"
+                      },
+                "A":  {
+                          "item":  "som:halfslab_willow"
+                      }
+            },
+    "result":  {
+                   "item":  "som:planter",
+                   "nbt":  "{BlockStateTag:{type:\"willow\"}}"
+               }
+}

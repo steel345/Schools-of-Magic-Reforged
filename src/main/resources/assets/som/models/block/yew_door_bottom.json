@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/door_bottom_left",
+    "textures": {
+        "bottom": "som:blocks/door_yew_lower",
+        "top": "som:blocks/door_yew_upper"
+    }
+}

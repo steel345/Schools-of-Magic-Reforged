@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:magic_plant",
+      "data": 13
+    }
+  ],
+  "result": {
+    "item": "som:seed_magic_plant",
+    "data": 13
+  }
+}

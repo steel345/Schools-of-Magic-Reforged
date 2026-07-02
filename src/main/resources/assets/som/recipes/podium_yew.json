@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    " S ",
+    "CAC"
+  ],
+  "key": {
+    "S": {
+      "item": "som:magic_bookshelf",
+       "data": 10
+    },
+    "C": {
+      "item": "som:magic_log2",
+      "data": 1
+    },
+    "A": 
+      {
+        "item": "som:halfslab_yew",
+        "data": 0
+      }
+  },
+  "result": {
+    "item": "som:podium",
+    "data": 10
+  }
+}

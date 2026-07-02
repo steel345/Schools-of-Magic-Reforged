@@ -1,0 +1,3 @@
+  A Planter lets you grow plants on top of any block. Crafted from slabs of any wood type, a little dirt and bone meal.
+<~><~>  Plants that normally need water beside them, like sugar cane, will grow on a Planter with no water at all.
+<~><~>  Lotuses grow on a Planter too, no water required.

@@ -1,0 +1,20 @@
+{
+    "variants": {
+    "age=0,position=0": { "model": "som:block/plantocotillo_bases" },
+    "age=1,position=0": { "model": "som:block/plantocotillo_bases" },
+    "age=2,position=0": { "model": "som:block/plantocotillo_bases" },
+    "age=3,position=0": { "model": "som:block/plantocotillo_bases" },
+    "age=0,position=1": { "model": "som:block/plantocotillo_baseg" },
+    "age=1,position=1": { "model": "som:block/plantocotillo_baseg" },
+    "age=2,position=1": { "model": "som:block/plantocotillo_baseg" },
+    "age=3,position=1": { "model": "som:block/plantocotillo_baseg" },
+    "age=0,position=2": { "model": "som:block/plantocotillo_mid" },
+    "age=1,position=2": { "model": "som:block/plantocotillo_mid" },
+    "age=2,position=2": { "model": "som:block/plantocotillo_mid" },
+    "age=3,position=2": { "model": "som:block/plantocotillo_mid" },
+    "age=0,position=3": { "model": "som:block/plantocotillo_tip" },
+    "age=1,position=3": { "model": "som:block/plantocotillo_tip" },
+    "age=2,position=3": { "model": "som:block/plantocotillo_tip" },
+    "age=3,position=3": { "model": "som:block/plantocotillo_tipb" }
+    }
+}

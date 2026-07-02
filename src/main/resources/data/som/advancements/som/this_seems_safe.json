@@ -1,0 +1,21 @@
+{
+  "parent": "som:som/podium",
+  "display": {
+    "icon": { "item": "som:brazier" },
+    "title": { "translate": "advancements.som.this_seems_safe.title" },
+    "description": { "translate": "advancements.som.this_seems_safe.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": {
+    "light": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "location": [
+          { "condition": "minecraft:match_tool", "predicate": { "items": [ "minecraft:flint_and_steel", "minecraft:fire_charge" ] } },
+          { "condition": "minecraft:block_state_property", "block": "som:brazier" }
+        ]
+      }
+    }
+  },
+  "requirements": [ [ "light" ] ]
+}

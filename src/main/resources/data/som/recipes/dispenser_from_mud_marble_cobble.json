@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["XXX","XBX","XRX"],
+  "key": {
+    "X": {"type":"som:blockstate_variant","item":"som:mud_marble","key":"variant","value":"cobble"},"B":{"item":"minecraft:bow"},"R":{"item":"minecraft:redstone"}
+  },
+  "result": { "item": "minecraft:dispenser" }
+}

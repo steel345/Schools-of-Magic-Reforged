@@ -1,0 +1,17 @@
+{
+    "variants": {
+        "variant=normal": [
+            { "model": "som:block/mud_marble_a" },
+            { "model": "som:block/mud_marble_b" },
+            { "model": "som:block/mud_marble_c" },
+            { "model": "som:block/mud_marble_d" },
+            { "model": "som:block/mud_marble_e" }
+        ],
+        "variant=cobble": { "model": "som:block/mud_marble_cobble"},
+        "variant=mossy_cobble": { "model": "som:block/mud_marble_mossy_cobble"},
+        "variant=bricks": { "model": "som:block/mud_marble_bricks"},
+        "variant=mossy_bricks": { "model": "som:block/mud_marble_mossy_bricks"},
+        "variant=chiseled_bricks": { "model": "som:block/mud_marble_chiseled_bricks"},
+        "variant=cracked_bricks": { "model": "som:block/mud_marble_cracked_bricks"}
+    }
+}

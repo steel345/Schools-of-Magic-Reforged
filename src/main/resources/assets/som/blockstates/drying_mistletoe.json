@@ -1,0 +1,9 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/dryingmistletoe0" },
+    "age=1": { "model": "som:block/dryingmistletoe1" },
+    "age=2": { "model": "som:block/dryingmistletoe2" },
+    "age=3": { "model": "som:block/dryingmistletoe3" },
+    "age=4": { "model": "som:block/dryingmistletoe4" }
+    }
+}

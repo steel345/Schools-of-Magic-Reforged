@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CC",
+    " S",
+    " S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "som:shard_obsidian"
+    }
+  },
+  "result": {
+    "item": "som:hoe_obsidian"
+  }
+}

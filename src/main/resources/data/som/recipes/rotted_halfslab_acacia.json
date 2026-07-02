@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["###"],"key":{"#":{"item":"som:rotted_planks","type":"forge:partial_nbt","nbt":"{BlockStateTag:{type:\"acacia\"}}"}},"result":{"item":"som:rotted_halfslab_acacia","count":6}}

@@ -1,0 +1,3 @@
+{
+  "multipart": [ { "apply": { "model": "som:block/rotted_chest_particle" } } ]
+}

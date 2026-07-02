@@ -1,0 +1,7 @@
+{
+    "parent": "som:block/wall_post_flowering",
+    "textures": {
+        "wall_flower": "som:blocks/rose_wall_flower_side",
+        "wall_leaf": "som:blocks/rose_wall_leaf_side"
+    }
+}

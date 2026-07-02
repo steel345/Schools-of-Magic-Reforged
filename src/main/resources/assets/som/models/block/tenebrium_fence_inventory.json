@@ -1,0 +1,6 @@
+{
+    "parent": "som:block/metal_fence_inventory",
+    "textures": {
+        "texture": "som:blocks/void_fence"
+    }
+}

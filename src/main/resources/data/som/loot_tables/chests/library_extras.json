@@ -1,0 +1,134 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "scrolls1",
+      "rolls": 1,
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:spell_modifier_scroll",
+          "quality": 1,
+          "functions": [
+            {
+              "function": "som:set_random_spell_modifier"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 5
+        }
+      ]
+    },
+    {
+      "name": "scrolls2",
+      "rolls": 1,
+      "bonus_rolls": 0.5,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:spell_modifier_scroll",
+          "functions": [
+            {
+              "function": "som:set_random_spell_modifier"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "scrolls3",
+      "rolls": 1,
+      "bonus_rolls": 0.5,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:spell_modifier_scroll",
+          "functions": [
+            {
+              "function": "som:set_random_spell_modifier"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "name": "notes1",
+      "rolls": 1,
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:spell_note",
+          "quality": 1,
+          "functions": [
+            {
+              "function": "som:set_random_spell_note"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "name": "notes2",
+      "rolls": 1,
+      "bonus_rolls": 0.25,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:spell_note",
+          "functions": [
+            {
+              "function": "som:set_random_spell_note"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "name": "spells",
+      "rolls": 1,
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:grimoire_page",
+          "quality": 1,
+          "functions": [
+            {
+              "function": "som:set_random_spell"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

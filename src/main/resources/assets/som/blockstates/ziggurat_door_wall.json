@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "keyhole=false,locked=false": {
+      "model": "som:block/ziggurat_door_wall"
+    },
+    "keyhole=false,locked=true": {
+      "model": "som:block/ziggurat_door_wall"
+    },
+    "keyhole=true,locked=false": {
+      "model": "som:block/ziggurat_door_wall_keyhole"
+    },
+    "keyhole=true,locked=true": {
+      "model": "som:block/ziggurat_door_wall_keyhole"
+    }
+  }
+}

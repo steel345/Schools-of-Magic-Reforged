@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"som:metal_bricks","type":"forge:partial_nbt","nbt":"{BlockStateTag:{type:\"steel\"}}"}],"result":{"item":"som:ingot","count":4,"nbt":"{Damage:8}"}}

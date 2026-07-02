@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "som:item_graveroot_pulp" }
+  ],
+  "result": { "item": "minecraft:brown_dye", "count": 1 }
+}

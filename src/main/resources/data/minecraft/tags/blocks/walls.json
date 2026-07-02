@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "som:fae_stone_wall",
+    "som:gypsum_stone_wall",
+    "som:gypsum_cobble_wall",
+    "som:gypsum_brick_wall",
+    "som:mud_marble_stone_wall",
+    "som:mud_marble_cobble_wall",
+    "som:mud_marble_brick_wall"
+  ]
+}

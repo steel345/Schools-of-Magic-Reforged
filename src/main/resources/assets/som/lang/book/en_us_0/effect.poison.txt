@@ -1,0 +1,3 @@
+  The Poison effect causes non-fatal damage to a creature for a short period of time, taking them down to a half-heart of health.
+<~><~>  This effect can be acheived using Lily of the Valley.
+<~><~>  Poison is a Chaotic effect in the school of Evocation.

@@ -1,0 +1,18 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "SSS",
+                    "SSS"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:fae_stone",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"cobble\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  6,
+                   "item":  "som:fae_cobble_wall"
+               }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "C",
+    "A"
+  ],
+  "key": {
+    "S": {
+      "item": "som:shard_netherstar",
+       "data": 0
+    },
+    "C": {
+      "item": "som:horn_unicorn",
+      "data": 0
+    },
+    "A": 
+      {
+        "item": "som:feather_thunderbird",
+        "data": 0
+      }
+  },
+  "result": {
+    "item": "som:magic_arrow",
+    "count": 4
+  }
+}

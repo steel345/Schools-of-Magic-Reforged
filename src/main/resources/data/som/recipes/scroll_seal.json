@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:honeycomb" },
+    { "item": "minecraft:lapis_lazuli" }
+  ],
+  "result": { "item": "som:scroll_seal", "count": 3 }
+}

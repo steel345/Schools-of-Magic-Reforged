@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "som:blocks/mud_marble_keystone",
+        "up": "som:blocks/mud_marble_keystone",
+        "north": "som:blocks/mud_marble_keystone_face",
+        "south": "som:blocks/mud_marble_keystone_face",
+        "east": "som:blocks/mud_marble_keystone_side",
+        "west": "som:blocks/mud_marble_keystone_side",
+        "particle": "som:blocks/mud_marble_keystone_face"
+     }
+}

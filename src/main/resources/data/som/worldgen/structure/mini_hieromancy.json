@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "hieromancy",
+    "biomes":  "#som:has_structure/mini_hieromancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

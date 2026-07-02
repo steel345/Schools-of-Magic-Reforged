@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "som:block/willowbranch#dynamictree" }
+    }
+}

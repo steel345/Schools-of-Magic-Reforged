@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "up": "minecraft:block/sandstone_bottom",
+        "down": "minecraft:block/sandstone_bottom",
+        "north": "som:blocks/desert_brazier_corner_b",
+        "south": "minecraft:block/sandstone_bottom",
+        "east": "minecraft:block/sandstone_bottom",
+        "west": "som:blocks/desert_brazier_corner_a",
+        "particle": "som:blocks/desert_brazier_corner_a"
+     }
+}

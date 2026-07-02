@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "som:gem_block",
+      "data": 14
+    }
+  },
+  "result": {
+    "item": "som:gem_umbramancy",
+    "count": 9,
+    "data": 1
+  }
+}

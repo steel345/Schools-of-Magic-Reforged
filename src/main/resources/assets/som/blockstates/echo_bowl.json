@@ -1,0 +1,10 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "": {
+            "__comment": "Add the following line on the same level as a 'model' declaration.",
+            "custom": { "flip-v": true },
+            "model": "som:block/echo_bowl.obj"
+        }
+    }
+}

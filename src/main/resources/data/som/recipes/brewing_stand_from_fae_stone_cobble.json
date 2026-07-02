@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [" Z ","XXX"],
+  "key": {
+    "X": {"type":"som:blockstate_variant","item":"som:fae_stone","key":"variant","value":"cobble"},"Z":{"item":"minecraft:blaze_rod"}
+  },
+  "result": { "item": "minecraft:brewing_stand" }
+}

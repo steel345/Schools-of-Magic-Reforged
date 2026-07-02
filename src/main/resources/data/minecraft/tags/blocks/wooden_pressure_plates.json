@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:pressure_plate_ash",
+    "som:pressure_plate_elder",
+    "som:pressure_plate_pine",
+    "som:pressure_plate_willow",
+    "som:pressure_plate_yew",
+    "som:pressure_plate_verde"
+  ]
+}

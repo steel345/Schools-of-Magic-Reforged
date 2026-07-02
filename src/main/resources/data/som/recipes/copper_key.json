@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " AB",
+    " AB",
+    " A "
+  ],
+  "key": {
+    "A": { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:2}" },
+    "B": { "item": "som:nugget", "type": "forge:partial_nbt", "nbt": "{Damage:2}" }
+  },
+  "result": { "item": "som:copper_key", "count": 1 }
+}

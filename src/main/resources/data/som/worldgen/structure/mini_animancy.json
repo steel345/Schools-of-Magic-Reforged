@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "animancy",
+    "biomes":  "#som:has_structure/mini_animancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

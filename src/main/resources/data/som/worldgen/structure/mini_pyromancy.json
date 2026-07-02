@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "pyromancy",
+    "biomes":  "#som:has_structure/mini_pyromancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

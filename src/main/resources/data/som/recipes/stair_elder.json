@@ -1,0 +1,17 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "#  ",
+                    "## ",
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":"som:planks_elder"
+                      }
+            },
+    "result":  {
+                   "count":  4,
+                   "item":  "som:stair_elder"
+               }
+}

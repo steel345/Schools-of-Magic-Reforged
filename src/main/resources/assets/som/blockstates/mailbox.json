@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/objectmailbox" },
+        "facing=south": { "model": "som:block/objectmailbox", "y": 180 },
+        "facing=west":  { "model": "som:block/objectmailbox", "y": 270 },
+        "facing=east":  { "model": "som:block/objectmailbox", "y": 90 }
+    }
+}

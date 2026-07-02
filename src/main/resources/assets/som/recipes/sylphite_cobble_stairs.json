@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H  ",
+    "HH ",
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:fae_stone",
+       "data": 1
+    }
+  },
+  "result": {
+    "item": "som:stairs_fae_cobble",
+    "data": 0,
+    "count": 4
+  }
+}

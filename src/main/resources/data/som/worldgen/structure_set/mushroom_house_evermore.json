@@ -1,0 +1,4 @@
+{
+  "structures": [ { "structure": "som:mushroom_house_evermore", "weight": 1 } ],
+  "placement": { "type": "minecraft:random_spread", "spacing": 36, "separation": 10, "salt": 80513327, "frequency": 1.0 }
+}

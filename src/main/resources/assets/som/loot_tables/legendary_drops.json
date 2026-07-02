@@ -1,0 +1,62 @@
+{
+    "pools": [
+        {
+            "name": "legendaries",
+            "rolls": {
+                "min": 0,
+                "max": 1
+            },
+            "bonus_rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 25,
+                    "name": "som:ingredient",
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 5,
+                    "name": "som:horn_unicorn",
+                    "quality": 1
+                },
+                {
+                    "type": "item",
+                    "weight": 5,
+                    "name": "som:feather_thunderbird",
+                    "quality": 1
+                },
+                {
+                    "type": "item",
+                    "weight": 5,
+                    "name": "som:feather_phoenix",
+                    "quality": 1
+                },
+                {
+                    "type": "item",
+                    "weight": 3,
+                    "name": "som:bottle_egg",
+                    "quality": 1
+                },
+                {
+                    "type": "item",
+                    "weight": 3,
+                    "name": "som:shard_netherstar",
+                    "quality": 1
+                },
+                {
+                    "type": "empty",
+                    "weight": 100
+                }
+            ]
+        }
+    ]
+}

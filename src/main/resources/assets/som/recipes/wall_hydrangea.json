@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "som:plant_hydrangea"
+      }
+  },
+  "result": {
+    "item": "som:wall_hydrangea"
+  }
+}

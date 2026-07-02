@@ -1,0 +1,51 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "0": "som:blocks/desert_brazier_corner_c",
+        "1": "minecraft:block/sandstone_bottom",
+        "2": "som:blocks/desert_brazier_corner_d",
+        "3": "som:blocks/light",
+        "particle": "som:blocks/desert_brazier_corner_d"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 0.0, 0.0, 0.0 ], 
+            "to": [ 15.0, 16.0, 15.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 1.0, 0.0, 16.0, 16.0 ] },
+                "east": { "texture": "#1", "uv": [ 1.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 15.0, 16.0 ] },
+                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 15.0, 16.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 15.0, 15.0 ] },
+                "down": { "texture": "#1", "uv": [ 1.0, 1.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 15.0, 0.0, 0.0 ], 
+            "to": [ 16.0, 16.0, 15.0 ], 
+            "faces": {
+                "north": { "texture": "#3", "uv": [ 0.0, 0.0, 1.0, 16.0 ] },
+                "east": { "texture": "#1", "uv": [ 1.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 1.0, 16.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 15.0, 16.0 ] },
+                "up": { "texture": "#1", "uv": [ 15.0, 0.0, 16.0, 15.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 1.0, 1.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 0.0, 0.0, 15.0 ], 
+            "to": [ 16.0, 16.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 1.0, 16.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#3", "uv": [ 0.0, 0.0, 1.0, 16.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 15.0, 16.0, 16.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 1.0 ] }
+            }
+        }
+    ]
+}

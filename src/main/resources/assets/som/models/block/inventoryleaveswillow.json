@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "som:blocks/inventory_leaves_willow_top",
+        "side": "som:blocks/inventory_leaves_willow"
+    }
+}

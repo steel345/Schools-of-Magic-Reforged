@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "som:blocks/mud_marble_bricks",
+        "top": "som:blocks/mud_marble_bricks",
+        "side": "som:blocks/mud_marble_bricks"
+    }
+}

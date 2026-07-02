@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "som:block/slab_bottom_ash"
+    },
+    "type=top": {
+      "model": "som:block/slab_top_ash"
+    },
+    "type=double": {
+      "model": "som:block/planksash"
+    }
+  }
+}

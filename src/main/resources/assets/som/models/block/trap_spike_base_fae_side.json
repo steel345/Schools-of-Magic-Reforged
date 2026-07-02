@@ -1,0 +1,13 @@
+{
+    "parent": "som:block/ore3",
+    "textures": {
+        "block_side": "som:blocks/fae_bricks_chiseled",
+        "block_top": "som:blocks/fae_bricks_chiseled",
+        "block_bottom": "som:blocks/fae_bricks_chiseled",
+        "ore_side": "som:blocks/air",
+        "ore_side2": "som:blocks/spear_hole",
+        "ore_top": "som:blocks/air",
+        "ore_bottom": "som:blocks/air",
+        "particle": "som:blocks/fae_bricks_chiseled"
+    }
+}

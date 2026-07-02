@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "som:block/logash"
+    },
+    "axis=x": {
+      "model": "som:block/logash_bark",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z": {
+      "model": "som:block/logash_bark",
+      "x": 90
+    }
+  }
+}

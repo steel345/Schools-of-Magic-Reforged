@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:plant_rose"
+    }
+  ],
+  "result": {
+    "item": "minecraft:double_plant",
+    "data": 4
+  }
+}

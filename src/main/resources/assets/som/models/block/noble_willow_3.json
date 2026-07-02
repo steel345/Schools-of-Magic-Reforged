@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "som:blocks/log_willow_top",
+        "front": "som:blocks/willow_type3",
+        "side": "som:blocks/log_willow",
+        "bottom": "som:blocks/log_willow_top"
+    }
+}

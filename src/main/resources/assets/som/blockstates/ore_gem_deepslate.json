@@ -1,0 +1,20 @@
+﻿{
+    "variants": {
+        "type=pyromancy": { "model": "som:block/ore_deepslate_pyromancy" },
+        "type=heliomancy": { "model": "som:block/ore_deepslate_heliomancy" },
+        "type=aeromancy": { "model": "som:block/ore_deepslate_aeromancy" },
+        "type=geomancy": { "model": "som:block/ore_deepslate_geomancy" },
+        "type=animancy": { "model": "som:block/ore_deepslate_animancy" },
+        "type=electromancy": { "model": "som:block/ore_deepslate_electromancy" },
+        "type=hydromancy": { "model": "som:block/ore_deepslate_hydromancy" },
+        "type=cryomancy": { "model": "som:block/ore_deepslate_cryomancy" },
+        "type=hieromancy": { "model": "som:block/ore_deepslate_hieromancy" },
+        "type=chaotics": { "model": "som:block/ore_deepslate_chaotics" },
+        "type=auramancy": { "model": "som:block/ore_deepslate_auramancy" },
+        "type=astromancy": { "model": "som:block/ore_deepslate_astromancy" },
+        "type=infernality": { "model": "som:block/ore_deepslate_infernality" },
+        "type=spectromancy": { "model": "som:block/ore_deepslate_spectromancy" },
+        "type=umbramancy": { "model": "som:block/ore_deepslate_umbramancy" },
+        "type=necromancy": { "model": "som:block/ore_deepslate_necromancy" }
+    }
+}

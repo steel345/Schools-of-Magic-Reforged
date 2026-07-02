@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/statuemother" },
+        "facing=south": { "model": "som:block/statuemother", "y": 180 },
+        "facing=west":  { "model": "som:block/statuemother", "y": 270 },
+        "facing=east":  { "model": "som:block/statuemother", "y": 90 }
+    }
+}

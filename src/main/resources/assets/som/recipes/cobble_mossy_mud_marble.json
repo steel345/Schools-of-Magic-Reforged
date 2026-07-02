@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "pattern": [
+    "HA"
+  ],
+  "ingredients": [
+    {
+      "item": "som:mud_marble",
+       "data": 1
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "item": "som:mud_marble",
+    "data": 2,
+    "count": 1
+  }
+}

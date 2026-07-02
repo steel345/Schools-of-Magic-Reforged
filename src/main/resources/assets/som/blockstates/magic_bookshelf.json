@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "type=oak": {
+      "model": "som:block/bookshelf_oak"
+    },
+    "type=spruce": {
+      "model": "som:block/bookshelf_spruce"
+    },
+    "type=birch": {
+      "model": "som:block/bookshelf_birch"
+    },
+    "type=jungle": {
+      "model": "som:block/bookshelf_jungle"
+    },
+    "type=acacia": {
+      "model": "som:block/bookshelf_acacia"
+    },
+    "type=dark_oak": {
+      "model": "som:block/bookshelf_dark_oak"
+    },
+    "type=ash": {
+      "model": "som:block/bookshelf_ash"
+    },
+    "type=elder": {
+      "model": "som:block/bookshelf_elder"
+    },
+    "type=pine": {
+      "model": "som:block/bookshelf_pine"
+    },
+    "type=willow": {
+      "model": "som:block/bookshelf_willow"
+    },
+    "type=yew": {
+      "model": "som:block/bookshelf_yew"
+    },
+    "type=verde": {
+      "model": "som:block/bookshelf_verde"
+    }
+  }
+}

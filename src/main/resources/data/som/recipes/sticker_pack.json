@@ -1,0 +1,19 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "P",
+                    "S"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "minecraft:slime_ball"
+                      },
+                "P":  {
+                          "item":  "minecraft:paper"
+                      }
+            },
+    "result":  {
+                   "count":  1,
+                   "item":  "som:sticker_pack"
+               }
+}

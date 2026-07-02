@@ -1,0 +1,18 @@
+{
+    "variants": {
+        "flame=0,colored=false":  { "model": "som:block/brazier" },
+        "flame=0,colored=true":   { "model": "som:block/brazier" },
+        "flame=1,colored=false":  { "model": "som:block/brazier_flame_real" },
+        "flame=1,colored=true":   { "model": "som:block/brazier_flame" },
+        "flame=2,colored=false":  { "model": "som:block/brazier_flame_s23_real" },
+        "flame=2,colored=true":   { "model": "som:block/brazier_flame_s23" },
+        "flame=3,colored=false":  { "model": "som:block/brazier_flame_s25_real" },
+        "flame=3,colored=true":   { "model": "som:block/brazier_flame_s25" },
+        "flame=4,colored=false":  { "model": "som:block/brazier_flame_s27_real" },
+        "flame=4,colored=true":   { "model": "som:block/brazier_flame_s27" },
+        "flame=5,colored=false":  { "model": "som:block/brazier_flame_s29_real" },
+        "flame=5,colored=true":   { "model": "som:block/brazier_flame_s29" },
+        "flame=6,colored=false":  { "model": "som:block/brazier_flame_big_real" },
+        "flame=6,colored=true":   { "model": "som:block/brazier_flame_big" }
+    }
+}

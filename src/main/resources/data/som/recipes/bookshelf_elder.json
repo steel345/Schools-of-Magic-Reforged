@@ -1,0 +1,27 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "ZYZ",
+                    "XXX",
+                    "ZYZ"
+                ],
+    "key":  {
+                "Z":  [
+                          {
+                              "item":  "som:log_elder"
+                          }
+                      ],
+                "Y":  [
+                          {
+                              "item":"som:planks_elder"
+                          }
+                      ],
+                "X":  {
+                          "item":  "minecraft:book"
+                      }
+            },
+    "result":  {
+                   "item":  "som:magic_bookshelf",
+                   "nbt":  "{BlockStateTag:{type:\"elder\"}}"
+               }
+}

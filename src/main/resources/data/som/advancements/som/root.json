@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": { "item": "som:complete_spellbook" },
+    "title": { "translate": "advancements.som.root.title" },
+    "description": { "translate": "advancements.som.root.description" },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "som:textures/blocks/gypsum_bricks.png"
+  },
+  "criteria": {
+    "entered": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [ [ "entered" ] ]
+}

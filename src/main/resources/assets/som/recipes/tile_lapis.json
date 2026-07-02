@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "CVC",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:dye",
+      "data": 4
+    },
+    "V": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "som:tile_lapis"
+  }
+}

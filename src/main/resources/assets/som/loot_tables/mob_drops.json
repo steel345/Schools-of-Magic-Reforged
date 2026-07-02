@@ -1,0 +1,46 @@
+{
+    "pools": [
+        {
+            "name": "drops",
+            "rolls": {
+                "min": 0,
+                "max": 3
+            },
+            "bonus_rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 30,
+                    "name": "som:ingredient",
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": {
+                                "min": 5,
+                                "max": 10
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 30,
+                    "name": "som:item",
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 13
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "empty",
+                    "weight": 10
+                }
+            ]
+        }
+    ]
+}

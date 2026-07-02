@@ -1,0 +1,3 @@
+  The metal Handle grants the wand a perk. Copper extends spell effect duration, Bronze increases magical experience gained, and Brass enhances spell visuals.
+<~><~>  Gold deepens elemental specialization, Silver improves spell accuracy, and Iron quickens cast time and projectile speed.
+<~><~>  Steel makes spell power unstable, stronger or weaker at random, while Tenebrium simply raises spell power for everything.

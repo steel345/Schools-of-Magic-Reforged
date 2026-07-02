@@ -1,0 +1,5 @@
+  Spell Charges are reservoirs of prepared magic a Magician keeps ready to cast. The small gems on your charge display show how many Charges you hold, sorted into tiers.
+<~><~>  Every spell lists a minimum Charge tier on its page. The higher your Magician's level, the higher the tiers you can hold and the more Charges you keep at once.
+<~><~>  Casting a spell spends one Charge of its tier, and spending that Charge draws Mana a single time. The uses, shots or duration a Charge grants afterwards cost no further Mana; only the first draw from a fresh Charge touches your pool.
+<~><~>  Each tier opens at a set Magician's level. Tier 1 is yours from the very start. Tier 2 arrives at level 6, Tier 3 at level 10, Tier 4 at level 14, Tier 5 at level 17, Tier 6 at level 21, Tier 7 at level 26, Tier 8 at level 31, and the ninth and final tier at level 33.
+<~><~>  Bear in mind that every level asks a little more experience than the one before it, so raising your Magician's level grows subtly harder the higher you climb.

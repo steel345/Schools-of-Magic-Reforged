@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:paper"
+        },
+        {
+            "type": "forge:nbt",
+            "item": "som:gem_dust",
+            "nbt": "{Damage:5}"
+        }
+    ],
+    "result": {
+        "item": "som:banner_pattern_electromancy"
+    }
+}

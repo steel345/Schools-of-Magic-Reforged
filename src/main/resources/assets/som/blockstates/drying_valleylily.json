@@ -1,0 +1,9 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/dryingvalleylily0" },
+    "age=1": { "model": "som:block/dryingvalleylily1" },
+    "age=2": { "model": "som:block/dryingvalleylily2" },
+    "age=3": { "model": "som:block/dryingvalleylily3" },
+    "age=4": { "model": "som:block/dryingvalleylily4" }
+    }
+}

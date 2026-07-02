@@ -1,0 +1,1 @@
+{"type":"som:nbt_stonecutting","ingredient":{"item":"som:tile_jade","type":"forge:partial_nbt","nbt":"{BlockStateTag:{variant:\"full\"}}"},"result":{"item":"som:tile_jade","nbt":"{BlockStateTag:{variant:\"diamond\"}}"}}

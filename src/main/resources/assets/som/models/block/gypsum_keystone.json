@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "som:blocks/gypsum_keystone",
+        "up": "som:blocks/gypsum_keystone",
+        "north": "som:blocks/gypsum_keystone_face",
+        "south": "som:blocks/gypsum_keystone_face",
+        "east": "som:blocks/gypsum_keystone_side",
+        "west": "som:blocks/gypsum_keystone_side",
+        "particle": "som:blocks/gypsum_keystone_face"
+     }
+}

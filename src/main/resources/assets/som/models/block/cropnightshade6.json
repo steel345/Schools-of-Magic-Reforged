@@ -1,0 +1,6 @@
+{
+    "parent": "som:block/crop_tinted",
+    "textures": {
+        "crop": "som:blocks/cropnightshade6"
+    }
+}

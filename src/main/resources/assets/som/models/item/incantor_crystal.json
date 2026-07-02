@@ -1,0 +1,26 @@
+{
+    "parent": "som:block/incantor_crystal",
+    "display": {
+
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0],
+            "scale":[ 0.25, 0.25, 0.25 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 22.5, 0, 0 ],
+            "translation": [ 0, 3, -2],
+            "scale":[ 0.23, 0.23, 0.23]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 22.5, 0, 0 ],
+            "translation": [ 0, 3, 0],
+            "scale":[ 0.375, 0.375, 0.375]
+        },
+        "gui": {
+            "rotation": [ 22.5, 22.5, 0 ],
+            "translation": [ 0, -1, 0 ],
+            "scale": [ 0.6, 0.6, 0.6 ]
+        }
+   }
+}

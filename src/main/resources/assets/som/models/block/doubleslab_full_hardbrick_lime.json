@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/cube_all",
+    "textures": {
+        "all": "som:blocks/hard_clay_brick_lime"
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "values": [
+    "som:andesite_pedestal",
+    "som:basalt_pedestal",
+    "som:blackstone_pedestal",
+    "som:bone_pedestal",
+    "som:calcite_pedestal",
+    "som:cobblestone_pedestal",
+    "som:copper_pedestal",
+    "som:deepslate_pedestal",
+    "som:diorite_pedestal",
+    "som:dripstone_pedestal",
+    "som:endstone_pedestal",
+    "som:exposed_copper_pedestal",
+    "som:granite_pedestal",
+    "som:mossy_cobblestone_pedestal",
+    "som:netherbrick_pedestal",
+    "som:obsidian_pedestal",
+    "som:oxidized_copper_pedestal",
+    "som:prismarine_pedestal",
+    "som:purpur_pedestal",
+    "som:quartz_pedestal",
+    "som:red_netherbrick_pedestal",
+    "som:red_sandstone_pedestal",
+    "som:sandstone_pedestal",
+    "som:smooth_basalt_pedestal",
+    "som:stone_pedestal",
+    "som:tuff_pedestal",
+    "som:weathered_copper_pedestal"
+  ]
+}

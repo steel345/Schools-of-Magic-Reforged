@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:sandpaper",
+      "data": 32767
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "gemSunstone"
+    }
+  ],
+  "result": {
+    "item": "som:gem_heliomancy",
+    "data": 1
+  }
+}

@@ -1,0 +1,13 @@
+﻿{
+    "type":  "minecraft:crafting_shapeless",
+    "ingredients":  [
+                        {
+                            "item":  "som:magic_plant",
+                            "type":  "forge:partial_nbt",
+                            "nbt":  "{BlockStateTag:{type:\"pyromancy\"}}"
+                        }
+                    ],
+    "result":  {
+                   "item":  "som:seed_magic_plant"
+               }
+}

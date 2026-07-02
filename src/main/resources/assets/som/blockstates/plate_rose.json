@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platerose" },
+        "facing=south": { "model": "som:block/platerose", "y": 180 },
+        "facing=west":  { "model": "som:block/platerose", "y": 270 },
+        "facing=east":  { "model": "som:block/platerose", "y": 90 }
+    }
+}

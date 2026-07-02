@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S S",
+    " O ",
+    "SAS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stonebrick",
+      "data": 3
+    },
+    "O": {
+      "item": "minecraft:sticky_piston"
+    },
+    "A": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "som:trap_spike_base"
+  }
+}

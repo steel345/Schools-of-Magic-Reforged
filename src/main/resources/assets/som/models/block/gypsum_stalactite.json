@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "som:blocks/gypsum_stalactite_top",
+        "side": "som:blocks/gypsum_stalactite_side"
+    }
+}

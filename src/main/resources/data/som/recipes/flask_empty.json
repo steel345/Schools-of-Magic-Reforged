@@ -1,0 +1,19 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "A",
+                    "S"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:bottle_empty"
+                      },
+                "A":  {
+                          "item":  "minecraft:redstone_torch"
+                      }
+            },
+    "result":  {
+                   "count":  1,
+                   "item":  "som:burst_bottle"
+               }
+}

@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "stage=0,type=ash": {
+      "model": "som:block/saplingash"
+    },
+    "stage=1,type=ash": {
+      "model": "som:block/saplingash"
+    },
+    "stage=0,type=elder": {
+      "model": "som:block/saplingelder"
+    },
+    "stage=1,type=elder": {
+      "model": "som:block/saplingelder"
+    },
+    "stage=0,type=pine": {
+      "model": "som:block/saplingpine"
+    },
+    "stage=1,type=pine": {
+      "model": "som:block/saplingpine"
+    },
+    "stage=0,type=willow": {
+      "model": "som:block/saplingwillow"
+    },
+    "stage=1,type=willow": {
+      "model": "som:block/saplingwillow"
+    },
+    "stage=0,type=yew": {
+      "model": "som:block/saplingyew"
+    },
+    "stage=1,type=yew": {
+      "model": "som:block/saplingyew"
+    },
+    "stage=0,type=verde": {
+      "model": "som:block/saplingverde"
+    },
+    "stage=1,type=verde": {
+      "model": "som:block/saplingverde"
+    }
+  }
+}

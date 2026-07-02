@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "som:fence_copper",
+    "som:fence_bronze",
+    "som:fence_brass",
+    "som:fence_gold",
+    "som:fence_silver",
+    "som:fence_iron",
+    "som:fence_steel",
+    "som:fence_tenebrium",
+    "som:fence_ash",
+    "som:fence_elder",
+    "som:fence_pine",
+    "som:fence_willow",
+    "som:fence_yew",
+    "som:fence_verde"
+  ]
+}

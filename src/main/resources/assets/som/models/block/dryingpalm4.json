@@ -1,0 +1,54 @@
+{
+    "parent": "block/block",
+"ambientocclusion": false,
+    "textures": {
+        "0": "som:blocks/dryingpalm4",
+        "1": "som:blocks/dryingpalm4_b",
+        "2": "som:blocks/herbaltwine",
+        "particle": "som:blocks/dryingpalm4_b"
+    },
+    "elements": [
+        {
+            "name": "upper1",
+            "from": [ 0.8, 0.0, 8.0 ], 
+            "to": [ 15.2, 16.0, 8.0 ], 
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "lower1",
+            "from": [ 0.8, -16.0, 8.0 ], 
+            "to": [ 15.2, 0.0, 8.0 ], 
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "upper2",
+            "from": [ 0.8, 0.0, 8.0 ],
+            "to": [ 15.2, 16.0, 8.0 ],
+            "shade": false,
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "upper3",
+            "from": [ 8.0, 0.0, 0.8 ],
+            "to": [ 8.0, 16.0, 15.2 ],
+            "shade": false,
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "faces": {
+                "east": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        }
+    ]
+}

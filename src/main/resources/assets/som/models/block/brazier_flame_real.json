@@ -1,0 +1,6 @@
+{
+    "parent": "som:block/brazier_flame",
+    "textures": {
+        "3": "minecraft:block/fire_0"
+    }
+}

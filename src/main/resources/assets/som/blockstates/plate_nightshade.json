@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platenightshade" },
+        "facing=south": { "model": "som:block/platenightshade", "y": 180 },
+        "facing=west":  { "model": "som:block/platenightshade", "y": 270 },
+        "facing=east":  { "model": "som:block/platenightshade", "y": 90 }
+    }
+}

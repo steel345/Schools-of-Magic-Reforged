@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "som:block/slab_bottom_elder"
+    },
+    "type=top": {
+      "model": "som:block/slab_top_elder"
+    },
+    "type=double": {
+      "model": "som:block/plankselder"
+    }
+  }
+}

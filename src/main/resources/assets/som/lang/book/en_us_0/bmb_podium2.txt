@@ -1,0 +1,6 @@
+  Reading lets you peruse the tome and assign its spells to the slots of your wand.
+<~><~>  Copying lets you transcribe a single page onto paper, should you wish to keep or share its contents. Do this with ink sacks or black dye and paper.
+<~><~>  Editing lets you slot loose pages into a Grimoire, or cut pages back out of it.
+<~><~>  Personalizing lets you decorate a page with stickers, insert a Table of Contents or chapter dividers, and pen your own writing.
+<~><~>  Notes lets you study a Spell Note and choose which of its lessons to keep.
+<~><~>  Spells lets you bind a Spell Modifier Scroll onto a spell to refine its workings.

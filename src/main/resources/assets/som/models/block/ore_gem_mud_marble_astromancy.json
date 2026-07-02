@@ -1,0 +1,10 @@
+{
+  "parent": "som:block/ore",
+  "textures": {
+    "block": "som:blocks/mud_marble",
+    "ore_side": "som:blocks/ore_astromancy",
+    "ore_top": "som:blocks/ore_astromancy",
+    "ore_bottom": "som:blocks/ore_astromancy",
+    "particle": "som:blocks/ore_astromancy"
+  }
+}

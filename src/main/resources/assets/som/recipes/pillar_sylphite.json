@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HH",
+    "HH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:fae_stalactite"
+    }
+  },
+  "result": {
+    "item": "som:fae_pillar",
+    "count": 4
+  }
+}

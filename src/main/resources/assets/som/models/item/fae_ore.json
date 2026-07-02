@@ -1,0 +1,53 @@
+{
+  "parent": "som:block/fae_ore_coal",
+  "overrides": [
+    {
+      "predicate": {
+        "som:standard_ore": 0.0625
+      },
+      "model": "som:item/fae_ore_coal"
+    },
+    {
+      "predicate": {
+        "som:standard_ore": 0.1875
+      },
+      "model": "som:item/fae_ore_diamond"
+    },
+    {
+      "predicate": {
+        "som:standard_ore": 0.3125
+      },
+      "model": "som:item/fae_ore_emerald"
+    },
+    {
+      "predicate": {
+        "som:standard_ore": 0.4375
+      },
+      "model": "som:item/fae_ore_gold"
+    },
+    {
+      "predicate": {
+        "som:standard_ore": 0.5625
+      },
+      "model": "som:item/fae_ore_iron"
+    },
+    {
+      "predicate": {
+        "som:standard_ore": 0.6875
+      },
+      "model": "som:item/fae_ore_lapis"
+    },
+    {
+      "predicate": {
+        "som:standard_ore": 0.8125
+      },
+      "model": "som:item/fae_ore_silver"
+    },
+    {
+      "predicate": {
+        "som:standard_ore": 0.9375
+      },
+      "model": "som:item/fae_ore_copper"
+    }
+  ]
+}

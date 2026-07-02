@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "age=0": { "model": "som:block/cropwormwood0" },
+        "age=1": { "model": "som:block/cropwormwood1" },
+        "age=2": { "model": "som:block/cropwormwood2" },
+        "age=3": { "model": "som:block/cropwormwood3" },
+        "age=4": { "model": "som:block/cropwormwood4" },
+        "age=5": { "model": "som:block/cropwormwood5" },
+        "age=6": { "model": "som:block/cropwormwood6" },
+        "age=7": { "model": "som:block/cropwormwood7" }
+    }
+}

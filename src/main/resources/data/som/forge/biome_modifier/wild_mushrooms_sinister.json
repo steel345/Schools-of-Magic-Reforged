@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": [
+    "som:sinister_swamp"
+  ],
+  "features": "som:wild_mushrooms_rare",
+  "step": "vegetal_decoration"
+}

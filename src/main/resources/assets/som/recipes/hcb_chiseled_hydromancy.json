@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "HAH",
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:hardened_clay_bricks",
+       "data": 6
+    },
+    "A": {
+      "item": "som:gem_dust",
+      "data": 6
+    }
+  },
+  "result": {
+    "item": "som:hardened_clay_bricks_chiseled",
+    "data": 6,
+    "count": 8
+  }
+}

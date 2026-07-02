@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "X","X","S" ],
+  "key": {
+    "X": { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:2}" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": { "item": "som:sword_copper", "count": 1 }
+}

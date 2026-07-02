@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y": { "model": "som:block/wood_willow" },
+        "axis=x": { "model": "som:block/wood_willow", "x": 90, "y": 90 },
+        "axis=z": { "model": "som:block/wood_willow", "x": 90 }
+    }
+}

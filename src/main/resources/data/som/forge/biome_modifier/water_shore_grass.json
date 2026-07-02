@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#som:water_grass_biomes",
+  "features": "som:water_shore_grass",
+  "step": "top_layer_modification"
+}

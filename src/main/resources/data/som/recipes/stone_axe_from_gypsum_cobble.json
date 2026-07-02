@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["XX","XS"," S"],
+  "key": {
+    "X": {"type":"som:blockstate_variant","item":"som:gypsum","key":"variant","value":"cobble"},"S":{"item":"minecraft:stick"}
+  },
+  "result": { "item": "minecraft:stone_axe" }
+}

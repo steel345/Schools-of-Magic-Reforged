@@ -1,0 +1,504 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "gems",
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 0,
+        "max": 1
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:0}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:0}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:1}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:1}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:2}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:2}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:3}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:3}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:4}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:4}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:5}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:5}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:6}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:6}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:7}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:7}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:8}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:8}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:9}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:9}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:10}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:10}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:11}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:11}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:12}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:12}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:13}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:13}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:14}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:14}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_chunk",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:15}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "som:gem_dust",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:15}"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 40
+        }
+      ]
+    }
+  ]
+}

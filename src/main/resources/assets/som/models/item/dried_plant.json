@@ -1,0 +1,248 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/driedpyracantha"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:magic_type": 0.02381
+      },
+      "model": "som:item/dried_plant_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.04762
+      },
+      "model": "som:item/dried_plant_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.07143
+      },
+      "model": "som:item/dried_plant_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.09524
+      },
+      "model": "som:item/dried_plant_geomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.11905
+      },
+      "model": "som:item/dried_plant_animancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.14286
+      },
+      "model": "som:item/dried_plant_electromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.16667
+      },
+      "model": "som:item/dried_plant_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.19048
+      },
+      "model": "som:item/dried_plant_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.21429
+      },
+      "model": "som:item/dried_plant_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.2381
+      },
+      "model": "som:item/dried_plant_chaotics"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.2619
+      },
+      "model": "som:item/dried_plant_auramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.28571
+      },
+      "model": "som:item/dried_plant_astromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.30952
+      },
+      "model": "som:item/dried_plant_infernality"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.33333
+      },
+      "model": "som:item/dried_plant_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.35714
+      },
+      "model": "som:item/dried_plant_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.38095
+      },
+      "model": "som:item/dried_plant_necromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.40476
+      },
+      "model": "som:item/dried_plant_valleylily"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.42857
+      },
+      "model": "som:item/dried_plant_bramble"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.45238
+      },
+      "model": "som:item/dried_plant_nightberry"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.47619
+      },
+      "model": "som:item/dried_plant_rose"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.5
+      },
+      "model": "som:item/dried_plant_brittlebush"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.52381
+      },
+      "model": "som:item/dried_plant_wheat"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.54762
+      },
+      "model": "som:item/dried_plant_mandrake"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.57143
+      },
+      "model": "som:item/dried_plant_sunflower"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.59524
+      },
+      "model": "som:item/dried_plant_cattail"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.61905
+      },
+      "model": "som:item/dried_plant_lilac"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.64286
+      },
+      "model": "som:item/dried_plant_hydrangea"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.66667
+      },
+      "model": "som:item/dried_plant_creosote"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.69048
+      },
+      "model": "som:item/dried_plant_sage"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.71429
+      },
+      "model": "som:item/dried_plant_flytrap"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.7381
+      },
+      "model": "som:item/dried_plant_fireberry"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.7619
+      },
+      "model": "som:item/dried_plant_carrot"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.78571
+      },
+      "model": "som:item/dried_plant_palm"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.80952
+      },
+      "model": "som:item/dried_plant_sugarcane"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.83333
+      },
+      "model": "som:item/dried_plant_beanstalk"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.85714
+      },
+      "model": "som:item/dried_plant_peony"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.88095
+      },
+      "model": "som:item/dried_plant_oleander"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.90476
+      },
+      "model": "som:item/dried_plant_bladderwort"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.92857
+      },
+      "model": "som:item/dried_plant_graveroot"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.95238
+      },
+      "model": "som:item/dried_plant_mistletoe"
+    }
+  ]
+}

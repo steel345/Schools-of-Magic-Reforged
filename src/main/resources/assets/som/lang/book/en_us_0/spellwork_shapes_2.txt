@@ -1,0 +1,1 @@
+Wall: Raises a standing wall of magic at the spot you mark, holding its place for a time.<~><~>Chain: summons a magical  chain, paralysing the target in place.<~><~>Wave: Rolls outward from you in an expanding ring, washing over everything it passes.<~><~>Beam: A sustained beam you hold steady upon a point, pouring the magic out as long as you focus.

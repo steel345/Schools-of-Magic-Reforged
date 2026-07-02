@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  O",
+    " S ",
+    "S  "
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "minecraft:stick"
+      },
+    "O": {
+      "item": "som:item",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "som:trap_spike"
+  }
+}

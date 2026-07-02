@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "som:block/spear_bottom"
+    },
+    "half=upper": {
+      "model": "som:block/spear_top"
+    }
+  }
+}

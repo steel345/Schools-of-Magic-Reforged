@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "som:blocks/spike_base",
+        "front": "minecraft:block/chiseled_stone_bricks",
+        "side": "minecraft:block/chiseled_stone_bricks",
+        "bottom": "minecraft:block/chiseled_stone_bricks"
+    }
+}

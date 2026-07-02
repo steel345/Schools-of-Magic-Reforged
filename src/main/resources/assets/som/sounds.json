@@ -1,0 +1,315 @@
+{
+
+    "spells.whisper":{
+        "subtitle": "spells.whisper",
+        "sounds": [ 
+        { "name": "som:spells/whisper0", "stream": true},
+        { "name": "som:spells/whisper1", "stream": true},
+        { "name": "som:spells/whisper2", "stream": true},
+        { "name": "som:spells/whisper3", "stream": true},
+        { "name": "som:spells/whisper4", "stream": true},
+        { "name": "som:spells/whisper5", "stream": true},
+        { "name": "som:spells/whisper6", "stream": true},
+        { "name": "som:spells/whisper7", "stream": true},
+        { "name": "som:spells/whisper8", "stream": true},
+        { "name": "som:spells/whisper9", "stream": true},
+        { "name": "som:spells/whisper10", "stream": true}
+        ]
+    },
+
+    "spells.lightning":{
+        "subtitle": "spells.lightning",
+        "sounds": [
+            { "name": "som:spells/lightning1", "stream": true},
+            { "name": "som:spells/lightning2", "stream": true},
+            { "name": "som:spells/lightning3", "stream": true},
+            { "name": "som:spells/lightning4", "stream": true}
+        ]
+    },
+
+    "spells.thorn_ring":{
+        "subtitle": "spells.thorn_ring",
+        "sounds": [ { "name": "som:spells/thorn_ring", "stream": true} ]
+    },
+
+    "spells.magic_missile":{
+        "subtitle": "spells.magic_missile",
+        "sounds": [
+        { "name": "som:spells/magic_missile1", "stream": true},
+        { "name": "som:spells/magic_missile2", "stream": true}
+        ]
+    },
+
+    "spells.furnace_fuel":{
+        "subtitle": "spells.furnace_fuel",
+        "sounds": [ { "name": "som:spells/furnace_fuel", "stream": true} ]
+    },
+
+    "spells.phantom_fire":{
+        "subtitle": "spells.phantom_fire",
+        "sounds": [ { "name": "som:spells/phantom_fire", "stream": true} ]
+    },
+    "spells.earthquake_loop":{
+        "subtitle": "spells.earthquake_loop",
+        "sounds": [ { "name": "som:spells/earthquake_loop", "stream": true} ]
+    },
+    "spells.earthquake_impact":{
+        "subtitle": "spells.earthquake_impact",
+        "sounds": [ { "name": "som:spells/earthquake_impact", "stream": true} ]
+    },
+
+    "spells.spectral_hand":{
+        "subtitle": "spells.spectral_hand",
+        "sounds": [ { "name": "som:spells/spectral_hand", "stream": true} ]
+    },
+
+    "spells.fiery_blessing":{
+        "subtitle": "spells.fiery_blessing",
+        "sounds": [ { "name": "som:spells/fiery_blessing", "stream": true} ]
+    },
+
+    "spells.blaze":{
+        "subtitle": "spells.blaze",
+        "sounds": [ { "name": "som:spells/blaze", "stream": true} ]
+    },
+
+    "spells.invisibility":{
+        "subtitle": "spells.invisibility",
+        "sounds": [ { "name": "som:spells/invisibility", "stream": true} ]
+    },
+
+    "spells.wither_blight":{
+        "subtitle": "spells.wither_blight",
+        "sounds": [ { "name": "som:spells/wither_blight", "stream": true} ]
+    },
+
+    "spells.energize":{
+        "subtitle": "spells.energize",
+        "sounds": [ { "name": "som:spells/energize", "stream": true} ]
+    },
+
+    "spells.conjure_thorns":{
+        "subtitle": "spells.conjure_thorns",
+        "sounds": [ { "name": "som:spells/conjure_thorns"} ]
+    },
+
+    "entity.sneeze":{
+        "subtitle": "entity.sneeze",
+        "sounds": [ { "name": "som:entity/sneeze", "stream": true} ]
+    },
+
+    "blocks.page_flip":{
+        "subtitle": "blocks.page_flip",
+        "sounds": [
+            { "name": "som:blocks/page_flip0", "stream": true},
+            { "name": "som:blocks/page_flip1", "stream": true},
+            { "name": "som:blocks/page_flip2", "stream": true}
+        ]
+    },
+
+    "blocks.book_open":{
+        "subtitle": "blocks.book_open",
+        "sounds": [ { "name": "som:blocks/book_open", "stream": true} ]
+    },
+
+    "blocks.book_close":{
+        "subtitle": "blocks.book_close",
+        "sounds": [ { "name": "som:blocks/book_close", "stream": true} ]
+    },
+
+    "blocks.heart":{
+        "subtitle": "blocks.heart",
+        "sounds": [ { "name": "som:blocks/heart", "stream": true} ]
+    },
+    
+    "blocks.vase_ambient":{
+        "subtitle": "blocks.vase_ambient",
+        "sounds": [ { "name": "som:blocks/vase_ambient", "stream": true} ]
+    },
+
+    "blocks.vase_shatter":{
+        "subtitle": "blocks.vase_shatter",
+        "sounds": [ { "name": "som:blocks/vase_shatter", "stream": true} ]
+    },
+    
+    "blocks.vase_crack":{
+        "subtitle": "blocks.vase_crack",
+        "sounds": [ { "name": "som:blocks/vase_crack", "stream": true} ]
+    },
+    
+    "music.spooky_piano":{
+        "subtitle": "music.disc_spooky_piano",
+        "sounds": [ { "name": "som:music/disc_spooky_piano", "stream": true} ]
+    },
+    
+    "entity.toad.ambient":{
+        "subtitle": "entity.toad.ambient",
+        "sounds": [ { "name": "som:entity/toad/ambient", "stream": true} ]
+    },
+    
+    "entity.toad.hurt":{
+        "subtitle": "entity.toad.hurt",
+        "sounds": [ { "name": "som:entity/toad/hurt", "stream": true} ]
+    },
+    
+    "entity.toad.death":{
+        "subtitle": "entity.toad.death",
+        "sounds": [ { "name": "som:entity/toad/death", "stream": true} ]
+    },
+    
+    "entity.toad.croak":{
+        "subtitle": "entity.toad.croak",
+        "sounds": [ { "name": "som:entity/toad/croak", "stream": true} ]
+    },
+
+    "blocks.summon.bat":{
+        "subtitle": "blocks.summon.bat",
+        "sounds": [ { "name": "som:blocks/summon/bat", "stream": true} ]
+    },
+
+    "blocks.summon.blaze":{
+        "subtitle": "blocks.summon.blaze",
+        "sounds": [ { "name": "som:blocks/summon/blaze", "stream": true} ]
+    },
+
+    "blocks.summon.cat":{
+        "subtitle": "blocks.summon.cat",
+        "sounds": [ { "name": "som:blocks/summon/cat", "stream": true} ]
+    },
+
+    "blocks.summon.chicken":{
+        "subtitle": "blocks.summon.chicken",
+        "sounds": [ { "name": "som:blocks/summon/chicken", "stream": true} ]
+    },
+
+    "blocks.summon.cow":{
+        "subtitle": "blocks.summon.cow",
+        "sounds": [ { "name": "som:blocks/summon/cow", "stream": true} ]
+    },
+
+    "blocks.summon.creeper":{
+        "subtitle": "blocks.summon.creeper",
+        "sounds": [ { "name": "som:blocks/summon/creeper", "stream": true} ]
+    },
+
+    "blocks.summon.ender_dragon":{
+        "subtitle": "blocks.summon.ender_dragon",
+        "sounds": [ { "name": "som:blocks/summon/ender_dragon", "stream": true} ]
+    },
+
+    "blocks.summon.enderman":{
+        "subtitle": "blocks.summon.enderman",
+        "sounds": [ { "name": "som:blocks/summon/enderman", "stream": true} ]
+    },
+
+    "blocks.summon.toad":{
+        "subtitle": "blocks.summon.toad",
+        "sounds": [ { "name": "som:blocks/summon/toad", "stream": true} ]
+    },
+
+    "blocks.summon.ghast":{
+        "subtitle": "blocks.summon.ghast",
+        "sounds": [ { "name": "som:blocks/summon/ghast", "stream": true} ]
+    },
+
+    "blocks.summon.guardian":{
+        "subtitle": "blocks.summon.guardian",
+        "sounds": [ { "name": "som:blocks/summon/guardian", "stream": true} ]
+    },
+
+    "blocks.summon.horse":{
+        "subtitle": "blocks.summon.horse",
+        "sounds": [ { "name": "som:blocks/summon/horse", "stream": true} ]
+    },
+
+    "blocks.summon.iron_golem":{
+        "subtitle": "blocks.summon.iron_golem",
+        "sounds": [ { "name": "som:blocks/summon/iron_golem", "stream": true} ]
+    },
+
+    "blocks.summon.magma_cube":{
+        "subtitle": "blocks.summon.magma_cube",
+        "sounds": [ { "name": "som:blocks/summon/magma_cube", "stream": true} ]
+    },
+
+    "blocks.summon.pig":{
+        "subtitle": "blocks.summon.pig",
+        "sounds": [ { "name": "som:blocks/summon/pig", "stream": true} ]
+    },
+
+    "blocks.summon.rabbit":{
+        "subtitle": "blocks.summon.rabbit",
+        "sounds": [ { "name": "som:blocks/summon/rabbit", "stream": true} ]
+    },
+
+    "blocks.summon.sheep":{
+        "subtitle": "blocks.summon.sheep",
+        "sounds": [ { "name": "som:blocks/summon/sheep", "stream": true} ]
+    },
+
+    "blocks.summon.silverfish":{
+        "subtitle": "blocks.summon.silverfish",
+        "sounds": [ { "name": "som:blocks/summon/silverfish", "stream": true} ]
+    },
+
+    "blocks.summon.skeleton":{
+        "subtitle": "blocks.summon.skeleton",
+        "sounds": [ { "name": "som:blocks/summon/skeleton", "stream": true} ]
+    },
+
+    "blocks.summon.slime":{
+        "subtitle": "blocks.summon.slime",
+        "sounds": [ { "name": "som:blocks/summon/slime", "stream": true} ]
+    },
+
+    "blocks.summon.spider":{
+        "subtitle": "blocks.summon.spider",
+        "sounds": [ { "name": "som:blocks/summon/spider", "stream": true} ]
+    },
+
+    "blocks.summon.villager":{
+        "subtitle": "blocks.summon.villager",
+        "sounds": [ { "name": "som:blocks/summon/villager", "stream": true} ]
+    },
+
+    "blocks.summon.wither":{
+        "subtitle": "blocks.summon.wither",
+        "sounds": [ { "name": "som:blocks/summon/wither", "stream": true} ]
+    },
+
+    "blocks.summon.wolf":{
+        "subtitle": "blocks.summon.wolf",
+        "sounds": [ { "name": "som:blocks/summon/wolf", "stream": true} ]
+    },
+
+    "blocks.summon.zombie":{
+        "subtitle": "blocks.summon.zombie",
+        "sounds": [ { "name": "som:blocks/summon/zombie", "stream": true} ]
+    },
+
+    "blocks.summon.zombie_pigman":{
+        "subtitle": "blocks.summon.zombie_pigman",
+        "sounds": [ { "name": "som:blocks/summon/zombie_pigman", "stream": true} ]
+    },
+
+    "blocks.summon.void":{
+        "subtitle": "blocks.summon.void",
+        "sounds": [ { "name": "som:blocks/summon/void", "stream": true} ]
+    },
+    
+    "blocks.summon.void_wind":{
+        "subtitle": "blocks.summon.void_wind",
+        "sounds": [ { "name": "som:blocks/summon/void_wind", "stream": true} ]
+    },
+
+    "ambient.charm.void_whoosh":{
+        "subtitle": "ambient.charm.void_whoosh",
+        "sounds": [ { "name": "som:ambient/charm/void_whoosh", "stream": true} ]
+    },
+
+    "ambient.charm.void_fail":{
+        "subtitle": "ambient.charm.void_fail",
+        "sounds": [ { "name": "som:ambient/charm/void_fail", "stream": true} ]
+    }
+
+}

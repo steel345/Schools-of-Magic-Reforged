@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":[" C ","CVC"," C "],"key":{"C":{"item":"som:gem_electromancy"},"V":{"item":"minecraft:sandstone"}},"result":{"item":"som:tile_turquoise","nbt":"{BlockStateTag:{variant:\"full\"}}"}}

@@ -1,0 +1,101 @@
+{
+  "parent": "som:block/hardened_clay_bricks_red_chisel",
+  "overrides": [
+    {
+      "predicate": {
+        "som:magic_type": 0
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.0625
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.125
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.1875
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_geomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.25
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_animancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.3125
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_electromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.375
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.4375
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.5
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.5625
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_chaotics"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.625
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_auramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.6875
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_astromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.75
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_infernality"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.8125
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.875
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.9375
+      },
+      "model": "som:item/hardened_clay_bricks_chiseled_necromancy"
+    }
+  ]
+}

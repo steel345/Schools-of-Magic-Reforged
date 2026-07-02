@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "category": "decorations", "pattern": ["X X","SSS","SSS"], "key": { "X": { "item": "minecraft:chain" }, "S": { "item": "som:stripped_log_verde" } }, "result": { "item": "som:jubilee_hanging_sign", "count": 6 } }

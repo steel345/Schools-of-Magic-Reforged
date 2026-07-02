@@ -1,0 +1,118 @@
+package com.paleimitations.schoolsofmagic.common.registries;
+
+import com.paleimitations.schoolsofmagic.SchoolsOfMagic;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionBasic;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionCreepersBane;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionCursedRising;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionCursedSinking;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionCursedSpinning;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionDemonicPossession;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionDislocation;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionFatalPoison;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionFear;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionFlamability;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionFlight;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionToadsTongue;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionFrostbite;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionGreasySkin;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionInfatuation;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionMana;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionManaExhaustion;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionManaRegen;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSpellCharge;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSpellChargeRegen;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionPoisonThorned;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionPojectileAttraction;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionProjectileRepulsion;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionRepellant;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSlowfall;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSpined;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionStench;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionStunned;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSweatyHands;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionUndead;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionVulnerability;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionWeakling;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+public class PotionRegistry {
+   public static final DeferredRegister<MobEffect> EFFECTS =
+      DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, SchoolsOfMagic.MODID);
+
+   public static final RegistryObject<MobEffect> other_player = EFFECTS.register("other_player", () -> new PotionBasic(MobEffectCategory.NEUTRAL, 0x9B7653));
+   public static final RegistryObject<MobEffect> basilisk_venom = EFFECTS.register("basilisk_venom", () -> new PotionFatalPoison(MobEffectCategory.HARMFUL, 10999891));
+   public static final RegistryObject<MobEffect> bewilderment = EFFECTS.register("bewilderment", () -> new PotionBasic(MobEffectCategory.HARMFUL, 12815316));
+   public static final RegistryObject<MobEffect> blurry_vision = EFFECTS.register("blurry_vision", () -> new PotionBasic(MobEffectCategory.HARMFUL, 6051431));
+   public static final RegistryObject<MobEffect> certain_death = EFFECTS.register("certain_death", () -> new PotionFatalPoison(MobEffectCategory.HARMFUL, 0));
+   public static final RegistryObject<MobEffect> color_blind = EFFECTS.register("color_blind", () -> new PotionBasic(MobEffectCategory.HARMFUL, 0x414141));
+   public static final RegistryObject<MobEffect> confusion2 = EFFECTS.register("confusion2", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));
+   public static final RegistryObject<MobEffect> creepers_bane = EFFECTS.register("creepers_bane", () -> new PotionCreepersBane(MobEffectCategory.BENEFICIAL, 0xB93B3B));
+   public static final RegistryObject<MobEffect> cursed_rising = EFFECTS.register("cursed_rising", () -> new PotionCursedRising(MobEffectCategory.HARMFUL, 8831219));
+   public static final RegistryObject<MobEffect> cursed_sinking = EFFECTS.register("cursed_sinking", () -> new PotionCursedSinking(MobEffectCategory.HARMFUL, 8076586));
+   public static final RegistryObject<MobEffect> cursed_spinning = EFFECTS.register("cursed_spinning", () -> new PotionCursedSpinning(MobEffectCategory.HARMFUL, 13486178));
+   public static final RegistryObject<MobEffect> daze = EFFECTS.register("daze", () -> new PotionBasic(MobEffectCategory.HARMFUL, 5630842));
+   public static final RegistryObject<MobEffect> demonic_possession = EFFECTS.register("demonic_possession", () -> new PotionDemonicPossession(MobEffectCategory.HARMFUL, 7345708));
+   public static final RegistryObject<MobEffect> dislocation = EFFECTS.register("dislocation", () -> new PotionDislocation(MobEffectCategory.HARMFUL, 6959723));
+   public static final RegistryObject<MobEffect> earth_protection = EFFECTS.register("earth_protection", () -> new PotionBasic(MobEffectCategory.BENEFICIAL, 7951664));
+   public static final RegistryObject<MobEffect> fear = EFFECTS.register("fear", () -> new PotionFear(MobEffectCategory.HARMFUL, 5172687));
+   public static final RegistryObject<MobEffect> flamability = EFFECTS.register("flamability", () -> new PotionFlamability(MobEffectCategory.HARMFUL, 9858367));
+   public static final RegistryObject<MobEffect> flight = EFFECTS.register("flight", () -> new PotionFlight(MobEffectCategory.BENEFICIAL, 9858367));
+   public static final RegistryObject<MobEffect> toads_tongue = EFFECTS.register("toads_tongue", () -> new PotionToadsTongue(MobEffectCategory.BENEFICIAL, 16101875));
+   public static final RegistryObject<MobEffect> frostbite = EFFECTS.register("frostbite", () -> new PotionFrostbite(MobEffectCategory.HARMFUL, 11914999));
+   public static final RegistryObject<MobEffect> greasy_skin = EFFECTS.register("greasy_skin", () -> new PotionGreasySkin(MobEffectCategory.HARMFUL, 11638342));
+   public static final RegistryObject<MobEffect> hallucination = EFFECTS.register("hallucination", () -> new PotionBasic(MobEffectCategory.HARMFUL, 5908419));
+   public static final RegistryObject<MobEffect> haze = EFFECTS.register("haze", () -> new PotionBasic(MobEffectCategory.HARMFUL, 0xFFFFFF));
+   public static final RegistryObject<MobEffect> indestructibility = EFFECTS.register("indestructibility", () -> new PotionBasic(MobEffectCategory.BENEFICIAL, 14805845));
+   public static final RegistryObject<MobEffect> infatuation = EFFECTS.register("infatuation", () -> new PotionInfatuation(MobEffectCategory.BENEFICIAL, 14805845));
+   public static final RegistryObject<MobEffect> lucky_wind = EFFECTS.register("lucky_wind", () -> new PotionProjectileRepulsion(MobEffectCategory.BENEFICIAL, 5172687));
+   public static final RegistryObject<MobEffect> mana = EFFECTS.register("mana", () -> new PotionMana(MobEffectCategory.BENEFICIAL, 8052479));
+   public static final RegistryObject<MobEffect> mana_exhaustion = EFFECTS.register("mana_exhaustion", () -> new PotionManaExhaustion(MobEffectCategory.HARMFUL, 8555836));
+   public static final RegistryObject<MobEffect> mana_regen = EFFECTS.register("mana_regen", () -> new PotionManaRegen(MobEffectCategory.BENEFICIAL, 12681471));
+   public static final RegistryObject<MobEffect> spell_charge = EFFECTS.register("spell_charge", () -> new PotionSpellCharge(MobEffectCategory.BENEFICIAL, 4251856));
+   public static final RegistryObject<MobEffect> spell_charge_regen = EFFECTS.register("spell_charge_regen", () -> new PotionSpellChargeRegen(MobEffectCategory.BENEFICIAL, 16738740));
+   public static final RegistryObject<MobEffect> obscuration = EFFECTS.register("obscuration", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));
+   public static final RegistryObject<MobEffect> paralysis = EFFECTS.register("paralysis", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));
+   public static final RegistryObject<MobEffect> pixelation = EFFECTS.register("pixelation", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));
+   public static final RegistryObject<MobEffect> poison_thorned = EFFECTS.register("poison_thorned", () -> new PotionPoisonThorned(MobEffectCategory.BENEFICIAL, 9259337));
+   public static final RegistryObject<MobEffect> puffer_toxin = EFFECTS.register("puffer_toxin", () -> new PotionFatalPoison(MobEffectCategory.HARMFUL, 0xE8A12E));
+   public static final RegistryObject<MobEffect> repellant = EFFECTS.register("repellant", () -> new PotionRepellant(MobEffectCategory.BENEFICIAL, 11510637));
+   public static final RegistryObject<MobEffect> sleep = EFFECTS.register("sleep", () -> new PotionBasic(MobEffectCategory.HARMFUL, 5172687));
+   public static final RegistryObject<MobEffect> slowfall = EFFECTS.register("slowfall", () -> new PotionSlowfall(MobEffectCategory.BENEFICIAL, 8950971));
+   public static final RegistryObject<MobEffect> snake_poison = EFFECTS.register("snake_poison", () -> new PotionFatalPoison(MobEffectCategory.HARMFUL, 6189370));
+   public static final RegistryObject<MobEffect> sneezing = EFFECTS.register("sneezing", () -> new PotionBasic(MobEffectCategory.HARMFUL, 11640655));
+   public static final RegistryObject<MobEffect> spider = EFFECTS.register("spider", () -> new PotionBasic(MobEffectCategory.BENEFICIAL, 12058719));
+   public static final RegistryObject<MobEffect> spined = EFFECTS.register("spined", () -> new PotionSpined(MobEffectCategory.BENEFICIAL, 4928537));
+   public static final RegistryObject<MobEffect> stench = EFFECTS.register("stench", () -> new PotionStench(MobEffectCategory.HARMFUL, 8555836));
+   public static final RegistryObject<MobEffect> stunned = EFFECTS.register("stunned", () -> new PotionStunned(MobEffectCategory.HARMFUL, 7648744));
+   public static final RegistryObject<MobEffect> sweaty_hands = EFFECTS.register("sweaty_hands", () -> new PotionSweatyHands(MobEffectCategory.HARMFUL, 12434005));
+   public static final RegistryObject<MobEffect> undead = EFFECTS.register("undead", () -> new PotionUndead(MobEffectCategory.HARMFUL, 0xA3A332));
+   public static final RegistryObject<MobEffect> unlucky_wind = EFFECTS.register("unlucky_wind", () -> new PotionPojectileAttraction(MobEffectCategory.HARMFUL, 0xE99696));
+   public static final RegistryObject<MobEffect> vulnerability = EFFECTS.register("vulnerability", () -> new PotionVulnerability(MobEffectCategory.HARMFUL, 0xE99696));
+   public static final RegistryObject<MobEffect> weakling = EFFECTS.register("weakling", () -> new PotionWeakling(MobEffectCategory.HARMFUL, 5172687));
+
+   public static final RegistryObject<MobEffect> pyromancy = EFFECTS.register("pyromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 0x580000, () -> MagicElementRegistry.pyromancy));
+   public static final RegistryObject<MobEffect> heliomancy = EFFECTS.register("heliomancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 8600327, () -> MagicElementRegistry.heliomancy));
+   public static final RegistryObject<MobEffect> aeromancy = EFFECTS.register("aeromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 9137935, () -> MagicElementRegistry.aeromancy));
+   public static final RegistryObject<MobEffect> geomancy = EFFECTS.register("geomancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 4153088, () -> MagicElementRegistry.geomancy));
+   public static final RegistryObject<MobEffect> animancy = EFFECTS.register("animancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 2240521, () -> MagicElementRegistry.animancy));
+   public static final RegistryObject<MobEffect> electromancy = EFFECTS.register("electromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 1802368, () -> MagicElementRegistry.electromancy));
+   public static final RegistryObject<MobEffect> hydromancy = EFFECTS.register("hydromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 4288673, () -> MagicElementRegistry.hydromancy));
+   public static final RegistryObject<MobEffect> cryomancy = EFFECTS.register("cryomancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 1317442, () -> MagicElementRegistry.cryomancy));
+   public static final RegistryObject<MobEffect> hieromancy = EFFECTS.register("hieromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 3480648, () -> MagicElementRegistry.hieromancy));
+   public static final RegistryObject<MobEffect> chaotics = EFFECTS.register("chaotics", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 0x711571, () -> MagicElementRegistry.chaotics));
+   public static final RegistryObject<MobEffect> auramancy = EFFECTS.register("auramancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 9454434, () -> MagicElementRegistry.auramancy));
+   public static final RegistryObject<MobEffect> astromancy = EFFECTS.register("astromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 10391172, () -> MagicElementRegistry.astromancy));
+   public static final RegistryObject<MobEffect> infernality = EFFECTS.register("infernality", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 6971229, () -> MagicElementRegistry.infernality));
+   public static final RegistryObject<MobEffect> spectromancy = EFFECTS.register("spectromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 4144184, () -> MagicElementRegistry.spectromancy));
+   public static final RegistryObject<MobEffect> umbramancy = EFFECTS.register("umbramancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 0x161515, () -> MagicElementRegistry.umbramancy));
+   public static final RegistryObject<MobEffect> necromancy = EFFECTS.register("necromancy", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement(MobEffectCategory.BENEFICIAL, 2758150, () -> MagicElementRegistry.necromancy));
+
+   public static void register(IEventBus bus) {
+      EFFECTS.register(bus);
+   }
+}

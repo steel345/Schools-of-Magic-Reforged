@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "type=pyromancy": { "model": "som:block/hardened_clay_bricks_red_chisel" },
+        "type=heliomancy": { "model": "som:block/hardened_clay_bricks_orange_chisel" },
+        "type=aeromancy": { "model": "som:block/hardened_clay_bricks_yellow_chisel" },
+        "type=geomancy": { "model": "som:block/hardened_clay_bricks_lime_chisel" },
+        "type=animancy": { "model": "som:block/hardened_clay_bricks_green_chisel" },
+        "type=electromancy": { "model": "som:block/hardened_clay_bricks_cyan_chisel" },
+        "type=cryomancy": { "model": "som:block/hardened_clay_bricks_blue_chisel" },
+        "type=hieromancy": { "model": "som:block/hardened_clay_bricks_purple_chisel" },
+        "type=chaotics": { "model": "som:block/hardened_clay_bricks_magenta_chisel" },
+        "type=auramancy": { "model": "som:block/hardened_clay_bricks_pink_chisel" },
+        "type=astromancy": { "model": "som:block/hardened_clay_bricks_white_chisel" },
+        "type=infernality": { "model": "som:block/hardened_clay_bricks_lgray_chisel" },
+        "type=spectromancy": { "model": "som:block/hardened_clay_bricks_gray_chisel" },
+        "type=umbramancy": { "model": "som:block/hardened_clay_bricks_black_chisel" },
+        "type=necromancy": { "model": "som:block/hardened_clay_bricks_brown_chisel" },
+        "type=hydromancy": { "model": "som:block/hardened_clay_bricks_lblue_chisel" }
+    }
+}

@@ -1,0 +1,88 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "books1",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:0}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:1}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:2}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:3}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:4}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:5}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:6}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

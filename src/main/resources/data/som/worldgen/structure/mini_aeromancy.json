@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "aeromancy",
+    "biomes":  "#som:has_structure/mini_aeromancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "size": 7,
+    "discard_chance_on_air_exposure": 0,
+    "targets": [
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "som:fae_stone"
+        },
+        "state": {
+          "Name": "som:fae_ore",
+          "Properties": {
+            "type": "lapis"
+          }
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "som:gypsum"
+        },
+        "state": {
+          "Name": "som:gypsum_ore",
+          "Properties": {
+            "type": "lapis"
+          }
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "som:mud_marble"
+        },
+        "state": {
+          "Name": "som:mud_marble_ore",
+          "Properties": {
+            "type": "lapis"
+          }
+        }
+      }
+    ]
+  }
+}

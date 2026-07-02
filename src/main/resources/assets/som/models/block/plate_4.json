@@ -1,0 +1,9 @@
+{
+  "loader": "forge:obj",
+  "flip_v": true,
+  "model": "som:models/block/teaplate_4.obj",
+  "textures": {
+    "texture0": "som:block/white_terracotta_teaplate",
+    "particle": "minecraft:block/white_terracotta"
+  }
+}

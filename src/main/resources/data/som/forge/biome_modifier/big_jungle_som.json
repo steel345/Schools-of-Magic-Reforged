@@ -1,0 +1,8 @@
+{
+    "type": "forge:add_features",
+    "biomes": [
+        "som:mountainous_jungle"
+    ],
+    "features": "som:big_jungle",
+    "step": "vegetal_decoration"
+}

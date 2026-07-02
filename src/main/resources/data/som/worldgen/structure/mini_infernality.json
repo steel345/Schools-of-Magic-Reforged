@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "infernality",
+    "biomes":  "#som:has_structure/mini_infernality",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

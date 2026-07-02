@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "som",
+        "name": "Schools of Magic",
+        "description": "In this first version of the Schools of Magic mod, a budding magician can learn the secrets of magic with their wand and cauldron in hand.",
+        "version": "1.0.19",
+        "mcversion": "1.12.2",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["PaleImitations"],
+        "credits": "Chinese translation by mc_mso, Polish translation by Trozuu, and Russian translation by Salvia.",
+        "logoFile": "assets/som/images/Logo.png",
+        "screenshots": [],
+        "dependencies": [LLibrary1.7.9-1.12.2, ImitationCore1.12.2-1.0.00]
+    }
+]

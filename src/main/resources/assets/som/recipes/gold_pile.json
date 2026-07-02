@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "minecraft:gold_nugget"
+      }
+  },
+  "result": {
+    "item": "som:block_gold_coins"
+  }
+}

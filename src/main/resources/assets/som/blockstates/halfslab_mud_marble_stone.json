@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "som:block/slab_bottom_mud_marble_stone"
+        },
+        "type=top": {
+            "model": "som:block/slab_top_mud_marble_stone"
+        },
+        "type=double": {
+            "model": "som:block/mud_marble_b"
+        }
+    }
+}

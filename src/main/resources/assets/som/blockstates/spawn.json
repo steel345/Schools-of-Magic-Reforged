@@ -1,0 +1,16 @@
+{
+    "variants": {
+    "toad=0": { "model": "som:block/spawn0" },
+    "toad=1": { "model": "som:block/spawn1" },
+    "toad=2": { "model": "som:block/spawn2" },
+    "toad=3": { "model": "som:block/spawn3" },
+    "toad=4": { "model": "som:block/spawn4" },
+    "toad=5": { "model": "som:block/spawn5" },
+    "toad=6": { "model": "som:block/spawn6" },
+    "toad=7": { "model": "som:block/spawn7" },
+    "toad=8": { "model": "som:block/spawn8" },
+    "toad=9": { "model": "som:block/spawn9" },
+    "toad=10": { "model": "som:block/spawn10" },
+    "toad=11": { "model": "som:block/spawn11" }
+    }
+}

@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["SS","SS"],"key":{"S":{"item":"som:ingot","type":"forge:partial_nbt","nbt":"{Damage:4}"}},"result":{"item":"som:metal_bricks","nbt":"{BlockStateTag:{type:\"bronze\"}}"}}

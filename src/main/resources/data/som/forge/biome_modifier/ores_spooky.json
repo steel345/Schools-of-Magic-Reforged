@@ -1,0 +1,6 @@
+{
+    "type": "forge:add_features",
+    "biomes": "#som:necromancy_biomes",
+    "features": "som:ore_necromancy",
+    "step": "underground_ores"
+}

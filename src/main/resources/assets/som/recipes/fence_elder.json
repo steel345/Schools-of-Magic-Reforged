@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "som:planks",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "som:fence_elder",
+    "data": 0,
+    "count": 3
+  }
+}

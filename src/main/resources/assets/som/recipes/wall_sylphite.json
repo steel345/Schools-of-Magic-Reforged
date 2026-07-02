@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": 
+      {
+        "item": "som:fae_stone",
+        "data": 0
+      }
+  },
+  "result": {
+    "item": "som:fae_stone_wall",
+    "count": 4
+  }
+}

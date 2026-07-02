@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ZYZ",
+    "XXX",
+    "ZYZ"
+  ],
+  "key": {
+    "Z": [
+      {
+        "item": "som:magic_log2",
+        "data": 2
+      }
+    ],
+    "Y": [
+      {
+        "item": "som:planks",
+        "data": 5
+      }
+    ],
+    "X": {
+      "item": "minecraft:book"
+    }
+  },
+  "result": {
+    "item": "som:magic_bookshelf",
+    "data": 11
+  }
+}

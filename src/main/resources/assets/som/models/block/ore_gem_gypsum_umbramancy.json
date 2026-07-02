@@ -1,0 +1,10 @@
+{
+  "parent": "som:block/ore",
+  "textures": {
+    "block": "som:blocks/gypsum",
+    "ore_side": "som:blocks/ore_umbramancy",
+    "ore_top": "som:blocks/ore_umbramancy",
+    "ore_bottom": "som:blocks/ore_umbramancy",
+    "particle": "som:blocks/ore_umbramancy"
+  }
+}

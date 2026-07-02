@@ -1,0 +1,41 @@
+{
+    "parent": "block/block",
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "0": "som:blocks/rotted_chest_west",
+        "1": "som:blocks/rotted_chest_south",
+        "2": "som:blocks/rotted_chest_east",
+        "3": "som:blocks/rotted_chest_north",
+        "4": "som:blocks/rotted_chest_top",
+        "5": "som:blocks/rotted_chest_bottom",
+        "6": "som:blocks/rotted_chest_latch"
+    },
+    "elements": [
+        {
+            "name": "Cube",
+            "from": [ 1.0, 0.0, 1.0 ], 
+            "to": [ 15.0, 14.0, 15.0 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 14.0, 14.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 14.0, 14.0 ] },
+                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 14.0, 14.0 ] },
+                "west": { "texture": "#3", "uv": [ 0.0, 0.0, 14.0, 14.0 ] },
+                "up": { "texture": "#4", "uv": [ 0.0, 0.0, 14.0, 14.0 ] },
+                "down": { "texture": "#5", "uv": [ 0.0, 0.0, 14.0, 14.0 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 7.0, 7.0, 15.0 ], 
+            "to": [ 9.0, 11.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#6", "uv": [ 4.0, 1.0, 6.0, 5.0 ] },
+                "east": { "texture": "#6", "uv": [ 3.0, 1.0, 4.0, 5.0 ] },
+                "south": { "texture": "#6", "uv": [ 1.0, 1.0, 3.0, 5.0 ] },
+                "west": { "texture": "#6", "uv": [ 0.0, 1.0, 1.0, 5.0 ] },
+                "up": { "texture": "#6", "uv": [ 1.0, 0.0, 3.0, 1.0 ] },
+                "down": { "texture": "#6", "uv": [ 3.0, 0.0, 5.0, 1.0 ] }
+            }
+        }
+    ]
+}

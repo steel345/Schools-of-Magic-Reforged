@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "key": {
+    "A": { "tag": "forge:gems/diamond" },
+    "B": { "tag": "forge:gems/lapis" },
+    "C": { "item": "som:item_diamond_dust" }
+  },
+  "result": { "item": "som:magic_diamond", "count": 1 }
+}

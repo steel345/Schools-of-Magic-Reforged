@@ -1,0 +1,13 @@
+{
+    "parent": "som:block/ore3",
+    "textures": {
+        "block_side": "som:blocks/hard_clay_brick_lgray_chisel",
+        "block_top": "som:blocks/hard_clay_brick_lgray_chisel",
+        "block_bottom": "som:blocks/hard_clay_brick_lgray_chisel",
+        "ore_side": "som:blocks/air",
+        "ore_side2": "som:blocks/spear_hole",
+        "ore_top": "som:blocks/air",
+        "ore_bottom": "som:blocks/air",
+        "particle": "som:blocks/hard_clay_brick_lgray_chisel"
+    }
+}

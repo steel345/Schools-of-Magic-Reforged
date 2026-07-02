@@ -1,0 +1,9 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/dryingyarrow0" },
+    "age=1": { "model": "som:block/dryingyarrow1" },
+    "age=2": { "model": "som:block/dryingyarrow2" },
+    "age=3": { "model": "som:block/dryingyarrow3" },
+    "age=4": { "model": "som:block/dryingyarrow4" }
+    }
+}

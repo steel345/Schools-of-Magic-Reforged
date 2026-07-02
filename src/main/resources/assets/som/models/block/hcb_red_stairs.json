@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "som:blocks/hard_clay_brick_red",
+        "top": "som:blocks/hard_clay_brick_red",
+        "side": "som:blocks/hard_clay_brick_red"
+    }
+}

@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["ABA","ABA"],"key":{"A":{"item":"som:ingot","type":"forge:partial_nbt","nbt":"{Damage:2}"},"B":{"item":"som:nugget","type":"forge:partial_nbt","nbt":"{Damage:2}"}},"result":{"item":"som:fence_copper","count":4}}

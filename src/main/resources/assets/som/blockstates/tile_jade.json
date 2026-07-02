@@ -1,0 +1,16 @@
+﻿{
+    "variants": {
+        "variant=facade": { "model": "som:block/tile_jade_facade" },
+        "variant=full": { "model": "som:block/tile_jade_full" },
+        "variant=big": { "model": "som:block/tile_jade_big" },
+        "variant=medium": { "model": "som:block/tile_jade_medium" },
+        "variant=small": { "model": "som:block/tile_jade_small" },
+        "variant=fish_scale": { "model": "som:block/tile_jade_fish_scale" },
+        "variant=herringbone": { "model": "som:block/tile_jade_herringbone" },
+        "variant=horizontal": { "model": "som:block/tile_jade_horizontal" },
+        "variant=diamond": { "model": "som:block/tile_jade_diamond" },
+        "variant=mixed": { "model": "som:block/tile_jade_mixed" },
+        "variant=bubble": { "model": "som:block/tile_jade_bubble" },
+        "variant=damaged": { "model": "som:block/tile_jade_damaged" }
+    }
+}

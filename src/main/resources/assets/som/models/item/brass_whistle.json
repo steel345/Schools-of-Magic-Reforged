@@ -1,0 +1,9 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "som:items/brass_whistle"
+    },
+    "overrides": [
+        { "predicate": { "som:aged": 1.0 }, "model": "som:item/brass_whistle_aged" }
+    ]
+}

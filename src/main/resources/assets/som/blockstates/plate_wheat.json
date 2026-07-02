@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platewheat" },
+        "facing=south": { "model": "som:block/platewheat", "y": 180 },
+        "facing=west":  { "model": "som:block/platewheat", "y": 270 },
+        "facing=east":  { "model": "som:block/platewheat", "y": 90 }
+    }
+}

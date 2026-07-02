@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["SAS"," S "], "key": { "S": { "type": "forge:partial_nbt", "item": "som:ingot", "nbt": "{Damage:8}" }, "A": { "item": "minecraft:stick" } }, "result": { "item": "som:mortnpest" } }

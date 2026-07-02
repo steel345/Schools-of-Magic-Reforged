@@ -1,0 +1,17 @@
+﻿{
+  "parent": "som:block/tile_turquoise_full",
+  "overrides": [
+    { "predicate": { "som:tile_variant": 0 }, "model": "som:item/tile_turquoise_facade" },
+    { "predicate": { "som:tile_variant": 0.083333 }, "model": "som:item/tile_turquoise_full" },
+    { "predicate": { "som:tile_variant": 0.166667 }, "model": "som:item/tile_turquoise_big" },
+    { "predicate": { "som:tile_variant": 0.25 }, "model": "som:item/tile_turquoise_medium" },
+    { "predicate": { "som:tile_variant": 0.333333 }, "model": "som:item/tile_turquoise_small" },
+    { "predicate": { "som:tile_variant": 0.416667 }, "model": "som:item/tile_turquoise_fish_scale" },
+    { "predicate": { "som:tile_variant": 0.5 }, "model": "som:item/tile_turquoise_herringbone" },
+    { "predicate": { "som:tile_variant": 0.583333 }, "model": "som:item/tile_turquoise_horizontal" },
+    { "predicate": { "som:tile_variant": 0.666667 }, "model": "som:item/tile_turquoise_diamond" },
+    { "predicate": { "som:tile_variant": 0.75 }, "model": "som:item/tile_turquoise_mixed" },
+    { "predicate": { "som:tile_variant": 0.833333 }, "model": "som:item/tile_turquoise_bubble" },
+    { "predicate": { "som:tile_variant": 0.916667 }, "model": "som:item/tile_turquoise_damaged" }
+  ]
+}

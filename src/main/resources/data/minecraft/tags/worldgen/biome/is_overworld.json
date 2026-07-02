@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "som:vermilion_grove",
+    "som:acolyte_woods",
+    "som:bastion_woods",
+    "som:magic_desert",
+    "som:banded_desert",
+    "som:desert_canyons",
+    "som:desert_river_canyons",
+    "som:desert_uplands",
+    "som:wetlands",
+    "som:boiling_marsh",
+    "som:sinister_swamp",
+    "som:mountainous_jungle",
+    "som:river_lands"
+  ]
+}

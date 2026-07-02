@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "som:block/slab_bottom_void"
+        },
+        "type=top": {
+            "model": "som:block/slab_top_void"
+        },
+        "type=double": {
+            "model": "som:block/void_bricks"
+        }
+    }
+}

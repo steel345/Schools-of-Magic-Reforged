@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "som:blocks/stripped_log_elder",
+        "side": "som:blocks/stripped_log_elder"
+    }
+}

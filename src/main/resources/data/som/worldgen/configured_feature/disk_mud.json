@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:disk",
+    "config": {
+        "half_height": 2,
+        "radius": {
+            "type": "minecraft:uniform",
+            "value": {
+                "min_inclusive": 2,
+                "max_inclusive": 4
+            }
+        },
+        "state_provider": {
+            "fallback": {
+                "type": "minecraft:simple_state_provider",
+                "state": {
+                    "Name": "som:block_mud"
+                }
+            },
+            "rules": []
+        },
+        "target": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+                "minecraft:dirt",
+                "minecraft:grass_block",
+                "minecraft:clay",
+                "minecraft:sand",
+                "som:block_mud"
+            ]
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y": { "model": "som:block/wood_ash" },
+        "axis=x": { "model": "som:block/wood_ash" },
+        "axis=z": { "model": "som:block/wood_ash" }
+    }
+}

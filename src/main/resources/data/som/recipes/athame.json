@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  C",
+    " B ",
+    "A  "
+  ],
+  "key": {
+    "A": { "item": "som:gem_pyromancy" },
+    "B": { "item": "minecraft:gold_ingot" },
+    "C": { "item": "som:item_obsidian_shard" }
+  },
+  "result": { "item": "som:athame" }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "som:block/ore2",
+  "textures": {
+    "block_side": "minecraft:block/sandstone",
+    "block_top": "minecraft:block/sandstone_top",
+    "block_bottom": "minecraft:block/sandstone_bottom",
+    "ore_side": "som:blocks/oreturquoise",
+    "ore_top": "som:blocks/oreturquoise_top",
+    "ore_bottom": "som:blocks/oreturquoise_bottom",
+    "particle": "som:blocks/oreturquoise"
+  }
+}

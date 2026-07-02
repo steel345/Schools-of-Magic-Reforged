@@ -1,0 +1,19 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "H  ",
+                    "HH ",
+                    "HHH"
+                ],
+    "key":  {
+                "H":  {
+                          "item":  "som:hardened_clay_bricks",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"umbramancy\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  4,
+                   "item":  "som:stairs_hardened_clay_bricks_black"
+               }
+}

@@ -1,0 +1,16 @@
+{
+    "type": "forge:add_features",
+    "biomes": [
+        "minecraft:desert",
+        "minecraft:badlands",
+        "minecraft:eroded_badlands",
+        "minecraft:wooded_badlands",
+        "som:magic_desert",
+        "som:banded_desert",
+        "som:desert_canyons",
+        "som:desert_river_canyons",
+        "som:desert_uplands"
+    ],
+    "features": "som:palm_tree",
+    "step": "vegetal_decoration"
+}

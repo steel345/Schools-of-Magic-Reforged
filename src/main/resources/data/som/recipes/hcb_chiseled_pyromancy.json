@@ -1,0 +1,23 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "HHH",
+                    "HAH",
+                    "HHH"
+                ],
+    "key":  {
+                "H":  {
+                          "item":  "som:hardened_clay_bricks",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"pyromancy\"}}"
+                      },
+                "A":  {
+                          "item":  "som:gem_dust"
+                      }
+            },
+    "result":  {
+                   "item":  "som:hardened_clay_bricks_chiseled",
+                   "count":  8,
+                   "nbt":  "{BlockStateTag:{type:\"pyromancy\"}}"
+               }
+}

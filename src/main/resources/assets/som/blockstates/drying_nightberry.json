@@ -1,0 +1,9 @@
+{
+    "variants": {
+    "age=0": { "model": "som:block/dryingnightberry0" },
+    "age=1": { "model": "som:block/dryingnightberry1" },
+    "age=2": { "model": "som:block/dryingnightberry2" },
+    "age=3": { "model": "som:block/dryingnightberry3" },
+    "age=4": { "model": "som:block/dryingnightberry4" }
+    }
+}

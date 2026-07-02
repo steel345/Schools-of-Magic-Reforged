@@ -1,0 +1,86 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/bottlefireberry"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:variant": 0
+      },
+      "model": "som:item/bottle_fireberry"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.0769
+      },
+      "model": "som:item/bottle_rose"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.1538
+      },
+      "model": "som:item/bottle_sunflower"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.2308
+      },
+      "model": "som:item/bottle_mandrake"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.3077
+      },
+      "model": "som:item/bottle_wormwood"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.3846
+      },
+      "model": "som:item/bottle_stormthistle"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.4615
+      },
+      "model": "som:item/bottle_lotus"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.5385
+      },
+      "model": "som:item/bottle_poppy"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.6154
+      },
+      "model": "som:item/bottle_snowbell"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.6923
+      },
+      "model": "som:item/bottle_jimsonweed"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.7692
+      },
+      "model": "som:item/bottle_nightberry"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.8462
+      },
+      "model": "som:item/bottle_graveroot"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.9231
+      },
+      "model": "som:item/bottle_brambleberry"
+    }
+  ]
+}

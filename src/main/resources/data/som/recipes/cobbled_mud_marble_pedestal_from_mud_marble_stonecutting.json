@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "som:mud_marble"
+  },
+  "result": "som:cobbled_mud_marble_pedestal",
+  "count": 1
+}

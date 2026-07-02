@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":[" C ","CVC"," C "],"key":{"C":{"item":"som:gem_animancy"},"V":{"item":"minecraft:stone"}},"result":{"item":"som:tile_jade","nbt":"{BlockStateTag:{variant:\"full\"}}"}}

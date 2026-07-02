@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "som:block/mud_marble_pillar" },
+        "axis=z":   { "model": "som:block/mud_marble_pillar", "x": 90 },
+        "axis=x":   { "model": "som:block/mud_marble_pillar", "x": 90, "y": 90 }
+    }
+}

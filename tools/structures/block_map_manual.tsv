@@ -1,0 +1,52 @@
+# old_name	new_name	note
+tiledynamicweb	dynamic_web	flat
+tileentity_dynamicweb	dynamic_web	flat
+tilespeartrap	trap_spike	flat
+tileentity_speartrap	trap_spike	flat
+tileteapot	teapot	flat
+objectteapot	teapot	flat
+objectmortnpest	mortnpest	flat
+tileentity_mortnpest	mortnpest	flat
+tileentity_podium	podium	flat
+tileentity_herbaltwine	herbal_twine	flat
+rotted_planks_acacia	rotted_planks	flat
+wallrose	plant_rose	TODO-wall-variant
+lion	minecraft:air	SKIP-entity
+planks_ash	planks	PROP type=ash
+planks_elder	planks	PROP type=elder
+planks_pine	planks	PROP type=pine
+planks_verde	planks	PROP type=verde
+planks_willow	planks	PROP type=willow
+planks_yew	planks	PROP type=yew
+plankspine	planks	PROP type=pine
+bookshelf_ash	magic_bookshelf	PROP type=ash
+bookshelf_elder	magic_bookshelf	PROP type=elder
+bookshelf_pine	magic_bookshelf	PROP type=pine
+bookshelf_verde	magic_bookshelf	PROP type=verde
+bookshelf_willow	magic_bookshelf	PROP type=willow
+bookshelf_yew	magic_bookshelf	PROP type=yew
+magic_log1	log_X	COMPLEX metadata->wood(ash/elder/pine)
+magic_log2	log_X	COMPLEX metadata->wood(verde/willow/yew)
+dryingwheat	dried_plant	PROP+COMPLEX drying
+dryingrose	dried_plant	PROP+COMPLEX
+dryinglavender	dried_plant	PROP+COMPLEX
+dryinglilac	dried_plant	PROP+COMPLEX
+dryingmallow	dried_plant	PROP+COMPLEX
+dryingpeony	dried_plant	PROP+COMPLEX
+dryingsunflower	dried_plant	PROP+COMPLEX
+dryingfoxglove	dried_plant	PROP+COMPLEX
+drying_graveroot	dried_plant	PROP+COMPLEX
+drying_nightberry	dried_plant	PROP+COMPLEX
+drying_sunflower	dried_plant	PROP+COMPLEX
+plantfoxglove	magic_plant	TODO PROP type=?
+plantlavender	magic_plant	PROP type=hieromancy
+plantmallow	magic_plant	PROP type=auramancy
+plant_pyracantha	magic_plant	PROP type=pyromancy
+charming_table	TODO	VERIFY-port-name
+tilecharmingtable	TODO	VERIFY-port-name
+tileentity_ritualcenter	TODO	VERIFY-port-name(ritual_center?)
+planterpine	TODO	VERIFY-port-name(planter?)
+planter_verd	TODO	VERIFY-port-name(planter_verde?)
+block_turquoise	TODO	VERIFY(crystal_turquoise/tile_turquoise?)
+gem_turquoise	TODO	VERIFY
+block_voidbrick	TODO	VERIFY(void_bricks?)

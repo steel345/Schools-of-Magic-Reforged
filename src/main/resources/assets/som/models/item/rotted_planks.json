@@ -1,0 +1,77 @@
+{
+  "parent": "som:block/rotted_planks_oak",
+  "overrides": [
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0
+      },
+      "model": "som:item/rotted_planks_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.0833
+      },
+      "model": "som:item/rotted_planks_spruce"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.1667
+      },
+      "model": "som:item/rotted_planks_birch"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.25
+      },
+      "model": "som:item/rotted_planks_jungle"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.3333
+      },
+      "model": "som:item/rotted_planks_acacia"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.4167
+      },
+      "model": "som:item/rotted_planks_dark_oak"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5
+      },
+      "model": "som:item/rotted_planks_ash"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.5833
+      },
+      "model": "som:item/rotted_planks_elder"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.6667
+      },
+      "model": "som:item/rotted_planks_pine"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.75
+      },
+      "model": "som:item/rotted_planks_willow"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.8333
+      },
+      "model": "som:item/rotted_planks_yew"
+    },
+    {
+      "predicate": {
+        "som:bookshelf_wood": 0.9167
+      },
+      "model": "som:item/rotted_planks_verde"
+    }
+  ]
+}

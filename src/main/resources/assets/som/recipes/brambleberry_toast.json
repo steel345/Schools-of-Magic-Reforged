@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "som:bottle",
+      "count": 1,
+      "data": 12
+    }
+  ],
+  "result": {
+    "item": "som:brambleberry_toast",
+    "count": 2
+  }
+}

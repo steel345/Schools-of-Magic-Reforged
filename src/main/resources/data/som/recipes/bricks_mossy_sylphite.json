@@ -1,0 +1,18 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "ingredients":  [
+                        {
+                            "item":  "som:fae_stone",
+                            "type":  "forge:partial_nbt",
+                            "nbt":  "{BlockStateTag:{variant:\"bricks\"}}"
+                        },
+                        {
+                            "item":  "minecraft:vine"
+                        }
+                    ],
+    "result":  {
+                   "item":  "som:fae_stone",
+                   "count":  1,
+                   "nbt":  "{BlockStateTag:{variant:\"mossy_bricks\"}}"
+               }
+}

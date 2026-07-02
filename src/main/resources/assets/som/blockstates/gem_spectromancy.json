@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "type=rough,facing=up": {
+      "model": "som:block/gem_opal_up"
+    },
+    "type=rough,facing=down": {
+      "model": "som:block/gem_opal_down"
+    },
+    "type=rough,facing=north": {
+      "model": "som:block/gem_opal_north"
+    },
+    "type=rough,facing=south": {
+      "model": "som:block/gem_opal_south"
+    },
+    "type=rough,facing=east": {
+      "model": "som:block/gem_opal_east"
+    },
+    "type=rough,facing=west": {
+      "model": "som:block/gem_opal_west"
+    },
+    "type=polished,facing=up": {
+      "model": "som:block/gem_opal_up"
+    },
+    "type=polished,facing=down": {
+      "model": "som:block/gem_opal_down"
+    },
+    "type=polished,facing=north": {
+      "model": "som:block/gem_opal_north"
+    },
+    "type=polished,facing=south": {
+      "model": "som:block/gem_opal_south"
+    },
+    "type=polished,facing=east": {
+      "model": "som:block/gem_opal_east"
+    },
+    "type=polished,facing=west": {
+      "model": "som:block/gem_opal_west"
+    }
+  }
+}

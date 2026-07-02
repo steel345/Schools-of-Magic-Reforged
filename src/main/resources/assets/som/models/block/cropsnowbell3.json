@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "som:blocks/cropsnowbell3"
+    }
+}

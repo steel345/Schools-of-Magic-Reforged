@@ -1,0 +1,11 @@
+{
+  "parent": "som:som/basic_arcana",
+  "display": {
+    "icon": { "item": "som:diorite_pedestal" },
+    "title": { "translate": "advancements.som.podium.title" },
+    "description": { "translate": "advancements.som.podium.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": { "get_item": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [ { "tag": "som:pedestals" } ] } } },
+  "requirements": [ [ "get_item" ] ]
+}

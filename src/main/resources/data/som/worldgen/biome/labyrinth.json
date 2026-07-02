@@ -1,0 +1,210 @@
+{
+    "carvers": {
+        "air": [
+            "minecraft:cave",
+            "minecraft:cave_extra_underground",
+            "minecraft:canyon"
+        ]
+    },
+    "downfall": 0.8,
+    "effects": {
+        "fog_color": 14206192,
+        "mood_sound": {
+            "block_search_extent": 8,
+            "offset": 2,
+            "sound": "minecraft:ambient.cave",
+            "tick_delay": 6000
+        },
+        "music": {
+            "max_delay": 24000,
+            "min_delay": 12000,
+            "replace_current_music": false,
+            "sound": "minecraft:music.overworld.forest"
+        },
+        "sky_color": 13678312,
+        "water_color": 4253904,
+        "water_fog_color": 2864038,
+        "grass_color": 11913872,
+        "foliage_color": 11913872,
+        "grass_color_modifier": "none"
+    },
+    "features": [
+        [
+            "som:fae_floor"
+        ],
+        [],
+        [
+            "minecraft:amethyst_geode"
+        ],
+        [
+            "minecraft:monster_room",
+            "minecraft:monster_room_deep"
+        ],
+        [
+            "som:labyrinth_maze"
+        ],
+        [],
+        [
+            "som:fae_mud_marble",
+            "som:fae_mud_marble_deep",
+            "som:fae_gypsum",
+            "som:fae_ore_coal",
+            "som:fae_ore_iron",
+            "som:fae_ore_gold",
+            "som:fae_ore_diamond",
+            "som:fae_ore_emerald",
+            "som:fae_ore_lapis",
+            "som:fae_ore_silver",
+            "som:fae_ore_copper",
+            "som:fae_magic_pyromancy",
+            "som:fae_magic_heliomancy",
+            "som:fae_magic_aeromancy",
+            "som:fae_magic_geomancy",
+            "som:fae_magic_animancy",
+            "som:fae_magic_electromancy",
+            "som:fae_magic_hydromancy",
+            "som:fae_magic_cryomancy",
+            "som:fae_magic_hieromancy",
+            "som:fae_magic_chaotics",
+            "som:fae_magic_auramancy",
+            "som:fae_magic_astromancy",
+            "som:fae_magic_infernality",
+            "som:fae_magic_spectromancy",
+            "som:fae_magic_umbramancy",
+            "som:fae_magic_necromancy"
+        ],
+        [
+            "minecraft:glow_lichen",
+            "som:fae_cave_mushrooms"
+        ],
+        [],
+        [
+            "som:trees_acolyte",
+            "som:veg_labyrinth",
+            "som:grass_sparse_fae",
+            "som:fae_big_oak",
+            "som:fae_mushrooms",
+            "som:fae_giant_mushroom_red",
+            "som:fae_giant_mushroom_brown",
+            "som:veg_water_cattail_fae",
+            "som:fae_labyrinth_lily",
+            "som:fae_labyrinth_flora"
+        ],
+        [
+            "minecraft:freeze_top_layer"
+        ]
+    ],
+    "has_precipitation": true,
+    "spawn_costs": {},
+    "spawners": {
+        "ambient": [
+            {
+                "type": "minecraft:bat",
+                "maxCount": 8,
+                "minCount": 8,
+                "weight": 10
+            }
+        ],
+        "axolotls": [],
+        "creature": [
+            {
+                "type": "minecraft:sheep",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 12
+            },
+            {
+                "type": "minecraft:pig",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 10
+            },
+            {
+                "type": "minecraft:chicken",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 10
+            },
+            {
+                "type": "minecraft:cow",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 8
+            },
+            {
+                "type": "minecraft:wolf",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 5
+            },
+            {
+                "type": "som:som_dryad",
+                "weight": 7,
+                "minCount": 1,
+                "maxCount": 2
+            }
+        ],
+        "misc": [],
+        "monster": [
+            {
+                "type": "minecraft:spider",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 100
+            },
+            {
+                "type": "minecraft:zombie",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 95
+            },
+            {
+                "type": "minecraft:zombie_villager",
+                "maxCount": 1,
+                "minCount": 1,
+                "weight": 5
+            },
+            {
+                "type": "minecraft:skeleton",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 100
+            },
+            {
+                "type": "minecraft:creeper",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 100
+            },
+            {
+                "type": "minecraft:slime",
+                "maxCount": 4,
+                "minCount": 4,
+                "weight": 100
+            },
+            {
+                "type": "minecraft:enderman",
+                "maxCount": 4,
+                "minCount": 1,
+                "weight": 10
+            },
+            {
+                "type": "minecraft:witch",
+                "maxCount": 1,
+                "minCount": 1,
+                "weight": 5
+            }
+        ],
+        "underground_water_creature": [
+            {
+                "type": "minecraft:glow_squid",
+                "maxCount": 6,
+                "minCount": 4,
+                "weight": 10
+            }
+        ],
+        "water_ambient": [],
+        "water_creature": []
+    },
+    "temperature": 0.7
+}

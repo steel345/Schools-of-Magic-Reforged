@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "X X","XXX","XXX" ],
+  "key": {
+    "X": { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:0}" }
+  },
+  "result": { "item": "som:chestplate_silver", "count": 1 }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "CPC",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "som:gypsum",
+       "data": 0
+    },
+    "C": {
+      "item": "som:gypsum",
+      "data": 6
+    },
+    "P": {
+      "item": "som:gypsum_pillar"
+    }
+  },
+  "result": {
+    "item": "som:gypsum_keystone",
+    "count": 5
+  }
+}

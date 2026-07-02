@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/slab_top",
+    "textures": {
+        "bottom": "som:blocks/rotted_verde_planks",
+        "top": "som:blocks/rotted_verde_planks",
+        "side": "som:blocks/rotted_verde_planks"
+    }
+}

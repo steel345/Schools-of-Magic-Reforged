@@ -1,0 +1,1 @@
+{"type":"minecraft:stonecutting","ingredient":{"item":"som:fae_stone","type":"forge:partial_nbt","nbt":"{BlockStateTag:{variant:\"normal\"}}"},"result":"som:fae_stone_wall","count":1}

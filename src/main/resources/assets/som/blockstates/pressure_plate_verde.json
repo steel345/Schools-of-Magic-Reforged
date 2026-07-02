@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "powered=false": { "model": "som:block/pressure_plate_verde" },
+    "powered=true":  { "model": "som:block/pressure_plate_verde_down" }
+  }
+}

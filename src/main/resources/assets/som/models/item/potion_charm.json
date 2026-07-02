@@ -1,0 +1,7 @@
+{
+   "parent": "item/generated",
+   "textures": {
+      "layer0": "som:items/potion_charm_tint",
+      "layer1": "som:items/potion_charm_string"
+   }
+}

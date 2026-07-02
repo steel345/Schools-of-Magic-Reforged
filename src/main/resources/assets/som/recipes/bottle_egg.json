@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ASA",
+    "AAA"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:dragon_egg",
+      "data": 0
+    },
+    "A": 
+    {
+      "item": "som:bottle_empty"
+    }
+  },
+  "result": {
+    "item": "som:bottle_egg",
+    "count": 8
+  }
+}

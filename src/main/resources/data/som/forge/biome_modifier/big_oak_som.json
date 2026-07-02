@@ -1,0 +1,8 @@
+{
+    "type": "forge:add_features",
+    "biomes": [
+        "som:bastion_woods"
+    ],
+    "features": "som:big_oak",
+    "step": "vegetal_decoration"
+}

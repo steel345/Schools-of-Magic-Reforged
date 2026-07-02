@@ -1,0 +1,41 @@
+{
+  "parent": "som:block/saplingash",
+  "overrides": [
+    {
+      "predicate": {
+        "som:wood_type": 0
+      },
+      "model": "som:item/magic_sapling_ash"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.167
+      },
+      "model": "som:item/magic_sapling_elder"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.333
+      },
+      "model": "som:item/magic_sapling_pine"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.5
+      },
+      "model": "som:item/magic_sapling_willow"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.667
+      },
+      "model": "som:item/magic_sapling_yew"
+    },
+    {
+      "predicate": {
+        "som:wood_type": 0.833
+      },
+      "model": "som:item/magic_sapling_verde"
+    }
+  ]
+}

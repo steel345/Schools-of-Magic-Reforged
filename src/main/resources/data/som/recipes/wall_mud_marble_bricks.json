@@ -1,0 +1,18 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "SSS",
+                    "SSS"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:mud_marble",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"bricks\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  6,
+                   "item":  "som:mud_marble_brick_wall"
+               }
+}

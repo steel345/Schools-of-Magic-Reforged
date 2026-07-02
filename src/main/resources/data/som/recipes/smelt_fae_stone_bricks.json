@@ -1,0 +1,1 @@
+{ "type": "som:nbt_smelting", "ingredient": { "type": "forge:partial_nbt", "item": "som:fae_stone", "nbt": "{BlockStateTag:{variant:\"bricks\"}}" }, "result": { "item": "som:fae_stone", "nbt": "{BlockStateTag:{variant:\"cracked_bricks\"}}" }, "experience": 0.1, "cookingtime": 200 }

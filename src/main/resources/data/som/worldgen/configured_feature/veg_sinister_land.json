@@ -1,0 +1,80 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 4,
+    "xz_spread": 7,
+    "y_spread": 0,
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 5,
+                "data": {
+                  "Name": "som:magic_plant",
+                  "Properties": {
+                    "type": "infernality"
+                  }
+                }
+              },
+              {
+                "weight": 2,
+                "data": {
+                  "Name": "som:plant_pitcher"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "som:plant_venus"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "som:plant_beanstalk"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "som:magic_plant",
+                  "Properties": {
+                    "type": "animancy"
+                  }
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "som:magic_plant",
+                  "Properties": {
+                    "type": "necromancy"
+                  }
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "minecraft:dandelion"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    }
+  }
+}

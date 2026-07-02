@@ -1,0 +1,101 @@
+{
+  "parent": "som:block/gem_block_pyromancy",
+  "overrides": [
+    {
+      "predicate": {
+        "som:gem_block_variant": 0
+      },
+      "model": "som:item/gem_block_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.0625
+      },
+      "model": "som:item/gem_block_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.125
+      },
+      "model": "som:item/gem_block_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.1875
+      },
+      "model": "som:item/gem_block_geomancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.25
+      },
+      "model": "som:item/gem_block_animancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.3125
+      },
+      "model": "som:item/gem_block_electromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.375
+      },
+      "model": "som:item/gem_block_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.4375
+      },
+      "model": "som:item/gem_block_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.5
+      },
+      "model": "som:item/gem_block_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.5625
+      },
+      "model": "som:item/gem_block_chaotics"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.625
+      },
+      "model": "som:item/gem_block_auramancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.6875
+      },
+      "model": "som:item/gem_block_astromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.75
+      },
+      "model": "som:item/gem_block_infernality"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.8125
+      },
+      "model": "som:item/gem_block_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.875
+      },
+      "model": "som:item/gem_block_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:gem_block_variant": 0.9375
+      },
+      "model": "som:item/gem_block_necromancy"
+    }
+  ]
+}

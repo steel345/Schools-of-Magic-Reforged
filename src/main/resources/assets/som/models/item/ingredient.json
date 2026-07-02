@@ -1,0 +1,18 @@
+{
+  "parent": "item/generated",
+  "textures": { "layer0": "som:items/itemheartbird" },
+  "overrides": [
+    {"predicate": {"som:variant": 0.00000}, "model": "som:item/ingredient_bird_heart"},
+    {"predicate": {"som:variant": 0.08333}, "model": "som:item/ingredient_villager_heart"},
+    {"predicate": {"som:variant": 0.16667}, "model": "som:item/ingredient_bear_heart"},
+    {"predicate": {"som:variant": 0.25000}, "model": "som:item/ingredient_dragon_heart"},
+    {"predicate": {"som:variant": 0.33333}, "model": "som:item/ingredient_dragon_claw"},
+    {"predicate": {"som:variant": 0.41667}, "model": "som:item/ingredient_bat_wing"},
+    {"predicate": {"som:variant": 0.50000}, "model": "som:item/ingredient_monkey_paw"},
+    {"predicate": {"som:variant": 0.58333}, "model": "som:item/ingredient_toad_tongue"},
+    {"predicate": {"som:variant": 0.66667}, "model": "som:item/ingredient_tentacle"},
+    {"predicate": {"som:variant": 0.75000}, "model": "som:item/ingredient_fish_tail"},
+    {"predicate": {"som:variant": 0.83333}, "model": "som:item/ingredient_pig_tail"},
+    {"predicate": {"som:variant": 0.91667}, "model": "som:item/ingredient_phoenix_feather"}
+  ]
+}

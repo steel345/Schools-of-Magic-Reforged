@@ -1,0 +1,10 @@
+{
+  "parent": "som:block/ore",
+  "textures": {
+    "block": "minecraft:block/spruce_planks",
+    "ore_side": "som:blocks/bookshelf_spruce",
+    "ore_top": "som:blocks/air",
+    "ore_bottom": "som:blocks/air",
+    "particle": "minecraft:block/spruce_planks"
+  }
+}

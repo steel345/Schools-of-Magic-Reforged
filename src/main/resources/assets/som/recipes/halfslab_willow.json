@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "som:planks",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "som:halfslab_willow",
+    "data": 0,
+    "count": 6
+  }
+}

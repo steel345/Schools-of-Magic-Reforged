@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "name": "flowers",
+      "rolls": { "type": "minecraft:uniform", "min": 1.0, "max": 2.0 },
+      "conditions": [
+        { "condition": "minecraft:entity_properties", "entity": "this", "predicate": { "flags": { "is_baby": false } } }
+      ],
+      "entries": [
+        { "type": "minecraft:item", "weight": 3, "name": "minecraft:dandelion" },
+        { "type": "minecraft:item", "weight": 3, "name": "minecraft:poppy" },
+        { "type": "minecraft:item", "weight": 3, "name": "minecraft:cornflower" },
+        { "type": "minecraft:item", "weight": 3, "name": "minecraft:oxeye_daisy" },
+        { "type": "minecraft:item", "weight": 3, "name": "minecraft:azure_bluet" },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:blue_orchid" },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:allium" },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:lily_of_the_valley" },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:red_tulip" },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:orange_tulip" },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:white_tulip" },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:pink_tulip" },
+        { "type": "minecraft:item", "weight": 2, "name": "som:plant_rose" },
+        { "type": "minecraft:item", "weight": 2, "name": "som:plant_valleylily" },
+        { "type": "minecraft:item", "weight": 1, "name": "som:plant_oleander" }
+      ]
+    },
+    {
+      "name": "bonus_flower",
+      "rolls": 1,
+      "bonus_rolls": 1,
+      "entries": [
+        { "type": "minecraft:empty", "weight": 3 },
+        { "type": "minecraft:item", "weight": 1, "name": "minecraft:poppy" },
+        { "type": "minecraft:item", "weight": 1, "name": "minecraft:dandelion" },
+        { "type": "minecraft:item", "weight": 1, "name": "minecraft:cornflower" },
+        { "type": "minecraft:item", "weight": 1, "name": "som:plant_rose" },
+        { "type": "minecraft:item", "weight": 1, "name": "som:plant_valleylily" }
+      ],
+      "conditions": [
+        { "condition": "minecraft:killed_by_player" },
+        { "condition": "minecraft:entity_properties", "entity": "this", "predicate": { "flags": { "is_baby": false } } }
+      ]
+    }
+  ]
+}

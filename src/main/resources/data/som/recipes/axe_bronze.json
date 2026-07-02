@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "XX","XS"," S" ],
+  "key": {
+    "X": { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:4}" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": { "item": "som:axe_bronze", "count": 1 }
+}

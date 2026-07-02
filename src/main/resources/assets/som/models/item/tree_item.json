@@ -1,0 +1,44 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/treeashwisp"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:variant": 0
+      },
+      "model": "som:item/tree_item_ash"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.1667
+      },
+      "model": "som:item/tree_item_elder"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.3333
+      },
+      "model": "som:item/tree_item_pine"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.5
+      },
+      "model": "som:item/tree_item_willow"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.6667
+      },
+      "model": "som:item/tree_item_yew"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.8333
+      },
+      "model": "som:item/tree_item_verde"
+    }
+  ]
+}

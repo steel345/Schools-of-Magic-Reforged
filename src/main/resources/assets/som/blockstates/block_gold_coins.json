@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "layers=1":  { "model": "som:block/gold_height2" },
+        "layers=2":  { "model": "som:block/gold_height4" },
+        "layers=3":  { "model": "som:block/gold_height6" },
+        "layers=4":  { "model": "som:block/gold_height8" },
+        "layers=5":  { "model": "som:block/gold_height10" },
+        "layers=6":  { "model": "som:block/gold_height12" },
+        "layers=7":  { "model": "som:block/gold_height14" },
+        "layers=8":  { "model": "som:block/gold_height16" }
+    }
+}

@@ -1,0 +1,101 @@
+{
+  "parent": "som:block/ore_gem_fae_pyromancy",
+  "overrides": [
+    {
+      "predicate": {
+        "som:ore_element": 0
+      },
+      "model": "som:item/ore_gem_fae_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.0625
+      },
+      "model": "som:item/ore_gem_fae_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.125
+      },
+      "model": "som:item/ore_gem_fae_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.1875
+      },
+      "model": "som:item/ore_gem_fae_geomancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.25
+      },
+      "model": "som:item/ore_gem_fae_animancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.3125
+      },
+      "model": "som:item/ore_gem_fae_electromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.375
+      },
+      "model": "som:item/ore_gem_fae_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.4375
+      },
+      "model": "som:item/ore_gem_fae_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.5
+      },
+      "model": "som:item/ore_gem_fae_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.5625
+      },
+      "model": "som:item/ore_gem_fae_chaotics"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.625
+      },
+      "model": "som:item/ore_gem_fae_auramancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.6875
+      },
+      "model": "som:item/ore_gem_fae_astromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.75
+      },
+      "model": "som:item/ore_gem_fae_infernality"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.8125
+      },
+      "model": "som:item/ore_gem_fae_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.875
+      },
+      "model": "som:item/ore_gem_fae_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:ore_element": 0.9375
+      },
+      "model": "som:item/ore_gem_fae_necromancy"
+    }
+  ]
+}

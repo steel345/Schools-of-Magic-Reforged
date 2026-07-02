@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "name": "books3",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "som:magic_book",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Damage:15}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "som:block/fae_stone_normal",
+  "overrides": [
+    {
+      "predicate": {
+        "som:fae_variant": 0
+      },
+      "model": "som:item/fae_stone_normal"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.142857
+      },
+      "model": "som:item/fae_stone_cobble"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.285714
+      },
+      "model": "som:item/fae_stone_mossy_cobble"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.428571
+      },
+      "model": "som:item/fae_stone_bricks"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.571429
+      },
+      "model": "som:item/fae_stone_mossy_bricks"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.714286
+      },
+      "model": "som:item/fae_stone_cracked_bricks"
+    },
+    {
+      "predicate": {
+        "som:fae_variant": 0.857143
+      },
+      "model": "som:item/fae_stone_chiseled_bricks"
+    }
+  ]
+}

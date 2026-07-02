@@ -1,0 +1,41 @@
+{
+  "parent": "som:block/copper_bricks",
+  "overrides": [
+    {
+      "predicate": {
+        "som:metal_variant": 0
+      },
+      "model": "som:item/metal_bricks_silver"
+    },
+    {
+      "predicate": {
+        "som:metal_variant": 0.125
+      },
+      "model": "som:item/metal_bricks_copper"
+    },
+    {
+      "predicate": {
+        "som:metal_variant": 0.25
+      },
+      "model": "som:item/metal_bricks_bronze"
+    },
+    {
+      "predicate": {
+        "som:metal_variant": 0.375
+      },
+      "model": "som:item/metal_bricks_brass"
+    },
+    {
+      "predicate": {
+        "som:metal_variant": 0.5
+      },
+      "model": "som:item/metal_bricks_steel"
+    },
+    {
+      "predicate": {
+        "som:metal_variant": 0.5625
+      },
+      "model": "som:item/metal_bricks_tenebrium"
+    }
+  ]
+}

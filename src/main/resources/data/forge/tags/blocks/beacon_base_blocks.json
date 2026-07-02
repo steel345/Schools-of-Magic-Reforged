@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "som:gem_block",
+    "som:gem_chunk_block"
+  ]
+}

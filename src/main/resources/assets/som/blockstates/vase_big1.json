@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,half=lower": { "model": "som:block/vase_big_bottom1", "y": 270  },
+        "facing=south,half=lower": { "model": "som:block/vase_big_bottom1", "y": 90 },
+        "facing=west,half=lower":  { "model": "som:block/vase_big_bottom1" },
+        "facing=east,half=lower":  { "model": "som:block/vase_big_bottom1", "y": 180 },
+        "facing=north,half=upper": { "model": "som:block/vase_big_top1", "y": 270  },
+        "facing=south,half=upper": { "model": "som:block/vase_big_top1", "y": 90 },
+        "facing=west,half=upper":  { "model": "som:block/vase_big_top1" },
+        "facing=east,half=upper":  { "model": "som:block/vase_big_top1", "y": 180 }
+    }
+}

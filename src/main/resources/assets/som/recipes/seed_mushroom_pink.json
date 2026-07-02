@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:mushroom_pink"
+    }
+  ],
+  "result": {
+    "item": "som:seed_mushroom_pink",
+    "count": 2
+  }
+}

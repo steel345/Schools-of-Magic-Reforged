@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "necromancy",
+    "biomes":  "#som:has_structure/mini_necromancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

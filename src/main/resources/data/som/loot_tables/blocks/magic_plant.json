@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "som:magic_plant",
+          "functions": [
+            {
+              "function": "minecraft:copy_state",
+              "block": "som:magic_plant",
+              "properties": [
+                "type"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

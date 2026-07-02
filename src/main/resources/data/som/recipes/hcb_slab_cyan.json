@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "HHH"
+                ],
+    "key":  {
+                "H":  {
+                          "item":  "som:hardened_clay_bricks",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"electromancy\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  6,
+                   "item":  "som:halfslab_hardened_clay_bricks_cyan"
+               }
+}

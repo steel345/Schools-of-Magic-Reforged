@@ -1,0 +1,12 @@
+{
+    "parent": "som:block/ore2",
+    "textures": {
+        "block_side": "minecraft:block/purpur_block",
+        "block_top": "minecraft:block/purpur_block",
+        "block_bottom": "minecraft:block/purpur_block",
+        "ore_side": "som:blocks/air",
+        "ore_top": "som:blocks/spear_hole",
+        "ore_bottom": "som:blocks/air",
+        "particle": "minecraft:block/purpur_block"
+    }
+}

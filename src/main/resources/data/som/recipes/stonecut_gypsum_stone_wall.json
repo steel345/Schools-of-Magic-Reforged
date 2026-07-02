@@ -1,0 +1,1 @@
+{"type":"minecraft:stonecutting","ingredient":{"item":"som:gypsum","type":"forge:partial_nbt","nbt":"{BlockStateTag:{variant:\"normal\"}}"},"result":"som:gypsum_stone_wall","count":1}

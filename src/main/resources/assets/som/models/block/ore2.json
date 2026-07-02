@@ -1,0 +1,96 @@
+{
+    "parent": "block/block",
+    "elements": [
+        {
+            "name": "block",
+            "from": [ 0.0, 0.0, 0.0 ], 
+            "to": [ 16.0, 16.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#block_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "east": { "texture": "#block_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#block_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#block_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "up": { "texture": "#block_top", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "down": { "texture": "#block_bottom", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "ore_north",
+            "from": [ 0.0, 0.0, -0.1 ], 
+            "to": [ 16.0, 16.0, -0.1 ], 
+            "faces": {
+                "north": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "east": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "south": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "up": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "down": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 0.0 ] }
+            }
+        },
+        {
+            "name": "ore_south",
+            "from": [ 0.0, 0.0, 16.1 ], 
+            "to": [ 16.0, 16.0, 16.1 ], 
+            "faces": {
+                "north": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "east": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "south": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "up": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "down": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 0.0 ] }
+            }
+        },
+        {
+            "name": "ore_east",
+            "from": [ 16.1, 0.0, 0.0 ], 
+            "to": [ 16.1, 16.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "east": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "west": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "up": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "down": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "ore_west",
+            "from": [ -0.1, 0.0, 0.0 ], 
+            "to": [ -0.1, 16.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "east": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "west": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "up": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] },
+                "down": { "texture": "#ore_side", "uv": [ 0.0, 0.0, 0.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "ore_top",
+            "from": [ 0.0, 16.1, 0.0 ], 
+            "to": [ 16.0, 16.1, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#ore_top", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "east": { "texture": "#ore_top", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "south": { "texture": "#ore_top", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "west": { "texture": "#ore_top", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "up": { "texture": "#ore_top", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "down": { "texture": "#ore_top", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "ore_bottom",
+            "from": [ 0.0, -0.1, 0.0 ], 
+            "to": [ 16.0, -0.1, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#ore_bottom", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "east": { "texture": "#ore_bottom", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "south": { "texture": "#ore_bottom", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "west": { "texture": "#ore_bottom", "uv": [ 0.0, 0.0, 16.0, 0.0 ] },
+                "up": { "texture": "#ore_bottom", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "down": { "texture": "#ore_bottom", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        }
+    ]
+}

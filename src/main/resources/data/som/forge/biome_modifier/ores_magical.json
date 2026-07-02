@@ -1,0 +1,6 @@
+{
+    "type": "forge:add_features",
+    "biomes": "#som:auramancy_biomes",
+    "features": "som:ore_auramancy",
+    "step": "underground_ores"
+}

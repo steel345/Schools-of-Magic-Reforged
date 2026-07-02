@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "som:block/gypsum_stalactite" },
+        "axis=z":   { "model": "som:block/gypsum_stalactite", "x": 90 },
+        "axis=x":   { "model": "som:block/gypsum_stalactite", "x": 90, "y": 90 }
+    }
+}

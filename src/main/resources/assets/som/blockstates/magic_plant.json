@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "type=pyromancy": { "model": "som:block/plantpyracantha" },
+        "type=heliomancy": { "model": "som:block/plantmarigold" },
+        "type=aeromancy": { "model": "som:block/plantyarrow" },
+        "type=geomancy": { "model": "som:block/plantclover" },
+        "type=animancy": { "model": "som:block/plantmandrake" },
+        "type=electromancy": { "model": "som:block/plantfoxglove" },
+        "type=hydromancy": { "model": "som:block/plantlotus1" },
+        "type=chaotics": { "model": "som:block/plantlithop" },
+        "type=hieromancy": { "model": "som:block/plantlavender" },
+        "type=auramancy": { "model": "som:block/plantmallow" },
+        "type=astromancy": { "model": "som:block/plantjimsonweed" },
+        "type=infernality": { "model": "som:block/planthemlock" },
+        "type=spectromancy": { "model": "som:block/plantwormwood" },
+        "type=necromancy": { "model": "som:block/plantgravegrass" },
+        "type=umbramancy": { "model": "som:block/plantnightshade" },
+        "type=cryomancy": { "model": "som:block/plantsnowbells" }
+    }
+}

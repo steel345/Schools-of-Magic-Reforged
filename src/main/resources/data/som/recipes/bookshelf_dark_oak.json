@@ -1,0 +1,27 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "ZYZ",
+                    "XXX",
+                    "ZYZ"
+                ],
+    "key":  {
+                "Z":  [
+                          {
+                              "item":  "minecraft:dark_oak_log"
+                          }
+                      ],
+                "Y":  [
+                          {
+                              "item":  "minecraft:dark_oak_planks"
+                          }
+                      ],
+                "X":  {
+                          "item":  "minecraft:book"
+                      }
+            },
+    "result":  {
+                   "item":  "som:magic_bookshelf",
+                   "nbt":  "{BlockStateTag:{type:\"dark_oak\"}}"
+               }
+}

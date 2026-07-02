@@ -1,0 +1,1 @@
+{"type":"som:spellbook_variant","pattern":["MPM","LPD","MPM"],"key":{"M":{"item":"som:nugget","type":"forge:partial_nbt","nbt":"{Damage:9}"},"L":{"item":"minecraft:leather"},"P":{"item":"minecraft:paper"},"D":{"item":"minecraft:white_dye"}},"result":{"item":"som:spellbook"},"links":0,"color":"white"}

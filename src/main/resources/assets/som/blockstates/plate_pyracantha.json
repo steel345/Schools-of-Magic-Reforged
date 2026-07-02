@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/platepyracantha" },
+        "facing=south": { "model": "som:block/platepyracantha", "y": 180 },
+        "facing=west":  { "model": "som:block/platepyracantha", "y": 270 },
+        "facing=east":  { "model": "som:block/platepyracantha", "y": 90 }
+    }
+}

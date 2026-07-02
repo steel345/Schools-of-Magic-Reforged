@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H  ",
+    "HH ",
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "som:mud_marble",
+       "data": 0
+    }
+  },
+  "result": {
+    "item": "som:stairs_mud_marble_stone",
+    "data": 0,
+    "count": 4
+  }
+}

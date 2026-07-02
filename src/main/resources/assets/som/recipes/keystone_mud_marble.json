@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "CPC",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "som:mud_marble",
+       "data": 0
+    },
+    "C": {
+      "item": "som:mud_marble",
+      "data": 6
+    },
+    "P": {
+      "item": "som:mud_marble_pillar"
+    }
+  },
+  "result": {
+    "item": "som:mud_marble_keystone",
+    "count": 5
+  }
+}

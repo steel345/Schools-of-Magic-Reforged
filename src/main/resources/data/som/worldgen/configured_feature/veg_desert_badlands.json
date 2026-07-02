@@ -1,0 +1,89 @@
+{
+    "type": "minecraft:random_patch",
+    "config": {
+        "tries": 4,
+        "xz_spread": 7,
+        "y_spread": 3,
+        "feature": {
+            "feature": {
+                "type": "minecraft:simple_block",
+                "config": {
+                    "to_place": {
+                        "type": "minecraft:weighted_state_provider",
+                        "entries": [
+                            {
+                                "weight": 2,
+                                "data": {
+                                    "Name": "som:plant_ocotillo"
+                                }
+                            },
+                            {
+                                "weight": 2,
+                                "data": {
+                                    "Name": "som:plant_prickly"
+                                }
+                            },
+                            {
+                                "weight": 2,
+                                "data": {
+                                    "Name": "som:plant_barrel"
+                                }
+                            },
+                            {
+                                "weight": 2,
+                                "data": {
+                                    "Name": "som:plant_brittle"
+                                }
+                            },
+                            {
+                                "weight": 2,
+                                "data": {
+                                    "Name": "som:plant_creosote"
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:magic_plant",
+                                    "Properties": {
+                                        "type": "heliomancy"
+                                    }
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:magic_plant",
+                                    "Properties": {
+                                        "type": "necromancy"
+                                    }
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "minecraft:cactus"
+                                }
+                            },
+                            {
+                                "weight": 3,
+                                "data": {
+                                    "Name": "minecraft:dead_bush"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "placement": [
+                {
+                    "type": "minecraft:block_predicate_filter",
+                    "predicate": {
+                        "type": "minecraft:matching_blocks",
+                        "blocks": "minecraft:air"
+                    }
+                }
+            ]
+        }
+    }
+}

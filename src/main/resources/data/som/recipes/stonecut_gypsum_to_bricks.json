@@ -1,0 +1,1 @@
+{"type":"som:nbt_stonecutting","ingredient":{"item":"som:gypsum","type":"forge:partial_nbt","nbt":"{BlockStateTag:{variant:\"normal\"}}"},"result":{"item":"som:gypsum","nbt":"{BlockStateTag:{variant:\"bricks\"}}"}}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "som:block/plateverbena" },
+        "facing=south": { "model": "som:block/plateverbena", "y": 180 },
+        "facing=west":  { "model": "som:block/plateverbena", "y": 270 },
+        "facing=east":  { "model": "som:block/plateverbena", "y": 90 }
+    }
+}

@@ -1,0 +1,25 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "CAC",
+                    " S ",
+                    "CAC"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:magic_bookshelf",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"willow\"}}"
+                      },
+                "C":  {
+                          "item":  "som:log_willow"
+                      },
+                "A":  {
+                          "item":  "som:halfslab_willow"
+                      }
+            },
+    "result":  {
+                   "item":  "som:podium",
+                   "nbt":  "{BlockStateTag:{type:\"willow\"}}"
+               }
+}

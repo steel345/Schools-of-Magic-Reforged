@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:entity",
+    "pools": [
+        {
+            "name": "feather_phoenix",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item", "weight": 1, "quality": 1, "name": "som:feather_phoenix",
+                    "conditions": [
+                        { "condition": "minecraft:killed_by_player" },
+                        { "condition": "minecraft:random_chance", "chance": 0.5 }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+{
+    "type": "minecraft:random_patch",
+    "config": {
+        "tries": 4,
+        "xz_spread": 7,
+        "y_spread": 3,
+        "feature": {
+            "feature": {
+                "type": "minecraft:simple_block",
+                "config": {
+                    "to_place": {
+                        "type": "minecraft:weighted_state_provider",
+                        "entries": [
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:plant_oleander"
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:plant_valleylily"
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:plant_venus"
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:plant_beanstalk"
+                                }
+                            },
+                            {
+                                "weight": 4,
+                                "data": {
+                                    "Name": "minecraft:fern"
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:magic_plant",
+                                    "Properties": {
+                                        "type": "animancy"
+                                    }
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:magic_plant",
+                                    "Properties": {
+                                        "type": "astromancy"
+                                    }
+                                }
+                            },
+                            {
+                                "weight": 1,
+                                "data": {
+                                    "Name": "som:magic_plant",
+                                    "Properties": {
+                                        "type": "electromancy"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "placement": [
+                {
+                    "type": "minecraft:block_predicate_filter",
+                    "predicate": {
+                        "type": "minecraft:matching_blocks",
+                        "blocks": "minecraft:air"
+                    }
+                }
+            ]
+        }
+    }
+}

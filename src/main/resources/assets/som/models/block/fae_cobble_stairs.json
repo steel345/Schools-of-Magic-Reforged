@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "som:blocks/fae_cobble",
+        "top": "som:blocks/fae_cobble",
+        "side": "som:blocks/fae_cobble"
+    }
+}

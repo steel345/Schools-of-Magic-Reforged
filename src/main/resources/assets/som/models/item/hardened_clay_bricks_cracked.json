@@ -1,0 +1,101 @@
+{
+  "parent": "som:block/hardened_clay_bricks_red_crack",
+  "overrides": [
+    {
+      "predicate": {
+        "som:magic_type": 0
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_pyromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.0625
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_heliomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.125
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_aeromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.1875
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_geomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.25
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_animancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.3125
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_electromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.375
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_hydromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.4375
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_cryomancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.5
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_hieromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.5625
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_chaotics"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.625
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_auramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.6875
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_astromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.75
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_infernality"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.8125
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_spectromancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.875
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_umbramancy"
+    },
+    {
+      "predicate": {
+        "som:magic_type": 0.9375
+      },
+      "model": "som:item/hardened_clay_bricks_cracked_necromancy"
+    }
+  ]
+}

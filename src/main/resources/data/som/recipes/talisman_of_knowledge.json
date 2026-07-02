@@ -1,0 +1,19 @@
+{
+   "type": "minecraft:crafting_shaped",
+   "pattern": [
+      " A ",
+      "A A",
+      " B "
+   ],
+   "key": {
+      "A": {
+         "item": "minecraft:string"
+      },
+      "B": {
+         "item": "minecraft:experience_bottle"
+      }
+   },
+   "result": {
+      "item": "som:talisman_of_knowledge"
+   }
+}

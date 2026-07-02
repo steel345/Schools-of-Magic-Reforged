@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "som:blocks/rotted_elder_planks",
+        "top": "som:blocks/rotted_elder_planks",
+        "side": "som:blocks/rotted_elder_planks"
+    }
+}

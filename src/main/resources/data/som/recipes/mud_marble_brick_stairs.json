@@ -1,0 +1,19 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "H  ",
+                    "HH ",
+                    "HHH"
+                ],
+    "key":  {
+                "H":  {
+                          "item":  "som:mud_marble",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{variant:\"bricks\"}}"
+                      }
+            },
+    "result":  {
+                   "count":  4,
+                   "item":  "som:stairs_mud_marble_bricks"
+               }
+}

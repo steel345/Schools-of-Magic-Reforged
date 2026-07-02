@@ -1,0 +1,18 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "#W#",
+                    "#W#"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "minecraft:stick"
+                      },
+                "W":  {
+                          "item":"som:planks_ash"
+                      }
+            },
+    "result":  {
+                   "item":  "som:fence_gate_ash"
+               }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "som:block/slab_bottom_verde"
+    },
+    "type=top": {
+      "model": "som:block/slab_top_verde"
+    },
+    "type=double": {
+      "model": "som:block/planksverde"
+    }
+  }
+}

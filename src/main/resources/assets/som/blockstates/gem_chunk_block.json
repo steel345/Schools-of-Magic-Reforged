@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "type=pyromancy": {
+      "model": "som:block/gem_chunk_pyromancy"
+    },
+    "type=heliomancy": {
+      "model": "som:block/gem_chunk_heliomancy"
+    },
+    "type=aeromancy": {
+      "model": "som:block/gem_chunk_aeromancy"
+    },
+    "type=geomancy": {
+      "model": "som:block/gem_chunk_geomancy"
+    },
+    "type=animancy": {
+      "model": "som:block/gem_chunk_animancy"
+    },
+    "type=electromancy": {
+      "model": "som:block/gem_chunk_electromancy"
+    },
+    "type=hydromancy": {
+      "model": "som:block/gem_chunk_hydromancy"
+    },
+    "type=cryomancy": {
+      "model": "som:block/gem_chunk_cryomancy"
+    },
+    "type=hieromancy": {
+      "model": "som:block/gem_chunk_hieromancy"
+    },
+    "type=chaotics": {
+      "model": "som:block/gem_chunk_chaotics"
+    },
+    "type=auramancy": {
+      "model": "som:block/gem_chunk_auramancy"
+    },
+    "type=astromancy": {
+      "model": "som:block/gem_chunk_astromancy"
+    },
+    "type=infernality": {
+      "model": "som:block/gem_chunk_infernality"
+    },
+    "type=spectromancy": {
+      "model": "som:block/gem_chunk_spectromancy"
+    },
+    "type=umbramancy": {
+      "model": "som:block/gem_chunk_umbramancy"
+    },
+    "type=necromancy": {
+      "model": "som:block/gem_chunk_necromancy"
+    }
+  }
+}

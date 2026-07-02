@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "grassy=true,radius=0": { "model": "grass_normal" },
+        "grassy=true,radius=1": { "model": "grass_normal" },
+        "grassy=true,radius=2": { "model": "grass_normal" },
+        "grassy=true,radius=3": { "model": "grass_normal" },
+        "grassy=true,radius=4": { "model": "grass_normal" },
+        "grassy=true,radius=5": { "model": "grass_normal" },
+        "grassy=true,radius=6": { "model": "grass_normal" },
+        "grassy=true,radius=7": { "model": "grass_normal" },
+        "grassy=true,radius=8": { "model": "grass_normal" },
+        "grassy=false,radius=0": { "model": "minecraft:dirt" },
+        "grassy=false,radius=1": { "model": "minecraft:dirt" },
+        "grassy=false,radius=2": { "model": "minecraft:dirt" },
+        "grassy=false,radius=3": { "model": "minecraft:dirt" },
+        "grassy=false,radius=4": { "model": "minecraft:dirt" },
+        "grassy=false,radius=5": { "model": "minecraft:dirt" },
+        "grassy=false,radius=6": { "model": "minecraft:dirt" },
+        "grassy=false,radius=7": { "model": "minecraft:dirt" },
+        "grassy=false,radius=8": { "model": "minecraft:dirt" }
+    }
+}

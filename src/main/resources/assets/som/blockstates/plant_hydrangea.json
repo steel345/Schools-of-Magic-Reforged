@@ -1,0 +1,20 @@
+{
+    "variants": {
+    "age=0,position=0": { "model": "som:block/planthydrangea_small" },
+    "age=1,position=0": { "model": "som:block/planthydrangea_small" },
+    "age=2,position=0": { "model": "som:block/planthydrangea_small" },
+    "age=3,position=0": { "model": "som:block/planthydrangea_small" },
+    "age=0,position=1": { "model": "som:block/planthydrangea_base" },
+    "age=1,position=1": { "model": "som:block/planthydrangea_base" },
+    "age=2,position=1": { "model": "som:block/planthydrangea_base" },
+    "age=3,position=1": { "model": "som:block/planthydrangea_base" },
+    "age=0,position=2": { "model": "som:block/planthydrangea_middle" },
+    "age=1,position=2": { "model": "som:block/planthydrangea_middle" },
+    "age=2,position=2": { "model": "som:block/planthydrangea_middle" },
+    "age=3,position=2": { "model": "som:block/planthydrangea_middle" },
+    "age=0,position=3": { "model": "som:block/planthydrangea_top" },
+    "age=1,position=3": { "model": "som:block/planthydrangea_top" },
+    "age=2,position=3": { "model": "som:block/planthydrangea_top" },
+    "age=3,position=3": { "model": "som:block/planthydrangea_top" }
+    }
+}

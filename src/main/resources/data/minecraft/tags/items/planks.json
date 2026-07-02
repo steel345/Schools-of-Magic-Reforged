@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:planks_pine",
+    "som:planks_elder",
+    "som:planks_verde",
+    "som:planks_ash",
+    "som:planks_willow",
+    "som:planks_yew"
+  ]
+}

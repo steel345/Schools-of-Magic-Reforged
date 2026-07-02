@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "som:mushroom_dark"
+    }
+  ],
+  "result": {
+    "item": "som:seed_mushroom_dark",
+    "count": 2
+  }
+}

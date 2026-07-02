@@ -1,0 +1,22 @@
+{
+  "structures": [
+    {
+      "structure": "som:fae_village_acolyte",
+      "weight": 1
+    },
+    {
+      "structure": "som:fae_village_wartwood",
+      "weight": 1
+    },
+    {
+      "structure": "som:fae_village_bastion",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 80807809,
+    "spacing": 32,
+    "separation": 8
+  }
+}

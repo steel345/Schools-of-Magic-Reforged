@@ -1,0 +1,8 @@
+{
+  "type": "som:mushroom_house",
+  "biomes": "#som:has_structure/mushroom_house_evermore",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "template": "som:mushroom_house_evermore",
+  "spawn_overrides": {}
+}

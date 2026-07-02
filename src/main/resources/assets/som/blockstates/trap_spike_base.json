@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=up":    { "model": "som:block/trap_spike_base" },
+        "facing=down":  { "model": "som:block/trap_spike_base", "x": 180 },
+        "facing=east":  { "model": "som:block/trap_spike_base", "x": 90, "y": 90 },
+        "facing=west":  { "model": "som:block/trap_spike_base", "x": 90, "y": 270 },
+        "facing=south": { "model": "som:block/trap_spike_base", "x": 90, "y": 180 },
+        "facing=north": { "model": "som:block/trap_spike_base", "x": 90 }
+    }
+}

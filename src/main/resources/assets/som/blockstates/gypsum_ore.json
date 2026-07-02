@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "type=coal": {
+      "model": "som:block/gypsum_ore_coal"
+    },
+    "type=diamond": {
+      "model": "som:block/gypsum_ore_diamond"
+    },
+    "type=emerald": {
+      "model": "som:block/gypsum_ore_emerald"
+    },
+    "type=gold": {
+      "model": "som:block/gypsum_ore_gold"
+    },
+    "type=iron": {
+      "model": "som:block/gypsum_ore_iron"
+    },
+    "type=lapis": {
+      "model": "som:block/gypsum_ore_lapis"
+    },
+    "type=silver": {
+      "model": "som:block/gypsum_ore_silver"
+    },
+    "type=copper": {
+      "model": "som:block/gypsum_ore_copper"
+    }
+  }
+}

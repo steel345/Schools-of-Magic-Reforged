@@ -1,0 +1,8 @@
+{
+    "type":  "som:shrine",
+    "element":  "umbramancy",
+    "biomes":  "#som:has_structure/mini_umbramancy",
+    "step":  "surface_structures",
+    "terrain_adaptation": "none",
+    "spawn_overrides":  {}
+}

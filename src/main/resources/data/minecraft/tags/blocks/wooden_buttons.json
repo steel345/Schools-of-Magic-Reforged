@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:button_ash",
+    "som:button_elder",
+    "som:button_pine",
+    "som:button_willow",
+    "som:button_yew",
+    "som:button_verde"
+  ]
+}

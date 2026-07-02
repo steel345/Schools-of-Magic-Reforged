@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "som:block/rotted_slab_bottom_dark_oak"
+    },
+    "type=top": {
+      "model": "som:block/rotted_slab_top_dark_oak"
+    },
+    "type=double": {
+      "model": "som:block/rotted_planks_dark_oak"
+    }
+  }
+}

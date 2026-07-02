@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "som:item",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "som:pickaxe_obsidian"
+  }
+}

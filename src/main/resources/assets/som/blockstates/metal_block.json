@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=silver": {
+      "model": "som:block/silver_block"
+    },
+    "type=copper": {
+      "model": "som:block/copper_block"
+    },
+    "type=bronze": {
+      "model": "som:block/bronze_block"
+    },
+    "type=brass": {
+      "model": "som:block/brass_block"
+    },
+    "type=steel": {
+      "model": "som:block/scorched_iron_block"
+    },
+    "type=tenebrium": {
+      "model": "som:block/void_block"
+    }
+  }
+}

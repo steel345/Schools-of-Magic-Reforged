@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "som:block/gypsum_pedestal"
+    },
+    "facing=east": {
+      "model": "som:block/gypsum_pedestal",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "som:block/gypsum_pedestal",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "som:block/gypsum_pedestal",
+      "y": 270
+    }
+  }
+}

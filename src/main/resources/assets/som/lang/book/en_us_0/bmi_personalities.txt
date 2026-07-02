@@ -1,0 +1,4 @@
+  The wooden Core gives a wand one of three personalities, felt as a swing in its power.
+<~><~>  Wandering cores, such as Dark Oak, Spruce, Bastion and Evermore, grow stronger in a freshly entered biome and weaker if they linger too long in one place. Keep moving.
+<~><~>  Adventurous cores, such as Jubilee, Vermilion, Jungle and Acacia, reward a varied spell list and sour if you cast one spell over and over. A couple nights of sleep clears their memory.
+<~><~>  Every other core is Ambivalent, with steady power and no moods.

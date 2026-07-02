@@ -1,0 +1,68 @@
+{
+    "parent": "block/block",
+"ambientocclusion": false,
+    "textures": {
+        "0": "som:blocks/dryingsunflower1_b",
+        "1": "som:blocks/dryingsunflower1_f",
+        "2": "som:blocks/dryingsunflower1_1",
+        "3": "som:blocks/dryingsunflower1",
+        "particle": "som:blocks/dryingsunflower0_f"
+    },
+    "elements": [
+        {
+            "name": "Element1",
+            "from": [ 0.8, -8.0, 8.0 ], 
+            "to": [ 15.2, 0.0, 8.0 ], 
+            "shade": false,
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 8.0 ] },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 8.0 ] }
+            }
+        },
+        {
+            "name": "Element2",
+            "from": [ 8.0, -8.0, 0.8 ], 
+            "to": [ 8.0, 0.0, 15.2 ], 
+            "shade": false,
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "faces": {
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 8.0 ] },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 16.0, 8.0 ] }
+            }
+        },
+        {
+            "name": "Element3",
+            "from": [ 9.6, -15.0, 1.0 ], 
+            "to": [ 9.6, 1.0, 15.0 ], 
+            "shade": false,
+            "rotation": { "origin": [ 8.0, -7.0, 8.0 ], "axis": "z", "angle": -22.5, "rescale": true },
+            "faces": {
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "Cube1",
+            "from": [ 0.8, 0.0, 8.0 ], 
+            "to": [ 15.2, 16.0, 8.0 ], 
+            "shade": false,
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "faces": {
+                "north": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "south": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        },
+        {
+            "name": "Cube2",
+            "from": [ 8.0, 0.0, 0.8 ], 
+            "to": [ 8.0, 16.0, 15.2 ], 
+            "shade": false,
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0, "rescale": true },
+            "faces": {
+                "east": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
+                "west": { "texture": "#3", "uv": [ 0.0, 0.0, 16.0, 16.0 ] }
+            }
+        }
+    ]
+}

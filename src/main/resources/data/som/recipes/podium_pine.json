@@ -1,0 +1,25 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "CAC",
+                    " S ",
+                    "CAC"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:magic_bookshelf",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"pine\"}}"
+                      },
+                "C":  {
+                          "item":  "som:log_pine"
+                      },
+                "A":  {
+                          "item":  "som:halfslab_pine"
+                      }
+            },
+    "result":  {
+                   "item":  "som:podium",
+                   "nbt":  "{BlockStateTag:{type:\"pine\"}}"
+               }
+}

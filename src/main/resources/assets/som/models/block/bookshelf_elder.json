@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+        "end": "som:blocks/planks_elder",
+        "side": "som:blocks/bookshelf_elder"
+    }
+}

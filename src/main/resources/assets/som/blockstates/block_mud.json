@@ -1,0 +1,6 @@
+{
+    "variants": {
+    "full=true": { "model": "som:block/blockmud_full" },
+    "full=false": { "model": "som:block/blockmud" }
+    }
+}

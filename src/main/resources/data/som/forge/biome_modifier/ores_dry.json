@@ -1,0 +1,6 @@
+{
+    "type": "forge:add_features",
+    "biomes": "#forge:is_dry/overworld",
+    "features": ["som:ore_electromancy","som:ore_heliomancy"],
+    "step": "underground_ores"
+}

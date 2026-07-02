@@ -1,0 +1,3 @@
+  A Pedestal is an early game item displayer. Right click it with an item to set it on top, and shift right click again with an empty hand to take it back.
+<~><~>  It also doubles as a simple spell binding table. Rest a book on it to bind a spell, the same way you would at a podium.
+<~><~>  A Pedestal is cut from any kind of stone on a stonecutter.

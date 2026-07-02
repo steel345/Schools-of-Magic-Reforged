@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "facing=up,half=lower":    { "model": "som:block/spear_bottom" },
+        "facing=down,half=lower":  { "model": "som:block/spear_bottom", "x": 180 },
+        "facing=north,half=lower": { "model": "som:block/spear_bottom", "x": 90 },
+        "facing=south,half=lower": { "model": "som:block/spear_bottom", "x": 90, "y": 180 },
+        "facing=west,half=lower":  { "model": "som:block/spear_bottom", "x": 90, "y": 270 },
+        "facing=east,half=lower":  { "model": "som:block/spear_bottom", "x": 90, "y": 90 },
+        "facing=up,half=upper":    { "model": "som:block/spear_top" },
+        "facing=down,half=upper":  { "model": "som:block/spear_top", "x": 180 },
+        "facing=north,half=upper": { "model": "som:block/spear_top", "x": 90 },
+        "facing=south,half=upper": { "model": "som:block/spear_top", "x": 90, "y": 180 },
+        "facing=west,half=upper":  { "model": "som:block/spear_top", "x": 90, "y": 270 },
+        "facing=east,half=upper":  { "model": "som:block/spear_top", "x": 90, "y": 90 }
+    }
+}

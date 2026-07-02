@@ -1,0 +1,25 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "CAC",
+                    " S ",
+                    "CAC"
+                ],
+    "key":  {
+                "S":  {
+                          "item":  "som:magic_bookshelf",
+                          "type":  "forge:partial_nbt",
+                          "nbt":  "{BlockStateTag:{type:\"yew\"}}"
+                      },
+                "C":  {
+                          "item":  "som:log_yew"
+                      },
+                "A":  {
+                          "item":  "som:halfslab_yew"
+                      }
+            },
+    "result":  {
+                   "item":  "som:podium",
+                   "nbt":  "{BlockStateTag:{type:\"yew\"}}"
+               }
+}

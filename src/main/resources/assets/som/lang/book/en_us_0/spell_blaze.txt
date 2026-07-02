@@ -1,0 +1,1 @@
+  This spell creates a fiery projectile which is then shot from the caster in the direction they are looking.<~><~>  These fireballs cause a small amount of damage, light entities on fire, and ignite blocks on impact.

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "som:trapdoor_ash", "som:trapdoor_elder", "som:trapdoor_pine",
+    "som:trapdoor_willow", "som:trapdoor_yew", "som:trapdoor_verde"
+  ]
+}
