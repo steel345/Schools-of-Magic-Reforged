@@ -24,7 +24,7 @@ public class ContainerTeapot extends AbstractContainerMenu {
    public ContainerTeapot(int id, Inventory playerInventory, TileEntityTeapot te) {
       super(MenuTypeRegistry.TEAPOT.get(), id);
       this.te = te;
-      this.handler = te.handler; // raw handler for the GUI (full put/take); hoppers use the routed capability
+      this.handler = te.handler;
       this.addSlot(new SlotSmall(this.handler, 0, 85, 18));
       this.addSlot(new SlotSmall(this.handler, 1, 85, 39));
       this.addSlot(new SlotSmall(this.handler, 2, 85, 60));

@@ -8,18 +8,17 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 
-/** The resolved outcome of a dynamic brew. Serialisable onto the brewed tea item. */
 public final class BrewResult {
 
    public String primaryEffect;
-   public String secondaryEffect;   // nullable
+   public String secondaryEffect;
    public int amplifier;
    public int durationSeconds;
    public int totalStability;
    public int totalToxicity;
-   public String modifierDescriptor; // "" when none
+   public String modifierDescriptor;
    public final List<String> herbsUsed = new ArrayList<>();
-   public int finalTeaColor;         // 0xRRGGBB
+   public int finalTeaColor;
    public String displayName = "Tea";
    public final List<String> sideEffects = new ArrayList<>();
 
@@ -55,14 +54,12 @@ public final class BrewResult {
       return r;
    }
 
-   /** Builds the {@link MobEffectInstance}s to apply when this tea is drunk. */
    public List<MobEffectInstance> buildEffects() {
       List<MobEffectInstance> list = new ArrayList<>();
       int ticks = durationSeconds * 20;
       addEffect(list, primaryEffect, ticks, amplifier);
       addEffect(list, secondaryEffect, ticks, Math.max(0, amplifier - 1));
       for (String side : sideEffects) {
-         // side effects are short and weak
          addEffect(list, side, Math.max(100, ticks / 3), 0);
       }
       return list;

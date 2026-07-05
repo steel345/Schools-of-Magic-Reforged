@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/** Immutable data describing one crushed herb's brewing contribution. */
 public final class HerbProfile {
 
    public final List<String> primaryEffects;
@@ -13,7 +12,7 @@ public final class HerbProfile {
    public final int toxicity;
    public final int stability;
    public final int potency;
-   public final int brewColor; // 0xRRGGBB
+   public final int brewColor;
 
    public HerbProfile(List<String> primary, List<String> secondary, List<String> rare,
                       int toxicity, int stability, int potency, int brewColor) {

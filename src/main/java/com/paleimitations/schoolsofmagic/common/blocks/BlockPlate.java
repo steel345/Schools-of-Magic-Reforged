@@ -123,7 +123,11 @@ public class BlockPlate extends BaseEntityBlock {
       if (!world.isClientSide) {
          ItemStack one = stack.copy();
          one.setCount(1);
+         ItemStack infusedCopy = one.copy();
          ItemStack remainder = item.finishUsingItem(one, world, player);
+         if (com.paleimitations.schoolsofmagic.common.items.InfusedFood.isInfused(infusedCopy)) {
+            com.paleimitations.schoolsofmagic.common.handlers.InfusedFoodEvents.applyEffects(player, infusedCopy);
+         }
          plate.setItem(remainder.isEmpty() ? ItemStack.EMPTY : remainder);
          world.playSound(null, pos,
             drink ? net.minecraft.sounds.SoundEvents.GENERIC_DRINK : net.minecraft.sounds.SoundEvents.GENERIC_EAT,

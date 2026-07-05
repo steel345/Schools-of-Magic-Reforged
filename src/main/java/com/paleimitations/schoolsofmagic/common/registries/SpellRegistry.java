@@ -70,6 +70,9 @@ public class SpellRegistry {
         tryRegister("phantom_fire",   SpellPhantomFire::new);
         tryRegister("fuel_furnace",   SpellFuelFurnace::new);
         tryRegister("dry",            SpellDry::new);
+        tryRegister("prestidigitation", com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrestidigitation::new);
+        tryRegister("smoke_scry",     com.paleimitations.schoolsofmagic.common.spells.spells.SpellSmokeScry::new);
+        tryRegister("scorch",         com.paleimitations.schoolsofmagic.common.spells.spells.SpellScorch::new);
 
         tryRegister("zephyr",         SpellZephyr::new);
         tryRegister("gale",           SpellGale::new);

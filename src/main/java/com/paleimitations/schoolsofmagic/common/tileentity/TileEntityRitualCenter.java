@@ -247,12 +247,22 @@ public class TileEntityRitualCenter extends BlockEntity {
    }
 
    public void tick() {
-      if (!this.level.getEntitiesOfClass(ItemEntity.class, new AABB(this.worldPosition)).isEmpty()) {
+      if (!this.level.isClientSide && !this.level.getEntitiesOfClass(ItemEntity.class, new AABB(this.worldPosition)).isEmpty()) {
          for (ItemEntity entity : this.level.getEntitiesOfClass(ItemEntity.class, new AABB(this.worldPosition))) {
-            if (entity.tickCount >= 10) continue;
-            for (int i = 0; i < this.handler.getSlots(); ++i) {
+            if (entity.tickCount >= 10 || !entity.isAlive()) continue;
+            net.minecraft.world.item.ItemStack stack = entity.getItem().copy();
+            boolean changed = false;
+            for (int i = 0; i < this.handler.getSlots() && !stack.isEmpty(); ++i) {
                if (!this.handler.getStackInSlot(i).isEmpty()) continue;
-               this.handler.setStackInSlot(i, entity.getItem().split(1));
+               this.handler.setStackInSlot(i, stack.split(1));
+               changed = true;
+            }
+            if (changed) {
+               if (stack.isEmpty()) {
+                  entity.discard();
+               } else {
+                  entity.setItem(stack);
+               }
             }
          }
       }

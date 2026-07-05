@@ -20,7 +20,7 @@ public class BookPageTableContent extends BookPage {
    public void buildTableContent() {
       if (this.pageHolder instanceof IBook || this.pageHolder instanceof Book) {
          IBook book = (IBook)this.pageHolder;
-         this.elements.clear(); // idempotent: rebuilding must not stack duplicate entries
+         this.elements.clear();
          this.elements.add(new PageElementString("page.table_content.element", 72, 58, 99, 16, 0, true));
 
          for (int i = 0; i < book.getChapters().size(); i++) {

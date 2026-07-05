@@ -167,7 +167,10 @@ final class IngredientFactory {
       if (stack.isEmpty()) {
          return supplied.isEmpty();
       }
-      if (!ItemStack.isSameItem(stack, supplied) || stack.getDamageValue() != supplied.getDamageValue()) {
+      if (!ItemStack.isSameItem(stack, supplied)) {
+         return false;
+      }
+      if (!supplied.isDamageableItem() && stack.getDamageValue() != supplied.getDamageValue()) {
          return false;
       }
 

@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 public final class BrewCalculator {
 
    private static final Logger LOGGER = LogUtils.getLogger();
-   private static final int WATER_BASE = 0x3F76E4; // vanilla water tint
+   private static final int WATER_BASE = 0x3F76E4;
 
    public static BrewResult resolve(java.util.List<Item> modifierItems, List<EnumPlantType> herbsIn) {
       List<EnumPlantType> herbs = new ArrayList<>();
@@ -36,10 +36,9 @@ public final class BrewCalculator {
       long seed = seedFor(modifierItems, herbs);
       Random rng = new Random(seed);
 
-      // --- weighted effect points ---
       Map<String, Integer> points = new HashMap<>();
-      Map<String, Integer> support = new HashMap<>();   // sum(stability - toxicity) of contributors, for tie-breaks
-      Set<String> nonRare = new HashSet<>();            // appeared as primary/secondary somewhere
+      Map<String, Integer> support = new HashMap<>();
+      Set<String> nonRare = new HashSet<>();
       for (HerbProfile p : profiles) {
          int s = p.stability - p.toxicity;
          for (String e : p.primaryEffects)   { add(points, e, 3); add(support, e, s); nonRare.add(e); }
@@ -47,7 +46,6 @@ public final class BrewCalculator {
          for (String e : p.rareEffects)      { add(points, e, 1); add(support, e, s); }
       }
 
-      // --- totals ---
       int totalPotency = mod.potencyBonus;
       int totalStability = mod.stabilityBonus;
       int rawToxicity = mod.toxicityBonus;
@@ -60,7 +58,6 @@ public final class BrewCalculator {
       result.totalStability = totalStability;
       result.totalToxicity = totalToxicity;
 
-      // --- rank & pick primary / secondary ---
       List<String> ranked = rank(points, support, seed);
       String primary = null;
       for (String e : ranked) {
@@ -73,23 +70,19 @@ public final class BrewCalculator {
       }
       result.primaryEffect = primary;
 
-      // --- amplifier from potency (powerful effects capped low) ---
       int amp = amplifierFor(totalPotency);
       if (primary != null && BrewEffects.isPowerful(primary)) amp = Math.min(amp, 0);
       result.amplifier = amp;
 
-      // --- duration (custom teas cap at 2 minutes) ---
       double duration = (120.0 + totalStability * 15.0) * mod.durationMultiplier;
       duration = clamp(duration, 30, 120);
       result.durationSeconds = (int) Math.round(duration);
 
-      // --- secondary effect chance ---
       double secChance = clamp(0.15 + mod.secondaryEffectChanceBonus + totalStability * 0.03, 0.0, 0.6);
       if (secondaryCandidate != null && rng.nextDouble() < secChance) {
          result.secondaryEffect = secondaryCandidate;
       }
 
-      // --- corruption: the primary may twist into a darker effect ---
       boolean corrupted = false;
       if (primary != null && mod.corruptionChance > 0 && rng.nextDouble() < mod.corruptionChance) {
          String[] dark = BrewEffects.CORRUPTION.get(primary);
@@ -99,14 +92,12 @@ public final class BrewCalculator {
          }
       }
 
-      // --- side effects from toxicity / instability ---
       double sideChance = clamp(totalToxicity * 0.08 - totalStability * 0.05 + mod.corruptionChance, 0.0, 0.9);
       if (rng.nextDouble() < sideChance) {
          String side = pickSideEffect(profiles, rng);
          if (side != null && !side.equals(result.primaryEffect)) result.sideEffects.add(side);
       }
 
-      // --- colour blending ---
       int water = blend(WATER_BASE, mod.waterTintColor, 0.15F);
       if (!profiles.isEmpty()) {
          int herbColor = averageColor(profiles);
@@ -115,23 +106,20 @@ public final class BrewCalculator {
          result.finalTeaColor = water;
       }
 
-      // --- display name ---
       result.displayName = nameFor(corrupted, hasMod ? mod : null, totalStability, result.primaryEffect);
 
       debug(result, points, secChance, sideChance);
       return result;
    }
 
-   // ---- ranking ----
-
    private static List<String> rank(Map<String, Integer> points, Map<String, Integer> support, long seed) {
       List<String> keys = new ArrayList<>(points.keySet());
       keys.sort((a, b) -> {
          int pa = points.getOrDefault(a, 0), pb = points.getOrDefault(b, 0);
-         if (pa != pb) return Integer.compare(pb, pa);                       // more points first
+         if (pa != pb) return Integer.compare(pb, pa);
          int sa = support.getOrDefault(a, 0), sb = support.getOrDefault(b, 0);
-         if (sa != sb) return Integer.compare(sb, sa);                       // most stable / least toxic
-         return Long.compare(tieHash(seed, a), tieHash(seed, b));            // deterministic
+         if (sa != sb) return Integer.compare(sb, sa);
+         return Long.compare(tieHash(seed, a), tieHash(seed, b));
       });
       return keys;
    }
@@ -141,8 +129,6 @@ public final class BrewCalculator {
       h ^= (h >>> 32);
       return h;
    }
-
-   // ---- numeric helpers ----
 
    private static int amplifierFor(int potency) {
       if (potency <= 3) return 0;
@@ -159,8 +145,6 @@ public final class BrewCalculator {
       return v < lo ? lo : (v > hi ? hi : v);
    }
 
-   // ---- side effects ----
-
    private static String pickSideEffect(List<HerbProfile> profiles, Random rng) {
       List<String> pool = new ArrayList<>();
       for (HerbProfile p : profiles) {
@@ -175,8 +159,6 @@ public final class BrewCalculator {
    private static void collectNegatives(List<String> effects, List<String> out) {
       for (String e : effects) if (BrewEffects.NEGATIVE_SIDE_EFFECTS.contains(e)) out.add(e);
    }
-
-   // ---- colour ----
 
    private static int averageColor(List<HerbProfile> profiles) {
       int r = 0, g = 0, b = 0, n = 0;
@@ -198,8 +180,6 @@ public final class BrewCalculator {
       int rb = Math.round(ab * (1 - t) + bb * t);
       return (rr << 16) | (rg << 8) | rb;
    }
-
-   // ---- naming ----
 
    private static String nameFor(boolean corrupted, TeaModifier mod, int stability, String primaryKey) {
       if (primaryKey == null) return "Plain Tea";
@@ -233,8 +213,6 @@ public final class BrewCalculator {
       return sb.toString();
    }
 
-   // ---- seed ----
-
    private static long seedFor(java.util.List<Item> modifierItems, List<EnumPlantType> herbs) {
       long seed = 1125899906842597L;
       if (modifierItems != null) {
@@ -243,8 +221,6 @@ public final class BrewCalculator {
       for (EnumPlantType t : herbs) seed = 31 * seed + t.ordinal();
       return seed;
    }
-
-   // ---- debug ----
 
    private static void debug(BrewResult r, Map<String, Integer> points, double secChance, double sideChance) {
       if (!LOGGER.isDebugEnabled()) return;

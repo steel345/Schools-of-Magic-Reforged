@@ -1,14 +1,19 @@
 package com.paleimitations.schoolsofmagic.common.registries;
 
 import com.google.common.collect.Maps;
+import com.paleimitations.schoolsofmagic.common.blocks.EnumBottle;
 import com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronType;
 import com.paleimitations.schoolsofmagic.common.blocks.EnumIngredient;
+import com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType;
+import com.paleimitations.schoolsofmagic.common.blocks.EnumMagicWood;
 import com.paleimitations.schoolsofmagic.common.blocks.EnumMetal;
 import com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType;
 import com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class RitualRecipeRegistry {
 
@@ -30,6 +35,14 @@ public class RitualRecipeRegistry {
         return s;
     }
 
+    private static ItemStack magicSapling(String type) {
+        ItemStack s = new ItemStack(ItemRegistry.bi_magic_sapling.get());
+        CompoundTag bs = new CompoundTag();
+        bs.putString("type", type);
+        s.getOrCreateTag().put("BlockStateTag", bs);
+        return s;
+    }
+
     private static ItemStack metalBlock(EnumMetal m) {
         ItemStack s = new ItemStack(BlockRegistry.metal_block.get());
 
@@ -40,6 +53,74 @@ public class RitualRecipeRegistry {
     }
 
     public static void register() {
+
+        Ingredient anySapling = net.minecraftforge.common.crafting.CompoundIngredient.of(
+            Ingredient.of(ItemTags.SAPLINGS),
+            Ingredient.of(
+                magicSapling("ash"),
+                magicSapling("elder"),
+                magicSapling("pine"),
+                magicSapling("willow"),
+                magicSapling("yew"),
+                magicSapling("verde"),
+                new ItemStack(ItemRegistry.bi_sapling_palm.get())
+            )
+        );
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY,
+            150, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            anySapling,
+            Ingredient.of(new ItemStack(ItemRegistry.bi_trap_spike.get()), new ItemStack(ItemRegistry.bi_spear.get())),
+            stack(ItemRegistry.gem_dust.get(), EnumMagicType.AURAMANCY.getIndex()),
+            Ingredient.of(ItemTags.LOGS),
+            stack(ItemRegistry.tree_item.get(), EnumMagicWood.ASH.getIndex()),
+            stack(ItemRegistry.bottle.get(), EnumBottle.WORMWOOD.getIndex())
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY,
+            200, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(Items.BLAZE_ROD),
+            new ItemStack(Items.LAVA_BUCKET),
+            stack(ItemRegistry.ingredient.get(), EnumIngredient.BIRD_HEART.getIndex()),
+            stack(ItemRegistry.gem_chunk.get(), EnumMagicType.PYROMANCY.getIndex()),
+            new ItemStack(Items.MUTTON),
+            stack(ItemRegistry.bottle.get(), EnumBottle.FIREBERRY.getIndex())
+        ).setNote("Chicken in range");
+
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY, 50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            stack(ItemRegistry.bottle.get(), EnumBottle.STORMTHISTLE.getIndex()),
+            stack(ItemRegistry.seed_magic_plant.get(), EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(ItemRegistry.bi_mushroom_dark.get())
+        );
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY, 50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            stack(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.HYDROMANCY.getIndex()),
+            new ItemStack(Items.WATER_BUCKET),
+            stack(ItemRegistry.seed_magic_plant.get(), EnumMagicType.ANIMANCY.getIndex())
+        );
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY, 50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(Items.MILK_BUCKET),
+            stack(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.ANIMANCY.getIndex())
+        );
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY, 50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            stack(ItemRegistry.bottle.get(), EnumBottle.NIGHTBERRY.getIndex()),
+            new ItemStack(Items.STONE_AXE)
+        );
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY, 50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            stack(ItemRegistry.bottle.get(), EnumBottle.SUNFLOWER.getIndex()),
+            stack(ItemRegistry.gem_dust.get(), EnumMagicType.HELIOMANCY.getIndex())
+        );
+        RecipeRegistry.registerRitualRecipe(
+            ItemStack.EMPTY, 40, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(ItemRegistry.magic_diamond.get()),
+            stack(ItemRegistry.bottle.get(), EnumBottle.JIMSONWEED.getIndex())
+        ).setNote("1-8 Moon Dew, +10 mana each");
+
 
         RecipeRegistry.registerRitualRecipe(
             new ItemStack(ItemRegistry.exploration_book.get()),
@@ -58,6 +139,31 @@ public class RitualRecipeRegistry {
             new ItemStack(Items.RED_DYE),
             stack(ItemRegistry.ingot.get(), EnumMetal.BRASS.getIndex()),
             stack(ItemRegistry.crushed_plant.get(), EnumPlantType.HYDRANGEA.getIndex())
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.magic_diamond.get()),
+            50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(Items.DIAMOND),
+            new ItemStack(Items.REDSTONE),
+            new ItemStack(Items.GLOWSTONE_DUST),
+            new ItemStack(Items.GUNPOWDER),
+            stack(ItemRegistry.seed_magic_plant.get(), EnumMagicType.ANIMANCY.getIndex())
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.broom.get()),
+            100, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(Items.HAY_BLOCK),
+            new ItemStack(Items.STICK),
+            new ItemStack(ItemRegistry.crushed_horn_unicorn.get())
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.magic_broom.get()),
+            250, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            Ingredient.of(ItemRegistry.broom.get()),
+            new ItemStack(ItemRegistry.flying_ointment.get())
         );
 
         RecipeRegistry.registerRitualRecipe(

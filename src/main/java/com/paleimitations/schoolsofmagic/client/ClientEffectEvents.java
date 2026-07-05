@@ -487,6 +487,28 @@ public class ClientEffectEvents {
          renderer.loadEffect(new ResourceLocation("minecraft", wanted));
          somInstalledShader = wanted;
       }
+      forceEffectActive(renderer);
+   }
+
+   private static java.lang.reflect.Field EFFECT_ACTIVE;
+   private static boolean effectActiveResolved = false;
+
+   private static void forceEffectActive(net.minecraft.client.renderer.GameRenderer renderer) {
+      if (!effectActiveResolved) {
+         effectActiveResolved = true;
+         try {
+            EFFECT_ACTIVE = net.minecraft.client.renderer.GameRenderer.class.getDeclaredField("effectActive");
+            EFFECT_ACTIVE.setAccessible(true);
+         } catch (Exception e) {
+            EFFECT_ACTIVE = null;
+         }
+      }
+      if (EFFECT_ACTIVE != null) {
+         try {
+            EFFECT_ACTIVE.setBoolean(renderer, true);
+         } catch (Exception ignored) {
+         }
+      }
    }
 
    @SubscribeEvent

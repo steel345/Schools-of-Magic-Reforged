@@ -51,6 +51,8 @@ public class ItemRegistry {
       () -> new ItemBookBase(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> tea_makers_guide = ITEMS.register("tea_makers_guide",
       () -> new ItemBookBase(new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> ritual_compendium = ITEMS.register("ritual_compendium",
+      () -> new ItemBookBase(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> spellworkers_handbook = ITEMS.register("spellworkers_handbook",
       () -> new ItemBookBase(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> spellbook = ITEMS.register("spellbook",
@@ -71,8 +73,6 @@ public class ItemRegistry {
       () -> new ItemSticker(new Item.Properties()));
    public static final RegistryObject<Item> sticker_pack = ITEMS.register("sticker_pack",
       () -> new ItemStickerPack(new Item.Properties()));
-   public static final RegistryObject<Item> bell = ITEMS.register("bell",
-      () -> new ItemBell(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> ziggurat_door_key = ITEMS.register("ziggurat_door_key",
       () -> new ItemDoorWallKey(new Item.Properties().stacksTo(1)));
 
@@ -633,6 +633,27 @@ public class ItemRegistry {
    public static final RegistryObject<Item> magic_diamond = ITEMS.register("magic_diamond",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemSuperchargedDiamond(
          new Item.Properties().stacksTo(64)));
+   public static final RegistryObject<Item> infinity_jug = ITEMS.register("infinity_jug",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemInfinityJug(
+         new Item.Properties().durability(100).rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
+   public static final RegistryObject<Item> sun_screen = ITEMS.register("sun_screen",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemSunscreen(
+         new Item.Properties().durability(10)));
+   public static final RegistryObject<Item> flying_ointment = ITEMS.register("flying_ointment",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemFlyingOintment(
+         new Item.Properties().stacksTo(16)));
+   public static final RegistryObject<Item> mutandis = ITEMS.register("mutandis",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemMutandis(
+         new Item.Properties().durability(3)));
+   public static final RegistryObject<Item> broom = ITEMS.register("broom",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemBroom(
+         new Item.Properties().durability(265)));
+   public static final RegistryObject<Item> silver_bell = ITEMS.register("silver_bell",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemSilverBell(
+         new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> magic_broom = ITEMS.register("magic_broom",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemMagicBroom(
+         new Item.Properties().stacksTo(1).rarity(net.minecraft.world.item.Rarity.EPIC)));
    public static final RegistryObject<Item> bi_gem_block = ITEMS.register("gem_block", () -> new com.paleimitations.schoolsofmagic.common.items.BlockStateTagItem(BlockRegistry.gem_block.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_gem_chunk_block = ITEMS.register("gem_chunk_block", () -> new com.paleimitations.schoolsofmagic.common.items.BlockStateTagItem(BlockRegistry.gem_chunk_block.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_metal_block = ITEMS.register("metal_block", () -> new com.paleimitations.schoolsofmagic.common.items.BlockStateTagItem(BlockRegistry.metal_block.get(), new Item.Properties()));

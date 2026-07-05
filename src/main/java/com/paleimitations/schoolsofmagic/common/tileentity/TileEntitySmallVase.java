@@ -15,7 +15,13 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntitySmallVase extends BlockEntity {
-   public ItemStackHandler handler = new ItemStackHandler(27);
+   public ItemStackHandler handler = new ItemStackHandler(27) {
+      @Override
+      protected void onContentsChanged(int slot) {
+         super.onContentsChanged(slot);
+         TileEntitySmallVase.this.setChanged();
+      }
+   };
    private String customName;
 
    private final LazyOptional<IItemHandler> handlerOpt = LazyOptional.of(() -> this.handler);

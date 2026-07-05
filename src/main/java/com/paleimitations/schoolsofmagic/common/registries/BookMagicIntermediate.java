@@ -235,16 +235,15 @@ public class BookMagicIntermediate {
       }
       new BookPage("bmi_page6", page6Els).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
-      new BookPage("bmi_supercharged", Lists.newArrayList(new PageElement[]{
-         new PageElementStandardText("page.bmi_supercharged.title", 72, 58, 99, 16, 0, true),
-         new PageElementCraftingRecipe(Lists.newArrayList(new ItemStack[]{
-               new ItemStack(ItemRegistry.item_diamond_dust.get()), new ItemStack(Items.LAPIS_LAZULI), new ItemStack(ItemRegistry.item_diamond_dust.get()),
-               new ItemStack(Items.LAPIS_LAZULI), new ItemStack(Items.DIAMOND), new ItemStack(Items.LAPIS_LAZULI),
-               new ItemStack(ItemRegistry.item_diamond_dust.get()), new ItemStack(Items.LAPIS_LAZULI), new ItemStack(ItemRegistry.item_diamond_dust.get())
-            }), new ItemStack(ItemRegistry.magic_diamond.get()), 159, 110, 0),
-         new PageElementParagraphs("bmi_supercharged", 0.75F, 0, 0,
-            new ParagraphBox(23, 76, 0, 99, 100))
-      })).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+      RecipeRitualCrafting chargeRitual = RecipeRegistry.getRitualRecipe(new ItemStack(ItemRegistry.magic_diamond.get()));
+      java.util.List<PageElement> superEls = Lists.newArrayList();
+      superEls.add(new PageElementStandardText("page.bmi_supercharged.title", 72, 58, 99, 16, 0, true));
+      if (chargeRitual != null) {
+         superEls.add(new com.paleimitations.schoolsofmagic.common.books.PageElementRitualRecipe(chargeRitual, 132, 47, 0));
+      }
+      superEls.add(new PageElementParagraphs("bmi_supercharged", 0.75F, 0, 0,
+         new ParagraphBox(23, 76, 0, 99, 100)));
+      new BookPage("bmi_supercharged", superEls).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
       new BookPage("bmi_metalarmor", Lists.newArrayList(new PageElement[]{
          new PageElementStandardText("page.bmi_metalarmor.title", 72, 58, 99, 16, 0, true),
@@ -395,6 +394,7 @@ public class BookMagicIntermediate {
 
       new BookPageChapter(null).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageSpell(new SpellThornRing()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSmokeScry()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageSpell(new SpellEnergize()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageSpell(new SpellFirering()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageSpell(new SpellRaiseZombie()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);

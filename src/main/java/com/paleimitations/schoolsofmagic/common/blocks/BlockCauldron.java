@@ -105,10 +105,13 @@ public class BlockCauldron extends SOMBlockContainer {
       if (held.getItem() == Items.GLASS_BOTTLE) {
          if (tb.isLidded()) return InteractionResult.PASS;
          if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.WATER) {
-            if (tb.getLiquidLevel() > 0 && !player.getAbilities().instabuild
+            if (tb.getFluidType() == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER
+               && tb.getLiquidLevel() > 0 && !player.getAbilities().instabuild
                && player.getInventory().add(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))) {
                held.shrink(1);
                tb.setLiquidLevel(tb.getLiquidLevel() - 1);
+               world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BOTTLE_FILL,
+                  net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
                return InteractionResult.SUCCESS;
             }
          } else if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.COMPLETE && tb.getLiquidLevel() > 0) {
@@ -118,17 +121,61 @@ public class BlockCauldron extends SOMBlockContainer {
                tb.setLiquidLevel(tb.getLiquidLevel() - 1);
                held.shrink(1);
             }
+            world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BOTTLE_FILL,
+               net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
          }
          return InteractionResult.PASS;
       }
 
+      if (held.getItem() == ItemRegistry.infinity_jug.get()) {
+         if (!tb.isLidded() && tb.getPhase() == TileEntityCauldron.EnumPotionPhase.WATER
+            && tb.getFluidType() == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER
+            && tb.getLiquidLevel() < 3) {
+            tb.setLiquidLevel(3);
+            world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BUCKET_EMPTY,
+               net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+            if (!player.getAbilities().instabuild) {
+               held.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            }
+         }
+         return InteractionResult.SUCCESS;
+      }
+
       if (held.getItem() == Items.BUCKET) {
          if (!tb.isLidded() && tb.getPhase() == TileEntityCauldron.EnumPotionPhase.WATER && tb.getLiquidLevel() == 3) {
-            if (!player.getAbilities().instabuild && player.getInventory().add(new ItemStack(Items.WATER_BUCKET))) {
+            com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid f = tb.getFluidType();
+            net.minecraft.world.item.Item bucketOut = f == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.LAVA
+               ? Items.LAVA_BUCKET
+               : (f == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.POWDER_SNOW
+                  ? Items.POWDER_SNOW_BUCKET : Items.WATER_BUCKET);
+            if (!player.getAbilities().instabuild && player.getInventory().add(new ItemStack(bucketOut))) {
                held.shrink(1);
             }
+            world.playSound(null, pos,
+               f == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.LAVA ? net.minecraft.sounds.SoundEvents.BUCKET_FILL_LAVA
+                  : (f == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.POWDER_SNOW ? net.minecraft.sounds.SoundEvents.BUCKET_FILL_POWDER_SNOW
+                     : net.minecraft.sounds.SoundEvents.BUCKET_FILL),
+               net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
             tb.setLiquidLevel(0);
+            tb.setFluidType(com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER);
+            return InteractionResult.SUCCESS;
+         }
+         return InteractionResult.PASS;
+      }
+
+      if (held.getItem() == Items.LAVA_BUCKET || held.getItem() == Items.POWDER_SNOW_BUCKET) {
+         if (!tb.isLidded() && tb.getPhase() == TileEntityCauldron.EnumPotionPhase.WATER && tb.getLiquidLevel() == 0) {
+            boolean lava = held.getItem() == Items.LAVA_BUCKET;
+            if (!player.getAbilities().instabuild && player.getInventory().add(new ItemStack(Items.BUCKET))) {
+               held.shrink(1);
+            }
+            tb.setFluidType(lava ? com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.LAVA
+               : com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.POWDER_SNOW);
+            tb.setLiquidLevel(3);
+            world.playSound(null, pos, lava ? net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_LAVA
+               : net.minecraft.sounds.SoundEvents.BUCKET_EMPTY_POWDER_SNOW,
+               net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
          }
          return InteractionResult.PASS;
@@ -139,6 +186,7 @@ public class BlockCauldron extends SOMBlockContainer {
             if (!player.getAbilities().instabuild && player.getInventory().add(new ItemStack(Items.BUCKET))) {
                held.shrink(1);
             }
+            tb.setFluidType(com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER);
             tb.setLiquidLevel(3);
             world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BUCKET_EMPTY,
                net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -155,6 +203,7 @@ public class BlockCauldron extends SOMBlockContainer {
 
       if (held.getItem() == Items.POTION) {
          if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.WATER
+            && tb.getFluidType() == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER
             && PotionUtils.getPotion(held).equals(Potions.WATER)
             && tb.getLiquidLevel() < 3
             && !tb.isLidded()) {
@@ -176,6 +225,21 @@ public class BlockCauldron extends SOMBlockContainer {
       }
 
       if (held.getItem() == ItemRegistry.bottle_empty.get()) {
+         if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.COMPLETE
+            && tb.getLiquidLevel() == 3
+            && tb.getBrewResult().isItemBrew()
+            && !tb.isLidded()) {
+            ItemStack out = tb.getBrewResult().getPotionItem().copy();
+            if (player.getInventory().add(out)) {
+               if (!player.getAbilities().instabuild) {
+                  held.shrink(1);
+               }
+               tb.setLiquidLevel(0);
+               world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BOTTLE_FILL,
+                  net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+            }
+            return InteractionResult.SUCCESS;
+         }
          if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.COMPLETE
             && tb.getLiquidLevel() == 3
             && tb.getBrewResult().getPotionItem().getItem() == ItemRegistry.potion_drinkable.get()
@@ -225,7 +289,9 @@ public class BlockCauldron extends SOMBlockContainer {
          }
          if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.WATER) {
             BrewResult result = new BrewResult(tb.handler);
-            if (result.isValid() && tb.getLiquidLevel() > 0) {
+            boolean levelOk = result.isItemBrew() ? tb.getLiquidLevel() == 3 : tb.getLiquidLevel() > 0;
+            if (result.isValid() && levelOk
+               && tb.getFluidType() == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER) {
 
                float cost = result.getManaCost();
                com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.IManaData mana =
@@ -246,6 +312,30 @@ public class BlockCauldron extends SOMBlockContainer {
                tb.setLiddedAndUpdate(true);
             }
             return InteractionResult.SUCCESS;
+         }
+         if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.COMPLETE && tb.getLiquidLevel() > 0
+            && !tb.getBrewResult().isItemBrew()) {
+            boolean anyFoodOnly = false;
+            boolean onlyFoodOnly = true;
+            for (int i = 0; i < 9; i++) {
+               ItemStack s = tb.handler.getStackInSlot(i);
+               if (s.isEmpty()) continue;
+               if (s.getItem().isEdible()) anyFoodOnly = true;
+               else onlyFoodOnly = false;
+            }
+            if (anyFoodOnly && onlyFoodOnly) {
+               java.util.List<net.minecraft.world.effect.MobEffectInstance> effects = tb.getBrewResult().getEffects();
+               java.util.UUID infuser = player.getUUID();
+               for (int i = 0; i < 9; i++) {
+                  ItemStack in = tb.handler.getStackInSlot(i);
+                  if (in.isEmpty() || !in.getItem().isEdible()) continue;
+                  ItemStack copy = in.copy();
+                  com.paleimitations.schoolsofmagic.common.items.InfusedFood.infuse(copy, effects, infuser);
+                  tb.handler.setStackInSlot(i, copy);
+               }
+               tb.setLiquidLevel(tb.getLiquidLevel() - 1);
+               return InteractionResult.SUCCESS;
+            }
          }
          if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.COMPLETE && tb.getLiquidLevel() > 0
             && tb.getBrewResult().getPotionItem().getItem() == ItemRegistry.potion_lingering.get()) {
@@ -297,6 +387,28 @@ public class BlockCauldron extends SOMBlockContainer {
       }
       openMenu(world, player, pos, tb);
       return InteractionResult.SUCCESS;
+   }
+
+   @Override
+   public void entityInside(BlockState state, Level level, BlockPos pos, net.minecraft.world.entity.Entity entity) {
+      if (!(level.getBlockEntity(pos) instanceof TileEntityCauldron tb) || tb.getLiquidLevel() <= 0) {
+         return;
+      }
+      double dx = entity.getX() - (pos.getX() + 0.5D);
+      double dz = entity.getZ() - (pos.getZ() + 0.5D);
+      if (Math.abs(dx) > 0.3125D || Math.abs(dz) > 0.3125D) {
+         return;
+      }
+      com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid fluid = tb.getFluidType();
+      if (fluid == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.LAVA) {
+         entity.lavaHurt();
+      } else if (fluid == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.POWDER_SNOW) {
+         entity.setIsInPowderSnow(true);
+         entity.makeStuckInBlock(state, new net.minecraft.world.phys.Vec3(0.9D, 1.5D, 0.9D));
+         if (entity.isOnFire()) {
+            entity.clearFire();
+         }
+      }
    }
 
    private static void applyPotionData(ItemStack stack, TileEntityCauldron tb) {

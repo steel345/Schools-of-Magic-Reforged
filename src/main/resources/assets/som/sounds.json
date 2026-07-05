@@ -1,5 +1,15 @@
 {
 
+    "phoenix_cry":{
+        "subtitle": "subtitles.som.phoenix_cry",
+        "sounds": [ { "name": "som:phoenix_cry", "stream": true } ]
+    },
+
+    "sweep":{
+        "subtitle": "subtitles.som.sweep",
+        "sounds": [ { "name": "som:sweep" } ]
+    },
+
     "spells.whisper":{
         "subtitle": "spells.whisper",
         "sounds": [ 

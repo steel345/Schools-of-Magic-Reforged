@@ -188,6 +188,9 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellworkers_handbook.get()) {
          return DyeColor.RED;
       }
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ritual_compendium.get()) {
+         return DyeColor.BLUE;
+      }
       if (it instanceof com.paleimitations.schoolsofmagic.common.items.ItemMagicBook) {
          return magicSchoolColor(stack.getDamageValue());
       }
@@ -204,6 +207,7 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellworkers_handbook.get()) return 5;
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.complete_spellbook.get()) return 6;
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellbook.get()) return 4;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ritual_compendium.get()) return 5;
       return 2;
    }
 

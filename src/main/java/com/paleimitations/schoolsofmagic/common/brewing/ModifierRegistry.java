@@ -5,17 +5,11 @@ import java.util.Map;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-/**
- * Data-driven roster of brewing modifiers keyed by the item that infuses them.
- * Water-tint colours are deliberately constrained to the blue/cyan/purple-blue range so the
- * infused water still reads as water.
- */
 public final class ModifierRegistry {
 
    private static final Map<Item, TeaModifier> MODIFIERS = new HashMap<>();
 
    static {
-      // descriptor, waterTint, potencyBonus, durationMult, stabilityBonus, toxicityBonus, secChanceBonus, corruptionChance
       put(Items.HONEY_BOTTLE,        new TeaModifier("Sweet",       0x9FD0E8,  0, 1.25F,  2, -2,  0.05F, 0.00F));
       put(Items.SUGAR,               new TeaModifier("Quick",       0x4FC3FF,  1, 0.75F, -1,  0,  0.00F, 0.00F));
       put(Items.GLOWSTONE_DUST,      new TeaModifier("Empowered",   0xBFE6FF,  3, 0.90F, -1,  0,  0.00F, 0.00F));
@@ -34,7 +28,6 @@ public final class ModifierRegistry {
       return item == null ? null : MODIFIERS.get(item);
    }
 
-   /** Combines up to several modifiers into one: bonuses add, duration multiplies, tints average. */
    public static TeaModifier combine(java.util.List<Item> items) {
       if (items == null || items.isEmpty()) return null;
       int potency = 0, stability = 0, toxicity = 0;

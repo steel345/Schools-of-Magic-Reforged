@@ -19,7 +19,13 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntitySpellObelisk extends BlockEntity {
-   public ItemStackHandler handler = new ItemStackHandlerSingleSlots(9);
+   public ItemStackHandler handler = new ItemStackHandlerSingleSlots(9) {
+      @Override
+      protected void onContentsChanged(int slot) {
+         super.onContentsChanged(slot);
+         TileEntitySpellObelisk.this.setChanged();
+      }
+   };
    private final LazyOptional<IItemHandler> handlerOpt = LazyOptional.of(() -> this.handler);
    private Random random = new Random();
 

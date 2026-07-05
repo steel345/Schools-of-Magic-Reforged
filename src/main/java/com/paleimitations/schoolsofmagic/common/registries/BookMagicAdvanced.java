@@ -42,6 +42,18 @@ public class BookMagicAdvanced {
 
    private static final ResourceLocation PAPER = new ResourceLocation("som", "textures/gui/books/paper_default.png");
 
+   private static ItemStack batWing() {
+      ItemStack stack = new ItemStack(ItemRegistry.ingredient.get());
+      stack.setDamageValue(com.paleimitations.schoolsofmagic.common.blocks.EnumIngredient.BAT_WING.getIndex());
+      return stack;
+   }
+
+   private static ItemStack meta(net.minecraft.world.item.Item item, int dmg) {
+      ItemStack stack = new ItemStack(item);
+      stack.setDamageValue(dmg);
+      return stack;
+   }
+
    private static BookPage chartPage(String name, PageElement... chart) {
       List<PageElement> els = Lists.newArrayList();
       els.add(new PageElementStandardText("page." + name + ".title", 72, 58, 99, 16, 0, true));
@@ -182,7 +194,7 @@ public class BookMagicAdvanced {
 
       chartPage("bma_page16", chartImage("radius_chart.png"),
          new PageElementItemStack(new ItemStack(Items.GUNPOWDER), 140, 63),
-         new PageElementItemStack(new ItemStack(Items.DRAGON_BREATH), 140, 95),
+         new PageElementItemStack(batWing(), 140, 95),
          new PageElementItemStack(SOMPotionUtils.RADIUS_LVL_1, 182, 63),
          new PageElementItemStack(SOMPotionUtils.RADIUS_LVL_2, 182, 95),
          new PageElementItemStack(SOMPotionUtils.RADIUS_LVL_3, 182, 127),
@@ -194,7 +206,7 @@ public class BookMagicAdvanced {
       ).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
       chartPage("bma_page17", chartImage("length_chart.png"),
-         new PageElementItemStack(new ItemStack(Items.DRAGON_BREATH), 140, 63),
+         new PageElementItemStack(batWing(), 140, 63),
          new PageElementItemStack(SOMPotionUtils.LENGTH_LVL_1, 182, 63),
          new PageElementItemStack(SOMPotionUtils.LENGTH_LVL_2, 182, 95),
          new PageElementItemStack(SOMPotionUtils.LENGTH_LVL_3, 182, 127),
@@ -263,11 +275,12 @@ public class BookMagicAdvanced {
             chartImage("potion_tree_lingering.png"),
             new PageElementItemStack(new ItemStack(Items.NETHER_WART), 164, 53),
             new PageElementItemStack(new ItemStack(Items.GUNPOWDER), 164, 86),
-            new PageElementItemStack(new ItemStack(Items.DRAGON_BREATH), 164, 110),
+            new PageElementItemStack(batWing(), 164, 110),
             new PageElementItemStack(new ItemStack(Items.GLASS_BOTTLE), 194, 66),
             new PageElementItemStack(new ItemStack(ItemRegistry.burst_bottle.get()), 213, 66),
             new PageElementItemStack(new ItemStack(Items.DIAMOND), 194, 146),
             new PageElementItemStack(new ItemStack(Items.ARROW, 9), 213, 146),
+            new PageElementItemStack(new ItemStack(Items.COOKED_BEEF, 1), 204, 170),
             new PageElementItemStack(potion_lingering, 194, 90),
             new PageElementItemStack(potion_burst, 213, 90),
             new PageElementItemStack(potion_crystal, 194, 122),
@@ -292,7 +305,7 @@ public class BookMagicAdvanced {
          .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
       RecipeRitualCrafting potionCrystalRitual = new RecipeRitualCrafting(
-         new ItemStack(ItemRegistry.potion_crystal.get()),
+         ItemStack.EMPTY,
          50, 0, 0,
          com.google.common.collect.Maps.newHashMap(),
          com.google.common.collect.Maps.newHashMap(),
@@ -309,6 +322,44 @@ public class BookMagicAdvanced {
                ItemStack.EMPTY, new ItemStack(ItemRegistry.potion_crystal.get()), ItemStack.EMPTY
             }),
             new ItemStack(ItemRegistry.potion_charm.get()), 159, 110))
+         .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+
+      new BookPageStandardTitled("bma_endless_water", PAPER)
+         .addElement(new PageElementPotionRecipe(Lists.newArrayList(new ItemStack[]{
+            meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(Items.BLAZE_ROD),
+            new ItemStack(Items.GLOWSTONE_DUST),
+            new ItemStack(ItemRegistry.magic_diamond.get()),
+            new ItemStack(Items.SNOW_BLOCK)
+         }), new ItemStack(ItemRegistry.infinity_jug.get())))
+         .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+
+      new BookPageStandardTitled("bma_sunscreen", PAPER)
+         .addElement(new PageElementPotionRecipe(Lists.newArrayList(new ItemStack[]{
+            meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(ItemRegistry.bi_log_palm.get()),
+            meta(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.SUNFLOWER.getIndex())
+         }), new ItemStack(ItemRegistry.sun_screen.get())))
+         .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+
+      new BookPageStandardTitled("bma_flying_ointment", PAPER)
+         .addElement(new PageElementPotionRecipe(Lists.newArrayList(new ItemStack[]{
+            meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            meta(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.AEROMANCY.getIndex()),
+            new ItemStack(Items.FEATHER),
+            batWing(),
+            meta(ItemRegistry.gem_chunk.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.AEROMANCY.getIndex()),
+            new ItemStack(ItemRegistry.crushed_horn_unicorn.get()),
+            new ItemStack(Items.ENDER_EYE)
+         }), new ItemStack(ItemRegistry.flying_ointment.get())))
+         .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+
+      new BookPageStandardTitled("bma_mutandis", PAPER)
+         .addElement(new PageElementPotionRecipe(Lists.newArrayList(new ItemStack[]{
+            meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(Items.EGG),
+            meta(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.WORMWOOD.getIndex())
+         }), new ItemStack(ItemRegistry.mutandis.get())))
          .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);

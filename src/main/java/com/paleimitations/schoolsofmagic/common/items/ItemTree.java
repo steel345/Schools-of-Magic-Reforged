@@ -67,7 +67,7 @@ public class ItemTree extends Item implements IMagicWood {
       level.playSound(null, x, y, z, SoundEvents.BEE_LOOP, SoundSource.NEUTRAL, 0.5F, 1.8F);
    }
 
-   private static boolean isAcolyteWisp(ItemStack stack) {
+   public static boolean isAcolyteWisp(ItemStack stack) {
       return !stack.isEmpty()
          && stack.getItem() == ItemRegistry.tree_item.get()
          && stack.getDamageValue() == EnumMagicWood.ASH.getIndex();

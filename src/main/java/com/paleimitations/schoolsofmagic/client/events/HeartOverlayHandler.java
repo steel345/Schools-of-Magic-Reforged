@@ -20,18 +20,12 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-/**
- * Re-skins the health hearts when the player has one of the custom poison-like effects, using the
- * textures under textures/gui/hearts. Mirrors vanilla's damage-flash blink behaviour exactly
- * (vanilla keeps that state private, so it's tracked here). Frostbite uses vanilla frozen hearts.
- */
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class HeartOverlayHandler {
 
    private static final ResourceLocation ICONS = new ResourceLocation("textures/gui/icons.png");
    private static final String[] EFFECTS = {"basilisk_venom", "snake_poison", "puffer_toxin"};
 
-   // mirror of Gui's private health-blink state
    private static int guiTicks = 0;
    private static int lastHealth = 0;
    private static int displayHealth = 0;
@@ -96,7 +90,6 @@ public class HeartOverlayHandler {
       float maxHealth = (float) Math.max(player.getAttributeValue(Attributes.MAX_HEALTH), health);
       int absorb = Mth.ceil(player.getAbsorptionAmount());
 
-      // --- vanilla health-blink bookkeeping ---
       boolean blink = healthBlinkTime > (long) guiTicks && (healthBlinkTime - (long) guiTicks) / 3L % 2L == 1L;
       long now = Util.getMillis();
       if (health < lastHealth && player.invulnerableTime > 0) {
@@ -138,17 +131,17 @@ public class HeartOverlayHandler {
          if (health + absorb <= 4) y += rng.nextInt(2);
          if (i < healthHearts && i == regen) y -= 2;
 
-         gg.blit(ICONS, x, y, blink ? 25 : 16, containerV, 9, 9); // container (blinks white during flash)
+         gg.blit(ICONS, x, y, blink ? 25 : 16, containerV, 9, 9);
 
          int q = i * 2;
          if (i >= healthHearts) {
             int a = q - healthHearts * 2;
             if (a < absorb) {
                boolean h = a + 1 == absorb;
-               gg.blit(ICONS, x, y, h ? 169 : 160, containerV, 9, 9); // vanilla absorption
+               gg.blit(ICONS, x, y, h ? 169 : 160, containerV, 9, 9);
             }
          } else {
-            if (blink && q < shownHealth) { // lingering "ghost" hearts flash
+            if (blink && q < shownHealth) {
                boolean h = q + 1 == shownHealth;
                gg.blit(h ? halfBlink : fullBlink, x, y, 0, 0, 9, 9, 9, 9);
             }

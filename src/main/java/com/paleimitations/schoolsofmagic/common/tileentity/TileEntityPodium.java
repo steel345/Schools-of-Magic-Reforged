@@ -51,7 +51,13 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
 
    public TileEntityPodium(BlockPos pos, BlockState state) {
       super(TileEntityRegistry.PODIUM.get(), pos, state);
-      this.handler = new ItemStackHandler(8);
+      this.handler = new ItemStackHandler(8) {
+         @Override
+         protected void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            TileEntityPodium.this.setChanged();
+         }
+      };
       this.handlerOpt = LazyOptional.of(() -> this.handler);
       this.bookState = EnumState.CLOSED;
       this.podiumGame = new PodiumGame(40);

@@ -504,6 +504,7 @@ public class BookMagicBasic {
 
       new BookPageChapter(null).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageSpell(new SpellBlaze()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrestidigitation()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageSpell(new SpellGrowApple()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageSpell(new SpellLocateOre()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageSpell(new SpellZephyr()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
@@ -566,5 +567,20 @@ public class BookMagicBasic {
          handbookEls.add(new com.paleimitations.schoolsofmagic.common.books.PageElementRitualRecipe(handbookRitual, 132, 47, 0));
       }
       new BookPage("spellworkers_handbook_guide", handbookEls).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+
+      new BookPage("bmb_ritual_compendium", Lists.newArrayList(new PageElement[]{
+         new PageElementStandardText("page.bmb_ritual_compendium.title", 72, 58, 99, 16, 0, true),
+         new PageElementCraftingRecipe(
+            Lists.newArrayList(new ItemStack[]{
+               new ItemStack(Items.BOOK), stack(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.MANDRAKE.getIndex()), ItemStack.EMPTY,
+               new ItemStack(Items.CHARCOAL), stack(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.HYDRANGEA.getIndex()), ItemStack.EMPTY,
+               ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
+            }),
+            new ItemStack(ItemRegistry.ritual_compendium.get()),
+            159, 110, 0
+         ),
+         new PageElementParagraphs("bmb_ritual_compendium", 0.75F, 0, 0,
+            new ParagraphBox(23, 74, 0, 99, 108))
+      })).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
    }
 }

@@ -40,10 +40,18 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
    }
 
    private EnumPotionPhase phase = EnumPotionPhase.WATER;
-   public ItemStackHandler handler = new ItemStackHandlerSingleSlots(9);
+   public ItemStackHandler handler = new ItemStackHandlerSingleSlots(9) {
+      @Override
+      protected void onContentsChanged(int slot) {
+         super.onContentsChanged(slot);
+         TileEntityCauldron.this.setChanged();
+      }
+   };
    private final LazyOptional<IItemHandler> handlerOpt = LazyOptional.of(() -> this.handler);
    private Random random;
    private int liquidLevel;
+   private com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid fluidType =
+      com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER;
    private boolean lidded = false;
    private BrewResult brewResult = new BrewResult((IItemHandler)this.handler);
    private static final int brewTickMax = 80;
@@ -76,6 +84,9 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
 
    public int getRestMax() {
       EnumCauldronType type = this.getCauldronType();
+      if (this.brewResult != null && this.brewResult.isItemBrew()) {
+         return this.brewResult.getRestMax() - (type == EnumCauldronType.GOLD ? 100 : (type == EnumCauldronType.LION ? 200 : 0));
+      }
       return Math.round((float)this.brewResult.getRestMax() * (type == EnumCauldronType.GOLD ? 0.85f : (type == EnumCauldronType.LION ? 0.66f : 1.0f))) + 1;
    }
 
@@ -123,6 +134,16 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
       this.phase = EnumPotionPhase.fromName(nbt.getString("phase"));
       this.handler.deserializeNBT(nbt.getCompound("ItemStackHandler"));
       this.liquidLevel = nbt.getInt("liquidLevel");
+      this.fluidType = com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.fromName(nbt.getString("fluidType"));
+   }
+
+   public com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid getFluidType() {
+      return this.fluidType;
+   }
+
+   public void setFluidType(com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid fluidType) {
+      this.fluidType = fluidType;
+      this.sendUpdates();
    }
 
    @Override
@@ -134,6 +155,7 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
       nbt.putBoolean("lidded", this.lidded);
       nbt.putString("phase", this.phase.getSerializedName());
       nbt.putInt("liquidLevel", this.liquidLevel);
+      nbt.putString("fluidType", this.fluidType.name());
       nbt.put("ItemStackHandler", this.handler.serializeNBT());
    }
 
@@ -165,7 +187,6 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
 
                boolean usedFlask = false;
                boolean usedYolk = false;
-               boolean usedBreath = false;
                for (int i = 0; i < this.handler.getSlots(); ++i) {
                   ItemStack ingredient = this.handler.getStackInSlot(i);
                   if (ingredient.getItem()
@@ -174,9 +195,6 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
                   }
                   if (ingredient.is(com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.bottle_egg.get())) {
                      usedYolk = true;
-                  }
-                  if (ingredient.is(net.minecraft.world.item.Items.DRAGON_BREATH)) {
-                     usedBreath = true;
                   }
                   this.handler.setStackInSlot(i, ItemStack.EMPTY);
                }
@@ -188,9 +206,6 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
                if (usedYolk) {
                   leftovers.add(new ItemStack(
                      com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.bottle_empty.get()));
-               }
-               if (usedBreath) {
-                  leftovers.add(new ItemStack(net.minecraft.world.item.Items.GLASS_BOTTLE));
                }
                int leftoverSlot = 0;
                for (ItemStack leftover : leftovers) {
@@ -246,6 +261,9 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
       if (this.liquidLevel <= 0) {
          return;
       }
+      if (this.fluidType != com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER) {
+         return;
+      }
       net.minecraft.util.RandomSource rand = this.level.random;
       if (rand.nextInt(80) == 0) {
          this.level.playLocalSound(this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.5,
@@ -256,7 +274,9 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
          return;
       }
       java.awt.Color color;
-      if (this.phase == EnumPotionPhase.WATER || this.brewResult == null
+      if (this.phase != EnumPotionPhase.WATER && this.brewResult != null && this.brewResult.isItemBrew()) {
+         color = new java.awt.Color(this.brewResult.getCustomColor());
+      } else if (this.phase == EnumPotionPhase.WATER || this.brewResult == null
             || this.brewResult.getEffects() == null || this.brewResult.getEffects().isEmpty()) {
          color = new java.awt.Color(0x757FFF);
       } else {

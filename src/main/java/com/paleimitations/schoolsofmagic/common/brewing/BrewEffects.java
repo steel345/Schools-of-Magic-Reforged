@@ -11,29 +11,20 @@ import java.util.function.Supplier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 
-/**
- * Central data-driven mapping of brewing effect keys to actual {@link MobEffect}s, plus
- * the supporting tables (powerful effects, negative side effects, corruption). All keys are
- * lower_snake_case and referenced from {@link HerbRegistry} / {@link ModifierRegistry}.
- */
 public final class BrewEffects {
 
    public static final Map<String, Supplier<MobEffect>> EFFECTS = new HashMap<>();
 
-   /** Powerful/rare effects whose amplifier is capped low regardless of potency. */
    public static final Set<String> POWERFUL =
       new HashSet<>(Arrays.asList("indestructibility", "demonic_possession", "undead", "paralysis"));
 
-   /** Negative effects that may be inflicted as a toxic/unstable side effect. */
    public static final List<String> NEGATIVE_SIDE_EFFECTS = Arrays.asList(
       "nausea", "weakness", "poison", "mana_exhaustion", "vulnerability",
       "fear", "daze", "blurry_vision", "sweaty_hands", "stench");
 
-   /** Corruption table: a clean effect twists into one of the listed darker effects. */
    public static final Map<String, String[]> CORRUPTION = new HashMap<>();
 
    static {
-      // --- vanilla effects ---
       v("fire_resistance", MobEffects.FIRE_RESISTANCE);
       v("strength", MobEffects.DAMAGE_BOOST);
       v("regeneration", MobEffects.REGENERATION);
@@ -61,7 +52,6 @@ public final class BrewEffects {
       v("confusion", MobEffects.CONFUSION);
       v("nausea", MobEffects.CONFUSION);
 
-      // --- mod effects (PotionRegistry) ---
       m("flammability", PotionRegistry.flamability);
       m("mana_regeneration", PotionRegistry.mana_regen);
       m("mana_exhaustion", PotionRegistry.mana_exhaustion);
@@ -92,7 +82,6 @@ public final class BrewEffects {
       m("blurry_vision", PotionRegistry.blurry_vision);
       m("sweaty_hands", PotionRegistry.sweaty_hands);
 
-      // --- corruption table ---
       CORRUPTION.put("regeneration", new String[]{"wither", "weakness"});
       CORRUPTION.put("night_vision", new String[]{"blurry_vision", "hallucination"});
       CORRUPTION.put("speed", new String[]{"daze", "sweaty_hands"});

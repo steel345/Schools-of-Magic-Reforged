@@ -1,0 +1,1 @@
+  When you first light a brazier, it remembers you as its owner. Only its owner may begin a rite upon it, be it with a wand, a plain stick, or the spellslot of a worn ring.<~><~>  Others may still add or take ingredients, but the flame itself answers to you alone.

@@ -62,8 +62,12 @@ public class EntityUnicorn extends AbstractHorse {
    @Override
    public void aiStep() {
       super.aiStep();
-      if (!this.hasHorn() && this.tickCount > this.regrow) {
-         this.setHorn(true);
+      if (!this.level().isClientSide && !this.hasHorn()) {
+         if (this.regrow > 0) {
+            this.regrow--;
+         } else {
+            this.setHorn(true);
+         }
       }
    }
 
@@ -74,7 +78,7 @@ public class EntityUnicorn extends AbstractHorse {
          stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
          player.getInventory().add(new ItemStack(ItemRegistry.horn_unicorn.get()));
          this.setHorn(false);
-         this.regrow = this.tickCount + 2400 + this.getRandom().nextInt(2400);
+         this.regrow = 2400 + this.getRandom().nextInt(2400);
          this.playSound(SoundEvents.SHEEP_SHEAR, 1.0F, 1.0F);
          if (!this.level().isClientSide) {
             com.paleimitations.schoolsofmagic.common.entity.capabilities.quests.IQuestData data =
@@ -101,18 +105,19 @@ public class EntityUnicorn extends AbstractHorse {
    }
 
    @Override
-   public CompoundTag serializeNBT() {
-      CompoundTag nbt = super.serializeNBT();
+   public void addAdditionalSaveData(CompoundTag nbt) {
+      super.addAdditionalSaveData(nbt);
       nbt.putBoolean("horn", this.hasHorn());
       nbt.putInt("regrow", this.regrow);
-      return nbt;
    }
 
    @Override
-   public void deserializeNBT(CompoundTag nbt) {
-      this.setHorn(nbt.getBoolean("horn"));
+   public void readAdditionalSaveData(CompoundTag nbt) {
+      super.readAdditionalSaveData(nbt);
+      if (nbt.contains("horn")) {
+         this.setHorn(nbt.getBoolean("horn"));
+      }
       this.regrow = nbt.getInt("regrow");
-      super.deserializeNBT(nbt);
    }
 
    @Override

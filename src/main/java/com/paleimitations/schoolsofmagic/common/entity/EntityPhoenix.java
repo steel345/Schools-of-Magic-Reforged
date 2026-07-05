@@ -76,6 +76,8 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
       net.minecraft.network.syncher.SynchedEntityData.defineId(EntityPhoenix.class, net.minecraft.network.syncher.EntityDataSerializers.BOOLEAN);
    private static final net.minecraft.network.syncher.EntityDataAccessor<Float> FADE =
       net.minecraft.network.syncher.SynchedEntityData.defineId(EntityPhoenix.class, net.minecraft.network.syncher.EntityDataSerializers.FLOAT);
+   private static final net.minecraft.network.syncher.EntityDataAccessor<Integer> CRY =
+      net.minecraft.network.syncher.SynchedEntityData.defineId(EntityPhoenix.class, net.minecraft.network.syncher.EntityDataSerializers.INT);
    private int coldTimer;
    private int dyingTimer;
    private int carryTimer;
@@ -628,6 +630,14 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
          }
          return;
       }
+      if (this.getCryTicks() > 0) {
+         this.entityData.set(CRY, this.getCryTicks() - 1);
+         this.setTarget(null);
+         this.getNavigation().stop();
+         this.flyUp = false;
+         this.setDeltaMovement(0.0D, Math.min(0.0D, this.getDeltaMovement().y), 0.0D);
+         return;
+      }
       if (this.rebirthTimer > 0) { tickRebirth(); return; }
       if (this.giftMode) { this.setTarget(null); tickCourier(); return; }
       if (this.catchTarget != null) { tickCatch(); return; }
@@ -805,6 +815,7 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
          }
          server.sendParticles(net.minecraft.core.particles.ParticleTypes.LARGE_SMOKE, this.getX(), this.getY() + 0.3D, this.getZ(), 18, 0.3D, 0.3D, 0.3D, 0.04D);
          server.playSound(null, this.blockPosition(), SoundEvents.FIRE_EXTINGUISH, this.getSoundSource(), 1.0F, 1.4F);
+         this.playCry();
       }
       this.rebirthTimer = 0;
       this.rebirthPos = null;
@@ -1107,6 +1118,22 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
       this.entityData.define(DYING, false);
       this.entityData.define(REBIRTH, false);
       this.entityData.define(FADE, 0.0F);
+      this.entityData.define(CRY, 0);
+   }
+
+   public static final int CRY_DURATION = 80;
+
+   public int getCryTicks() {
+      return this.entityData.get(CRY);
+   }
+
+   public void playCry() {
+      if (!this.level().isClientSide) {
+         this.entityData.set(CRY, CRY_DURATION);
+         this.level().playSound(null, this.blockPosition(),
+            com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PHOENIX_CRY.get(),
+            this.getSoundSource(), 1.6F, 1.0F);
+      }
    }
 
    public boolean isRebirthing() { return this.entityData.get(REBIRTH); }

@@ -42,7 +42,6 @@ public class TileEntityTeapot extends BlockEntity {
    public int waterLevel = 0;
    public boolean swapped = false;
 
-   // --- dynamic brewing ---
    public com.paleimitations.schoolsofmagic.common.brewing.BrewState brewState =
       com.paleimitations.schoolsofmagic.common.brewing.BrewState.EMPTY;
    public java.util.List<net.minecraft.world.item.Item> modifiers = new java.util.ArrayList<>();
@@ -58,9 +57,6 @@ public class TileEntityTeapot extends BlockEntity {
    private boolean lastSyncedHasDyn = false;
    public static ItemStack WATER_BOTTLE = new ItemStack(Items.POTION);
 
-   // Hopper-facing wrapper: routes inserts (teacups/water -> slot 3, ingredients -> slots 0-2)
-   // and only lets automation pull finished tea / byproducts out of slot 3. Slot ops delegate to
-   // the real handler so the GUI is unaffected.
    private final net.minecraftforge.items.IItemHandlerModifiable automationHandler =
       new net.minecraftforge.items.IItemHandlerModifiable() {
          @Override public int getSlots() { return handler.getSlots(); }
@@ -144,7 +140,6 @@ public class TileEntityTeapot extends BlockEntity {
       boolean dynamicEngaged = this.brewState != com.paleimitations.schoolsofmagic.common.brewing.BrewState.EMPTY
          && this.brewState != com.paleimitations.schoolsofmagic.common.brewing.BrewState.WATER_ADDED;
 
-      // Fixed recipes behave exactly as before, but only while the dynamic system is idle.
       if (this.tea == null && this.dynamicTea == null && !dynamicEngaged && heat && this.waterLevel > 0) {
          this.worker.doWork();
       }
@@ -154,7 +149,6 @@ public class TileEntityTeapot extends BlockEntity {
       if (!this.swapped) {
          ItemStack s3 = this.handler.getStackInSlot(3);
 
-         // Dispense a finished dynamic tea into an empty teacup.
          if (this.brewState == com.paleimitations.schoolsofmagic.common.brewing.BrewState.COMPLETE
                && this.dynamicTea != null
                && s3.getItem() == ItemRegistry.teacup_empty.get() && this.waterLevel > 0) {
@@ -213,7 +207,6 @@ public class TileEntityTeapot extends BlockEntity {
       }
    }
 
-   // ----- dynamic brewing state machine -----
    private void tickDynamic(boolean heat) {
       if (this.brewState == com.paleimitations.schoolsofmagic.common.brewing.BrewState.EMPTY && this.waterLevel > 0) {
          this.brewState = com.paleimitations.schoolsofmagic.common.brewing.BrewState.WATER_ADDED;
@@ -234,7 +227,7 @@ public class TileEntityTeapot extends BlockEntity {
          case MODIFIER_INFUSING:
             if (heat) {
                if (this.tryConsumeModifier()) {
-                  this.infuseTimer = INFUSE_TIME; // another modifier added -> re-infuse
+                  this.infuseTimer = INFUSE_TIME;
                } else if (--this.infuseTimer <= 0) {
                   this.brewState = com.paleimitations.schoolsofmagic.common.brewing.BrewState.MODIFIER_INFUSED;
                }
@@ -268,7 +261,6 @@ public class TileEntityTeapot extends BlockEntity {
       }
    }
 
-   /** Consumes one modifier item from the ingredient slots (max 3 total), returning its container. */
    private boolean tryConsumeModifier() {
       if (this.modifiers.size() >= 3) return false;
       for (int i = 0; i < 3; i++) {
@@ -311,7 +303,6 @@ public class TileEntityTeapot extends BlockEntity {
       }
    }
 
-   /** Puts the empty container (bucket/bottle) back into the basin, or drops it if there's no room. */
    private void returnContainer(int slot, ItemStack container) {
       if (this.handler.getStackInSlot(slot).isEmpty()) {
          this.handler.setStackInSlot(slot, container);
@@ -339,7 +330,6 @@ public class TileEntityTeapot extends BlockEntity {
       this.dynamicTea = null;
    }
 
-   /** Combined modifier water-tint: the infused modifiers, or a live preview of modifiers in the slots. */
    private int currentModifierTint() {
       java.util.List<net.minecraft.world.item.Item> mods;
       if (!this.modifiers.isEmpty()) {
@@ -438,7 +428,6 @@ public class TileEntityTeapot extends BlockEntity {
       return this.tea != null ? TeaUtils.appendEffects(new ItemStack(ItemRegistry.teacup.get()), this.tea.getEffect()) : ItemStack.EMPTY;
    }
 
-   /** Pours one cup of the ready tea (dynamic or fixed), consuming a water level. EMPTY if none ready. */
    public ItemStack extractTea() {
       if (this.waterLevel <= 0) return ItemStack.EMPTY;
       if (this.dynamicTea != null && this.brewState == com.paleimitations.schoolsofmagic.common.brewing.BrewState.COMPLETE) {

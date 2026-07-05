@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " N ",
+    "NSN",
+    "NIN"
+  ],
+  "key": {
+    "N": { "item": "som:nugget", "type": "forge:partial_nbt", "nbt": "{Damage:0}" },
+    "S": { "item": "minecraft:string" },
+    "I": { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:0}" }
+  },
+  "result": { "item": "som:silver_bell", "count": 1 }
+}

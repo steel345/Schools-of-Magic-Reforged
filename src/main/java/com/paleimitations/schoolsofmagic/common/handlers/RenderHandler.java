@@ -60,6 +60,8 @@ public class RenderHandler {
       event.registerEntityRenderer(EntityRegistry.NOBLE_TREE.get(), RenderNobleTree::new);
       event.registerEntityRenderer(EntityRegistry.TOAD.get(), RenderToad::new);
       event.registerEntityRenderer(EntityRegistry.TADPOLE.get(), RenderTadpole::new);
+      event.registerEntityRenderer(EntityRegistry.BROOM.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderBroom::new);
+      event.registerEntityRenderer(EntityRegistry.MAGIC_BROOM.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMagicBroom::new);
 
       event.registerEntityRenderer(EntityRegistry.JUMPING_CACTUS.get(), RenderJumpingCactus::new);
       event.registerEntityRenderer(EntityRegistry.WEB_PROJECTILE.get(), RenderWebProjectile::new);
@@ -93,6 +95,8 @@ public class RenderHandler {
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelDemon.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelDemon::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelDryad.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelDryad::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelToad.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelToad::createBodyLayer);
+      reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelBroom.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelBroom::createBodyLayer);
+      reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelMagicBroom.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelMagicBroom::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelHuman.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelHuman::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelJumpingCactus.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelJumpingCactus::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelMagicCircle.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelMagicCircle::createBodyLayer);

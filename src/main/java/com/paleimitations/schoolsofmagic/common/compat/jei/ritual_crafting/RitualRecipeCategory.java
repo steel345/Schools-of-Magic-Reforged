@@ -91,6 +91,15 @@ public class RitualRecipeCategory implements IRecipeCategory<RecipeRitualCraftin
       Font font = mc.font;
       int tick = (mc.player != null) ? mc.player.tickCount : 0;
 
+      if (recipe.getNote() != null) {
+         float sc = 0.7F;
+         String note = recipe.getNote();
+         gg.pose().pushPose();
+         gg.pose().scale(sc, sc, 1.0F);
+         gg.drawString(font, note, Math.round(53 / sc) - font.width(note) / 2, Math.round(126 / sc), Color.GRAY.getRGB(), false);
+         gg.pose().popPose();
+      }
+
       int mana = recipe.getManaUsage();
       if (mana <= 0) return;
       String s = String.valueOf(mana);

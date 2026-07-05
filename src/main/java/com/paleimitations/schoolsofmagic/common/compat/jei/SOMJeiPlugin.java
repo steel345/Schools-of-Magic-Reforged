@@ -245,7 +245,15 @@ public class SOMJeiPlugin implements IModPlugin {
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.tea.TeapotRecipeCategory(reg.getJeiHelpers().getGuiHelper()));
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.spell_forge.SpellForgePointsCategory(reg.getJeiHelpers().getGuiHelper()));
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.spell_forge.ScrollForgeCategory(reg.getJeiHelpers().getGuiHelper()));
+      reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewCategory(reg.getJeiHelpers().getGuiHelper()));
    }
+
+   private static ItemStack metaStack(net.minecraft.world.item.Item item, int damage) {
+      ItemStack s = new ItemStack(item);
+      s.setDamageValue(damage);
+      return s;
+   }
+
 
    @Override
    public void registerRecipes(IRecipeRegistration reg) {
@@ -285,6 +293,38 @@ public class SOMJeiPlugin implements IModPlugin {
       reg.addRecipes(com.paleimitations.schoolsofmagic.common.compat.jei.spell_forge.ScrollForgeCategory.TYPE,
          com.paleimitations.schoolsofmagic.common.compat.jei.spell_forge.ScrollForgeRecipeMaker.getRecipes());
 
+      java.util.List<com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewRecipe> brews = new ArrayList<>();
+      brews.add(new com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewRecipe(
+         java.util.Arrays.asList(
+            metaStack(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(net.minecraft.world.item.Items.BLAZE_ROD),
+            new ItemStack(net.minecraft.world.item.Items.GLOWSTONE_DUST),
+            new ItemStack(ItemRegistry.magic_diamond.get()),
+            new ItemStack(net.minecraft.world.item.Items.SNOW_BLOCK)),
+         new ItemStack(ItemRegistry.infinity_jug.get())));
+      brews.add(new com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewRecipe(
+         java.util.Arrays.asList(
+            metaStack(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(ItemRegistry.bi_log_palm.get()),
+            metaStack(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.SUNFLOWER.getIndex())),
+         new ItemStack(ItemRegistry.sun_screen.get())));
+      brews.add(new com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewRecipe(
+         java.util.Arrays.asList(
+            metaStack(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            metaStack(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.AEROMANCY.getIndex()),
+            new ItemStack(net.minecraft.world.item.Items.FEATHER),
+            metaStack(ItemRegistry.ingredient.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumIngredient.BAT_WING.getIndex()),
+            metaStack(ItemRegistry.gem_chunk.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.AEROMANCY.getIndex()),
+            new ItemStack(ItemRegistry.crushed_horn_unicorn.get()),
+            new ItemStack(net.minecraft.world.item.Items.ENDER_EYE)),
+         new ItemStack(ItemRegistry.flying_ointment.get())));
+      brews.add(new com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewRecipe(
+         java.util.Arrays.asList(
+            metaStack(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(net.minecraft.world.item.Items.EGG),
+            metaStack(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.WORMWOOD.getIndex())),
+         new ItemStack(ItemRegistry.mutandis.get())));
+      reg.addRecipes(com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewCategory.TYPE, brews);
    }
 
    @Override
@@ -294,6 +334,8 @@ public class SOMJeiPlugin implements IModPlugin {
          com.paleimitations.schoolsofmagic.common.compat.jei.drying.DryingRecipeCategory.TYPE);
       reg.addRecipeCatalyst(new ItemStack(BlockRegistry.catalyst_basin.get()),
          com.paleimitations.schoolsofmagic.common.compat.jei.catalyst_basin.CatalystBasinRecipeCategory.TYPE);
+      reg.addRecipeCatalyst(new ItemStack(BlockRegistry.cauldron.get()),
+         com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewCategory.TYPE);
 
       reg.addRecipeCatalyst(new ItemStack(BlockRegistry.brazier.get()),
          com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.RitualRecipeCategory.TYPE);

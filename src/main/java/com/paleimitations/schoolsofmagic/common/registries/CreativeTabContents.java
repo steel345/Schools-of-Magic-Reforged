@@ -25,7 +25,6 @@ public class CreativeTabContents {
     private static final Map<String, Tab> ITEM_TAB = Map.<String, Tab>ofEntries(
 
         Map.entry("ItemBaseWand", Tab.EQUIPMENT),
-        Map.entry("ItemBell", Tab.EQUIPMENT),
         Map.entry("ItemBookBase", Tab.EQUIPMENT),
 
         Map.entry("ItemSpellbook", Tab.EQUIPMENT),
@@ -283,6 +282,24 @@ public class CreativeTabContents {
     }
 
     private static void emitEntries(net.minecraft.world.item.CreativeModeTab.Output output, Item item, ResourceLocation id) {
+
+        if (item == ItemRegistry.potion_drinkable.get()) {
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.infinity_jug.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.sun_screen.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.flying_ointment.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.mutandis.get()));
+        }
+
+        if (item == ItemRegistry.ziggurat_door_key.get()) {
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.silver_bell.get()));
+        }
+
+        if (item == ItemRegistry.bone_knife.get()) {
+            output.accept(new net.minecraft.world.item.ItemStack(item));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.broom.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_broom.get()));
+            return;
+        }
 
         if (item == ItemRegistry.magic_letter.get()) {
             output.accept(new net.minecraft.world.item.ItemStack(item));

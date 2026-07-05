@@ -33,7 +33,13 @@ public class TileEntityMortNPest extends BlockEntity implements MenuProvider {
    private int maxCooldown = 10;
    private int crush;
    private int maxCrush;
-   public ItemStackHandler handler = new ItemStackHandler(2);
+   public ItemStackHandler handler = new ItemStackHandler(2) {
+      @Override
+      protected void onContentsChanged(int slot) {
+         super.onContentsChanged(slot);
+         TileEntityMortNPest.this.setChanged();
+      }
+   };
    private Random random;
    private Worker worker = new Worker(this.maxCooldown, false, () -> {}, () -> {
 

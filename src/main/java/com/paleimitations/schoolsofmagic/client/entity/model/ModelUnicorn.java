@@ -223,6 +223,9 @@ public class ModelUnicorn<T extends AbstractHorse> extends EntityModel<T> {
    @Override
    public void setupAnim(T entity, float limbSwing, float limbSwingAmount,
                          float ageInTicks, float netHeadYaw, float headPitch) {
+      if (entity instanceof EntityUnicorn unicorn) {
+         this.horn.visible = unicorn.hasHorn();
+      }
       float partialTickTime = ageInTicks - (float) entity.tickCount;
       float f = this.updateHorseRotation(entity.yBodyRotO, entity.yBodyRot, partialTickTime);
       float f1 = this.updateHorseRotation(entity.yHeadRotO, entity.yHeadRot, partialTickTime);

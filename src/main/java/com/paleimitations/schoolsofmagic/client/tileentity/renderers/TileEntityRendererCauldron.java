@@ -29,6 +29,9 @@ import org.joml.Matrix4f;
 public class TileEntityRendererCauldron implements BlockEntityRenderer<TileEntityCauldron> {
 
    private static final ResourceLocation WATER_SPRITE = new ResourceLocation("minecraft", "block/water_still");
+   private static final ResourceLocation THICK_FLUID_SPRITE = new ResourceLocation("som", "block/thick_fluid");
+   private static final ResourceLocation LAVA_SPRITE = new ResourceLocation("minecraft", "block/lava_still");
+   private static final ResourceLocation POWDER_SNOW_SPRITE = new ResourceLocation("minecraft", "block/powder_snow");
    private static final ResourceLocation TEXTURE_0 = new ResourceLocation("som", "textures/entity/cauldron_default.png");
    private static final ResourceLocation TEXTURE_1 = new ResourceLocation("som", "textures/entity/cauldron_gold.png");
    private static final ResourceLocation TEXTURE_2 = new ResourceLocation("som", "textures/entity/cauldron_lion.png");
@@ -75,30 +78,47 @@ public class TileEntityRendererCauldron implements BlockEntityRenderer<TileEntit
 
       int level = te.getLiquidLevel();
       if (level != 0) {
+         com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid fluid = te.getFluidType();
+         TileEntityCauldron.EnumPotionPhase phase = te.getPhase();
+         ResourceLocation spriteLoc;
+         Color color;
+         int light = packedLight;
+         if (fluid == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.LAVA) {
+            spriteLoc = LAVA_SPRITE;
+            color = new Color(0xFFFFFF);
+            light = 15728880;
+         } else if (fluid == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.POWDER_SNOW) {
+            spriteLoc = POWDER_SNOW_SPRITE;
+            color = new Color(0xFFFFFF);
+         } else {
+            boolean thick = te.getBrewResult().isItemBrew()
+               && phase == TileEntityCauldron.EnumPotionPhase.COMPLETE;
+            spriteLoc = thick ? THICK_FLUID_SPRITE : WATER_SPRITE;
+            Color colorWater = new Color(0x757FFF);
+            Color colorPotion = te.getBrewResult().isItemBrew()
+               ? new Color(te.getBrewResult().getCustomColor())
+               : new Color(PotionUtils.getColor(te.getBrewResult().getEffects()));
+            if (phase == TileEntityCauldron.EnumPotionPhase.WATER || phase == TileEntityCauldron.EnumPotionPhase.BREWING) {
+               color = colorWater;
+            } else if (phase == TileEntityCauldron.EnumPotionPhase.STIRRING) {
+               color = interpolateColor(colorWater, colorPotion, te.getStirCounter(), te.getBrewResult().getStirMax());
+            } else {
+               color = colorPotion;
+            }
+         }
          TextureAtlasSprite still = Minecraft.getInstance().getModelManager()
-            .getAtlas(InventoryMenu.BLOCK_ATLAS).getSprite(WATER_SPRITE);
-         Color color = new Color(0);
-         Color colorWater = new Color(0x757FFF);
-         Color colorPotion = new Color(PotionUtils.getColor(te.getBrewResult().getEffects()));
+            .getAtlas(InventoryMenu.BLOCK_ATLAS).getSprite(spriteLoc);
          double posY = 0.0D;
          if (level == 3) posY = 0.6875D;
          else if (level == 2) posY = 0.5208333333333334D;
          else if (level == 1) posY = 0.3541666666666667D;
-         TileEntityCauldron.EnumPotionPhase phase = te.getPhase();
-         if (phase == TileEntityCauldron.EnumPotionPhase.WATER || phase == TileEntityCauldron.EnumPotionPhase.BREWING) {
-            color = colorWater;
-         } else if (phase == TileEntityCauldron.EnumPotionPhase.STIRRING) {
-            color = interpolateColor(colorWater, colorPotion, te.getStirCounter(), te.getBrewResult().getStirMax());
-         } else if (phase == TileEntityCauldron.EnumPotionPhase.RESTING || phase == TileEntityCauldron.EnumPotionPhase.COMPLETE) {
-            color = colorPotion;
-         }
          VertexConsumer waterConsumer = buffer.getBuffer(RenderType.entityTranslucentCull(InventoryMenu.BLOCK_ATLAS));
          Matrix4f m = poseStack.last().pose();
          int r = color.getRed(), g = color.getGreen(), b = color.getBlue(), a = color.getAlpha();
-         vTex(waterConsumer, m, packedLight, packedOverlay, 0.1875F, (float)posY, 0.1875F, still.getU(3.0F), still.getV(3.0F), r, g, b, a);
-         vTex(waterConsumer, m, packedLight, packedOverlay, 0.1875F, (float)posY, 0.8125F, still.getU(3.0F), still.getV(13.0F), r, g, b, a);
-         vTex(waterConsumer, m, packedLight, packedOverlay, 0.8125F, (float)posY, 0.8125F, still.getU(13.0F), still.getV(13.0F), r, g, b, a);
-         vTex(waterConsumer, m, packedLight, packedOverlay, 0.8125F, (float)posY, 0.1875F, still.getU(13.0F), still.getV(3.0F), r, g, b, a);
+         vTex(waterConsumer, m, light, packedOverlay, 0.1875F, (float)posY, 0.1875F, still.getU(3.0F), still.getV(3.0F), r, g, b, a);
+         vTex(waterConsumer, m, light, packedOverlay, 0.1875F, (float)posY, 0.8125F, still.getU(3.0F), still.getV(13.0F), r, g, b, a);
+         vTex(waterConsumer, m, light, packedOverlay, 0.8125F, (float)posY, 0.8125F, still.getU(13.0F), still.getV(13.0F), r, g, b, a);
+         vTex(waterConsumer, m, light, packedOverlay, 0.8125F, (float)posY, 0.1875F, still.getU(13.0F), still.getV(3.0F), r, g, b, a);
       }
 
       ItemStack[] stacks = new ItemStack[9];

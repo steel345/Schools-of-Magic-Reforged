@@ -39,6 +39,7 @@ public class BookPageRegistry {
     public static final List<BookPage> SPELLWORK_BOOK = Lists.newArrayList();
     public static final List<BookPage> EXPLORER_CODEX = Lists.newArrayList();
     public static final List<BookPage> ALCHEMY_BOOK = Lists.newArrayList();
+    public static final List<BookPage> RITUAL_BOOK = Lists.newArrayList();
 
     private static ItemStack stack(RegistryObject<Item> item, int meta) {
         ItemStack s = new ItemStack(item.get());
@@ -84,6 +85,7 @@ public class BookPageRegistry {
         BookSpellwork.init();
         BookExplorer.init();
         BookAlchemy.init();
+        BookRituals.init();
 
         new BookPage("ccw_letter_1", Lists.newArrayList(
             new PageElementParagraphs(

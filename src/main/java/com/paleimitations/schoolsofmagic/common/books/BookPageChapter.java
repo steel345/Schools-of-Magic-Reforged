@@ -22,7 +22,6 @@ public class BookPageChapter extends BookPage {
    public void buildChapter() {
       if (this.pageHolder instanceof IBook || this.pageHolder instanceof Book) {
          IBook book = (IBook)this.pageHolder;
-         // idempotent: drop previously generated entries (keep any title) before rebuilding
          this.elements.removeIf(e -> e instanceof PageElementChapterEntry);
          int chapterNumber = 0;
          int chapterPageNumber = -1;

@@ -28,6 +28,14 @@ public class SOMConfig {
 
    public static ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> dry_transforms;
    public static ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> fast_forward_transforms;
+   public static ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> scorch_transforms;
+
+   public static float prestidigitation_cost = 10.0F;
+   public static int prestidigitation_minLevel = 0;
+   public static float smoke_scry_cost = 15.0F;
+   public static int smoke_scry_minLevel = 0;
+   public static float scorch_cost = 25.0F;
+   public static int scorch_minLevel = 4;
 
    public static ForgeConfigSpec.BooleanValue enable_pyromancy;
    public static ForgeConfigSpec.BooleanValue enable_heliomancy;
@@ -314,6 +322,13 @@ public class SOMConfig {
                "minecraft:cobblestone>minecraft:mossy_cobblestone",
                "minecraft:stone_bricks>minecraft:mossy_stone_bricks"),
             o -> o instanceof String && ((String) o).contains(">"));
+      scorch_transforms = BUILDER
+         .comment("Extra block conversions the Scorch spell applies, in addition to the built-in ones (logs to charcoal, cobble/stone to blackstone, soul sand to soul soil, netherrack to magma, ice to water, snow to air, plants to dead bushes, kelp to dried kelp).")
+         .defineListAllowEmpty(java.util.List.of("scorch_transforms"),
+            () -> java.util.Arrays.asList(
+               "minecraft:clay>minecraft:terracotta",
+               "minecraft:mud>minecraft:packed_mud"),
+            o -> o instanceof String && ((String) o).contains(">"));
       BUILDER.pop();
 
       SPEC = BUILDER.build();
@@ -321,6 +336,17 @@ public class SOMConfig {
 
    private static java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block> dryMap;
    private static java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block> fastForwardMap;
+   private static java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block> scorchMap;
+
+   public static net.minecraft.world.level.block.Block getScorchResult(net.minecraft.world.level.block.Block source) {
+      if (!SPEC.isLoaded()) {
+         return null;
+      }
+      if (scorchMap == null) {
+         scorchMap = parseTransforms(scorch_transforms.get());
+      }
+      return scorchMap.get(source);
+   }
 
    public static net.minecraft.world.level.block.Block getDryResult(net.minecraft.world.level.block.Block source) {
       if (!SPEC.isLoaded()) {

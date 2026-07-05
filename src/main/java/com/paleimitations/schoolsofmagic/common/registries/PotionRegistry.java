@@ -21,6 +21,7 @@ import com.paleimitations.schoolsofmagic.common.potions.potions.PotionManaExhaus
 import com.paleimitations.schoolsofmagic.common.potions.potions.PotionManaRegen;
 import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSpellCharge;
 import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSpellChargeRegen;
+import com.paleimitations.schoolsofmagic.common.potions.potions.PotionSunscreen;
 import com.paleimitations.schoolsofmagic.common.potions.potions.PotionPoisonThorned;
 import com.paleimitations.schoolsofmagic.common.potions.potions.PotionPojectileAttraction;
 import com.paleimitations.schoolsofmagic.common.potions.potions.PotionProjectileRepulsion;
@@ -48,7 +49,7 @@ public class PotionRegistry {
    public static final RegistryObject<MobEffect> basilisk_venom = EFFECTS.register("basilisk_venom", () -> new PotionFatalPoison(MobEffectCategory.HARMFUL, 10999891));
    public static final RegistryObject<MobEffect> bewilderment = EFFECTS.register("bewilderment", () -> new PotionBasic(MobEffectCategory.HARMFUL, 12815316));
    public static final RegistryObject<MobEffect> blurry_vision = EFFECTS.register("blurry_vision", () -> new PotionBasic(MobEffectCategory.HARMFUL, 6051431));
-   public static final RegistryObject<MobEffect> certain_death = EFFECTS.register("certain_death", () -> new PotionFatalPoison(MobEffectCategory.HARMFUL, 0));
+   public static final RegistryObject<MobEffect> certain_death = EFFECTS.register("certain_death", () -> new PotionFatalPoison(MobEffectCategory.HARMFUL, 0, true));
    public static final RegistryObject<MobEffect> color_blind = EFFECTS.register("color_blind", () -> new PotionBasic(MobEffectCategory.HARMFUL, 0x414141));
    public static final RegistryObject<MobEffect> confusion2 = EFFECTS.register("confusion2", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));
    public static final RegistryObject<MobEffect> creepers_bane = EFFECTS.register("creepers_bane", () -> new PotionCreepersBane(MobEffectCategory.BENEFICIAL, 0xB93B3B));
@@ -74,6 +75,7 @@ public class PotionRegistry {
    public static final RegistryObject<MobEffect> mana_exhaustion = EFFECTS.register("mana_exhaustion", () -> new PotionManaExhaustion(MobEffectCategory.HARMFUL, 8555836));
    public static final RegistryObject<MobEffect> mana_regen = EFFECTS.register("mana_regen", () -> new PotionManaRegen(MobEffectCategory.BENEFICIAL, 12681471));
    public static final RegistryObject<MobEffect> spell_charge = EFFECTS.register("spell_charge", () -> new PotionSpellCharge(MobEffectCategory.BENEFICIAL, 4251856));
+   public static final RegistryObject<MobEffect> sunscreen = EFFECTS.register("sunscreen", () -> new PotionSunscreen(MobEffectCategory.BENEFICIAL, 0xF07000));
    public static final RegistryObject<MobEffect> spell_charge_regen = EFFECTS.register("spell_charge_regen", () -> new PotionSpellChargeRegen(MobEffectCategory.BENEFICIAL, 16738740));
    public static final RegistryObject<MobEffect> obscuration = EFFECTS.register("obscuration", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));
    public static final RegistryObject<MobEffect> paralysis = EFFECTS.register("paralysis", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));

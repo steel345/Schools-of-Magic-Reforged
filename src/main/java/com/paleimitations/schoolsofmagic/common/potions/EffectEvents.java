@@ -77,6 +77,14 @@ public class EffectEvents {
    public static void updateLivingEvent(LivingEvent.LivingTickEvent event) {
       LivingEntity livingBase = event.getEntity();
       Level world = livingBase.level();
+      if (livingBase instanceof Player flyer && !flyer.getAbilities().instabuild && !flyer.isSpectator()
+            && flyer.getAbilities().mayfly && !flyer.hasEffect(PotionRegistry.flight.get())) {
+         flyer.getAbilities().mayfly = false;
+         flyer.getAbilities().flying = false;
+         if (!world.isClientSide) {
+            flyer.onUpdateAbilities();
+         }
+      }
       if (livingBase.hasEffect(PotionRegistry.sneezing.get()) && livingBase.getRandom().nextInt(100) == 0 && !(livingBase instanceof EntityDryad)) {
          livingBase.playSound(SOMSoundHandler.SNEEZE.get(), 1.0f, 1.0f);
          if (livingBase instanceof Mob) {

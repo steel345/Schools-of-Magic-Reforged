@@ -247,6 +247,34 @@ public class ModelPhoenix<T extends Entity> extends MowzieModelBase<T> {
          this.body.part.zRot += shake;
          return;
       }
+      if (phoenix.getCryTicks() > 0) {
+         int cry = phoenix.getCryTicks();
+         int elapsed = EntityPhoenix.CRY_DURATION - cry;
+         float open;
+         if (elapsed < 12) {
+            open = elapsed / 12.0F;
+         } else if (cry < 22) {
+            open = cry / 22.0F;
+         } else {
+            open = 1.0F;
+         }
+         float flap = Mth.sin(ageInTicks * 1.9F) * open;
+         this.body.part.xRot += -0.4F * open;
+         this.neck.part.xRot += -0.35F * open;
+         this.neck2.part.xRot += -0.28F * open;
+         this.head_joint.part.xRot += -0.28F * open;
+         this.beak2.part.xRot += 0.6F * open;
+         this.beak1_1.part.xRot += -0.4F * open;
+         this.left_wing1.part.xRot += 0.2F * open;
+         this.left_wing1.part.zRot += -0.9F * open - flap * 0.8F;
+         this.left_wing2.part.zRot += 0.35F * flap;
+         this.right_wing1.part.xRot += 0.2F * open;
+         this.right_wing1.part.zRot += 0.9F * open + flap * 0.8F;
+         this.right_wing2.part.zRot += -0.35F * flap;
+         this.leg_left1.part.xRot += 0.3F * open;
+         this.leg_right1.part.xRot += 0.3F * open;
+         return;
+      }
       boolean grounded = !phoenix.isRebirthing() && (phoenix.onGround()
          || (phoenix.isVehicle() && !phoenix.flyUp && Math.abs(phoenix.getDeltaMovement().y) < 0.06D));
       if (grounded) {

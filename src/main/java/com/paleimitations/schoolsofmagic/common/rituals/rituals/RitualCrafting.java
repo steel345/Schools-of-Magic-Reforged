@@ -57,7 +57,7 @@ public class RitualCrafting extends Ritual {
 
    public boolean hasValidRecipe(TileEntityRitualCenter ritualCenter) {
       for (RecipeRitualCrafting recipe : RecipeRegistry.ritualRecipes) {
-         if (recipe.matches(ritualCenter.handler)) {
+         if (!recipe.getOutput().isEmpty() && recipe.matches(ritualCenter.handler)) {
             return true;
          }
       }
@@ -68,7 +68,7 @@ public class RitualCrafting extends Ritual {
    public RecipeRitualCrafting getRecipe(TileEntityRitualCenter ritualCenter) {
       if (this.recipe == null) {
          for (RecipeRitualCrafting recipeIn : RecipeRegistry.ritualRecipes) {
-            if (recipeIn.matches(ritualCenter.handler)) {
+            if (!recipeIn.getOutput().isEmpty() && recipeIn.matches(ritualCenter.handler)) {
                this.recipe = recipeIn;
                return recipeIn;
             }
@@ -124,7 +124,9 @@ public class RitualCrafting extends Ritual {
                return false;
             }
          } else {
-            player.sendSystemMessage(Component.literal("Invalid recipe."));
+            if (!player.level().isClientSide) {
+               player.sendSystemMessage(Component.literal("Invalid recipe."));
+            }
             return false;
          }
       }
@@ -188,6 +190,9 @@ public class RitualCrafting extends Ritual {
          if (this.recipe != null) {
 
             deliverResult(ritualCenter, worldIn, pos, this.recipe.getOutput().copy());
+            if (this.recipe.getOutput().getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.magic_broom.get()) {
+               deliverResult(ritualCenter, worldIn, pos, new net.minecraft.world.item.ItemStack(com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.bottle_empty.get()));
+            }
             for (int i = 0; i < ritualCenter.handler.getSlots(); i++) {
                ritualCenter.handler.getStackInSlot(i).shrink(1);
             }

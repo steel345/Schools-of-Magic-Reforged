@@ -51,8 +51,19 @@ public class RecipeRitualCrafting {
       this.inputs = inputsToSet;
    }
 
+   private String note = null;
+
    public List<Ingredient> getInputs() {
       return this.inputs;
+   }
+
+   public String getNote() {
+      return this.note;
+   }
+
+   public RecipeRitualCrafting setNote(String note) {
+      this.note = note;
+      return this;
    }
 
    public ItemStack getOutput() {

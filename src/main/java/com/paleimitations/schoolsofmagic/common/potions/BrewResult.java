@@ -25,6 +25,9 @@ public class BrewResult {
    private int stirMax = 0;
    private int restMax = 0;
    private int filter = 0;
+   private boolean itemBrew = false;
+   private int customColor = -1;
+   private int itemBrewRest = 400;
 
    private int manaCost = 0;
 
@@ -97,6 +100,25 @@ public class BrewResult {
             }
             this.manaCost = focalCount * 75 + Math.max(0, nonEmpty - focalCount) * 10;
          }
+      } else if (this.matchesRecipe(handler,
+            meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(Items.BLAZE_ROD),
+            new ItemStack(Items.GLOWSTONE_DUST),
+            new ItemStack(ItemRegistry.magic_diamond.get()),
+            new ItemStack(Items.SNOW_BLOCK))) {
+         this.setupItemBrew(ItemRegistry.infinity_jug.get(), 0x0A1E78, 100);
+      } else if (this.matchesRecipe(handler,
+            meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(ItemRegistry.bi_log_palm.get()),
+            meta(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.SUNFLOWER.getIndex()))) {
+         this.setupItemBrew(ItemRegistry.sun_screen.get(), 0xF07000, 20);
+      } else if (this.matchesFlyingOintment(handler)) {
+         this.setupItemBrew(ItemRegistry.flying_ointment.get(), 0xF0D000, 200, 400);
+      } else if (this.matchesRecipe(handler,
+            meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
+            new ItemStack(Items.EGG),
+            meta(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.WORMWOOD.getIndex()))) {
+         this.setupItemBrew(ItemRegistry.mutandis.get(), 0x2FA02F, 60, 300);
       } else {
          this.valid = false;
       }
@@ -122,6 +144,68 @@ public class BrewResult {
          stir += 12;
       }
       this.stirMax = stir;
+      if (this.itemBrew) {
+         this.restMax = this.itemBrewRest;
+         this.stirMax = 3;
+      }
+   }
+
+   private void setupItemBrew(net.minecraft.world.item.Item item, int color, int mana) {
+      this.setupItemBrew(item, color, mana, 400);
+   }
+
+   private void setupItemBrew(net.minecraft.world.item.Item item, int color, int mana, int rest) {
+      this.potionItem = new ItemStack(item);
+      this.effects = Lists.newArrayList();
+      this.itemBrew = true;
+      this.customColor = color;
+      this.manaCost = mana;
+      this.itemBrewRest = rest;
+      this.valid = true;
+   }
+
+   private boolean matchesRecipe(IItemHandler handler, ItemStack... ordered) {
+      for (int i = 0; i < 9; i++) {
+         ItemStack in = handler.getStackInSlot(i);
+         if (i < ordered.length) {
+            if (in.isEmpty() || in.getItem() != ordered[i].getItem() || in.getDamageValue() != ordered[i].getDamageValue()) {
+               return false;
+            }
+         } else if (!in.isEmpty()) {
+            return false;
+         }
+      }
+      return true;
+   }
+
+   private static ItemStack meta(net.minecraft.world.item.Item item, int damage) {
+      ItemStack stack = new ItemStack(item);
+      stack.setDamageValue(damage);
+      return stack;
+   }
+
+   private static boolean slotMatches(ItemStack in, ItemStack want) {
+      return !in.isEmpty() && in.getItem() == want.getItem() && in.getDamageValue() == want.getDamageValue();
+   }
+
+   private boolean matchesFlyingOintment(IItemHandler handler) {
+      return slotMatches(handler.getStackInSlot(0), meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()))
+         && slotMatches(handler.getStackInSlot(1), meta(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.AEROMANCY.getIndex()))
+         && slotMatches(handler.getStackInSlot(2), new ItemStack(Items.FEATHER))
+         && slotMatches(handler.getStackInSlot(3), meta(ItemRegistry.ingredient.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumIngredient.BAT_WING.getIndex()))
+         && slotMatches(handler.getStackInSlot(4), meta(ItemRegistry.gem_chunk.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.AEROMANCY.getIndex()))
+         && slotMatches(handler.getStackInSlot(5), new ItemStack(ItemRegistry.crushed_horn_unicorn.get()))
+         && slotMatches(handler.getStackInSlot(6), new ItemStack(Items.ENDER_EYE))
+         && handler.getStackInSlot(7).isEmpty()
+         && handler.getStackInSlot(8).isEmpty();
+   }
+
+   public boolean isItemBrew() {
+      return this.valid && this.itemBrew;
+   }
+
+   public int getCustomColor() {
+      return this.customColor;
    }
 
    public CompoundTag write() {
@@ -133,6 +217,8 @@ public class BrewResult {
       nbt.putInt("filter", this.filter);
       nbt.putInt("stirMax", this.stirMax);
       nbt.putInt("restMax", this.restMax);
+      nbt.putBoolean("itemBrew", this.itemBrew);
+      nbt.putInt("customColor", this.customColor);
       if (this.potionItem == null) {
          nbt.putInt("Deployment", 0);
       } else if (ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.potion_drinkable.get()))) {
@@ -141,6 +227,14 @@ public class BrewResult {
          nbt.putInt("Deployment", 2);
       } else if (ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.potion_lingering.get()))) {
          nbt.putInt("Deployment", 3);
+      } else if (ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.infinity_jug.get()))) {
+         nbt.putInt("Deployment", 4);
+      } else if (ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.sun_screen.get()))) {
+         nbt.putInt("Deployment", 5);
+      } else if (ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.flying_ointment.get()))) {
+         nbt.putInt("Deployment", 6);
+      } else if (ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.mutandis.get()))) {
+         nbt.putInt("Deployment", 7);
       }
       if (!this.effects.isEmpty()) {
          ListTag nbttaglist = new ListTag();
@@ -171,7 +265,17 @@ public class BrewResult {
          this.potionItem = new ItemStack(ItemRegistry.potion_throwable.get());
       } else if (nbt.getInt("Deployment") == 3) {
          this.potionItem = new ItemStack(ItemRegistry.potion_lingering.get());
+      } else if (nbt.getInt("Deployment") == 4) {
+         this.potionItem = new ItemStack(ItemRegistry.infinity_jug.get());
+      } else if (nbt.getInt("Deployment") == 5) {
+         this.potionItem = new ItemStack(ItemRegistry.sun_screen.get());
+      } else if (nbt.getInt("Deployment") == 6) {
+         this.potionItem = new ItemStack(ItemRegistry.flying_ointment.get());
+      } else if (nbt.getInt("Deployment") == 7) {
+         this.potionItem = new ItemStack(ItemRegistry.mutandis.get());
       }
+      this.itemBrew = nbt.getBoolean("itemBrew");
+      this.customColor = nbt.contains("customColor") ? nbt.getInt("customColor") : -1;
       this.valid = nbt.getBoolean("valid");
       this.drinkTime = nbt.getInt("drinkTime");
       this.radius = nbt.getInt("radius");
@@ -256,7 +360,7 @@ public class BrewResult {
             this.potionItem = new ItemStack(ItemRegistry.potion_throwable.get());
             continue;
          }
-         if (ItemStack.isSameItem(handler.getStackInSlot(j), new ItemStack(Items.DRAGON_BREATH)) && ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.potion_throwable.get()))) {
+         if (isBatWing(handler.getStackInSlot(j)) && ItemStack.isSameItem(this.potionItem, new ItemStack(ItemRegistry.potion_throwable.get()))) {
             this.potionItem = new ItemStack(ItemRegistry.potion_lingering.get());
             continue;
          }
@@ -279,6 +383,11 @@ public class BrewResult {
    }
 
    private boolean isModifier(ItemStack stack) {
-      return ItemStack.isSameItem(stack, new ItemStack(Items.GUNPOWDER)) || ItemStack.isSameItem(stack, new ItemStack(Items.DRAGON_BREATH)) || SOMPotionUtils.isDrinkTimeItem(stack) || SOMPotionUtils.isRadiusItem(stack) || SOMPotionUtils.isLengthItem(stack);
+      return ItemStack.isSameItem(stack, new ItemStack(Items.GUNPOWDER)) || isBatWing(stack) || SOMPotionUtils.isDrinkTimeItem(stack) || SOMPotionUtils.isRadiusItem(stack) || SOMPotionUtils.isLengthItem(stack);
+   }
+
+   private static boolean isBatWing(ItemStack stack) {
+      return stack.getItem() == ItemRegistry.ingredient.get()
+         && stack.getDamageValue() == com.paleimitations.schoolsofmagic.common.blocks.EnumIngredient.BAT_WING.getIndex();
    }
 }

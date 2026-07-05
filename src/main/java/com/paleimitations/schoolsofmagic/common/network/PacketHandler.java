@@ -63,6 +63,7 @@ public class PacketHandler {
       INSTANCE.registerMessage(nextID(), PacketOpenLecternBook.class, PacketOpenLecternBook::encode, PacketOpenLecternBook::new, PacketOpenLecternBook::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketSneezeDrop.class, PacketSneezeDrop::encode, PacketSneezeDrop::new, PacketSneezeDrop::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketPhoenixFlight.class, PacketPhoenixFlight::encode, PacketPhoenixFlight::new, PacketPhoenixFlight::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketBroomSprint.class, PacketBroomSprint::encode, PacketBroomSprint::new, PacketBroomSprint::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketPhoenixOpenInv.class, PacketPhoenixOpenInv::encode, PacketPhoenixOpenInv::new, PacketPhoenixOpenInv::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketSyncRingData.class, PacketSyncRingData::encode, PacketSyncRingData::new, PacketSyncRingData::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketRingSlotClick.class, PacketRingSlotClick::encode, PacketRingSlotClick::new, PacketRingSlotClick::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
@@ -84,5 +85,6 @@ public class PacketHandler {
       INSTANCE.registerMessage(nextID(), PacketSetGrimoireSpell.class, PacketSetGrimoireSpell::encode, PacketSetGrimoireSpell::new, PacketSetGrimoireSpell::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketSetBookPage.class, PacketSetBookPage::encode, PacketSetBookPage::new, PacketSetBookPage::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketSetCastingMode.class, PacketSetCastingMode::encode, PacketSetCastingMode::new, PacketSetCastingMode::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketSmokeScry.class, PacketSmokeScry::encode, PacketSmokeScry::new, PacketSmokeScry::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
    }
 }

@@ -48,18 +48,15 @@ public class TileEntityRendererCatalystBasin implements BlockEntityRenderer<Tile
    private static final ResourceLocation ACTIVE_OVERLAY =
       new ResourceLocation("som", "textures/blocks/basin_active_overlay.png");
 
-   /** Glowing (fullbright, additive) overlay laid over the top face while the basin is brewing. */
    private static void renderActiveOverlay(PoseStack poseStack, MultiBufferSource buffer) {
       VertexConsumer vc = buffer.getBuffer(RenderType.eyes(ACTIVE_OVERLAY));
       Matrix4f mat = poseStack.last().pose();
       Matrix3f nrm = poseStack.last().normal();
       float y = 1.001F;
-      // top-facing
       v(vc, mat, nrm, 0, y, 1, 0, 1, 1.0F);
       v(vc, mat, nrm, 0, y, 0, 0, 0, 1.0F);
       v(vc, mat, nrm, 1, y, 0, 1, 0, 1.0F);
       v(vc, mat, nrm, 1, y, 1, 1, 1, 1.0F);
-      // reverse winding so it shows even if culled from above
       v(vc, mat, nrm, 1, y, 1, 1, 1, -1.0F);
       v(vc, mat, nrm, 1, y, 0, 1, 0, -1.0F);
       v(vc, mat, nrm, 0, y, 0, 0, 0, -1.0F);

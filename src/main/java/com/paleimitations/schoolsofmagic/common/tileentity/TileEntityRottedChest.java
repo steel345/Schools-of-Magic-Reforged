@@ -35,7 +35,13 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.server.level.ServerLevel;
 
 public class TileEntityRottedChest extends RandomizableContainerBlockEntity {
-   public ItemStackHandler handler = new ItemStackHandler(27);
+   public ItemStackHandler handler = new ItemStackHandler(27) {
+      @Override
+      protected void onContentsChanged(int slot) {
+         super.onContentsChanged(slot);
+         TileEntityRottedChest.this.setChanged();
+      }
+   };
    private final LazyOptional<IItemHandler> handlerOpt = LazyOptional.of(() -> this.handler);
    private Component customName;
 

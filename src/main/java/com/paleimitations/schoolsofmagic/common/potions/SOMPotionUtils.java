@@ -61,7 +61,8 @@ public class SOMPotionUtils {
       if (ItemStack.isSameItem(stack, new ItemStack(Items.GUNPOWDER))) {
          return new ItemStack(ItemRegistry.potion_throwable.get());
       }
-      if (ItemStack.isSameItem(stack, new ItemStack(Items.DRAGON_BREATH))) {
+      if (stack.getItem() == ItemRegistry.ingredient.get()
+            && stack.getDamageValue() == com.paleimitations.schoolsofmagic.common.blocks.EnumIngredient.BAT_WING.getIndex()) {
          return new ItemStack(ItemRegistry.potion_lingering.get());
       }
       return null;

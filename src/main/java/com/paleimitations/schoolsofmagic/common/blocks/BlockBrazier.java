@@ -91,6 +91,11 @@ public class BlockBrazier extends Block implements EntityBlock {
             return InteractionResult.SUCCESS;
          }
       } else if (flame == 1 && held.isEmpty() && player == center.getOwner()) {
+         if (!center.isActivated() && center.getRitual() != null
+               && com.paleimitations.schoolsofmagic.common.handlers.RingCastHandler.isRingActive(player)) {
+            center.startRitual(player);
+            return InteractionResult.SUCCESS;
+         }
          center.stopRitual(player);
          world.playSound(player, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() * 0.4F + 0.8F);
          world.setBlock(pos, state.setValue(FLAME, 0), 3);

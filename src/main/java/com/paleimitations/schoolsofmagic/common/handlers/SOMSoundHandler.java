@@ -14,6 +14,8 @@ public class SOMSoundHandler {
    public static final RegistryObject<SoundEvent> BOOK_OPEN = register("blocks.book_open");
    public static final RegistryObject<SoundEvent> BOOK_CLOSE = register("blocks.book_close");
    public static final RegistryObject<SoundEvent> WHISPER = register("spells.whisper");
+   public static final RegistryObject<SoundEvent> PHOENIX_CRY = register("phoenix_cry");
+   public static final RegistryObject<SoundEvent> SWEEP = register("sweep");
 
    public static final RegistryObject<SoundEvent> EARTHQUAKE_LOOP = register("spells.earthquake_loop");
    public static final RegistryObject<SoundEvent> EARTHQUAKE_IMPACT = register("spells.earthquake_impact");

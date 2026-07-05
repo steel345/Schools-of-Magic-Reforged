@@ -1,14 +1,20 @@
 package com.paleimitations.schoolsofmagic.common.potions.potions;
 
-import java.util.Random;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
 public class PotionFatalPoison extends MobEffect {
+   private final boolean lethal;
+
    public PotionFatalPoison(MobEffectCategory category, int color) {
+      this(category, color, false);
+   }
+
+   public PotionFatalPoison(MobEffectCategory category, int color, boolean lethal) {
       super(category, color);
+      this.lethal = lethal;
    }
 
    public boolean isInstantenous() {
@@ -26,9 +32,8 @@ public class PotionFatalPoison extends MobEffect {
 
    public void applyEffectTick(LivingEntity entityLivingBaseIn, int amplifier) {
       super.applyEffectTick(entityLivingBaseIn, amplifier);
-      new Random();
       Level world = entityLivingBaseIn.level();
-      if (entityLivingBaseIn.getEffect(this).getDuration() < 2) {
+      if (this.lethal && entityLivingBaseIn.getEffect(this).getDuration() < 2) {
          entityLivingBaseIn.hurt(world.damageSources().magic(), 20.0F);
       }
 

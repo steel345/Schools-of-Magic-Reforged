@@ -63,17 +63,20 @@ public class ItemPotionDrink extends PotionBase {
          entityplayer.awardStat(Stats.ITEM_USED.get(this));
       }
       if (entityplayer == null || !entityplayer.getAbilities().instabuild) {
-         if (stack.isEmpty()) {
-            if (item == ItemRegistry.potion_jug.get()) {
-               return new ItemStack(ItemRegistry.bottle_empty.get());
+         ItemStack container = ItemStack.EMPTY;
+         if (item == ItemRegistry.potion_jug.get()) {
+            if (stack.isEmpty()) {
+               container = new ItemStack(ItemRegistry.bottle_empty.get());
             }
-            return new ItemStack(Items.GLASS_BOTTLE);
+         } else {
+            container = new ItemStack(Items.GLASS_BOTTLE);
          }
-         if (entityplayer != null && data.getDrinkNumber() == 0) {
-            if (item == ItemRegistry.potion_jug.get()) {
-               entityplayer.getInventory().add(new ItemStack(ItemRegistry.bottle_empty.get()));
-            } else {
-               entityplayer.getInventory().add(new ItemStack(Items.GLASS_BOTTLE));
+         if (!container.isEmpty()) {
+            if (stack.isEmpty()) {
+               return container;
+            }
+            if (entityplayer != null && !entityplayer.getInventory().add(container)) {
+               entityplayer.drop(container, false);
             }
          }
       }

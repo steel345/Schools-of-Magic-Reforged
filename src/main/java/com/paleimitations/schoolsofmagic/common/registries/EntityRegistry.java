@@ -43,6 +43,10 @@ public class EntityRegistry {
 
    public static final RegistryObject<EntityType<EntityToad>> TOAD = ENTITIES.register("som_toad",
       () -> EntityType.Builder.of(EntityToad::new, MobCategory.CREATURE).sized(0.5F, 0.5F).build("som_toad"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityBroom>> BROOM = ENTITIES.register("som_broom",
+      () -> EntityType.Builder.of(com.paleimitations.schoolsofmagic.common.entity.EntityBroom::new, MobCategory.CREATURE).sized(0.6F, 1.6F).build("som_broom"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityMagicBroom>> MAGIC_BROOM = ENTITIES.register("som_magic_broom",
+      () -> EntityType.Builder.of(com.paleimitations.schoolsofmagic.common.entity.EntityMagicBroom::new, MobCategory.CREATURE).sized(1.6F, 0.6F).build("som_magic_broom"));
    public static final RegistryObject<EntityType<EntityTadpole>> TADPOLE = ENTITIES.register("som_tadpole",
       () -> EntityType.Builder.of(EntityTadpole::new, MobCategory.CREATURE).sized(0.3F, 0.3F).build("som_tadpole"));
    public static final RegistryObject<EntityType<EntityNobleTree>> NOBLE_TREE = ENTITIES.register("som_noble_tree",
@@ -152,6 +156,8 @@ public class EntityRegistry {
 
    private static void onAttributeCreation(net.minecraftforge.event.entity.EntityAttributeCreationEvent event) {
       event.put(TOAD.get(),       EntityToad.createAttributes().build());
+      event.put(BROOM.get(),      com.paleimitations.schoolsofmagic.common.entity.EntityBroom.createAttributes().build());
+      event.put(MAGIC_BROOM.get(),com.paleimitations.schoolsofmagic.common.entity.EntityMagicBroom.createAttributes().build());
       event.put(TADPOLE.get(),    EntityTadpole.createAttributes().build());
       event.put(NOBLE_TREE.get(), EntityNobleTree.createAttributes().build());
       event.put(DRYAD.get(),      EntityDryad.createAttributes().build());

@@ -42,7 +42,13 @@ public class TileEntityCatalystBasin extends BlockEntity implements MenuProvider
 
    public TileEntityCatalystBasin(BlockPos pos, BlockState state) {
       super(TileEntityRegistry.CATALYST_BASIN.get(), pos, state);
-      this.handler = new ItemStackHandler(4);
+      this.handler = new ItemStackHandler(4) {
+         @Override
+         protected void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            TileEntityCatalystBasin.this.setChanged();
+         }
+      };
 
       this.worker = new Worker(60, false, () -> {}, () -> {
          this.brew = false;
