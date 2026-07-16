@@ -4,12 +4,12 @@
       "model": "som:block/logyew"
     },
     "axis=x": {
-      "model": "som:block/logyew_bark",
+      "model": "som:block/logyew",
       "x": 90,
       "y": 90
     },
     "axis=z": {
-      "model": "som:block/logyew_bark",
+      "model": "som:block/logyew",
       "x": 90
     }
   }

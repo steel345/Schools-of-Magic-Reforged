@@ -226,28 +226,25 @@ public class PodiumGuiHelper {
       Component pageIndicator = Component.translatable("book.pageIndicator", page + 1, bookTotalPages);
       String s5 = (page >= 0 && page < bookPages.size()) ? bookPages.getString(page) : "";
 
-      List<Component> cached = null;
+      Component textComp;
       if (WrittenBookItem.makeSureTagIsValid(book.getTag())) {
          try {
-            Component textComp = Component.Serializer.fromJson(s5);
-            if (textComp != null) {
-               cached = Lists.newArrayList(textComp);
+            textComp = Component.Serializer.fromJson(s5);
+            if (textComp == null) {
+               textComp = Component.literal(s5);
             }
          } catch (JsonParseException ex) {
-            cached = null;
+            textComp = Component.literal(s5);
          }
       } else {
-         cached = Lists.newArrayList(Component.literal(ChatFormatting.DARK_RED + "* Invalid book tag *"));
+         textComp = Component.literal(ChatFormatting.DARK_RED + "* Invalid book tag *");
       }
       int indicatorW = font.width(pageIndicator);
       gg.drawString(font, pageIndicator, xD - indicatorW + 192 - 44 + 35, 18 + yD + 36, 0, false);
-      if (cached == null) {
-         gg.drawWordWrap(font, Component.literal(s5), xD + 36 + 35, yD + 34 + 36, 116, 0);
-      } else {
-         int max = Math.min(128 / font.lineHeight, cached.size());
-         for (int l = 0; l < max; l++) {
-            gg.drawString(font, cached.get(l), xD + 36 + 35, yD + 34 + 36 + l * font.lineHeight, 0, false);
-         }
+      java.util.List<net.minecraft.util.FormattedCharSequence> lines = font.split(textComp, 114);
+      int max = Math.min(128 / font.lineHeight, lines.size());
+      for (int l = 0; l < max; l++) {
+         gg.drawString(font, lines.get(l), xD + 36 + 35, yD + 34 + 36 + l * font.lineHeight, 0, false);
       }
    }
 }

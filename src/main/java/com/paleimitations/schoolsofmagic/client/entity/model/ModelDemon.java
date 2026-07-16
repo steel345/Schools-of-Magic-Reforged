@@ -196,5 +196,19 @@ public class ModelDemon<T extends Entity> extends MowzieModelBase<T> {
       this.walk(this.thigh_r, 1.125F * globalSpeed, 1.0F * globalDegree, true, globalOffset, 0.0F, limbSwing, limbSwingAmount);
       this.walk(this.leg_l2, 1.125F * globalSpeed, 0.75F * globalDegree, false, (float) (Math.PI / 2) + globalOffset, 0.0F, limbSwing, limbSwingAmount);
       this.walk(this.leg_r2, 1.125F * globalSpeed, 0.75F * globalDegree, true, (float) (Math.PI / 2) + globalOffset, 0.0F, limbSwing, limbSwingAmount);
+
+      if (entity instanceof com.paleimitations.schoolsofmagic.common.entity.EntityMagician mag && mag.isCasting()) {
+         float wiggle = net.minecraft.util.Mth.cos(ageInTicks * 0.45F) * 0.12F;
+         this.arm_r1.part.xRot = -2.0F + wiggle;
+         this.arm_r1.part.yRot = 0.0F;
+         this.arm_r1.part.zRot = 0.5F;
+         this.arm_l1.part.xRot = -2.0F - wiggle;
+         this.arm_l1.part.yRot = 0.0F;
+         this.arm_l1.part.zRot = -0.5F;
+         this.arm_r2.part.xRot = -0.3F;
+         this.arm_l2.part.xRot = -0.3F;
+         this.shoulder_r.part.zRot = -0.2F;
+         this.shoulder_l.part.zRot = 0.2F;
+      }
    }
 }

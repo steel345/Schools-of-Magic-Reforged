@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.joml.Matrix4f;
 
 public class RenderMeteorWhite extends EntityRenderer<EntityMeteor> {
-   private static final ResourceLocation TEX = new ResourceLocation("som", "textures/entity/meteor_white.png");
+   private static final ResourceLocation TEX = new ResourceLocation("som", "textures/entity/magic_meteor.png");
 
    public RenderMeteorWhite(EntityRendererProvider.Context context) {
       super(context);

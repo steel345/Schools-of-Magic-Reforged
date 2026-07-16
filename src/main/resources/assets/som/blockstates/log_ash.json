@@ -4,12 +4,12 @@
       "model": "som:block/logash"
     },
     "axis=x": {
-      "model": "som:block/logash_bark",
+      "model": "som:block/logash",
       "x": 90,
       "y": 90
     },
     "axis=z": {
-      "model": "som:block/logash_bark",
+      "model": "som:block/logash",
       "x": 90
     }
   }

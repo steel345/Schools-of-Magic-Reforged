@@ -93,44 +93,68 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
       }
       tome.render(poseStack, buffer, packedLight, packedOverlay, tex, te.animationTick, 0.0F, te, te.bookState.ordinal());
 
-      if (hasBookCap && te.bookState == TileEntityPodium.EnumState.OPEN) {
-         IBook book = stack.getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
-         if (book != null && book.getCurrentPage() != null) {
-            net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
+      if (te.bookState == TileEntityPodium.EnumState.OPEN && (hasBookCap || isVanillaWrittenBook || hasPagesTag)) {
+         net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
 
-            mc.renderBuffers().bufferSource().endBatch();
-            if (buffer instanceof MultiBufferSource.BufferSource bs && bs != mc.renderBuffers().bufferSource()) bs.endBatch();
-            com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
-            com.mojang.blaze3d.systems.RenderSystem.depthFunc(org.lwjgl.opengl.GL11.GL_LEQUAL);
-            com.mojang.blaze3d.systems.RenderSystem.depthMask(false);
-            com.mojang.blaze3d.systems.RenderSystem.enableBlend();
-            com.mojang.blaze3d.systems.RenderSystem.defaultBlendFunc();
-            com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            net.minecraft.client.gui.GuiGraphics gg =
-               new net.minecraft.client.gui.GuiGraphics(mc, mc.renderBuffers().bufferSource());
-            gg.pose().pushPose();
-            gg.pose().mulPoseMatrix(poseStack.last().pose());
-            gg.pose().translate(-0.632F, -0.42F, -0.0505F);
-            gg.pose().scale(0.00493F, 0.00493F, 0.00493F);
-            try {
-               com.paleimitations.schoolsofmagic.common.books.BookPage pageToDraw = book.getCurrentPage();
-               if (pageToDraw != null) pageToDraw.drawPage(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage());
-
-               for (com.paleimitations.schoolsofmagic.common.books.BookElementSticker sticker : book.getStickers()) {
-                  if (sticker != null)
-                     sticker.drawElement(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage(), book.getPage());
+         mc.renderBuffers().bufferSource().endBatch();
+         if (buffer instanceof MultiBufferSource.BufferSource bs && bs != mc.renderBuffers().bufferSource()) bs.endBatch();
+         com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
+         com.mojang.blaze3d.systems.RenderSystem.depthFunc(org.lwjgl.opengl.GL11.GL_LEQUAL);
+         com.mojang.blaze3d.systems.RenderSystem.depthMask(false);
+         com.mojang.blaze3d.systems.RenderSystem.enableBlend();
+         com.mojang.blaze3d.systems.RenderSystem.defaultBlendFunc();
+         com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+         net.minecraft.client.gui.GuiGraphics gg =
+            new net.minecraft.client.gui.GuiGraphics(mc, mc.renderBuffers().bufferSource());
+         gg.pose().pushPose();
+         gg.pose().mulPoseMatrix(poseStack.last().pose());
+         gg.pose().translate(-0.632F, -0.42F, -0.0505F);
+         gg.pose().scale(0.00493F, 0.00493F, 0.00493F);
+         try {
+            if (hasBookCap) {
+               IBook book = stack.getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
+               if (book != null && book.getCurrentPage() != null) {
+                  book.getCurrentPage().drawPage(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage());
+                  for (com.paleimitations.schoolsofmagic.common.books.BookElementSticker sticker : book.getStickers()) {
+                     if (sticker != null)
+                        sticker.drawElement(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage(), book.getPage());
+                  }
                }
-            } catch (Exception ignored) {
-
+            } else {
+               drawVanillaPage(gg, mc, stack, te.page);
             }
-            gg.pose().popPose();
-            gg.flush();
-            com.mojang.blaze3d.systems.RenderSystem.depthMask(true);
-            com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
-            com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+         } catch (Exception ignored) {
+
          }
+         gg.pose().popPose();
+         gg.flush();
+         com.mojang.blaze3d.systems.RenderSystem.depthMask(true);
+         com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
+         com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
       }
       poseStack.popPose();
+   }
+
+   private static void drawVanillaPage(net.minecraft.client.gui.GuiGraphics gg, net.minecraft.client.Minecraft mc, ItemStack stack, int pageIndex) {
+      if (!stack.hasTag() || stack.getTag() == null) return;
+      net.minecraft.nbt.ListTag pages = stack.getTag().getList("pages", 8);
+      if (pages.isEmpty()) return;
+      int p = Math.max(0, Math.min(pageIndex, pages.size() - 1));
+      String raw = pages.getString(p);
+      net.minecraft.network.chat.Component comp;
+      try {
+         comp = net.minecraft.network.chat.Component.Serializer.fromJson(raw);
+         if (comp == null) comp = net.minecraft.network.chat.Component.literal(raw);
+      } catch (Exception e) {
+         comp = net.minecraft.network.chat.Component.literal(raw);
+      }
+      net.minecraft.client.gui.Font font = mc.font;
+      java.util.List<net.minecraft.util.FormattedCharSequence> lines = font.split(comp, 104);
+      int y = 50;
+      for (net.minecraft.util.FormattedCharSequence line : lines) {
+         gg.drawString(font, line, 20, y, 0xFF000000, false);
+         y += 9;
+      }
    }
 
    public static ResourceLocation getBookTexture(IBook book, ItemStack stack) {

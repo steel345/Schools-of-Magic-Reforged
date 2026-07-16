@@ -4,12 +4,12 @@
       "model": "som:block/logwillow"
     },
     "axis=x": {
-      "model": "som:block/logwillow_bark",
+      "model": "som:block/logwillow",
       "x": 90,
       "y": 90
     },
     "axis=z": {
-      "model": "som:block/logwillow_bark",
+      "model": "som:block/logwillow",
       "x": 90
     }
   }

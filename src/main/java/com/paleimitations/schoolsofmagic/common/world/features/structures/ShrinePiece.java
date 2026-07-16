@@ -90,21 +90,60 @@ public class ShrinePiece extends TemplateStructurePiece {
          closeDoor(level, m, s);
       }
 
+      clearInteriorPlants(level, x0, y0, z0, x1, y1, z1);
       buryGrass(level, x0, y0, z0, x1, y1, z1);
       StructureFoundation.fill(level, x0, y0, z0, x1, y1, z1);
       desertSand(level, x0, y0, z0, x1, y1, z1);
    }
 
-   private static void desertSand(net.minecraft.world.level.WorldGenLevel level, int x0, int y0, int z0, int x1, int y1, int z1) {
+   private static boolean isLoosePlant(net.minecraft.world.level.block.state.BlockState s) {
+      return s.is(Blocks.GRASS) || s.is(Blocks.TALL_GRASS) || s.is(Blocks.FERN) || s.is(Blocks.LARGE_FERN)
+          || s.is(Blocks.DEAD_BUSH) || s.is(Blocks.SEAGRASS) || s.is(Blocks.TALL_SEAGRASS)
+          || s.getBlock() instanceof net.minecraft.world.level.block.FlowerBlock
+          || s.getBlock() instanceof net.minecraft.world.level.block.MushroomBlock;
+   }
+
+   private static void clearInteriorPlants(net.minecraft.world.level.WorldGenLevel level, int x0, int y0, int z0, int x1, int y1, int z1) {
+      net.minecraft.core.BlockPos.MutableBlockPos m = new net.minecraft.core.BlockPos.MutableBlockPos();
+      net.minecraft.world.level.block.state.BlockState air = Blocks.AIR.defaultBlockState();
+      for (int x = x0; x <= x1; x++) for (int y = y0; y <= y1; y++) for (int z = z0; z <= z1; z++) {
+         m.set(x, y, z);
+         if (!isLoosePlant(level.getBlockState(m))) continue;
+         boolean roofed = false;
+         for (int yy = y + 1; yy <= Math.min(y1, y + 8); yy++) {
+            if (level.getBlockState(new BlockPos(x, yy, z)).isSolidRender(level, new BlockPos(x, yy, z))) { roofed = true; break; }
+         }
+         if (roofed) {
+            level.setBlock(m, air, 2);
+         }
+      }
+   }
+
+   private static boolean isDesertRemovablePlant(net.minecraft.world.level.block.state.BlockState s) {
+      return s.is(Blocks.GRASS) || s.is(Blocks.TALL_GRASS) || s.is(Blocks.FERN) || s.is(Blocks.LARGE_FERN)
+          || s.is(Blocks.LILY_PAD) || s.is(Blocks.SUGAR_CANE) || s.is(Blocks.SWEET_BERRY_BUSH)
+          || s.getBlock() instanceof net.minecraft.world.level.block.FlowerBlock
+          || s.getBlock() instanceof net.minecraft.world.level.block.SaplingBlock
+          || s.getBlock() instanceof net.minecraft.world.level.block.MushroomBlock
+          || s.getBlock() instanceof net.minecraft.world.level.block.DoublePlantBlock;
+   }
+
+   static void desertSand(net.minecraft.world.level.WorldGenLevel level, int x0, int y0, int z0, int x1, int y1, int z1) {
       BlockPos center = new BlockPos((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
       boolean desert = level.getBiome(center).unwrapKey()
          .map(k -> k.location().getPath().contains("desert")).orElse(false);
       if (!desert) return;
       net.minecraft.world.level.block.state.BlockState sand = Blocks.SAND.defaultBlockState();
+      net.minecraft.world.level.block.state.BlockState air = Blocks.AIR.defaultBlockState();
       net.minecraft.core.BlockPos.MutableBlockPos m = new net.minecraft.core.BlockPos.MutableBlockPos();
       for (int x = x0; x <= x1; x++) for (int y = y0; y <= y1; y++) for (int z = z0; z <= z1; z++) {
          m.set(x, y, z);
-         if (isGroundBlock(level.getBlockState(m))) level.setBlock(m, sand, 2);
+         net.minecraft.world.level.block.state.BlockState s = level.getBlockState(m);
+         if (isGroundBlock(s)) {
+            level.setBlock(m, sand, 2);
+         } else if (isDesertRemovablePlant(s)) {
+            level.setBlock(m, air, 2);
+         }
       }
    }
 
@@ -116,6 +155,29 @@ public class ShrinePiece extends TemplateStructurePiece {
 
       Direction facing = lowerState.getValue(net.minecraft.world.level.block.DoorBlock.FACING);
       net.minecraft.world.level.block.state.properties.DoorHingeSide hinge = upperState.getValue(net.minecraft.world.level.block.DoorBlock.HINGE);
+
+      BlockPos partner = null;
+      Direction sideToPartner = null;
+      for (Direction d : Direction.Plane.HORIZONTAL) {
+         BlockPos np = lower.relative(d);
+         net.minecraft.world.level.block.state.BlockState ns = level.getBlockState(np);
+         if (ns.getBlock() == door && ns.hasProperty(net.minecraft.world.level.block.DoorBlock.HALF)
+             && ns.getValue(net.minecraft.world.level.block.DoorBlock.HALF) == net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER) {
+            partner = np;
+            sideToPartner = d;
+            break;
+         }
+      }
+      if (partner != null) {
+         boolean primary = lower.getX() != partner.getX() ? lower.getX() < partner.getX() : lower.getZ() < partner.getZ();
+         net.minecraft.world.level.block.state.BlockState primLower = primary ? lowerState : level.getBlockState(partner);
+         if (primLower.hasProperty(net.minecraft.world.level.block.DoorBlock.FACING)) {
+            facing = primLower.getValue(net.minecraft.world.level.block.DoorBlock.FACING);
+         }
+         hinge = (sideToPartner == facing.getCounterClockWise())
+            ? net.minecraft.world.level.block.state.properties.DoorHingeSide.RIGHT
+            : net.minecraft.world.level.block.state.properties.DoorHingeSide.LEFT;
+      }
 
       level.setBlock(lower, lowerState
          .setValue(net.minecraft.world.level.block.DoorBlock.FACING, facing)
@@ -145,15 +207,7 @@ public class ShrinePiece extends TemplateStructurePiece {
          if (s.getBlock() instanceof net.minecraft.world.level.block.DoorBlock) continue;
          if (level.getBlockState(p.above()).getBlock() instanceof net.minecraft.world.level.block.DoorBlock) continue;
 
-         boolean qualifies = isGroundBlock(s);
-         if (!qualifies) {
-            for (Direction d : Direction.values()) {
-               int nx = x + d.getStepX(), ny = y + d.getStepY(), nz = z + d.getStepZ();
-               if (nx < x0 || nx > x1 || ny < y0 || ny > y1 || nz < z0 || nz > z1) continue;
-               if (isGroundBlock(level.getBlockState(new BlockPos(nx, ny, nz)))) { qualifies = true; break; }
-            }
-         }
-         if (!qualifies) continue;
+         if (!isGroundBlock(s)) continue;
 
          boolean exposed = true;
          for (int yy = y + 1; yy <= y1; yy++) {

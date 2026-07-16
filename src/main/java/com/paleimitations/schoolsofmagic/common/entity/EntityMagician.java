@@ -83,16 +83,19 @@ public class EntityMagician extends PathfinderMob {
    public void tick() {
       super.tick();
       if (this.level().isClientSide && this.isCasting()) {
-         EnumSpellType spell = this.getActiveSpell();
-         double d0 = spell.particleSpeed[0];
-         double d1 = spell.particleSpeed[1];
-         double d2 = spell.particleSpeed[2];
-         float f = this.yBodyRot * ((float)Math.PI / 180F) + Mth.cos((float)this.tickCount * 0.6662F) * 0.25F;
-         float f1 = Mth.cos(f);
-         float f2 = Mth.sin(f);
-         this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (double)f1 * 0.6D, this.getY() + 1.8D, this.getZ() + (double)f2 * 0.6D, d0, d1, d2);
-         this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() - (double)f1 * 0.6D, this.getY() + 1.8D, this.getZ() - (double)f2 * 0.6D, d0, d1, d2);
+         this.spawnCastingParticles(this.getActiveSpell());
       }
+   }
+
+   protected void spawnCastingParticles(EnumSpellType spell) {
+      double d0 = spell.particleSpeed[0];
+      double d1 = spell.particleSpeed[1];
+      double d2 = spell.particleSpeed[2];
+      float f = this.yBodyRot * ((float)Math.PI / 180F) + Mth.cos((float)this.tickCount * 0.6662F) * 0.25F;
+      float f1 = Mth.cos(f);
+      float f2 = Mth.sin(f);
+      this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + (double)f1 * 0.6D, this.getY() + 1.8D, this.getZ() + (double)f2 * 0.6D, d0, d1, d2);
+      this.level().addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() - (double)f1 * 0.6D, this.getY() + 1.8D, this.getZ() - (double)f2 * 0.6D, d0, d1, d2);
    }
 
    @Override

@@ -8,7 +8,7 @@
 <~><~>  Hydromancy is the magic of water and the ocean.
 <~><~>  Cryomancy is the magic of ice and snow.
 <~><~>  Hieromancy is the magic of order, peace, and structure.
-<~><~>  Chaotics is the magic of disorder, entropy, and chaos.
+<~><~>  Chaotimancy is the magic of disorder, entropy, and chaos.
 <~><~>  Auramancy is the magic of the fairies and fae.
 <~><~>  Astromancy is the magic of space and time.
 <~><~>  Infernality is the demonic magic of the nether.

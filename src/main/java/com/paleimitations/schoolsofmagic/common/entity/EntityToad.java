@@ -423,6 +423,9 @@ public class EntityToad extends Animal {
       BlockPos.MutableBlockPos m = new BlockPos.MutableBlockPos();
       for (int dx = -radius; dx <= radius; dx += 2) {
          for (int dz = -radius; dz <= radius; dz += 2) {
+            if (!level.hasChunkAt(center.getX() + dx, center.getZ() + dz)) {
+               continue;
+            }
             for (int dy = -5; dy <= 3; dy += 2) {
                m.set(center.getX() + dx, center.getY() + dy, center.getZ() + dz);
                if (level.getFluidState(m).is(net.minecraft.tags.FluidTags.WATER)) {

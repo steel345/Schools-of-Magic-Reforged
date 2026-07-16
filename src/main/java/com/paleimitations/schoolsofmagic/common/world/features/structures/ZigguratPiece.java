@@ -90,6 +90,14 @@ public class ZigguratPiece extends TemplateStructurePiece {
          m.set(x, y, z);
          net.minecraft.world.level.block.state.BlockState s = level.getBlockState(m);
 
+         if (s.getBlock() instanceof net.minecraft.world.level.block.DoorBlock
+             && s.hasProperty(net.minecraft.world.level.block.DoorBlock.HALF)
+             && s.getValue(net.minecraft.world.level.block.DoorBlock.HALF) == net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER) {
+            ShrinePiece.fixDoor(level, m.immutable(), s);
+            continue;
+         }
+         ShrinePiece.closeDoor(level, m, s);
+
          if (s.getBlock() == Blocks.FIRE) {
             level.setBlock(m, BlockRegistry.phantom_fire.get().defaultBlockState(), 2);
             continue;
@@ -142,6 +150,8 @@ public class ZigguratPiece extends TemplateStructurePiece {
             && level.getBlockEntity(this.tabletPos) instanceof com.paleimitations.schoolsofmagic.common.tileentity.TileEntitySandstoneTablet tb) {
          tb.setAltarPos(this.altarLink); tb.setChanged();
       }
+
+      ShrinePiece.desertSand(level, x0, y0, z0, x1, y1, z1);
    }
 
    @Override

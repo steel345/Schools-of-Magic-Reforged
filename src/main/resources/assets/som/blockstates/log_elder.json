@@ -4,12 +4,12 @@
       "model": "som:block/logelder"
     },
     "axis=x": {
-      "model": "som:block/logelder_bark",
+      "model": "som:block/logelder",
       "x": 90,
       "y": 90
     },
     "axis=z": {
-      "model": "som:block/logelder_bark",
+      "model": "som:block/logelder",
       "x": 90
     }
   }

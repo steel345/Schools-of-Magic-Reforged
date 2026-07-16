@@ -41,6 +41,27 @@ public class EntityDemon extends EntityMagician {
    }
 
    @Override
+   protected void spawnCastingParticles(EntityMagician.EnumSpellType spell) {
+      double d0 = spell.particleSpeed[0];
+      double d1 = spell.particleSpeed[1];
+      double d2 = spell.particleSpeed[2];
+      float yaw = this.yBodyRot * ((float) Math.PI / 180F);
+      double fx = -net.minecraft.util.Mth.sin(yaw);
+      double fz = net.minecraft.util.Mth.cos(yaw);
+      double sx = net.minecraft.util.Mth.cos(yaw);
+      double sz = net.minecraft.util.Mth.sin(yaw);
+      double reach = 0.65D;
+      double fwd = 0.45D;
+      double handY = this.getY() + 2.15D;
+      double lx = this.getX() + sx * reach + fx * fwd;
+      double lz = this.getZ() + sz * reach + fz * fwd;
+      double rx = this.getX() - sx * reach + fx * fwd;
+      double rz = this.getZ() - sz * reach + fz * fwd;
+      this.level().addParticle(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, lx, handY, lz, d0, d1, d2);
+      this.level().addParticle(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, rx, handY, rz, d0, d1, d2);
+   }
+
+   @Override
    public boolean removeWhenFarAway(double distance) {
       return false;
    }
