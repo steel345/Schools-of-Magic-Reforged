@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:door_ash",
+    "som:door_elder",
+    "som:door_pine",
+    "som:door_willow",
+    "som:door_yew",
+    "som:door_verde"
+  ]
+}

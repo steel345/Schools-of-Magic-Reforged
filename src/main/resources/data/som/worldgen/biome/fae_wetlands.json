@@ -74,7 +74,8 @@
             "som:fae_magic_infernality",
             "som:fae_magic_spectromancy",
             "som:fae_magic_umbramancy",
-            "som:fae_magic_necromancy"
+            "som:fae_magic_necromancy",
+            "som:ore_salt_fae"
         ],
         [
             "minecraft:glow_lichen",

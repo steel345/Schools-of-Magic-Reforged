@@ -7,6 +7,7 @@ public class LootTableHandlers {
    public static final ResourceLocation MERMAID         = new ResourceLocation("som", "entities/mermaid");
    public static final ResourceLocation TOAD            = new ResourceLocation("som", "entities/toad");
    public static final ResourceLocation PHOENIX         = new ResourceLocation("som", "entities/phoenix");
+   public static final ResourceLocation THUNDER_BIRD     = new ResourceLocation("som", "entities/thunder_bird");
    public static final ResourceLocation BOOKS           = new ResourceLocation("som", "chests/books");
    public static final ResourceLocation BAD_BOOKS       = new ResourceLocation("som", "chests/bad_books");
    public static final ResourceLocation SEEDS           = new ResourceLocation("som", "chests/seeds");

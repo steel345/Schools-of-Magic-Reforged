@@ -126,6 +126,10 @@
     "som:ore_copper",
     "som:ore_gem",
     "som:ore_gem_deepslate",
+    "som:salt_ore",
+    "som:deepslate_salt_ore",
+    "som:fae_salt_ore",
+    "som:block_of_salt",
     "som:ore_silver",
     "som:ore_steel",
     "som:plate",
@@ -194,6 +198,8 @@
     "som:vase_big1",
     "som:vase_big2",
     "som:zig_mural",
-    "#som:pedestals"
+    "#som:pedestals",
+    "som:gypsum_salt_ore",
+    "som:mud_marble_salt_ore"
   ]
 }

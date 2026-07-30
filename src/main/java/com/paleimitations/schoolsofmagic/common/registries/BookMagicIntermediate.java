@@ -113,13 +113,15 @@ public class BookMagicIntermediate {
          )
          .addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
+      BookPageStandardTitled unicornPage = new BookPageStandardTitled("bmi_page1");
       if (MortarRecipeRegistry.UNICORN_HORN != null) {
-         new BookPageStandardTitled("bmi_page1")
-            .addElement(new PageElementMortarRecipe(MortarRecipeRegistry.UNICORN_HORN, 139, 126))
-            .addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      } else {
-         new BookPageStandardTitled("bmi_page1").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+         unicornPage.addElement(new PageElementMortarRecipe(MortarRecipeRegistry.UNICORN_HORN, 139, 126));
       }
+      // Only built to assemble its elements; drop the unlocked copy it self-registered.
+      BookPageRegistry.PAGES.remove(unicornPage);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
+            "bmi_page1", com.paleimitations.schoolsofmagic.common.books.PageUnlocks.UNICORN, unicornPage.elements)
+         .addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
       new BookPage(
             "bmi_page2",
@@ -142,7 +144,17 @@ public class BookMagicIntermediate {
          .addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
       new BookPageStandardTitled("bmi_page3").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageStandardTitled("bmi_phoenix").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+      new BookPage("bmi_phoenix", Lists.newArrayList(new PageElement[]{
+         new PageElementStandardText("page.bmi_phoenix.title", 72, 58, 99, 16, 0, true),
+         new PageElementParagraphs("bmi_phoenix", 0.75F, 0, 2,
+            new ParagraphBox(23, 65, 0, 99, 125),
+            new ParagraphBox(23, 50, 1, 99, 140),
+            new ParagraphBox(134, 50, 1, 99, 140),
+            new ParagraphBox(23, 50, 2, 99, 140),
+            new ParagraphBox(134, 50, 2, 99, 140)),
+         new com.paleimitations.schoolsofmagic.common.books.PageElementEntity(
+            EntityRegistry.PHOENIX.get(), 182, 118, 28, 0)
+      })).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       ItemStack whistleNugget = new ItemStack(ItemRegistry.nugget.get());
       whistleNugget.setDamageValue(EnumMetal.BRASS.getIndex());
       ItemStack whistleIngot = new ItemStack(ItemRegistry.ingot.get());
@@ -155,13 +167,31 @@ public class BookMagicIntermediate {
             whistleEmpty, whistleNugget, whistleEmpty,
             whistleEmpty, whistleIngot, whistleEmpty
          }), new ItemStack(ItemRegistry.brass_whistle.get()), 44, 110),
-         new PageElementParagraphs("bmi_whistle", 0.75F, 0, 0,
-            new ParagraphBox(134, 55, 0, 99, 140))
+         new PageElementParagraphs("bmi_whistle", 0.75F, 0, 1,
+            new ParagraphBox(134, 55, 0, 99, 133),
+            new ParagraphBox(23, 50, 1, 99, 140),
+            new ParagraphBox(134, 50, 1, 99, 140))
       })).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageMushroomDescription(new ItemStack(BlockRegistry.mushroom_crop_dark.get())).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageMushroomDescription(new ItemStack(BlockRegistry.mushroom_crop_pink.get())).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageMushroomDescription(new ItemStack(BlockRegistry.mushroom_crop_white.get())).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageMushroomDescription(new ItemStack(BlockRegistry.mushroom_crop_grey.get())).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+      RecipeRitualCrafting knowledgeRitual = RecipeRegistry.getRitualRecipe(new ItemStack(ItemRegistry.book_of_knowledge.get()));
+      java.util.List<PageElement> bokEls = Lists.newArrayList();
+      bokEls.add(new PageElementStandardText("page.rc_book_of_knowledge.title", 72, 58, 99, 16, 0, true));
+      // Subpage 0 uses the left column (the recipe sits on the right); overflow flows
+      // to the standard two-column layout on subpage 1.
+      bokEls.add(new PageElementParagraphs("rc_book_of_knowledge", 0.75F, 0, 2,
+         new ParagraphBox(23, 74, 0, 99, 116),
+         new ParagraphBox(23, 50, 1, 99, 140),
+         new ParagraphBox(134, 50, 1, 99, 140),
+         new ParagraphBox(23, 50, 2, 99, 140),
+         new ParagraphBox(134, 50, 2, 99, 140)));
+      if (knowledgeRitual != null) {
+         bokEls.add(new com.paleimitations.schoolsofmagic.common.books.PageElementRitualRecipe(knowledgeRitual, 132, 47, 0));
+      }
+      new BookPage("bmi_book_of_knowledge", bokEls).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+
       new BookPageStandardTitled("bmi_page4").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new BookPageChapter(null).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 

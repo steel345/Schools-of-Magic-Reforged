@@ -213,28 +213,10 @@ public class RitualCrafting extends Ritual {
 
    private static void deliverResult(TileEntityRitualCenter center, Level worldIn, BlockPos pos, ItemStack result) {
       if (worldIn.isClientSide) return;
-      ItemStack stack = result;
-      net.minecraft.world.entity.player.Player owner = null;
-      java.util.UUID ownerId = center.getOwnerID();
-      if (ownerId != null && worldIn.getServer() != null) {
-         owner = worldIn.getServer().getPlayerList().getPlayer(ownerId);
+      ItemStack remainder = center.depositResult(result.copy());
+      if (!remainder.isEmpty()) {
+         spawnItemStack(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), remainder);
       }
-      if (owner != null) {
-         double dx = owner.getX() - (pos.getX() + 0.5);
-         double dy = owner.getY() - (pos.getY() + 0.5);
-         double dz = owner.getZ() - (pos.getZ() + 0.5);
-         boolean inRange = (dx * dx + dy * dy + dz * dz) <= (2.0D * 2.0D);
-         if (inRange) {
-            owner.getInventory().add(stack);
-            if (stack.isEmpty()) {
-               worldIn.playSound(null, pos, net.minecraft.sounds.SoundEvents.ITEM_PICKUP,
-                  net.minecraft.sounds.SoundSource.PLAYERS, 0.2F, 1.0F);
-               return;
-            }
-         }
-      }
-
-      spawnItemStack(worldIn, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), stack);
    }
 
    private static void setFlame(Level worldIn, BlockPos pos, int level) {

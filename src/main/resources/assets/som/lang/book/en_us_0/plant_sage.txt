@@ -1,3 +1,3 @@
-  Sage is an aromatic herb related to Lavender.
-<~><~>  It is found in Vermilion Groves and Acolyte Woods.
-<~><~>  Sage is known for its connection to Abjuration magic. Its smoke has purifying qualities.
+  /bSage/z is an aromatic herb related to Lavender.
+<~><~>  It is found in /bVermilion Groves/z and Acolyte Woods.
+<~><~>  Sage is known for its connection to /bAbjuration/z magic. Its smoke has purifying qualities.

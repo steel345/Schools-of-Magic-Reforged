@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:stair_ash",
+    "som:stair_elder",
+    "som:stair_pine",
+    "som:stair_willow",
+    "som:stair_yew",
+    "som:stair_verde"
+  ]
+}

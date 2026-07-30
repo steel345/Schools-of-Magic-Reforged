@@ -118,6 +118,12 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
             }
             book.setLinks(5);
             book.setColor(DyeColor.BLUE);
+         } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.book_of_knowledge.get()))) {
+            if (!book.isEdited() && book.getBookPages().isEmpty()) {
+               book.setBookPages(Lists.newArrayList(BookPageRegistry.KNOWLEDGE_BOOK));
+            }
+            book.setLinks(5);
+            book.setColor(DyeColor.GREEN);
          }
       }
       return stack;
@@ -152,6 +158,9 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
       } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.alchemical_manual.get()))) {
          book.setLinks(6);
          book.setColor(DyeColor.BLACK);
+      } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.book_of_knowledge.get()))) {
+         book.setLinks(5);
+         book.setColor(DyeColor.GREEN);
       }
    }
 
@@ -203,6 +212,7 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
       if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.exploration_book.get()))) return BookPageRegistry.EXPLORER_CODEX;
       if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.alchemical_manual.get()))) return BookPageRegistry.ALCHEMY_BOOK;
       if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.ritual_compendium.get()))) return BookPageRegistry.RITUAL_BOOK;
+      if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.book_of_knowledge.get()))) return BookPageRegistry.KNOWLEDGE_BOOK;
       return null;
    }
 

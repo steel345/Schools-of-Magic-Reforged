@@ -1,0 +1,7 @@
+{
+  "elements": [
+    { "type": "title", "text": "The Potion Bag" },
+    { "type": "text", "text": "  The /bPotion Bag/z is a conjurer's bandolier for finished splash or lingering brews. Craft it on the brazier with the rite at right. It holds your splash and lingering potions and keeps them close to hand.\n\n  Hang it from your /bBelt/z or set it in your /bCharm slot/z. While worn, hold that slot's key, the /bbelt key/z or the /bcharm key/z, and turn the mouse to pick a potion from the ring; the matching /bhotbar slot/z brightens, and your next right-click hurls that potion instead of its usual use. Each key reaches only its own slot. Can be also used normally by shift+right-clicking the bag to open it, then choosing the potion with your spell ring slot (V by default) and right-clicking again to throw it." },
+    { "type": "ritual", "result": "som:potion_bag" }
+  ]
+}

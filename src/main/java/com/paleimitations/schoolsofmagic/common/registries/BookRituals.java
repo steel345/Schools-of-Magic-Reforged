@@ -42,11 +42,32 @@ public class BookRituals {
    private static void textPage(String name, String titleKey, RecipeRitualCrafting recipe) {
       List<PageElement> els = Lists.newArrayList();
       els.add(new PageElementStandardText(titleKey, 72, 56, 99, 16, 0, true));
-      els.add(new PageElementParagraphs(name, TEXT_SCALE, 0, 0, new ParagraphBox(23, 74, 0, 100, 130)));
+      // Standard two-column flow. With a recipe, subpage 0 uses only the left column
+      // (the recipe fills the right); overflow spills to full two-column subpages so
+      // nothing is cut off. Short pages leave the extra subpages blank (auto-skipped).
       if (recipe != null) {
+         els.add(new PageElementParagraphs(name, TEXT_SCALE, 0, 2,
+            new ParagraphBox(23, 74, 0, 99, 116),
+            new ParagraphBox(23, 50, 1, 99, 140),
+            new ParagraphBox(134, 50, 1, 99, 140),
+            new ParagraphBox(23, 50, 2, 99, 140),
+            new ParagraphBox(134, 50, 2, 99, 140)));
          els.add(new PageElementRitualRecipe(recipe, 132, 47, 0));
+      } else {
+         els.add(new PageElementParagraphs(name, TEXT_SCALE, 0, 2,
+            new ParagraphBox(23, 65, 0, 99, 125),
+            new ParagraphBox(134, 50, 0, 99, 140),
+            new ParagraphBox(23, 50, 1, 99, 140),
+            new ParagraphBox(134, 50, 1, 99, 140),
+            new ParagraphBox(23, 50, 2, 99, 140),
+            new ParagraphBox(134, 50, 2, 99, 140)));
       }
-      new BookPage(name, els).addToList(BOOK);
+      if ("rc_enchant_bottle".equals(name)) {
+         new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
+            name, com.paleimitations.schoolsofmagic.common.books.PageUnlocks.ENCHANT_BOTTLE, els).addToList(BOOK);
+      } else {
+         new BookPage(name, els).addToList(BOOK);
+      }
    }
 
    public static void init() {
@@ -64,6 +85,9 @@ public class BookRituals {
       textPage("rc_owners", "page.rc_owners.title", null);
       textPage("rc_flame", "page.rc_flame.title", rite(10, new ItemStack(Items.BLUE_DYE)));
       textPage("rc_crafting", "page.rc_crafting.title", null);
+
+      RecipeRitualCrafting enchantRitual = RecipeRegistry.getRitualRecipe(new ItemStack(Items.EXPERIENCE_BOTTLE));
+      textPage("rc_enchant_bottle", "page.rc_enchant_bottle.title", enchantRitual);
 
       RecipeRitualCrafting broomRitual = RecipeRegistry.getRitualRecipe(new ItemStack(ItemRegistry.broom.get()));
       textPage("rc_broom", "page.rc_broom.title", broomRitual);

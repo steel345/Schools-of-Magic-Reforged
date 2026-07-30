@@ -47,6 +47,34 @@ public class CapabilityPlayerQuests {
       return entity.getCapability(CAP).orElse(null);
    }
 
+   // The quest page is drawn client-side, so the progress has to be mirrored there;
+   // without this the client never learns a quest started or was passed.
+   public static void sync(net.minecraft.server.level.ServerPlayer player) {
+      IPlayerQuests quests = getPlayerQuests(player);
+      if (!(quests instanceof net.minecraftforge.common.util.INBTSerializable<?>)) return;
+      @SuppressWarnings("unchecked")
+      net.minecraftforge.common.util.INBTSerializable<CompoundTag> data =
+         (net.minecraftforge.common.util.INBTSerializable<CompoundTag>) quests;
+      com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.send(
+         net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player),
+         new com.paleimitations.schoolsofmagic.common.network.PacketSyncPlayerQuests(player.getId(), data.serializeNBT()));
+   }
+
+   @SubscribeEvent
+   public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
+      if (event.getEntity() instanceof net.minecraft.server.level.ServerPlayer sp) sync(sp);
+   }
+
+   @SubscribeEvent
+   public static void onRespawn(PlayerEvent.PlayerRespawnEvent event) {
+      if (event.getEntity() instanceof net.minecraft.server.level.ServerPlayer sp) sync(sp);
+   }
+
+   @SubscribeEvent
+   public static void onChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+      if (event.getEntity() instanceof net.minecraft.server.level.ServerPlayer sp) sync(sp);
+   }
+
    @SubscribeEvent
    public static void clonePlayer(PlayerEvent.Clone event) {
       IPlayerQuests original = getPlayerQuests(event.getOriginal());
@@ -82,6 +110,10 @@ public class CapabilityPlayerQuests {
                living.sendSystemMessage(Component.literal("You have run out of time, you are unworthy!"));
                cap2.reset();
             }
+         }
+         // Keep the open quest page in step with the server.
+         if (living instanceof net.minecraft.server.level.ServerPlayer sp && sp.tickCount % 20 == 0) {
+            sync(sp);
          }
       }
       if (living instanceof ZombieVillager villager) {

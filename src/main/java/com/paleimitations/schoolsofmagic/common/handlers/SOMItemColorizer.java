@@ -34,6 +34,11 @@ public class SOMItemColorizer implements ItemColor {
          return tintIndex == 0 ? charm.getColorFor(stack) : 0xFFFFFFFF;
       }
 
+      // Herb pouch: dyed base (layer 0) like leather, overlay (layer 1) untinted.
+      if (stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemHerbPouch pouch) {
+         return tintIndex == 0 ? pouch.getColor(stack) : 0xFFFFFFFF;
+      }
+
       int i = 0x385DC6;
       IPotionData potionData = stack.getCapability(CapabilityPotionData.POTION_DATA_CAPABILITY).orElse(null);
       if (potionData != null && !potionData.getPotionEffects().isEmpty()) {
@@ -95,7 +100,7 @@ public class SOMItemColorizer implements ItemColor {
       event.register(INSTANCE,
          ItemRegistry.potion_drinkable.get(), ItemRegistry.potion_throwable.get(), ItemRegistry.potion_lingering.get(),
          ItemRegistry.potion_jug.get(), ItemRegistry.potion_burst.get(), ItemRegistry.potion_crystal.get(),
-         ItemRegistry.potion_charm.get(),
+         ItemRegistry.potion_charm.get(), ItemRegistry.herb_pouch.get(),
          ItemRegistry.teacup.get(), ItemRegistry.spell_modifier_scroll.get(),
          ItemRegistry.spellbook.get(),
          ItemRegistry.basic_spellbook.get(), ItemRegistry.intermediate_spellbook.get(),

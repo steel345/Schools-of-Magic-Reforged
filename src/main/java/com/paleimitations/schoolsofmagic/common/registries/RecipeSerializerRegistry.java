@@ -41,6 +41,11 @@ public class RecipeSerializerRegistry {
          () -> new net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer<>(
             com.paleimitations.schoolsofmagic.common.crafting.CoconutMilkRecipe::new));
 
+   public static final RegistryObject<RecipeSerializer<?>> SALTED_FOOD =
+      SERIALIZERS.register("salted_food",
+         () -> new net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer<>(
+            com.paleimitations.schoolsofmagic.common.crafting.SaltedFoodRecipe::new));
+
    public static final RegistryObject<RecipeSerializer<?>> WHISTLE_WAX =
       SERIALIZERS.register("whistle_wax",
          () -> new net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer<>(

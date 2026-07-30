@@ -40,6 +40,7 @@ public class BookPageRegistry {
     public static final List<BookPage> EXPLORER_CODEX = Lists.newArrayList();
     public static final List<BookPage> ALCHEMY_BOOK = Lists.newArrayList();
     public static final List<BookPage> RITUAL_BOOK = Lists.newArrayList();
+    public static final List<BookPage> KNOWLEDGE_BOOK = Lists.newArrayList();
 
     private static ItemStack stack(RegistryObject<Item> item, int meta) {
         ItemStack s = new ItemStack(item.get());
@@ -86,6 +87,7 @@ public class BookPageRegistry {
         BookExplorer.init();
         BookAlchemy.init();
         BookRituals.init();
+        BookKnowledge.init();
 
         new BookPage("ccw_letter_1", Lists.newArrayList(
             new PageElementParagraphs(
@@ -161,6 +163,10 @@ public class BookPageRegistry {
         tryPotionPage(PotionTypeRegistry.CREEPERS_BANE,
             () -> stack(ItemRegistry.crushed_plant, EnumPlantType.HELIOMANCY.getIndex()),
             MagicSchoolRegistry.abjuration, MagicElementRegistry.heliomancy, null);
+
+        tryPotionPage(PotionTypeRegistry.CLEANSING,
+            () -> new ItemStack(ItemRegistry.salt.get()),
+            MagicSchoolRegistry.abjuration, MagicElementRegistry.hieromancy, ADVANCED_MAGIC_BOOK);
 
         tryPotionPage(PotionTypeRegistry.FEAR,
             () -> stack(ItemRegistry.ingredient, com.paleimitations.schoolsofmagic.common.blocks.EnumIngredient.PIG_TAIL.getIndex()),

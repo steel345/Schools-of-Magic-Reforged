@@ -1,4 +1,4 @@
-  As one continues on their magical journey, one will need even better materials. The Catalyst Basin allows one to create Brass, Bronze, and Tenebrium and will also provide another path to obtaining Copper, Silver, and Steel.
+  As one continues on their magical journey, one will need even better materials. The /bCatalyst Basin/z allows one to create /bBrass/z, /bBronze/z, and /bTenebrium/z and will also provide another path to obtaining /bCopper/z, /bSilver/z, and /bSteel/z.
 <~><~>  Copper can be created by combining an Iron Ingot with Redstone Dust using a Golden Shovel and Magma Cream as the catalysts.
 <~><~>  Silver can be created by combining a Gold Ingot with Glass Panes using Indigo Toad Spawn and Milk of the Poppy as the catalysts.
 <~><~>  Brass can be created by combining a Gold Ingot with a Copper Nugget using a Blaze Rod and Lava as the catalysts.

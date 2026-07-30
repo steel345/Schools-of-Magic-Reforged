@@ -95,9 +95,23 @@ public class BlockPodium extends SOMBlock implements EntityBlock {
 
       if (player.isShiftKeyDown() && !slot0.isEmpty()) {
          if (!world.isClientSide) {
-            ItemStack out = handler.extractItem(0, 1, false);
-            if (!player.getInventory().add(out)) player.drop(out, false);
-            tb.sendUpdates();
+            // A loaned (floated) book flies back to its shelf instead of being taken.
+            if (com.paleimitations.schoolsofmagic.common.handlers.KnowledgeLoans.get(leftPos) != null) {
+               com.paleimitations.schoolsofmagic.common.handlers.KnowledgeReverse.reverse(
+                  (net.minecraft.server.level.ServerLevel) world, leftPos);
+            } else if (tb.floated && !tb.floatedBook.isEmpty()) {
+               // Loan lost (e.g. after restart): restore the book, hand over the found one.
+               ItemStack found = handler.getStackInSlot(0).copy();
+               handler.setStackInSlot(0, tb.floatedBook.copy());
+               tb.floated = false;
+               tb.floatedBook = ItemStack.EMPTY;
+               tb.sendUpdates();
+               if (!player.getInventory().add(found)) player.drop(found, false);
+            } else {
+               ItemStack out = handler.extractItem(0, 1, false);
+               if (!player.getInventory().add(out)) player.drop(out, false);
+               tb.sendUpdates();
+            }
          }
          return InteractionResult.sidedSuccess(world.isClientSide);
       }

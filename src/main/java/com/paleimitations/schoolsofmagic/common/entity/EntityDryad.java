@@ -194,10 +194,11 @@ public class EntityDryad extends EntityMagician {
             }
             if (entity == this && playerQuest.getQuestID() == this.getQuestID()) {
                if (playerQuest.hasSucceeded()) {
-                  player.sendSystemMessage(Component.literal("You are worthy."));
-                  player.addItem(this.getTwig());
-                  playerQuest.reset();
-                  this.setDialogNumber(0);
+                  // The core is claimed from the written test, not from talking, so
+                  // the page stays the single place the reward is handed over.
+                  if (!this.level().isClientSide) {
+                     player.sendSystemMessage(Component.literal("You are worthy. Claim your reward on the test I gave you."));
+                  }
                   return InteractionResult.SUCCESS;
                }
                if (playerQuest.getTimer() > 0) {
@@ -321,25 +322,18 @@ public class EntityDryad extends EntityMagician {
                player.sendSystemMessage(Component.literal(quest.getDialog(this.getDialogNumber())));
             }
             if (this.getDialogNumber() == 3) {
-               playerQuest.setQuest(quest, this);
-               if (this.getQuestID() == 0) {
-                  player.addEffect(new MobEffectInstance(MobEffects.POISON, 300));
-               } else if (this.getQuestID() == 16) {
-                  if (!this.level().isClientSide) {
-                     Entity existing = this.championUUID != null && this.level() instanceof net.minecraft.server.level.ServerLevel server
-                        ? server.getEntity(this.championUUID) : null;
-                     if (existing instanceof IronGolem champion && existing.isAlive()) {
-                        champion.setTarget(player);
-                     } else {
-                        IronGolem golem = new IronGolem(net.minecraft.world.entity.EntityType.IRON_GOLEM, this.level());
-                        golem.copyPosition(player);
-                        golem.setCustomName(Component.literal("Champion of the Forest"));
-                        golem.setPersistenceRequired();
-                        golem.setTarget(player);
-                        this.level().addFreshEntity(golem);
-                        this.championUUID = golem.getUUID();
-                     }
+               // The dryad hands over a written test rather than starting it on the
+               // spot; the page carries the explanation and the start button. It is
+               // only ever offered once per dryad.
+               if (!this.level().isClientSide) {
+                  if (this.hasTestPage(player)) {
+                     player.sendSystemMessage(Component.literal("You already carry my test."));
+                  } else {
+                     ItemStack note = com.paleimitations.schoolsofmagic.common.items.ItemDryadQuest.create(
+                        this.getQuestID(), this.getUUID(), this.getTwigWoodIndex());
+                     if (!player.addItem(note)) player.drop(note, false);
                   }
+                  this.setDialogNumber(0);
                }
             } else if (!this.level().isClientSide) {
                this.setDialogNumber(this.getDialogNumber() + 1);
@@ -348,6 +342,69 @@ public class EntityDryad extends EntityMagician {
          return InteractionResult.SUCCESS;
       }
       return super.mobInteract(player, hand);
+   }
+
+   // True when the player is already carrying this dryad's written test, so it is
+   // never handed out twice.
+   public boolean hasTestPage(Player player) {
+      for (ItemStack stack : player.getInventory().items) {
+         if (!(stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemDryadQuest)) continue;
+         if (this.getUUID().equals(
+               com.paleimitations.schoolsofmagic.common.items.ItemDryadQuest.getDryad(stack))) {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   public int getTwigWoodIndex() {
+      ItemStack core = this.getTwig();
+      return core == null || core.isEmpty() ? 0 : core.getDamageValue();
+   }
+
+   // Begins the test written on a quest page, applying whatever the test sets in
+   // motion (the poison of the fortitude trial, the champion of the strength trial).
+   public void beginQuest(Player player) {
+      Quest quest = this.getQuest();
+      IPlayerQuests playerQuest = player.getCapability(CapabilityPlayerQuests.CAP).orElse(null);
+      if (quest == null || playerQuest == null || playerQuest.isOnQuest()) return;
+      playerQuest.setQuest(quest, this);
+      if (this.getQuestID() == 0) {
+         player.addEffect(new MobEffectInstance(MobEffects.POISON, 300));
+      } else if (this.getQuestID() == 16 && !this.level().isClientSide) {
+         Entity existing = this.championUUID != null && this.level() instanceof net.minecraft.server.level.ServerLevel server
+            ? server.getEntity(this.championUUID) : null;
+         if (existing instanceof IronGolem champion && existing.isAlive()) {
+            champion.setTarget(player);
+         } else {
+            IronGolem golem = new IronGolem(net.minecraft.world.entity.EntityType.IRON_GOLEM, this.level());
+            golem.copyPosition(player);
+            golem.setCustomName(Component.literal("Champion of the Forest"));
+            golem.setPersistenceRequired();
+            golem.setTarget(player);
+            this.level().addFreshEntity(golem);
+            this.championUUID = golem.getUUID();
+         }
+      }
+   }
+
+   // A slain dryad usually yields its core. A ritual blade makes it far more
+   // reliable: a bone knife most of the time, an athame always.
+   @Override
+   protected void dropCustomDeathLoot(net.minecraft.world.damagesource.DamageSource source, int looting, boolean recentlyHit) {
+      super.dropCustomDeathLoot(source, looting, recentlyHit);
+      ItemStack core = this.getTwig();
+      if (core == null || core.isEmpty()) return;
+
+      float chance = 0.5F;
+      if (source.getEntity() instanceof net.minecraft.world.entity.LivingEntity killer) {
+         net.minecraft.world.item.Item weapon = killer.getMainHandItem().getItem();
+         if (weapon == ItemRegistry.athame.get()) chance = 1.0F;
+         else if (weapon == ItemRegistry.bone_knife.get()) chance = 0.7F;
+      }
+      if (this.getRandom().nextFloat() < chance) {
+         this.spawnAtLocation(core);
+      }
    }
 
    public ItemStack getTwig() {
@@ -448,10 +505,11 @@ public class EntityDryad extends EntityMagician {
    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
       spawnData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
       int i = this.getDryadTypeForBiome(level);
+      // The tree type is shared across a grove, but every dryad sets its own test so
+      // a grove does not offer the same trial over and over.
       int j = this.getRandomQuest();
       if (spawnData instanceof DryadData) {
          i = ((DryadData)spawnData).typeData;
-         j = ((DryadData)spawnData).questData;
       } else {
          spawnData = new DryadData(i, j);
       }
@@ -460,20 +518,30 @@ public class EntityDryad extends EntityMagician {
       return spawnData;
    }
 
-   public int getRandomQuest() {
-      switch (this.getRandom().nextInt(10)) {
-         case 0: return 0;
-         case 1: return 1;
-         case 2: return 2;
-         case 3: return 3;
-         case 4: return 10 + this.getRandom().nextInt(6);
-         case 5: return 10 + this.getRandom().nextInt(6);
-         case 6: return 16;
-         case 7: return 17 + this.getRandom().nextInt(6);
-         case 8: return 23;
-         case 9: return 24;
+   // Once a test is passed the dryad thinks up a different one, so returning to the
+   // same dryad never gives the same trial twice in a row.
+   public void rerollQuest() {
+      int previous = this.getQuestID();
+      int next = previous;
+      for (int attempt = 0; attempt < 12 && next == previous; attempt++) {
+         next = this.getRandomQuest();
       }
-      return 0;
+      this.setQuestID(next);
+      this.setDialogNumber(0);
+   }
+
+   // Every trial that can actually be completed, drawn evenly. The Tests of
+   // Responsibility (4-9) are left out: nothing ever marks them as passed.
+   private static final int[] WINNABLE_QUESTS = {
+      0, 1, 2, 3,
+      10, 11, 12, 13, 14, 15,
+      16,
+      17, 18, 19, 20, 21, 22,
+      23, 24
+   };
+
+   public int getRandomQuest() {
+      return WINNABLE_QUESTS[this.getRandom().nextInt(WINNABLE_QUESTS.length)];
    }
 
    private int getRandomDryadType() {

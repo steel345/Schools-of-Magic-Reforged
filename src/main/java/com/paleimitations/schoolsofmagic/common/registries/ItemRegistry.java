@@ -55,6 +55,8 @@ public class ItemRegistry {
       () -> new ItemBookBase(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> spellworkers_handbook = ITEMS.register("spellworkers_handbook",
       () -> new ItemBookBase(new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> book_of_knowledge = ITEMS.register("book_of_knowledge",
+      () -> new ItemBookBase(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> spellbook = ITEMS.register("spellbook",
       () -> new ItemSpellbook(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> grimoire_page = ITEMS.register("grimoire_page",
@@ -69,6 +71,8 @@ public class ItemRegistry {
       () -> new Item(new Item.Properties()));
    public static final RegistryObject<Item> quest_note = ITEMS.register("quest_note",
       () -> new ItemQuest(new Item.Properties()));
+   public static final RegistryObject<Item> dryad_quest = ITEMS.register("dryad_quest",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemDryadQuest(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> sticker = ITEMS.register("sticker",
       () -> new ItemSticker(new Item.Properties()));
    public static final RegistryObject<Item> sticker_pack = ITEMS.register("sticker_pack",
@@ -85,6 +89,8 @@ public class ItemRegistry {
 
    public static final RegistryObject<Item> potion_bag = ITEMS.register("potion_bag",
       () -> new com.paleimitations.schoolsofmagic.common.items.PotionBag(new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> herb_pouch = ITEMS.register("herb_pouch",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemHerbPouch(new Item.Properties().stacksTo(1)));
 
    public static final RegistryObject<Item> seed_magic_plant = ITEMS.register("seed_magic_plant",
       () -> new ItemMagicPlantSeed(new Item.Properties()));
@@ -261,17 +267,17 @@ public class ItemRegistry {
    public static final RegistryObject<Item> tree_item = ITEMS.register("tree_item",
       () -> new ItemTree(new Item.Properties()));
    public static final RegistryObject<Item> itemdoor_ash = ITEMS.register("itemdoor_ash",
-      () -> new SOMItemDoor(new Item.Properties().stacksTo(1)));
+      () -> new SOMItemDoor(new Item.Properties()));
    public static final RegistryObject<Item> itemdoor_elder = ITEMS.register("itemdoor_elder",
-      () -> new SOMItemDoor(new Item.Properties().stacksTo(1)));
+      () -> new SOMItemDoor(new Item.Properties()));
    public static final RegistryObject<Item> itemdoor_pine = ITEMS.register("itemdoor_pine",
-      () -> new SOMItemDoor(new Item.Properties().stacksTo(1)));
+      () -> new SOMItemDoor(new Item.Properties()));
    public static final RegistryObject<Item> itemdoor_verde = ITEMS.register("itemdoor_verde",
-      () -> new SOMItemDoor(new Item.Properties().stacksTo(1)));
+      () -> new SOMItemDoor(new Item.Properties()));
    public static final RegistryObject<Item> itemdoor_willow = ITEMS.register("itemdoor_willow",
-      () -> new SOMItemDoor(new Item.Properties().stacksTo(1)));
+      () -> new SOMItemDoor(new Item.Properties()));
    public static final RegistryObject<Item> itemdoor_yew = ITEMS.register("itemdoor_yew",
-      () -> new SOMItemDoor(new Item.Properties().stacksTo(1)));
+      () -> new SOMItemDoor(new Item.Properties()));
 
    public static final RegistryObject<Item> bi_brazier = ITEMS.register("brazier", () -> new com.paleimitations.schoolsofmagic.common.items.BrazierBlockItem(BlockRegistry.brazier.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_catalyst_basin = ITEMS.register("catalyst_basin", () -> new BlockItem(BlockRegistry.catalyst_basin.get(), new Item.Properties()));
@@ -642,6 +648,24 @@ public class ItemRegistry {
    public static final RegistryObject<Item> flying_ointment = ITEMS.register("flying_ointment",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemFlyingOintment(
          new Item.Properties().stacksTo(16)));
+   public static final RegistryObject<Item> salt = ITEMS.register("salt",
+      () -> new BlockItem(BlockRegistry.salt_line.get(), new Item.Properties()));
+   public static final RegistryObject<Item> bi_salt_ore = ITEMS.register("salt_ore",
+      () -> new BlockItem(BlockRegistry.salt_ore.get(), new Item.Properties()));
+   public static final RegistryObject<Item> bi_deepslate_salt_ore = ITEMS.register("deepslate_salt_ore",
+      () -> new BlockItem(BlockRegistry.deepslate_salt_ore.get(), new Item.Properties()));
+   public static final RegistryObject<Item> bi_fae_salt_ore = ITEMS.register("fae_salt_ore",
+      () -> new BlockItem(BlockRegistry.fae_salt_ore.get(), new Item.Properties()));
+   public static final RegistryObject<Item> bi_gypsum_salt_ore = ITEMS.register("gypsum_salt_ore",
+      () -> new BlockItem(BlockRegistry.gypsum_salt_ore.get(), new Item.Properties()));
+   public static final RegistryObject<Item> bi_mud_marble_salt_ore = ITEMS.register("mud_marble_salt_ore",
+      () -> new BlockItem(BlockRegistry.mud_marble_salt_ore.get(), new Item.Properties()));
+   public static final RegistryObject<Item> bi_block_of_salt = ITEMS.register("block_of_salt",
+      () -> new BlockItem(BlockRegistry.block_of_salt.get(), new Item.Properties()));
+   public static final RegistryObject<Item> raw_silver = ITEMS.register("raw_silver",
+      () -> new Item(new Item.Properties()));
+   public static final RegistryObject<Item> raw_pure_copper = ITEMS.register("raw_pure_copper",
+      () -> new Item(new Item.Properties()));
    public static final RegistryObject<Item> mutandis = ITEMS.register("mutandis",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemMutandis(
          new Item.Properties().durability(3)));
@@ -817,9 +841,11 @@ public class ItemRegistry {
       return ITEMS.register(name + "_spawn_egg",
          () -> new net.minecraftforge.common.ForgeSpawnEggItem(type, primary, secondary, new Item.Properties()));
    }
+   public static final RegistryObject<Item> target_dummy_spawn_egg = egg("target_dummy", EntityRegistry.TARGET_DUMMY, 0xE8DCB0, 0xD9A82C);
    public static final RegistryObject<Item> toad_spawn_egg      = egg("toad",      EntityRegistry.TOAD,      4932905, 11249034);
    public static final RegistryObject<Item> dryad_spawn_egg     = egg("dryad",     EntityRegistry.DRYAD,     10734969, 5794117);
    public static final RegistryObject<Item> phoenix_spawn_egg   = egg("phoenix",   EntityRegistry.PHOENIX,   16372296, 15360531);
+   public static final RegistryObject<Item> thunder_bird_spawn_egg = egg("thunder_bird", EntityRegistry.THUNDER_BIRD, 4671303, 15263976);
    public static final RegistryObject<Item> tarantula_spawn_egg = egg("tarantula", EntityRegistry.TARANTULA, 6700594, 3673867);
    public static final RegistryObject<Item> unicorn_spawn_egg   = egg("unicorn",   EntityRegistry.UNICORN,   16119807, 12763857);
    public static final RegistryObject<Item> human_spawn_egg     = egg("human",     EntityRegistry.HUMAN,     12369084, 10592673);
@@ -851,8 +877,9 @@ public class ItemRegistry {
    public static final RegistryObject<Item>[] SPAWN_EGGS = makeEggArray();
    @SuppressWarnings("unchecked")
    private static RegistryObject<Item>[] makeEggArray() {
-      return new RegistryObject[]{ toad_spawn_egg, dryad_spawn_egg, phoenix_spawn_egg, tarantula_spawn_egg,
-         unicorn_spawn_egg, human_spawn_egg, squeakard_spawn_egg, sphinx_spawn_egg, demon_spawn_egg, flower_fae_spawn_egg };
+      return new RegistryObject[]{ toad_spawn_egg, dryad_spawn_egg, phoenix_spawn_egg, thunder_bird_spawn_egg, tarantula_spawn_egg,
+         unicorn_spawn_egg, human_spawn_egg, squeakard_spawn_egg, sphinx_spawn_egg, demon_spawn_egg, flower_fae_spawn_egg,
+         target_dummy_spawn_egg };
    }
 
    public static void register(IEventBus bus) {

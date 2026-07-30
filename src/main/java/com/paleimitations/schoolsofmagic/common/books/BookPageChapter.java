@@ -86,7 +86,9 @@ public class BookPageChapter extends BookPage {
                int xi = i / segment % 2 == 0 ? 23 : 134;
                int yi = 65 + i % segment * 18;
                int targeti = i / (segment * 2);
-               this.elements.add(new PageElementChapterEntry(title, desc, chapterStart + i, xi, yi, targeti, 99, 8));
+               PageElementChapterEntry entry = new PageElementChapterEntry(title, desc, chapterStart + i, xi, yi, targeti, 99, 8);
+               entry.targetPage = pagex;
+               this.elements.add(entry);
             }
          }
       }

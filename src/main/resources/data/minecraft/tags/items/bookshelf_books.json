@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "som:magic_book",
+    "som:basic_spellbook",
+    "som:intermediate_spellbook",
+    "som:advanced_spellbook",
+    "som:complete_spellbook",
+    "som:alchemical_manual",
+    "som:exploration_book",
+    "som:tea_makers_guide",
+    "som:ritual_compendium",
+    "som:spellworkers_handbook",
+    "som:book_of_knowledge",
+    "som:spellbook",
+    "som:grimoire_page",
+    "som:spell_note",
+    "som:spell_modifier_scroll",
+    "som:spell_parchment",
+    "som:quest_note"
+  ]
+}

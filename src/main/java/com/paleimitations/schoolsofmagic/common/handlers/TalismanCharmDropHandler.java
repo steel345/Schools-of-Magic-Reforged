@@ -36,5 +36,18 @@ public class TalismanCharmDropHandler {
          event.getDrops().add(new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), charm.getCharm().copy()));
          charm.setCharm(ItemStack.EMPTY);
       }
+
+      // Worn garments fall with everything else. Clearing them here means the
+      // respawn copy carries nothing over, so a death can never duplicate one.
+      com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData garments =
+         com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.CapabilityGarmentData.get(player);
+      if (garments != null) {
+         for (int i = 0; i < com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.SLOTS; i++) {
+            ItemStack worn = garments.getGarment(i);
+            if (worn.isEmpty()) continue;
+            event.getDrops().add(new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), worn.copy()));
+            garments.setGarment(i, ItemStack.EMPTY);
+         }
+      }
    }
 }

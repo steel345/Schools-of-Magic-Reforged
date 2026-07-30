@@ -53,6 +53,15 @@ public class BookPage {
       return this;
    }
 
+   // Insert at a specific slot in the book (that raw list index is where the page
+   // appears). Clamped to the current size, so an out-of-range number just appends.
+   public BookPage addToList(List<BookPage> pages, int index) {
+      if (index < 0) index = 0;
+      if (index > pages.size()) index = pages.size();
+      pages.add(index, this);
+      return this;
+   }
+
    public BookPage addElement(PageElement element) {
       this.elements.add(element);
       return this;

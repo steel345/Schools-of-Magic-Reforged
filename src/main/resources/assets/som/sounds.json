@@ -50,6 +50,11 @@
         ]
     },
 
+    "spells.sun_dry":{
+        "subtitle": "spells.sun_dry",
+        "sounds": [ { "name": "som:spells/sun_dry", "stream": false} ]
+    },
+
     "spells.furnace_fuel":{
         "subtitle": "spells.furnace_fuel",
         "sounds": [ { "name": "som:spells/furnace_fuel", "stream": true} ]
@@ -170,6 +175,23 @@
     "entity.toad.croak":{
         "subtitle": "entity.toad.croak",
         "sounds": [ { "name": "som:entity/toad/croak", "stream": true} ]
+    },
+
+    "entity.demon.idle":{
+        "subtitle": "entity.demon.idle",
+        "sounds": [
+            { "name": "som:demon/idle1", "stream": true},
+            { "name": "som:demon/idle2", "stream": true},
+            { "name": "som:demon/idle3", "stream": true}
+        ]
+    },
+
+    "entity.demon.hurt":{
+        "subtitle": "entity.demon.hurt",
+        "sounds": [
+            { "name": "minecraft:mob/piglin_brute/hurt1", "pitch": 0.5 },
+            { "name": "minecraft:mob/piglin_brute/hurt2", "pitch": 0.5 }
+        ]
     },
 
     "blocks.summon.bat":{

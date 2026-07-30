@@ -53,6 +53,7 @@ public class PotionRegistry {
    public static final RegistryObject<MobEffect> color_blind = EFFECTS.register("color_blind", () -> new PotionBasic(MobEffectCategory.HARMFUL, 0x414141));
    public static final RegistryObject<MobEffect> confusion2 = EFFECTS.register("confusion2", () -> new PotionBasic(MobEffectCategory.HARMFUL, 15002109));
    public static final RegistryObject<MobEffect> creepers_bane = EFFECTS.register("creepers_bane", () -> new PotionCreepersBane(MobEffectCategory.BENEFICIAL, 0xB93B3B));
+   public static final RegistryObject<MobEffect> cleansing = EFFECTS.register("cleansing", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionCleansing(MobEffectCategory.BENEFICIAL, 0xF6F0DC));
    public static final RegistryObject<MobEffect> cursed_rising = EFFECTS.register("cursed_rising", () -> new PotionCursedRising(MobEffectCategory.HARMFUL, 8831219));
    public static final RegistryObject<MobEffect> cursed_sinking = EFFECTS.register("cursed_sinking", () -> new PotionCursedSinking(MobEffectCategory.HARMFUL, 8076586));
    public static final RegistryObject<MobEffect> cursed_spinning = EFFECTS.register("cursed_spinning", () -> new PotionCursedSpinning(MobEffectCategory.HARMFUL, 13486178));

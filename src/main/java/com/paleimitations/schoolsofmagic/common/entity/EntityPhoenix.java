@@ -110,8 +110,12 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
       this.moveControl = new FlyingMoveControl(this, 10, false);
    }
 
-   private static final net.minecraft.world.item.crafting.Ingredient MUTTON =
-      net.minecraft.world.item.crafting.Ingredient.of(net.minecraft.world.item.Items.MUTTON);
+   protected boolean rebirthEnabled() { return true; }
+   protected boolean coldEnabled() { return true; }
+   protected boolean courierEnabled() { return true; }
+   protected boolean fireEnabled() { return true; }
+   protected net.minecraft.world.item.Item favoriteFood() { return net.minecraft.world.item.Items.MUTTON; }
+   protected void tickSpecialAttack() {}
 
    @Override
    protected void registerGoals() {
@@ -122,7 +126,8 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
       this.goalSelector.addGoal(1, new net.minecraft.world.entity.ai.goal.MeleeAttackGoal(this, 1.3D, true));
       this.goalSelector.addGoal(2, new EatMeatGoal(this));
       this.goalSelector.addGoal(2, new HeatHuddleGoal(this));
-      this.goalSelector.addGoal(3, new net.minecraft.world.entity.ai.goal.TemptGoal(this, 1.2D, MUTTON, false));
+      this.goalSelector.addGoal(3, new net.minecraft.world.entity.ai.goal.TemptGoal(this, 1.2D,
+         net.minecraft.world.item.crafting.Ingredient.of(favoriteFood()), false));
       this.goalSelector.addGoal(4, this.follow);
       this.lookGoal = new LookAtPlayerGoal(this, Player.class, 8.0F);
       this.soarGoal = new SoarGoal(this);
@@ -622,11 +627,14 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
    public void aiStep() {
       super.aiStep();
       if (this.level().isClientSide) {
-         if (this.isDying()) spawnDeathParticles();
-         else if (this.isFireMode()) spawnBeakFire();
-         else {
-            if (this.random.nextInt(7) == 0) spawnAmbientEmber();
-            if (this.getCold() > 0.4F && this.random.nextInt(3) == 0) spawnColdParticle();
+         if (fireEnabled()) {
+            if (this.isDying()) spawnDeathParticles();
+            else if (this.isFireMode()) spawnBeakFire();
+            else if (this.random.nextInt(7) == 0) spawnAmbientEmber();
+         }
+         if (coldEnabled() && !this.isDying() && !this.isFireMode()
+               && this.getCold() > 0.4F && this.random.nextInt(3) == 0) {
+            spawnColdParticle();
          }
          return;
       }
@@ -648,16 +656,19 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
       if (this.isDying()) { tickDying(); return; }
       if (this.getOwner() != null && this.getTarget() == this.getOwner()) this.setTarget(null);
       if (this.courierState.equals("AWAY")) { tickCourier(); return; }
-      if (this.tickCount % 10 == 0) tickCold();
-      if (this.fireCooldown > 0) this.fireCooldown--;
-      if (this.fireTimer > 0 && --this.fireTimer == 0) {
-         setFireMode(false);
-         this.fireCooldown = 100;
-         if (this.getTarget() == null) flyAway();
+      if (coldEnabled() && this.tickCount % 10 == 0) tickCold();
+      if (fireEnabled()) {
+         if (this.fireCooldown > 0) this.fireCooldown--;
+         if (this.fireTimer > 0 && --this.fireTimer == 0) {
+            setFireMode(false);
+            this.fireCooldown = 100;
+            if (this.getTarget() == null) flyAway();
+         }
+         if (this.isFireMode()) breatheFire();
+         else maybeSpitFire();
       }
-      if (this.isFireMode()) breatheFire();
-      else maybeSpitFire();
-      tickCourier();
+      tickSpecialAttack();
+      if (courierEnabled()) tickCourier();
       if (!this.isVehicle() && !this.onGround() && this.getNavigation().isDone() && this.getTarget() == null) {
          Vec3 dm = this.getDeltaMovement();
          if (dm.y < 0.0D) this.setDeltaMovement(dm.x, dm.y * 0.5D, dm.z);
@@ -903,7 +914,7 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
          if (!this.level().isClientSide) dropCarriedForPlayer(player);
          return InteractionResult.sidedSuccess(this.level().isClientSide);
       }
-      if (this.isBaby() && held.is(net.minecraft.world.item.Items.MUTTON)) {
+      if (this.isBaby() && held.is(favoriteFood())) {
          if (!this.level().isClientSide) {
             if (!player.getAbilities().instabuild) held.shrink(1);
             this.ageUp((int) ((float) (-this.getAge() / 20) * 0.1F), true);
@@ -1088,7 +1099,7 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
          this.setOrderedToSit(false);
       }
       boolean hurt = super.hurt(source, amount);
-      if (hurt && !this.level().isClientSide && this.isAlive()
+      if (hurt && fireEnabled() && !this.level().isClientSide && this.isAlive()
             && !this.isFireMode() && this.fireCooldown == 0
             && source.getEntity() instanceof LivingEntity le
             && !(le instanceof EntityPhoenix)
@@ -1257,7 +1268,7 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
       double a = this.random.nextDouble() * Math.PI * 2.0D;
       this.moveTo(player.getX() + Math.cos(a) * 2.0D, player.getY() + 1.0D, player.getZ() + Math.sin(a) * 2.0D, this.getYRot(), 0.0F);
       this.hasImpulse = true;
-      if (this.level() instanceof net.minecraft.server.level.ServerLevel sl) {
+      if (fireEnabled() && this.level() instanceof net.minecraft.server.level.ServerLevel sl) {
          sl.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME, this.getX(), this.getY() + 0.4D, this.getZ(), 12, 0.3D, 0.4D, 0.3D, 0.02D);
       }
       this.playSound(SoundEvents.PHANTOM_FLAP, 1.0F, 1.6F);
@@ -1417,9 +1428,11 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
    public void die(DamageSource source) {
       if (this.isTame()) this.ejectPassengers();
       if (this.level() instanceof net.minecraft.server.level.ServerLevel sl) {
-         sl.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME, this.getX(), this.getY() + this.getBbHeight() * 0.5D, this.getZ(), 40, 0.4D, 0.6D, 0.4D, 0.18D);
-         sl.sendParticles(net.minecraft.core.particles.ParticleTypes.LARGE_SMOKE, this.getX(), this.getY() + this.getBbHeight() * 0.5D, this.getZ(), 25, 0.4D, 0.6D, 0.4D, 0.12D);
-         if (!this.isBaby() && !this.isRebirthing()) spawnRebirth(sl);
+         if (fireEnabled()) {
+            sl.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME, this.getX(), this.getY() + this.getBbHeight() * 0.5D, this.getZ(), 40, 0.4D, 0.6D, 0.4D, 0.18D);
+            sl.sendParticles(net.minecraft.core.particles.ParticleTypes.LARGE_SMOKE, this.getX(), this.getY() + this.getBbHeight() * 0.5D, this.getZ(), 25, 0.4D, 0.6D, 0.4D, 0.12D);
+         }
+         if (rebirthEnabled() && !this.isBaby() && !this.isRebirthing()) spawnRebirth(sl);
       }
       super.die(source);
    }
@@ -1437,7 +1450,7 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
 
    static class HeatHuddleGoal extends Goal {
       private final EntityPhoenix phoenix;
-      private BlockPos heat;
+      private BlockPos sleepSpot;
 
       HeatHuddleGoal(EntityPhoenix phoenix) {
          this.phoenix = phoenix;
@@ -1450,46 +1463,86 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
             || (s.getBlock() instanceof net.minecraft.world.level.block.CampfireBlock && s.getValue(net.minecraft.world.level.block.CampfireBlock.LIT));
       }
 
+      private boolean wantsSleep() {
+         return phoenix.level().isNight() || (phoenix.coldEnabled() && phoenix.getCold() > 0.3F);
+      }
+
+      private BlockPos findWarmth() {
+         BlockPos c = phoenix.blockPosition();
+         BlockPos best = null;
+         double bestDist = Double.MAX_VALUE;
+         for (BlockPos b : BlockPos.betweenClosed(c.offset(-20, -8, -20), c.offset(20, 8, 20))) {
+            if (isWarm(phoenix.level(), b)) {
+               double d = b.distSqr(c);
+               if (d < bestDist) { bestDist = d; best = b.immutable(); }
+            }
+         }
+         return best;
+      }
+
+      private BlockPos restBesideWarmth(BlockPos warm) {
+         for (net.minecraft.core.Direction dir : net.minecraft.core.Direction.Plane.HORIZONTAL) {
+            BlockPos side = warm.relative(dir);
+            if (phoenix.level().getBlockState(side.below()).isFaceSturdy(phoenix.level(), side.below(), net.minecraft.core.Direction.UP)
+                  && phoenix.level().getBlockState(side).isAir()) {
+               return side;
+            }
+         }
+         return warm.above();
+      }
+
+      private BlockPos groundBelow() {
+         BlockPos.MutableBlockPos m = phoenix.blockPosition().mutable();
+         int min = phoenix.level().getMinBuildHeight();
+         for (int y = m.getY(); y > min; y--) {
+            m.setY(y);
+            if (phoenix.level().getBlockState(m.below()).isFaceSturdy(phoenix.level(), m.below(), net.minecraft.core.Direction.UP)
+                  && phoenix.level().getBlockState(m).isAir()) {
+               return m.immutable();
+            }
+         }
+         return null;
+      }
+
       @Override
       public boolean canUse() {
          if (phoenix.isVehicle() || phoenix.isDying() || phoenix.getTarget() != null || phoenix.isOrderedToSit()) return false;
-         boolean wantsWarmth = phoenix.level().isNight() || phoenix.getCold() > 0.3F;
-         if (!wantsWarmth || phoenix.tickCount % 20 != 0) return false;
-         BlockPos c = phoenix.blockPosition();
-         for (BlockPos b : BlockPos.betweenClosed(c.offset(-16, -6, -16), c.offset(16, 6, 16))) {
-            if (isWarm(phoenix.level(), b)) { this.heat = b.immutable(); return true; }
-         }
-         return false;
+         if (!wantsSleep() || phoenix.tickCount % 40 != 0) return false;
+         BlockPos warm = findWarmth();
+         if (warm != null) { this.sleepSpot = restBesideWarmth(warm); return true; }
+         this.sleepSpot = groundBelow();
+         return this.sleepSpot != null;
       }
 
       @Override
       public boolean canContinueToUse() {
-         boolean stillWants = phoenix.level().isNight() || phoenix.getCold() > 0.05F;
-         return stillWants && this.heat != null && isWarm(phoenix.level(), this.heat) && phoenix.getTarget() == null;
+         boolean stillWants = phoenix.level().isNight() || (phoenix.coldEnabled() && phoenix.getCold() > 0.05F);
+         return stillWants && this.sleepSpot != null && phoenix.getTarget() == null
+            && !phoenix.isOrderedToSit() && !phoenix.isVehicle();
       }
 
       @Override
       public void start() {
-         phoenix.getNavigation().moveTo(this.heat.getX() + 0.5D, this.heat.getY() + 1.0D, this.heat.getZ() + 0.5D, 0.8D);
+         phoenix.getNavigation().moveTo(this.sleepSpot.getX() + 0.5D, this.sleepSpot.getY(), this.sleepSpot.getZ() + 0.5D, 0.8D);
       }
 
       @Override
       public void tick() {
-         if (this.heat == null) return;
-         phoenix.getLookControl().setLookAt(this.heat.getX() + 0.5D, this.heat.getY() + 0.5D, this.heat.getZ() + 0.5D);
-         if (phoenix.blockPosition().closerThan(this.heat, 2.0D)) {
+         if (this.sleepSpot == null) return;
+         phoenix.getLookControl().setLookAt(this.sleepSpot.getX() + 0.5D, this.sleepSpot.getY() + 0.2D, this.sleepSpot.getZ() + 0.5D);
+         if (phoenix.blockPosition().closerThan(this.sleepSpot, 1.6D)) {
             phoenix.getNavigation().stop();
             phoenix.setInSittingPose(true);
-            phoenix.setDeltaMovement(0.0D, phoenix.onGround() ? 0.0D : -0.1D, 0.0D);
+            phoenix.setDeltaMovement(0.0D, phoenix.onGround() ? 0.0D : -0.15D, 0.0D);
          } else if (phoenix.getNavigation().isDone()) {
-            phoenix.getNavigation().moveTo(this.heat.getX() + 0.5D, this.heat.getY() + 1.0D, this.heat.getZ() + 0.5D, 0.8D);
+            phoenix.getNavigation().moveTo(this.sleepSpot.getX() + 0.5D, this.sleepSpot.getY(), this.sleepSpot.getZ() + 0.5D, 0.8D);
          }
       }
 
       @Override
       public void stop() {
          phoenix.setInSittingPose(false);
-         this.heat = null;
+         this.sleepSpot = null;
       }
    }
 
@@ -1557,7 +1610,7 @@ public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal 
             this.phoenix.playSound(SoundEvents.GENERIC_EAT, 0.6F, 0.8F);
          }
          if (this.eatTime >= 40) {
-            boolean mutton = this.target.getItem().is(net.minecraft.world.item.Items.MUTTON);
+            boolean mutton = this.target.getItem().is(this.phoenix.favoriteFood());
             this.target.getItem().shrink(1);
             if (this.target.getItem().isEmpty()) this.target.discard();
             this.phoenix.heal(6.0F);

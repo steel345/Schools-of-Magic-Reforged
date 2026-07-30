@@ -1,17 +1,17 @@
-  Magic can be further categorized by the elemental forms magic can take. These categories are called Elements of Magic, of which there are sixteen.
-<~><~>  Pyromancy is the magic of heat and fire.
-<~><~>  Heliomancy is the magic of light best embodied by the sun.
-<~><~>  Aeromancy is the magic of air and the atmosphere.
-<~><~>  Geomancy is the magic of the earth and its rocky depths.
-<~><~>  Animancy is the magic of the natural world and living things.
-<~><~>  Electromancy is the magic of electric energy and lightning.
-<~><~>  Hydromancy is the magic of water and the ocean.
-<~><~>  Cryomancy is the magic of ice and snow.
-<~><~>  Hieromancy is the magic of order, peace, and structure.
-<~><~>  Chaotimancy is the magic of disorder, entropy, and chaos.
-<~><~>  Auramancy is the magic of the fairies and fae.
-<~><~>  Astromancy is the magic of space and time.
-<~><~>  Infernality is the demonic magic of the nether.
-<~><~>  Spectromancy is the magic of the soul and spirits.
-<~><~>  Umbramancy is the magic of darkness, shadows, and the void.
-<~><~>  Necromancy is the magic of death and dead things.
+  Magic can be further categorized by the elemental forms magic can take. These categories are called /bElements of Magic/z, of which there are sixteen.
+<~><~>  /b/pyromancyPyromancy/z is the magic of heat and fire.
+<~><~>  /b/heliomancyHeliomancy/z is the magic of light best embodied by the sun.
+<~><~>  /b/aeromancyAeromancy/z is the magic of air and the atmosphere.
+<~><~>  /b/geomancyGeomancy/z is the magic of the earth and its rocky depths.
+<~><~>  /b/animancyAnimancy/z is the magic of the natural world and living things.
+<~><~>  /b/electromancyElectromancy/z is the magic of electric energy and lightning.
+<~><~>  /b/hydromancyHydromancy/z is the magic of water and the ocean.
+<~><~>  /b/cryomancyCryomancy/z is the magic of ice and snow.
+<~><~>  /b/hieromancyHieromancy/z is the magic of order, peace, and structure.
+<~><~>  /b/CtChaotimancy/z is the magic of disorder, entropy, and chaos.
+<~><~>  /b/auramancyAuramancy/z is the magic of the fairies and fae.
+<~><~>  /b/astromancyAstromancy/z is the magic of space and time.
+<~><~>  /b/infernalityInfernality/z is the demonic magic of the nether.
+<~><~>  /b/spectromancySpectromancy/z is the magic of the soul and spirits.
+<~><~>  /b/umbramancyUmbramancy/z is the magic of darkness, shadows, and the void.
+<~><~>  /b/necromancyNecromancy/z is the magic of death and dead things.

@@ -28,7 +28,22 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityRitualCenter extends BlockEntity {
    private Random random = new Random();
-   public ItemStackHandler handler = new ItemStackHandlerSingleSlots(9);
+   public ItemStackHandler handler = new ItemStackHandlerSingleSlots(9) {
+      @Override
+      protected void onContentsChanged(int slot) {
+         super.onContentsChanged(slot);
+         TileEntityRitualCenter.this.setChanged();
+         TileEntityRitualCenter.this.sendUpdates();
+      }
+   };
+   public ItemStackHandler output = new ItemStackHandler(1) {
+      @Override
+      protected void onContentsChanged(int slot) {
+         super.onContentsChanged(slot);
+         TileEntityRitualCenter.this.setChanged();
+         TileEntityRitualCenter.this.sendUpdates();
+      }
+   };
    private UUID ownerID;
    public String playerOwnerName = "";
    private boolean isActivated = false;
@@ -43,6 +58,27 @@ public class TileEntityRitualCenter extends BlockEntity {
 
    public TileEntityRitualCenter(BlockPos pos, BlockState state) {
       super(TileEntityRegistry.RITUAL_CENTER.get(), pos, state);
+   }
+
+   public void openMenu(Player player) {
+      if (this.level == null || this.level.isClientSide || !(player instanceof net.minecraft.server.level.ServerPlayer sp)) {
+         return;
+      }
+      final TileEntityRitualCenter self = this;
+      net.minecraftforge.network.NetworkHooks.openScreen(sp, new net.minecraft.world.MenuProvider() {
+         @Override
+         public net.minecraft.network.chat.Component getDisplayName() {
+            return net.minecraft.network.chat.Component.translatable("block.som.brazier");
+         }
+         @Override
+         public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int id, net.minecraft.world.entity.player.Inventory inv, Player p) {
+            return new com.paleimitations.schoolsofmagic.common.containers.ContainerBrazier(id, inv, self);
+         }
+      }, buf -> buf.writeBlockPos(self.getBlockPos()));
+   }
+
+   public net.minecraft.world.item.ItemStack depositResult(net.minecraft.world.item.ItemStack stack) {
+      return net.minecraftforge.items.ItemHandlerHelper.insertItem(this.output, stack, false);
    }
 
    @Nullable
@@ -173,6 +209,7 @@ public class TileEntityRitualCenter extends BlockEntity {
          nbt.put("ritual", this.ritual.serializeNBT());
       }
       nbt.put("inventory", this.handler.serializeNBT());
+      nbt.put("output", this.output.serializeNBT());
    }
 
    @Override
@@ -191,6 +228,7 @@ public class TileEntityRitualCenter extends BlockEntity {
          this.setOwnerID(UUID.fromString(nbt.getString("OwnerUUID")));
       }
       this.handler.deserializeNBT(nbt.getCompound("inventory"));
+      if (nbt.contains("output")) this.output.deserializeNBT(nbt.getCompound("output"));
    }
 
    public boolean isOwner(Player player) {

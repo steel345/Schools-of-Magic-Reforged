@@ -87,6 +87,20 @@ public class BlockRottedChest extends SOMBlockContainer {
                }
                for (int i = 0; i < chest.handler.getSlots(); i++) chest.handler.setStackInSlot(i, ItemStack.EMPTY);
             } catch (Throwable ignored) {}
+
+            float roll = sl.getRandom().nextFloat();
+            if (roll < 0.2F) {
+               net.minecraft.world.entity.EntityType<?> type = roll < 0.05F
+                  ? net.minecraft.world.entity.EntityType.ZOMBIE
+                  : net.minecraft.world.entity.EntityType.SILVERFISH;
+               if (type.create(sl) instanceof net.minecraft.world.entity.Mob mob) {
+                  mob.moveTo(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
+                     sl.getRandom().nextFloat() * 360.0F, 0.0F);
+                  mob.finalizeSpawn(sl, sl.getCurrentDifficultyAt(pos),
+                     net.minecraft.world.entity.MobSpawnType.TRIGGERED, null, null);
+                  sl.addFreshEntity(mob);
+               }
+            }
          }
       }
       super.playerWillDestroy(level, pos, state, player);

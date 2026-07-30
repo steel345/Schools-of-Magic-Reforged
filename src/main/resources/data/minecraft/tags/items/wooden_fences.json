@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:fence_ash",
+    "som:fence_elder",
+    "som:fence_pine",
+    "som:fence_willow",
+    "som:fence_yew",
+    "som:fence_verde"
+  ]
+}

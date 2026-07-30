@@ -27,6 +27,14 @@ public class RitualRecipeRegistry {
         return s;
     }
 
+    // A tome of the given school. The item's model is keyed off CustomModelData
+    // (damage + 1), so setting the damage alone would leave it as the base art.
+    private static ItemStack magicTome(EnumMagicType type) {
+        ItemStack s = stack(ItemRegistry.magic_book.get(), type.getIndex());
+        s.getOrCreateTag().putInt("CustomModelData", type.getIndex() + 1);
+        return s;
+    }
+
     private static ItemStack cauldron(EnumCauldronType type) {
         ItemStack s = new ItemStack(BlockRegistry.cauldron.get());
         CompoundTag bs = new CompoundTag();
@@ -121,6 +129,13 @@ public class RitualRecipeRegistry {
             stack(ItemRegistry.bottle.get(), EnumBottle.JIMSONWEED.getIndex())
         ).setNote("1-8 Moon Dew, +10 mana each");
 
+
+        RecipeRegistry.registerRitualRecipe(
+            magicTome(EnumMagicType.INFERNALITY),
+            300, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(Items.BOOK),
+            new ItemStack(Items.NETHER_STAR)
+        );
 
         RecipeRegistry.registerRitualRecipe(
             new ItemStack(ItemRegistry.exploration_book.get()),
@@ -254,6 +269,14 @@ public class RitualRecipeRegistry {
             new ItemStack(Items.EXPERIENCE_BOTTLE),
             200, 19, 4, Maps.newHashMap(), Maps.newHashMap(),
             Items.GLASS_BOTTLE
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.book_of_knowledge.get()),
+            200, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            Items.BOOK,
+            Items.LAPIS_BLOCK,
+            Items.EXPERIENCE_BOTTLE
         );
 
         RecipeRegistry.registerRitualRecipe(

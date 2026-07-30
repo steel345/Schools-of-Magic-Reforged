@@ -1,1 +1,1 @@
-  Not every rite summons or bewitches. Some simply build.<~><~>  To work a crafting rite, set a crafting table directly beneath the brazier, lay the ingredients into the flame, and light it. The finished work rises out of the embers.
+  Not every rite summons or bewitches. Some simply build.<~><~>  To work a /bcrafting rite/z, set a /bcrafting table/z directly beneath the brazier, lay the ingredients into the flame, and light it. The finished work rises out of the embers.

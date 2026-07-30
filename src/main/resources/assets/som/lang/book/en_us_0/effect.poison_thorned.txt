@@ -1,3 +1,3 @@
   The Poisoned Thorned effect creates a prickly aura around the effected creature, this aura inflicts poisonous cuts on creatures that touch them.
 <~><~>  This effect can be acheived using Crushed Pyracantha.
-<~><~>  Poisoned Thorned is an Umbramancy effect in the school of Evocation.
+<~><~>  Poisoned Thorned is an /umbramancyUmbramancy/z effect in the school of Evocation.

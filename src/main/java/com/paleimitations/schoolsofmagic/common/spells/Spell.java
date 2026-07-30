@@ -461,6 +461,12 @@ public class Spell implements INBTSerializable<CompoundTag> {
 
    public boolean castSpell(Player player, float wandDiscount) {
 
+      com.paleimitations.schoolsofmagic.common.entity.capabilities.spell_button.ISpellButton ringButton =
+         player.getCapability(com.paleimitations.schoolsofmagic.common.entity.capabilities.spell_button.CapabilitySpellButton.CAP).orElse(null);
+      if (ringButton != null && ringButton.isPressed()) {
+         return false;
+      }
+
       IManaData manaGuard = this.getManaHandler(player);
       if (manaGuard != null) {
          if (manaGuard.getLastCastTick() == player.tickCount) {

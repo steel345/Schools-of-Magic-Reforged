@@ -41,6 +41,8 @@ public class EntityRegistry {
    public static final DeferredRegister<EntityType<?>> ENTITIES =
       DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, SchoolsOfMagic.MODID);
 
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityTargetDummy>> TARGET_DUMMY = ENTITIES.register("som_target_dummy",
+      () -> EntityType.Builder.of(com.paleimitations.schoolsofmagic.common.entity.EntityTargetDummy::new, MobCategory.MISC).sized(0.6F, 1.95F).build("som_target_dummy"));
    public static final RegistryObject<EntityType<EntityToad>> TOAD = ENTITIES.register("som_toad",
       () -> EntityType.Builder.of(EntityToad::new, MobCategory.CREATURE).sized(0.5F, 0.5F).build("som_toad"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityBroom>> BROOM = ENTITIES.register("som_broom",
@@ -60,6 +62,8 @@ public class EntityRegistry {
          .sized(0.35F, 0.6F).clientTrackingRange(8).build("som_fairy"));
    public static final RegistryObject<EntityType<EntityPhoenix>> PHOENIX = ENTITIES.register("som_phoenix",
       () -> EntityType.Builder.of(EntityPhoenix::new, MobCategory.CREATURE).sized(0.9F, 1.3F).build("som_phoenix"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityThunderBird>> THUNDER_BIRD = ENTITIES.register("som_thunder_bird",
+      () -> EntityType.Builder.of(com.paleimitations.schoolsofmagic.common.entity.EntityThunderBird::new, MobCategory.CREATURE).sized(0.9F, 1.3F).build("som_thunder_bird"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityAcolyteWisp>> ACOLYTE_WISP = ENTITIES.register("som_acolyte_wisp",
       () -> EntityType.Builder.of(com.paleimitations.schoolsofmagic.common.entity.EntityAcolyteWisp::new, MobCategory.CREATURE)
          .sized(0.4F, 0.4F).clientTrackingRange(8).build("som_acolyte_wisp"));
@@ -155,6 +159,7 @@ public class EntityRegistry {
    }
 
    private static void onAttributeCreation(net.minecraftforge.event.entity.EntityAttributeCreationEvent event) {
+      event.put(TARGET_DUMMY.get(), com.paleimitations.schoolsofmagic.common.entity.EntityTargetDummy.createAttributes().build());
       event.put(TOAD.get(),       EntityToad.createAttributes().build());
       event.put(BROOM.get(),      com.paleimitations.schoolsofmagic.common.entity.EntityBroom.createAttributes().build());
       event.put(MAGIC_BROOM.get(),com.paleimitations.schoolsofmagic.common.entity.EntityMagicBroom.createAttributes().build());
@@ -164,6 +169,7 @@ public class EntityRegistry {
       event.put(FLOWER_FAE.get(), EntityFlowerFae.createAttributes().build());
       event.put(FAIRY.get(), com.paleimitations.schoolsofmagic.common.entity.EntityFairy.createAttributes().build());
       event.put(PHOENIX.get(),    EntityPhoenix.createAttributes().build());
+      event.put(THUNDER_BIRD.get(), EntityPhoenix.createAttributes().build());
       event.put(ACOLYTE_WISP.get(), com.paleimitations.schoolsofmagic.common.entity.EntityAcolyteWisp.createAttributes().build());
       event.put(UNICORN.get(),    net.minecraft.world.entity.animal.horse.AbstractHorse.createBaseHorseAttributes().build());
       event.put(SQUEAKARD.get(),  EntitySqueakard.createAttributes().build());

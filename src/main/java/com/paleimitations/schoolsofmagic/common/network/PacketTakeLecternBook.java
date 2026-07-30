@@ -39,6 +39,14 @@ public class PacketTakeLecternBook {
          if (!state.getValue(LecternBlock.HAS_BOOK)) return;
          BlockEntity be = level.getBlockEntity(msg.pos);
          if (!(be instanceof LecternBlockEntity lectern)) return;
+         // Taking a loaned book instead flies it back to its shelf and restores the
+         // workstation's own book.
+         if (com.paleimitations.schoolsofmagic.common.handlers.KnowledgeLoans.get(msg.pos) != null) {
+            com.paleimitations.schoolsofmagic.common.handlers.KnowledgeReverse.reverse(
+               (net.minecraft.server.level.ServerLevel) level, msg.pos);
+            return;
+         }
+
          ItemStack book = lectern.getBook().copy();
          if (book.isEmpty()) return;
          lectern.clearContent();

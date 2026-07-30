@@ -90,10 +90,27 @@ public class ShrinePiece extends TemplateStructurePiece {
          closeDoor(level, m, s);
       }
 
+      clearWater(level, x0, y0, z0, x1, y1, z1);
       clearInteriorPlants(level, x0, y0, z0, x1, y1, z1);
       buryGrass(level, x0, y0, z0, x1, y1, z1);
       StructureFoundation.fill(level, x0, y0, z0, x1, y1, z1);
       desertSand(level, x0, y0, z0, x1, y1, z1);
+   }
+
+   private static void clearWater(net.minecraft.world.level.WorldGenLevel level, int x0, int y0, int z0, int x1, int y1, int z1) {
+      net.minecraft.core.BlockPos.MutableBlockPos m = new net.minecraft.core.BlockPos.MutableBlockPos();
+      net.minecraft.world.level.block.state.BlockState air = Blocks.AIR.defaultBlockState();
+      for (int x = x0; x <= x1; x++) for (int y = y0; y <= y1; y++) for (int z = z0; z <= z1; z++) {
+         m.set(x, y, z);
+         net.minecraft.world.level.block.state.BlockState s = level.getBlockState(m);
+         if (s.is(Blocks.WATER) || s.is(Blocks.BUBBLE_COLUMN) || s.is(Blocks.KELP) || s.is(Blocks.KELP_PLANT)
+             || s.is(Blocks.SEAGRASS) || s.is(Blocks.TALL_SEAGRASS)) {
+            level.setBlock(m, air, 2);
+         } else if (s.hasProperty(net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED)
+             && s.getValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED)) {
+            level.setBlock(m, s.setValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED, false), 2);
+         }
+      }
    }
 
    private static boolean isLoosePlant(net.minecraft.world.level.block.state.BlockState s) {

@@ -35,6 +35,9 @@ public class CommonProxy {
    public void openQuest(Player player, ItemStack stack, Quest q) {
    }
 
+   public void openDryadQuest(Player player, ItemStack stack) {
+   }
+
    public void openStandardBook(Player player) {
    }
 

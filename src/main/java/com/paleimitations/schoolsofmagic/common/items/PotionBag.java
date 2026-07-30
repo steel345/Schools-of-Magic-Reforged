@@ -98,6 +98,76 @@ public class PotionBag extends ItemPotionry {
       return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
    }
 
+   // Include the bag's contents in the network share tag so the potions are visible
+   // client-side (e.g. the charm radial), which capabilities don't sync by default.
+   @Override
+   public CompoundTag getShareTag(ItemStack stack) {
+      CompoundTag base = stack.getTag();
+      CompoundTag tag = base != null ? base.copy() : new CompoundTag();
+      IItemHandler h = stack.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+      if (h instanceof ItemStackHandler ish) tag.put("BagShare", (Tag) ish.serializeNBT());
+      return tag;
+   }
+
+   @Override
+   public void readShareTag(ItemStack stack, @Nullable CompoundTag tag) {
+      if (tag == null) {
+         stack.setTag(null);
+         return;
+      }
+      CompoundTag storage = tag.contains("BagShare") ? tag.getCompound("BagShare") : null;
+      CompoundTag base = tag.copy();
+      base.remove("BagShare");
+      stack.setTag(base.isEmpty() ? null : base);
+      if (storage != null) {
+         IItemHandler h = stack.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+         if (h instanceof ItemStackHandler ish) ish.deserializeNBT(storage);
+      }
+   }
+
+   // Throws the currently-selected potion out of the bag (used by the charm's
+   // armed-throw). Returns true if a potion was thrown.
+   public static boolean throwSelected(Level world, Player player, ItemStack bag) {
+      IItemHandler handler = bag.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+      if (handler == null) return false;
+      int slot = bag.getDamageValue();
+      if (slot < 0 || slot >= handler.getSlots()) slot = 0;
+      ItemStack selected = handler.getStackInSlot(slot);
+      if (selected.isEmpty()) {
+         // Fall back to the first non-empty potion in the bag.
+         for (int i = 0; i < handler.getSlots(); i++) {
+            if (!handler.getStackInSlot(i).isEmpty()) { slot = i; selected = handler.getStackInSlot(i); break; }
+         }
+      }
+      if (selected.isEmpty()) return false;
+      boolean splash = selected.getItem() instanceof SplashPotionItem || selected.getItem() instanceof ItemPotionSplash;
+      boolean lingering = selected.getItem() instanceof LingeringPotionItem || selected.getItem() instanceof ItemPotionLingering;
+      if (!splash && !lingering) return false;
+      boolean vanilla = selected.getItem() instanceof SplashPotionItem || selected.getItem() instanceof LingeringPotionItem;
+      net.minecraft.world.item.Item usedItem = selected.getItem();
+      ItemStack toThrow = player.getAbilities().instabuild ? selected.copy() : handler.extractItem(slot, 1, false);
+      if (toThrow.isEmpty()) return false;
+      toThrow.setCount(1);
+      float pitch = 0.4F / (player.getRandom().nextFloat() * 0.4F + 0.8F);
+      world.playSound(null, player.getX(), player.getY(), player.getZ(),
+         lingering ? SoundEvents.LINGERING_POTION_THROW : SoundEvents.SPLASH_POTION_THROW,
+         lingering ? SoundSource.NEUTRAL : SoundSource.PLAYERS, 0.5F, pitch);
+      if (!world.isClientSide) {
+         if (vanilla) {
+            ThrownPotion e = new ThrownPotion(world, player);
+            e.setItem(toThrow);
+            e.shootFromRotation(player, player.getXRot(), player.getYRot(), -10.0F, 1.2F, 1.0F);
+            world.addFreshEntity(e);
+         } else {
+            EntityThrowablePotion e = new EntityThrowablePotion(world, player, toThrow);
+            e.shootFromRotation(player, player.getXRot(), player.getYRot(), -10.0F, 1.2F, 1.0F);
+            world.addFreshEntity(e);
+         }
+      }
+      player.awardStat(Stats.ITEM_USED.get(usedItem));
+      return true;
+   }
+
    public ICapabilityProvider initCapabilities(ItemStack item, @Nullable CompoundTag nbt) {
       if (item.getItem() instanceof PotionBag) {
          return new CapabilityProvider(item, nbt);

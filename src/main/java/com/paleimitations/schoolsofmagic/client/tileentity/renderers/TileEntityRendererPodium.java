@@ -29,6 +29,20 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
    public TileEntityRendererPodium(BlockEntityRendererProvider.Context ctx) {
    }
 
+   // While a search result is on loan the book floats, closed, above the podium.
+   private void renderFloatingBook(TileEntityPodium te, ItemStack stack, float partial,
+                                   PoseStack ps, MultiBufferSource buf, int light, int overlay) {
+      ps.pushPose();
+      float time = te.getLevel().getGameTime() + partial;
+      float bob = (float) Math.sin(time * 0.1F) * 0.05F;
+      ps.translate(0.25, 2.55 + bob, 0.25);
+      ps.mulPose(Axis.YP.rotationDegrees(time * 2.0F));
+      ps.scale(0.6F, 0.6F, 0.6F);
+      net.minecraft.client.Minecraft.getInstance().getItemRenderer().renderStatic(
+         stack, net.minecraft.world.item.ItemDisplayContext.GROUND, light, overlay, ps, buf, te.getLevel(), 0);
+      ps.popPose();
+   }
+
    @Override
    public void render(TileEntityPodium te, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
       IItemHandler itemHandler = te.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
@@ -37,6 +51,10 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
 
       if (!state.hasProperty(BlockPodium.FACING)) return;
       Direction facing = state.getValue(BlockPodium.FACING);
+      // While floated, the Book of Knowledge hovers above; the found book stays below.
+      if (te.floated && !te.floatedBook.isEmpty()) {
+         renderFloatingBook(te, te.floatedBook, partialTicks, poseStack, buffer, packedLight, packedOverlay);
+      }
       ModelTome tome = new ModelTome();
       ItemStack stack = itemHandler.getStackInSlot(0);
       boolean hasPagesTag = stack.hasTag() && stack.getTag() != null && stack.getTag().contains("pages");
@@ -119,6 +137,11 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
                      if (sticker != null)
                         sticker.drawElement(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage(), book.getPage());
                   }
+                  int si = com.paleimitations.schoolsofmagic.client.guis.podium.PodiumGuiHelper.spreadIndex(book);
+                  if (si >= 0) {
+                     drawTomePageNumber(gg, mc.font, String.valueOf(2 * si + 1), 72.0F);
+                     drawTomePageNumber(gg, mc.font, String.valueOf(2 * si + 2), 184.0F);
+                  }
                }
             } else {
                drawVanillaPage(gg, mc, stack, te.page);
@@ -133,6 +156,14 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
          com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
       }
       poseStack.popPose();
+   }
+
+   private static void drawTomePageNumber(net.minecraft.client.gui.GuiGraphics gg, net.minecraft.client.gui.Font font, String s, float cx) {
+      gg.pose().pushPose();
+      gg.pose().translate(cx, 198.0F, 0.0F);
+      gg.pose().scale(0.8F, 0.8F, 1.0F);
+      gg.drawString(font, s, -font.width(s) / 2, 0, 0x3A2E1E, false);
+      gg.pose().popPose();
    }
 
    private static void drawVanillaPage(net.minecraft.client.gui.GuiGraphics gg, net.minecraft.client.Minecraft mc, ItemStack stack, int pageIndex) {

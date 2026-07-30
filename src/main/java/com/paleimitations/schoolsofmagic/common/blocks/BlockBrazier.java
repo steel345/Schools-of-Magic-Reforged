@@ -72,89 +72,98 @@ public class BlockBrazier extends Block implements EntityBlock {
       }
 
       int flame = state.getValue(FLAME);
-      if (flame == 0) {
-         if (held.getItem() instanceof FlintAndSteelItem || held.getItem() instanceof FireChargeItem) {
-            world.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() * 0.4F + 0.8F);
+      boolean isLighter = held.getItem() instanceof FlintAndSteelItem || held.getItem() instanceof FireChargeItem;
+      boolean isWandOrStick = held.getItem() instanceof ItemBaseWand || held.getItem() == Items.STICK;
+      boolean ringActive = held.isEmpty()
+         && com.paleimitations.schoolsofmagic.common.handlers.RingCastHandler.isRingActive(player);
+      boolean ritualActivator = isWandOrStick || ringActive;
 
-            boolean colored = (center.getFireTint() != -1);
-            world.setBlock(pos, state.setValue(FLAME, 1).setValue(COLORED, colored), 3);
-
-            player.getCapability(CapabilityQuestData.CAP).ifPresent(data -> {
-               for (Quest q : data.getQuests()) {
-                  for (Task t : q.tasks) {
-                     if (t.taskType == Task.EnumTaskType.LIGHT_BRAZIER) {
-                        t.checkEvent(player, this);
-                     }
+      if (flame == 0 && isLighter) {
+         world.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() * 0.4F + 0.8F);
+         boolean colored = (center.getFireTint() != -1);
+         world.setBlock(pos, state.setValue(FLAME, 1).setValue(COLORED, colored), 3);
+         player.getCapability(CapabilityQuestData.CAP).ifPresent(data -> {
+            for (Quest q : data.getQuests()) {
+               for (Task t : q.tasks) {
+                  if (t.taskType == Task.EnumTaskType.LIGHT_BRAZIER) {
+                     t.checkEvent(player, this);
                   }
                }
-            });
-            return InteractionResult.SUCCESS;
-         }
-      } else if (flame == 1 && held.isEmpty() && player == center.getOwner()) {
-         if (!center.isActivated() && center.getRitual() != null
-               && com.paleimitations.schoolsofmagic.common.handlers.RingCastHandler.isRingActive(player)) {
-            center.startRitual(player);
-            return InteractionResult.SUCCESS;
-         }
-         center.stopRitual(player);
-         world.playSound(player, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() * 0.4F + 0.8F);
-         world.setBlock(pos, state.setValue(FLAME, 0), 3);
-         return InteractionResult.SUCCESS;
+            }
+         });
+         return InteractionResult.sidedSuccess(world.isClientSide);
       }
 
-      if (flame > 0 && (held.getItem() instanceof ItemBaseWand || held.getItem() == Items.STICK)) {
-         int dyeSlot = -1;
-         for (int i = 0; i < center.handler.getSlots(); i++) {
-            if (center.handler.getStackInSlot(i).getItem() instanceof net.minecraft.world.item.DyeItem) {
-               dyeSlot = i;
-               break;
-            }
-         }
-         if (dyeSlot >= 0) {
-            boolean free = player.getAbilities().instabuild;
-            com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.IManaData mana =
-               player.getCapability(com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.CapabilityManaData.CAP).orElse(null);
-            if (!free && (mana == null || mana.getMana() < 10.0F)) {
-               if (!world.isClientSide) {
-                  player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Not enough mana to dye the fire."));
+      if (player.isShiftKeyDown()) {
+         if (flame > 0) {
+            center.stopRitual(player);
+            world.playSound(player, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, player.getRandom().nextFloat() * 0.4F + 0.8F);
+            world.setBlock(pos, state.setValue(FLAME, 0).setValue(COLORED, false), 3);
+         } else if (!world.isClientSide) {
+            for (int i = center.output.getSlots() - 1; i >= 0; i--) {
+               ItemStack outSlot = center.output.getStackInSlot(i);
+               if (!outSlot.isEmpty()) {
+                  if (!player.getInventory().add(outSlot)) {
+                     player.drop(outSlot, false);
+                  }
+                  center.output.setStackInSlot(i, ItemStack.EMPTY);
                }
-               return InteractionResult.SUCCESS;
             }
-            if (!world.isClientSide) {
-               if (!free && mana != null) mana.setMana(mana.getMana() - 10.0F);
-               ItemStack dye = center.handler.getStackInSlot(dyeSlot);
-               int color = ((net.minecraft.world.item.DyeItem) dye.getItem()).getDyeColor().getFireworkColor();
-               dye.shrink(1);
-               center.setDyeColor(color);
-               center.startFlare();
-               world.playSound(null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, 0.8F);
-               center.sendUpdates();
-            }
-            return InteractionResult.SUCCESS;
-         }
-      }
-      if (flame > 0 && (held.getItem() instanceof ItemBaseWand || held.getItem() == Items.STICK) && !center.isActivated()) {
-         center.startRitual(player);
-         return InteractionResult.SUCCESS;
-      }
-      if (!held.isEmpty() && !(held.getItem() instanceof ItemBaseWand)) {
-         for (int i = 0; i < center.handler.getSlots(); i++) {
-            if (center.handler.getStackInSlot(i).isEmpty()) {
-               center.handler.setStackInSlot(i, held.split(1));
-               return InteractionResult.SUCCESS;
+            for (int i = center.handler.getSlots() - 1; i >= 0; i--) {
+               ItemStack inSlot = center.handler.getStackInSlot(i);
+               if (!inSlot.isEmpty()) {
+                  if (!player.getInventory().add(inSlot)) {
+                     player.drop(inSlot, false);
+                  }
+                  center.handler.setStackInSlot(i, ItemStack.EMPTY);
+               }
             }
          }
+         return InteractionResult.sidedSuccess(world.isClientSide);
       }
-      if (held.isEmpty() && player.isShiftKeyDown()) {
-         for (int i = center.handler.getSlots() - 1; i >= 0; i--) {
-            ItemStack inSlot = center.handler.getStackInSlot(i);
-            if (!inSlot.isEmpty() && player.getInventory().add(inSlot)) {
-               center.handler.setStackInSlot(i, ItemStack.EMPTY);
-               return InteractionResult.SUCCESS;
+
+      if (ritualActivator) {
+         if (flame > 0 && isWandOrStick) {
+            int dyeSlot = -1;
+            for (int i = 0; i < center.handler.getSlots(); i++) {
+               if (center.handler.getStackInSlot(i).getItem() instanceof net.minecraft.world.item.DyeItem) {
+                  dyeSlot = i;
+                  break;
+               }
+            }
+            if (dyeSlot >= 0) {
+               boolean free = player.getAbilities().instabuild;
+               com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.IManaData mana =
+                  player.getCapability(com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.CapabilityManaData.CAP).orElse(null);
+               if (!free && (mana == null || mana.getMana() < 10.0F)) {
+                  if (!world.isClientSide) {
+                     player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Not enough mana to dye the fire."));
+                  }
+                  return InteractionResult.sidedSuccess(world.isClientSide);
+               }
+               if (!world.isClientSide) {
+                  if (!free && mana != null) mana.setMana(mana.getMana() - 10.0F);
+                  ItemStack dye = center.handler.getStackInSlot(dyeSlot);
+                  int color = ((net.minecraft.world.item.DyeItem) dye.getItem()).getDyeColor().getFireworkColor();
+                  dye.shrink(1);
+                  center.setDyeColor(color);
+                  center.startFlare();
+                  world.playSound(null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, 0.8F);
+                  center.sendUpdates();
+               }
+               return InteractionResult.sidedSuccess(world.isClientSide);
             }
          }
+         if (flame > 0 && !center.isActivated()) {
+            center.startRitual(player);
+         }
+         return InteractionResult.sidedSuccess(world.isClientSide);
       }
-      return InteractionResult.PASS;
+
+      if (!world.isClientSide) {
+         center.openMenu(player);
+      }
+      return InteractionResult.sidedSuccess(world.isClientSide);
    }
 
    @Override
@@ -193,6 +202,9 @@ public class BlockBrazier extends Block implements EntityBlock {
          if (be instanceof TileEntityRitualCenter brazier) {
             for (int slot = 0; slot < brazier.handler.getSlots(); slot++) {
                Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), brazier.handler.getStackInSlot(slot));
+            }
+            for (int slot = 0; slot < brazier.output.getSlots(); slot++) {
+               Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), brazier.output.getStackInSlot(slot));
             }
          }
          super.onRemove(state, level, pos, newState, isMoving);

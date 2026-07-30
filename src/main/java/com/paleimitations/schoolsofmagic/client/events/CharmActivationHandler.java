@@ -27,7 +27,15 @@ public class CharmActivationHandler {
       ICharmData data = CapabilityCharmData.get(mc.player);
       if (data == null) return;
       ItemStack charm = data.getCharm();
-      if (charm.isEmpty() || charm.getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null) == null) return;
+      if (charm.isEmpty()) return;
+      if (charm.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemHerbPouch) {
+         com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
+            new com.paleimitations.schoolsofmagic.common.network.PacketOpenHerbPouch());
+         return;
+      }
+      // The potion bag charm is handled by PotionCharmHandler (radial + arm/throw).
+      if (charm.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.potion_bag.get()) return;
+      if (charm.getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null) == null) return;
       ItemBookBase.ensureInitialized(charm);
       ItemBookBase.ensureCosmetics(charm);
       mc.setScreen(new GuiStandardBook(mc.player, charm));

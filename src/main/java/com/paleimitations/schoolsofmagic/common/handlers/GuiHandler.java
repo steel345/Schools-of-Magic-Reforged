@@ -24,6 +24,7 @@ public class GuiHandler {
    public static void register() {
       MenuScreens.register(MenuTypeRegistry.CAULDRON.get(), GuiCauldron::new);
       MenuScreens.register(MenuTypeRegistry.POTION_BAG.get(), GuiPotionBag::new);
+      MenuScreens.register(MenuTypeRegistry.HERB_POUCH.get(), com.paleimitations.schoolsofmagic.client.guis.GuiHerbPouch::new);
       MenuScreens.register(MenuTypeRegistry.BOOK_FRAME.get(), com.paleimitations.schoolsofmagic.client.guis.GuiBookFrame::new);
       MenuScreens.register(MenuTypeRegistry.MORT_N_PEST.get(), GuiMortNPest::new);
       MenuScreens.register(MenuTypeRegistry.INTELLIGENT.get(), GuiEntityIntelligent::new);
@@ -38,5 +39,6 @@ public class GuiHandler {
       MenuScreens.register(MenuTypeRegistry.TEAPOT.get(), GuiTeapot::new);
       MenuScreens.register(MenuTypeRegistry.SQUEAKARD.get(), GuiEntitySqueakard::new);
       MenuScreens.register(MenuTypeRegistry.PHOENIX.get(), com.paleimitations.schoolsofmagic.client.guis.GuiPhoenix::new);
+      MenuScreens.register(MenuTypeRegistry.BRAZIER.get(), com.paleimitations.schoolsofmagic.client.guis.GuiBrazier::new);
    }
 }

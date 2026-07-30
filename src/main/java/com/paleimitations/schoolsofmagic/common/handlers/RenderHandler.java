@@ -38,6 +38,8 @@ import net.minecraftforge.fml.common.Mod;
 public class RenderHandler {
    @SubscribeEvent
    public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
+      event.registerBlockEntityRenderer(net.minecraft.world.level.block.entity.BlockEntityType.LECTERN,
+         com.paleimitations.schoolsofmagic.client.tileentity.renderers.SOMLecternRenderer::new);
       event.registerEntityRenderer(EntityRegistry.SHADOW_EYE.get(), RenderShadowEye::new);
       event.registerEntityRenderer(EntityRegistry.MAGIC_WALL.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMagicWall::new);
       event.registerEntityRenderer(EntityRegistry.MAGIC_BEAM.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMagicBeam::new);
@@ -60,6 +62,7 @@ public class RenderHandler {
       event.registerEntityRenderer(EntityRegistry.NOBLE_TREE.get(), RenderNobleTree::new);
       event.registerEntityRenderer(EntityRegistry.TOAD.get(), RenderToad::new);
       event.registerEntityRenderer(EntityRegistry.TADPOLE.get(), RenderTadpole::new);
+      event.registerEntityRenderer(EntityRegistry.TARGET_DUMMY.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderTargetDummy::new);
       event.registerEntityRenderer(EntityRegistry.BROOM.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderBroom::new);
       event.registerEntityRenderer(EntityRegistry.MAGIC_BROOM.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMagicBroom::new);
 
@@ -69,6 +72,7 @@ public class RenderHandler {
       event.registerEntityRenderer(EntityRegistry.COBBLE_PROJECTILE.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderBlockProjectile::new);
       event.registerEntityRenderer(EntityRegistry.METEOR.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMeteorWhite::new);
       event.registerEntityRenderer(EntityRegistry.PHOENIX.get(), RenderPhoenix::new);
+      event.registerEntityRenderer(EntityRegistry.THUNDER_BIRD.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderThunderBird::new);
       event.registerEntityRenderer(EntityRegistry.ACOLYTE_WISP.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderAcolyteWisp::new);
       event.registerEntityRenderer(EntityRegistry.DRYAD.get(), RenderDryad::new);
       event.registerEntityRenderer(EntityRegistry.FLOWER_FAE.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderFlowerFae::new);
@@ -95,6 +99,8 @@ public class RenderHandler {
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelDemon.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelDemon::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelDryad.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelDryad::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelToad.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelToad::createBodyLayer);
+      reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelTargetDummy.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelTargetDummy::createBodyLayer);
+      reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelDummyBase.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelDummyBase::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelBroom.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelBroom::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelMagicBroom.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelMagicBroom::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelHuman.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelHuman::createBodyLayer);
@@ -126,6 +132,7 @@ public class RenderHandler {
       reg(event, com.paleimitations.schoolsofmagic.client.items.models.ModelObsidianArmorLayer1.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.items.models.ModelObsidianArmorLayer1::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.items.models.ModelObsidianArmorLayer2.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.items.models.ModelObsidianArmorLayer2::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.spells.ModelSpectralHand.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.spells.ModelSpectralHand::createBodyLayer);
+      reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelWornPouch.LAYER, com.paleimitations.schoolsofmagic.client.entity.model.ModelWornPouch::createBodyLayer);
    }
 
    private static void reg(EntityRenderersEvent.RegisterLayerDefinitions event,
@@ -140,6 +147,7 @@ public class RenderHandler {
          net.minecraft.client.renderer.entity.player.PlayerRenderer pr = event.getSkin(skin);
          if (pr != null) {
             pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWand<>(pr));
+            pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornPouch<>(pr, event.getEntityModels()));
          }
       }
    }

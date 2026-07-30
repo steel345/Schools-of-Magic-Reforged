@@ -34,6 +34,7 @@ public final class BrewingRegistry {
       add(awk, plant(EnumPlantType.OLEANDER),                                 P.COLOR_BLIND);
       add(awk, blockItem(ItemRegistry.bi_mushroom_stalk.get()),               P.CONFUSION);
       add(awk, plant(EnumPlantType.HELIOMANCY),                               P.CREEPERS_BANE);
+      add(awk, Ingredient.of(ItemRegistry.salt.get()),                        PotionTypeRegistry.CLEANSING);
       add(awk, Ingredient.of(Items.CHORUS_FRUIT),                             P.DISLOCATION);
       add(awk, ing(EnumIngredient.PIG_TAIL),                                  P.FEAR);
       add(awk, blockItem(ItemRegistry.bi_plant_shrooms.get()),                P.HALLUCINATION);

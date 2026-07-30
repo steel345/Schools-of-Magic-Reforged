@@ -191,6 +191,9 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ritual_compendium.get()) {
          return DyeColor.BLUE;
       }
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.book_of_knowledge.get()) {
+         return DyeColor.GREEN;
+      }
       if (it instanceof com.paleimitations.schoolsofmagic.common.items.ItemMagicBook) {
          return magicSchoolColor(stack.getDamageValue());
       }
@@ -208,6 +211,7 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.complete_spellbook.get()) return 6;
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellbook.get()) return 4;
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ritual_compendium.get()) return 5;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.book_of_knowledge.get()) return 5;
       return 2;
    }
 
@@ -285,7 +289,8 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
 
    @Override
    public void setSubPage(int subpage) {
-      if (this.getCurrentPage().getSubPages() > subpage) {
+      BookPage current = this.getCurrentPage();
+      if (current != null && current.getSubPages() > subpage) {
          this.subpage = subpage;
       }
 

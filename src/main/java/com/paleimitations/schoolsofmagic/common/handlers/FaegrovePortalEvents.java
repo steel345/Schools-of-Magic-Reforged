@@ -24,6 +24,9 @@ public class FaegrovePortalEvents {
       if (!isAcolyteWisp(stack)) return;
 
       Level level = event.getLevel();
+      // The grove cannot be reached from the nether or the end.
+      if (level.dimension().equals(Level.NETHER) || level.dimension().equals(Level.END)) return;
+
       BlockPos clicked = event.getPos();
       if (!FaegrovePortalShape.isAcolyteWood(level.getBlockState(clicked))) return;
 

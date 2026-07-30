@@ -1,0 +1,10 @@
+{
+  "parent": "som:block/ore",
+  "textures": {
+    "block": "minecraft:block/stone",
+    "ore_side": "som:blocks/salt_ore",
+    "ore_top": "som:blocks/salt_ore",
+    "ore_bottom": "som:blocks/salt_ore",
+    "particle": "som:blocks/salt_ore"
+  }
+}

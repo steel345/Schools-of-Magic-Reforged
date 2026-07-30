@@ -21,6 +21,9 @@ public class PageElementParagraphs extends PageElement {
    public final float scale;
    public final List<ParagraphBox> boxes;
    public List<String> text = Lists.newArrayList();
+   private boolean rich = false;
+   private boolean fromLang = false;
+   private boolean resolved = false;
 
    public PageElementParagraphs(String textLocation, float scale, int fontColor, int target, ParagraphBox... boxes) {
       super(0, 0, target);
@@ -30,9 +33,24 @@ public class PageElementParagraphs extends PageElement {
       this.boxes = Lists.newArrayList(boxes);
    }
 
+   // Patchouli-style: resolve the body from a translation key (whose value may use
+   // \n / \n\n for line and paragraph breaks) instead of a lang/book .txt file.
+   public static PageElementParagraphs fromLangKey(String langKey, float scale, int fontColor, int target, ParagraphBox... boxes) {
+      PageElementParagraphs p = new PageElementParagraphs(langKey, scale, fontColor, target, boxes);
+      p.fromLang = true;
+      return p;
+   }
+
    @OnlyIn(Dist.CLIENT)
    public void loadText() {
       this.text.clear();
+      if (this.fromLang) {
+         // The language table isn't ready during postInit, so defer to the first
+         // draw/measure (ensureResolved). Resolving early would treat a real key as
+         // literal; resolving late lets us fall back to the literal inline text.
+         this.resolved = false;
+         return;
+      }
       Minecraft mc = Minecraft.getInstance();
       String lang = mc.options.languageCode;
       ResourceLocation fileLoc = new ResourceLocation("som", "lang/book/" + lang + "_0/" + this.textLocation + ".txt");
@@ -47,6 +65,57 @@ public class PageElementParagraphs extends PageElement {
       } catch (IOException e) {
          e.printStackTrace();
       }
+      markRich();
+   }
+
+   // Plain, code-free lines for search indexing. Resolves the body (inline/lang or
+   // file) and strips both vanilla and "/" formatting codes so a word that follows
+   // a code still matches, and snippets don't show the codes.
+   @OnlyIn(Dist.CLIENT)
+   public List<String> getSearchLines() {
+      if (this.fromLang) ensureResolved();
+      else loadText();
+      List<String> out = Lists.newArrayList();
+      if (this.text != null) {
+         for (String s : this.text) {
+            if (s == null) continue;
+            String plain = com.paleimitations.schoolsofmagic.client.BookRichText.stripCodes(s);
+            plain = plain.replaceAll("(?i)\\u00A7[0-9A-FK-OR]", "");
+            out.add(plain);
+         }
+      }
+      return out;
+   }
+
+   // Resolve a lang-key body the first time the language table is actually ready.
+   @OnlyIn(Dist.CLIENT)
+   private void ensureResolved() {
+      if (!this.fromLang || this.resolved) return;
+      // If the value is a known translation key, use the translation; otherwise the
+      // value IS the body text (written inline in the JSON).
+      String v = net.minecraft.client.resources.language.I18n.get(this.textLocation);
+      String body = (v != null && !v.equals(this.textLocation)) ? v : this.textLocation;
+      this.text = Lists.newArrayList(body.split("<~>"));
+      this.resolved = true;
+      markRich();
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   private void markRich() {
+      this.rich = false;
+      for (String s : this.text) {
+         if (com.paleimitations.schoolsofmagic.client.BookRichText.hasCodes(s)) { this.rich = true; break; }
+      }
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   private java.util.List<com.paleimitations.schoolsofmagic.client.BookRichText.ParagraphBoxRef> boxRefs() {
+      java.util.List<com.paleimitations.schoolsofmagic.client.BookRichText.ParagraphBoxRef> refs = Lists.newArrayList();
+      for (ParagraphBox b : this.boxes) {
+         refs.add(b == null ? null : new com.paleimitations.schoolsofmagic.client.BookRichText.ParagraphBoxRef(
+            b.x, b.y, b.target, b.width, b.height));
+      }
+      return refs;
    }
 
    @Override
@@ -54,8 +123,18 @@ public class PageElementParagraphs extends PageElement {
       return i <= this.subpage;
    }
 
+   // The authored scale times the player's book-text-size setting (default 1.0).
+   private float effScale() {
+      return this.scale * com.paleimitations.schoolsofmagic.common.config.SOMClientConfig.bookTextScale();
+   }
+
    @Override
    public boolean hasSubpage(int subpage) {
+      ensureResolved();
+      float sc = effScale();
+      if (this.rich) {
+         return com.paleimitations.schoolsofmagic.client.BookRichText.hasSubpage(this.text, boxRefs(), sc, subpage);
+      }
       Font font = Minecraft.getInstance().font;
       int boxId = 0;
       int linenumber = 0;
@@ -65,8 +144,8 @@ public class PageElementParagraphs extends PageElement {
             String overflow = null;
             if (this.boxes.size() > boxId && this.boxes.get(boxId) != null) {
                ParagraphBox box = this.boxes.get(boxId);
-               for (String s1 : listFormattedStringToWidth(s, Math.round(box.width / this.scale))) {
-                  if ((linenumber + 1) * font.lineHeight <= Math.round(box.height / this.scale)) {
+               for (String s1 : listFormattedStringToWidth(s, Math.round(box.width / sc))) {
+                  if ((linenumber + 1) * font.lineHeight <= Math.round(box.height / sc)) {
                      if (subpage == box.target) return true;
                   } else {
                      overflow = overflow == null ? s1 : overflow + s1;
@@ -91,9 +170,15 @@ public class PageElementParagraphs extends PageElement {
    @Override
    @OnlyIn(Dist.CLIENT)
    public void drawElement(GuiGraphics gg, float mouseX, float mouseY, int xIn, int yIn, boolean isGUI, int subpage) {
+      ensureResolved();
+      float sc = effScale();
+      if (this.rich) {
+         com.paleimitations.schoolsofmagic.client.BookRichText.render(gg, this.text, boxRefs(), sc, xIn, yIn, subpage, this.fontColor);
+         return;
+      }
       Font font = Minecraft.getInstance().font;
       gg.pose().pushPose();
-      gg.pose().scale(this.scale, this.scale, this.scale);
+      gg.pose().scale(sc, sc, sc);
       int boxId = 0;
       int linenumber = 0;
       for (String s : this.text) {
@@ -102,10 +187,10 @@ public class PageElementParagraphs extends PageElement {
             String overflow = null;
             if (this.boxes.size() > boxId && this.boxes.get(boxId) != null) {
                ParagraphBox box = this.boxes.get(boxId);
-               int xI = Math.round((box.x + xIn) / this.scale);
-               int yI = Math.round((box.y + yIn) / this.scale);
-               for (String s1 : listFormattedStringToWidth(s, Math.round(box.width / this.scale))) {
-                  if ((linenumber + 1) * font.lineHeight <= Math.round(box.height / this.scale)) {
+               int xI = Math.round((box.x + xIn) / sc);
+               int yI = Math.round((box.y + yIn) / sc);
+               for (String s1 : listFormattedStringToWidth(s, Math.round(box.width / sc))) {
+                  if ((linenumber + 1) * font.lineHeight <= Math.round(box.height / sc)) {
                      if (subpage == box.target) {
                         gg.drawString(font, com.paleimitations.schoolsofmagic.client.GrimoireScramble.apply(s1), xI, yI + linenumber * font.lineHeight, 0, false);
                      }

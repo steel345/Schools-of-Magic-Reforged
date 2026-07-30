@@ -15,6 +15,10 @@ public class SOMKeyBindings {
       event.register(ClientProxy.OPEN_SPELL_RING);
       event.register(ClientProxy.TALISMAN_ACTIVATE);
       event.register(ClientProxy.CHARM_ACTIVATE);
+      event.register(ClientProxy.CROWN_ACTIVATE);
+      event.register(ClientProxy.CAPE_ACTIVATE);
+      event.register(ClientProxy.BELT_ACTIVATE);
+      event.register(ClientProxy.GRIMOIRE_ACTIVATE);
       event.register(ClientProxy.CASTING_TOGGLE);
       event.register(ClientProxy.PHOENIX_DESCEND);
       event.register(ClientProxy.PHOENIX_DISMOUNT);

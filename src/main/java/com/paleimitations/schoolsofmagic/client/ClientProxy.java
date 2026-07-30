@@ -84,6 +84,38 @@ public class ClientProxy extends CommonProxy {
       CATEGORY
    );
 
+   public static KeyMapping CROWN_ACTIVATE = new KeyMapping(
+      "key.som.crown_activate",
+      KeyConflictContext.IN_GAME,
+      com.mojang.blaze3d.platform.InputConstants.Type.KEYSYM,
+      GLFW.GLFW_KEY_J,
+      CATEGORY
+   );
+
+   public static KeyMapping CAPE_ACTIVATE = new KeyMapping(
+      "key.som.cape_activate",
+      KeyConflictContext.IN_GAME,
+      com.mojang.blaze3d.platform.InputConstants.Type.KEYSYM,
+      GLFW.GLFW_KEY_K,
+      CATEGORY
+   );
+
+   public static KeyMapping BELT_ACTIVATE = new KeyMapping(
+      "key.som.belt_activate",
+      KeyConflictContext.IN_GAME,
+      com.mojang.blaze3d.platform.InputConstants.Type.KEYSYM,
+      GLFW.GLFW_KEY_M,
+      CATEGORY
+   );
+
+   public static KeyMapping GRIMOIRE_ACTIVATE = new KeyMapping(
+      "key.som.grimoire_activate",
+      KeyConflictContext.IN_GAME,
+      com.mojang.blaze3d.platform.InputConstants.Type.KEYSYM,
+      GLFW.GLFW_KEY_U,
+      CATEGORY
+   );
+
    public static KeyMapping CASTING_TOGGLE = new KeyMapping(
       "key.som.casting_toggle",
       KeyConflictContext.IN_GAME,
@@ -206,6 +238,12 @@ public class ClientProxy extends CommonProxy {
    @Override
    public void openQuest(Player player, ItemStack stack, Quest q) {
       Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreen(new GuiQuestPaper(player, stack, q)));
+   }
+
+   @Override
+   public void openDryadQuest(Player player, ItemStack stack) {
+      Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreen(
+         new com.paleimitations.schoolsofmagic.client.guis.GuiDryadQuest(player, stack)));
    }
 
    @Override

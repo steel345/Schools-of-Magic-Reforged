@@ -1,0 +1,3 @@
+  The Cleansing effect purges a creature of all of its harmful effects, while leaving any beneficial blessings untouched.
+<~><~>  This effect can be acheived using Salt.
+<~><~>  Cleansing is a /hieromancyHieromancy/z effect in the school of Abjuration.

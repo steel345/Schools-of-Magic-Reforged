@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "som:deepslate_salt_ore"
+  },
+  "result": "som:salt",
+  "experience": 0.7,
+  "cookingtime": 200
+}

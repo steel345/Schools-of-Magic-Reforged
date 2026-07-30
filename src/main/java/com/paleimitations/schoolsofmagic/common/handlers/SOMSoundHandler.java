@@ -23,6 +23,8 @@ public class SOMSoundHandler {
    public static final RegistryObject<SoundEvent> TOAD_INJURED = register("entity.toad.hurt");
    public static final RegistryObject<SoundEvent> TOAD_DEATH = register("entity.toad.death");
    public static final RegistryObject<SoundEvent> TOAD_CROAK = register("entity.toad.croak");
+   public static final RegistryObject<SoundEvent> DEMON_IDLE = register("entity.demon.idle");
+   public static final RegistryObject<SoundEvent> DEMON_HURT = register("entity.demon.hurt");
    public static final RegistryObject<SoundEvent> SUMMON_BAT = register("blocks.summon.bat");
    public static final RegistryObject<SoundEvent> SUMMON_BLAZE = register("blocks.summon.blaze");
    public static final RegistryObject<SoundEvent> SUMMON_CAT = register("blocks.summon.cat");
@@ -71,6 +73,7 @@ public class SOMSoundHandler {
    public static final RegistryObject<SoundEvent> PHANTOM_FIRE = register("spells.phantom_fire");
    public static final RegistryObject<SoundEvent> FURNACE_FUEL = register("spells.furnace_fuel");
    public static final RegistryObject<SoundEvent> MAGIC_MISSILE = register("spells.magic_missile");
+   public static final RegistryObject<SoundEvent> SUN_DRY = register("spells.sun_dry");
 
    private static RegistryObject<SoundEvent> register(String name) {
       return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("som", name)));

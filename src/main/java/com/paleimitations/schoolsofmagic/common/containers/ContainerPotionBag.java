@@ -23,7 +23,11 @@ public class ContainerPotionBag extends AbstractContainerMenu {
    public ContainerPotionBag(int id, Inventory playerInventory, Player player) {
       super(MenuTypeRegistry.POTION_BAG.get(), id);
       this.player = player;
-      this.handler = player.getMainHandItem().getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+      // The bag may be held in the main hand or worn in the charm slot.
+      ItemStack main = player.getMainHandItem();
+      ItemStack source = main.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.potion_bag.get()
+         ? main : charmBag(player);
+      this.handler = source.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
       int xPosHand = 44;
       int yPosHand = 36;
       int index = 0;
@@ -43,6 +47,13 @@ public class ContainerPotionBag extends AbstractContainerMenu {
       for (int x = 0; x < 9; ++x) {
          this.addSlot(new Slot(playerInventory, x, xPos + x * 18, yPos + 58));
       }
+   }
+
+   private static ItemStack charmBag(Player player) {
+      com.paleimitations.schoolsofmagic.common.entity.capabilities.charm_data.ICharmData d =
+         com.paleimitations.schoolsofmagic.common.entity.capabilities.charm_data.CapabilityCharmData.get(player);
+      ItemStack c = d != null ? d.getCharm() : ItemStack.EMPTY;
+      return c.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.potion_bag.get() ? c : ItemStack.EMPTY;
    }
 
    @Override

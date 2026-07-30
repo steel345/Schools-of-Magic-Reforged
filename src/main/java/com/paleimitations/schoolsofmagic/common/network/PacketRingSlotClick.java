@@ -27,12 +27,15 @@ public class PacketRingSlotClick {
          ItemStack carried = menu.getCarried();
          ItemStack cur = ring.getRing();
 
+         boolean changed = false;
          if (carried.isEmpty()) {
             if (!cur.isEmpty()) {
                menu.setCarried(cur);
                ring.setRing(ItemStack.EMPTY);
+               changed = true;
             }
          } else if (carried.getItem() instanceof ItemApprenticeRing) {
+            changed = true;
             ItemStack one = carried.copy();
             one.setCount(1);
             carried.shrink(1);
@@ -50,8 +53,12 @@ public class PacketRingSlotClick {
          }
 
          CapabilityRingData.sync(sp);
-         sp.level().playSound(null, sp.getX(), sp.getY(), sp.getZ(),
-            net.minecraft.sounds.SoundEvents.ARMOR_EQUIP_LEATHER, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+         // Only a click that actually took something out or put something in counts
+         // as equipping; empty or rejected clicks stay silent.
+         if (changed) {
+            sp.level().playSound(null, sp.getX(), sp.getY(), sp.getZ(),
+               net.minecraft.sounds.SoundEvents.ARMOR_EQUIP_LEATHER, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+         }
          menu.broadcastChanges();
       });
       ctx.get().setPacketHandled(true);

@@ -22,24 +22,32 @@ public class BookPagePotionEffect extends BookPage {
    public final MagicSchool school;
    public final MagicElement element;
 
+   // The left-hand furniture of a potion page: tinted lock, school sigil, effect
+   // icon, brewing ingredient, resulting bottle and the duration readout. Shared so
+   // JSON-authored pages can lay out an identical potion figure.
+   public static java.util.List<PageElement> visualElements(MobEffectInstance potion, ItemStack ingredient,
+                                                            MagicSchool school, MagicElement category) {
+      return Lists.newArrayList(new PageElement[]{
+         new PageElementStandardText(potion.getDescriptionId(), 72, 55, 99, 10, category.getColor(), true),
+         new PageElementImageColorized(new ResourceLocation("som", "textures/gui/books/potion_lock.png"), 0, 0, 0, 0, 256, 256, 1.0F, category.getColor()),
+         new PageElementImageColorized(new ResourceLocation("som", "textures/gui/books/potion_school_" + school.getName() + ".png"), 0, 0, 0, 0, 256, 256, 1.0F, category.getColor()),
+         new PageElementString(
+            potion.getDuration() / 1200
+               + ":"
+               + (potion.getDuration() / 20 % 60 < 10 ? "0" + potion.getDuration() / 20 % 60 : String.valueOf(potion.getDuration() / 20 % 60)),
+            72, 121, 16, 16, category.getColor(), true),
+         new PageElementStandardText("page.duration.element", 72, 136, 32, 16, category.getColor(), true),
+         new PageElementItemStack(ingredient, 38, 97),
+
+         new PageElementItemStack(buildColoredPotionStack(potion), 90, 97),
+         new PageElementPotionIcon(potion, 63, 67)
+      });
+   }
+
    public BookPagePotionEffect(MobEffectInstance potion, ItemStack ingredient, ItemStack potionItem, MagicSchool school, MagicElement category) {
       super(
          potion.getDescriptionId(),
-         Lists.newArrayList(new PageElement[]{
-            new PageElementStandardText(potion.getDescriptionId(), 72, 55, 99, 10, category.getColor(), true),
-            new PageElementImageColorized(new ResourceLocation("som", "textures/gui/books/potion_lock.png"), 0, 0, 0, 0, 256, 256, 1.0F, category.getColor()),
-            new PageElementImageColorized(new ResourceLocation("som", "textures/gui/books/potion_school_" + school.getName() + ".png"), 0, 0, 0, 0, 256, 256, 1.0F, category.getColor()),
-            new PageElementString(
-               potion.getDuration() / 1200
-                  + ":"
-                  + (potion.getDuration() / 20 % 60 < 10 ? "0" + potion.getDuration() / 20 % 60 : String.valueOf(potion.getDuration() / 20 % 60)),
-               72, 121, 16, 16, category.getColor(), true),
-            new PageElementStandardText("page.duration.element", 72, 136, 32, 16, category.getColor(), true),
-            new PageElementItemStack(ingredient, 38, 97),
-
-            new PageElementItemStack(buildColoredPotionStack(potion), 90, 97),
-            new PageElementPotionIcon(potion, 63, 67)
-         })
+         visualElements(potion, ingredient, school, category)
       );
       this.potion = potion;
       this.ingredient = ingredient;

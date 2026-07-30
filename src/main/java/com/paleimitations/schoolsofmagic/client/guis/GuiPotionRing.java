@@ -24,16 +24,39 @@ public class GuiPotionRing {
 
    public GuiPotionRing() {}
 
+   // The bag being shown in the ring: the one held in hand, or the one worn in the
+   // charm slot (held open with the charm key). Returns EMPTY when no ring applies.
+   public static ItemStack activeBag(Player player) {
+      if (player.getMainHandItem().getItem() == ItemRegistry.potion_bag.get()
+         && ClientProxy.OPEN_SPELL_RING.isDown()) {
+         return player.getMainHandItem();
+      }
+      // Each key opens the bag in its own slot: the charm key never reaches the belt
+      // and the belt key never reaches the charm slot.
+      java.util.function.Predicate<ItemStack> isBag = s -> s.getItem() == ItemRegistry.potion_bag.get();
+      if (ClientProxy.CHARM_ACTIVATE.isDown()) {
+         ItemStack worn = com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots
+            .findCharmPouch(player, isBag);
+         if (!worn.isEmpty()) return worn;
+      }
+      if (ClientProxy.BELT_ACTIVATE.isDown()) {
+         ItemStack worn = com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots
+            .findBeltPouch(player, isBag);
+         if (!worn.isEmpty()) return worn;
+      }
+      return ItemStack.EMPTY;
+   }
+
    @SubscribeEvent
    public void renderPotionRing(RenderGuiOverlayEvent.Post event) {
 
       if (event.getOverlay() != VanillaGuiOverlay.HOTBAR.type()) return;
       Minecraft mc = Minecraft.getInstance();
       LocalPlayer player = mc.player;
-      if (player == null) return;
-      if (!ClientProxy.OPEN_SPELL_RING.isDown()) return;
-      if (player.getMainHandItem().getItem() != ItemRegistry.potion_bag.get()) return;
-      IItemHandler handler = player.getMainHandItem().getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+      if (player == null || mc.screen != null) return;
+      ItemStack bag = activeBag(player);
+      if (bag.isEmpty()) return;
+      IItemHandler handler = bag.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
       if (handler == null) return;
 
       GuiGraphics gg = event.getGuiGraphics();
@@ -41,17 +64,17 @@ public class GuiPotionRing {
       int yPos = gg.guiHeight() / 2 - 69;
       gg.blit(TEXTURE, xPos, yPos, 0, 0, 138, 138);
 
-      int selected = player.getMainHandItem().getDamageValue();
-      Component label = !handler.getStackInSlot(selected).isEmpty()
+      int selected = bag.getDamageValue();
+      Component label = selected >= 0 && selected < handler.getSlots() && !handler.getStackInSlot(selected).isEmpty()
          ? handler.getStackInSlot(selected).getHoverName()
          : Component.empty();
       gg.drawString(mc.font, label, gg.guiWidth() / 2 - mc.font.width(label) / 2, yPos - 8, 0xFFFFFF, false);
 
-      this.drawSelector(player, xPos, yPos, handler, selected, gg);
-      this.drawSpellIcons(player, xPos, yPos, gg);
+      this.drawSelector(xPos, yPos, selected, gg);
+      this.drawSpellIcons(handler, xPos, yPos, gg);
    }
 
-   public void drawSelector(Player player, int xPos, int yPos, IItemHandler handler, int slot, GuiGraphics gg) {
+   public void drawSelector(int xPos, int yPos, int slot, GuiGraphics gg) {
       int x;
       int y;
       switch (slot + 1) {
@@ -72,9 +95,7 @@ public class GuiPotionRing {
       }
    }
 
-   public void drawSpellIcons(Player player, int xPos, int yPos, GuiGraphics gg) {
-      if (player.getMainHandItem().getItem() != ItemRegistry.potion_bag.get()) return;
-      IItemHandler handler = player.getMainHandItem().getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
+   public void drawSpellIcons(IItemHandler handler, int xPos, int yPos, GuiGraphics gg) {
       if (handler == null) return;
       drawItemStack(gg, xPos + 61, yPos + 6, handler.getStackInSlot(0));
       drawItemStack(gg, xPos + 95, yPos + 15, handler.getStackInSlot(1));

@@ -32,6 +32,7 @@ public class CharmSlotInventoryHandler {
    @SubscribeEvent
    public static void onRender(ScreenEvent.Render.Post event) {
       if (!(event.getScreen() instanceof InventoryScreen screen)) return;
+      if (!com.paleimitations.schoolsofmagic.client.CharmScreenState.isOpen()) return;
       Player player = Minecraft.getInstance().player;
       if (player == null) return;
       double mx = event.getMouseX();
@@ -61,6 +62,9 @@ public class CharmSlotInventoryHandler {
             gg.renderItemDecorations(Minecraft.getInstance().font, carried, (int) mx - 8, (int) my - 8);
          } else if (!stack.isEmpty()) {
             gg.renderTooltip(Minecraft.getInstance().font, stack, (int) mx, (int) my);
+         } else {
+            gg.renderTooltip(Minecraft.getInstance().font,
+               net.minecraft.network.chat.Component.translatable("gui.som.slot.charm"), (int) mx, (int) my);
          }
       }
    }
@@ -78,6 +82,7 @@ public class CharmSlotInventoryHandler {
    @SubscribeEvent
    public static void onClick(ScreenEvent.MouseButtonPressed.Pre event) {
       if (!(event.getScreen() instanceof InventoryScreen screen)) return;
+      if (!com.paleimitations.schoolsofmagic.client.CharmScreenState.isOpen()) return;
       double mx = event.getMouseX();
       double my = event.getMouseY();
       int x = screen.getGuiLeft() + CHARM_DX;

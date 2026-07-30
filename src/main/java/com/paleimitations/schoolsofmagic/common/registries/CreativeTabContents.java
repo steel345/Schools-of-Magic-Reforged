@@ -229,6 +229,7 @@ public class CreativeTabContents {
 
         if (target == Tab.MATERIALS) {
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.brass_whistle.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.herb_pouch.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.spell_parchment.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.scroll_seal.get()));
             output.accept(com.paleimitations.schoolsofmagic.common.crafting.CoconutMilkRecipe.coconutMilk());
@@ -250,7 +251,7 @@ public class CreativeTabContents {
         }
     }
 
-    private static final Set<String> EXTRA_BLOCKS_TAB = Set.of("tile_lapis", "ore_silver", "ore_copper", "block_mud", "unlit_torch");
+    private static final Set<String> EXTRA_BLOCKS_TAB = Set.of("tile_lapis", "ore_silver", "ore_copper", "block_mud", "unlit_torch", "block_of_salt");
 
     private static boolean isHidden(String path) {
         if (FORCE_HIDDEN_PATHS.contains(path)) return true;
@@ -315,7 +316,19 @@ public class CreativeTabContents {
         if (item == ItemRegistry.bi_rotted_planks.get()) { emitRottedPlanksVariants(output, item); return; }
         if (item == ItemRegistry.bi_metal_block.get())   { emitMetalBlockVariants(output, item); return; }
         if (item == ItemRegistry.bi_metal_bricks.get())  { emitMetalBricksVariants(output, item); return; }
-        if (item == ItemRegistry.ingot.get())            { emitMetalItemVariants(output, item); return; }
+        if (item == ItemRegistry.ingot.get()) {
+            emitMetalItemVariants(output, item);
+            return;
+        }
+        if (item == ItemRegistry.bi_ore_steel.get()) {
+            output.accept(new net.minecraft.world.item.ItemStack(item));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_salt_ore.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_deepslate_salt_ore.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_fae_salt_ore.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_gypsum_salt_ore.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_mud_marble_salt_ore.get()));
+            return;
+        }
         if (item == ItemRegistry.nugget.get())           { emitMetalItemVariants(output, item); return; }
         if (item == ItemRegistry.bi_fae_stone.get())     { emitFaeStoneVariants(output, item, "fae_stone"); return; }
         if (item == ItemRegistry.bi_gypsum.get())        { emitFaeStoneVariants(output, item, "gypsum"); return; }
@@ -398,11 +411,20 @@ public class CreativeTabContents {
             int start = (item instanceof com.paleimitations.schoolsofmagic.common.items.ItemPlant) ? 1 : 0;
 
             int end = (item == ItemRegistry.nugget.get()) ? Math.min(count, 10) : count;
+            boolean isMisc = item == ItemRegistry.item.get();
+            boolean isGemChunk = item == ItemRegistry.gem_chunk.get();
             for (int i = start; i < end; i++) {
                 if (!handler.hasMeta(i)) continue;
+                if (isMisc && i == com.paleimitations.schoolsofmagic.common.blocks.EnumMisc.SHAMROCK.getIndex()) {
+                    output.accept(new ItemStack(ItemRegistry.salt.get()));
+                }
                 ItemStack variant = new ItemStack(item);
                 variant.setDamageValue(i);
                 output.accept(variant);
+                if (isGemChunk && "necromancy".equals(handler.handleMeta(i))) {
+                    output.accept(new ItemStack(ItemRegistry.raw_silver.get()));
+                    output.accept(new ItemStack(ItemRegistry.raw_pure_copper.get()));
+                }
             }
             return;
         }

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "som:halfslab_ash",
+    "som:halfslab_elder",
+    "som:halfslab_pine",
+    "som:halfslab_willow",
+    "som:halfslab_yew",
+    "som:halfslab_verde"
+  ]
+}

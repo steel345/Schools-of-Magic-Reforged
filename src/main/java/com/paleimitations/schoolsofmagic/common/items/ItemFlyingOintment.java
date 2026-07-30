@@ -26,6 +26,16 @@ public class ItemFlyingOintment extends Item {
    }
 
    @Override
+   public net.minecraft.sounds.SoundEvent getDrinkingSound() {
+      return net.minecraft.sounds.SoundEvents.HONEY_DRINK;
+   }
+
+   @Override
+   public net.minecraft.sounds.SoundEvent getEatingSound() {
+      return net.minecraft.sounds.SoundEvents.HONEY_DRINK;
+   }
+
+   @Override
    public int getUseDuration(ItemStack stack) {
       return 32;
    }

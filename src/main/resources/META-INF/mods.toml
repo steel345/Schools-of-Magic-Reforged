@@ -11,7 +11,7 @@ logoFile = "logo.png"
 credits = "Original mod by PaleImitations. Chinese translation by mc_mso, Polish translation by Trozuu, Russian translation by Salvia."
 authors = "Steel345"
 description = '''
-In this first version of the Schools of Magic mod, a budding magician can learn the secrets of magic with their wand and cauldron in hand.
+A D&D-inspired magic mod featuring customizable spellcasting, advanced brewing & alchemy, powerful bosses, and a magical world.
 '''
 
 [[dependencies.som]]

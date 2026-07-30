@@ -57,7 +57,14 @@ public class BookMagicAdvanced {
    private static BookPage chartPage(String name, PageElement... chart) {
       List<PageElement> els = Lists.newArrayList();
       els.add(new PageElementStandardText("page." + name + ".title", 72, 58, 99, 16, 0, true));
-      els.add(new PageElementParagraphs(name, 0.75F, 0, 0, new ParagraphBox(23, 75, 0, 99, 115)));
+      // Text flows left of the chart on subpage 0, then into full two-column
+      // subpages so long entries continue instead of cutting off.
+      els.add(new PageElementParagraphs(name, 0.75F, 0, 2,
+         new ParagraphBox(23, 75, 0, 99, 115),
+         new ParagraphBox(23, 50, 1, 99, 140),
+         new ParagraphBox(134, 50, 1, 99, 140),
+         new ParagraphBox(23, 50, 2, 99, 140),
+         new ParagraphBox(134, 50, 2, 99, 140)));
       for (PageElement e : chart) els.add(e);
       return new BookPage(name, els);
    }
@@ -361,6 +368,8 @@ public class BookMagicAdvanced {
             meta(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.WORMWOOD.getIndex())
          }), new ItemStack(ItemRegistry.mutandis.get())))
          .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_potion_bag").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
       new BookPageSpell(new SpellWitherBlight()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);

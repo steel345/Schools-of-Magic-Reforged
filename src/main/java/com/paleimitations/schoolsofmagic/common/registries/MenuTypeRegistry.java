@@ -36,6 +36,8 @@ public class MenuTypeRegistry {
       MENUS.register("teapot", () -> IForgeMenuType.create(ContainerTeapot::new));
    public static final RegistryObject<MenuType<ContainerPotionBag>> POTION_BAG =
       MENUS.register("potion_bag", () -> IForgeMenuType.create(ContainerPotionBag::new));
+   public static final RegistryObject<MenuType<com.paleimitations.schoolsofmagic.common.containers.ContainerHerbPouch>> HERB_POUCH =
+      MENUS.register("herb_pouch", () -> IForgeMenuType.create(com.paleimitations.schoolsofmagic.common.containers.ContainerHerbPouch::new));
    public static final RegistryObject<MenuType<com.paleimitations.schoolsofmagic.common.containers.ContainerBookFrame>> BOOK_FRAME =
       MENUS.register("book_frame", () -> IForgeMenuType.create(com.paleimitations.schoolsofmagic.common.containers.ContainerBookFrame::new));
    public static final RegistryObject<MenuType<ContainerIntelligent>> INTELLIGENT =
@@ -44,6 +46,8 @@ public class MenuTypeRegistry {
       MENUS.register("squeakard", () -> IForgeMenuType.create(ContainerSqueakard::new));
    public static final RegistryObject<MenuType<com.paleimitations.schoolsofmagic.common.containers.ContainerPhoenix>> PHOENIX =
       MENUS.register("phoenix", () -> IForgeMenuType.create(com.paleimitations.schoolsofmagic.common.containers.ContainerPhoenix::new));
+   public static final RegistryObject<MenuType<com.paleimitations.schoolsofmagic.common.containers.ContainerBrazier>> BRAZIER =
+      MENUS.register("brazier", () -> IForgeMenuType.create(com.paleimitations.schoolsofmagic.common.containers.ContainerBrazier::new));
    public static final RegistryObject<MenuType<ContainerPodiumCopy>> PODIUM_COPY =
       MENUS.register("podium_copy", () -> IForgeMenuType.create(ContainerPodiumCopy::new));
    public static final RegistryObject<MenuType<ContainerPodiumEdit>> PODIUM_EDIT =

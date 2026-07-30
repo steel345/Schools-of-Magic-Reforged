@@ -23,5 +23,7 @@ public class SOMCommands {
       CommandZiggurat.register(dispatcher);
       CommandFaeGrove.register(dispatcher);
       CommandPhoenixReturn.register(dispatcher);
+      CommandPages.register(dispatcher);
+      CommandSetMagicLevel.register(dispatcher);
    }
 }

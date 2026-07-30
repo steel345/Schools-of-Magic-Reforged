@@ -62,6 +62,16 @@ public class EntityDemon extends EntityMagician {
    }
 
    @Override
+   protected net.minecraft.sounds.SoundEvent getAmbientSound() {
+      return com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.DEMON_IDLE.get();
+   }
+
+   @Override
+   protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource source) {
+      return com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.DEMON_HURT.get();
+   }
+
+   @Override
    public boolean removeWhenFarAway(double distance) {
       return false;
    }

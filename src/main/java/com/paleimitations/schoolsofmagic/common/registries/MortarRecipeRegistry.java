@@ -141,6 +141,18 @@ public final class MortarRecipeRegistry {
         WOOL = RecipeRegistry.registerMortarRecipe(
             Blocks.WHITE_WOOL, ItemStack.EMPTY, 5,
             new ItemStack(Items.STRING, 4), ItemStack.EMPTY);
+        RecipeRegistry.registerMortarRecipe(
+            net.minecraft.world.item.crafting.Ingredient.of(
+                BlockRegistry.salt_ore.get(),
+                BlockRegistry.deepslate_salt_ore.get(),
+                BlockRegistry.fae_salt_ore.get(),
+                BlockRegistry.gypsum_salt_ore.get(),
+                BlockRegistry.mud_marble_salt_ore.get()),
+            ItemStack.EMPTY, 5,
+            new ItemStack(ItemRegistry.salt.get(), 6), ItemStack.EMPTY);
+        RecipeRegistry.registerMortarRecipe(
+            BlockRegistry.block_of_salt.get(), ItemStack.EMPTY, 5,
+            new ItemStack(ItemRegistry.salt.get(), 9), ItemStack.EMPTY);
 
         for (EnumPlantType type : EnumPlantType.values()) {
             if (type != EnumPlantType.NONE) {

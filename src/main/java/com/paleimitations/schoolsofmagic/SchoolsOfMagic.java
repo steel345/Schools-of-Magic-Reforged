@@ -45,6 +45,8 @@ public class SchoolsOfMagic {
 
       ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON,
          com.paleimitations.schoolsofmagic.common.config.SOMFairyConfig.SPEC, "som-fairies.toml");
+      ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.CLIENT,
+         com.paleimitations.schoolsofmagic.common.config.SOMClientConfig.SPEC, "som-client.toml");
 
       MinecraftForge.EVENT_BUS.addListener(this::serverAboutToStart);
       MinecraftForge.EVENT_BUS.addListener(this::serverStarting);

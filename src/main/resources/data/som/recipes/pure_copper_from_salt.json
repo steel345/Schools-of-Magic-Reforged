@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SCS",
+    "SSS"
+  ],
+  "key": {
+    "S": { "item": "som:salt" },
+    "C": { "item": "minecraft:copper_ingot" }
+  },
+  "result": { "item": "som:ingot", "count": 1, "nbt": "{Damage:2}" }
+}

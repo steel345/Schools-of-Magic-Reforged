@@ -47,6 +47,10 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
    public int prevSubPage;
    public int animationTick;
    public EnumState bookState;
+   public int forceCloseTicks = 0;
+   public boolean floated = false;
+   public BlockPos floatLectern = null;
+   public ItemStack floatedBook = ItemStack.EMPTY;
    public final PodiumGame podiumGame;
 
    public TileEntityPodium(BlockPos pos, BlockState state) {
@@ -55,7 +59,7 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
          @Override
          protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
-            TileEntityPodium.this.setChanged();
+            TileEntityPodium.this.sendUpdates();
          }
       };
       this.handlerOpt = LazyOptional.of(() -> this.handler);
@@ -226,6 +230,9 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
       this.page = nbt.getInt("page");
       this.subpage = nbt.getInt("subpage");
       this.wood = EnumWoodType.getFromIndex(nbt.getInt("wood"));
+      this.floated = nbt.getBoolean("floated");
+      this.floatLectern = nbt.contains("floatLectern") ? BlockPos.of(nbt.getLong("floatLectern")) : null;
+      this.floatedBook = nbt.contains("floatedBook") ? ItemStack.of(nbt.getCompound("floatedBook")) : ItemStack.EMPTY;
    }
 
    @Override
@@ -235,6 +242,9 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
       nbt.putInt("page", this.page);
       nbt.putInt("subpage", this.subpage);
       nbt.putInt("wood", this.wood.getIndex());
+      nbt.putBoolean("floated", this.floated);
+      if (this.floatLectern != null) nbt.putLong("floatLectern", this.floatLectern.asLong());
+      if (!this.floatedBook.isEmpty()) nbt.put("floatedBook", this.floatedBook.save(new CompoundTag()));
    }
 
    public void setWood(EnumWoodType value) {
@@ -246,6 +256,11 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
    }
 
    public void tick() {
+      // Clear a corrupt float state (floated but nothing set aside to return).
+      if (this.level != null && !this.level.isClientSide && this.floated && this.floatedBook.isEmpty()) {
+         this.floated = false;
+         this.sendUpdates();
+      }
       IPage page;
       ItemStack item = this.handler.getStackInSlot(0);
       if (item.getCapability(CapabilityBook.BOOK_CAPABILITY).isPresent()) {
@@ -301,23 +316,33 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
             zD = 0.0f;
          }
          Player player = this.level.getNearestPlayer((double)((float)this.worldPosition.getX() + xD), (double)this.worldPosition.getY(), (double)((float)this.worldPosition.getZ() + zD), 30.0, false);
+         // A knowledge fetch briefly forces the reading book shut before it floats out.
+         // Once swapped, the book on the podium (the found book) opens normally again.
+         if (this.forceCloseTicks > 0) {
+            this.forceCloseTicks--;
+            if (this.bookState == EnumState.OPEN || this.bookState == EnumState.OPEN_BOOK
+                  || this.bookState == EnumState.TURN_PAGE_FORWARD || this.bookState == EnumState.TURN_PAGE_BACK) {
+               this.bookState = EnumState.CLOSE_BOOK;
+               this.animationTick = 0;
+            }
+         }
          if (!(this.bookState != EnumState.OPEN || player != null && this.shouldBeOpen(player, (float)this.getBlockPos().getX() + xD, this.getBlockPos().getY(), (float)this.getBlockPos().getZ() + zD))) {
             this.bookState = EnumState.CLOSE_BOOK;
-            this.level.playLocalSound((double)this.worldPosition.getX(), (double)this.worldPosition.getY(), (double)this.worldPosition.getZ(), SOMSoundHandler.BOOK_CLOSE.get(), SoundSource.BLOCKS, 1.0f, 1.0f, false);
+            if (!this.level.isClientSide) this.level.playSound(null, this.worldPosition, SOMSoundHandler.BOOK_CLOSE.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
             this.animationTick = 0;
          }
-         if (this.bookState == EnumState.CLOSED && player != null && this.shouldBeOpen(player, (float)this.getBlockPos().getX() + xD, this.getBlockPos().getY(), (float)this.getBlockPos().getZ() + zD)) {
+         if (this.forceCloseTicks <= 0 && this.bookState == EnumState.CLOSED && player != null && this.shouldBeOpen(player, (float)this.getBlockPos().getX() + xD, this.getBlockPos().getY(), (float)this.getBlockPos().getZ() + zD)) {
             this.bookState = EnumState.OPEN_BOOK;
-            this.level.playLocalSound((double)this.worldPosition.getX(), (double)this.worldPosition.getY(), (double)this.worldPosition.getZ(), SOMSoundHandler.BOOK_OPEN.get(), SoundSource.BLOCKS, 0.8f, 1.0f, false);
+            if (!this.level.isClientSide) this.level.playSound(null, this.worldPosition, SOMSoundHandler.BOOK_OPEN.get(), SoundSource.BLOCKS, 0.8f, 1.0f);
             this.animationTick = 0;
          }
          if (this.bookState == EnumState.OPEN && (this.prevPage < this.page || this.prevSubPage < this.subpage && this.prevPage == this.page)) {
             this.bookState = EnumState.TURN_PAGE_FORWARD;
-            this.level.playLocalSound((double)this.worldPosition.getX(), (double)this.worldPosition.getY(), (double)this.worldPosition.getZ(), SOMSoundHandler.PAGE_FLIP.get(), SoundSource.BLOCKS, 1.0f, 1.0f, false);
+            if (!this.level.isClientSide) this.level.playSound(null, this.worldPosition, SOMSoundHandler.PAGE_FLIP.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
             this.animationTick = 0;
          } else if (this.bookState == EnumState.OPEN && (this.prevPage > this.page || this.prevSubPage > this.subpage && this.prevPage == this.page)) {
             this.bookState = EnumState.TURN_PAGE_BACK;
-            this.level.playLocalSound((double)this.worldPosition.getX(), (double)this.worldPosition.getY(), (double)this.worldPosition.getZ(), SOMSoundHandler.PAGE_FLIP.get(), SoundSource.BLOCKS, 1.0f, 1.0f, false);
+            if (!this.level.isClientSide) this.level.playSound(null, this.worldPosition, SOMSoundHandler.PAGE_FLIP.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
             this.animationTick = 0;
          }
          if (player != null && this.bookState != EnumState.CLOSED && this.bookState != EnumState.CLOSE_BOOK) {

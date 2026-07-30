@@ -99,6 +99,8 @@ public class PotionTypeRegistry {
       () -> new Potion("blindness", new MobEffectInstance(net.minecraft.world.effect.MobEffects.BLINDNESS, 900)));
    public static final RegistryObject<Potion> CREEPERS_BANE = POTIONS.register("creepers_bane",
       () -> new Potion("creepers_bane", new MobEffectInstance(PotionRegistry.creepers_bane.get(), 1800)));
+   public static final RegistryObject<Potion> CLEANSING = POTIONS.register("cleansing",
+      () -> new Potion("cleansing", new MobEffectInstance(PotionRegistry.cleansing.get(), 1)));
    public static final RegistryObject<Potion> FEAR = POTIONS.register("fear",
       () -> new Potion("fear", new MobEffectInstance(PotionRegistry.fear.get(), 900)));
    public static final RegistryObject<Potion> FLAMABILITY = POTIONS.register("flamability",

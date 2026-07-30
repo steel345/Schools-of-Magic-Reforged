@@ -608,6 +608,33 @@ public class BlockRegistry {
    public static final RegistryObject<Block> ore_silver = BLOCKS.register("ore_silver", () -> new BlockOre(SOMBlockProperties.silverOre()));
    public static final RegistryObject<Block> ore_copper = BLOCKS.register("ore_copper", () -> new BlockOre(SOMBlockProperties.copperOre()));
    public static final RegistryObject<Block> ore_steel = BLOCKS.register("ore_steel", () -> new BlockCharcoal(SOMBlockProperties.standardOre()));
+
+   public static final RegistryObject<Block> salt_ore = BLOCKS.register("salt_ore",
+      () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockSaltOre(
+         BlockBehaviour.Properties.of().strength(3.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE),
+         net.minecraft.util.valueproviders.UniformInt.of(1, 5)));
+   public static final RegistryObject<Block> deepslate_salt_ore = BLOCKS.register("deepslate_salt_ore",
+      () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockSaltOre(
+         BlockBehaviour.Properties.of().strength(4.5F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE),
+         net.minecraft.util.valueproviders.UniformInt.of(1, 5)));
+   public static final RegistryObject<Block> fae_salt_ore = BLOCKS.register("fae_salt_ore",
+      () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockSaltOre(
+         BlockBehaviour.Properties.of().strength(3.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE),
+         net.minecraft.util.valueproviders.UniformInt.of(1, 5)));
+   public static final RegistryObject<Block> gypsum_salt_ore = BLOCKS.register("gypsum_salt_ore",
+      () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockSaltOre(
+         BlockBehaviour.Properties.of().strength(3.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE),
+         net.minecraft.util.valueproviders.UniformInt.of(1, 5)));
+   public static final RegistryObject<Block> mud_marble_salt_ore = BLOCKS.register("mud_marble_salt_ore",
+      () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockSaltOre(
+         BlockBehaviour.Properties.of().strength(3.0F, 3.0F).requiresCorrectToolForDrops().sound(SoundType.STONE),
+         net.minecraft.util.valueproviders.UniformInt.of(1, 5)));
+   public static final RegistryObject<Block> block_of_salt = BLOCKS.register("block_of_salt",
+      () -> new net.minecraft.world.level.block.Block(
+         BlockBehaviour.Properties.of().strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.SAND)));
+   public static final RegistryObject<Block> salt_line = BLOCKS.register("salt_line",
+      () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockSaltLine(
+         BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.SAND)));
    public static final RegistryObject<Block> spawn = BLOCKS.register("spawn", () -> new BlockToadSpawn(SOMBlockProperties.toadSpawn()));
    public static final RegistryObject<Block> crop_pyromancy = BLOCKS.register("crop_pyromancy", () -> new BlockMagicCrop(SOMBlockProperties.crop()));
    public static final RegistryObject<Block> crop_heliomancy = BLOCKS.register("crop_heliomancy", () -> new BlockMagicCrop(SOMBlockProperties.crop()));

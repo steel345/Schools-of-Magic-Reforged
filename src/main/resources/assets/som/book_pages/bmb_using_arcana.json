@@ -1,0 +1,6 @@
+{
+  "elements": [
+    { "type": "title", "text": "Using this Arcana" },
+    { "type": "text", "text": "  The buttons at the top turn the pages. The single arrows step one page, and the double arrows jump to the next or last chapter. The list button opens the /btable of contents/z, and the X shuts the book.\n\n  On a table of contents, type in the small bar at the bottom and press Enter to search this book by its words. Click a result to jump straight to that page.\n\n  Hold /bspacebar/z to flip forward quickly, or hold shift and space to flip back.\n\n  You can also set a magic book on a /bPodium/z or /bPedestal/z and read it out in the world, turning its pages by clicking the corners. Or carry one and read it any time: any magic book or tome fits the /bGrimoire/z garment slot, opened with the /bgrimoire key/z, and a book set in the /bCharm slot/z opens with the /bcharm key/z instead." }
+  ]
+}

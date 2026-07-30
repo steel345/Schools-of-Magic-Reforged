@@ -52,7 +52,28 @@ public class ContainerPodiumRead extends AbstractContainerMenu {
    }
 
    @Override
+   public void clicked(int slotId, int dragType, net.minecraft.world.inventory.ClickType clickType, Player player) {
+      // Clicking the floated (loaned) book returns it instead of grabbing it.
+      if (slotId == 0 && this.podium != null && this.podium.floated) {
+         if (!player.level().isClientSide) {
+            com.paleimitations.schoolsofmagic.common.handlers.KnowledgeReverse.reverse(
+               (net.minecraft.server.level.ServerLevel) player.level(), this.podium.getBlockPos());
+         }
+         return;
+      }
+      super.clicked(slotId, dragType, clickType, player);
+   }
+
+   @Override
    public ItemStack quickMoveStack(Player playerIn, int fromSlot) {
+      // Interacting with the floated (loaned) book slot returns it instead.
+      if (fromSlot == 0 && this.podium != null && this.podium.floated) {
+         if (!playerIn.level().isClientSide) {
+            com.paleimitations.schoolsofmagic.common.handlers.KnowledgeReverse.reverse(
+               (net.minecraft.server.level.ServerLevel) playerIn.level(), this.podium.getBlockPos());
+         }
+         return ItemStack.EMPTY;
+      }
       ItemStack previous = ItemStack.EMPTY;
       Slot slot = this.slots.get(fromSlot);
       if (slot != null && slot.hasItem()) {

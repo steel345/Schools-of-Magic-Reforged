@@ -1,0 +1,2 @@
+  A /bBottle o' Enchanting/z can be conjured through a ritual.
+<~><~>  It is a costly working, demanding a full /b200 mana/z to perform.

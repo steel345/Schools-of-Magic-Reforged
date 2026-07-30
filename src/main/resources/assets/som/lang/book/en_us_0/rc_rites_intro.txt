@@ -1,1 +1,1 @@
-  Where a crafting rite only builds, a Rite is magic manifested in the world itself.<~><~>  A Rite asks for no special block beneath the brazier, unlike a crafting rite. It needs only its ingredients, its owner, and a living flame to answer.<~><~>  What follows are the Rites known to us.
+  Where a crafting rite only builds, a /bRite/z is magic manifested in the world itself.<~><~>  A Rite asks for no special block beneath the brazier, unlike a crafting rite. It needs only its ingredients, its owner, and a living flame to answer.<~><~>  What follows are the Rites known to us.

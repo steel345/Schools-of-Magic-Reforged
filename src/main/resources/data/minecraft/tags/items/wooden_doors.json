@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "som:itemdoor_ash",
+    "som:itemdoor_elder",
+    "som:itemdoor_pine",
+    "som:itemdoor_willow",
+    "som:itemdoor_yew",
+    "som:itemdoor_verde",
+    "som:door_ash",
+    "som:door_elder",
+    "som:door_pine",
+    "som:door_willow",
+    "som:door_yew",
+    "som:door_verde"
+  ]
+}

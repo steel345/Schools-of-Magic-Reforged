@@ -1,2 +1,2 @@
-  Lingering Potions can be bottled or imbued.<~><~>  A Glass Bottle gives a Lingering Potion; a Glass Burst Flask gives a Burst 
-Potion.<~><~>  Imbue a Diamond for a Potion Crystal, 9 Arrows for 9 Tipped Arrows, or any food to give it the potion effects.
+  /bLingering Potions/z can be bottled or imbued.<~><~>  A /bGlass Bottle/z gives a Lingering Potion; a /bGlass Burst Flask/z gives a Burst
+Potion.<~><~>  Imbue a /bDiamond/z for a Potion Crystal, /b9 Arrows/z for 9 Tipped Arrows, or any food to give it the potion effects.

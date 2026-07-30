@@ -1,3 +1,3 @@
-  Hydrangea is a multiblock bush with fragrant, purplish-blue flowers.
-<~><~>  Hydrangea can be found in the Vermilion Grove among the Vermilion Trees and the Lithops.
-<~><~>  Hydrangea is connected to Divination magic. Though it’s most useful when it is dried and crushed.
+  /bHydrangea/z is a multiblock bush with fragrant, purplish-blue flowers.
+<~><~>  Hydrangea can be found in the /bVermilion Grove/z among the Vermilion Trees and the Lithops.
+<~><~>  Hydrangea is connected to /bDivination/z magic. Though it’s most useful when it is dried and crushed.

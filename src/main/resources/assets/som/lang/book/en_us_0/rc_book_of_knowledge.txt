@@ -1,0 +1,5 @@
+  The /bBook of Knowledge/z is a librarian's marvel. Set it upon a /bpodium or lectern/z and a search bar appears at its head.
+<~><~>  Type a word and press enter. It combs every chiseled bookshelf within sixty blocks, reading titles, page text, and even plain names, then lists each book, scroll, or note that holds your word. Vanilla written books are read as well.
+<~><~>  Choose a result and the Book shuts and rises, hovering aside, while the tome you sought flies from its shelf into the stand and falls open before you.
+<~><~>  To return it, remove it from its slot in the podium
+or click take book/page. It flies home to its shelf as the Book of Knowledge settles back into place.

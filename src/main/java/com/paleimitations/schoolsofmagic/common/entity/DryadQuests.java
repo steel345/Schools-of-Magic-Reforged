@@ -4,18 +4,15 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
 public class DryadQuests {
    public static final List<Quest> dryad_quests = new ArrayList<>();
    public static Quest TEST_FORTITUDE;
    public static Quest TEST_GENEROSITY;
    public static Quest TEST_KINDNESS;
    public static Quest TEST_COURAGE;
-   public static Quest TEST_RESPONSIBILITY_WIND;
-   public static Quest TEST_RESPONSIBILITY_FLAME;
-   public static Quest TEST_RESPONSIBILITY_WATER;
-   public static Quest TEST_RESPONSIBILITY_EARTH;
-   public static Quest TEST_RESPONSIBILITY_FROST;
-   public static Quest TEST_RESPONSIBILITY_GROWTH;
    public static Quest TEST_HEROICS_EVOKER;
    public static Quest TEST_HEROICS_GUARDIAN;
    public static Quest TEST_HEROICS_BLAZE;
@@ -37,12 +34,6 @@ public class DryadQuests {
       TEST_GENEROSITY = new Quest("Test of Generosity", 1, 72000, 5, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Generosity.", "You must sacrifice some of your wealth. Provide me with five valuable treasures, such as Polished Gems, Totems of Undying, Diamonds, or Emeralds within tree days. Speak to me again if you accept.", "Bring me valuable treasure."));
       TEST_KINDNESS = new Quest("Test of Kindness", 2, 24000, 5, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Kindness.", "You must prove yourself as a friend to nature by breeding five pairs of animals in one day. Speak to me again if you accept.", "You must breed more animals."));
       TEST_COURAGE = new Quest("Test of Courage", 3, 24000, 10, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Courage.", "You must demonstrate your honor and duty by vanquishing ten undead monsters within a day. Speak to me again if you accept.", "You must defeat more undead."));
-      TEST_RESPONSIBILITY_WIND = new Quest("Test of Responsibility", 4, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Responsibility.", "You must demonstrate that you're prepared to weild magic by creating a Wind Charm within three days. Speak to me again if you accept.", "You must have a Wind Charm in your inventory."));
-      TEST_RESPONSIBILITY_FLAME = new Quest("Test of Responsibility", 5, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Responsibility.", "You must demonstrate that you're prepared to weild magic by creating a Flame Charm within three days. Speak to me again if you accept.", "You must have a Flame Charm in your inventory."));
-      TEST_RESPONSIBILITY_WATER = new Quest("Test of Responsibility", 6, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Responsibility.", "You must demonstrate that you're prepared to weild magic by creating a Water Charm within three days. Speak to me again if you accept.", "You must have a Water Charm in your inventory."));
-      TEST_RESPONSIBILITY_EARTH = new Quest("Test of Responsibility", 7, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Responsibility.", "You must demonstrate that you're prepared to weild magic by creating a Earth Charm within three days. Speak to me again if you accept.", "You must have a Earth Charm in your inventory."));
-      TEST_RESPONSIBILITY_FROST = new Quest("Test of Responsibility", 8, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Responsibility.", "You must demonstrate that you're prepared to weild magic by creating a Frost Charm within three days. Speak to me again if you accept.", "You must have a Frost Charm in your inventory."));
-      TEST_RESPONSIBILITY_GROWTH = new Quest("Test of Responsibility", 9, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Responsibility.", "You must demonstrate that you're prepared to weild magic by creating a Growth Charm within three days. Speak to me again if you accept.", "You must have a Growth Charm in your inventory."));
       TEST_HEROICS_EVOKER = new Quest("Test of Heroics", 10, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Heroics.", "You must vanquish a legendary evil within three days, the magician of the Dark Oak Forest, the Illager Evoker. Speak to me again if you accept.", "Good luck on your quest to defeat the Evoker."));
       TEST_HEROICS_GUARDIAN = new Quest("Test of Heroics", 11, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Heroics.", "You must vanquish a legendary evil within three days, the terror of the deep, the Guardian of the Ocean Monument. Speak to me again if you accept.", "Good luck on your quest to defeat the Guardian."));
       TEST_HEROICS_BLAZE = new Quest("Test of Heroics", 12, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Heroics.", "You must vanquish a legendary evil within three days, the sentient fire of the Nether Dimension, the Blaze. Speak to me again if you accept.", "Good luck on your quest to defeat the Blaze."));
@@ -58,5 +49,31 @@ public class DryadQuests {
       TEST_WISDOM_EGG = new Quest("Test of Wisdom", 22, 72000, 3, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Wisdom.", "You must demonstrate your worthy mind by solving my riddle and showing me the item I describe. You have three days and three guesses. Speak to me again if you accept.", "Here is my riddle: Philosophers may ask who came first my mother or I, the wise know both of us can fry. What am I?"));
       TEST_COMPASSION = new Quest("Test of Compassion", 23, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Compassion.", "Spare a Zombie Villager and cure them of their affliction within three days. Speak to me again if you accept.", "Good luck on your quest to cure a Zombie Villager."));
       TEST_FRIENDSHIP = new Quest("Test of Friendship", 24, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Friendship.", "You must demonstrate your friendliness by taming an animal within three days. Speak to me again if you accept.", "Good luck on your quest to make a friend."));
+   }
+
+   // A picture of what each test asks of you, shown on the written page.
+   public static ItemStack getIcon(int questId) {
+      return switch (questId) {
+         case 0  -> new ItemStack(Items.WITHER_ROSE);            // fortitude: survive withering
+         case 1  -> new ItemStack(Items.DIAMOND);                // generosity: give treasure
+         case 2  -> new ItemStack(Items.WHEAT);                  // kindness: breed animals
+         case 3  -> new ItemStack(Items.ZOMBIE_HEAD);            // courage: slay undead
+         case 10 -> new ItemStack(Items.TOTEM_OF_UNDYING);       // heroics: evoker
+         case 11 -> new ItemStack(Items.PRISMARINE_SHARD);       // heroics: guardian
+         case 12 -> new ItemStack(Items.BLAZE_ROD);              // heroics: blaze
+         case 13 -> new ItemStack(Items.GHAST_TEAR);             // heroics: ghast
+         case 14 -> new ItemStack(Items.WITHER_SKELETON_SKULL);  // heroics: wither skeleton
+         case 15 -> new ItemStack(Items.SHULKER_SHELL);          // heroics: shulker
+         case 16 -> new ItemStack(Items.IRON_SWORD);             // strength: the champion
+         case 17 -> new ItemStack(Items.POTATO);                 // wisdom riddles
+         case 18 -> new ItemStack(Items.CLOCK);
+         case 19 -> new ItemStack(Items.SPIDER_EYE);
+         case 20 -> new ItemStack(Items.PHANTOM_MEMBRANE);
+         case 21 -> new ItemStack(Items.LILY_PAD);
+         case 22 -> new ItemStack(Items.EGG);
+         case 23 -> new ItemStack(Items.GOLDEN_APPLE);           // compassion: cure a villager
+         case 24 -> new ItemStack(Items.BONE);                   // friendship: tame an animal
+         default -> ItemStack.EMPTY;
+      };
    }
 }

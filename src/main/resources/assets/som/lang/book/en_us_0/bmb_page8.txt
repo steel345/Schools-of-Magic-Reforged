@@ -1,4 +1,4 @@
-  Using Steel Ingots and a Stick one can create a Mortar & Pestle.
+  Using /bSteel Ingots/z and a /bStick/z one can create a /bMortar & Pestle/z.
 <~><~>  A Mortar & Pestle can be used to process materials into a more useful form more efficiently than a Crafting Table can.
 <~><~>  For instance, Blaze Rods can be crushed in a Mortar & Pestle into 3 Blaze Powder instead of two.
 <~><~>  It can also process certain ores such as Lapis, Redstone, and Diamond Ore.

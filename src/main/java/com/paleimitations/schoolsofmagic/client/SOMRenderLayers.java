@@ -22,7 +22,7 @@ public final class SOMRenderLayers {
       "BlockTrapSpikeBase", "BlockTrapSpike", "BlockWallPlant", "BlockWallPyracantha", "Gem", "SOMFence",
       "SOMLeaves1", "SOMLeaves2", "BlockCattail", "BlockWaterplant", "BlockMagicPlant", "BlockMushroomCrop",
       "BlockMagicCrop", "BlockDoorWall", "BlockToadSpawn", "BlockGemCluster",
-      "BlockUnlitTorch", "BlockUnlitWallTorch",
+      "BlockUnlitTorch", "BlockUnlitWallTorch", "BlockSaltOre", "BlockSaltLine",
 
       "SOMDoor", "TrapDoorBlock");
 

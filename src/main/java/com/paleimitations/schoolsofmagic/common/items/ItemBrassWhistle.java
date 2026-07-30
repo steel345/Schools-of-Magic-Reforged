@@ -110,9 +110,13 @@ public class ItemBrassWhistle extends Item {
          return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
       }
       level.playSound(player, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
-      if (!level.isClientSide) {
-         List<EntityPhoenix> phoenixes = level.getEntitiesOfClass(EntityPhoenix.class,
-            player.getBoundingBox().inflate(200.0D), p -> p.isTame() && p.isOwnedBy(player) && !p.isBaby());
+      if (!level.isClientSide && level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+         List<EntityPhoenix> phoenixes = new java.util.ArrayList<>();
+         for (Entity e : serverLevel.getAllEntities()) {
+            if (e instanceof EntityPhoenix p && p.isTame() && p.isOwnedBy(player) && !p.isBaby()) {
+               phoenixes.add(p);
+            }
+         }
          boolean falling = !player.onGround() && player.getDeltaMovement().y < -0.2D && player.fallDistance > 2.0F;
          EntityPhoenix catcher = null;
          for (EntityPhoenix p : phoenixes) {

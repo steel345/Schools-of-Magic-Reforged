@@ -45,8 +45,63 @@ public class PodiumGuiHelper {
    public static final ResourceLocation SCROLL = new ResourceLocation("som", "textures/gui/podium/paper.png");
    public static final ResourceLocation PAGE_DEFAULT = new ResourceLocation("som", "textures/gui/books/paper_default.png");
    public static final ResourceLocation BOOK = new ResourceLocation("som", "textures/gui/container/book.png");
+   public static final ResourceLocation BOOK_KNOWLADGE = new ResourceLocation("som", "textures/gui/books/book_knowladge.png");
 
    public PodiumGuiHelper() {}
+
+   // The (page, subpage) of the k-th content spread, or null.
+   public static int[] spreadToPageSub(IBook book, int k) {
+      if (book == null || k < 0) return null;
+      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages = book.getBookPages();
+      int idx = 0;
+      for (int i = 0; i < pages.size(); i++) {
+         com.paleimitations.schoolsofmagic.common.books.BookPage bp = pages.get(i);
+         if (bp instanceof com.paleimitations.schoolsofmagic.common.books.BookPageTableContent
+               || bp instanceof com.paleimitations.schoolsofmagic.common.books.BookPageChapter) {
+            continue;
+         }
+         int subs = bp.getSubPages();
+         for (int sp = 0; sp < subs; sp++) {
+            if (bp.isSubPageBlank(sp)) continue;
+            if (idx == k) return new int[]{i, sp};
+            idx++;
+         }
+      }
+      return null;
+   }
+
+   private static void drawPageNumber(GuiGraphics gg, net.minecraft.client.gui.Font font, PoseStack pose, String s, float cx) {
+      pose.pushPose();
+      pose.translate(cx, 198.0F, 0.0F);
+      pose.scale(0.8F, 0.8F, 1.0F);
+      gg.drawString(font, s, -font.width(s) / 2, 0, 0x3A2E1E, false);
+      pose.popPose();
+   }
+
+   // 0-based index of the current visible spread among content spreads (each
+   // non-blank sub-page of a non table-of-contents / non-chapter page). The two
+   // halves of a spread are numbered 2*index+1 (left) and 2*index+2 (right).
+   public static int spreadIndex(IBook book) {
+      if (book == null) return -1;
+      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages = book.getBookPages();
+      int curPage = book.getPage();
+      int curSub = book.getSubPage();
+      int idx = 0;
+      for (int i = 0; i < pages.size(); i++) {
+         com.paleimitations.schoolsofmagic.common.books.BookPage bp = pages.get(i);
+         if (bp instanceof com.paleimitations.schoolsofmagic.common.books.BookPageTableContent
+               || bp instanceof com.paleimitations.schoolsofmagic.common.books.BookPageChapter) {
+            continue;
+         }
+         int subs = bp.getSubPages();
+         for (int sp = 0; sp < subs; sp++) {
+            if (bp.isSubPageBlank(sp)) continue;
+            if (i == curPage && sp == curSub) return idx;
+            idx++;
+         }
+      }
+      return -1;
+   }
 
    public static void renderGuiSubject(GuiGraphics gg, float mouseX, float mouseY,
                                        AbstractContainerScreen<?> gui, IBook book, float zLevel, int page, boolean smaller) {
@@ -95,9 +150,13 @@ public class PodiumGuiHelper {
          float scale = smaller ? 0.42276424F : 0.50406504F;
          pose.scale(scale, scale, scale);
          if (!smaller) pose.translate(-20.0F, -23.0F, 0.0F);
-         gg.blit(book.getCover(), 0, 0, 0, 0, 256, 256);
-         gg.blit(book.getLinkLocation(), 0, 0, 0, 0, 256, 256);
-         gg.blit(PAGE_DEFAULT, 0, 0, 0, 0, 256, 256);
+         if (stack.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.book_of_knowledge.get()) {
+            gg.blit(BOOK_KNOWLADGE, 0, 0, 0, 0, 256, 256);
+         } else {
+            gg.blit(book.getCover(), 0, 0, 0, 0, 256, 256);
+            gg.blit(book.getLinkLocation(), 0, 0, 0, 0, 256, 256);
+            gg.blit(PAGE_DEFAULT, 0, 0, 0, 0, 256, 256);
+         }
          float mouseX1 = mouseX / scale + (smaller ? 0 : 20);
          float mouseY1 = mouseY / scale + (smaller ? 0 : 23);
          if (!book.getBookPages().isEmpty() && book.getCurrentPage() != null) {
@@ -105,6 +164,12 @@ public class PodiumGuiHelper {
          }
          for (BookElementSticker sticker : book.getStickers()) {
             if (sticker != null) sticker.drawElement(gg, mouseX1, mouseY1, 0, 0, true, book.getSubPage(), book.getPage());
+         }
+         int si = spreadIndex(book);
+         if (si >= 0) {
+            net.minecraft.client.gui.Font font = Minecraft.getInstance().font;
+            drawPageNumber(gg, font, pose, String.valueOf(2 * si + 1), 72.0F);
+            drawPageNumber(gg, font, pose, String.valueOf(2 * si + 2), 184.0F);
          }
          pose.popPose();
       } else if (pageCap != null) {
@@ -200,6 +265,86 @@ public class PodiumGuiHelper {
          }
          pose.popPose();
          pose.popPose();
+      } else if (stack.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spell_parchment.get()) {
+         pose.pushPose();
+         pose.scale(0.8F, 0.8F, 0.8F);
+         gg.blit(SCROLL, 0, 0, 0, 0, 256, 256);
+         pose.popPose();
+      }
+   }
+
+   // Full-size (256) rendering of a loose page / scroll / parchment / spell notes,
+   // used by the lectern reading screen so every type reads at full page size.
+   public static void renderGuiSubjectFull(GuiGraphics gg, float mouseX, float mouseY, ItemStack stack) {
+      IPage pageCap = stack.getCapability(CapabilityPage.PAGE_CAPABILITY).orElse(null);
+      ISpellModifier mod = stack.getCapability(CapabilitySpellModifier.SPELL_MODIFIER_CAPABILITY).orElse(null);
+      ISpellNotes notesCap = stack.getCapability(CapabilitySpellNotes.SPELL_NOTES_CAPABILITY).orElse(null);
+      PoseStack pose = gg.pose();
+      if (pageCap != null) {
+         gg.blit(PAGE, 0, 0, 0, 0, 256, 256);
+         if (pageCap.getBookPage() != null) {
+            pageCap.getBookPage().drawPage(gg, mouseX, mouseY, 0, 0, true, pageCap.getSubPage());
+         }
+      } else if (mod != null && mod.getSpellModifier() != null) {
+         Color color = Color.WHITE;
+         if (mod.getSpellModifier().id == 16) {
+            color = new Color(MagicElementRegistry.getElementFromId(mod.getSpellModifier().level - 1).getColor());
+         } else {
+            color = switch (mod.getSpellModifier().level) {
+               case 1 -> new Color(200, 188, 40);
+               case 2 -> new Color(60, 180, 28);
+               case 3 -> new Color(15, 120, 160);
+               case 4 -> new Color(60, 60, 170);
+               case 5 -> new Color(115, 39, 177);
+               default -> Color.WHITE;
+            };
+         }
+         gg.blit(SCROLL, 0, 0, 0, 0, 256, 256);
+         new PageElementStandardText("modifier." + mod.getSpellModifier().getSerializedName() + ".name", 68, 23, 80, 11, 0, true)
+            .drawElement(gg, 0.0F, 0.0F, 0, 0, true, 0);
+         RenderSystem.setShaderColor(color.getRed() / 255.0F, color.getGreen() / 255.0F, color.getBlue() / 255.0F, 1.0F);
+         gg.blit(RIBBON, 0, 0, 0, 0, 256, 256);
+         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+         pose.pushPose();
+         pose.scale(0.8F, 0.8F, 1.0F);
+         gg.drawWordWrap(Minecraft.getInstance().font,
+            Component.translatable("modifier." + mod.getSpellModifier().getSerializedName() + ".desc"),
+            35, 64, 95, 0);
+         pose.popPose();
+      } else if (notesCap != null) {
+         SpellNotes notes = notesCap.getSpellNotes();
+         gg.blit(SCROLL, 0, 0, 0, 0, 256, 256);
+         Font font = Minecraft.getInstance().font;
+         List<Component> lines = Lists.newArrayList();
+         if (notes.magicianUnits > 0.0F) lines.add(point("modifier.magician_points.name", notes.magicianUnits));
+         if (notes.spellUnits > 0.0F)    lines.add(point("modifier.spell_points.name", notes.spellUnits));
+         if (notes.ritualUnits > 0.0F)   lines.add(point("modifier.ritual_points.name", notes.ritualUnits));
+         if (notes.potionUnits > 0.0F)   lines.add(point("modifier.potion_points.name", notes.potionUnits));
+         for (int j = 0; j < 6; j++) {
+            if (notes.schoolUnits[j] > 0.0F) {
+               lines.add(Component.literal(Component.translatable("school." + MagicSchoolRegistry.getSchoolFromId(j).getName() + ".name").getString()
+                  + " " + Component.translatable("modifier.points.name").getString() + ": " + trim(notes.schoolUnits[j])));
+            }
+         }
+         for (int j = 0; j < 16; j++) {
+            if (notes.elementUnits[j] > 0.0F) {
+               lines.add(Component.literal(Component.translatable("element." + MagicElementRegistry.getElementFromId(j).getName() + ".name").getString()
+                  + " " + Component.translatable("modifier.points.name").getString() + ": " + trim(notes.elementUnits[j])));
+            }
+         }
+         if (notes.spark >= 0) {
+            lines.add(Component.literal(Component.translatable("element." + MagicElementRegistry.getElementFromId(notes.spark).getName() + ".name").getString()
+               + " " + Component.translatable("modifier.spark.name").getString()));
+         }
+         int lx = 40;
+         int ly = 24;
+         int lh = font.lineHeight + 2;
+         for (Component c : lines) {
+            gg.drawString(font, c, lx, ly, 0, false);
+            ly += lh;
+         }
+      } else if (stack.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spell_parchment.get()) {
+         gg.blit(SCROLL, 0, 0, 0, 0, 256, 256);
       }
    }
 

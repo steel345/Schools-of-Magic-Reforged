@@ -68,6 +68,8 @@ public class BookMagicBasic {
             )
          )
          .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_using_arcana").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_trinkets").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageStandardTitled("bmb_page1").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageStandardTitled("bmb_page2").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageStandardTitled("bmb_spellcharges").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
@@ -103,8 +105,7 @@ public class BookMagicBasic {
                         }
                      ),
                      new ItemStack(ItemRegistry.wand_apprentice.get()),
-                     159,
-                     110
+                     159, 110, 1
                   ),
                   new PageElementCraftingRecipe(
                      Lists.newArrayList(
@@ -121,7 +122,7 @@ public class BookMagicBasic {
                         }
                      ),
                      stack(ItemRegistry.bi_podium.get(), EnumWoodType.OAK.getIndex()),
-                     159, 110, 1
+                     159, 110, 0
                   ),
                   new PageElementParagraphs(
                      "bmb_page5", 0.75F, 0, 2,
@@ -191,7 +192,9 @@ public class BookMagicBasic {
                   ),
                   new PageElementParagraphs(
                      "bmb_bone_knife", 0.75F, 0, 1,
-                     new ParagraphBox(23, 65, 0, 99, 170)
+                     new ParagraphBox(23, 65, 0, 99, 123),
+                     new ParagraphBox(23, 50, 1, 99, 140),
+                     new ParagraphBox(134, 50, 1, 99, 140)
                   )
                }
             )
@@ -215,7 +218,9 @@ public class BookMagicBasic {
                   ),
                   new PageElementParagraphs(
                      "bmb_athame", 0.75F, 0, 1,
-                     new ParagraphBox(23, 65, 0, 99, 170)
+                     new ParagraphBox(23, 65, 0, 99, 123),
+                     new ParagraphBox(23, 50, 1, 99, 140),
+                     new ParagraphBox(134, 50, 1, 99, 140)
                   )
                }
             )
@@ -249,6 +254,35 @@ public class BookMagicBasic {
                         return state.getBlock() == BlockRegistry.block_charcoal.get();
                      }
                   }
+               }
+            )
+         )
+         .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
+            "bmb_salt",
+            com.paleimitations.schoolsofmagic.common.books.PageUnlocks.SALT,
+            Lists.newArrayList(
+               new PageElement[]{
+                  new PageElementStandardText("page.bmb_salt.title", 72, 58, 99, 16, 0, true),
+                  new PageElementFurnaceRecipe(
+                     new ItemStack(BlockRegistry.salt_ore.get()),
+                     new ItemStack(ItemRegistry.salt.get()),
+                     157, 96, 0
+                  ),
+                  new PageElementCraftingRecipeSmall(
+                     Lists.newArrayList(new ItemStack[]{
+                        new ItemStack(ItemRegistry.salt.get()),
+                        new ItemStack(Items.BREAD),
+                        ItemStack.EMPTY, ItemStack.EMPTY
+                     }),
+                     new ItemStack(Items.BREAD),
+                     165, 155
+                  ),
+                  new PageElementParagraphs(
+                     "bmb_salt", 0.75F, 0, 0,
+                     new ParagraphBox(23, 65, 0, 99, 140),
+                     new ParagraphBox(134, 50, 0, 99, 40)
+                  )
                }
             )
          )
@@ -324,6 +358,10 @@ public class BookMagicBasic {
             Lists.newArrayList(
                new PageElement[]{
                   new PageElementStandardText("page.bmb_pedestal.title", 72, 58, 99, 16, 0, true),
+                  new PageElementImage(new ResourceLocation("som", "textures/gui/books/crafting_recipe_small.png"),
+                     159, 104, 0, 0, 18, 18, 1.0F, false),
+                  new PageElementImage(new ResourceLocation("som", "textures/gui/books/crafting_recipe_small.png"),
+                     203, 104, 0, 0, 18, 18, 1.0F, false),
                   new PageElementItemStack(new ItemStack(Blocks.DIORITE), 160, 105),
                   new PageElementItemStack(new ItemStack(Blocks.STONECUTTER), 182, 105),
                   new PageElementItemStack(
@@ -470,8 +508,9 @@ public class BookMagicBasic {
             )
          )
          .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPage(
+      new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
             "bmb_copper_key",
+            com.paleimitations.schoolsofmagic.common.books.PageUnlocks.COPPER_KEY,
             Lists.newArrayList(
                new PageElement[]{
                   new PageElementStandardText("page.bmb_copper_key.title", 72, 58, 99, 16, 0, true),
@@ -487,14 +526,33 @@ public class BookMagicBasic {
                      159, 110, 0
                   ),
                   new PageElementParagraphs(
-                     "bmb_copper_key", 0.75F, 0, 0,
-                     new ParagraphBox(23, 65, 0, 99, 140)
+                     "bmb_copper_key", 0.75F, 0, 1,
+                     new ParagraphBox(23, 65, 0, 99, 123),
+                     new ParagraphBox(23, 50, 1, 99, 140),
+                     new ParagraphBox(134, 50, 1, 99, 140)
+                  )
+               }
+            )
+         )
+         .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new BookPage(
+            "bmb_target_dummy",
+            Lists.newArrayList(
+               new PageElement[]{
+                  new PageElementStandardText("page.bmb_target_dummy.title", 72, 58, 99, 16, 0, true),
+                  new PageElementParagraphs(
+                     "bmb_target_dummy", 0.75F, 0, 1,
+                     new ParagraphBox(23, 65, 0, 99, 123),
+                     new ParagraphBox(134, 50, 0, 99, 45),
+                     new ParagraphBox(23, 50, 1, 99, 140),
+                     new ParagraphBox(134, 50, 1, 99, 140)
                   )
                }
             )
          )
          .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageChapter(null).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_herb_pouch").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
 
       for (EnumPlantType plant : EnumPlantType.values()) {
          if (plant != EnumPlantType.NONE) {
