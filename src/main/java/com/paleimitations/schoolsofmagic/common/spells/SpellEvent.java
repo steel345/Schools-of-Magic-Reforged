@@ -46,10 +46,20 @@ public class SpellEvent {
             return;
          }
 
+         // Casting at a mob bypasses the wand's own use paths, so the cooldown is
+         // gated and applied here too.
+         if (spell.getCooldownTicks() > 0 && player.getCooldowns().isOnCooldown(held.getItem())) {
+            event.setCanceled(true);
+            event.setCancellationResult(net.minecraft.world.InteractionResult.sidedSuccess(player.level().isClientSide));
+            return;
+         }
          if (spell.hasInteractionEffect()) {
             spell.interactionEffect(player.level(), player, living);
          } else {
             spell.rightClickEffect(player.level(), player, event.getHand());
+         }
+         if (spell.getCooldownTicks() > 0) {
+            player.getCooldowns().addCooldown(held.getItem(), spell.getCooldownTicks());
          }
       }
    }

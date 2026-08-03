@@ -25,6 +25,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -164,7 +165,7 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return this.castType;
    }
 
-   private static final int[] CHARGE_UNLOCK_LEVELS = new int[]{1, 5, 9, 13, 16, 20, 25, 30, 32};
+   private static final int[] CHARGE_UNLOCK_LEVELS = new int[]{1, 5, 10, 15, 20, 25, 30, 35, 40};
 
    public int getMinimumSpellChargeLevel() {
       int requiredLevel = this.getMinimumMagicianLevel() + 1;
@@ -226,6 +227,26 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return false;
    }
 
+   // How long the caster waits before the next cast, in ticks, by the charge level
+   // the spell was cast at: a flick of the wrist at the bottom, a full second at the
+   // top.
+   private static final int[] COOLDOWN_BY_CHARGE = {3, 5, 7, 10, 12, 15, 17, 18, 20};
+
+   // A spell that is held: either a bar that runs while channelled, or a pose that
+   // is charged up and then loosed. Both keep their old timing and never take a
+   // cooldown.
+   public boolean isHeldSpell() {
+      return this.getUseLength() > 0 || this.usesUsesBar() || this.usesTimedBar();
+   }
+
+   // Only ever consulted by the wand's use paths. Nothing here may reach into
+   // castSpell, which channelled spells call every tick to drain their bar.
+   public int getCooldownTicks() {
+      if (this.isHeldSpell()) return 0;
+      int level = net.minecraft.util.Mth.clamp(this.currentSpellChargeLevel, 0, COOLDOWN_BY_CHARGE.length - 1);
+      return COOLDOWN_BY_CHARGE[level];
+   }
+
    public float getTimedBarRatio() {
       return 1.0F;
    }
@@ -241,7 +262,6 @@ public class Spell implements INBTSerializable<CompoundTag> {
    public int getMinimumMagicianLevel() {
       return this.minMagicianLevel;
    }
-
    public int getMinimumSpellLevel() {
       return this.minSpellLevel;
    }
@@ -341,7 +361,19 @@ public class Spell implements INBTSerializable<CompoundTag> {
       bonus += this.getGemPowerBonus(player);
       bonus += this.getMetalPowerBonus(player);
       bonus += com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.WandPersonality.powerBonus(player);
+      // Shadow work comes into its own when the sun is swallowed.
+      bonus *= this.getEclipseMultiplier(player);
       return bonus;
+   }
+
+   // Doubled while an eclipse holds, for umbramancy only. Used for a spell's power
+   // and for how long anything it leaves behind lasts.
+   public float getEclipseMultiplier(Player player) {
+      if (player == null) return 1.0F;
+      MagicElement umbra = MagicElementRegistry.umbramancy;
+      if (umbra == null || !this.elements[umbra.getId()]) return 1.0F;
+      return com.paleimitations.schoolsofmagic.common.handlers.EclipseHandler.isEclipsed(player.level())
+         ? 2.0F : 1.0F;
    }
 
    private float getMetalPowerBonus(Player player) {

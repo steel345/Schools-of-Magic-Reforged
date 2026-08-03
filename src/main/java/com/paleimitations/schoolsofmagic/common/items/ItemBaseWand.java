@@ -114,11 +114,23 @@ public class ItemBaseWand extends Item {
          }
       }
       Spell cur = this.getCurrentSpell(playerIn, stack);
-      if (cur instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom
+      if ((cur instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom
+               || (cur != null && cur.getCooldownTicks() > 0))
             && playerIn.getCooldowns().isOnCooldown(stack.getItem())) {
          return new InteractionResultHolder<>(InteractionResult.PASS, stack);
       }
+      // Drawing breath: a spell that is charged up announces itself the moment the
+      // pose is struck, before anything is cast.
+      boolean alreadyHolding = playerIn.isUsingItem();
       playerIn.startUsingItem(handIn);
+      if (cur != null && cur.isHeldSpell() && cur.getAction() != UseAnim.NONE
+            && !alreadyHolding && !worldIn.isClientSide) {
+         worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
+            (playerIn.getRandom().nextBoolean()
+               ? com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_A
+               : com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_B).get(),
+            net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+      }
       if (cur != null) {
          if (cur instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom && !claimCast(playerIn)) {
             return new InteractionResultHolder<>(InteractionResult.PASS, stack);
@@ -127,6 +139,8 @@ public class ItemBaseWand extends Item {
          if (cur instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom sc
                && !sc.isManualCooldown() && res.getResult().consumesAction()) {
             playerIn.getCooldowns().addCooldown(stack.getItem(), sc.getCooldownTicks());
+         } else if (res.getResult().consumesAction() && cur.getCooldownTicks() > 0) {
+            playerIn.getCooldowns().addCooldown(stack.getItem(), cur.getCooldownTicks());
          }
          return res;
       }
@@ -151,9 +165,37 @@ public class ItemBaseWand extends Item {
 
    @Override
    public void onUseTick(Level worldIn, LivingEntity player, ItemStack stack, int count) {
-      if (this.getCurrentSpell(player, stack) != null) {
-         this.getCurrentSpell(player, stack).rightHoldEffect(stack, player, count);
+      Spell held = this.getCurrentSpell(player, stack);
+      if (held != null) {
+         held.rightHoldEffect(stack, player, count);
+         if (worldIn.isClientSide && held.getAction() != UseAnim.NONE) {
+            spawnCastingParticles(worldIn, player, held);
+         }
       }
+   }
+
+   // Magic boiling off the caster's head while they hold a spell, in the colour of
+   // the element being worked. Spawned tight against the skull; the potion particle
+   // carries its own outward drift, so they spread on their own.
+   public static void spawnCastingParticles(Level worldIn, LivingEntity player, Spell spell) {
+      int colour = elementColour(spell);
+      double r = (colour >> 16 & 0xFF) / 255.0D;
+      double g = (colour >> 8 & 0xFF) / 255.0D;
+      double b = (colour & 0xFF) / 255.0D;
+      net.minecraft.util.RandomSource rand = player.getRandom();
+      double head = player.getEyeY() + 0.15D;
+      for (int i = 0; i < 2; ++i) {
+         worldIn.addParticle(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT,
+            player.getX() + (rand.nextDouble() - 0.5D) * 0.3D,
+            head + (rand.nextDouble() - 0.5D) * 0.2D,
+            player.getZ() + (rand.nextDouble() - 0.5D) * 0.3D,
+            r, g, b);
+      }
+   }
+
+   private static int elementColour(Spell spell) {
+      java.util.List<com.paleimitations.schoolsofmagic.common.MagicElement> els = spell.getElements();
+      return els.isEmpty() ? 0xFFFFFF : els.get(0).getColor();
    }
 
    public InteractionResult useOn(UseOnContext context) {
@@ -187,8 +229,17 @@ public class ItemBaseWand extends Item {
          return super.useOn(context);
       }
 
+      // Spells cast at a block land here and never reach the cast paths below, so
+      // they take their cooldown on the way out.
+      if (spell.getCooldownTicks() > 0
+            && player.getCooldowns().isOnCooldown(player.getItemInHand(hand).getItem())) {
+         return InteractionResult.PASS;
+      }
       InteractionResult result = spell.blockClickEffect(player, worldIn, pos, player.getItemInHand(hand), facing, hitX, hitY, hitZ);
       if (result == InteractionResult.SUCCESS || result == InteractionResult.CONSUME) {
+         if (spell.getCooldownTicks() > 0) {
+            player.getCooldowns().addCooldown(player.getItemInHand(hand).getItem(), spell.getCooldownTicks());
+         }
          return result;
       }
 
@@ -200,6 +251,15 @@ public class ItemBaseWand extends Item {
          if (player.getCooldowns().isOnCooldown(player.getItemInHand(hand).getItem())) return InteractionResult.PASS;
          InteractionResultHolder<ItemStack> r = spell.rightClickEffect(worldIn, player, hand);
          if (r.getResult().consumesAction()) player.getCooldowns().addCooldown(player.getItemInHand(hand).getItem(), scu.getCooldownTicks());
+         return InteractionResult.SUCCESS;
+      }
+
+      if (spell.getCooldownTicks() > 0) {
+         if (player.getCooldowns().isOnCooldown(player.getItemInHand(hand).getItem())) return InteractionResult.PASS;
+         InteractionResultHolder<ItemStack> r = spell.rightClickEffect(worldIn, player, hand);
+         if (r.getResult().consumesAction()) {
+            player.getCooldowns().addCooldown(player.getItemInHand(hand).getItem(), spell.getCooldownTicks());
+         }
          return InteractionResult.SUCCESS;
       }
 

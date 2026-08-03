@@ -1,0 +1,15 @@
+{
+  "parent": "som:som/beat_me_to_death",
+  "display": {
+    "icon": { "item": "som:demon_heart" },
+    "title": { "translate": "advancements.som.total_eclipse_of_the_heart.title" },
+    "description": { "translate": "advancements.som.total_eclipse_of_the_heart.description" },
+    "frame": "goal", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": {
+    "activated_under_eclipse": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [ [ "activated_under_eclipse" ] ]
+}

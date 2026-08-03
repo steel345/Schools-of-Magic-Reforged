@@ -1,0 +1,9 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "som:block/meteor_fire_0"
+      }
+    }
+  ]
+}

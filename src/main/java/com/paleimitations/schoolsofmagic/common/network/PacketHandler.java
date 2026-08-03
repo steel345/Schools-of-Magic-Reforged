@@ -99,10 +99,13 @@ public class PacketHandler {
       INSTANCE.registerMessage(nextID(), PacketSyncPlayerQuests.class, PacketSyncPlayerQuests::encode, PacketSyncPlayerQuests::new, PacketSyncPlayerQuests::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketSyncGarmentData.class, PacketSyncGarmentData::encode, PacketSyncGarmentData::new, PacketSyncGarmentData::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketGarmentSlotClick.class, PacketGarmentSlotClick::encode, PacketGarmentSlotClick::new, PacketGarmentSlotClick::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketSunBeam.class, PacketSunBeam::encode, PacketSunBeam::new, PacketSunBeam::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketSetGrimoireSpell.class, PacketSetGrimoireSpell::encode, PacketSetGrimoireSpell::new, PacketSetGrimoireSpell::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketSetBookPage.class, PacketSetBookPage::encode, PacketSetBookPage::new, PacketSetBookPage::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketSetCastingMode.class, PacketSetCastingMode::encode, PacketSetCastingMode::new, PacketSetCastingMode::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketDummyDamage.class, PacketDummyDamage::encode, PacketDummyDamage::new, PacketDummyDamage::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketSmokeScry.class, PacketSmokeScry::encode, PacketSmokeScry::new, PacketSmokeScry::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketEclipseState.class, PacketEclipseState::encode, PacketEclipseState::new, PacketEclipseState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketShiningShield.class, PacketShiningShield::encode, PacketShiningShield::new, PacketShiningShield::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
    }
 }

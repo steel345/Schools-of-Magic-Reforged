@@ -24,6 +24,7 @@ public class SOMCommands {
       CommandFaeGrove.register(dispatcher);
       CommandPhoenixReturn.register(dispatcher);
       CommandPages.register(dispatcher);
+      CommandEclipse.register(dispatcher);
       CommandSetMagicLevel.register(dispatcher);
    }
 }

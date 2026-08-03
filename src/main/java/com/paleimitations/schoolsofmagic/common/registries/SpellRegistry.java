@@ -88,6 +88,15 @@ public class SpellRegistry {
         tryRegister("grow_apple",     SpellGrowApple::new);
 
         tryRegister("electrocute",    SpellElectrocute::new);
+        tryRegister("sun_blast",      com.paleimitations.schoolsofmagic.common.spells.spells.SpellSunBlast::new);
+        tryRegister("solar_barrage", com.paleimitations.schoolsofmagic.common.spells.spells.SpellSolarBarrage::new);
+        tryRegister("sundial", com.paleimitations.schoolsofmagic.common.spells.spells.SpellSundial::new);
+        tryRegister("sun_screen", com.paleimitations.schoolsofmagic.common.spells.spells.SpellSunScreen::new);
+        tryRegister("illuminate", com.paleimitations.schoolsofmagic.common.spells.spells.SpellIlluminate::new);
+        tryRegister("solar_orb", com.paleimitations.schoolsofmagic.common.spells.spells.SpellSolarOrb::new);
+        tryRegister("luster_tool", com.paleimitations.schoolsofmagic.common.spells.spells.SpellLusterTool::new);
+        tryRegister("flash_decoy", com.paleimitations.schoolsofmagic.common.spells.spells.SpellFlashDecoy::new);
+        tryRegister("shining_shield", com.paleimitations.schoolsofmagic.common.spells.spells.SpellShiningShield::new);
         tryRegister("energize",       SpellEnergize::new);
 
         tryRegister("water_jet",      SpellWaterJet::new);

@@ -218,12 +218,43 @@ public class PageElementParagraphs extends PageElement {
       return Arrays.asList(wrapFormattedStringToWidth(str, wrapWidth).split("\n"));
    }
 
+   // Explicit line breaks are separated out first and put back afterwards, so a
+   // blank line written into the text stays exactly one blank line. Feeding them
+   // through the wrapper made it emit a break for the newline and another for the
+   // wrap, which doubled the gap between every paragraph.
    private static String wrapFormattedStringToWidth(String str, int wrapWidth) {
-      int i = sizeStringToWidth(str, wrapWidth);
-      if (str.length() <= i) return str;
-      String s = str.substring(0, i);
-      String s1 = getFormatFromString(s) + str.substring(i);
-      return s + "\n" + wrapFormattedStringToWidth(s1, wrapWidth);
+      if (str == null || str.isEmpty() || wrapWidth <= 0) return str;
+      String[] lines = str.split("\n", -1);
+      StringBuilder all = new StringBuilder(str.length() + 16);
+      for (int n = 0; n < lines.length; ++n) {
+         if (n > 0) all.append(chr());
+         all.append(wrapOneLine(lines[n], wrapWidth));
+      }
+      return all.toString();
+   }
+
+   private static char chr() {
+      return (char) 10;
+   }
+
+   // Walked rather than recursed, and made to always advance. If the width is too
+   // narrow to fit even one character, the old form took nothing off the front and
+   // called itself with the same text again, which ran the stack out.
+   private static String wrapOneLine(String line, int wrapWidth) {
+      if (line.isEmpty()) return line;
+      StringBuilder out = new StringBuilder(line.length() + 8);
+      String rest = line;
+      for (int guard = 0; guard < 512; ++guard) {
+         int i = sizeStringToWidth(rest, wrapWidth);
+         if (rest.length() <= i) {
+            return out.append(rest).toString();
+         }
+         if (i <= 0) i = 1;
+         String head = rest.substring(0, i);
+         out.append(head).append(chr());
+         rest = getFormatFromString(head) + rest.substring(i);
+      }
+      return out.append(rest).toString();
    }
 
    private static int sizeStringToWidth(String str, int wrapWidth) {

@@ -8,6 +8,7 @@ import java.util.UUID;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -48,13 +49,45 @@ public class EntityMeteor extends EntityBlockProjectile {
       return true;
    }
 
+   // The renderer draws its own ashen flame, so the orange vanilla one is suppressed.
+   @Override
+   public boolean displayFireAnimation() {
+      return false;
+   }
+
+   private static final int FIRE_RADIUS = 5;
+   private static final int FIRE_COUNT = 14;
+
    @Override
    protected void onHit(HitResult result) {
       super.onHit(result);
       if (!this.level().isClientSide) {
 
          this.level().explode(this, this.getX(), this.getY(), this.getZ(), 8.0F, Level.ExplosionInteraction.TNT);
+         this.scatterFire();
          this.discard();
+      }
+   }
+
+   // Embers thrown clear of the crater, burning the pale white of the falling rock.
+   private void scatterFire() {
+      Level level = this.level();
+      BlockState fire = com.paleimitations.schoolsofmagic.common.registries.BlockRegistry.meteor_fire.get().defaultBlockState();
+      BlockPos centre = this.blockPosition();
+      for (int i = 0; i < FIRE_COUNT; ++i) {
+         BlockPos spot = centre.offset(
+            this.random.nextInt(FIRE_RADIUS * 2 + 1) - FIRE_RADIUS,
+            this.random.nextInt(5) - 2,
+            this.random.nextInt(FIRE_RADIUS * 2 + 1) - FIRE_RADIUS);
+         for (int drop = 0; drop < 4; ++drop) {
+            if (!level.getBlockState(spot).isAir()) break;
+            if (!level.getBlockState(spot.below()).isAir()) break;
+            spot = spot.below();
+         }
+         if (level.getBlockState(spot).isAir() && fire.canSurvive(level, spot)) {
+            level.setBlock(spot, fire, 11);
+            level.scheduleTick(spot, fire.getBlock(), 20 + this.random.nextInt(10));
+         }
       }
    }
 

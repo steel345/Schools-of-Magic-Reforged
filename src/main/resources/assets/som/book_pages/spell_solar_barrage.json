@@ -1,0 +1,12 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "solar_barrage"
+    },
+    {
+      "type": "text",
+      "text": "  Solar Barrage fires several Radiant Blast beams at once, each one at a different enemy near you.\n\n  It needs concentration. Hold right click until the cast finishes. Let go early and nothing happens.\n\n  Every beam does 8 damage and sets its target on fire, the same as a single Radiant Blast.\n\n  How many beams you get depends on the spell charge level you cast it at: 4 beams at level 6, 5 beams at level 7, and 6 beams at level 8.\n\n  Each beam also has a 20 percent chance to explode where it lands. The blast is as strong as TNT and hurts anything close to it, but it never breaks blocks and it never hurts you.\n\n  It picks enemies that are already attacking you first, then any other hostile mob within 16 blocks that you can see. If there is nothing nearby, no beams are fired."
+    }
+  ]
+}

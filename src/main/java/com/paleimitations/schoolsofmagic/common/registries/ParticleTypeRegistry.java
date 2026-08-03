@@ -23,6 +23,10 @@ public final class ParticleTypeRegistry {
     public static final RegistryObject<SimpleParticleType> SNOW       = PARTICLES.register("snow",       () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> AIR        = PARTICLES.register("air",        () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SNORE      = PARTICLES.register("snore",      () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> SKULL      = PARTICLES.register("skull",      () -> new SimpleParticleType(false));
+   public static final RegistryObject<SimpleParticleType> ORB        = PARTICLES.register("orb",        () -> new SimpleParticleType(false));
+   public static final RegistryObject<SimpleParticleType> ORB_CORE   = PARTICLES.register("orb_core",   () -> new SimpleParticleType(false));
+   public static final RegistryObject<SimpleParticleType> SPARKLE_STAR = PARTICLES.register("sparkle_star", () -> new SimpleParticleType(false));
     public static final RegistryObject<com.paleimitations.schoolsofmagic.common.particles.PlasmaParticleType> PLASMA =
         PARTICLES.register("plasma", com.paleimitations.schoolsofmagic.common.particles.PlasmaParticleType::new);
 

@@ -28,6 +28,7 @@ public class RingHudHandler {
    private static int chargeTicks = 0;
    private static int animTicks = 0;
    private static boolean concentrationFired = false;
+   private static boolean holdFired = false;
    private static int holdTicks = 0;
    private static int chargeFrames = 0;
 
@@ -68,10 +69,10 @@ public class RingHudHandler {
          && !(spell instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom)
          && spell.getUseLength() > 1
          && !spell.isChargeUp();
-      if (!use) { concentrationFired = false; }
+      if (!use) { concentrationFired = false; holdFired = false; }
       boolean concActive = (concentration || chargeUp) && !shift && use && !onCd && !concentrationFired;
       boolean crouchHold = builtinHold && spell != null && spell.allowsCrouchHold();
-      boolean holdActive = builtinHold && (!shift || crouchHold) && use && !onCd;
+      boolean holdActive = builtinHold && (!shift || crouchHold) && use && !onCd && !holdFired;
       channeling = concActive || holdActive || (channeled && !shift && use && !onCd);
       if (channeling) chargeFrames++; else chargeFrames = 0;
 
@@ -113,18 +114,34 @@ public class RingHudHandler {
          net.minecraft.world.item.ItemStack ringStack =
             com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player).getRing();
          holdTicks++;
+
+         // Struck once as the pose is taken, not on every tick of it.
+         if (holdTicks == 1 && spell.getAction() != net.minecraft.world.item.UseAnim.NONE) {
+            player.playSound((player.getRandom().nextBoolean()
+               ? com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_A
+               : com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_B).get(), 1.0F, 1.0F);
+         }
+         if (spell.getAction() != net.minecraft.world.item.UseAnim.NONE) {
+            com.paleimitations.schoolsofmagic.common.items.ItemBaseWand.spawnCastingParticles(
+               player.level(), player, spell);
+         }
+
          int count = Math.max(0, spell.getUseLength() - holdTicks);
          spell.rightHoldEffect(ringStack, player, count);
          com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
             new com.paleimitations.schoolsofmagic.common.network.PacketRingHold(count, false));
-      } else {
-         if (holdTicks > 0 && builtinHold && spell != null) {
-            net.minecraft.world.item.ItemStack ringStack =
-               com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player).getRing();
+
+         // Cast only once the whole hold is seen through, exactly as the wand does.
+         // Firing on release meant a quick click cast it with no concentration at all.
+         if (holdTicks >= spell.getUseLength()) {
             spell.finishHoldEffect(ringStack, player.level(), player);
             com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
                new com.paleimitations.schoolsofmagic.common.network.PacketRingHold(0, true));
+            holdFired = true;
+            holdTicks = 0;
          }
+      } else {
+         // Letting go early simply drops the working. Nothing is cast.
          holdTicks = 0;
       }
 

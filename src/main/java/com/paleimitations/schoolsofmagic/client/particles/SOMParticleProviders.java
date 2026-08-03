@@ -33,6 +33,10 @@ public class SOMParticleProviders {
         event.registerSpriteSet(ParticleTypeRegistry.FIRE_RING.get(),  s -> { SPRITES.put(SOMParticleType.FIRE_RING, s);  return new ProviderFireRing(s); });
         event.registerSpriteSet(ParticleTypeRegistry.FIRE_PLUME.get(), s -> { SPRITES.put(SOMParticleType.FIRE_PLUME, s); return new ProviderFirePlume(s); });
         event.registerSpriteSet(ParticleTypeRegistry.AIR.get(),        s -> { SPRITES.put(SOMParticleType.AIR, s);        return new ProviderAir(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.SKULL.get(),      s -> { SPRITES.put(SOMParticleType.SKULL, s);      return new ProviderSkull(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.ORB.get(),        s -> { SPRITES.put(SOMParticleType.ORB, s);        return new ProviderOrb(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.ORB_CORE.get(),   s -> { SPRITES.put(SOMParticleType.ORB_CORE, s);   return new ProviderOrbCore(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.SPARKLE_STAR.get(), s -> { SPRITES.put(SOMParticleType.SPARKLE_STAR, s); return new ProviderSparkleStar(s); });
         event.registerSpriteSet(ParticleTypeRegistry.PLASMA.get(),     ParticlePlasma.Provider::new);
     }
 
@@ -95,6 +99,34 @@ public class SOMParticleProviders {
         ProviderSnore(SpriteSet s) { super(s); }
         @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
             Particle p = new ParticleSnore(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
+    private static final class ProviderOrb extends BaseProvider {
+        ProviderOrb(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleOrb(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
+    private static final class ProviderOrbCore extends BaseProvider {
+        ProviderOrbCore(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleOrb(l, x, y, z, 0.0D, 0.0D, 0.0D, true);
+            applySprite(p); return p;
+        }
+    }
+    private static final class ProviderSparkleStar extends BaseProvider {
+        ProviderSparkleStar(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleSparkleStar(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
+    private static final class ProviderSkull extends BaseProvider {
+        ProviderSkull(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleSkull(l, x, y, z, vx, vy, vz);
             applySprite(p); return p;
         }
     }

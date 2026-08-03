@@ -66,6 +66,15 @@ public class SOMSoundHandler {
    public static final RegistryObject<SoundEvent> BLAZE = register("spells.blaze");
    public static final RegistryObject<SoundEvent> INVISIBILITY = register("spells.invisibility");
    public static final RegistryObject<SoundEvent> ELECTROCUTE = register("spells.lightning");
+   public static final RegistryObject<SoundEvent> SUN_BLAST = register("spells.sun_blast");
+   public static final RegistryObject<SoundEvent> SUMMON_SUNSHIELD = register("spells.summon_sunshield");
+   public static final RegistryObject<SoundEvent> SHIELD_HIT = register("spells.shield_hit");
+   public static final RegistryObject<SoundEvent> SUMMON_SPELL_A = register("spells.summon_spell2");
+   public static final RegistryObject<SoundEvent> SUMMON_SPELL_B = register("spells.summon_spell3");
+   public static final RegistryObject<SoundEvent> CAST_SPELL_A = register("spells.cast_spell1");
+   public static final RegistryObject<SoundEvent> CAST_SPELL_B = register("spells.cast_spell2");
+   public static final RegistryObject<SoundEvent> PRE_SPELL_A = register("spells.pre_spell1");
+   public static final RegistryObject<SoundEvent> PRE_SPELL_B = register("spells.pre_spell2");
    public static final RegistryObject<SoundEvent> CONJURE_THORNS = register("spells.conjure_thorns");
    public static final RegistryObject<SoundEvent> ENERGIZE = register("spells.energize");
    public static final RegistryObject<SoundEvent> SPECTRAL_HAND = register("spells.spectral_hand");

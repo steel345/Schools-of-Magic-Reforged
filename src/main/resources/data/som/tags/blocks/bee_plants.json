@@ -1,0 +1,49 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "som:plant_aloe",
+      "required": false
+    },
+    {
+      "id": "som:plant_sage",
+      "required": false
+    },
+    {
+      "id": "som:plant_valleylily",
+      "required": false
+    },
+    {
+      "id": "som:plant_brittle",
+      "required": false
+    },
+    {
+      "id": "som:plant_creosote",
+      "required": false
+    },
+    {
+      "id": "som:plant_oleander",
+      "required": false
+    },
+    {
+      "id": "som:plant_rose",
+      "required": false
+    },
+    {
+      "id": "som:plant_ocotillo",
+      "required": false
+    },
+    {
+      "id": "som:hydrangea",
+      "required": false
+    },
+    {
+      "id": "som:plant_mistletoe",
+      "required": false
+    },
+    {
+      "id": "som:bush",
+      "required": false
+    }
+  ]
+}

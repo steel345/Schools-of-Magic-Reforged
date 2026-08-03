@@ -1,0 +1,6 @@
+{
+  "elements": [
+    { "type": "spell", "spell": "sun_blast" },
+    { "type": "text", "text": "  Radiant Blast gathers the light of the sun into a single beam and fires it wherever you are looking.\n\n  Anything caught in the beam takes 8 damage and is set on fire a moment later, once the beam is about sixty percent of the way through.\n\n  The beam reaches up to 24 blocks and hits everything standing in the column where it lands, not just the first thing in the way.\n\n  It costs 50 mana and needs spell charge level 5. There is no wind up, so it fires the moment you right click." }
+  ]
+}

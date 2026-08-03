@@ -1141,6 +1141,19 @@ public class SpellUtils {
       base.discard();
    }
 
+   // A few slow puffs of skulls curling off the ground where the dead are called up.
+   private static void skullPuffs(Level worldIn, double x, double y, double z, RandomSource rand) {
+      if (!(worldIn instanceof net.minecraft.server.level.ServerLevel sl)) return;
+      int puffs = 3 + rand.nextInt(2);
+      for (int i = 0; i < puffs; ++i) {
+         double px = x + (rand.nextDouble() - 0.5D) * 1.4D;
+         double py = y + 0.2D + rand.nextDouble() * 0.9D;
+         double pz = z + (rand.nextDouble() - 0.5D) * 1.4D;
+         sl.sendParticles(com.paleimitations.schoolsofmagic.common.registries.ParticleTypeRegistry.SKULL.get(),
+            px, py, pz, 2, 0.12D, 0.12D, 0.12D, 0.012D);
+      }
+   }
+
    public static void raiseZombie(Player player, BlockPos pos, Level worldIn, RandomSource rand) {
       Mob zombie = EntityType.ZOMBIE.create(worldIn);
       if (rand.nextInt(20) == 0) {
@@ -1153,30 +1166,22 @@ public class SpellUtils {
       zombie.targetSelector.addGoal(1, new EntityAILoyaltyOwnerHurt((PathfinderMob)zombie));
       zombie.targetSelector.addGoal(2, new EntityAILoyaltyOwnerTarget((PathfinderMob)zombie));
       zombie.goalSelector.addGoal(4, new EntityAILoyaltyFollowOwner((Mob)zombie, 1.0, 10.0f, 2.0f));
-      zombie.setPos((double)pos.getX() + 0.5, (double)pos.getY(), (double)pos.getZ() + 0.5);
+      zombie.setPos((double)pos.getX() + 0.5, (double)pos.getY() + 1.0, (double)pos.getZ() + 0.5);
       if (!worldIn.isClientSide) {
          worldIn.addFreshEntity(zombie);
       }
-      LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(worldIn);
-      bolt.moveTo(zombie.getX(), zombie.getY(), zombie.getZ());
-      bolt.setVisualOnly(true);
-      worldIn.addFreshEntity(bolt);
-      for (int j = 0; j <= 50; ++j) {
-         worldIn.addParticle(ParticleTypes.LARGE_SMOKE, zombie.getX(), zombie.getY() + (double)zombie.getEyeHeight(), zombie.getZ(), 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0);
-      }
-      for (int i = 0; i <= 10; ++i) {
-         for (int j = 0; j <= 10; ++j) {
-            for (int k = 0; k <= 10; ++k) {
-               double alfa = (double)i * Math.PI * 0.2;
-               double beta = (double)j * Math.PI * 0.2;
-               double gamma = (double)k * Math.PI * 0.2;
-               double distance = 0.5;
-               double x = distance * Math.cos(alfa);
-               double z = distance * Math.cos(beta);
-               double y = distance * Math.cos(gamma);
-               worldIn.addParticle(ParticleTypes.LARGE_SMOKE, zombie.getX(), zombie.getY() + (double)zombie.getEyeHeight(), zombie.getZ(), x, y, z);
-            }
-         }
+      // A shaft of grave-light instead of the old thunderclap and smoke.
+      if (!worldIn.isClientSide) {
+         worldIn.playSound(null, zombie.getX(), zombie.getY(), zombie.getZ(),
+            (rand.nextBoolean() ? SOMSoundHandler.SUMMON_SPELL_A : SOMSoundHandler.SUMMON_SPELL_B).get(),
+            net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+         final net.minecraft.world.level.chunk.LevelChunk chunk = worldIn.getChunkAt(zombie.blockPosition());
+         com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.send(
+            net.minecraftforge.network.PacketDistributor.TRACKING_CHUNK.with(() -> chunk),
+            new com.paleimitations.schoolsofmagic.common.network.PacketSunBeam(
+               zombie.getX(), zombie.getY(), zombie.getZ(),
+               com.paleimitations.schoolsofmagic.client.SunBeamRenderer.GRAVE, false));
+         skullPuffs(worldIn, zombie.getX(), zombie.getY(), zombie.getZ(), rand);
       }
    }
 
@@ -1214,26 +1219,18 @@ public class SpellUtils {
          }
          living.discard();
       }
-      LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(worldIn);
-      bolt.moveTo(living.getX(), living.getY(), living.getZ());
-      bolt.setVisualOnly(true);
-      worldIn.addFreshEntity(bolt);
-      for (int j = 0; j <= 50; ++j) {
-         worldIn.addParticle(ParticleTypes.LARGE_SMOKE, living.getX(), living.getY() + (double)living.getEyeHeight(), living.getZ(), 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0);
-      }
-      for (int i = 0; i <= 10; ++i) {
-         for (int j = 0; j <= 10; ++j) {
-            for (int k = 0; k <= 10; ++k) {
-               double alfa = (double)i * Math.PI * 0.2;
-               double beta = (double)j * Math.PI * 0.2;
-               double gamma = (double)k * Math.PI * 0.2;
-               double distance = 0.5;
-               double x = distance * Math.cos(alfa);
-               double z = distance * Math.cos(beta);
-               double y = distance * Math.cos(gamma);
-               worldIn.addParticle(ParticleTypes.LARGE_SMOKE, living.getX(), living.getY() + (double)living.getEyeHeight(), living.getZ(), x, y, z);
-            }
-         }
+      // The same grave-light shaft the raising spells throw up.
+      if (!worldIn.isClientSide) {
+         worldIn.playSound(null, living.getX(), living.getY(), living.getZ(),
+            (rand.nextBoolean() ? SOMSoundHandler.CAST_SPELL_A : SOMSoundHandler.CAST_SPELL_B).get(),
+            net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+         final net.minecraft.world.level.chunk.LevelChunk chunk = worldIn.getChunkAt(living.blockPosition());
+         com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.send(
+            net.minecraftforge.network.PacketDistributor.TRACKING_CHUNK.with(() -> chunk),
+            new com.paleimitations.schoolsofmagic.common.network.PacketSunBeam(
+               living.getX(), living.getY(), living.getZ(),
+               com.paleimitations.schoolsofmagic.client.SunBeamRenderer.GRAVE, false));
+         skullPuffs(worldIn, living.getX(), living.getY(), living.getZ(), rand);
       }
    }
 
@@ -1272,26 +1269,18 @@ public class SpellUtils {
          }
          living.discard();
       }
-      LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(worldIn);
-      bolt.moveTo(living.getX(), living.getY(), living.getZ());
-      bolt.setVisualOnly(true);
-      worldIn.addFreshEntity(bolt);
-      for (int j = 0; j <= 50; ++j) {
-         worldIn.addParticle(ParticleTypes.LARGE_SMOKE, living.getX(), living.getY() + (double)living.getEyeHeight(), living.getZ(), 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0);
-      }
-      for (int i = 0; i <= 10; ++i) {
-         for (int j = 0; j <= 10; ++j) {
-            for (int k = 0; k <= 10; ++k) {
-               double alfa = (double)i * Math.PI * 0.2;
-               double beta = (double)j * Math.PI * 0.2;
-               double gamma = (double)k * Math.PI * 0.2;
-               double distance = 0.5;
-               double x = distance * Math.cos(alfa);
-               double z = distance * Math.cos(beta);
-               double y = distance * Math.cos(gamma);
-               worldIn.addParticle(ParticleTypes.LARGE_SMOKE, living.getX(), living.getY() + (double)living.getEyeHeight(), living.getZ(), x, y, z);
-            }
-         }
+      // The same grave-light shaft the raising spells throw up.
+      if (!worldIn.isClientSide) {
+         worldIn.playSound(null, living.getX(), living.getY(), living.getZ(),
+            (rand.nextBoolean() ? SOMSoundHandler.CAST_SPELL_A : SOMSoundHandler.CAST_SPELL_B).get(),
+            net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+         final net.minecraft.world.level.chunk.LevelChunk chunk = worldIn.getChunkAt(living.blockPosition());
+         com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.send(
+            net.minecraftforge.network.PacketDistributor.TRACKING_CHUNK.with(() -> chunk),
+            new com.paleimitations.schoolsofmagic.common.network.PacketSunBeam(
+               living.getX(), living.getY(), living.getZ(),
+               com.paleimitations.schoolsofmagic.client.SunBeamRenderer.GRAVE, false));
+         skullPuffs(worldIn, living.getX(), living.getY(), living.getZ(), rand);
       }
    }
 
@@ -1303,30 +1292,22 @@ public class SpellUtils {
       zombie.targetSelector.addGoal(1, new EntityAILoyaltyOwnerHurt((PathfinderMob)zombie));
       zombie.targetSelector.addGoal(2, new EntityAILoyaltyOwnerTarget((PathfinderMob)zombie));
       zombie.goalSelector.addGoal(4, new EntityAILoyaltyFollowOwner((Mob)zombie, 1.0, 10.0f, 2.0f));
-      zombie.setPos((double)pos.getX() + 0.5, (double)pos.getY(), (double)pos.getZ() + 0.5);
+      zombie.setPos((double)pos.getX() + 0.5, (double)pos.getY() + 1.0, (double)pos.getZ() + 0.5);
       if (!worldIn.isClientSide) {
          worldIn.addFreshEntity(zombie);
       }
-      LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(worldIn);
-      bolt.moveTo(zombie.getX(), zombie.getY(), zombie.getZ());
-      bolt.setVisualOnly(true);
-      worldIn.addFreshEntity(bolt);
-      for (int j = 0; j <= 50; ++j) {
-         worldIn.addParticle(ParticleTypes.LARGE_SMOKE, zombie.getX(), zombie.getY() + (double)zombie.getEyeHeight(), zombie.getZ(), 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0, 1.0 - rand.nextDouble() * 2.0);
-      }
-      for (int i = 0; i <= 10; ++i) {
-         for (int j = 0; j <= 10; ++j) {
-            for (int k = 0; k <= 10; ++k) {
-               double alfa = (double)i * Math.PI * 0.2;
-               double beta = (double)j * Math.PI * 0.2;
-               double gamma = (double)k * Math.PI * 0.2;
-               double distance = 0.5;
-               double x = distance * Math.cos(alfa);
-               double z = distance * Math.cos(beta);
-               double y = distance * Math.cos(gamma);
-               worldIn.addParticle(ParticleTypes.LARGE_SMOKE, zombie.getX(), zombie.getY() + (double)zombie.getEyeHeight(), zombie.getZ(), x, y, z);
-            }
-         }
+      // A shaft of grave-light instead of the old thunderclap and smoke.
+      if (!worldIn.isClientSide) {
+         worldIn.playSound(null, zombie.getX(), zombie.getY(), zombie.getZ(),
+            (rand.nextBoolean() ? SOMSoundHandler.SUMMON_SPELL_A : SOMSoundHandler.SUMMON_SPELL_B).get(),
+            net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+         final net.minecraft.world.level.chunk.LevelChunk chunk = worldIn.getChunkAt(zombie.blockPosition());
+         com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.send(
+            net.minecraftforge.network.PacketDistributor.TRACKING_CHUNK.with(() -> chunk),
+            new com.paleimitations.schoolsofmagic.common.network.PacketSunBeam(
+               zombie.getX(), zombie.getY(), zombie.getZ(),
+               com.paleimitations.schoolsofmagic.client.SunBeamRenderer.GRAVE, false));
+         skullPuffs(worldIn, zombie.getX(), zombie.getY(), zombie.getZ(), rand);
       }
    }
 

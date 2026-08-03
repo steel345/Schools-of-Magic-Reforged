@@ -102,6 +102,12 @@ public class BlockDemonicHeart extends SOMBlock implements EntityBlock {
          level.playSound(null, pos, com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.HEART_AMBIENT.get(), net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
          player.sendSystemMessage(net.minecraft.network.chat.Component.literal(
             "The demon heart awakens. The ground within " + Math.max(1, heart.getRadius()) + " blocks is warded. None but you may disturb it."));
+         // Waking a heart while the sun is swallowed is its own dark little rite.
+         if (com.paleimitations.schoolsofmagic.common.handlers.EclipseHandler.isEclipsed(level)
+               && player instanceof net.minecraft.server.level.ServerPlayer sp) {
+            com.paleimitations.schoolsofmagic.common.handlers.AdvancementHelper.grant(
+               sp, "som/total_eclipse_of_the_heart", "activated_under_eclipse");
+         }
       } else {
          heart.setActivated(false);
          heart.setChanged();

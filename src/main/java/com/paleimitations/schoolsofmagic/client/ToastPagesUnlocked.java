@@ -10,15 +10,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 // The "New pages unlocked" toast. It opens showing just the title, then fades into
-// the full toast with a "Check your <book>" subtitle beneath it. The frame is tinted
-// old-book orange; long book names are scaled down rather than clipped.
+// the full toast with a "Check your <book>" subtitle beneath it. Coloured to match an
+// advancement toast; long book names are scaled down rather than clipped.
 @OnlyIn(Dist.CLIENT)
 public class ToastPagesUnlocked implements Toast {
    private static final long DISPLAY_MS = 5000L;
    private static final long FADE_START_MS = 600L;
    private static final long FADE_END_MS = 1100L;
-   private static final int TITLE_COLOR = 0x000000;
-   private static final int DESC_COLOR = 0x7A3B0A;
+   // The same pair an advancement toast uses: yellow headline, white name beneath.
+   private static final int TITLE_COLOR = 0xFFFF00;
+   private static final int DESC_COLOR = 0xFFFFFF;
    private static final int TEXT_X = 30;
    private static final int TEXT_AVAIL = 124;
 
@@ -36,10 +37,8 @@ public class ToastPagesUnlocked implements Toast {
 
    @Override
    public Visibility render(GuiGraphics gg, ToastComponent component, long timeSinceLastVisible) {
-      // Tint the vanilla toast frame to an old-book orange.
-      gg.setColor(1.0F, 0.72F, 0.36F, 1.0F);
-      gg.blit(TEXTURE, 0, 0, 0, 32, this.width(), this.height());
-      gg.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+      // The advancement frame, untinted, exactly as vanilla draws it.
+      gg.blit(TEXTURE, 0, 0, 0, 0, this.width(), this.height());
 
       if (!this.icon.isEmpty()) {
          gg.renderItem(this.icon, 8, 8);

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "som:door_elder",
+          "name": "som:itemdoor_elder",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",

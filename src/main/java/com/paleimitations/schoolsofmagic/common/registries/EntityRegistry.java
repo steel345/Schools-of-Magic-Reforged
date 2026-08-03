@@ -60,6 +60,10 @@ public class EntityRegistry {
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityFairy>> FAIRY = ENTITIES.register("som_fairy",
       () -> EntityType.Builder.of(com.paleimitations.schoolsofmagic.common.entity.EntityFairy::new, MobCategory.CREATURE)
          .sized(0.35F, 0.6F).clientTrackingRange(8).build("som_fairy"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityFlashDecoy>> FLASH_DECOY = ENTITIES.register("som_flash_decoy",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityFlashDecoy>of(
+            com.paleimitations.schoolsofmagic.common.entity.EntityFlashDecoy::new, MobCategory.MISC)
+         .sized(0.6F, 1.8F).clientTrackingRange(10).build("som_flash_decoy"));
    public static final RegistryObject<EntityType<EntityPhoenix>> PHOENIX = ENTITIES.register("som_phoenix",
       () -> EntityType.Builder.of(EntityPhoenix::new, MobCategory.CREATURE).sized(0.9F, 1.3F).build("som_phoenix"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityThunderBird>> THUNDER_BIRD = ENTITIES.register("som_thunder_bird",
@@ -169,6 +173,7 @@ public class EntityRegistry {
       event.put(FLOWER_FAE.get(), EntityFlowerFae.createAttributes().build());
       event.put(FAIRY.get(), com.paleimitations.schoolsofmagic.common.entity.EntityFairy.createAttributes().build());
       event.put(PHOENIX.get(),    EntityPhoenix.createAttributes().build());
+      event.put(FLASH_DECOY.get(), net.minecraft.world.entity.LivingEntity.createLivingAttributes().build());
       event.put(THUNDER_BIRD.get(), EntityPhoenix.createAttributes().build());
       event.put(ACOLYTE_WISP.get(), com.paleimitations.schoolsofmagic.common.entity.EntityAcolyteWisp.createAttributes().build());
       event.put(UNICORN.get(),    net.minecraft.world.entity.animal.horse.AbstractHorse.createBaseHorseAttributes().build());

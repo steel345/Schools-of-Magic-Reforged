@@ -19,8 +19,9 @@ public class PageUnlocks {
    public static final String THUNDERBIRD = "thunderbird";
    public static final String UNICORN = "unicorn";
    public static final String ENCHANT_BOTTLE = "enchant_bottle";
+   public static final String ECLIPSE = "eclipse";
 
-   public static final String[] ALL = {SALT, COPPER_KEY, THUNDERBIRD, UNICORN, ENCHANT_BOTTLE};
+   public static final String[] ALL = {SALT, COPPER_KEY, THUNDERBIRD, UNICORN, ENCHANT_BOTTLE, ECLIPSE};
 
    private static final String TAG = "som_page_unlocks";
    private static final String UNREAD_TAG = "som_page_unread";

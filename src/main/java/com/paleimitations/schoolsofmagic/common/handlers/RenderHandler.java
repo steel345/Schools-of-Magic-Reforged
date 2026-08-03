@@ -71,6 +71,8 @@ public class RenderHandler {
 
       event.registerEntityRenderer(EntityRegistry.COBBLE_PROJECTILE.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderBlockProjectile::new);
       event.registerEntityRenderer(EntityRegistry.METEOR.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMeteorWhite::new);
+      event.registerEntityRenderer(EntityRegistry.FLASH_DECOY.get(),
+         com.paleimitations.schoolsofmagic.client.entity.renders.RenderFlashDecoy::new);
       event.registerEntityRenderer(EntityRegistry.PHOENIX.get(), RenderPhoenix::new);
       event.registerEntityRenderer(EntityRegistry.THUNDER_BIRD.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderThunderBird::new);
       event.registerEntityRenderer(EntityRegistry.ACOLYTE_WISP.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderAcolyteWisp::new);
@@ -147,6 +149,7 @@ public class RenderHandler {
          net.minecraft.client.renderer.entity.player.PlayerRenderer pr = event.getSkin(skin);
          if (pr != null) {
             pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWand<>(pr));
+            pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerShiningShield<>(pr));
             pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornPouch<>(pr, event.getEntityModels()));
          }
       }

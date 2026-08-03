@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "som:door_verde",
+          "name": "som:itemdoor_verde",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",

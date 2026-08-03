@@ -108,6 +108,8 @@ public class BlockRegistry {
    public static final RegistryObject<Block> brazier = BLOCKS.register("brazier", () -> new BlockBrazier(SOMBlockProperties.metalDecorSoft(0.5F)));
    public static final RegistryObject<Block> catalyst_basin = BLOCKS.register("catalyst_basin", () -> new BlockCatalystBasin(SOMBlockProperties.metalDecorSoft(0.5F)));
    public static final RegistryObject<Block> phantom_fire = BLOCKS.register("phantom_fire", () -> new BlockPhantomFire(SOMBlockProperties.phantomFire()));
+   public static final RegistryObject<Block> solar_orb = BLOCKS.register("solar_orb", () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockSolarOrb(com.paleimitations.schoolsofmagic.common.blocks.BlockSolarOrb.orbProps()));
+   public static final RegistryObject<Block> meteor_fire = BLOCKS.register("meteor_fire", () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockMeteorFire(SOMBlockProperties.phantomFire()));
 
    public static final RegistryObject<Block> block_charcoal = BLOCKS.register("block_charcoal", () -> new BlockCharcoal(SOMBlockProperties.stoneSoft(0.5F)));
    public static final RegistryObject<Block> obsidian_pressure_plate = BLOCKS.register("obsidian_pressure_plate", () -> new BlockObsidianPressurePlate(SOMBlockProperties.obsidianPressurePlate()));
@@ -511,6 +513,46 @@ public class BlockRegistry {
       }
       return b;
    }
+   // Potted forms of the mod plants, so any of them can sit in a flower pot.
+   public static final RegistryObject<Block> potted_plant_aloe = BLOCKS.register("potted_plant_aloe", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_aloe, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_sage = BLOCKS.register("potted_plant_sage", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_sage, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_valleylily = BLOCKS.register("potted_plant_valleylily", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_valleylily, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_venus = BLOCKS.register("potted_plant_venus", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_venus, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_pitcher = BLOCKS.register("potted_plant_pitcher", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_pitcher, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_brittle = BLOCKS.register("potted_plant_brittle", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_brittle, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_creosote = BLOCKS.register("potted_plant_creosote", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_creosote, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_oleander = BLOCKS.register("potted_plant_oleander", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_oleander, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_rose = BLOCKS.register("potted_plant_rose", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_rose, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_ocotillo = BLOCKS.register("potted_plant_ocotillo", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_ocotillo, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_hydrangea = BLOCKS.register("potted_hydrangea", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, hydrangea, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_shrooms = BLOCKS.register("potted_plant_shrooms", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_shrooms, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_mushroom_dark = BLOCKS.register("potted_mushroom_dark", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, mushroom_dark, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_mushroom_white = BLOCKS.register("potted_mushroom_white", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, mushroom_white, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_mushroom_grey = BLOCKS.register("potted_mushroom_grey", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, mushroom_grey, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_mushroom_pink = BLOCKS.register("potted_mushroom_pink", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, mushroom_pink, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_barrel = BLOCKS.register("potted_plant_barrel", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_barrel, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_prickly = BLOCKS.register("potted_plant_prickly", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_prickly, SOMBlockProperties.pottedPlant()));
+   public static final RegistryObject<Block> potted_plant_mistletoe = BLOCKS.register("potted_plant_mistletoe", () -> new net.minecraft.world.level.block.FlowerPotBlock(
+      () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_mistletoe, SOMBlockProperties.pottedPlant()));
+
    public static final RegistryObject<Block> planter = BLOCKS.register("planter", () -> new BlockPlanter(SOMBlockProperties.woodDecor(0.5F)));
    public static final RegistryObject<Block> gem_pyromancy = BLOCKS.register("gem_pyromancy", () -> new Gem(SOMBlockProperties.gem(0.5F)));
    public static final RegistryObject<Block> gem_heliomancy = BLOCKS.register("gem_heliomancy", () -> new Gem(SOMBlockProperties.gem(0.5F)));

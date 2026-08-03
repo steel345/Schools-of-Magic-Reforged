@@ -184,6 +184,8 @@ public class RingCastHandler {
       PacketHandler.INSTANCE.sendToServer(new PacketRingCast());
       if (spell instanceof SpellCustom sc && !sc.isManualCooldown()) {
          player.getCooldowns().addCooldown(ringItem, sc.getCooldownTicks());
+      } else if (!(spell instanceof SpellCustom) && spell.getCooldownTicks() > 0) {
+         player.getCooldowns().addCooldown(ringItem, spell.getCooldownTicks());
       }
    }
 

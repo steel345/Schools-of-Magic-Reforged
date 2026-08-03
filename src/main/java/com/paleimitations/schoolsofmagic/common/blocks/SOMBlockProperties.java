@@ -236,6 +236,14 @@ public final class SOMBlockProperties {
 
    public static BlockBehaviour.Properties glass() { return glassFragile(); }
 
+   // Matches vanilla's potted plants: breaks instantly, blocks nothing, sees light
+   // through.
+   public static BlockBehaviour.Properties pottedPlant() {
+      return BlockBehaviour.Properties.of()
+            .instabreak().noOcclusion()
+            .pushReaction(PushReaction.DESTROY);
+   }
+
    public static BlockBehaviour.Properties plant() {
       return BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT).sound(SoundType.GRASS)

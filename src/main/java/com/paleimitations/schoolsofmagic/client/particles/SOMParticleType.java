@@ -16,7 +16,11 @@ public enum SOMParticleType {
    EMBER("ember", 7, false),
    SNOW("snow", 8, false),
    AIR("air", 9, false),
-   SNORE("snore", 10, false);
+   SNORE("snore", 10, false),
+   SKULL("skull", 11, false),
+   ORB("orb", 12, false),
+   ORB_CORE("orb_core", 13, false),
+   SPARKLE_STAR("sparkle_star", 14, false);
 
    private final String particleName;
    private final int particleID;

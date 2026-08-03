@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "som:door_willow",
+          "name": "som:itemdoor_willow",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",

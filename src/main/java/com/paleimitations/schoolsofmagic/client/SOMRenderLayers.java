@@ -17,7 +17,7 @@ public final class SOMRenderLayers {
       "BlockBrazier", "BlockBurstPotion", "BlockCatalystBasin", "BlockCoconut", "BlockConnectedBush",
       "BlockConnectedBeanstalk", "BlockDesertBrazier", "BlockDynamicWeb",
       "BlockHangingBranch", "BlockHerbalTwine", "BlockMagicBookshelf", "BlockMagicOre", "BlockOre",
-      "BlockOredirt", "BlockOrefalling", "BlockOresmoky", "BlockPalmLeaves", "BlockPhantomFire", "BlockPlantGrowingBush",
+      "BlockOredirt", "BlockOrefalling", "BlockOresmoky", "BlockPalmLeaves", "BlockPhantomFire", "BlockMeteorFire", "BlockSolarOrb", "BlockPlantGrowingBush",
       "BlockPlantHydrangea", "BlockPlantMistletoe", "BlockPedestal", "BlockPodium", "BlockSacrificialAltar", "BlockTest",
       "BlockTrapSpikeBase", "BlockTrapSpike", "BlockWallPlant", "BlockWallPyracantha", "Gem", "SOMFence",
       "SOMLeaves1", "SOMLeaves2", "BlockCattail", "BlockWaterplant", "BlockMagicPlant", "BlockMushroomCrop",

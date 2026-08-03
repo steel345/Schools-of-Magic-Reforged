@@ -1,0 +1,12 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "luster_tool"
+    },
+    {
+      "type": "text",
+      "text": "  Luster Tool creates a tool out of pure sunlight.\n\n  On cast, a swirl rises through you and gathers into a knot above your head. It takes about four seconds. When the sound finishes on its chime, the light sets and the tool is yours.\n\n  Which tool you get is random: a sword, pickaxe, axe, shovel or hoe of light. You cannot choose.\n\n  It costs 30 mana and needs spell charge level 4."
+    }
+  ]
+}

@@ -87,8 +87,9 @@ public class SpellInvisibility extends Spell {
       return true;
    }
 
-   private int invisibilityDuration() {
-      return Math.round(400.0F * (1.0F + 0.5F * (this.currentSpellChargeLevel - this.getMinimumSpellChargeLevel())));
+   private int invisibilityDuration(net.minecraft.world.entity.player.Player caster) {
+      float base = 400.0F * (1.0F + 0.5F * (this.currentSpellChargeLevel - this.getMinimumSpellChargeLevel()));
+      return Math.round(base * this.getEclipseMultiplier(caster));
    }
 
    @Override
@@ -109,7 +110,7 @@ public class SpellInvisibility extends Spell {
             i = entityLiving.getEffect(MobEffects.INVISIBILITY).getDuration();
          }
 
-         entityLiving.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration() + i));
+         entityLiving.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration((Player)entityLiving) + i));
          entityLiving.playSound(SOMSoundHandler.INVISIBILITY.get(), 1.0F, 1.0F);
       }
 
@@ -127,7 +128,7 @@ public class SpellInvisibility extends Spell {
             i = livingBase.getEffect(MobEffects.INVISIBILITY).getDuration();
          }
 
-         livingBase.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration() + i));
+         livingBase.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration(player) + i));
          player.playSound(SOMSoundHandler.INVISIBILITY.get(), 1.0F, 1.0F);
       }
    }

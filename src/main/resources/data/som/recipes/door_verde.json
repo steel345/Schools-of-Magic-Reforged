@@ -1,1 +1,1 @@
-{"type":"minecraft:crafting_shaped","pattern":["PP","PP","PP"],"key":{"P":{"item":"som:planks_verde"}},"result":{"item":"som:door_verde","count":3}}
+{"type":"minecraft:crafting_shaped","pattern":["PP","PP","PP"],"key":{"P":{"item":"som:planks_verde"}},"result":{"item":"som:itemdoor_verde","count":3}}

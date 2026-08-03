@@ -1,0 +1,12 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "solar_orb"
+    },
+    {
+      "type": "text",
+      "text": "  Solar Orb conjures a small bead of daylight where you are looking, up to 6 blocks away. It hangs in the air, glows at full brightness, and is small enough to walk straight through.\n\n  It burns any undead creatures that come near it. It does not go out on its own. Break it and it disappears.\n\n  It costs 20 mana and needs spell charge level 1."
+    }
+  ]
+}

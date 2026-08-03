@@ -193,6 +193,12 @@ public class BookMagicIntermediate {
       new BookPage("bmi_book_of_knowledge", bokEls).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
       new BookPageStandardTitled("bmi_page4").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+
+      new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
+            "bmi_eclipse", com.paleimitations.schoolsofmagic.common.books.PageUnlocks.ECLIPSE,
+            com.paleimitations.schoolsofmagic.common.books.BookPageJson.elementsFor("bmi_eclipse"))
+         .addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+
       new BookPageChapter(null).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
       com.paleimitations.schoolsofmagic.common.recipes.RecipeMortNPest pyroDustMortar =

@@ -8,13 +8,19 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+
 import net.minecraft.resources.ResourceLocation;
 import org.joml.Matrix4f;
 
 public class RenderMeteorWhite extends EntityRenderer<EntityMeteor> {
    private static final ResourceLocation TEX = new ResourceLocation("som", "textures/entity/magic_meteor.png");
+   private static final float PALE_R = 0.94F;
+   private static final float PALE_G = 0.94F;
+   private static final float PALE_B = 0.98F;
 
    public RenderMeteorWhite(EntityRendererProvider.Context context) {
       super(context);
@@ -47,7 +53,61 @@ public class RenderMeteorWhite extends EntityRenderer<EntityMeteor> {
       q(vc, m, light, r, g, b, -s, -s, -s, s, -s, -s, s, -s, s,  -s, -s, s);
 
       pose.popPose();
+      this.renderPaleFlame(entity, pose, buffer);
       super.render(entity, entityYaw, partialTicks, pose, buffer, packedLight);
+   }
+
+   // The sheath of fire the meteor falls in. Built like the vanilla burning overlay,
+   // but drained of colour to the same ashen white as the fires it leaves behind.
+   private void renderPaleFlame(EntityMeteor entity, PoseStack pose, MultiBufferSource buffer) {
+      // The mod's own greyscale flame, not the vanilla one: an orange texture just
+      // stays orange however it is tinted.
+      TextureAtlasSprite flame = net.minecraft.client.Minecraft.getInstance().getModelManager()
+         .getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS)
+         .getSprite(new ResourceLocation("som", "blocks/fire"));
+      pose.pushPose();
+      float width = entity.getBbWidth() * 1.4F;
+      pose.scale(width, width, width);
+      float half = 0.5F;
+      float remaining = entity.getBbHeight() / width;
+      float lift = 0.0F;
+      pose.mulPose(Axis.YP.rotationDegrees(-this.entityRenderDispatcher.camera.getYRot()));
+      pose.translate(0.0F, 0.0F, -0.3F + (float)((int)remaining) * 0.02F);
+      float depth = 0.0F;
+      VertexConsumer vc = buffer.getBuffer(Sheets.cutoutBlockSheet());
+      PoseStack.Pose last = pose.last();
+
+      for (int i = 0; remaining > 0.0F; ++i) {
+         float u0 = flame.getU0();
+         float v0 = flame.getV0();
+         float u1 = flame.getU1();
+         float v1 = flame.getV1();
+         if (i / 2 % 2 == 0) {
+            float swap = u1;
+            u1 = u0;
+            u0 = swap;
+         }
+         flameVertex(last, vc, half, 0.0F - lift, depth, u1, v1);
+         flameVertex(last, vc, -half, 0.0F - lift, depth, u0, v1);
+         flameVertex(last, vc, -half, 1.4F - lift, depth, u0, v0);
+         flameVertex(last, vc, half, 1.4F - lift, depth, u1, v0);
+         remaining -= 0.45F;
+         lift -= 0.45F;
+         half *= 0.9F;
+         depth += 0.03F;
+      }
+
+      pose.popPose();
+   }
+
+   private static void flameVertex(PoseStack.Pose pose, VertexConsumer vc, float x, float y, float z, float u, float v) {
+      vc.vertex(pose.pose(), x, y, z)
+         .color(PALE_R, PALE_G, PALE_B, 1.0F)
+         .uv(u, v)
+         .overlayCoords(OverlayTexture.NO_OVERLAY)
+         .uv2(240)
+         .normal(pose.normal(), 0.0F, 1.0F, 0.0F)
+         .endVertex();
    }
 
    private static void q(VertexConsumer vc, Matrix4f m, int light, float r, float g, float b,

@@ -41,6 +41,11 @@ public class PageUnlockHandler {
          new PacketPageUnlockToast(new ResourceLocation(SchoolsOfMagic.MODID, bookItem)));
    }
 
+   // Living through a darkened sun is what teaches you to write about one.
+   public static void eclipseSeen(ServerPlayer player) {
+      unlock(player, PageUnlocks.ECLIPSE, "intermediate_spellbook");
+   }
+
    @SubscribeEvent
    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
       if (event.getEntity() instanceof ServerPlayer sp) sync(sp);

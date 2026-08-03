@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "som:door_pine",
+          "name": "som:itemdoor_pine",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",

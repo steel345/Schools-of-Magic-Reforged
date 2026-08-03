@@ -416,7 +416,6 @@ public class ItemRegistry {
    public static final RegistryObject<Item> bi_mushroom_crop_pink = ITEMS.register("mushroom_crop_pink", () -> new BlockItem(BlockRegistry.mushroom_crop_pink.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_mushroom_pink = ITEMS.register("mushroom_pink", () -> new BlockItem(BlockRegistry.mushroom_pink.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_coconut = ITEMS.register("coconut", () -> new BlockItem(BlockRegistry.coconut.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_burst_potion = ITEMS.register("burst_potion", () -> new BlockItem(BlockRegistry.burst_potion.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_herbal_twine = ITEMS.register("herbal_twine", () -> new BlockItem(BlockRegistry.herbal_twine.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_plant_sage = ITEMS.register("plant_sage", () -> new BlockItem(BlockRegistry.plant_sage.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_plant_valleylily = ITEMS.register("plant_valleylily", () -> new BlockItem(BlockRegistry.plant_valleylily.get(), new Item.Properties()));
@@ -563,12 +562,6 @@ public class ItemRegistry {
    public static final RegistryObject<Item> bi_rotted_halfslab_jungle = ITEMS.register("rotted_halfslab_jungle", () -> new BlockItem(BlockRegistry.rotted_halfslab_jungle.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_rotted_halfslab_acacia = ITEMS.register("rotted_halfslab_acacia", () -> new BlockItem(BlockRegistry.rotted_halfslab_acacia.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_rotted_halfslab_dark_oak = ITEMS.register("rotted_halfslab_dark_oak", () -> new BlockItem(BlockRegistry.rotted_halfslab_dark_oak.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_door_ash = ITEMS.register("door_ash", () -> new BlockItem(BlockRegistry.door_ash.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_door_elder = ITEMS.register("door_elder", () -> new BlockItem(BlockRegistry.door_elder.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_door_pine = ITEMS.register("door_pine", () -> new BlockItem(BlockRegistry.door_pine.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_door_willow = ITEMS.register("door_willow", () -> new BlockItem(BlockRegistry.door_willow.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_door_yew = ITEMS.register("door_yew", () -> new BlockItem(BlockRegistry.door_yew.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_door_verde = ITEMS.register("door_verde", () -> new BlockItem(BlockRegistry.door_verde.get(), new Item.Properties()));
 
    public static final RegistryObject<Item> bi_trapdoor_ash    = ITEMS.register("trapdoor_ash",    () -> new BlockItem(BlockRegistry.trapdoor_ash.get(),    new Item.Properties()));
    public static final RegistryObject<Item> bi_trapdoor_elder  = ITEMS.register("trapdoor_elder",  () -> new BlockItem(BlockRegistry.trapdoor_elder.get(),  new Item.Properties()));
@@ -754,24 +747,7 @@ public class ItemRegistry {
    public static final RegistryObject<Item> bi_ore_silver = ITEMS.register("ore_silver", () -> new BlockItem(BlockRegistry.ore_silver.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_ore_copper = ITEMS.register("ore_copper", () -> new BlockItem(BlockRegistry.ore_copper.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_ore_steel = ITEMS.register("ore_steel", () -> new BlockItem(BlockRegistry.ore_steel.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_spawn = ITEMS.register("spawn", () -> new BlockItem(BlockRegistry.spawn.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_spear = ITEMS.register("spear", () -> new BlockItem(BlockRegistry.spear.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_pyromancy = ITEMS.register("crop_pyromancy", () -> new BlockItem(BlockRegistry.crop_pyromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_heliomancy = ITEMS.register("crop_heliomancy", () -> new BlockItem(BlockRegistry.crop_heliomancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_aeromancy = ITEMS.register("crop_aeromancy", () -> new BlockItem(BlockRegistry.crop_aeromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_animancy = ITEMS.register("crop_animancy", () -> new BlockItem(BlockRegistry.crop_animancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_geomancy = ITEMS.register("crop_geomancy", () -> new BlockItem(BlockRegistry.crop_geomancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_electromancy = ITEMS.register("crop_electromancy", () -> new BlockItem(BlockRegistry.crop_electromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_hydromancy = ITEMS.register("crop_hydromancy", () -> new BlockItem(BlockRegistry.crop_hydromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_cryomancy = ITEMS.register("crop_cryomancy", () -> new BlockItem(BlockRegistry.crop_cryomancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_chaotics = ITEMS.register("crop_chaotics", () -> new BlockItem(BlockRegistry.crop_chaotics.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_hieromancy = ITEMS.register("crop_hieromancy", () -> new BlockItem(BlockRegistry.crop_hieromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_auramancy = ITEMS.register("crop_auramancy", () -> new BlockItem(BlockRegistry.crop_auramancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_astromancy = ITEMS.register("crop_astromancy", () -> new BlockItem(BlockRegistry.crop_astromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_infernality = ITEMS.register("crop_infernality", () -> new BlockItem(BlockRegistry.crop_infernality.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_spectromancy = ITEMS.register("crop_spectromancy", () -> new BlockItem(BlockRegistry.crop_spectromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_necromancy = ITEMS.register("crop_necromancy", () -> new BlockItem(BlockRegistry.crop_necromancy.get(), new Item.Properties()));
-   public static final RegistryObject<Item> bi_crop_umbramancy = ITEMS.register("crop_umbramancy", () -> new BlockItem(BlockRegistry.crop_umbramancy.get(), new Item.Properties()));
 
    public static final RegistryObject<Item> aloe = ITEMS.register("aloe",
       () -> new SOMFood(new Item.Properties()));

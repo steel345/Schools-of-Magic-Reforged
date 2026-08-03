@@ -76,6 +76,18 @@ public class BookPageJson extends BookPage {
       return o.has(key) && o.get(key).isJsonPrimitive() ? o.get(key).getAsString() : null;
    }
 
+   // True when a page of this name is authored as JSON, so other page types can
+   // prefer it over their built-in layout.
+   public static boolean exists(String name) {
+      return read(name) != null;
+   }
+
+   // The elements of a JSON-authored page, for pages that are assembled in code but
+   // want to be overridable by a JSON file.
+   public static List<PageElement> elementsFor(String name) {
+      return buildElements(name);
+   }
+
    private static List<PageElement> buildElements(String name) {
       List<PageElement> els = Lists.newArrayList();
       JsonObject root = read(name);

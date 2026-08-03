@@ -29,6 +29,12 @@ public class BookPageSpell extends BookPage {
       if (spell instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom sc) {
          return Lists.newArrayList(new PageElement[]{ new PageElementCustomSpell(sc) });
       }
+      // A spell may be written as a JSON page; when one exists it replaces the
+      // built-in layout entirely, so there is never a second copy of the page.
+      String jsonPage = "spell_" + spell.getName();
+      if (BookPageJson.exists(jsonPage)) {
+         return BookPageJson.elementsFor(jsonPage);
+      }
       return Lists.newArrayList(new PageElement[]{
          new PageElementSpellInfo(spell),
          new PageElementParagraphs("spell_" + spell.getName(), 0.75F, 0, 1,
