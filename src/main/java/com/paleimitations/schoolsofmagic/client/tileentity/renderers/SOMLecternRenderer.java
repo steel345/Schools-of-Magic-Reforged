@@ -22,7 +22,6 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class SOMLecternRenderer implements BlockEntityRenderer<LecternBlockEntity> {
-
    private static final ResourceLocation PAPER = new ResourceLocation("som", "textures/gui/books/paper.png");
 
    private final BookModel bookModel;
@@ -42,7 +41,6 @@ public class SOMLecternRenderer implements BlockEntityRenderer<LecternBlockEntit
 
       float time = be.getLevel() == null ? 0 : be.getLevel().getGameTime() + partialTick;
 
-      // Fetch state: the book flips shut on the surface, then floats out above.
       com.paleimitations.schoolsofmagic.client.LecternKnowledgeCache.Entry fetch =
          com.paleimitations.schoolsofmagic.client.LecternKnowledgeCache.get(be.getBlockPos());
       boolean floated = fetch != null && !fetch.book.isEmpty();
@@ -56,11 +54,9 @@ public class SOMLecternRenderer implements BlockEntityRenderer<LecternBlockEntit
             fetch.book, net.minecraft.world.item.ItemDisplayContext.GROUND, light, overlay, ps, buf,
             be.getLevel(), 0);
          ps.popPose();
-         // fall through: the found book still renders on the lectern surface below
+
       }
 
-      // Vanilla lecterns do not sync their book to the client, so pages are delivered
-      // via our own sync and read from the client cache.
       ItemStack cachedPage = com.paleimitations.schoolsofmagic.client.LecternPageCache.get(be.getBlockPos());
 
       float facing = state.getValue(LecternBlock.FACING).getClockWise().toYRot();
@@ -72,7 +68,6 @@ public class SOMLecternRenderer implements BlockEntityRenderer<LecternBlockEntit
       ps.translate(0.0F, -0.125F, 0.0F);
 
       if (fetch != null && fetch.closeStart >= 0 && !floated) {
-         // Flip the book shut over CLOSE_TICKS, then hold it closed.
          float c = Math.min(1.0F, (time - fetch.closeStart) / CLOSE_TICKS);
          this.bookModel.setupAnim(0.0F, 0.1F * (1.0F - c), 0.9F * (1.0F - c), 1.2F * (1.0F - c));
          VertexConsumer vc = EnchantTableRenderer.BOOK_LOCATION.buffer(buf, RenderType::entitySolid);
@@ -91,7 +86,7 @@ public class SOMLecternRenderer implements BlockEntityRenderer<LecternBlockEntit
 
    private void renderPageItem(ItemStack item, LecternBlockEntity be, PoseStack ps, MultiBufferSource buf, int light, int overlay) {
       ps.pushPose();
-      // Lay the sheet flat on the tilted reading surface, its face up, filling it.
+
       ps.mulPose(Axis.XP.rotationDegrees(90.0F));
       ps.translate(0.0F, 0.0F, 0.2F);
       ps.scale(1.6F, 1.6F, 1.6F);

@@ -22,6 +22,7 @@ import com.paleimitations.schoolsofmagic.common.books.PageElementTitle;
 import com.paleimitations.schoolsofmagic.common.books.PageElementRitualRecipe;
 import com.paleimitations.schoolsofmagic.common.books.PageElementStandardText;
 import com.paleimitations.schoolsofmagic.common.books.PageElementWorldConnector;
+import com.paleimitations.schoolsofmagic.common.books.PageElementItemStackScaled;
 import com.paleimitations.schoolsofmagic.common.books.ParagraphBox;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellBlaze;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellGrowApple;
@@ -86,6 +87,7 @@ public class BookMagicBasic {
          .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageStandardTitled("bmb_page3").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageStandardTitled("bmb_page4").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_enchants").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageStandardTitled("bmb_more_spells").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPage(
             "bmb_page5",
@@ -144,8 +146,14 @@ public class BookMagicBasic {
          )
          .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
 
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_wand_looks").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+
       new BookPageStandardTitled("bmb_podium1").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPageStandardTitled("bmb_podium2").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_podium_scribing").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_podium_write").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_book_editor").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_book_editor2").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       new BookPage(
             "bmb_podium3",
             Lists.newArrayList(
@@ -265,7 +273,7 @@ public class BookMagicBasic {
                new PageElement[]{
                   new PageElementStandardText("page.bmb_salt.title", 72, 58, 99, 16, 0, true),
                   new PageElementFurnaceRecipe(
-                     new ItemStack(BlockRegistry.salt_ore.get()),
+                     new ItemStack(BlockRegistry.fae_salt_ore.get()),
                      new ItemStack(ItemRegistry.salt.get()),
                      157, 96, 0
                   ),
@@ -348,8 +356,8 @@ public class BookMagicBasic {
       if (wr1 != null && wr2 != null && wr3 != null) {
          new BookPageCraftingRitualRecipe(wr1)
             .addElements(Lists.newArrayList(new PageElement[]{
-               new PageElementRitualRecipe(wr2, 20, 70, 1),
-               new PageElementRitualRecipe(wr3, 132, 70, 1)
+               new PageElementRitualRecipe(wr2, 20, 47, 1),
+               new PageElementRitualRecipe(wr3, 132, 47, 1)
             }))
             .addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       }
@@ -560,16 +568,19 @@ public class BookMagicBasic {
          }
       }
 
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmb_tree_items").addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+
       new BookPageChapter(null).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new SpellBlaze()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrestidigitation()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new SpellGrowApple()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new SpellLocateOre()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new SpellZephyr()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new SpellWaterJet()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new SpellWinterRoar()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSnowball()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellDry()).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
+      SpellRegistry.addSorted(BookPageRegistry.BASIC_MAGIC_BOOK,
+         new SpellBlaze(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrestidigitation(),
+         new SpellGrowApple(),
+         new SpellLocateOre(),
+         new SpellZephyr(),
+         new SpellWaterJet(),
+         new SpellWinterRoar(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSnowball(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellDry());
 
       BookPageChapter otherBooks = new BookPageChapter(null);
       otherBooks.elements.add(new PageElementTitle("page.other_books_chapter.title", 72, 58, 99, 16, 0, true));

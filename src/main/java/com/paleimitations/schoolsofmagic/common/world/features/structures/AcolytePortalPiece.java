@@ -21,7 +21,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 public class AcolytePortalPiece extends TemplateStructurePiece {
-
    public AcolytePortalPiece(StructureTemplateManager manager, BlockPos pos) {
       super(StructureRegistry.ACOLYTE_PORTAL_PIECE.get(), 0, manager,
          new ResourceLocation(SchoolsOfMagic.MODID, "acolyte_portal"),

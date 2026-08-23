@@ -148,10 +148,8 @@ public class EntityNobleTree extends EntityMagician {
          float f1 = Mth.cos(f);
          float f2 = Mth.sin(f);
          if (this.getRandom().nextInt(80) == 0) {
-
          }
          if (this.getRandom().nextInt(80) == 0) {
-
          }
       }
    }

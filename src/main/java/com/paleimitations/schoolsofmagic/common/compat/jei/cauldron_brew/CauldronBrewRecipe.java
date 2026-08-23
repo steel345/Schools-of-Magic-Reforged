@@ -4,7 +4,6 @@ import java.util.List;
 import net.minecraft.world.item.ItemStack;
 
 public class CauldronBrewRecipe {
-
    private final List<ItemStack> inputs;
    private final ItemStack output;
 

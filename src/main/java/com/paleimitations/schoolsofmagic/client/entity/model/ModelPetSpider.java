@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class ModelPetSpider<T extends Entity> extends EntityModel<T> {
-
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "pet_spider"), "main");
 

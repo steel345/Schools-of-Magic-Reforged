@@ -28,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityGarmentData {
-
    public static final Capability<IGarmentData> CAP = CapabilityManager.get(new CapabilityToken<IGarmentData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "garment_data");
 
@@ -42,6 +41,22 @@ public class CapabilityGarmentData {
       if (data == null) return;
       PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player),
          new PacketSyncGarmentData(player.getId(), data.serializeNBT()));
+   }
+
+   private static final java.util.Map<java.util.UUID, net.minecraft.nbt.CompoundTag> LAST_SYNCED =
+      new java.util.HashMap<>();
+
+   @SubscribeEvent
+   public static void onPlayerTick(net.minecraftforge.event.TickEvent.PlayerTickEvent event) {
+      if (event.phase != net.minecraftforge.event.TickEvent.Phase.END) return;
+      if (!(event.player instanceof ServerPlayer sp)) return;
+      IGarmentData data = get(sp);
+      if (data == null) return;
+      CompoundTag now = data.serializeNBT();
+      CompoundTag was = LAST_SYNCED.get(sp.getUUID());
+      if (was != null && was.equals(now)) return;
+      LAST_SYNCED.put(sp.getUUID(), now.copy());
+      sync(sp);
    }
 
    @SubscribeEvent

@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:fortified_breath"
+    },
+    {
+      "type": "text",
+      "text": "  This spell packs the air in the lungs tight, so it is spent slowly and gives up grudgingly.\n\n  While it is held the caster loses breath far slower than they should, and what has already been spent comes back. Water that would have drowned them merely presses.\n\n  It also blunts the crush of being caught in stone, though it will not free you from it. A Magician who is buried should dig, not wait.\n\n  The stronger the charge, the longer the breath can be fortified."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_fortified_breath.desc"
+    }
+  ]
+}

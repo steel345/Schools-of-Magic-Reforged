@@ -22,15 +22,8 @@ import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-// Coloured light, done as a deferred pass in the manner of Shimmer: every lit
-// surface on screen is found again from the depth buffer, and each coloured flame
-// adds its own colour to the pixels within its radius. The light lands on the
-// surfaces near it rather than washing the whole view, because it is worked out per
-// pixel from real distances.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ColoredLightHandler {
-
-   // Same ceiling Shimmer keeps, for the same reason: a hard cap on the cost.
    private static final int MAX_LIGHTS = 64;
    private static final int CHUNK_RANGE = 3;
    private static final int RESCAN_TICKS = 10;
@@ -40,8 +33,6 @@ public class ColoredLightHandler {
 
    @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
    public static class Loader {
-      // A shader that will not load must not take the game down with it: coloured
-      // light simply stays off.
       @SubscribeEvent
       public static void onRegisterShaders(RegisterShadersEvent event) {
          try {
@@ -59,8 +50,6 @@ public class ColoredLightHandler {
 
    @SubscribeEvent
    public static void onRenderStage(RenderLevelStageEvent event) {
-      // After the solid world and its particles are down, so there is a full depth
-      // buffer to read, and before the hand and the interface.
       if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_PARTICLES) return;
       if (shader == null) return;
       if (!com.paleimitations.schoolsofmagic.common.config.SOMClientConfig.coloredLighting()) return;
@@ -74,9 +63,6 @@ public class ColoredLightHandler {
 
       net.minecraft.world.phys.Vec3 camera = mc.gameRenderer.getMainCamera().getPosition();
 
-      // The level is drawn camera-relative, so undoing projection and camera rotation
-      // gives positions in that same camera-relative space. Keeping the maths there
-      // avoids the precision loss of absolute world coordinates far from spawn.
       Matrix4f inverse = new Matrix4f(event.getProjectionMatrix())
          .mul(event.getPoseStack().last().pose())
          .invert();
@@ -120,7 +106,6 @@ public class ColoredLightHandler {
       RenderSystem.disableBlend();
    }
 
-   // The vertex shader turns these into clip space itself, so plain 0..1 corners.
    private static void fullscreenQuad() {
       BufferBuilder buf = Tesselator.getInstance().getBuilder();
       buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);

@@ -6,7 +6,6 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public final class SOMTiers {
-
    public static final Tier OBSIDIAN = new Tier() {
       public int getUses() { return 2000; }
       public float getSpeed() { return 8.0F; }

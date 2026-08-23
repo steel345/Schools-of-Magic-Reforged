@@ -21,11 +21,14 @@ public class PacketInsertPage {
    private String pageName;
    private boolean addBefore;
 
+   private int consumeSlot;
+
    public PacketInsertPage(int page, String pageName, BlockPos pos) {
       this.pos = pos;
       this.page = page;
       this.pageName = pageName;
       this.addBefore = false;
+      this.consumeSlot = 5;
    }
 
    public PacketInsertPage(int page, String pageName, BlockPos pos, boolean addBefore) {
@@ -33,6 +36,15 @@ public class PacketInsertPage {
       this.page = page;
       this.pageName = pageName;
       this.addBefore = true;
+      this.consumeSlot = 5;
+   }
+
+   public PacketInsertPage(int page, String pageName, BlockPos pos, boolean addBefore, int consumeSlot) {
+      this.pos = pos;
+      this.page = page;
+      this.pageName = pageName;
+      this.addBefore = addBefore;
+      this.consumeSlot = consumeSlot;
    }
 
    public PacketInsertPage(FriendlyByteBuf buf) {
@@ -40,6 +52,7 @@ public class PacketInsertPage {
       this.page = buf.readInt();
       this.addBefore = buf.readBoolean();
       this.pageName = buf.readUtf();
+      this.consumeSlot = buf.readInt();
    }
 
    public void encode(FriendlyByteBuf buf) {
@@ -49,6 +62,7 @@ public class PacketInsertPage {
       buf.writeInt(this.page);
       buf.writeBoolean(this.addBefore);
       buf.writeUtf(this.pageName);
+      buf.writeInt(this.consumeSlot);
    }
 
    public static void handle(PacketInsertPage msg, Supplier<NetworkEvent.Context> ctx) {
@@ -63,6 +77,37 @@ public class PacketInsertPage {
             TileEntityPodium podium = (TileEntityPodium)te;
             IBook book = podium.handler.getStackInSlot(0).getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
             if (book != null) {
+               if ("table_content".equalsIgnoreCase(msg.pageName)) {
+                  for (BookPage existing : book.getBookPages()) {
+                     if (existing instanceof com.paleimitations.schoolsofmagic.common.books.BookPageTableContent) {
+                        return;
+                     }
+                  }
+                  if (msg.consumeSlot < 0 || msg.consumeSlot >= podium.handler.getSlots()
+                        || podium.handler.getStackInSlot(msg.consumeSlot).isEmpty()) {
+                     return;
+                  }
+                  BookPage contents = BookPageRegistry.getBookPage("table_content");
+                  if (contents == null) {
+                     return;
+                  }
+                  List<BookPage> withContents = Lists.newArrayList(book.getBookPages());
+                  withContents.add(0, contents);
+                  List<BookElementSticker> moved = Lists.newArrayList();
+                  for (BookElementSticker sticker : book.getStickers()) {
+                     moved.add(new BookElementSticker(sticker.sticker, sticker.rotation,
+                        sticker.x, sticker.y, sticker.page + 1, sticker.subpage));
+                  }
+                  book.setBookPages(withContents);
+                  book.setStickers(moved);
+                  podium.handler.getStackInSlot(msg.consumeSlot).shrink(1);
+                  book.setEdited(true);
+                  book.setPage(0);
+                  book.setSubPage(0);
+                  podium.sendUpdates();
+                  return;
+               }
+
                List<BookPage> pages = Lists.newArrayList();
                List<BookElementSticker> stickers = Lists.newArrayList();
                int page = 0;
@@ -102,9 +147,14 @@ public class PacketInsertPage {
                   pages.add(BookPageRegistry.getBookPage(msg.pageName));
                }
 
+               if (msg.consumeSlot < 0 || msg.consumeSlot >= podium.handler.getSlots()
+                     || podium.handler.getStackInSlot(msg.consumeSlot).isEmpty()) {
+                  return;
+               }
+
                book.setBookPages(pages);
                book.setStickers(stickers);
-               podium.handler.getStackInSlot(5).shrink(1);
+               podium.handler.getStackInSlot(msg.consumeSlot).shrink(1);
                book.setEdited(true);
 
                int target = Math.min((msg.addBefore ? msg.page : msg.page + 1), pages.size() - 1);

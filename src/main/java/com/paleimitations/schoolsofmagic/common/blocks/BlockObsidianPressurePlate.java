@@ -15,9 +15,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.phys.AABB;
 
 public class BlockObsidianPressurePlate extends PressurePlateBlock {
-
    public BlockObsidianPressurePlate(BlockBehaviour.Properties props) {
-
       super(Sensitivity.EVERYTHING, props, BlockSetType.STONE);
    }
 
@@ -36,5 +34,4 @@ public class BlockObsidianPressurePlate extends PressurePlateBlock {
       }
       return 0;
    }
-
 }

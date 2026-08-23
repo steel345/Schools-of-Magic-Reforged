@@ -16,7 +16,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 public class SpellForgePointsCategory implements IRecipeCategory<SpellForgePointsRecipe> {
-
    public static final RecipeType<SpellForgePointsRecipe> TYPE =
       RecipeType.create(References.MODID, "spell_forge", SpellForgePointsRecipe.class);
 
@@ -65,7 +64,6 @@ public class SpellForgePointsCategory implements IRecipeCategory<SpellForgePoint
    @Override
    public void draw(SpellForgePointsRecipe recipe, mezz.jei.api.gui.ingredient.IRecipeSlotsView slots,
                     GuiGraphics graphics, double mouseX, double mouseY) {
-
       this.slot.draw(graphics, INPUT_X - 1, SLOT_Y - 1);
       this.slot.draw(graphics, OUTPUT_X - 1, SLOT_Y - 1);
 

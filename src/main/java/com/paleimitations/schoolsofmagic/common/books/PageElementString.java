@@ -80,6 +80,11 @@ public class PageElementString extends PageElement {
       }
       gg.pose().pushPose();
       gg.pose().scale(scaler, scaler, scaler);
+
+      if (com.paleimitations.schoolsofmagic.client.BookRichText.isCapturing()) {
+         com.paleimitations.schoolsofmagic.client.BookRichText.captureLine(
+            gg, font, t, Math.round(drawX / scaler), Math.round(drawY / scaler));
+      }
       gg.drawString(font, t, Math.round(drawX / scaler), Math.round(drawY / scaler), this.fontColor, false);
       gg.pose().popPose();
    }

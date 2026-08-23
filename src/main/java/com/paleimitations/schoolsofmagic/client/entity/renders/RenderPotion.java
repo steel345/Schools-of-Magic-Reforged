@@ -9,7 +9,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class RenderPotion extends ThrownItemRenderer<EntityThrowablePotion> {
-
    public RenderPotion(EntityRendererProvider.Context context) {
       super(context);
    }

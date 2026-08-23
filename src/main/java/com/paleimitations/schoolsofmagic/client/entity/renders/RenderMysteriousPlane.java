@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class RenderMysteriousPlane extends EntityRenderer<EntityMysteriousPlane> {
-
    private static final ResourceLocation TEXTURE = new ResourceLocation("minecraft", "textures/atlas/blocks.png");
 
    public RenderMysteriousPlane(EntityRendererProvider.Context context) {

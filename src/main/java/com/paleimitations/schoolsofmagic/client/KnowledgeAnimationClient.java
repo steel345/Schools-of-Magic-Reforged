@@ -21,14 +21,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-// Renders the flying books entirely on the client, interpolated every frame, so
-// the motion is perfectly smooth (no dependence on entity position sync).
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class KnowledgeAnimationClient {
-
    private static final List<Anim> ACTIVE = new ArrayList<>();
 
-   // The book has to snap shut before it floats out.
    private static final int KNOWLEDGE_DELAY = 8;
 
    private static class Anim {
@@ -53,7 +49,7 @@ public class KnowledgeAnimationClient {
       Vec3 lecternC = Vec3.atCenterOf(msg.lectern).add(0.0, 0.55, 0.0);
       Vec3 readingC = Vec3.atCenterOf(msg.reading).add(0.0, 0.55, 0.0);
       Vec3 floatC = readingC.add(-0.25, 1.5, -0.25);
-      // Forward: found shelf->lectern, book reading->float. Reverse swaps both.
+
       Vec3 fs = msg.reverse ? lecternC : shelfC;
       Vec3 fe = msg.reverse ? shelfC : lecternC;
       Vec3 ks = msg.reverse ? floatC : readingC;
@@ -91,10 +87,10 @@ public class KnowledgeAnimationClient {
          if (t < 0.0F) t = 0.0F;
          float s = t * t * (3.0F - 2.0F * t);
          float spin = elapsed * 6.0F;
-         // The found book flies right away.
+
          renderItem(mc, pose, buffers, cam, a.found,
             a.foundStart.add(a.foundEnd.subtract(a.foundStart).scale(s)), spin);
-         // The Book of Knowledge waits for the close, then floats up.
+
          float kt = (elapsed - KNOWLEDGE_DELAY) / (a.duration - KNOWLEDGE_DELAY);
          if (kt > 0.0F) {
             if (kt > 1.0F) kt = 1.0F;

@@ -8,7 +8,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
-// How many shields a caster still has circling them.
 public class PacketShiningShield {
    private final UUID player;
    private final int shields;

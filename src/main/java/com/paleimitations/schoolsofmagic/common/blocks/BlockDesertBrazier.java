@@ -25,7 +25,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockDesertBrazier extends SOMBlock implements EntityBlock {
-
    public static final IntegerProperty FLAME = IntegerProperty.create("flame", 0, 2);
    protected static final VoxelShape TEAPLATE_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 5.0D, 14.0D);
 

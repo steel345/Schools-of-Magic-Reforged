@@ -1,23 +1,24 @@
 package com.paleimitations.schoolsofmagic.client;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.toasts.Toast;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 
-// The "New pages unlocked" toast. It opens showing just the title, then fades into
-// the full toast with a "Check your <book>" subtitle beneath it. Coloured to match an
-// advancement toast; long book names are scaled down rather than clipped.
 @OnlyIn(Dist.CLIENT)
 public class ToastPagesUnlocked implements Toast {
    private static final long DISPLAY_MS = 5000L;
    private static final long FADE_START_MS = 600L;
    private static final long FADE_END_MS = 1100L;
-   // The same pair an advancement toast uses: yellow headline, white name beneath.
+
    private static final int TITLE_COLOR = 0xFFFF00;
    private static final int DESC_COLOR = 0xFFFFFF;
    private static final int TEXT_X = 30;
@@ -35,17 +36,20 @@ public class ToastPagesUnlocked implements Toast {
          : Component.translatable("toast.som.pages_unlocked.desc", icon.getHoverName());
    }
 
+   public static void show(ResourceLocation bookItem) {
+      Item item = ForgeRegistries.ITEMS.getValue(bookItem);
+      ItemStack icon = item == null ? ItemStack.EMPTY : new ItemStack(item);
+      Minecraft.getInstance().getToasts().addToast(new ToastPagesUnlocked(icon));
+   }
+
    @Override
    public Visibility render(GuiGraphics gg, ToastComponent component, long timeSinceLastVisible) {
-      // The advancement frame, untinted, exactly as vanilla draws it.
       gg.blit(TEXTURE, 0, 0, 0, 0, this.width(), this.height());
 
       if (!this.icon.isEmpty()) {
          gg.renderItem(this.icon, 8, 8);
       }
 
-      // Start as a title-only toast, then fade the subtitle in while the title
-      // slides up to make room.
       float progress = timeSinceLastVisible <= FADE_START_MS ? 0.0F
          : timeSinceLastVisible >= FADE_END_MS ? 1.0F
          : (float) (timeSinceLastVisible - FADE_START_MS) / (float) (FADE_END_MS - FADE_START_MS);
@@ -62,8 +66,6 @@ public class ToastPagesUnlocked implements Toast {
       return timeSinceLastVisible >= DISPLAY_MS ? Visibility.HIDE : Visibility.SHOW;
    }
 
-   // Draws the line at the text column, shrinking it just enough to fit the frame so
-   // long book names are never cut off.
    private static void drawFitted(GuiGraphics gg, Font font, Component text, int y, int color) {
       int w = font.width(text);
       if (w <= TEXT_AVAIL) {

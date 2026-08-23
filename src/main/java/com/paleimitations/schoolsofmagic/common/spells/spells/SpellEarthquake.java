@@ -100,7 +100,6 @@ public class SpellEarthquake extends SpellTimed {
                   || state.is(Blocks.GRASS_BLOCK)) {
                   this.posits.add(pos);
                   if (!world.isClientSide) {
-
                      FallingBlockEntity entity = FallingBlockEntity.fall(world, pos, state);
                      IMeteoricData data = entity.getCapability(CapabilityMeteoricData.CAP).orElse(null);
                      if (data != null) {

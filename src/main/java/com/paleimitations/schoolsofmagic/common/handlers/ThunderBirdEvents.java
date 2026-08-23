@@ -29,7 +29,6 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ThunderBirdEvents {
-
    private static final int MAX_NEARBY = 3;
 
    @SubscribeEvent

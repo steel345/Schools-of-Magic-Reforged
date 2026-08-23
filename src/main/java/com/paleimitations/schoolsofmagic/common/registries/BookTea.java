@@ -19,7 +19,6 @@ import com.paleimitations.schoolsofmagic.common.util.TeaUtils;
 import net.minecraft.world.item.ItemStack;
 
 public class BookTea {
-
    private static final float TEXT_SCALE = 0.75F;
    private static final ResourceLocation TEAPOT_BOOK_TEMPLATE = new ResourceLocation("som", "textures/gui/teapot_book.png");
 

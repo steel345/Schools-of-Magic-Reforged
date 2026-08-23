@@ -170,6 +170,5 @@ public class ModelDemonHeart extends MowzieModelBase<Entity> {
 
    @Override
    public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
    }
 }

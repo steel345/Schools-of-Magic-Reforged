@@ -175,7 +175,6 @@ public class TileEntityRottedChest extends RandomizableContainerBlockEntity {
 
    @Override
    protected AbstractContainerMenu createMenu(int id, Inventory playerInventory) {
-
       this.unpackLootTable(playerInventory.player);
       return net.minecraft.world.inventory.ChestMenu.threeRows(id, playerInventory, this);
    }

@@ -13,7 +13,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import org.jetbrains.annotations.Nullable;
 
 public class CloseDoorsProcessor extends StructureProcessor {
-
    public static final CloseDoorsProcessor INSTANCE = new CloseDoorsProcessor();
    public static final Codec<CloseDoorsProcessor> CODEC = Codec.unit(() -> INSTANCE);
 

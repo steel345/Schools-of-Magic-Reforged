@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class ModelWebProjectile<T extends Entity> extends EntityModel<T> {
-
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "web_projectile"), "main");
 
@@ -57,13 +56,11 @@ public class ModelWebProjectile<T extends Entity> extends EntityModel<T> {
    @Override
    public void setupAnim(T entity, float limbSwing, float limbSwingAmount,
                          float ageInTicks, float netHeadYaw, float headPitch) {
-
    }
 
    @Override
    public void renderToBuffer(PoseStack pose, VertexConsumer buf, int light, int overlay,
                               float r, float g, float b, float a) {
-
       this.branch1.render(pose, buf, light, overlay, r, g, b, a);
       pose.pushPose();
       pose.translate(this.outer.x / 16.0F, this.outer.y / 16.0F, this.outer.z / 16.0F);

@@ -62,7 +62,6 @@ public class ItemQuest extends Item {
 
    @OnlyIn(Dist.CLIENT)
    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-
       if (stack.hasTag() && stack.getTag().contains("quest")) {
          tooltip.add(Component.translatable("quest." + stack.getTag().getString("quest") + ".name")
             .withStyle(net.minecraft.ChatFormatting.GRAY));

@@ -11,7 +11,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class EntityMysteriousPlane extends Entity {
-
    private static final EntityDataAccessor<Float> FADE =
       SynchedEntityData.defineId(EntityMysteriousPlane.class, EntityDataSerializers.FLOAT);
 

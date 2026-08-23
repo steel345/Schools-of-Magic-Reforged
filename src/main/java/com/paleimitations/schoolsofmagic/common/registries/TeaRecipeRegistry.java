@@ -78,5 +78,4 @@ public class TeaRecipeRegistry {
         s.setDamageValue(EnumMisc.SHAMROCK.getIndex());
         return s;
     }
-
 }

@@ -26,7 +26,6 @@ import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityBanishedEntity {
-
    public static final Capability<IBanishedEntity> CAP = CapabilityManager.get(new CapabilityToken<IBanishedEntity>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "banished_entity");
 
@@ -37,7 +36,6 @@ public class CapabilityBanishedEntity {
 
    @SubscribeEvent
    public static void update(LevelTickEvent event) {
-
       if (event.phase != net.minecraftforge.event.TickEvent.Phase.END) return;
       if (event.side != net.minecraftforge.fml.LogicalSide.SERVER) return;
       Level world = event.level;
@@ -53,7 +51,6 @@ public class CapabilityBanishedEntity {
          if (entityData.isEmpty()) continue;
 
          if (timer <= 0) {
-
             EntityType<?> type = null;
             if (entityData.contains("som:typeKey")) {
                net.minecraft.resources.ResourceLocation rl =
@@ -61,7 +58,6 @@ public class CapabilityBanishedEntity {
                if (rl != null) type = ForgeRegistries.ENTITY_TYPES.getValue(rl);
             }
             if (type == null && id > 0) {
-
                type = ForgeRegistries.ENTITY_TYPES.getValues().stream().skip(id).findFirst().orElse(null);
             }
             Entity entity = type != null ? type.create(world) : null;

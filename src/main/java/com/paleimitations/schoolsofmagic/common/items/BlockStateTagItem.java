@@ -13,7 +13,6 @@ public class BlockStateTagItem extends BlockItem {
 
    @Override
    public Component getName(ItemStack stack) {
-
       if (stack.hasCustomHoverName()) {
          return super.getName(stack);
       }

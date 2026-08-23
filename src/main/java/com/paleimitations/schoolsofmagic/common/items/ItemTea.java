@@ -100,7 +100,6 @@ public class ItemTea extends Item {
       String key = "tea." + descId;
       String name = I18n.get(key);
       if (name.equals(key)) {
-
          String shortDescId = descId;
          if (shortDescId.startsWith("effect.som.")) shortDescId = "effect." + shortDescId.substring("effect.som.".length());
          else if (shortDescId.startsWith("effect.minecraft.")) shortDescId = "effect." + shortDescId.substring("effect.minecraft.".length());

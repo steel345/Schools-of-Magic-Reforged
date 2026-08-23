@@ -3,7 +3,6 @@ package com.paleimitations.schoolsofmagic.common.network;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.quests.CapabilityQuestData;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.quests.IQuestData;
 import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
@@ -34,7 +33,7 @@ public class PacketUpdateQuestData {
    public static void handle(PacketUpdateQuestData msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
       context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-         Entity entity = Minecraft.getInstance().level.getEntity(msg.entityID);
+         Entity entity = com.paleimitations.schoolsofmagic.client.ClientEntityLookup.byId(msg.entityID);
          if (entity instanceof LivingEntity) {
             IQuestData cap = entity.getCapability(CapabilityQuestData.CAP).orElse(null);
             if (cap != null) {

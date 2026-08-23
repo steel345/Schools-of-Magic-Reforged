@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BlockPlantBarrel extends SOMPlant {
-
    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
 
    public BlockPlantBarrel(BlockBehaviour.Properties props) {
@@ -51,5 +50,4 @@ public class BlockPlantBarrel extends SOMPlant {
    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
       return state.is(Blocks.SAND) || state.is(Blocks.DIRT) || state.is(Blocks.FARMLAND) || state.is(Blocks.GRASS_BLOCK);
    }
-
 }

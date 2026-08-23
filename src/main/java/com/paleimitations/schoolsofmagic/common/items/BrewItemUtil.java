@@ -7,7 +7,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public class BrewItemUtil {
-
    public static void giveFlask(Player player) {
       ItemStack flask = new ItemStack(ItemRegistry.bottle_empty.get());
       if (!player.getInventory().add(flask)) {

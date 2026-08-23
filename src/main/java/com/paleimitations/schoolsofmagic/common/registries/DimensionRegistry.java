@@ -12,6 +12,5 @@ public class DimensionRegistry {
             new ResourceLocation(SchoolsOfMagic.MODID, "fae_grove"));
 
     public static void registerDimensions() {
-
     }
 }

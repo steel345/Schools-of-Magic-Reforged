@@ -10,7 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
 public class CommandBiomeTeleport {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(
          Commands.literal("tpbio")

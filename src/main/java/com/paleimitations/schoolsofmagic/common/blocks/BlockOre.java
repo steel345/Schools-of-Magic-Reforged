@@ -4,7 +4,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class BlockOre extends SOMBlock {
-
    private final Item drop;
 
    public BlockOre(BlockBehaviour.Properties props) {

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public final class HerbProfile {
-
    public final List<String> primaryEffects;
    public final List<String> secondaryEffects;
    public final List<String> rareEffects;

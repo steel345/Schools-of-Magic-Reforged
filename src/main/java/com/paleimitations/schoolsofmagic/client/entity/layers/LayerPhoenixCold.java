@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.Mth;
 
 public class LayerPhoenixCold extends RenderLayer<EntityPhoenix, ModelPhoenix<EntityPhoenix>> {
-
    public LayerPhoenixCold(RenderLayerParent<EntityPhoenix, ModelPhoenix<EntityPhoenix>> parent) {
       super(parent);
    }

@@ -3,7 +3,6 @@ package com.paleimitations.schoolsofmagic.common.network;
 import com.paleimitations.schoolsofmagic.common.items.capabilities.book.CapabilityBook;
 import com.paleimitations.schoolsofmagic.common.items.capabilities.book.IBook;
 import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
@@ -40,7 +39,7 @@ public class PacketUpdateBook {
    public static void handle(PacketUpdateBook msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
       context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-         Entity entity = Minecraft.getInstance().level.getEntity(msg.entityId);
+         Entity entity = com.paleimitations.schoolsofmagic.client.ClientEntityLookup.byId(msg.entityId);
          if (entity instanceof Player) {
             Player player = (Player)entity;
             ItemStack stack = player.getItemInHand(msg.isMain ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND);

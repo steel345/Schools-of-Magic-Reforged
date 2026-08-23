@@ -5,24 +5,26 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 
-// The ten sparkle stars, run straight through in order. Whatever colour is asked of
-// it, since the frames themselves are plain.
 public class ParticleSparkleStar extends TextureSheetParticle implements IAnimatedParticle {
-
    private static final int FRAMES = 10;
 
    private SpriteSet sprites;
 
    public ParticleSparkleStar(ClientLevel world, double x, double y, double z,
                               double r, double g, double b) {
+      this(world, x, y, z, r, g, b, 0.0D, 0.0D, 0.0D);
+   }
+
+   public ParticleSparkleStar(ClientLevel world, double x, double y, double z,
+                              double r, double g, double b,
+                              double mx, double my, double mz) {
       super(world, x, y, z, 0.0D, 0.0D, 0.0D);
-      // The constructor above scatters every particle by up to 0.4 a tick of its own
-      // accord. These are meant to hang exactly where they are put, so that is undone.
-      this.xd = 0.0D;
-      this.yd = 0.0D;
-      this.zd = 0.0D;
+
+      this.xd = mx;
+      this.yd = my;
+      this.zd = mz;
       this.quadSize *= 0.9F;
-      // Short lived, so the trail stays a line rather than piling up into a cloud.
+
       this.lifetime = 10;
       this.hasPhysics = false;
       this.rCol = (float) r;

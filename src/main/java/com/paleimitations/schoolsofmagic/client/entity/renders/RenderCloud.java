@@ -19,7 +19,6 @@ public class RenderCloud extends EntityRenderer<EntityCloud> {
    @Override
    public void render(EntityCloud entity, float entityYaw, float partialTicks,
                       PoseStack pose, MultiBufferSource buf, int packedLight) {
-
    }
 
    @Override

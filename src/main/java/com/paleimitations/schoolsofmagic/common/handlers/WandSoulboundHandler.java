@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class WandSoulboundHandler {
-
    private static final String KEY = "som_soulbound";
 
    @SubscribeEvent

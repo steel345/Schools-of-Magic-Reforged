@@ -11,7 +11,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockBurstPotion extends SOMBlockContainer {
-
    protected static final VoxelShape POTION_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 12.0D, 11.0D);
 
    public BlockBurstPotion(BlockBehaviour.Properties props) {
@@ -21,7 +20,6 @@ public class BlockBurstPotion extends SOMBlockContainer {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return new com.paleimitations.schoolsofmagic.common.tileentity.TileEntityBurstPotion(pos, state);
    }
 

@@ -17,7 +17,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.item.context.BlockPlaceContext;
 
 public class BlockUnlitTorch extends TorchBlock implements SimpleWaterloggedBlock {
-
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
    public BlockUnlitTorch(Properties properties) {

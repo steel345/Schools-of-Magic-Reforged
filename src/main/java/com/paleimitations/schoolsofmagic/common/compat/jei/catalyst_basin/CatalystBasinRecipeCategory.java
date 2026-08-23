@@ -31,7 +31,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class CatalystBasinRecipeCategory implements IRecipeCategory<RecipeCatalystBasin> {
-
    public static final RecipeType<RecipeCatalystBasin> TYPE =
       RecipeType.create(References.MODID, "catalyst_basin", RecipeCatalystBasin.class);
    private static final ResourceLocation TEXTURE =
@@ -42,7 +41,6 @@ public class CatalystBasinRecipeCategory implements IRecipeCategory<RecipeCataly
    private final Component title;
 
    public CatalystBasinRecipeCategory(IGuiHelper helper) {
-
       this.background = helper.drawableBuilder(TEXTURE, 0, 0, 104, 140).setTextureSize(256, 257).build();
       this.icon = helper.createDrawableItemStack(new ItemStack(BlockRegistry.catalyst_basin.get()));
       this.title = Component.literal("Catalyst Basin");
@@ -70,7 +68,6 @@ public class CatalystBasinRecipeCategory implements IRecipeCategory<RecipeCataly
 
    @Override
    public void setRecipe(IRecipeLayoutBuilder builder, RecipeCatalystBasin recipe, IFocusGroup focuses) {
-
       addInput(builder, recipe.getSubstrate(), 14, 2);
       addInput(builder, recipe.getCatalyst(),  14, 21);
       addInput(builder, recipe.getSolution(),  74, 2);

@@ -16,7 +16,6 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 public class SetRandomTea extends LootItemConditionalFunction {
-
    public static LootItemFunctionType TYPE;
 
    protected SetRandomTea(List<LootItemCondition> conditionsIn) {

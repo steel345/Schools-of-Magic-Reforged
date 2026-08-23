@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemMutandis extends Item {
-
    public ItemMutandis(Properties props) {
       super(props);
    }

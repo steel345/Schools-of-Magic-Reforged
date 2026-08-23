@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class BookDecorations {
-
    public static final String TAG = "BookDecor";
 
    private static final String[] ELEMENT_TEX = {

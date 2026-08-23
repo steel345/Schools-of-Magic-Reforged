@@ -5,7 +5,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class BookFrameHandler extends ItemStackHandler {
-
    public static final int SIZE = 6;
    private final ItemStack book;
 

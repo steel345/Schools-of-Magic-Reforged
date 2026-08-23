@@ -8,7 +8,6 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public final class HerbRegistry {
-
    private static final Map<EnumPlantType, HerbProfile> HERBS = new EnumMap<>(EnumPlantType.class);
 
    static {

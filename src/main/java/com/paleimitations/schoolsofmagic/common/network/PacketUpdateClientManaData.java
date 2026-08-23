@@ -33,20 +33,8 @@ public class PacketUpdateClientManaData {
 
    public static void handle(PacketUpdateClientManaData msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
-      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-         Entity entity = Minecraft.getInstance().level.getEntity(msg.entityID);
-         if (entity instanceof LivingEntity) {
-            IClientManaData cap = entity.getCapability(CapabilityClientManaData.CAP).orElse(null);
-            if (cap != null) {
-               cap.deserializeNBT(msg.data);
-               cap.setLoadedToClient(true);
-
-               if (entity == Minecraft.getInstance().player) {
-                  com.paleimitations.schoolsofmagic.client.guis.GuiManaBar.hidden = cap.isHidden();
-               }
-            }
-         }
-      }));
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
+         com.paleimitations.schoolsofmagic.client.ClientManaSync.applyClientMana(msg.entityID, msg.data)));
       context.setPacketHandled(true);
    }
 }

@@ -75,7 +75,7 @@ public class SpellShadowSpy extends SpellTimed {
       if (worldIn.isEmptyBlock(pos) && !this.isViewing && this.castSpell(playerIn, 0.0F)) {
          this.reset(playerIn);
          this.casting = true;
-         // The eye lingers twice as long under an eclipse.
+
          this.maxCastTick = Math.round(1000.0F * this.getEclipseMultiplier(playerIn));
          this.chunkPos = new ChunkPos(pos);
          EntityShadowEye shadowEye = new EntityShadowEye(worldIn);

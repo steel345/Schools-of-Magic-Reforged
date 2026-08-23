@@ -17,7 +17,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiFaegrovePortalOverlay {
-
    private static final ResourceLocation TEX = new ResourceLocation("som", "textures/blocks/faegrove_portal.png");
    private static final int FRAMES = 32;
 

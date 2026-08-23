@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.storage.loot.LootParams;
 
 public class BlockRottedPlanks extends Block {
-
    public static final EnumProperty<EnumWoodType> TYPE = EnumProperty.create("type", EnumWoodType.class);
 
    public BlockRottedPlanks(BlockBehaviour.Properties props) {

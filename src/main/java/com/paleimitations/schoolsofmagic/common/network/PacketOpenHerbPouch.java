@@ -14,7 +14,6 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkHooks;
 
-// Client asks the server to open the herb pouch worn in the charm slot.
 public class PacketOpenHerbPouch {
    public PacketOpenHerbPouch() {}
 

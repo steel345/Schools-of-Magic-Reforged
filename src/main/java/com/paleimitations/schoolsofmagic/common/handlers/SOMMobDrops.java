@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SOMMobDrops {
-
    private static void drop(LivingEntity e, int variant, int count) {
       ItemStack s = new ItemStack(ItemRegistry.ingredient.get(), count);
       s.setDamageValue(variant);

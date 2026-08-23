@@ -8,7 +8,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
-// The player opened a newly unlocked page, so clear its "new" flag.
 public class PacketMarkPageRead {
    private final String key;
 

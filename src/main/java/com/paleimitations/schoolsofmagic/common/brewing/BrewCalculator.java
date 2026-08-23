@@ -13,7 +13,6 @@ import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
 
 public final class BrewCalculator {
-
    private static final Logger LOGGER = LogUtils.getLogger();
    private static final int WATER_BASE = 0x3F76E4;
 

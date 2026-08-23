@@ -24,7 +24,6 @@ import net.minecraftforge.network.PacketDistributor;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class SOMLecternEvents {
-
    private static boolean isPage(ItemStack stack) {
       com.paleimitations.schoolsofmagic.common.items.capabilities.page.IPage p =
          stack.getCapability(CapabilityPage.PAGE_CAPABILITY).orElse(null);
@@ -41,8 +40,6 @@ public class SOMLecternEvents {
       return isPage(stack);
    }
 
-   // copyWithCount()/copy() can drop the live page capability data, so copy the
-   // BookPage across explicitly (and stamp it into NBT so it survives storage/sync).
    private static ItemStack copyWithPage(ItemStack src, int count) {
       ItemStack out = src.copy();
       out.setCount(count);
@@ -76,7 +73,7 @@ public class SOMLecternEvents {
       for (java.util.Map.Entry<BlockPos, BlockEntity> entry : chunk.getBlockEntities().entrySet()) {
          if (entry.getValue() instanceof LecternBlockEntity lectern) {
             ItemStack book = lectern.getBook();
-            // Always sync (empty for books) so the client cache never keeps a stale page.
+
             syncTo(event.getPlayer(), entry.getKey(), isAcceptable(book) ? copyWithPage(book, 1) : ItemStack.EMPTY);
          }
       }
@@ -102,7 +99,7 @@ public class SOMLecternEvents {
             ItemStack placed = copyWithPage(held, 1);
             LecternBlock.tryPlaceBook(player, level, pos, state, placed);
             if (!player.getAbilities().instabuild) held.shrink(1);
-            // Always sync (empty for books) so the client cache is accurate.
+
             syncNear(level, pos, isAcceptable(placed) ? placed : ItemStack.EMPTY);
          }
          return;
@@ -112,7 +109,6 @@ public class SOMLecternEvents {
       if (!(be instanceof LecternBlockEntity lectern)) return;
       ItemStack book = lectern.getBook();
 
-      // Sneak-right-click removes whatever is on the lectern.
       if (isPage(book) && player.isShiftKeyDown()) {
          event.setCanceled(true);
          event.setCancellationResult(InteractionResult.sidedSuccess(level.isClientSide));
@@ -128,7 +124,6 @@ public class SOMLecternEvents {
          return;
       }
 
-      // A grimoire page opens its viewer screen.
       if (isPage(book)) {
          event.setCanceled(true);
          event.setCancellationResult(InteractionResult.SUCCESS);

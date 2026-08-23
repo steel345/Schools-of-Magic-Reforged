@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:levitate"
+    },
+    {
+      "type": "text",
+      "text": "  Levitate lifts a creature or a dropped item off the ground. Hold the spell on it and it rises. Let go and it falls.\n\n  Once it is a block up you can walk it slowly from side to side. Move it too fast and the hold breaks.\n\n  Cast it with nothing in front of you and it lifts you instead. You can still walk while you float, but very slowly.\n\n  What you can lift goes by the health of the creature.\n\n  Charge 4 - up to 48 health\n  Charge 5 - up to 64 health\n  Charge 6 - up to 100 health\n  Charge 7 - up to 150 health\n  Charge 8 - up to 200 health\n  Charge 9 - anything at all\n\n  Bosses cannot be lifted by any charge."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_levitate.desc"
+    }
+  ]
+}

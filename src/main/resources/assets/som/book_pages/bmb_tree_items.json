@@ -1,0 +1,36 @@
+{
+  "elements": [
+    {
+      "type": "title",
+      "text": "page.bmb_tree_items.title"
+    },
+    {
+      "type": "spotlight",
+      "scale": 1.5,
+      "gap": 8,
+      "x_pos": 28,
+      "y_pos": 78,
+      "items": [
+        "som:tree_item",
+        "som:tree_item@1",
+        "som:tree_item@2"
+      ]
+    },
+    {
+      "type": "spotlight",
+      "scale": 1.5,
+      "gap": 8,
+      "x_pos": 28,
+      "y_pos": 110,
+      "items": [
+        "som:tree_item@3",
+        "som:tree_item@4",
+        "som:tree_item@5"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "  Every magic tree gives up something besides its wood. Break the leaves and now and then one of these falls out.\n\n  They are not common, and no two trees give the same thing. If you want a particular one, you must find that particular tree.\n\n  The /bAsh/z drops the /bAcolyte Wisp/z, a pale drifting light. It is the strangest of the six, and the one a magician should keep hold of.\n\n  The /bElder/z drops /bVermilion Berries/z, small and deep red.\n\n  The /bPine/z drops the /bBastion Cone/z, heavy and tightly closed.\n\n  The /bWillow/z drops the /bWarty Branch/z, a crooked bit of wood with a knuckled look to it.\n\n  The /bYew/z drops /bPlutonian Berries/z, dark and best not eaten.\n\n  The /bVerde/z drops the /bJubilee Bean/z, bright green and hard as a pebble.\n\n  Shears will not help you here. These come from the leaves themselves, so break them and watch what falls."
+    }
+  ]
+}

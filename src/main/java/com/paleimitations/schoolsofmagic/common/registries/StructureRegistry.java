@@ -9,7 +9,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class StructureRegistry {
-
    public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
       DeferredRegister.create(Registries.STRUCTURE_TYPE, SchoolsOfMagic.MODID);
 
@@ -66,6 +65,5 @@ public class StructureRegistry {
    }
 
    public static void initStructures() {
-
    }
 }

@@ -10,7 +10,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class FaeFloorFeature extends Feature<NoneFeatureConfiguration> {
-
    public FaeFloorFeature() {
       super(NoneFeatureConfiguration.CODEC);
    }

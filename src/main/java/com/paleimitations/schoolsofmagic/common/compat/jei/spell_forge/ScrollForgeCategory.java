@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class ScrollForgeCategory implements IRecipeCategory<ScrollForgeRecipe> {
-
    public static final RecipeType<ScrollForgeRecipe> TYPE =
       RecipeType.create(References.MODID, "scroll_forge", ScrollForgeRecipe.class);
 

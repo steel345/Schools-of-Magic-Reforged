@@ -6,7 +6,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class HumanFeatures implements INBTSerializable<CompoundTag>, IHumanFeatures {
-
    private String firstName;
    private String lastName;
    private int gender;

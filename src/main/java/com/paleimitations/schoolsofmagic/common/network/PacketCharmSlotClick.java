@@ -61,8 +61,7 @@ public class PacketCharmSlotClick {
          }
 
          CapabilityCharmData.sync(sp);
-         // Only a click that actually took something out or put something in counts
-         // as equipping; empty or rejected clicks stay silent.
+
          if (changed) {
             sp.level().playSound(null, sp.getX(), sp.getY(), sp.getZ(),
                net.minecraft.sounds.SoundEvents.ARMOR_EQUIP_LEATHER, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);

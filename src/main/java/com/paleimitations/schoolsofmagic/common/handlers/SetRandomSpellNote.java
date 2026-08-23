@@ -18,11 +18,8 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 public class SetRandomSpellNote extends LootItemConditionalFunction {
-
    public static LootItemFunctionType TYPE;
 
-   // The kinds of point a note can carry. Elements and schools also need an index,
-   // picking which of them the points belong to.
    private static final int KIND_ELEMENT = 0;
    private static final int KIND_SCHOOL = 1;
    private static final int KIND_POTION = 2;
@@ -54,8 +51,6 @@ public class SetRandomSpellNote extends LootItemConditionalFunction {
          RandomSource rand = context.getRandom();
          SpellNotes notes = data.getSpellNotes();
 
-         // A found note is a modest thing: a small pool of points spread over only
-         // one or two kinds, rather than a large one scattered across many.
          int budget = (1 + rand.nextInt(4)) * 5;
          int kinds = 1 + rand.nextInt(2);
          java.util.List<int[]> picks = new java.util.ArrayList<>();

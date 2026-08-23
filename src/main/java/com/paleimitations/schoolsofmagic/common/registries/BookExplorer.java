@@ -17,10 +17,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BookExplorer {
-
    private static final ResourceLocation COVER = new ResourceLocation("som", "textures/gui/books/images/adventurers_codex_image.png");
 
-   // A title + left-column body with a figure (entity/multiblock) on the right page.
    private static BookPage figurePage(String name, PageElement figure) {
       return new BookPage(name, Lists.newArrayList(new PageElement[]{
          new PageElementStandardText("page." + name + ".title", 72, 58, 99, 16, 0, true),
@@ -37,7 +35,7 @@ public class BookExplorer {
    private static PageElement acolytePortal() {
       java.util.Map<Character, BlockState> legend = com.google.common.collect.Maps.newHashMap();
       legend.put('W', BlockRegistry.wood_ash.get().defaultBlockState());
-      // A vertical 4x4 acolyte-wood frame with a 2x2 window: each layer is one row.
+
       String[][] layers = new String[][]{ {"WWWW"}, {"W  W"}, {"W  W"}, {"WWWW"} };
       return new PageElementMultiblock(182, 96, 0, 14.0F, 22.0F, true, true, legend, layers);
    }
@@ -56,7 +54,7 @@ public class BookExplorer {
       new BookPageStandardTitled("bce_extinct").addToList(BookPageRegistry.EXPLORER_CODEX);
       BookPage thunderbird = figurePage("bce_thunderbird",
          new PageElementEntity(EntityRegistry.THUNDER_BIRD.get(), 182, 118, 30, 0));
-      // Only built to assemble its elements; drop the unlocked copy it self-registered.
+
       BookPageRegistry.PAGES.remove(thunderbird);
       new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
             "bce_thunderbird", com.paleimitations.schoolsofmagic.common.books.PageUnlocks.THUNDERBIRD, thunderbird.elements)

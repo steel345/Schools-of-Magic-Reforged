@@ -107,7 +107,6 @@ public class GuiPodiumEdit extends AbstractContainerScreen<ContainerPodiumEdit> 
             gg.pose().popPose();
          }
       } else {
-
          gg.pose().pushPose();
          gg.pose().translate(6.886178F, 1.642276F, 0.0F);
          PodiumGuiHelper.renderGuiSubject(gg, mouseX, mouseY, this, podium.handler.getStackInSlot(0), 0.0F, podium, true);
@@ -135,7 +134,6 @@ public class GuiPodiumEdit extends AbstractContainerScreen<ContainerPodiumEdit> 
    static class InsertButton extends AbstractButton {
       private final TileEntityPodium podium;
       InsertButton(TileEntityPodium podium, int posX, int posY) {
-
          super(posX, posY, 19, 29, Component.empty());
          this.podium = podium;
       }
@@ -159,7 +157,6 @@ public class GuiPodiumEdit extends AbstractContainerScreen<ContainerPodiumEdit> 
       }
       @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
       @Override public void renderWidget(GuiGraphics gg, int mx, int my, float pt) {
-
          boolean hov = mx >= getX() && my >= getY() && mx < getX() + width && my < getY() + height;
          boolean usable = podium.handler.getStackInSlot(5).getItem() == ItemRegistry.grimoire_page.get();
          gg.blit(GuiPodiumRead.ICONS, getX(), getY(), usable ? (hov ? 19 : 0) : 38, 153, 19, 29);
@@ -171,21 +168,24 @@ public class GuiPodiumEdit extends AbstractContainerScreen<ContainerPodiumEdit> 
       private final TileEntityPodium podium;
       private final boolean removeNext;
       RemoveButton(TileEntityPodium podium, boolean removeNext, int posX, int posY) {
-
          super(posX, posY, 22, 22, Component.empty());
          this.podium = podium; this.removeNext = removeNext;
       }
+      private boolean usable() {
+         IBook book = podium.handler.getStackInSlot(0).getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
+         return book != null && !book.getBookPages().isEmpty() && book.getCurrentPage() != null
+            && (book.getPage() != book.getBookPages().size() - 1 || !removeNext);
+      }
       @Override public void onPress() {
+         if (!usable()) {
+            return;
+         }
          PacketHandler.INSTANCE.sendToServer(new PacketRemovePage(removeNext ? podium.getPage() + 1 : podium.getPage(), podium.getBlockPos()));
       }
       @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
       @Override public void renderWidget(GuiGraphics gg, int mx, int my, float pt) {
-
          boolean hov = mx >= getX() && my >= getY() && mx < getX() + width && my < getY() + height;
-         IBook book = podium.handler.getStackInSlot(0).getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
-         boolean isCurrent = !removeNext;
-         boolean usable = book != null && book.getCurrentPage() != null
-            && (book.getPage() != book.getBookPages().size() - 1 || isCurrent);
+         boolean usable = usable();
          gg.blit(GuiPodiumRead.ICONS, getX(), getY(), usable ? (hov ? 22 : 0) : 44, 222, 22, 22);
       }
    }

@@ -63,7 +63,7 @@ public class GuiStandardBook extends Screen {
       } else if (isTocPage()) {
          String q = search().getValue().trim();
          this.results = com.paleimitations.schoolsofmagic.client.KnowledgeSearch.searchBook(getBook(), search().getValue());
-         // A plain number also surfaces that page itself as a result.
+
          if (q.matches("\\d+")) {
             int n = Integer.parseInt(q);
             IBook b = getBook();
@@ -182,8 +182,6 @@ public class GuiStandardBook extends Screen {
       gg.pose().popPose();
    }
 
-   // Jump the book to the spread that holds a given page number (each half of a
-   // spread is one page).
    private boolean jumpToPageNumber(int number) {
       if (number < 1) return false;
       IBook b = getBook();
@@ -194,8 +192,6 @@ public class GuiStandardBook extends Screen {
       return true;
    }
 
-   // The Book of Knowledge searches nearby shelves; a table-of-contents page searches
-   // the current book's own pages. The search bar and results share this geometry.
    private boolean searchUiActive() { return isKnowledgeBook() || isTocPage(); }
    private int offX() { return (this.width - 256) / 2; }
    private float barX() { return isKnowledgeBook() ? offX() + 42 : offX() + 44; }
@@ -210,8 +206,6 @@ public class GuiStandardBook extends Screen {
 
    @Override
    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-      // While typing in the search bar, keep keystrokes inside the field (so letters
-      // like the inventory key do not close the book) and let Enter exit writing mode.
       if (this.typing) {
          if (keyCode == GLFW.GLFW_KEY_ENTER || keyCode == GLFW.GLFW_KEY_KP_ENTER) {
             this.typing = false;
@@ -227,12 +221,10 @@ public class GuiStandardBook extends Screen {
       }
       if (keyCode == GLFW.GLFW_KEY_ESCAPE
             || Minecraft.getInstance().options.keyInventory.matches(keyCode, scanCode)) {
-
          Minecraft.getInstance().setScreen(null);
          return true;
       }
-      // Hold space to flip forward quickly (shift+space flips back); key-repeat drives
-      // the rapid page turning while the key is held.
+
       if (keyCode == GLFW.GLFW_KEY_SPACE) {
          if (Screen.hasShiftDown()) onPrev(); else onNext();
          playTurn();
@@ -272,7 +264,6 @@ public class GuiStandardBook extends Screen {
    private void syncPage() {
       IBook book = getBook();
       if (book == null) return;
-      if (!(heldBook().getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemSpellbook)) return;
       if (book.getPage() != this.lastSyncedPage || book.getSubPage() != this.lastSyncedSub) {
          this.lastSyncedPage = book.getPage();
          this.lastSyncedSub = book.getSubPage();
@@ -292,8 +283,6 @@ public class GuiStandardBook extends Screen {
       com.mojang.blaze3d.systems.RenderSystem.defaultBlendFunc();
       com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
       if (isKnowledgeBook()) {
-         // Same layering as a normal book (menu bar + button paper on top) but with
-         // the Book of Knowledge texture in place of the cover/links/paper trio.
          gg.blit(MENU_OPTIONS, offsetLeft, offsetTop, 0, 0, 256, 256);
          gg.blit(BOOK_KNOWLADGE, offsetLeft, offsetTop, 0, 0, 256, 256);
       } else {
@@ -306,10 +295,12 @@ public class GuiStandardBook extends Screen {
          heldBook.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemSpellbook
             && com.paleimitations.schoolsofmagic.common.items.BookDecorations.hasSwirl(heldBook)
             && !com.paleimitations.schoolsofmagic.common.items.ItemSpellbook.isOwner(heldBook, this.player);
-      // On a table-of-contents page, live search results replace the entries.
+
       boolean tocSearching = isTocPage() && !this.results.isEmpty();
       if (!tocSearching && !book.getBookPages().isEmpty() && book.getCurrentPage() != null) {
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.begin(book);
          book.getCurrentPage().drawPage(gg, mouseX - offsetLeft, mouseY - offsetTop, offsetLeft, offsetTop, true, book.getSubPage());
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, offsetLeft, offsetTop, true);
       }
       com.paleimitations.schoolsofmagic.client.GrimoireScramble.SCRAMBLE = false;
       for (BookElementSticker sticker : book.getStickers()) {
@@ -317,7 +308,7 @@ public class GuiStandardBook extends Screen {
             sticker.drawElement(gg, mouseX - offsetLeft, mouseY - offsetTop, offsetLeft, offsetTop, true, book.getSubPage(), book.getPage());
          }
       }
-      // Each half of the spread is a page: left number, then right number.
+
       if (!isKnowledgeBook()) {
          int si = com.paleimitations.schoolsofmagic.client.guis.podium.PodiumGuiHelper.spreadIndex(book);
          if (si >= 0) {
@@ -353,7 +344,7 @@ public class GuiStandardBook extends Screen {
       super.removed();
       ItemStack held = heldBook();
       IBook book = getBook();
-      if (held.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemSpellbook && book != null) {
+      if (held.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemBookBase && book != null) {
          com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
             new com.paleimitations.schoolsofmagic.common.network.PacketSetBookPage(book.getPage(), book.getSubPage()));
       }
@@ -396,7 +387,6 @@ public class GuiStandardBook extends Screen {
                   net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
             com.paleimitations.schoolsofmagic.client.KnowledgeSearch.Hit h = this.results.get(hit);
             if (h.pageIndex >= 0) {
-               // Table-of-contents result: jump to the matching page.
                IBook b = getBook();
                if (b != null) { b.setPage(h.pageIndex); b.setSubPage(0); }
                this.results = new java.util.ArrayList<>();

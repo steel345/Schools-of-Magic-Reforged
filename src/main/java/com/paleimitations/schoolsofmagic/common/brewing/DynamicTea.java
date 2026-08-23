@@ -4,7 +4,6 @@ import com.paleimitations.schoolsofmagic.common.registries.ItemRegistry;
 import net.minecraft.world.item.ItemStack;
 
 public final class DynamicTea {
-
    public static final String TAG = "BrewResult";
 
    public static ItemStack create(BrewResult result) {

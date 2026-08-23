@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 
 public class ItemFairyEgg extends ForgeSpawnEggItem {
-
    private final FairyVariant variant;
 
    public ItemFairyEgg(FairyVariant variant, Item.Properties props) {

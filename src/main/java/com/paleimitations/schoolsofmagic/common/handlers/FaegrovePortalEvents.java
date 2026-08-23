@@ -17,14 +17,13 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class FaegrovePortalEvents {
-
    @SubscribeEvent
    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
       ItemStack stack = event.getItemStack();
       if (!isAcolyteWisp(stack)) return;
 
       Level level = event.getLevel();
-      // The grove cannot be reached from the nether or the end.
+
       if (level.dimension().equals(Level.NETHER) || level.dimension().equals(Level.END)) return;
 
       BlockPos clicked = event.getPos();

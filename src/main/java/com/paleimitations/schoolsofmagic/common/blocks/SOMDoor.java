@@ -6,13 +6,11 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 
 public class SOMDoor extends DoorBlock {
-
    public SOMDoor(BlockBehaviour.Properties props, BlockSetType blockSetType) {
       super(props, blockSetType);
    }
 
    public SOMDoor(BlockBehaviour.Properties props) {
-
       super(props, BlockSetType.OAK);
    }
 

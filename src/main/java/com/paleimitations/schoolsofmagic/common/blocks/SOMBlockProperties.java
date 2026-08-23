@@ -43,7 +43,6 @@ public final class SOMBlockProperties {
    }
 
    public static BlockBehaviour.Properties sandstoneTablet() {
-
       return BlockBehaviour.Properties.of()
             .mapColor(MapColor.STONE).sound(SoundType.METAL)
             .strength(0.5F, 2.0F)
@@ -111,7 +110,6 @@ public final class SOMBlockProperties {
    }
 
    public static BlockBehaviour.Properties woodStair() {
-
       return BlockBehaviour.Properties.of()
             .mapColor(MapColor.WOOD).sound(SoundType.WOOD)
             .strength(2.0F, 3.0F).ignitedByLava().requiresCorrectToolForDrops();
@@ -236,8 +234,6 @@ public final class SOMBlockProperties {
 
    public static BlockBehaviour.Properties glass() { return glassFragile(); }
 
-   // Matches vanilla's potted plants: breaks instantly, blocks nothing, sees light
-   // through.
    public static BlockBehaviour.Properties pottedPlant() {
       return BlockBehaviour.Properties.of()
             .instabreak().noOcclusion()
@@ -270,11 +266,11 @@ public final class SOMBlockProperties {
       return BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT).sound(SoundType.GRASS)
             .strength(0.0F).noCollission().instabreak().randomTicks()
+            .lightLevel(s -> s.getValue(BlockMagicPlant.TYPE) == EnumMagicType.CRYOMANCY ? 7 : 0)
             .pushReaction(PushReaction.DESTROY);
    }
 
    public static BlockBehaviour.Properties mistletoe() {
-
       return BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT).sound(SoundType.GRASS)
             .instabreak().noCollission().randomTicks()

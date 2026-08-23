@@ -25,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class BookRituals {
-
    private static final float TEXT_SCALE = 0.75F;
    private static final List<BookPage> BOOK = BookPageRegistry.RITUAL_BOOK;
 
@@ -42,9 +41,7 @@ public class BookRituals {
    private static void textPage(String name, String titleKey, RecipeRitualCrafting recipe) {
       List<PageElement> els = Lists.newArrayList();
       els.add(new PageElementStandardText(titleKey, 72, 56, 99, 16, 0, true));
-      // Standard two-column flow. With a recipe, subpage 0 uses only the left column
-      // (the recipe fills the right); overflow spills to full two-column subpages so
-      // nothing is cut off. Short pages leave the extra subpages blank (auto-skipped).
+
       if (recipe != null) {
          els.add(new PageElementParagraphs(name, TEXT_SCALE, 0, 2,
             new ParagraphBox(23, 74, 0, 99, 116),

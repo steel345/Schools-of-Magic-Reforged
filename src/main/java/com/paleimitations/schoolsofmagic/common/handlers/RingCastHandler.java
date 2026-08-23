@@ -26,7 +26,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class RingCastHandler {
-
    private static final java.util.WeakHashMap<Player, Long> CHANNEL = new java.util.WeakHashMap<>();
    private static final java.util.WeakHashMap<Player, Boolean> WAS_CHANNELING = new java.util.WeakHashMap<>();
    private static final java.util.WeakHashMap<Player, Long> BLOCK_PASS = new java.util.WeakHashMap<>();

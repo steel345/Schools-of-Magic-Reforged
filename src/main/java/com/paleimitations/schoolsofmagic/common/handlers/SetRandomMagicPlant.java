@@ -12,7 +12,6 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 public class SetRandomMagicPlant extends LootItemConditionalFunction {
-
    public static LootItemFunctionType TYPE;
 
    protected SetRandomMagicPlant(List<LootItemCondition> conditionsIn) {

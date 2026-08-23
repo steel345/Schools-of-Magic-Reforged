@@ -17,7 +17,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 
 public class CommandWeather {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(
          Commands.literal("magicweather")

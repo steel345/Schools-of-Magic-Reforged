@@ -38,7 +38,6 @@ public class ParticleFlame extends TextureSheetParticle {
 
    @Override
    public void render(VertexConsumer buffer, Camera renderInfo, float partialTicks) {
-
       if (this.sprite == null) return;
       float f = ((float)this.age + partialTicks) / (float)this.lifetime;
       this.quadSize = this.flameScale * (1.0F - f * f * 0.5F);

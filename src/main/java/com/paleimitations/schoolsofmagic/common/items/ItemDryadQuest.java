@@ -22,9 +22,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-// The page a dryad hands over when it offers a test. It carries which test was
-// offered, which dryad offered it and which core it pays out, and opens a page that
-// explains the task and holds the start/claim buttons.
 public class ItemDryadQuest extends Item {
    public static final String TAG_QUEST = "dryad_quest";
    public static final String TAG_DRYAD = "dryad";

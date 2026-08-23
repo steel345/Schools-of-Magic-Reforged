@@ -11,7 +11,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class LootFunctionRegistry {
-
    public static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTIONS =
       DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, SchoolsOfMagic.MODID);
 

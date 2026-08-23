@@ -10,11 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-// Client-side delayed actions (visual-only). Mirrors KnowledgeAnimations but runs
-// on the client tick, so custom client particle effects can be timed.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class ClientDelay {
-
    private static final List<Delayed> QUEUE = new ArrayList<>();
 
    private static class Delayed {

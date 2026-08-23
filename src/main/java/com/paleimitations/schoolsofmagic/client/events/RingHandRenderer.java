@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class RingHandRenderer {
-
    private static void chargePose(PoseStack pose, float side) {
       pose.translate(side * -0.16D, -0.08D, 0.0D);
       pose.mulPose(Axis.XP.rotationDegrees(-46.0F));

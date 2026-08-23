@@ -9,12 +9,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-// Server-side delayed actions. The flying-item visuals are rendered client-side
-// (see KnowledgeAnimationClient); this just runs the real book placement once the
-// flight finishes.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class KnowledgeAnimations {
-
    private static final List<Delayed> QUEUE = new ArrayList<>();
 
    private static class Delayed {

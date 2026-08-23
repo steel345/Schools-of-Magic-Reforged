@@ -19,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class EntityMagicBroom extends PathfinderMob {
-
    private java.util.UUID ownerUUID;
    private String ownerName = "";
    private int itemDamage = 0;
@@ -27,6 +26,9 @@ public class EntityMagicBroom extends PathfinderMob {
    public boolean broomSprint = false;
    private int idleTicks = 0;
    private double flightDistance = 0.0D;
+   private double wearDistance = 0.0D;
+   private double wearVertical = 0.0D;
+   private Vec3 wearPosition = null;
    private boolean wasRidden = false;
 
    public void setWild(boolean wild) {
@@ -114,6 +116,41 @@ public class EntityMagicBroom extends PathfinderMob {
    }
 
    @Override
+   public void tick() {
+      super.tick();
+      if (this.level().isClientSide) {
+         return;
+      }
+      if (this.isVehicle() && this.isInWater()) {
+         this.breakBroom();
+         this.discard();
+         return;
+      }
+      Vec3 here = this.position();
+      if (this.isVehicle() && this.getControllingPassenger() instanceof Player rider
+            && this.wearPosition != null && !rider.getAbilities().instabuild) {
+         double dx = here.x - this.wearPosition.x;
+         double dy = here.y - this.wearPosition.y;
+         double dz = here.z - this.wearPosition.z;
+         this.wearDistance += Math.sqrt(dx * dx + dz * dz);
+         this.wearVertical += Math.abs(dy);
+         while (this.wearDistance >= 10.0D) {
+            this.wearDistance -= 10.0D;
+            if (this.wearDown()) {
+               return;
+            }
+         }
+         while (this.wearVertical >= 30.0D) {
+            this.wearVertical -= 30.0D;
+            if (this.wearDown()) {
+               return;
+            }
+         }
+      }
+      this.wearPosition = here;
+   }
+
+   @Override
    public void travel(Vec3 input) {
       if (!this.isAlive()) {
          return;
@@ -156,7 +193,7 @@ public class EntityMagicBroom extends PathfinderMob {
             this.setDeltaMovement(dm.x * 0.8D, dy, dm.z * 0.8D);
          }
          this.moveAndDamp();
-         if (!this.level().isClientSide && !freeFlight && mana != null && moved > 0.0D) {
+         if (!freeFlight && mana != null && moved > 0.0D) {
             this.flightDistance += moved;
             while (this.flightDistance >= 10.0D) {
                this.flightDistance -= 10.0D;
@@ -243,6 +280,24 @@ public class EntityMagicBroom extends PathfinderMob {
       if (!creative && !this.wild) {
          this.breakBroom();
       }
+      this.discard();
+      return true;
+   }
+
+   private boolean wearDown() {
+      int max = ItemRegistry.magic_broom.get().getMaxDamage();
+      if (max <= 0) {
+         return false;
+      }
+      this.itemDamage++;
+      if (this.itemDamage < max) {
+         return false;
+      }
+      this.itemDamage = max;
+      this.level().playSound(null, this.blockPosition(),
+         net.minecraft.sounds.SoundEvents.ITEM_BREAK,
+         net.minecraft.sounds.SoundSource.NEUTRAL, 1.0F, 1.0F);
+      this.ejectPassengers();
       this.discard();
       return true;
    }

@@ -51,28 +51,27 @@ public class DryadQuests {
       TEST_FRIENDSHIP = new Quest("Test of Friendship", 24, 72000, 0, Lists.newArrayList("If you seek the wood of my tree you must prove yourself worthy of the magic it bestows.", "To prove yourself, I offer you a Test of Friendship.", "You must demonstrate your friendliness by taming an animal within three days. Speak to me again if you accept.", "Good luck on your quest to make a friend."));
    }
 
-   // A picture of what each test asks of you, shown on the written page.
    public static ItemStack getIcon(int questId) {
       return switch (questId) {
-         case 0  -> new ItemStack(Items.WITHER_ROSE);            // fortitude: survive withering
-         case 1  -> new ItemStack(Items.DIAMOND);                // generosity: give treasure
-         case 2  -> new ItemStack(Items.WHEAT);                  // kindness: breed animals
-         case 3  -> new ItemStack(Items.ZOMBIE_HEAD);            // courage: slay undead
-         case 10 -> new ItemStack(Items.TOTEM_OF_UNDYING);       // heroics: evoker
-         case 11 -> new ItemStack(Items.PRISMARINE_SHARD);       // heroics: guardian
-         case 12 -> new ItemStack(Items.BLAZE_ROD);              // heroics: blaze
-         case 13 -> new ItemStack(Items.GHAST_TEAR);             // heroics: ghast
-         case 14 -> new ItemStack(Items.WITHER_SKELETON_SKULL);  // heroics: wither skeleton
-         case 15 -> new ItemStack(Items.SHULKER_SHELL);          // heroics: shulker
-         case 16 -> new ItemStack(Items.IRON_SWORD);             // strength: the champion
-         case 17 -> new ItemStack(Items.POTATO);                 // wisdom riddles
+         case 0  -> new ItemStack(Items.WITHER_ROSE);
+         case 1  -> new ItemStack(Items.DIAMOND);
+         case 2  -> new ItemStack(Items.WHEAT);
+         case 3  -> new ItemStack(Items.ZOMBIE_HEAD);
+         case 10 -> new ItemStack(Items.TOTEM_OF_UNDYING);
+         case 11 -> new ItemStack(Items.PRISMARINE_SHARD);
+         case 12 -> new ItemStack(Items.BLAZE_ROD);
+         case 13 -> new ItemStack(Items.GHAST_TEAR);
+         case 14 -> new ItemStack(Items.WITHER_SKELETON_SKULL);
+         case 15 -> new ItemStack(Items.SHULKER_SHELL);
+         case 16 -> new ItemStack(Items.IRON_SWORD);
+         case 17 -> new ItemStack(Items.POTATO);
          case 18 -> new ItemStack(Items.CLOCK);
          case 19 -> new ItemStack(Items.SPIDER_EYE);
          case 20 -> new ItemStack(Items.PHANTOM_MEMBRANE);
          case 21 -> new ItemStack(Items.LILY_PAD);
          case 22 -> new ItemStack(Items.EGG);
-         case 23 -> new ItemStack(Items.GOLDEN_APPLE);           // compassion: cure a villager
-         case 24 -> new ItemStack(Items.BONE);                   // friendship: tame an animal
+         case 23 -> new ItemStack(Items.GOLDEN_APPLE);
+         case 24 -> new ItemStack(Items.BONE);
          default -> ItemStack.EMPTY;
       };
    }

@@ -14,8 +14,7 @@ public class PageElementChapterEntry extends PageElementPageButton {
    public final String[] text;
    public final String desc;
    public BookPage targetPage;
-   // For a table-of-contents row: the pages of the chapter it points at, so the
-   // chapter can be flagged when anything inside it is newly unlocked.
+
    public java.util.List<BookPage> chapterPages;
 
    public PageElementChapterEntry(String[] text, String desc, int pageNumber, int x, int y, int target, int width, int height) {
@@ -29,21 +28,19 @@ public class PageElementChapterEntry extends PageElementPageButton {
       return this.targetPage instanceof BookPageLocked lp && lp.isContentHidden();
    }
 
-   // A page row is new when its own page is; a chapter row is new when any page in
-   // that chapter is.
    @OnlyIn(Dist.CLIENT)
    private boolean isNew() {
-      if (this.targetPage instanceof BookPageLocked lp) return lp.isNew();
+      if (this.targetPage instanceof BookPageLocked lp && lp.isNew()) return true;
+      if (this.targetPage != null && this.targetPage.isChanged()) return true;
       if (this.chapterPages != null) {
          for (BookPage p : this.chapterPages) {
             if (p instanceof BookPageLocked lp && lp.isNew()) return true;
+            if (p.isChanged()) return true;
          }
       }
       return false;
    }
 
-   // A red "!" that bobs at the end of the row while the entry is unread, over a
-   // darker red drop shadow. Contents rows sit further in from the edge.
    @OnlyIn(Dist.CLIENT)
    private void drawNewMarker(GuiGraphics gg, Font font, int drawX, int drawY) {
       float bob = (float) Math.sin(System.currentTimeMillis() / 200.0) * 1.5F;
@@ -67,8 +64,6 @@ public class PageElementChapterEntry extends PageElementPageButton {
       String end = "... " + this.pageNumber;
       int endWidth = font.width(end);
       if (locked()) {
-         // The page is sealed: show the locked icon (10x14 art scaled to the entry
-         // height) in place of its name, keeping the trailing page number.
          int drawX = this.x + xIn;
          int drawY = this.y + yIn;
          int ih = this.height;

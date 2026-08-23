@@ -13,7 +13,6 @@ import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class NbtSmeltingRecipe extends SmeltingRecipe {
-
    public NbtSmeltingRecipe(ResourceLocation id, String group, CookingBookCategory category,
                             Ingredient ingredient, ItemStack result, float experience, int cookingTime) {
       super(id, group, category, ingredient, result, experience, cookingTime);

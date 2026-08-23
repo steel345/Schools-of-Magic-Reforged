@@ -30,6 +30,5 @@ public class BiomeRegistry {
     public static final ResourceKey<Biome> RIVER_LANDS = key("river_lands");
 
     public static void registerBiomes() {
-
     }
 }

@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.RegistryObject;
 
 public class RitualWeather extends Ritual {
-
    private static final int STORM = 0, RAIN = 1, CLEAR = 2, NIGHT = 3, DAY = 4;
    private static final int APPLY_AT = 6;
    private static final int FINISH = 16;

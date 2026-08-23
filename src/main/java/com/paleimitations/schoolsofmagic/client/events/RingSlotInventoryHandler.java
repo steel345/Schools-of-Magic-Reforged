@@ -20,7 +20,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class RingSlotInventoryHandler {
-
    private static final ResourceLocation GHOST =
       new ResourceLocation("som", "textures/gui/ring/ring_ghost_texture.png");
 

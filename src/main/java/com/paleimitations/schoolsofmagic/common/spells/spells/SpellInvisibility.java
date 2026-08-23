@@ -27,7 +27,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 public class SpellInvisibility extends Spell {
-
    private static ItemStack crushedNightshade() {
       ItemStack s = new ItemStack(ItemRegistry.crushed_plant.get());
 
@@ -80,11 +79,6 @@ public class SpellInvisibility extends Spell {
    @Override
    public int getUsesPerCharge(int chargeLevel) {
       return 1;
-   }
-
-   @Override
-   public boolean isChargeUp() {
-      return true;
    }
 
    private int invisibilityDuration(net.minecraft.world.entity.player.Player caster) {

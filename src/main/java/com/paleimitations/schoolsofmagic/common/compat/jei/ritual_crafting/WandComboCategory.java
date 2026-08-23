@@ -20,7 +20,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class WandComboCategory implements IRecipeCategory<RecipeRitualCrafting> {
-
    public static final RecipeType<RecipeRitualCrafting> TYPE =
       RecipeType.create(References.MODID, "wand_combinations", RecipeRitualCrafting.class);
    private static final ResourceLocation TEXTURE =
@@ -94,6 +93,5 @@ public class WandComboCategory implements IRecipeCategory<RecipeRitualCrafting> 
 
    @Override
    public void draw(RecipeRitualCrafting recipe, IRecipeSlotsView slots, GuiGraphics gg, double mouseX, double mouseY) {
-
    }
 }

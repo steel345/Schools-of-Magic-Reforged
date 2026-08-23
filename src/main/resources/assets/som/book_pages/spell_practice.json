@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:practice"
+    },
+    {
+      "type": "text",
+      "text": "  Practice is not cast at anything. You study a random aspect of magic increasing your knowledge.\n\n  Hold the spell and concentrate. When it finishes it pays you back in learning, far more than a spell of its size has any right to give.\n\n  No two sessions sound or look alike. The magic answers however it pleases.\n\n  It is the cheapest lesson a Magician will ever get, and the slowest."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_practice.desc"
+    }
+  ]
+}

@@ -15,8 +15,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerBrazier extends AbstractContainerMenu {
-
-   // Input slots ordered bottom-to-top so items fill from the lowest slot upward. Shifted +1,+1.
    private static final int[][] BRAZIER_SLOTS = {
       {81, 71}, {60, 60}, {39, 53}, {100, 41}, {37, 32},
       {79, 31}, {121, 31}, {58, 25}, {115, 10}

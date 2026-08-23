@@ -28,7 +28,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BlockPlantBush extends SOMPlant implements BonemealableBlock {
-
    public static final EnumProperty<EnumBushGrowth> GROWN = EnumProperty.create("grown", EnumBushGrowth.class);
 
    public BlockPlantBush(BlockBehaviour.Properties props) {
@@ -65,7 +64,6 @@ public class BlockPlantBush extends SOMPlant implements BonemealableBlock {
 
       if (held.getItem() == Items.SHEARS && state.getValue(GROWN) == EnumBushGrowth.GROWN
             && (this == BlockRegistry.plant_brittle.get() || this == BlockRegistry.plant_creosote.get())) {
-
          int count = 1 + level.random.nextInt(2);
          net.minecraft.world.item.Item leaf = (this == BlockRegistry.plant_brittle.get())
             ? ItemRegistry.item_brittle_leaves.get()

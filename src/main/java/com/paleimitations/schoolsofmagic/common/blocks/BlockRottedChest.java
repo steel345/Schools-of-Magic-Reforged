@@ -24,7 +24,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockRottedChest extends SOMBlockContainer {
-
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
    protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
@@ -60,11 +59,9 @@ public class BlockRottedChest extends SOMBlockContainer {
    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, net.minecraft.world.entity.player.Player player) {
       if (!level.isClientSide && level instanceof net.minecraft.server.level.ServerLevel sl
             && level.getBlockEntity(pos) instanceof TileEntityRottedChest chest) {
-
          boolean silk = net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(
                net.minecraft.world.item.enchantment.Enchantments.SILK_TOUCH, player.getMainHandItem()) > 0;
          if (!silk) {
-
             try {
                chest.unpackLootTable(player);
                java.util.List<ItemStack> drops = new java.util.ArrayList<>();
@@ -114,7 +111,6 @@ public class BlockRottedChest extends SOMBlockContainer {
       if (stack.hasCustomHoverName()) {
          BlockEntity be = level.getBlockEntity(pos);
          if (be instanceof TileEntityRottedChest chest) {
-
             chest.setCustomName(stack.getHoverName().getString());
          }
       }

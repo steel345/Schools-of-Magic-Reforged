@@ -67,12 +67,19 @@ public class PageElementWriteableParagraphs extends PageElementParagraphs {
    @Override
    @OnlyIn(Dist.CLIENT)
    public void drawElement(GuiGraphics gg, float mouseX, float mouseY, int xIn, int yIn, boolean isGUI, int subpage) {
+      String body = BookTextOverride.bodyOr(this.text);
+
+      if (com.paleimitations.schoolsofmagic.client.BookRichText.isCapturing()) {
+         com.paleimitations.schoolsofmagic.client.BookRichText.render(gg,
+            Lists.newArrayList(body), boxRefs(), this.scale, xIn, yIn, subpage, this.fontColor);
+         return;
+      }
       Font font = Minecraft.getInstance().font;
       gg.pose().pushPose();
       gg.pose().scale(this.scale, this.scale, this.scale);
       int boxId = 0;
       int linenumber = 0;
-      String s = this.text;
+      String s = body;
       boolean flag = true;
       while (flag) {
          String overflow = null;

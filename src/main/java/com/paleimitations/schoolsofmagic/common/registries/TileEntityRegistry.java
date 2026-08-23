@@ -28,7 +28,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TileEntityRegistry {
-
    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES =
       DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SchoolsOfMagic.MODID);
 
@@ -165,6 +164,10 @@ public class TileEntityRegistry {
             BlockRegistry.evermore_hanging_sign.get(),  BlockRegistry.evermore_wall_hanging_sign.get(),
             BlockRegistry.jubilee_hanging_sign.get(),   BlockRegistry.jubilee_wall_hanging_sign.get()
          ).build(null));
+
+   public static final RegistryObject<BlockEntityType<com.paleimitations.schoolsofmagic.common.tileentity.TileEntityLookingGlass>> LOOKING_GLASS =
+      TILE_ENTITIES.register("looking_glass", () ->
+         BlockEntityType.Builder.of(com.paleimitations.schoolsofmagic.common.tileentity.TileEntityLookingGlass::new, BlockRegistry.looking_glass.get()).build(null));
 
    public static void register(IEventBus bus) {
       TILE_ENTITIES.register(bus);

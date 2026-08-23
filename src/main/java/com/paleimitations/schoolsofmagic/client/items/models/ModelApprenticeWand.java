@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 public class ModelApprenticeWand {
-
    public static final ResourceLocation TEXTURE =
       new ResourceLocation("som", "textures/entity/wand/apprentice.png");
 

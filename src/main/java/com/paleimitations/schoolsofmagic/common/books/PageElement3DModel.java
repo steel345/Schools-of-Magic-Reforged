@@ -12,9 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-// Patchouli-style 3D showcase: renders a block or item model on the page, slowly
-// spinning (or held at a fixed angle). x,y are the CENTRE of the model. Works in
-// both the flat book GUI and the podium's 3D book (same item render path).
 public class PageElement3DModel extends PageElement {
    public final ItemStack stack;
    public final float size;
@@ -49,16 +46,11 @@ public class PageElement3DModel extends PageElement {
       com.mojang.blaze3d.systems.RenderSystem.depthMask(true);
       com.mojang.blaze3d.platform.Lighting.setupFor3DItems();
 
-      // In the flat book GUI, z is screen-pixel depth (150). On the podium's 3D book
-      // z is a real world offset: the book model writes depth at the page surface, so
-      // the figure must sit slightly IN FRONT of it or the book clips it and it looks
-      // flat. podiumLift controls how far in front (tune per page via "lift").
       double z = isGUI ? 150.0D : this.podiumLift;
       PoseStack pose = gg.pose();
       pose.pushPose();
       pose.translate(this.x + xIn, this.y + yIn, z);
-      // Flat GUI: screen-space, Y flipped. Podium: face the viewer, keep Y upright,
-      // and enlarge (facing the camera removes the flat-lying stretch, so it needs it).
+
       float s = this.size;
       float sy = -this.size;
       if (!isGUI) { faceViewer(pose, mc); s = this.size * PODIUM_MAG; sy = this.size * PODIUM_MAG; }
@@ -77,9 +69,6 @@ public class PageElement3DModel extends PageElement {
       com.mojang.blaze3d.systems.RenderSystem.disableDepthTest();
    }
 
-   // On the podium's in-world 3D book the page is tilted, so a model laid in the
-   // page plane looks edge-on/flat. This cancels the page's orientation and turns
-   // the figure to face the viewer, so it reads as a 3D model like the flat book.
    static final float PODIUM_MAG = 2.5F;
 
    static void faceViewer(PoseStack pose, Minecraft mc) {

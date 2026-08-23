@@ -32,7 +32,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockTeapot extends SOMBlock implements EntityBlock {
-
    protected static final VoxelShape SHAPE_N = Shapes.or(
       Block.box(5.0D,  0.0D,  5.0D, 11.0D,  2.0D, 11.0D),
       Block.box(4.0D,  2.0D,  4.0D, 12.0D, 15.0D, 12.0D),
@@ -78,7 +77,6 @@ public class BlockTeapot extends SOMBlock implements EntityBlock {
 
    @Override
    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
-
       if (!com.paleimitations.schoolsofmagic.common.tileentity.TileEntityTeapot.isHeatSourceBelow(world, pos)) {
          return;
       }

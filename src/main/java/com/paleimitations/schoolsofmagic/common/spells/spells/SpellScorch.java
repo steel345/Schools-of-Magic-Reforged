@@ -30,7 +30,6 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SpellScorch extends Spell {
-
    public SpellScorch() {
       super(
          new ResourceLocation("som", "scorch"),

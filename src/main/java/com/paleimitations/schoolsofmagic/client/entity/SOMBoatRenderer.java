@@ -13,7 +13,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SOMBoatRenderer extends BoatRenderer {
-
    public SOMBoatRenderer(EntityRendererProvider.Context ctx, boolean chest) {
       super(ctx, chest);
    }

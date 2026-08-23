@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class BlockZigMural extends SOMBlock {
-
    public static final IntegerProperty X = IntegerProperty.create("x", 1, 11);
    public static final IntegerProperty Y = IntegerProperty.create("y", 1, 6);
 

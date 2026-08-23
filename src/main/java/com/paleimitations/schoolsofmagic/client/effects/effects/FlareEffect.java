@@ -14,7 +14,6 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.level.Level;
 
 public class FlareEffect extends ImitationSpiteEffect {
-
    public FlareEffect(Level world, double x, double y, double z) {
       super(ImitationSpriteLibrary.star, world, x, y, z, 0.0, 0.0, 0.0, 1.0f, 0, 0, Color.WHITE);
    }

@@ -9,7 +9,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMTreeFeatureBigSpruce extends SOMBigTreeFeature {
-
    private static final RegistryObject<Block> LOG    = RegistryObject.create(new ResourceLocation("spruce_log"),    ForgeRegistries.BLOCKS);
    private static final RegistryObject<Block> LEAVES = RegistryObject.create(new ResourceLocation("spruce_leaves"), ForgeRegistries.BLOCKS);
 

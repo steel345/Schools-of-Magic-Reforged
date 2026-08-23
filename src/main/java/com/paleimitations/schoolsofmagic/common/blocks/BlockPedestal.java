@@ -17,7 +17,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockPedestal extends SOMBlock implements net.minecraft.world.level.block.EntityBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
    private static final VoxelShape SHAPE = Shapes.or(

@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ClientSmokeScry {
-
    private static final Map<BlockPos, Integer> ACTIVE = new HashMap<>();
 
    private static Field PARTICLES;

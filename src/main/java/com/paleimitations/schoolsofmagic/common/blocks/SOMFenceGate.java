@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class SOMFenceGate extends FenceGateBlock {
-
    public SOMFenceGate(BlockBehaviour.Properties props) {
       super(props, WoodType.OAK);
    }

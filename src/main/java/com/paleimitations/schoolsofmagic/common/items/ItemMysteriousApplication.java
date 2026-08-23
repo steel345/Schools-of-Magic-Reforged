@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class ItemMysteriousApplication extends Item {
-
    public static final String DELIVER_DAY_KEY = "SomMysteriousDeliverDay";
 
    public ItemMysteriousApplication(Properties properties) {

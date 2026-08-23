@@ -39,6 +39,12 @@
           "name": "som:horn_unicorn"
         },
         {
+          "type": "minecraft:item",
+          "weight": 1,
+          "quality": 2,
+          "name": "som:magic_mirror"
+        },
+        {
           "type": "minecraft:empty",
           "weight": 40
         }

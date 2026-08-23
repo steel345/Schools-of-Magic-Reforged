@@ -21,7 +21,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class MetalGearEvents {
-
    @SubscribeEvent
    public static void onLivingHurt(LivingHurtEvent event) {
       DamageSource src = event.getSource();

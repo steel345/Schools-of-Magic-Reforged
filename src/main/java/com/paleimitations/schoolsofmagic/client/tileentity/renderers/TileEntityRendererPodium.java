@@ -29,7 +29,6 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
    public TileEntityRendererPodium(BlockEntityRendererProvider.Context ctx) {
    }
 
-   // While a search result is on loan the book floats, closed, above the podium.
    private void renderFloatingBook(TileEntityPodium te, ItemStack stack, float partial,
                                    PoseStack ps, MultiBufferSource buf, int light, int overlay) {
       ps.pushPose();
@@ -51,7 +50,7 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
 
       if (!state.hasProperty(BlockPodium.FACING)) return;
       Direction facing = state.getValue(BlockPodium.FACING);
-      // While floated, the Book of Knowledge hovers above; the found book stays below.
+
       if (te.floated && !te.floatedBook.isEmpty()) {
          renderFloatingBook(te, te.floatedBook, partialTicks, poseStack, buffer, packedLight, packedOverlay);
       }
@@ -91,7 +90,7 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
             break;
          default:
             angle = -45.0F;
-            yD = (float)Math.sin((float)te.getLevel().getDayTime() / 20.0F) * 0.05F + 0.05F;
+            yD = (float)Math.sin(((float)te.getLevel().getGameTime() + partialTicks) * 0.05F) * 0.05F + 0.05F;
       }
       poseStack.pushPose();
       poseStack.translate(xD, 1.55F + yD, zD);
@@ -116,6 +115,7 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
 
          mc.renderBuffers().bufferSource().endBatch();
          if (buffer instanceof MultiBufferSource.BufferSource bs && bs != mc.renderBuffers().bufferSource()) bs.endBatch();
+
          com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
          com.mojang.blaze3d.systems.RenderSystem.depthFunc(org.lwjgl.opengl.GL11.GL_LEQUAL);
          com.mojang.blaze3d.systems.RenderSystem.depthMask(false);
@@ -132,7 +132,15 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
             if (hasBookCap) {
                IBook book = stack.getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
                if (book != null && book.getCurrentPage() != null) {
-                  book.getCurrentPage().drawPage(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage());
+                  com.paleimitations.schoolsofmagic.common.books.BookTextOverride.beginPage(
+                     book.getTextOverrides().get(book.getPage()));
+                  com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.begin(book);
+                  try {
+                     book.getCurrentPage().drawPage(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage());
+                  } finally {
+                     com.paleimitations.schoolsofmagic.common.books.BookTextOverride.endPage();
+                  }
+                  com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, 0, 0, false);
                   for (com.paleimitations.schoolsofmagic.common.books.BookElementSticker sticker : book.getStickers()) {
                      if (sticker != null)
                         sticker.drawElement(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage(), book.getPage());
@@ -147,7 +155,6 @@ public class TileEntityRendererPodium implements BlockEntityRenderer<TileEntityP
                drawVanillaPage(gg, mc, stack, te.page);
             }
          } catch (Exception ignored) {
-
          }
          gg.pose().popPose();
          gg.flush();

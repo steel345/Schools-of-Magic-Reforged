@@ -30,7 +30,6 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockCatalystBasin extends SOMBlockContainer {
-
    private static final VoxelShape SHAPE = Shapes.or(
       Block.box(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D),
       Block.box(0.0D, 9.0D, 0.0D, 16.0D, 10.0D, 16.0D),
@@ -112,7 +111,6 @@ public class BlockCatalystBasin extends SOMBlockContainer {
       }
 
       if (!world.isClientSide && player instanceof ServerPlayer sp) {
-
          NetworkHooks.openScreen(sp, basin, pos);
       }
       return InteractionResult.SUCCESS;
@@ -129,7 +127,6 @@ public class BlockCatalystBasin extends SOMBlockContainer {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return new TileEntityCatalystBasin(pos, state);
    }
 

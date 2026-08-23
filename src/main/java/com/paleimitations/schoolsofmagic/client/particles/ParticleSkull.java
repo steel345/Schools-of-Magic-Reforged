@@ -6,11 +6,8 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 
 public class ParticleSkull extends TextureSheetParticle implements IAnimatedParticle {
-
    private static final int[] FRAMES = {3, 4, 3, 2, 1, 0};
-   // The sprites are drawn at different sizes but every quad is the same, so the
-   // later, smaller skulls would be stretched up to fill it. These shrink each step
-   // instead, so the puff only ever dwindles.
+
    private static final float[] FRAME_SCALE = {1.0F, 0.94F, 0.84F, 0.70F, 0.55F, 0.40F};
    private static final int TICKS_PER_FRAME = 4;
    private static final int SPRITE_COUNT = 5;

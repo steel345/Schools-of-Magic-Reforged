@@ -12,9 +12,6 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class KnowledgeSearchClient {
-
-   // Called on the client when the server returns the nearby books. Hands them to
-   // whichever knowledge-book screen is open so it can search against them.
    public static void onCandidates(List<KnowledgeGather.Found> found) {
       Screen s = Minecraft.getInstance().screen;
       if (s instanceof GuiPodiumRead p) {

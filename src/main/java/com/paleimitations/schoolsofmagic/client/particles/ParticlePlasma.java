@@ -10,7 +10,6 @@ import net.minecraft.client.particle.TextureSheetParticle;
 import org.jetbrains.annotations.Nullable;
 
 public class ParticlePlasma extends TextureSheetParticle {
-
    protected ParticlePlasma(ClientLevel level, double x, double y, double z, double vx, double vy, double vz,
                             float r, float g, float b, float scale) {
       super(level, x, y, z);

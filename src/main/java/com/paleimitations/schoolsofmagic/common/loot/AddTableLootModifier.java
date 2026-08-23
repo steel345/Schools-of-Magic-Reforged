@@ -15,7 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 public class AddTableLootModifier extends LootModifier {
-
     public static final Supplier<Codec<AddTableLootModifier>> CODEC = () -> RecordCodecBuilder.create(inst ->
         codecStart(inst).and(
             ResourceLocation.CODEC.fieldOf("additional_loot_table").forGetter(m -> m.additionalLootTable)

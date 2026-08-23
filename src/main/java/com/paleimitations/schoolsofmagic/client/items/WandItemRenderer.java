@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
-
    public WandItemRenderer() {
       super(Minecraft.getInstance().getBlockEntityRenderDispatcher(),
             Minecraft.getInstance().getEntityModels());
@@ -24,11 +23,11 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
    @Override
    public void renderByItem(ItemStack stack, ItemDisplayContext ctx, PoseStack pose,
                             MultiBufferSource buffer, int light, int overlay) {
-
-      if (ctx == ItemDisplayContext.FIRST_PERSON_LEFT_HAND
+      boolean flat = com.paleimitations.schoolsofmagic.client.ClientWandDisplay.flatModel();
+      if (!flat && (ctx == ItemDisplayContext.FIRST_PERSON_LEFT_HAND
             || ctx == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND
             || ctx == ItemDisplayContext.THIRD_PERSON_LEFT_HAND
-            || ctx == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
+            || ctx == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)) {
          return;
       }
 
@@ -43,7 +42,7 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
       }
       boolean isApprentice = stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemApprenticeWand;
 
-      if (ctx == ItemDisplayContext.GROUND || ctx == ItemDisplayContext.FIXED) {
+      if (!flat && (ctx == ItemDisplayContext.GROUND || ctx == ItemDisplayContext.FIXED)) {
          pose.pushPose();
          pose.translate(0.5D, 0.30D, 0.5D);
 
@@ -63,9 +62,10 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
       ResourceLocation tex;
       if (isApprentice) {
          int rank = net.minecraft.util.Mth.clamp(stack.getDamageValue(), 0, 3);
-         tex = new ResourceLocation("som", "textures/items/basic_wand_" + rank + ".png");
+         tex = com.paleimitations.schoolsofmagic.client.ClientWandDisplay.smallIcons()
+            ? new ResourceLocation("som", "textures/items/apprentice_wand_" + rank + ".png")
+            : new ResourceLocation("som", "textures/items/basic_wand_" + rank + ".png");
       } else {
-
          tex = WandIconCache.getComposited(data);
       }
 
@@ -73,13 +73,84 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
 
       pose.translate(0.5D, 0.5D, 0.5D);
 
-      drawLayeredQuad(pose, buffer, tex, LightTexture.FULL_BRIGHT, overlay);
+      if (flat) {
+         drawThickQuad(pose, buffer, tex, LightTexture.FULL_BRIGHT, overlay);
+      } else {
+         drawLayeredQuad(pose, buffer, tex, LightTexture.FULL_BRIGHT, overlay);
+      }
       pose.popPose();
+   }
+
+   private static void drawThickQuad(PoseStack pose, MultiBufferSource buffer, ResourceLocation tex,
+                                     int light, int overlay) {
+      VertexConsumer vc = buffer.getBuffer(RenderType.entityCutoutNoCull(tex));
+      var mat = pose.last().pose();
+      var nrm = pose.last().normal();
+      float half = 0.5F / 16.0F;
+
+      quad(vc, mat, nrm, -0.5F, -0.5F, half, 0F, 1F,  0.5F, -0.5F, half, 1F, 1F,
+                          0.5F,  0.5F, half, 1F, 0F, -0.5F,  0.5F, half, 0F, 0F,
+                       0, 1, 0, light, overlay);
+      quad(vc, mat, nrm,  0.5F, -0.5F, -half, 1F, 1F, -0.5F, -0.5F, -half, 0F, 1F,
+                         -0.5F,  0.5F, -half, 0F, 0F,  0.5F,  0.5F, -half, 1F, 0F,
+                       0, 1, 0, light, overlay);
+      drawEdges(vc, mat, nrm, tex, half, light, overlay);
+   }
+
+   private static void drawEdges(VertexConsumer vc, org.joml.Matrix4f mat, org.joml.Matrix3f nrm,
+                                 ResourceLocation tex, float half, int light, int overlay) {
+      com.mojang.blaze3d.platform.NativeImage img = WandIconCache.getImage(tex);
+      if (img == null) {
+         return;
+      }
+      int w = img.getWidth();
+      int h = img.getHeight();
+      for (int py = 0; py < h; py++) {
+         for (int px = 0; px < w; px++) {
+            if (!opaque(img, px, py)) {
+               continue;
+            }
+            float x0 = -0.5F + (float) px / w;
+            float x1 = -0.5F + (float) (px + 1) / w;
+            float y1 = 0.5F - (float) py / h;
+            float y0 = 0.5F - (float) (py + 1) / h;
+            float u0 = (float) px / w;
+            float u1 = (float) (px + 1) / w;
+            float v0 = (float) py / h;
+            float v1 = (float) (py + 1) / h;
+            if (!opaque(img, px - 1, py)) {
+               quad(vc, mat, nrm, x0, y0, -half, u0, v1, x0, y0, half, u1, v1,
+                                  x0, y1, half, u1, v0, x0, y1, -half, u0, v0,
+                    -1, 0, 0, light, overlay);
+            }
+            if (!opaque(img, px + 1, py)) {
+               quad(vc, mat, nrm, x1, y0, half, u0, v1, x1, y0, -half, u1, v1,
+                                  x1, y1, -half, u1, v0, x1, y1, half, u0, v0,
+                    1, 0, 0, light, overlay);
+            }
+            if (!opaque(img, px, py - 1)) {
+               quad(vc, mat, nrm, x0, y1, half, u0, v0, x1, y1, half, u1, v0,
+                                  x1, y1, -half, u1, v1, x0, y1, -half, u0, v1,
+                    0, 1, 0, light, overlay);
+            }
+            if (!opaque(img, px, py + 1)) {
+               quad(vc, mat, nrm, x0, y0, -half, u0, v1, x1, y0, -half, u1, v1,
+                                  x1, y0, half, u1, v0, x0, y0, half, u0, v0,
+                    0, -1, 0, light, overlay);
+            }
+         }
+      }
+   }
+
+   private static boolean opaque(com.mojang.blaze3d.platform.NativeImage img, int x, int y) {
+      if (x < 0 || y < 0 || x >= img.getWidth() || y >= img.getHeight()) {
+         return false;
+      }
+      return (img.getPixelRGBA(x, y) >>> 24) > 16;
    }
 
    private static void drawLayeredQuad(PoseStack pose, MultiBufferSource buffer, ResourceLocation tex,
                                        int light, int overlay) {
-
       VertexConsumer vc = buffer.getBuffer(RenderType.entityCutoutNoCull(tex));
       var mat = pose.last().pose();
       var nrm = pose.last().normal();

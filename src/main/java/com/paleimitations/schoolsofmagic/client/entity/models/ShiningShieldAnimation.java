@@ -1,6 +1,5 @@
 package com.paleimitations.schoolsofmagic.client.entity.models;
 
-
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;

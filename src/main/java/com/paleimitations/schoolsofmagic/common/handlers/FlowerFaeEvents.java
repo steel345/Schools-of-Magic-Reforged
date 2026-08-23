@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FlowerFaeEvents {
-
    @SubscribeEvent
    public static void onEntityJoin(EntityJoinLevelEvent event) {
       if (event.getLevel().isClientSide) return;

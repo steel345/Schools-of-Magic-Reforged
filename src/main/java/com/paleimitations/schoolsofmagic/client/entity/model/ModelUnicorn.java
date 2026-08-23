@@ -20,7 +20,6 @@ import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 
 public class ModelUnicorn<T extends AbstractHorse> extends EntityModel<T> {
-
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "unicorn"), "main");
 
@@ -390,7 +389,6 @@ public class ModelUnicorn<T extends AbstractHorse> extends EntityModel<T> {
    @Override
    public void renderToBuffer(PoseStack pose, VertexConsumer buf, int light, int overlay,
                               float r, float g, float b, float a) {
-
       this.body.render(pose, buf, light, overlay, r, g, b, a);
       this.tailBase.render(pose, buf, light, overlay, r, g, b, a);
       this.tailMiddle.render(pose, buf, light, overlay, r, g, b, a);

@@ -45,6 +45,97 @@ public class ItemBaseWand extends Item {
       super(props);
    }
 
+   public static boolean isMetalIngot(IWandData.EnumHandleType metal, ItemStack repair) {
+      if (repair.isEmpty()) {
+         return false;
+      }
+      if (metal == null) {
+         return repair.is(net.minecraft.world.item.Items.GOLD_INGOT);
+      }
+      switch (metal) {
+         case GOLD:   return repair.is(net.minecraft.world.item.Items.GOLD_INGOT);
+         case IRON:   return repair.is(net.minecraft.world.item.Items.IRON_INGOT);
+         case COPPER: return isModIngot(repair, com.paleimitations.schoolsofmagic.common.blocks.EnumMetal.COPPER);
+         case SILVER: return isModIngot(repair, com.paleimitations.schoolsofmagic.common.blocks.EnumMetal.SILVER);
+         case BRONZE: return isModIngot(repair, com.paleimitations.schoolsofmagic.common.blocks.EnumMetal.BRONZE);
+         case BRASS:  return isModIngot(repair, com.paleimitations.schoolsofmagic.common.blocks.EnumMetal.BRASS);
+         case STEEL:  return isModIngot(repair, com.paleimitations.schoolsofmagic.common.blocks.EnumMetal.STEEL);
+         case VOID:   return isModIngot(repair, com.paleimitations.schoolsofmagic.common.blocks.EnumMetal.TENEBRIUM);
+         default:     return false;
+      }
+   }
+
+   private static boolean isModIngot(ItemStack stack, com.paleimitations.schoolsofmagic.common.blocks.EnumMetal metal) {
+      return stack.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ingot.get()
+         && stack.getDamageValue() == metal.getIndex();
+   }
+
+   @Override
+   public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+      IWandData data = CapabilityWandData.getCapability(toRepair);
+      return data != null && isMetalIngot(data.getHandleType(), repair);
+   }
+
+   @Override
+   public int getMaxDamage(ItemStack stack) {
+      return com.paleimitations.schoolsofmagic.common.compat.SOMConfig.wandRingDurability()
+         ? super.getMaxDamage(stack) : 0;
+   }
+
+   public static void wearFromChannel(Player player) {
+      ItemStack stack = wandInHand(player);
+      if (stack == null) return;
+      stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+   }
+
+   private static ItemStack wandInHand(Player player) {
+      if (player == null || player.level().isClientSide || player.getAbilities().instabuild) {
+         return null;
+      }
+      if (!com.paleimitations.schoolsofmagic.common.compat.SOMConfig.wandRingDurability()) {
+         return null;
+      }
+      ItemStack stack = player.getMainHandItem();
+      if (!(stack.getItem() instanceof ItemBaseWand)) {
+         stack = player.getOffhandItem();
+      }
+      if (!(stack.getItem() instanceof ItemBaseWand)) {
+         com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData ring =
+            com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player);
+         stack = ring == null ? ItemStack.EMPTY : ring.getRing();
+      }
+      return stack.isEmpty() || !stack.isDamageableItem() ? null : stack;
+   }
+
+   public static void wearFromCast(Player player) {
+      if (player == null || player.level().isClientSide || player.getAbilities().instabuild) {
+         return;
+      }
+      if (!com.paleimitations.schoolsofmagic.common.compat.SOMConfig.wandRingDurability()) {
+         return;
+      }
+      ItemStack stack = player.getMainHandItem();
+      if (!(stack.getItem() instanceof ItemBaseWand)) {
+         stack = player.getOffhandItem();
+      }
+      if (!(stack.getItem() instanceof ItemBaseWand)) {
+         com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData ring =
+            com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player);
+         stack = ring == null ? ItemStack.EMPTY : ring.getRing();
+      }
+      if (stack.isEmpty() || !stack.isDamageableItem()) {
+         return;
+      }
+      CompoundTag tag = stack.getOrCreateTag();
+      int casts = tag.getInt("CastWear") + 1;
+      if (casts < 6) {
+         tag.putInt("CastWear", casts);
+         return;
+      }
+      tag.putInt("CastWear", 0);
+      stack.hurtAndBreak(3, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+   }
+
    @Override
    public void appendHoverText(ItemStack stack, @Nullable Level level,
                                java.util.List<net.minecraft.network.chat.Component> tooltip,
@@ -119,12 +210,12 @@ public class ItemBaseWand extends Item {
             && playerIn.getCooldowns().isOnCooldown(stack.getItem())) {
          return new InteractionResultHolder<>(InteractionResult.PASS, stack);
       }
-      // Drawing breath: a spell that is charged up announces itself the moment the
-      // pose is struck, before anything is cast.
+
       boolean alreadyHolding = playerIn.isUsingItem();
       playerIn.startUsingItem(handIn);
       if (cur != null && cur.isHeldSpell() && cur.getAction() != UseAnim.NONE
-            && !alreadyHolding && !worldIn.isClientSide) {
+            && cur.hasCastingFlourish() && !alreadyHolding && !worldIn.isClientSide
+            && (playerIn.isCreative() || cur.canCastSpell(playerIn, 0.0F))) {
          worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
             (playerIn.getRandom().nextBoolean()
                ? com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_A
@@ -136,6 +227,9 @@ public class ItemBaseWand extends Item {
             return new InteractionResultHolder<>(InteractionResult.PASS, stack);
          }
          InteractionResultHolder<ItemStack> res = cur.rightClickEffect(worldIn, playerIn, handIn);
+         if (!res.getResult().consumesAction() && cur.isHeldSpell() && !alreadyHolding) {
+            playerIn.stopUsingItem();
+         }
          if (cur instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom sc
                && !sc.isManualCooldown() && res.getResult().consumesAction()) {
             playerIn.getCooldowns().addCooldown(stack.getItem(), sc.getCooldownTicks());
@@ -149,6 +243,13 @@ public class ItemBaseWand extends Item {
 
    @Override
    public InteractionResult interactLivingEntity(ItemStack stack, Player playerIn, LivingEntity target, InteractionHand hand) {
+      Spell spell = this.getCurrentSpell(playerIn, stack);
+      if (spell != null) {
+         InteractionResult result = spell.entityClickEffect(stack, playerIn, target, hand);
+         if (result != InteractionResult.PASS) {
+            return result;
+         }
+      }
       return super.interactLivingEntity(stack, playerIn, target, hand);
    }
 
@@ -168,15 +269,12 @@ public class ItemBaseWand extends Item {
       Spell held = this.getCurrentSpell(player, stack);
       if (held != null) {
          held.rightHoldEffect(stack, player, count);
-         if (worldIn.isClientSide && held.getAction() != UseAnim.NONE) {
+         if (worldIn.isClientSide && held.getAction() != UseAnim.NONE && held.hasCastingFlourish()) {
             spawnCastingParticles(worldIn, player, held);
          }
       }
    }
 
-   // Magic boiling off the caster's head while they hold a spell, in the colour of
-   // the element being worked. Spawned tight against the skull; the potion particle
-   // carries its own outward drift, so they spread on their own.
    public static void spawnCastingParticles(Level worldIn, LivingEntity player, Spell spell) {
       int colour = elementColour(spell);
       double r = (colour >> 16 & 0xFF) / 255.0D;
@@ -229,8 +327,6 @@ public class ItemBaseWand extends Item {
          return super.useOn(context);
       }
 
-      // Spells cast at a block land here and never reach the cast paths below, so
-      // they take their cooldown on the way out.
       if (spell.getCooldownTicks() > 0
             && player.getCooldowns().isOnCooldown(player.getItemInHand(hand).getItem())) {
          return InteractionResult.PASS;
@@ -261,6 +357,10 @@ public class ItemBaseWand extends Item {
             player.getCooldowns().addCooldown(player.getItemInHand(hand).getItem(), spell.getCooldownTicks());
          }
          return InteractionResult.SUCCESS;
+      }
+
+      if (spell.isHeldSpell()) {
+         return InteractionResult.PASS;
       }
 
       spell.rightClickEffect(worldIn, player, hand);
@@ -303,11 +403,19 @@ public class ItemBaseWand extends Item {
       if (entity instanceof Player) {
          IManaData manaData = entity.getCapability(CapabilityManaData.CAP).orElse(null);
          if (manaData != null) {
+            Spell current = manaData.getCurrentSpell();
+            if (current != null) {
+               int min = current.getMinimumSpellChargeLevel();
+               int max = Math.min(manaData.getLargestChargeLevel(), current.getMaximumSpellChargeLevel());
+               if (max < min) max = min;
+               if (current.currentSpellChargeLevel < min) current.currentSpellChargeLevel = min;
+               else if (current.currentSpellChargeLevel > max) current.currentSpellChargeLevel = max;
+            }
             IWandData wandData = CapabilityWandData.getCapability(stack);
             if (wandData != null) {
-               wandData.setSpell(manaData.getCurrentSpell());
+               wandData.setSpell(current);
             }
-            return manaData.getCurrentSpell();
+            return current;
          }
       }
       return null;

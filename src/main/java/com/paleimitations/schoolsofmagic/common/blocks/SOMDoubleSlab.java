@@ -4,7 +4,6 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class SOMDoubleSlab extends SlabBlock {
-
    public SOMDoubleSlab(BlockBehaviour.Properties props) {
       super(props);
    }

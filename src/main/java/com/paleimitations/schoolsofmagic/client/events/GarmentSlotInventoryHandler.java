@@ -19,11 +19,8 @@ import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-// The charm button that sits by the off-hand slot, and the four garment slots it
-// reveals over the armour column: crown, cape, belt and grimoire.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class GarmentSlotInventoryHandler {
-
    private static final ResourceLocation BUTTON = new ResourceLocation("som", "textures/gui/charm_button.png");
    private static final ResourceLocation BUTTON_SELECTED = new ResourceLocation("som", "textures/gui/charm_button_select.png");
 
@@ -38,13 +35,10 @@ public class GarmentSlotInventoryHandler {
       "gui.som.slot.crown", "gui.som.slot.cape", "gui.som.slot.belt", "gui.som.slot.grimoire"
    };
 
-   // Tucked just above the off-hand slot while closed; it drops onto the off-hand
-   // slot itself once the garment slots are showing.
    private static final int BUTTON_DX = 77;
    private static final int BUTTON_DY_CLOSED = 44;
    private static final int BUTTON_DY_OPEN = 62;
 
-   // The armour column, which the garment slots stand in for.
    private static final int GARMENT_DX = 8;
    private static final int GARMENT_DY = 8;
 
@@ -56,16 +50,10 @@ public class GarmentSlotInventoryHandler {
       return mx >= x && mx < x + 16 && my >= y && my < y + 16;
    }
 
-   // The armour column and off-hand slot are where the garment slots go, so while
-   // the charm view is open they are parked off-screen: vanilla then neither draws
-   // them nor lets them be clicked, and putting them back restores their contents
-   // untouched.
    private static final int[] ARMOUR_SLOTS = {5, 6, 7, 8};
    private static final int OFFHAND_SLOT = 45;
    private static final int HIDDEN_Y = -3000;
 
-   // A slot's position is final, so it is written through reflection; the fields are
-   // resolved once and the whole thing quietly does nothing if that ever fails.
    private static java.lang.reflect.Field slotX;
    private static java.lang.reflect.Field slotY;
    private static boolean fieldsResolved;
@@ -113,7 +101,6 @@ public class GarmentSlotInventoryHandler {
       if (event.getScreen() instanceof InventoryScreen screen) applySlotVisibility(screen);
    }
 
-   // Leaving the screen must never strand the vanilla slots off-screen.
    @SubscribeEvent
    public static void onClose(ScreenEvent.Closing event) {
       if (!(event.getScreen() instanceof InventoryScreen screen)) return;
@@ -133,9 +120,7 @@ public class GarmentSlotInventoryHandler {
       int bx = screen.getGuiLeft() + BUTTON_DX;
       int by = screen.getGuiTop() + buttonY();
       boolean overButton = over(mx, my, bx, by);
-      // Hovering always shows the other of the two faces. Both are 18x18: the extra
-      // ring of pixels is what hides the shield slot, so each is drawn whole and
-      // pulled back a pixel, leaving its inner 16x16 over the slot itself.
+
       gg.blit(CharmScreenState.isOpen() != overButton ? BUTTON_SELECTED : BUTTON,
          bx - 1, by - 1, 0, 0, 18, 18, 18, 18);
       if (overButton) {
@@ -153,6 +138,11 @@ public class GarmentSlotInventoryHandler {
          drawSlot(gg, x, y);
 
          ItemStack worn = data == null ? ItemStack.EMPTY : data.getGarment(i);
+         boolean hovered = over(mx, my, x, y);
+         if (hovered) {
+            gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
+         }
+
          if (worn.isEmpty()) {
             gg.blit(OVERLAYS[i], x, y, 0, 0, 16, 16, 16, 16);
          } else {
@@ -160,8 +150,7 @@ public class GarmentSlotInventoryHandler {
             gg.renderItemDecorations(Minecraft.getInstance().font, worn, x, y);
          }
 
-         if (over(mx, my, x, y)) {
-            gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
+         if (hovered) {
             if (!carried.isEmpty()) {
                gg.renderItem(carried, (int) mx - 8, (int) my - 8);
                gg.renderItemDecorations(Minecraft.getInstance().font, carried, (int) mx - 8, (int) my - 8);
@@ -175,8 +164,6 @@ public class GarmentSlotInventoryHandler {
       }
    }
 
-   // An empty slot drawn in the vanilla style, so the garment column matches the
-   // panel it covers.
    private static void drawSlot(GuiGraphics gg, int x, int y) {
       int sx = x - 1;
       int sy = y - 1;

@@ -10,7 +10,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.entity.EntityTypeTest;
 
 public class CommandPhoenixReturn {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(Commands.literal("phoenixreturn").requires(s -> s.hasPermission(2)).executes(CommandPhoenixReturn::run));
    }

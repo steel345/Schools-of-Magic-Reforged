@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GrimoireFireproofHandler {
-
    @SubscribeEvent
    public static void onJoin(EntityJoinLevelEvent event) {
       if (event.getLevel().isClientSide) {

@@ -17,7 +17,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.registries.RegistryObject;
 
 public abstract class SOMTreeFeature extends Feature<NoneFeatureConfiguration> {
-
    public SOMTreeFeature() {
       super(NoneFeatureConfiguration.CODEC);
    }

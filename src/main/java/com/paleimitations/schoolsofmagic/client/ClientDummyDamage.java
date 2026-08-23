@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 
 public class ClientDummyDamage {
-
    public static final long LIFETIME_MS = 2000L;
 
    public static class Popup {

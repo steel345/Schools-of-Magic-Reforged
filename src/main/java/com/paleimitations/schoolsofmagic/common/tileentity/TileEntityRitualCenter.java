@@ -100,7 +100,6 @@ public class TileEntityRitualCenter extends BlockEntity {
    @Nullable
    public LivingEntity getOwner() {
       if (this.playerOwnerName != null && !this.playerOwnerName.isEmpty()) {
-
          for (Player p : this.level.players()) {
             if (p.getGameProfile().getName().equals(this.playerOwnerName)) {
                return p;
@@ -161,7 +160,6 @@ public class TileEntityRitualCenter extends BlockEntity {
    }
 
    public Ritual getRitual() {
-
       if (this.ritual != null && this.isActivated) {
          return this.ritual;
       }
@@ -182,7 +180,6 @@ public class TileEntityRitualCenter extends BlockEntity {
          return this.ritual;
       }
       if (fallback != null) {
-
          if (!(this.ritual instanceof com.paleimitations.schoolsofmagic.common.rituals.rituals.RitualPotionCrystal)
                || !this.ritual.isRitual(this)) {
             this.ritual = RitualHelper.getNewRitualInstance(fallback.getResourceLocation(), fallback.serializeNBT());
@@ -241,7 +238,6 @@ public class TileEntityRitualCenter extends BlockEntity {
 
    public void startRitual(Player player) {
       if (this.isOwner(player)) {
-
          if (this.ritual != null && this.ritual.castRitual(player, this)) {
             this.isActivated = true;
          }
@@ -256,7 +252,6 @@ public class TileEntityRitualCenter extends BlockEntity {
 
    public void stopRitual(Player player) {
       if (this.isOwner(player)) {
-
          if (this.ritual != null && this.isActivated && this.level != null) {
             this.ritual.onRitualStop(this, this.level, this.worldPosition);
          }

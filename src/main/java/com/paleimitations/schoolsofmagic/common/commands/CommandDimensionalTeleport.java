@@ -11,7 +11,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
 public class CommandDimensionalTeleport {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(
          Commands.literal("tpdim")

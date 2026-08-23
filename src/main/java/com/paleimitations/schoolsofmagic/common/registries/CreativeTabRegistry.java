@@ -10,7 +10,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class CreativeTabRegistry {
-
    public static final DeferredRegister<CreativeModeTab> TABS =
       DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SchoolsOfMagic.MODID);
 
@@ -31,7 +30,13 @@ public class CreativeTabRegistry {
    public static final RegistryObject<CreativeModeTab> BLOCKS_TAB = TABS.register("blocks",
       () -> CreativeModeTab.builder()
          .title(Component.translatable("itemGroup." + SchoolsOfMagic.MODID + ".blocks"))
-         .icon(() -> new ItemStack(BlockRegistry.magic_bookshelf.get()))
+         .icon(() -> {
+            ItemStack icon = new ItemStack(com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.bi_gypsum.get());
+            net.minecraft.nbt.CompoundTag variant = new net.minecraft.nbt.CompoundTag();
+            variant.putString("variant", "bricks");
+            icon.getOrCreateTag().put("BlockStateTag", variant);
+            return icon;
+         })
          .displayItems((params, output) -> CreativeTabContents.populate(CreativeTabContents.Tab.BLOCKS, output))
          .build());
 

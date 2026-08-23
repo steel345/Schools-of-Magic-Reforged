@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class WandPersonalityHandler {
-
    @SubscribeEvent
    public static void onSleepFinished(SleepFinishedTimeEvent event) {
       if (!(event.getLevel() instanceof ServerLevel level)) return;

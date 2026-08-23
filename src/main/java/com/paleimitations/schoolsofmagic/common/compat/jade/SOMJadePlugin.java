@@ -17,7 +17,6 @@ import snownee.jade.api.theme.IThemeHelper;
 
 @WailaPlugin
 public class SOMJadePlugin implements IWailaPlugin {
-
    @Override
    public void registerClient(IWailaClientRegistration registration) {
       registration.registerBlockComponent(VariantName.INSTANCE, Block.class);

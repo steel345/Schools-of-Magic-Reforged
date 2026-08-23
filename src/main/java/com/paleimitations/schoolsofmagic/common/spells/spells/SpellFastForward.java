@@ -33,7 +33,9 @@ public class SpellFastForward extends Spell {
    private static final int ICE_STEP_TICKS = 40;
    private static final int WOOD_ROT_TICKS = 100;
    private static final int CONFIG_TICKS = 100;
-   private static final int BABY_AGE_PER_TICK = 75;
+
+   private static final int GROWTH_STEP_TICKS = 20;
+   private static final int BABY_AGE_PER_TICK = 20;
    private static final int TWINE_BE_TICKS = 199;
    private transient BlockPos channelPos = null;
    private transient int channelTicks = 0;
@@ -44,7 +46,7 @@ public class SpellFastForward extends Spell {
          new ResourceLocation("som", "fast_forward"),
          20.0F,
          false,
-         0,
+         10,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),
@@ -98,7 +100,7 @@ public class SpellFastForward extends Spell {
                BlockState cur = world.getBlockState(pos);
                if (this.isSpecialBlock(cur)) {
                   this.applySpecial(serverLevel, pos, cur, this.channelTicks);
-               } else if (count % 5 == 0 && rand.nextBoolean()) {
+               } else if (count % GROWTH_STEP_TICKS == 0 && rand.nextBoolean()) {
                   for (int i = 0; i <= reticks; ++i) {
                      if (cur.isRandomlyTicking()) {
                         cur.randomTick(serverLevel, pos, serverLevel.random);

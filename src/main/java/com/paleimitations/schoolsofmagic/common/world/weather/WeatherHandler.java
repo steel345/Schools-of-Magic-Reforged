@@ -86,7 +86,7 @@ public class WeatherHandler implements IWeatherStorage {
             globalClearTick++;
          }
 
-         for (IWeatherEffect effect : localWeatherEffects) {
+         for (IWeatherEffect effect : Lists.newArrayList(localWeatherEffects)) {
             effect.tick();
          }
 
@@ -132,7 +132,7 @@ public class WeatherHandler implements IWeatherStorage {
 
          List<IWeatherEffect> effects = Lists.newArrayList();
 
-         for (IWeatherEffect effect : localWeatherEffects) {
+         for (IWeatherEffect effect : Lists.newArrayList(localWeatherEffects)) {
             if (effect.getDuration() > 0) {
                effects.add(effect);
             }
@@ -150,13 +150,12 @@ public class WeatherHandler implements IWeatherStorage {
 
    @SubscribeEvent
    public static void onEntityWeatherEvent(LivingEvent.LivingTickEvent event) {
-
       IWeatherEffect g = globalWeatherEffect;
       if (g != null) {
          g.inStormTick(event);
       }
 
-      for (IWeatherEffect effect : localWeatherEffects) {
+      for (IWeatherEffect effect : Lists.newArrayList(localWeatherEffects)) {
          effect.inStormTick(event);
       }
    }
@@ -169,7 +168,7 @@ public class WeatherHandler implements IWeatherStorage {
          g.clientTick(event);
       }
 
-      for (IWeatherEffect effect : localWeatherEffects) {
+      for (IWeatherEffect effect : Lists.newArrayList(localWeatherEffects)) {
          effect.clientTick(event);
       }
    }
@@ -177,14 +176,13 @@ public class WeatherHandler implements IWeatherStorage {
    @OnlyIn(Dist.CLIENT)
    @SubscribeEvent
    public static void onFogWeatherEvent(ViewportEvent.RenderFog event) {
-
       IWeatherEffect g = globalWeatherEffect;
       if (g != null) {
          g.fogRender(event);
          g.fogDensity(event);
       }
 
-      for (IWeatherEffect effect : localWeatherEffects) {
+      for (IWeatherEffect effect : Lists.newArrayList(localWeatherEffects)) {
          effect.fogRender(event);
          effect.fogDensity(event);
       }
@@ -198,7 +196,7 @@ public class WeatherHandler implements IWeatherStorage {
          g.fogColor(event);
       }
 
-      for (IWeatherEffect effect : localWeatherEffects) {
+      for (IWeatherEffect effect : Lists.newArrayList(localWeatherEffects)) {
          effect.fogColor(event);
       }
    }

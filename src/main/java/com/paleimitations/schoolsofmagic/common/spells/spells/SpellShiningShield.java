@@ -23,13 +23,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-// A ring of sunlit shields turning about the caster, each one turning aside a blow
-// before it breaks.
 public class SpellShiningShield extends Spell {
-
-   // Goety's bulwark fades on its own after a while rather than lasting forever.
    private static final int DURATION = 600;
-   // The same hold Meteor Strike asks for.
+
    private static final int WIND_UP = 40;
 
    public SpellShiningShield() {
@@ -58,8 +54,6 @@ public class SpellShiningShield extends Spell {
       return 4;
    }
 
-   // Two shields at the charge it opens on, and more as the charge deepens. At the
-   // eighth the count holds but each shield stands longer.
    public static int shieldsFor(int charge) {
       return switch (charge) {
          case 4 -> 2;
@@ -69,7 +63,6 @@ public class SpellShiningShield extends Spell {
       };
    }
 
-   // One blow each, no matter the charge, exactly as the bulwark it is modelled on.
    public static int hitsFor(int charge) {
       return 1;
    }
@@ -84,7 +77,6 @@ public class SpellShiningShield extends Spell {
       return WIND_UP;
    }
 
-   // Only draws the pose. Nothing is summoned until the hold is seen through.
    @Override
    public InteractionResultHolder<ItemStack> rightClickEffect(Level worldIn, Player playerIn, InteractionHand hand) {
       playerIn.startUsingItem(hand);

@@ -66,6 +66,8 @@ public class Spell implements INBTSerializable<CompoundTag> {
    public int currentSpellChargeLevel = 0;
    public int lastSpellChargeLevel = 0;
    public int remainingUses = 0;
+
+   private transient int channelWearTicks = 0;
    public int maxUses = 0;
    private EnumCastType castType = EnumCastType.NONE;
 
@@ -165,13 +167,11 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return this.castType;
    }
 
-   private static final int[] CHARGE_UNLOCK_LEVELS = new int[]{1, 5, 10, 15, 20, 25, 30, 35, 40};
-
    public int getMinimumSpellChargeLevel() {
-      int requiredLevel = this.getMinimumMagicianLevel() + 1;
+      int requiredLevel = this.getMinimumMagicianLevel();
       int min = 0;
-      for (int i = 0; i < CHARGE_UNLOCK_LEVELS.length; i++) {
-         if (CHARGE_UNLOCK_LEVELS[i] <= requiredLevel) {
+      for (int i = 0; i < IManaData.CHARGE_UNLOCK_LEVELS.length; i++) {
+         if (IManaData.CHARGE_UNLOCK_LEVELS[i] <= requiredLevel) {
             min = i;
          } else {
             break;
@@ -182,6 +182,10 @@ public class Spell implements INBTSerializable<CompoundTag> {
 
    public int getMaximumSpellChargeLevel() {
       return 8;
+   }
+
+   public float scaleDamage(float base) {
+      return this.currentSpellChargeLevel <= 0 ? base * 0.75F : base;
    }
 
    public int getUsesPerCharge(int chargeLevel) {
@@ -219,6 +223,11 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return false;
    }
 
+
+   public boolean hasCastingFlourish() {
+      return true;
+   }
+
    public boolean usesUsesBar() {
       return false;
    }
@@ -227,20 +236,12 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return false;
    }
 
-   // How long the caster waits before the next cast, in ticks, by the charge level
-   // the spell was cast at: a flick of the wrist at the bottom, a full second at the
-   // top.
    private static final int[] COOLDOWN_BY_CHARGE = {3, 5, 7, 10, 12, 15, 17, 18, 20};
 
-   // A spell that is held: either a bar that runs while channelled, or a pose that
-   // is charged up and then loosed. Both keep their old timing and never take a
-   // cooldown.
    public boolean isHeldSpell() {
       return this.getUseLength() > 0 || this.usesUsesBar() || this.usesTimedBar();
    }
 
-   // Only ever consulted by the wand's use paths. Nothing here may reach into
-   // castSpell, which channelled spells call every tick to drain their bar.
    public int getCooldownTicks() {
       if (this.isHeldSpell()) return 0;
       int level = net.minecraft.util.Mth.clamp(this.currentSpellChargeLevel, 0, COOLDOWN_BY_CHARGE.length - 1);
@@ -361,13 +362,11 @@ public class Spell implements INBTSerializable<CompoundTag> {
       bonus += this.getGemPowerBonus(player);
       bonus += this.getMetalPowerBonus(player);
       bonus += com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.WandPersonality.powerBonus(player);
-      // Shadow work comes into its own when the sun is swallowed.
+
       bonus *= this.getEclipseMultiplier(player);
       return bonus;
    }
 
-   // Doubled while an eclipse holds, for umbramancy only. Used for a spell's power
-   // and for how long anything it leaves behind lasts.
    public float getEclipseMultiplier(Player player) {
       if (player == null) return 1.0F;
       MagicElement umbra = MagicElementRegistry.umbramancy;
@@ -435,6 +434,9 @@ public class Spell implements INBTSerializable<CompoundTag> {
       if (this.currentSpellChargeLevel < this.getMinimumSpellChargeLevel()) {
          this.currentSpellChargeLevel = this.getMinimumSpellChargeLevel();
       }
+      if (this.currentSpellChargeLevel > this.getMaximumSpellChargeLevel()) {
+         this.currentSpellChargeLevel = this.getMaximumSpellChargeLevel();
+      }
       if (player.isCreative()) {
          return true;
       }
@@ -453,14 +455,18 @@ public class Spell implements INBTSerializable<CompoundTag> {
       if (!flag) {
          return false;
       }
-      if (handler.getLevel() + 1 < this.getMinimumMagicianLevel()) {
+      if (handler.getLevel() < this.getMinimumMagicianLevel()) {
          if (!player.level().isClientSide) {
             player.sendSystemMessage(Component.literal("You aren't high enough level to use this spell."));
          }
          return false;
       }
       for (i = 0; i < MagicElementRegistry.ELEMENTS.size(); ++i) {
-         if (handler.getElementLevel(MagicElementRegistry.getElementFromId(i)) >= this.getMinimumElementLevels()[i]) continue;
+         MagicElement element = MagicElementRegistry.getElementFromId(i);
+
+         int level = handler.getElementLevel(element)
+            + com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement.proficiencyBonus(player, element);
+         if (level >= this.getMinimumElementLevels()[i]) continue;
          if (!player.level().isClientSide) {
             player.sendSystemMessage(Component.literal("You aren't high enough level to use this spell."));
          }
@@ -474,8 +480,13 @@ public class Spell implements INBTSerializable<CompoundTag> {
          return false;
       }
       if (!this.materialComponents.isEmpty()) {
+         boolean hasComponent = false;
          for (ItemStack stack : this.materialComponents) {
-            if (player.getInventory().contains(stack)) continue;
+            if (!hasMaterial(player, stack)) continue;
+            hasComponent = true;
+            break;
+         }
+         if (!hasComponent) {
             if (!player.level().isClientSide) {
                player.sendSystemMessage(Component.literal("You're missing a material component."));
             }
@@ -486,13 +497,42 @@ public class Spell implements INBTSerializable<CompoundTag> {
          return true;
       }
       if (!handler.hasChargeLevel(this.currentSpellChargeLevel)) {
+         fizzle(player);
          return false;
       }
-      return adjustedCost <= handler.getMana();
+      if (adjustedCost > handler.getMana()) {
+         fizzle(player);
+         return false;
+      }
+      return true;
+   }
+
+   private static final java.util.Map<java.util.UUID, Long> LAST_FIZZLE = new java.util.HashMap<>();
+
+   public static void fizzle(Player player) {
+      if (player == null || player.level().isClientSide) return;
+      long now = player.level().getGameTime();
+      Long last = LAST_FIZZLE.get(player.getUUID());
+      if (last != null && now - last < 20L) return;
+      LAST_FIZZLE.put(player.getUUID(), now);
+
+      player.level().playSound(null, player.blockPosition(),
+         net.minecraft.sounds.SoundEvents.FIRE_EXTINGUISH,
+         net.minecraft.sounds.SoundSource.PLAYERS, 0.8F, 1.1F);
+      if (player.level() instanceof net.minecraft.server.level.ServerLevel level) {
+         for (int i = 0; i < 16; i++) {
+            double angle = level.getRandom().nextDouble() * Math.PI * 2.0D;
+            double radius = 0.55D + level.getRandom().nextDouble() * 0.35D;
+            level.sendParticles(net.minecraft.core.particles.ParticleTypes.SMOKE,
+               player.getX() + Math.cos(angle) * radius,
+               player.getY() + level.getRandom().nextDouble() * player.getBbHeight(),
+               player.getZ() + Math.sin(angle) * radius,
+               1, 0.0D, 0.0D, 0.0D, 0.01D);
+         }
+      }
    }
 
    public boolean castSpell(Player player, float wandDiscount) {
-
       com.paleimitations.schoolsofmagic.common.entity.capabilities.spell_button.ISpellButton ringButton =
          player.getCapability(com.paleimitations.schoolsofmagic.common.entity.capabilities.spell_button.CapabilitySpellButton.CAP).orElse(null);
       if (ringButton != null && ringButton.isPressed()) {
@@ -524,17 +564,9 @@ public class Spell implements INBTSerializable<CompoundTag> {
             int matLevel = this.getMaterialDiscountLevel();
             boolean skip = matLevel > 0 && new Random().nextFloat() < (float) matLevel / (float) (matLevel + 1);
             if (!skip) {
-               block1:
                for (ItemStack stack : this.materialComponents) {
-                  for (ItemStack inventoryStack : player.getInventory().items) {
-                     if (!ItemStack.isSameItem(stack, inventoryStack)) continue;
-                     if (inventoryStack.isDamageableItem()) {
-                        inventoryStack.hurtAndBreak(stack.getCount(), player, p -> {});
-                        continue block1;
-                     }
-                     inventoryStack.shrink(stack.getCount());
-                     continue block1;
-                  }
+                  if (!consumeMaterial(player, stack)) continue;
+                  break;
                }
             }
          }
@@ -550,7 +582,7 @@ public class Spell implements INBTSerializable<CompoundTag> {
             this.remainingUses--;
          }
          this.lastSpellChargeLevel = this.currentSpellChargeLevel;
-         int chargeProgress = handler.getLevel();
+         int chargeProgress = handler.getLevel() - 1;
          float perSpellFactor = Math.max(0.5F, 1.5F - 0.1F * chargeProgress);
          float perChargeFactor = Math.max(1.0F, 3.0F - 0.1F * chargeProgress);
          float manaXpRate = com.paleimitations.schoolsofmagic.common.compat.SOMConfig.manaXPRate;
@@ -584,6 +616,17 @@ public class Spell implements INBTSerializable<CompoundTag> {
             }
          }
          com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.WandPersonality.recordCast(player, this);
+
+         if (this.isHeldSpell()) {
+            this.channelWearTicks++;
+            int bar = Math.max(1, this.getUseLength());
+            if (this.channelWearTicks >= bar) {
+               this.channelWearTicks = 0;
+               com.paleimitations.schoolsofmagic.common.items.ItemBaseWand.wearFromChannel(player);
+            }
+         } else {
+            com.paleimitations.schoolsofmagic.common.items.ItemBaseWand.wearFromCast(player);
+         }
          return true;
       }
       return false;
@@ -696,6 +739,10 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return false;
    }
 
+   public InteractionResult entityClickEffect(ItemStack stack, Player player, net.minecraft.world.entity.LivingEntity target, InteractionHand hand) {
+      return InteractionResult.PASS;
+   }
+
    public boolean attackEffect(ItemStack stack, Player player, Entity entity) {
       return false;
    }
@@ -708,12 +755,57 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return false;
    }
 
+   private static boolean matchesMaterial(ItemStack needed, ItemStack held) {
+      if (held.isEmpty() || !ItemStack.isSameItem(needed, held)) {
+         return false;
+      }
+      return needed.isDamageableItem() || needed.getDamageValue() == held.getDamageValue();
+   }
+
+   public static boolean hasMaterial(Player player, ItemStack needed) {
+      int need = Math.max(1, needed.getCount());
+      int found = 0;
+      for (ItemStack held : player.getInventory().items) {
+         if (!matchesMaterial(needed, held)) continue;
+         if (held.isDamageableItem()) {
+            if (held.getMaxDamage() - held.getDamageValue() > need) {
+               return true;
+            }
+            continue;
+         }
+         found += held.getCount();
+         if (found >= need) {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   public static boolean consumeMaterial(Player player, ItemStack needed) {
+      if (!hasMaterial(player, needed)) {
+         return false;
+      }
+      int need = Math.max(1, needed.getCount());
+      for (ItemStack held : player.getInventory().items) {
+         if (need <= 0) break;
+         if (!matchesMaterial(needed, held)) continue;
+         if (held.isDamageableItem()) {
+            if (held.getMaxDamage() - held.getDamageValue() <= need) continue;
+            held.hurtAndBreak(need, player, p -> {});
+            return true;
+         }
+         int take = Math.min(need, held.getCount());
+         held.shrink(take);
+         need -= take;
+      }
+      return true;
+   }
+
    public List<ItemStack> getMaterialComponents() {
       return this.materialComponents;
    }
 
    public InteractionResultHolder<ItemStack> rightClickEffect(Level worldIn, Player playerIn, InteractionHand hand) {
-
       ItemStack stack = playerIn.getItemInHand(hand);
       HitResult hit = SpellUtils.rayTrace(playerIn, 8.0, 1.0F, true);
       if (hit.getType() == HitResult.Type.BLOCK && hit instanceof BlockHitResult bhr) {

@@ -17,7 +17,6 @@ import java.util.List;
 import net.minecraft.resources.ResourceLocation;
 
 public class BookAlchemy {
-
    private static final int[][] MORTAR_POS = {{28, 50}, {139, 50}, {28, 126}, {139, 126}};
    private static final int[][] BASIN_POS = {{21, 52}, {132, 52}};
 

@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderAcolyteWisp extends MobRenderer<EntityAcolyteWisp, ModelWisp<EntityAcolyteWisp>> {
-
    public static final ResourceLocation TEXTURE = new ResourceLocation("som", "textures/entity/wisp.png");
 
    public RenderAcolyteWisp(EntityRendererProvider.Context context) {

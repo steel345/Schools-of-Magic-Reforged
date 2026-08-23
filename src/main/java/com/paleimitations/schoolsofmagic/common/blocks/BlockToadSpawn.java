@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class BlockToadSpawn extends BlockPlantWaterplant {
-
    public static final IntegerProperty TOAD_TYPE = IntegerProperty.create("toad", 0, 11);
 
    public BlockToadSpawn(BlockBehaviour.Properties props) {
@@ -36,7 +35,6 @@ public class BlockToadSpawn extends BlockPlantWaterplant {
    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
       super.randomTick(state, world, pos, rand);
       if (rand.nextInt(5) == 0) {
-
          EntityTadpole tad = new EntityTadpole(EntityRegistry.TADPOLE.get(), world);
          tad.setToadType(this.getToadType(state));
          tad.setPos(pos.getX() + 0.5, pos.getY() - 0.1, pos.getZ() + 0.5);

@@ -15,7 +15,6 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 public class SetRandomSpellModifier extends LootItemConditionalFunction {
-
    public static LootItemFunctionType TYPE;
    public static int[] weights = new int[Spell.EnumSpellModifier.values().length];
    public static int poolSize;

@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMTreeFeaturePine extends SOMTreeFeature {
-
    @Override protected RegistryObject<Block> log() { return BlockRegistry.log_pine; }
    @Override protected RegistryObject<Block> leaves() { return BlockRegistry.leaves_pine; }
 

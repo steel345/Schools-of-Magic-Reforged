@@ -338,6 +338,42 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       }
    }
 
+   private final java.util.Map<Integer, com.paleimitations.schoolsofmagic.common.books.BookTextOverride>
+      textOverrides = new java.util.HashMap<>();
+
+   @Override
+   public java.util.Map<Integer, com.paleimitations.schoolsofmagic.common.books.BookTextOverride> getTextOverrides() {
+      return this.textOverrides;
+   }
+
+   @Override
+   public void setTextOverride(int page,
+         com.paleimitations.schoolsofmagic.common.books.BookTextOverride override) {
+      if (override == null) {
+         this.textOverrides.remove(page);
+      } else {
+         this.textOverrides.put(page, override);
+      }
+   }
+
+   private final java.util.Map<Integer, com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout>
+      pageLayouts = new java.util.HashMap<>();
+
+   @Override
+   public java.util.Map<Integer, com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout> getPageLayouts() {
+      return this.pageLayouts;
+   }
+
+   @Override
+   public void setPageLayout(int page,
+         com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout layout) {
+      if (layout == null || layout.isEmpty()) {
+         this.pageLayouts.remove(page);
+      } else {
+         this.pageLayouts.put(page, layout);
+      }
+   }
+
    @Override
    public List<BookPage> getBookPages() {
       return this.pages;
@@ -489,6 +525,24 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
          }
       }
 
+      nbt.putInt("overrides_size", this.textOverrides.size());
+      int oi = 0;
+      for (java.util.Map.Entry<Integer, com.paleimitations.schoolsofmagic.common.books.BookTextOverride> e
+            : this.textOverrides.entrySet()) {
+         nbt.putInt("override_page_" + oi, e.getKey());
+         nbt.put("override_data_" + oi, e.getValue().save());
+         oi++;
+      }
+
+      nbt.putInt("layouts_size", this.pageLayouts.size());
+      int li = 0;
+      for (java.util.Map.Entry<Integer, com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout> e
+            : this.pageLayouts.entrySet()) {
+         nbt.putInt("layout_page_" + li, e.getKey());
+         nbt.put("layout_data_" + li, e.getValue().save());
+         li++;
+      }
+
       nbt.putInt("stickers_size", this.stickers.size());
 
       for (int ix = 0; ix < this.stickers.size(); ix++) {
@@ -529,6 +583,23 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       }
 
       this.setBookPages(pagesIn);
+
+      this.textOverrides.clear();
+      for (int oi = 0; oi < nbt.getInt("overrides_size"); oi++) {
+         if (!nbt.contains("override_data_" + oi)) continue;
+         this.textOverrides.put(nbt.getInt("override_page_" + oi),
+            com.paleimitations.schoolsofmagic.common.books.BookTextOverride.load(
+               nbt.getCompound("override_data_" + oi)));
+      }
+
+      this.pageLayouts.clear();
+      for (int li = 0; li < nbt.getInt("layouts_size"); li++) {
+         if (!nbt.contains("layout_data_" + li)) continue;
+         this.pageLayouts.put(nbt.getInt("layout_page_" + li),
+            com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.load(
+               nbt.getCompound("layout_data_" + li)));
+      }
+
       List<BookElementSticker> stickers1 = Lists.newArrayList();
 
       for (int ix = 0; ix < nbt.getInt("stickers_size"); ix++) {

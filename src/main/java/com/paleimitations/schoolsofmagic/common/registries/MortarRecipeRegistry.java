@@ -143,8 +143,6 @@ public final class MortarRecipeRegistry {
             new ItemStack(Items.STRING, 4), ItemStack.EMPTY);
         RecipeRegistry.registerMortarRecipe(
             net.minecraft.world.item.crafting.Ingredient.of(
-                BlockRegistry.salt_ore.get(),
-                BlockRegistry.deepslate_salt_ore.get(),
                 BlockRegistry.fae_salt_ore.get(),
                 BlockRegistry.gypsum_salt_ore.get(),
                 BlockRegistry.mud_marble_salt_ore.get()),

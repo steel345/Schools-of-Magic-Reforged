@@ -15,7 +15,6 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class TalismanActivationHandler {
-
    @SubscribeEvent
    public static void onKey(InputEvent.Key event) {
       if (event.getAction() != GLFW.GLFW_PRESS) return;

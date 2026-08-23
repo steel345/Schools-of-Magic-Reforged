@@ -15,7 +15,6 @@ import net.minecraftforge.common.crafting.IIngredientSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockStateVariantIngredient extends AbstractIngredient {
-
    public static final ResourceLocation ID = new ResourceLocation("som", "blockstate_variant");
 
    private final Item item;

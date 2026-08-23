@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockStandardOres extends BlockOre {
-
    public static final EnumProperty<EnumStandardOres> TYPE = EnumProperty.create("type", EnumStandardOres.class);
 
    public BlockStandardOres(BlockBehaviour.Properties props) {

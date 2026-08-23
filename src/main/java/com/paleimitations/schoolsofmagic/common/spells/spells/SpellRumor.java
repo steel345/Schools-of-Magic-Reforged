@@ -35,7 +35,7 @@ public class SpellRumor extends Spell {
          new ResourceLocation("som", "rumor"),
          10.0F,
          false,
-         0,
+         1,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),
@@ -98,10 +98,13 @@ public class SpellRumor extends Spell {
          double y = e.getY() + (double) e.getBbHeight() * (0.25D + world.getRandom().nextDouble() * 0.8D);
          double z = e.getZ() + (world.getRandom().nextDouble() - 0.5D) * (double) e.getBbWidth();
          if (pink) {
-            world.addParticle(ParticleTypes.ENTITY_EFFECT, x, y, z, 1.0D, 0.35D, 0.7D);
+            world.addParticle(
+               com.paleimitations.schoolsofmagic.common.registries.ParticleTypeRegistry.SCULK_BLOOM.get(),
+               x, y, z, 1.0D, 0.12D, 0.62D);
          } else {
-            world.addParticle(ParticleTypes.WITCH, x, y, z,
-               (world.getRandom().nextDouble() - 0.5D) * 0.05D, 0.05D, (world.getRandom().nextDouble() - 0.5D) * 0.05D);
+            world.addParticle(
+               com.paleimitations.schoolsofmagic.common.registries.ParticleTypeRegistry.SCULK_BLOOM.get(),
+               x, y, z, 0.60D, 0.06D, 0.34D);
          }
       }
    }

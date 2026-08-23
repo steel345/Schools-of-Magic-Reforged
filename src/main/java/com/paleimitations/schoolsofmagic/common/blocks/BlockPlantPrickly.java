@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BlockPlantPrickly extends SOMPlant {
-
    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -57,5 +56,4 @@ public class BlockPlantPrickly extends SOMPlant {
    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
       return state.is(Blocks.SAND) || state.is(Blocks.DIRT) || state.is(Blocks.FARMLAND) || state.is(Blocks.GRASS_BLOCK);
    }
-
 }

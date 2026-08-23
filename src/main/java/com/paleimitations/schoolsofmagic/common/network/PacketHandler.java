@@ -93,7 +93,13 @@ public class PacketHandler {
       INSTANCE.registerMessage(nextID(), PacketOpenPotionBag.class, PacketOpenPotionBag::encode, PacketOpenPotionBag::new, PacketOpenPotionBag::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketThrowCharmPotion.class, PacketThrowCharmPotion::encode, PacketThrowCharmPotion::new, PacketThrowCharmPotion::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketPageUnlockToast.class, PacketPageUnlockToast::encode, PacketPageUnlockToast::new, PacketPageUnlockToast::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketPageUpdateToast.class, PacketPageUpdateToast::encode, PacketPageUpdateToast::new, PacketPageUpdateToast::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketRenameBook.class, PacketRenameBook::encode, PacketRenameBook::new, PacketRenameBook::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketWritePage.class, PacketWritePage::encode, PacketWritePage::new, PacketWritePage::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketSetPageOverride.class, PacketSetPageOverride::encode, PacketSetPageOverride::new, PacketSetPageOverride::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketSetPageLayout.class, PacketSetPageLayout::encode, PacketSetPageLayout::new, PacketSetPageLayout::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketSyncPageUnlocks.class, PacketSyncPageUnlocks::encode, PacketSyncPageUnlocks::new, PacketSyncPageUnlocks::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketSyncWandDisplay.class, PacketSyncWandDisplay::encode, PacketSyncWandDisplay::new, PacketSyncWandDisplay::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketMarkPageRead.class, PacketMarkPageRead::encode, PacketMarkPageRead::new, PacketMarkPageRead::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketDryadQuest.class, PacketDryadQuest::encode, PacketDryadQuest::new, PacketDryadQuest::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketSyncPlayerQuests.class, PacketSyncPlayerQuests::encode, PacketSyncPlayerQuests::new, PacketSyncPlayerQuests::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
@@ -105,7 +111,9 @@ public class PacketHandler {
       INSTANCE.registerMessage(nextID(), PacketSetCastingMode.class, PacketSetCastingMode::encode, PacketSetCastingMode::new, PacketSetCastingMode::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketDummyDamage.class, PacketDummyDamage::encode, PacketDummyDamage::new, PacketDummyDamage::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketSmokeScry.class, PacketSmokeScry::encode, PacketSmokeScry::new, PacketSmokeScry::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketIceShell.class, PacketIceShell::encode, PacketIceShell::new, PacketIceShell::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketEclipseState.class, PacketEclipseState::encode, PacketEclipseState::new, PacketEclipseState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketSetMirrorCoords.class, PacketSetMirrorCoords::encode, PacketSetMirrorCoords::new, PacketSetMirrorCoords::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
       INSTANCE.registerMessage(nextID(), PacketShiningShield.class, PacketShiningShield::encode, PacketShiningShield::new, PacketShiningShield::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
    }
 }

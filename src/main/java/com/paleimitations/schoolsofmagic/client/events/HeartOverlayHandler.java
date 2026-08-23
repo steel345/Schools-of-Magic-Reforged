@@ -22,7 +22,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class HeartOverlayHandler {
-
    private static final ResourceLocation ICONS = new ResourceLocation("textures/gui/icons.png");
    private static final String[] EFFECTS = {"basilisk_venom", "snake_poison", "puffer_toxin"};
 

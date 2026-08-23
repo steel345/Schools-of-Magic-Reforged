@@ -35,7 +35,7 @@ public class SpellPoseidonsFist extends Spell {
          new ResourceLocation("som", "poseidons_fist"),
          40.0F,
          false,
-         13,
+         15,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),

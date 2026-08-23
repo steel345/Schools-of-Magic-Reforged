@@ -3,7 +3,6 @@ package com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_dat
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
-// The four worn garments, in the order they sit down the armour column.
 public interface IGarmentData {
    int CROWN = 0;
    int CAPE = 1;

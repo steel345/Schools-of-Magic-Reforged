@@ -37,7 +37,6 @@ public class RenderNobleTree extends MobRenderer<EntityNobleTree, EntityModel<En
    private final FaceDispatchModel dispatchModel;
 
    public RenderNobleTree(EntityRendererProvider.Context context) {
-
       this(context,
          new ModelNobleTree1<>(context.bakeLayer(ModelNobleTree1.LAYER_LOCATION)),
          new ModelNobleTree2<>(context.bakeLayer(ModelNobleTree2.LAYER_LOCATION)),

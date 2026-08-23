@@ -14,10 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
-
-
 public class ShiningShieldModel<T extends Entity> extends HierarchicalModel<T> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("som", "shining_shield"), "main");
 	private final ModelPart root;
 	private final ModelPart shield;
@@ -64,19 +61,16 @@ public class ShiningShieldModel<T extends Entity> extends HierarchicalModel<T> {
 		return this.root;
 	}
 
-	// Puts every part back where it started before an animation is laid over it.
 	public void reset() {
 		this.root.getAllParts().forEach(net.minecraft.client.model.geom.ModelPart::resetPose);
 	}
 
-	// Runs one of the shield's own animations at the given age, in ticks.
 	public void play(net.minecraft.client.animation.AnimationDefinition definition, float ageInTicks) {
 		net.minecraft.client.animation.KeyframeAnimations.animate(
 			this, definition, (long) (ageInTicks * 1000.0F / 20.0F), 1.0F, new org.joml.Vector3f());
 	}
 
 	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
 	}
 
 	@Override

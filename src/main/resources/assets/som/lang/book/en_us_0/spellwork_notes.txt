@@ -1,1 +1,2 @@
   Before you spend a thing, it is wise to know it's worth. Place a variety of components into the Forge and activate it with /bpaper/z, and the Forge will read its magical value back to you as /bspell notes/z.<~><~>  These notes can be used to create magical pages with spells or useful information. The points decide what page you get depending on what the most points where.
+<~><~>  A note is not yet a page. Carry it to a /bPodium/z, set it in the /bspell notes/z tab, and choose the page you would have it become.

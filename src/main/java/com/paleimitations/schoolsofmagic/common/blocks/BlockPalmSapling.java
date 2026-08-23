@@ -16,7 +16,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockPalmSapling extends SaplingBlock {
-
    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.8D, 14.0D);
 
    public BlockPalmSapling(AbstractTreeGrower grower, BlockBehaviour.Properties props) {
@@ -24,7 +23,6 @@ public class BlockPalmSapling extends SaplingBlock {
    }
 
    public BlockPalmSapling(BlockBehaviour.Properties props) {
-
       super(new PalmTreeGrower(PALM_TREE_FEATURE), props);
    }
 

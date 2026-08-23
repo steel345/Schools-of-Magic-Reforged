@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:locate_water"
+    },
+    {
+      "type": "text",
+      "text": "  This spell throws up swirling blue lights that can be seen straight through stone, one at every place within twenty blocks where there is water.\n\n  It is the same trick a dowser works with a forked stick, only it does not lie to you.\n\n  If there is no water in reach, nothing answers."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_locate_water.desc"
+    }
+  ]
+}

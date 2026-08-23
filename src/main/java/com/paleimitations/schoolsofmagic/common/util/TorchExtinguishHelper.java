@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class TorchExtinguishHelper {
-
    public static boolean relight(Level level, BlockPos pos) {
       BlockState oldState = level.getBlockState(pos);
       if (oldState.hasProperty(BlockStateProperties.WATERLOGGED) && oldState.getValue(BlockStateProperties.WATERLOGGED)) {

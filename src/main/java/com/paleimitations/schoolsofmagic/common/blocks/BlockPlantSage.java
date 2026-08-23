@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BlockPlantSage extends SOMPlant {
-
    public BlockPlantSage(BlockBehaviour.Properties props) {
       super(props);
    }

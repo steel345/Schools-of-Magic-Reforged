@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
 public class ModelTome {
-
    private final ModelPart joint;
    private final ModelPart binding;
    private final ModelPart pagesL;
@@ -60,7 +59,6 @@ public class ModelTome {
 
    public void render(PoseStack pose, MultiBufferSource buffer, int packedLight, int packedOverlay,
                       ResourceLocation tex, float animationTick, float partial, TileEntityPodium te, int bookState) {
-
       TileEntityPodium.EnumState st = TileEntityPodium.EnumState.values()[bookState];
       int len = st.getAnimationLength();
       float progress = len > 0 ? Math.min(1.0F, animationTick / (float) len) : 0.0F;

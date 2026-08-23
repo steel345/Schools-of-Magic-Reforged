@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
 public class ItemCopperKey extends Item {
-
    public ItemCopperKey(Item.Properties props) {
       super(props);
    }

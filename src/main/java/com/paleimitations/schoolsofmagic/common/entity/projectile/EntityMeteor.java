@@ -20,7 +20,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EntityMeteor extends EntityBlockProjectile {
-
    public EntityMeteor(EntityType<? extends EntityMeteor> type, Level level) {
       super(type, level);
    }
@@ -49,7 +48,6 @@ public class EntityMeteor extends EntityBlockProjectile {
       return true;
    }
 
-   // The renderer draws its own ashen flame, so the orange vanilla one is suppressed.
    @Override
    public boolean displayFireAnimation() {
       return false;
@@ -62,14 +60,12 @@ public class EntityMeteor extends EntityBlockProjectile {
    protected void onHit(HitResult result) {
       super.onHit(result);
       if (!this.level().isClientSide) {
-
          this.level().explode(this, this.getX(), this.getY(), this.getZ(), 8.0F, Level.ExplosionInteraction.TNT);
          this.scatterFire();
          this.discard();
       }
    }
 
-   // Embers thrown clear of the crater, burning the pale white of the falling rock.
    private void scatterFire() {
       Level level = this.level();
       BlockState fire = com.paleimitations.schoolsofmagic.common.registries.BlockRegistry.meteor_fire.get().defaultBlockState();

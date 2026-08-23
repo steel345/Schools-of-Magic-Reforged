@@ -142,6 +142,8 @@ public class EntityRegistry {
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityStarfallCloud>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityStarfallCloud::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(12).build("som_starfall_cloud"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicBolt>> MAGIC_BOLT = ENTITIES.register("som_magic_bolt",
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicBolt>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicBolt::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(8).build("som_magic_bolt"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall>> FIRE_BALL = ENTITIES.register("som_fire_ball",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall::new, MobCategory.MISC).sized(1.5F, 1.5F).clientTrackingRange(12).build("som_fire_ball"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicRune>> MAGIC_RUNE = ENTITIES.register("som_magic_rune",
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicRune>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicRune::new, MobCategory.MISC).sized(1.0F, 0.2F).clientTrackingRange(8).build("som_magic_rune"));
 

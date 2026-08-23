@@ -14,7 +14,6 @@ import net.minecraftforge.common.crafting.IIngredientSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class DamageVariantIngredient extends AbstractIngredient {
-
    public static final ResourceLocation ID = new ResourceLocation("som", "damage_variant");
 
    private final Item item;

@@ -29,7 +29,6 @@ public class QuestHelper {
    }
 
    public static Quest getQuestInstance(ResourceLocation location, CompoundTag nbt) {
-
       java.util.function.Function<CompoundTag, ? extends Quest> f = QUEST_HELPERS.get(location);
       return f == null ? null : f.apply(nbt);
    }
@@ -43,7 +42,6 @@ public class QuestHelper {
       private final Constructor<? extends R> constructor;
 
       ConstructorFactory(Class<? extends R> quest) {
-
          this.constructor = ObfuscationReflectionHelper.findConstructor(quest);
       }
 

@@ -14,7 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class DryingRecipeCategory implements IRecipeCategory<DryingRecipe> {
-
    public static final RecipeType<DryingRecipe> TYPE =
       RecipeType.create(References.MODID, "drying", DryingRecipe.class);
    private static final ResourceLocation TEXTURE =

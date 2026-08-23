@@ -21,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityEffectVariables {
-
    public static final Capability<IEffectVariables> CAP = CapabilityManager.get(new CapabilityToken<IEffectVariables>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "effect_variables");
 

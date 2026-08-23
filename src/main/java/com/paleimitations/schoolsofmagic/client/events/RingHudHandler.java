@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class RingHudHandler {
-
    private static final ResourceLocation SPELLSLOT =
       new ResourceLocation("som", "textures/gui/ring/hotbar_spellslot.png");
    private static final ResourceLocation SPELLSLOT_NORMAL =
@@ -30,7 +29,18 @@ public class RingHudHandler {
    private static boolean concentrationFired = false;
    private static boolean holdFired = false;
    private static int holdTicks = 0;
+   private static int holdLength = 0;
    private static int chargeFrames = 0;
+
+   public static float concentrationProgress() {
+      if (chargeTicks > 0) {
+         return Math.min(1.0F, (float) chargeTicks / 40.0F);
+      }
+      if (holdTicks > 0 && holdLength > 0) {
+         return Math.min(1.0F, (float) holdTicks / (float) holdLength);
+      }
+      return 0.0F;
+   }
 
    public static boolean isChanneling() {
       return channeling;
@@ -114,8 +124,8 @@ public class RingHudHandler {
          net.minecraft.world.item.ItemStack ringStack =
             com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player).getRing();
          holdTicks++;
+         holdLength = spell.getUseLength();
 
-         // Struck once as the pose is taken, not on every tick of it.
          if (holdTicks == 1 && spell.getAction() != net.minecraft.world.item.UseAnim.NONE) {
             player.playSound((player.getRandom().nextBoolean()
                ? com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_A
@@ -131,8 +141,6 @@ public class RingHudHandler {
          com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
             new com.paleimitations.schoolsofmagic.common.network.PacketRingHold(count, false));
 
-         // Cast only once the whole hold is seen through, exactly as the wand does.
-         // Firing on release meant a quick click cast it with no concentration at all.
          if (holdTicks >= spell.getUseLength()) {
             spell.finishHoldEffect(ringStack, player.level(), player);
             com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
@@ -141,7 +149,6 @@ public class RingHudHandler {
             holdTicks = 0;
          }
       } else {
-         // Letting go early simply drops the working. Nothing is cast.
          holdTicks = 0;
       }
 

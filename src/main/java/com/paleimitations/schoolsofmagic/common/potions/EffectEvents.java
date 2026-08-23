@@ -110,7 +110,6 @@ public class EffectEvents {
    }
 
    private static boolean isEarthProtectionBlock(BlockState state) {
-
       return state.is(BlockTags.DIRT) || state.is(BlockTags.BASE_STONE_OVERWORLD) || state.is(BlockTags.SAND);
    }
 }

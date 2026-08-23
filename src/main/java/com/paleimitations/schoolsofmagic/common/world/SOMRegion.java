@@ -20,7 +20,6 @@ public class SOMRegion extends Region {
    @Override
    public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
       this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-
          builder.replaceBiome(Biomes.DESERT, BiomeRegistry.MAGIC_DESERT);
          builder.replaceBiome(Biomes.SAVANNA, BiomeRegistry.BANDEDDESERT);
          builder.replaceBiome(Biomes.BADLANDS, BiomeRegistry.DESERTCANYONS);

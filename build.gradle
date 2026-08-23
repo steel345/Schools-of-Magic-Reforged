@@ -15,7 +15,11 @@ plugins {
 version = mod_version
 group   = mod_group_id
 
-base { archivesName = mod_id }
+// Exported jars are named SchoolsOfMagic-<mc version>-v<mod version>.jar. Built from
+// the properties rather than written out, so bumping mod_version is the only edit an
+// export needs. The project's own version stays the bare number for mods.toml, which
+// has to parse it as a version and would choke on the leading v.
+base { archivesName = "SchoolsOfMagic-${minecraft_version}" }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -67,7 +71,12 @@ dependencies {
 
     compileOnly fg.deobf(files("libs/Jade-1.20.1-Forge-11.13.2.jar"))
 
+    // Was compileOnly, which builds fine but never puts TerraBlender on the runtime
+    // classpath, so a dev run started with no TerraBlender and every SOM biome was
+    // placed by nobody. runtimeOnly puts it back for runClient without changing what
+    // the mod compiles against.
     compileOnly files("libs/terrablender-forge-fixed.jar")
+    runtimeOnly fg.deobf(files("libs/terrablender-forge-fixed.jar"))
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -97,6 +106,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 jar {
+    archiveVersion = "v${mod_version}"
     manifest {
         attributes([
             'Specification-Title':      mod_id,

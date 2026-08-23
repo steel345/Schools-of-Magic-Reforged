@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PotionCleansing extends MobEffect {
-
    public PotionCleansing(MobEffectCategory category, int color) {
       super(category, color);
    }

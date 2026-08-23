@@ -27,7 +27,6 @@ import net.minecraftforge.items.IItemHandler;
 import org.joml.Matrix4f;
 
 public class TileEntityRendererCauldron implements BlockEntityRenderer<TileEntityCauldron> {
-
    private static final ResourceLocation WATER_SPRITE = new ResourceLocation("minecraft", "block/water_still");
    private static final ResourceLocation THICK_FLUID_SPRITE = new ResourceLocation("som", "block/thick_fluid");
    private static final ResourceLocation LAVA_SPRITE = new ResourceLocation("minecraft", "block/lava_still");

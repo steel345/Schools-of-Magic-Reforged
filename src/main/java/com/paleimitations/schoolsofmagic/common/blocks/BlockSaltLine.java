@@ -28,8 +28,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockSaltLine extends Block {
-
-   // Redstone-style sides: NONE, SIDE (flat) or UP (climbing the neighbouring wall).
    public static final EnumProperty<RedstoneSide> NORTH = BlockStateProperties.NORTH_REDSTONE;
    public static final EnumProperty<RedstoneSide> EAST = BlockStateProperties.EAST_REDSTONE;
    public static final EnumProperty<RedstoneSide> SOUTH = BlockStateProperties.SOUTH_REDSTONE;
@@ -66,9 +64,6 @@ public class BlockSaltLine extends Block {
       return state.getBlock() instanceof BlockSaltLine;
    }
 
-   // Mirrors redstone dust: a line joins a neighbour on the same level, one step up
-   // (running up the side of that block, as long as nothing caps this line) or one
-   // step down (as long as the neighbouring block does not wall it off).
    private static RedstoneSide sideFor(LevelReader level, BlockPos pos, Direction face) {
       BlockPos neighborPos = pos.relative(face);
       BlockState neighbor = level.getBlockState(neighborPos);
@@ -87,9 +82,7 @@ public class BlockSaltLine extends Block {
       for (Direction d : Direction.Plane.HORIZONTAL) {
          state = state.setValue(propFor(d), sideFor(level, pos, d));
       }
-      // Same shaping rule as redstone dust: with nothing on an axis the line spreads
-      // out along it, so a lone piece forms a cross and a single join runs straight
-      // through instead of stopping at a stub.
+
       boolean north = state.getValue(NORTH).isConnected();
       boolean south = state.getValue(SOUTH).isConnected();
       boolean east = state.getValue(EAST).isConnected();
@@ -114,14 +107,10 @@ public class BlockSaltLine extends Block {
       if (!state.canSurvive(level, pos)) {
          return Blocks.AIR.defaultBlockState();
       }
-      // A change above or below can make a diagonal join appear or disappear, so all
-      // four sides are recomputed rather than only the one that changed.
+
       return computeConnections(level, pos, state);
    }
 
-   // A line one step up or down is not an adjacent block, so it never receives the
-   // ordinary neighbour update and would keep a stale shape. Nudge those diagonals
-   // directly, exactly as redstone dust does.
    @Override
    public void updateIndirectNeighbourShapes(BlockState state, LevelAccessor level, BlockPos pos, int flags, int recursion) {
       BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();

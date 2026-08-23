@@ -16,7 +16,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class RitualRecipeRegistry {
-
     public static com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting CAULDRON_NORMAL;
     public static com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting CAULDRON_GOLD;
     public static com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting CAULDRON_LION;
@@ -27,8 +26,6 @@ public class RitualRecipeRegistry {
         return s;
     }
 
-    // A tome of the given school. The item's model is keyed off CustomModelData
-    // (damage + 1), so setting the damage alone would leave it as the base art.
     private static ItemStack magicTome(EnumMagicType type) {
         ItemStack s = stack(ItemRegistry.magic_book.get(), type.getIndex());
         s.getOrCreateTag().putInt("CustomModelData", type.getIndex() + 1);
@@ -61,6 +58,16 @@ public class RitualRecipeRegistry {
     }
 
     public static void register() {
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.magic_mirror.get()),
+            150, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(Items.GOLD_INGOT),
+            new ItemStack(Items.GOLD_INGOT),
+            new ItemStack(Items.GOLD_INGOT),
+            new ItemStack(Items.GOLD_INGOT),
+            new ItemStack(ItemRegistry.bi_looking_glass.get()),
+            new ItemStack(ItemRegistry.crushed_horn_unicorn.get())
+        );
 
         Ingredient anySapling = net.minecraftforge.common.crafting.CompoundIngredient.of(
             Ingredient.of(ItemTags.SAPLINGS),
@@ -128,7 +135,6 @@ public class RitualRecipeRegistry {
             new ItemStack(ItemRegistry.magic_diamond.get()),
             stack(ItemRegistry.bottle.get(), EnumBottle.JIMSONWEED.getIndex())
         ).setNote("1-8 Moon Dew, +10 mana each");
-
 
         RecipeRegistry.registerRitualRecipe(
             magicTome(EnumMagicType.INFERNALITY),

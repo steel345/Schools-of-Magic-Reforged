@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class TalismanCharmDropHandler {
-
    @SubscribeEvent
    public static void onDrops(LivingDropsEvent event) {
       if (!(event.getEntity() instanceof Player player) || player.level().isClientSide) {
@@ -37,8 +36,6 @@ public class TalismanCharmDropHandler {
          charm.setCharm(ItemStack.EMPTY);
       }
 
-      // Worn garments fall with everything else. Clearing them here means the
-      // respawn copy carries nothing over, so a death can never duplicate one.
       com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData garments =
          com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.CapabilityGarmentData.get(player);
       if (garments != null) {

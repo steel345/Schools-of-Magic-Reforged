@@ -1,1 +1,7 @@
-  You have grown even stronger in your magical practice and now it is time to dive even more deeply into magic.<~><~>  In this /bTome of Arcana/z, the art of potion brewing, by both Brewing Stand and Cauldron, and a number of more advanced spells shall be explored.<~><~>  This tome is the last in your instructional set, however there are many other Tomes you may find around the world pertaining to the schools and flavors of magic.<~><~>  These Tomes can be found in library structures in magic rich biomes such as the /bAsh Woods/z, the /bElder Grove/z, the /bSinister Swamp/z, the /bAutumn Woods/z, the /bUplands/z, and the /bWetlands/z.<~><~>  These Libraries appear as circular stilted structures and are built on positions of magic power.
+  You have grown beyond the intermediate ranks and now stand at the end of your instruction, welcome to your advanced course in magic.
+<~><~>  This guide will cover the art of potion brewing, by both /bBrewing Stand/z and /bCauldron/z, along with a number of the more advanced spells and the mechanics that come with them.
+<~><~>  Brewing is a patient craft. You will learn to prepare your reagents, to draw the properties out of them, and to bind those properties into potions that no single spell could match.
+<~><~>  Understand that this is the last of the courses laid out for you. Everything past it is no longer taught, it is studied.
+<~><~>  A great deal of magic sits outside these pages. Each school and flavor of magic keeps its own writings, and the Magician who means to master them must study those books as closely as this one.
+<~><~>  Learn what is written here, and you will have everything you need to carry your practice forward on your own.
+<~><~>  /iLet us begin./z

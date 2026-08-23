@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:fireball"
+    },
+    {
+      "type": "text",
+      "text": "  Fire Ball is one of the most destructive spells in pyromancy. It throws a large ball of fire that flies straight ahead until it hits something.\n\n  When it lands it deals 16 damage and explodes anything around it as well as burning anything caught in the flames."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_fireball.desc"
+    }
+  ]
+}

@@ -23,12 +23,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.IItemHandler;
 
-// The potion bag worn in the charm slot: hold the charm key to open the (existing)
-// potion ring and steer the mouse to pick a potion; releasing arms it (its hotbar
-// slot glows white), and the next right-click throws that potion.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class PotionCharmHandler {
-
    private static boolean armed = false;
    private static int selectedSlot = -1;
    private static boolean ringWasOpen = false;
@@ -36,8 +32,6 @@ public class PotionCharmHandler {
    private static double lastY = 0.0;
    private static boolean primed = false;
 
-   // Whichever bag the key being held actually reaches: the charm key sees only the
-   // charm slot, the belt key only the belt.
    private static ItemStack charmBag(Player player) {
       java.util.function.Predicate<ItemStack> isBag = s -> s.getItem() == ItemRegistry.potion_bag.get();
       if (ClientProxy.CHARM_ACTIVATE.isDown()) {
@@ -50,8 +44,7 @@ public class PotionCharmHandler {
             .findBeltPouch(player, isBag);
          if (!worn.isEmpty()) return worn;
       }
-      // Neither key held: fall back to whichever slot holds one, so the armed hotbar
-      // glow and the throw still resolve after the ring closes.
+
       return com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots
          .findWornPouch(player, isBag);
    }
@@ -85,7 +78,7 @@ public class PotionCharmHandler {
                if (length > 8.0) {
                   double angle = 2.0 * Math.atan(dx / (dy + length)) * 180.0 / Math.PI;
                   selectedSlot = sectorToSlot(angle);
-                  bag.setDamageValue(selectedSlot); // client-side, so the ring highlights it
+                  bag.setDamageValue(selectedSlot);
                }
             }
          }
@@ -131,8 +124,8 @@ public class PotionCharmHandler {
       int y0 = gg.guiHeight() - 22 + 2;
       int x1 = x0 + 18;
       int y1 = y0 + 18;
-      gg.fill(x0 - 2, y0 - 2, x1 + 2, y1 + 2, 0x66FFFFFF);   // soft white outer glow
-      int frame = 0xFFFFFFFF;                                 // bright white frame
+      gg.fill(x0 - 2, y0 - 2, x1 + 2, y1 + 2, 0x66FFFFFF);
+      int frame = 0xFFFFFFFF;
       gg.fill(x0 - 1, y0 - 1, x1 + 1, y0, frame);
       gg.fill(x0 - 1, y1, x1 + 1, y1 + 1, frame);
       gg.fill(x0 - 1, y0 - 1, x0, y1 + 1, frame);

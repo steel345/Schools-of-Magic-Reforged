@@ -99,7 +99,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class BlockRegistry {
-
    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SchoolsOfMagic.MODID);
 
    public static final RegistryObject<Block> unlit_torch = BLOCKS.register("unlit_torch", () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockUnlitTorch(net.minecraft.world.level.block.state.BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.TORCH).lightLevel(s -> 0)));
@@ -116,6 +115,8 @@ public class BlockRegistry {
    public static final RegistryObject<Block> cauldron = BLOCKS.register("cauldron", () -> new BlockCauldron(SOMBlockProperties.metalDecorSoft(0.8F)));
    public static final RegistryObject<Block> spell_forge = BLOCKS.register("spell_forge", () -> new BlockSpellForge(SOMBlockProperties.metalDecorSoft(0.5F)));
    public static final RegistryObject<Block> spell_obelisk = BLOCKS.register("spell_obelisk", () -> new BlockSpellObelisk(SOMBlockProperties.metalDecorSoft(0.5F)));
+
+   public static final RegistryObject<Block> looking_glass = BLOCKS.register("looking_glass", () -> new com.paleimitations.schoolsofmagic.common.blocks.BlockLookingGlass(net.minecraft.world.level.block.state.BlockBehaviour.Properties.copy(net.minecraft.world.level.block.Blocks.GLASS).noOcclusion().isViewBlocking((s, l, p) -> false).isSuffocating((s, l, p) -> false).isRedstoneConductor((s, l, p) -> false).isValidSpawn((s, l, p, e) -> false)));
 
    public static final RegistryObject<Block> divination_crystal = BLOCKS.register("divination_crystal", () -> new BlockCrystalBall(SOMBlockProperties.glassFragile()));
    public static final RegistryObject<Block> mortnpest = BLOCKS.register("mortnpest", () -> new BlockMortnpest(SOMBlockProperties.metalDecorSoft(0.5F)));
@@ -513,7 +514,7 @@ public class BlockRegistry {
       }
       return b;
    }
-   // Potted forms of the mod plants, so any of them can sit in a flower pot.
+
    public static final RegistryObject<Block> potted_plant_aloe = BLOCKS.register("potted_plant_aloe", () -> new net.minecraft.world.level.block.FlowerPotBlock(
       () -> (net.minecraft.world.level.block.FlowerPotBlock) net.minecraft.world.level.block.Blocks.FLOWER_POT, plant_aloe, SOMBlockProperties.pottedPlant()));
    public static final RegistryObject<Block> potted_plant_sage = BLOCKS.register("potted_plant_sage", () -> new net.minecraft.world.level.block.FlowerPotBlock(

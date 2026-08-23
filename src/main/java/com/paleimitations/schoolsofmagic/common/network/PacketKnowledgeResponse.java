@@ -12,10 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-// Server -> Client: the books gathered near the podium/lectern (with their source
-// shelf position + slot), for the client to search.
 public class PacketKnowledgeResponse {
-
    private final List<KnowledgeGather.Found> found;
 
    public PacketKnowledgeResponse(List<KnowledgeGather.Found> found) {

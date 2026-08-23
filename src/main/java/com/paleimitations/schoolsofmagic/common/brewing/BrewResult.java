@@ -9,7 +9,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 
 public final class BrewResult {
-
    public String primaryEffect;
    public String secondaryEffect;
    public int amplifier;

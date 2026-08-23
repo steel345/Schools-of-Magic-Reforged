@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SOMSaltColorizer {
-
    private static final int SALT_TINT = 0xF7F2E0;
 
    @SubscribeEvent

@@ -8,11 +8,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.HashMap;
 import java.util.Map;
 
-// Client state for a lectern whose Book of Knowledge is being fetched: first the
-// book flips shut (closeStart), then it floats out (float book set).
 @OnlyIn(Dist.CLIENT)
 public class LecternKnowledgeCache {
-
    public static class Entry {
       public ItemStack book = ItemStack.EMPTY;
       public long closeStart = -1L;
@@ -24,12 +21,10 @@ public class LecternKnowledgeCache {
       return MAP.computeIfAbsent(pos.immutable(), p -> new Entry());
    }
 
-   // The book starts flipping shut on the lectern surface.
    public static void startClose(BlockPos pos, long now) {
       entry(pos).closeStart = now;
    }
 
-   // The book has floated out (empty clears everything).
    public static void set(BlockPos pos, ItemStack stack) {
       if (stack == null || stack.isEmpty()) {
          MAP.remove(pos);

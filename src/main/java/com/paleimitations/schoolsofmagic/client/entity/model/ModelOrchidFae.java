@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class ModelOrchidFae<T extends Entity> extends EntityModel<T> {
-
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "orchid_fae"), "main");
 
@@ -204,7 +203,6 @@ public class ModelOrchidFae<T extends Entity> extends EntityModel<T> {
    @Override
    public void renderToBuffer(PoseStack pose, VertexConsumer buf, int light, int overlay,
                               float r, float g, float b, float a) {
-
       pose.pushPose();
       pose.translate(this.body.x / 16.0F, this.body.y / 16.0F, this.body.z / 16.0F);
       pose.scale(0.8F, 0.8F, 0.8F);

@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityHumanFeatures {
-
    public static final Capability<IHumanFeatures> CAP = CapabilityManager.get(new CapabilityToken<IHumanFeatures>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "human_feature");
 

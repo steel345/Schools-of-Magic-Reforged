@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ModelPhoenix<T extends Entity> extends MowzieModelBase<T> {
-
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "phoenix"), "main");
 

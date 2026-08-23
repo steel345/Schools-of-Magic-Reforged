@@ -21,7 +21,31 @@ public class BookPage {
    }
 
    @OnlyIn(Dist.CLIENT)
+   public boolean isChanged() {
+      String name = this.getName();
+      return name != null
+         && com.paleimitations.schoolsofmagic.client.ClientPageUnlocks.isUnread(BookUpdates.key(name));
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   protected void clearChangedMarker() {
+      String name = this.getName();
+      if (name == null) return;
+      String key = BookUpdates.key(name);
+      if (com.paleimitations.schoolsofmagic.client.ClientPageUnlocks.clearUnread(key)) {
+         com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
+            new com.paleimitations.schoolsofmagic.common.network.PacketMarkPageRead(key));
+      }
+   }
+
+   @OnlyIn(Dist.CLIENT)
    public void drawPage(GuiGraphics gg, float mouseX, float mouseY, int x, int y, boolean isGUI, int subpage) {
+      clearChangedMarker();
+      drawElements(gg, mouseX, mouseY, x, y, isGUI, subpage);
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   protected void drawElements(GuiGraphics gg, float mouseX, float mouseY, int x, int y, boolean isGUI, int subpage) {
       for (PageElement element : this.elements) {
          if (!element.isTarget(subpage)) continue;
          element.drawElement(gg, mouseX, mouseY, x, y, isGUI, subpage);
@@ -53,8 +77,6 @@ public class BookPage {
       return this;
    }
 
-   // Insert at a specific slot in the book (that raw list index is where the page
-   // appears). Clamped to the current size, so an out-of-range number just appends.
    public BookPage addToList(List<BookPage> pages, int index) {
       if (index < 0) index = 0;
       if (index > pages.size()) index = pages.size();

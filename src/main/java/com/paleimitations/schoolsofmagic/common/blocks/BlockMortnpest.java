@@ -35,7 +35,6 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockMortnpest extends SOMBlock implements EntityBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
    protected static final VoxelShape MORT_SHAPE = Shapes.or(
@@ -109,7 +108,6 @@ public class BlockMortnpest extends SOMBlock implements EntityBlock {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return new TileEntityMortNPest(pos, state);
    }
 

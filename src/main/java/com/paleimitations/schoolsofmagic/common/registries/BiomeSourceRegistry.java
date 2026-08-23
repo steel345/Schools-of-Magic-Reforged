@@ -11,7 +11,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class BiomeSourceRegistry {
-
    public static final DeferredRegister<Codec<? extends BiomeSource>> BIOME_SOURCES =
       DeferredRegister.create(Registries.BIOME_SOURCE, SchoolsOfMagic.MODID);
 

@@ -3,11 +3,12 @@ package com.paleimitations.schoolsofmagic.common.network;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData;
 import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
 public class PacketSyncRingData {
@@ -34,20 +35,18 @@ public class PacketSyncRingData {
    }
 
    public static void handle(PacketSyncRingData msg, Supplier<NetworkEvent.Context> ctx) {
-      ctx.get().enqueueWork(() -> apply(msg));
-      ctx.get().setPacketHandled(true);
-   }
-
-   private static void apply(PacketSyncRingData msg) {
-      Minecraft mc = Minecraft.getInstance();
-      if (mc.level == null) return;
-      Entity entity = mc.level.getEntity(msg.playerId);
-      if (entity instanceof Player player) {
-         IRingData data = CapabilityRingData.get(player);
-         if (data != null) {
-            data.setRing(msg.ring);
-            data.setSpellSlots(msg.spellSlots);
+      NetworkEvent.Context context = ctx.get();
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+         Entity entity = com.paleimitations.schoolsofmagic.client.ClientEntityLookup.byId(msg.playerId);
+         if (entity == null) return;
+         if (entity instanceof Player player) {
+            IRingData data = CapabilityRingData.get(player);
+            if (data != null) {
+               data.setRing(msg.ring);
+               data.setSpellSlots(msg.spellSlots);
+            }
          }
-      }
+      }));
+      context.setPacketHandled(true);
    }
 }

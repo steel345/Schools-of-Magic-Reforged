@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.common.ForgeHooks;
 
 public class BlockMushroom extends SOMPlant implements BonemealableBlock {
-
    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 7);
    public static final BooleanProperty NATURAL = BooleanProperty.create("natural");
    public static final BooleanProperty STOPPED = BooleanProperty.create("stopped");
@@ -96,14 +95,12 @@ public class BlockMushroom extends SOMPlant implements BonemealableBlock {
 
    @Override
    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-
       return state.isFaceSturdy(level, pos, net.minecraft.core.Direction.UP)
           || state.getBlock() == BlockRegistry.mushroom_stalk.get();
    }
 
    @Override
    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-
       BlockPos below = pos.below();
       return this.mayPlaceOn(level.getBlockState(below), level, below);
    }

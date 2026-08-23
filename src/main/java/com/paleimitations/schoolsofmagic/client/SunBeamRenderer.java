@@ -23,14 +23,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
 
-// The ritual finish ray: four upright quads forming a shaft, drawn additively,
-// solid at the foot and fading to nothing at the crown. It lands at full height and
-// draws in on itself from that moment on, so it is never still.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class SunBeamRenderer {
-
    private static final int LIFETIME = 20;
-   // The ray is five blocks tall where it comes from; this one is a sun blast.
+
    private static final float HEIGHT = 5.0F * 9.0F;
    private static final float WIDTH = 1.6F;
    public static final float[] SUN = {1.0F, 0.55F, 0.12F};
@@ -41,7 +37,7 @@ public class SunBeamRenderer {
    private static class Beam {
       final Vec3 pos;
       final float r, g, b;
-      // Two shapes of collapse: one narrows away to a thread, one sinks straight down.
+
       final boolean thins;
       int age;
 
@@ -67,7 +63,6 @@ public class SunBeamRenderer {
       }
    }
 
-   // Sine ease, in and out.
    private static float inOutSine(float t) {
       return -(Mth.cos((float) Math.PI * t) - 1.0F) / 2.0F;
    }
@@ -83,7 +78,7 @@ public class SunBeamRenderer {
       float partial = event.getPartialTick();
 
       RenderSystem.enableBlend();
-      // Additive, so the shaft glows rather than tints what is behind it.
+
       RenderSystem.blendFunc(com.mojang.blaze3d.platform.GlStateManager.SourceFactor.SRC_ALPHA,
          com.mojang.blaze3d.platform.GlStateManager.DestFactor.ONE);
       RenderSystem.depthMask(false);
@@ -101,12 +96,10 @@ public class SunBeamRenderer {
          float flashProgress = inOutSine(1.0F - smoothAge / LIFETIME);
          float half, height, baseAlpha;
          if (beam.thins) {
-            // Narrowed away to a thread: the walls close to nothing as the light drains.
             half = 0.65F * 0.5F * WIDTH * flashProgress;
             height = HEIGHT * (0.35F + 0.65F * flashProgress);
             baseAlpha = flashProgress;
          } else {
-            // Sinks back into the ground at full breadth.
             half = Mth.lerp(flashProgress, 0.9F * 0.5F, 0.65F * 0.5F) * WIDTH;
             height = HEIGHT * flashProgress;
             baseAlpha = Mth.lerp(flashProgress, 0.5F, 1.0F);
@@ -116,7 +109,6 @@ public class SunBeamRenderer {
          pose.translate(beam.pos.x - cam.x, beam.pos.y - cam.y, beam.pos.z - cam.z);
          Matrix4f mat = pose.last().pose();
 
-         // The four walls of the shaft, opaque at the foot, clear at the crown.
          wall(buf, mat, -half, -half, -half, half, height, baseAlpha, beam);
          wall(buf, mat, -half, -half, half, -half, height, baseAlpha, beam);
          wall(buf, mat, half, -half, half, half, height, baseAlpha, beam);

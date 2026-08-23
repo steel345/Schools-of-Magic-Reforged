@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.RegistryObject;
 
 public class BasinRecipeRegistry {
-
     private static ItemStack stack(RegistryObject<Item> ro, int meta) {
         ItemStack s = new ItemStack(ro.get());
         s.setDamageValue(meta);
@@ -41,7 +40,6 @@ public class BasinRecipeRegistry {
     }
 
     private static ItemStack teacup(String teaName) {
-
         RecipeTea recipe = RecipeRegistry.getTeaRecipe(teaName);
         if (recipe == null) {
             com.paleimitations.schoolsofmagic.common.util.Utils.getLogger()
@@ -56,7 +54,6 @@ public class BasinRecipeRegistry {
     }
 
     public static void register() {
-
         RecipeRegistry.registerCatalystBasin(
             "ingotIron",
             Items.BLAZE_ROD,
@@ -76,7 +73,6 @@ public class BasinRecipeRegistry {
             ingot(EnumMetal.TENEBRIUM));
 
         for (EnumMagicType mt : EnumMagicType.values()) {
-
             EnumPlantType plant = EnumPlantType.values()[mt.getIndex() + 1];
             RecipeRegistry.registerCatalystBasin(
                 "gemDiamond",
@@ -286,6 +282,14 @@ public class BasinRecipeRegistry {
             stack(ItemRegistry.crushed_plant, EnumPlantType.HYDROMANCY.getIndex()),
             20.0F, MagicSchoolRegistry.generateEmptyArray(), MagicElementRegistry.generateEmptyArray(),
             new ItemStack(Items.PRISMARINE_SHARD));
+
+        RecipeRegistry.registerCatalystBasin(
+            Items.BUCKET,
+            new ItemStack(BlockRegistry.gem_hydromancy.get()),
+            Items.PRISMARINE_SHARD,
+            stack(ItemRegistry.crushed_plant, EnumPlantType.HYDROMANCY.getIndex()),
+            20.0F, MagicSchoolRegistry.generateEmptyArray(), MagicElementRegistry.generateEmptyArray(),
+            new ItemStack(Items.WATER_BUCKET));
 
         RecipeRegistry.registerCatalystBasin(
             Items.ROTTEN_FLESH,

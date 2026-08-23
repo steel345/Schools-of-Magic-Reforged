@@ -39,7 +39,6 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockSpellForge extends SOMBlock implements EntityBlock {
-
    protected static final VoxelShape LOWER_SHAPE = Block.box(1.0D, 1.0D, 1.0D, 15.0D, 15.0D, 15.0D);
    protected static final VoxelShape MIDDLE_SHAPE = net.minecraft.world.phys.shapes.Shapes.or(
       Block.box(4.5D, -1.0D, 4.5D, 11.5D, 9.0D, 11.5D),
@@ -178,7 +177,6 @@ public class BlockSpellForge extends SOMBlock implements EntityBlock {
       }
 
       if (!world.isClientSide && player instanceof ServerPlayer sp) {
-
          NetworkHooks.openScreen(sp, sf, pos);
       }
       return InteractionResult.SUCCESS;
@@ -192,7 +190,6 @@ public class BlockSpellForge extends SOMBlock implements EntityBlock {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return state.getValue(HALF) == EnumBlockHalf.LOWER
          ? new TileEntitySpellForge(pos, state)
          : new com.paleimitations.schoolsofmagic.common.tileentity.TileEntitySpellForgeProxy(pos, state);

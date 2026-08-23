@@ -21,14 +21,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-// Renders the hip pouch on any player wearing a herb pouch or potion bag in their
-// charm slot. Base layer is tinted (herb pouch = its dye colour; potion bag = dark
-// brown); the overlay layer is drawn untinted on top.
 public class LayerWornPouch<T extends LivingEntity, M extends HumanoidModel<T>> extends RenderLayer<T, M> {
    private static final ResourceLocation BASE = new ResourceLocation("som", "textures/entity/curio/pouch.png");
    private static final ResourceLocation OVERLAY_HERB = new ResourceLocation("som", "textures/entity/curio/pouch_overlay.png");
    private static final ResourceLocation OVERLAY_SILVER = new ResourceLocation("som", "textures/entity/curio/pouch_overlay_silver.png");
-   // The potion bag wears the classic leather brown the herb pouch used to be.
+
    private static final int POTION_BROWN = 0xA06540;
 
    private final ModelWornPouch model;
@@ -43,7 +40,7 @@ public class LayerWornPouch<T extends LivingEntity, M extends HumanoidModel<T>> 
                       T entity, float limbSwing, float limbSwingAmount,
                       float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
       if (!(entity instanceof Player player) || player.isInvisible()) return;
-      // Worn on the belt or in the charm slot; either one shows on the hip.
+
       ItemStack charm = com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots
          .findWornPouch(player, s -> s.getItem() instanceof ItemHerbPouch
             || s.getItem() == ItemRegistry.potion_bag.get());
@@ -60,8 +57,7 @@ public class LayerWornPouch<T extends LivingEntity, M extends HumanoidModel<T>> 
       } else {
          return;
       }
-      // Lighten the worn model so it doesn't read dark on the hip (the base texture
-      // is a mid-tone that darkens under the tint multiply).
+
       float lighten = 0.3F;
       float r = (tint >> 16 & 0xFF) / 255.0F;
       float g = (tint >> 8 & 0xFF) / 255.0F;

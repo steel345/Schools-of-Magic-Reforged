@@ -3,7 +3,6 @@ package com.paleimitations.schoolsofmagic.common.network;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.creature_behavior.CapabilityCreatureBehavior;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.creature_behavior.ICreatureBehavior;
 import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
@@ -34,7 +33,7 @@ public class PacketUpdateCreatureBehavior {
    public static void handle(PacketUpdateCreatureBehavior msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
       context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-         Entity entity = Minecraft.getInstance().level.getEntity(msg.entityID);
+         Entity entity = com.paleimitations.schoolsofmagic.client.ClientEntityLookup.byId(msg.entityID);
          if (entity instanceof LivingEntity) {
             ICreatureBehavior cap = entity.getCapability(CapabilityCreatureBehavior.CAP).orElse(null);
             if (cap != null) {

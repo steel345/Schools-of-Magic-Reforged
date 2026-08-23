@@ -17,12 +17,7 @@ import net.minecraft.client.model.geom.ModelLayers.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
-// Draws the double as the caster themselves: their own skin, their own gear, and the
-// stance they were holding when they slipped away.
 public class RenderFlashDecoy extends LivingEntityRenderer<EntityFlashDecoy, PlayerModel<EntityFlashDecoy>> {
-
-   // textures/entity/steve.png has not existed since 1.19; asking for it is what
-   // showed the missing texture whenever the owner could not be resolved.
    private static ResourceLocation fallbackFor(java.util.UUID id) {
       return id == null
          ? net.minecraft.client.resources.DefaultPlayerSkin.getDefaultSkin()
@@ -36,13 +31,10 @@ public class RenderFlashDecoy extends LivingEntityRenderer<EntityFlashDecoy, Pla
          new HumanoidModel<>(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)),
          context.getModelManager()));
       this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()));
-      // Wands draw nothing through the ordinary in-hand path: their item renderer
-      // refuses every hand context, and the real model is put on by this layer, which
-      // until now only the player renderer carried.
+
       this.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWand<>(this));
    }
 
-   // The caster's own skin, looked up from the player the double was made from.
    @Override
    public ResourceLocation getTextureLocation(EntityFlashDecoy decoy) {
       if (decoy.getOwnerId() != null && Minecraft.getInstance().level != null) {
@@ -77,10 +69,9 @@ public class RenderFlashDecoy extends LivingEntityRenderer<EntityFlashDecoy, Pla
    @Override
    public void render(EntityFlashDecoy decoy, float yaw, float partial, PoseStack pose,
                       MultiBufferSource buffer, int light) {
-      // Held still: the double does not breathe or sway, it simply stands as left.
       this.model.crouching = decoy.isCrouchingPose();
       this.model.young = false;
-      // Without an arm pose the model holds nothing, whatever is in its hands.
+
       this.model.rightArmPose = armPose(decoy, net.minecraft.world.InteractionHand.MAIN_HAND);
       this.model.leftArmPose = armPose(decoy, net.minecraft.world.InteractionHand.OFF_HAND);
       super.render(decoy, yaw, partial, pose, buffer, light);

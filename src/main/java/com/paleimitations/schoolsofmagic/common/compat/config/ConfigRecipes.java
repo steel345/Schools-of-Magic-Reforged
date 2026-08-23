@@ -26,7 +26,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ConfigRecipes {
-
    private static final Logger LOGGER = LogManager.getLogger("SOMConfigRecipes");
    public static final String NEW_LINE = System.getProperty("line.separator");
 
@@ -191,14 +190,12 @@ public class ConfigRecipes {
    public static String generateStringFromObject(String prefix, Object o) {
       String s = "";
       if (o instanceof String) {
-
          s = s + prefix + " <tag>" + o + ";  ";
       } else if (o instanceof EnumPlantType) {
          s = s + prefix + " <plant>" + ((EnumPlantType) o).getSerializedName() + ";  ";
       } else if (o instanceof Item) {
          s = s + prefix + " <item>" + ForgeRegistries.ITEMS.getKey((Item) o) + ";  ";
       } else if (o instanceof Block) {
-
          s = s + prefix + " <item>" + ForgeRegistries.ITEMS.getKey(((Block) o).asItem()) + ";  ";
       } else if (o instanceof ItemStack) {
          s = s + prefix + generateStringFromItemstack(" <itemstack>", (ItemStack) o);

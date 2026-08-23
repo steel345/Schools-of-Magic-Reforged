@@ -63,7 +63,6 @@ public class SpellFuelFurnace extends Spell {
       Random rand = new Random();
       if (worldIn.getBlockEntity(pos) instanceof AbstractFurnaceBlockEntity furnace && this.castSpell(player, 0.0F)) {
          if (!worldIn.isClientSide) {
-
             BlockState state = worldIn.getBlockState(pos);
             if (state.hasProperty(AbstractFurnaceBlock.LIT) && !state.getValue(AbstractFurnaceBlock.LIT)) {
                worldIn.setBlockAndUpdate(pos, state.setValue(AbstractFurnaceBlock.LIT, Boolean.TRUE));

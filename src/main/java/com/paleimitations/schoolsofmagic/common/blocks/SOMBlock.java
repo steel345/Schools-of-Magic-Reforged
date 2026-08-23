@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class SOMBlock extends Block {
-
    public SOMBlock(BlockBehaviour.Properties props) {
       super(props);
    }

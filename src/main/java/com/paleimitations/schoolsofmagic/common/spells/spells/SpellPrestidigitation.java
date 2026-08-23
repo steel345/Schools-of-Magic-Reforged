@@ -34,7 +34,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 public class SpellPrestidigitation extends Spell {
-
    private static final int RADIUS = 10;
 
    public SpellPrestidigitation() {

@@ -83,9 +83,9 @@ public class ItemRegistry {
    public static final RegistryObject<Item> wand_apprentice = ITEMS.register("wand_apprentice",
       () -> new ItemApprenticeWand(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> wand_advanced = ITEMS.register("wand_advanced",
-      () -> new ItemAdvancedWand(new Item.Properties().stacksTo(1)));
+      () -> new ItemAdvancedWand(new Item.Properties().stacksTo(1).durability(735)));
    public static final RegistryObject<Item> apprentice_ring = ITEMS.register("apprentice_ring",
-      () -> new com.paleimitations.schoolsofmagic.common.items.ItemApprenticeRing(new Item.Properties().stacksTo(1)));
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemApprenticeRing(new Item.Properties().stacksTo(1).durability(250)));
 
    public static final RegistryObject<Item> potion_bag = ITEMS.register("potion_bag",
       () -> new com.paleimitations.schoolsofmagic.common.items.PotionBag(new Item.Properties().stacksTo(1)));
@@ -261,6 +261,10 @@ public class ItemRegistry {
    public static final RegistryObject<Item> crushed_horn_unicorn = ITEMS.register("crushed_horn_unicorn",
       () -> new ItemPotionry(new Item.Properties()));
 
+   public static final RegistryObject<Item> magic_mirror = ITEMS.register("magic_mirror",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemMagicMirror(
+         new Item.Properties().stacksTo(1).rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
+
    public static final RegistryObject<Item> wand_core = ITEMS.register("wand_core",
       () -> new ItemWandCore(new Item.Properties()));
 
@@ -337,6 +341,8 @@ public class ItemRegistry {
    public static final RegistryObject<Item> bi_trap_spike = ITEMS.register("trap_spike", () -> new BlockItem(BlockRegistry.trap_spike.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_mystic_gold_block = ITEMS.register("mystic_gold_block", () -> new BlockItem(BlockRegistry.mystic_gold_block.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_block_gold_coins = ITEMS.register("block_gold_coins", () -> new BlockItem(BlockRegistry.block_gold_coins.get(), new Item.Properties()));
+   public static final RegistryObject<Item> bi_looking_glass = ITEMS.register("looking_glass", () -> new BlockItem(BlockRegistry.looking_glass.get(), new Item.Properties()));
+
    public static final RegistryObject<Item> bi_gypsum = ITEMS.register("gypsum", () -> new com.paleimitations.schoolsofmagic.common.items.BlockStateTagItem(BlockRegistry.gypsum.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_gypsum_ore = ITEMS.register("gypsum_ore", () -> new BlockItem(BlockRegistry.gypsum_ore.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_gypsum_keystone = ITEMS.register("gypsum_keystone", () -> new BlockItem(BlockRegistry.gypsum_keystone.get(), new Item.Properties()));
@@ -670,7 +676,7 @@ public class ItemRegistry {
          new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> magic_broom = ITEMS.register("magic_broom",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemMagicBroom(
-         new Item.Properties().stacksTo(1).rarity(net.minecraft.world.item.Rarity.EPIC)));
+         new Item.Properties().stacksTo(1).durability(430).rarity(net.minecraft.world.item.Rarity.EPIC)));
    public static final RegistryObject<Item> bi_gem_block = ITEMS.register("gem_block", () -> new com.paleimitations.schoolsofmagic.common.items.BlockStateTagItem(BlockRegistry.gem_block.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_gem_chunk_block = ITEMS.register("gem_chunk_block", () -> new com.paleimitations.schoolsofmagic.common.items.BlockStateTagItem(BlockRegistry.gem_chunk_block.get(), new Item.Properties()));
    public static final RegistryObject<Item> bi_metal_block = ITEMS.register("metal_block", () -> new com.paleimitations.schoolsofmagic.common.items.BlockStateTagItem(BlockRegistry.metal_block.get(), new Item.Properties()));
@@ -782,7 +788,6 @@ public class ItemRegistry {
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemHerbology(new Item.Properties()));
 
    private static RegistryObject<Item> bannerPattern(String element) {
-
       return ITEMS.register("banner_pattern_" + element,
          () -> new net.minecraft.world.item.BannerPatternItem(
             com.paleimitations.schoolsofmagic.common.registries.PatternRegistry.patternTag(element),

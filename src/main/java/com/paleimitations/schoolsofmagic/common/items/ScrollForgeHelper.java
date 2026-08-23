@@ -10,7 +10,6 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class ScrollForgeHelper {
-
    public static final class Result {
       public final ItemStack scroll;
       public final boolean leavesFlask;

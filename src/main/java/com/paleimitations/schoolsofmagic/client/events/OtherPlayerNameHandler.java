@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class OtherPlayerNameHandler {
-
    @SubscribeEvent
    public static void onNameTag(RenderNameTagEvent event) {
       if (event.getEntity() instanceof Player player

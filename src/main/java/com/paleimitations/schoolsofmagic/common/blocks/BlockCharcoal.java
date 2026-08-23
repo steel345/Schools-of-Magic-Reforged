@@ -24,7 +24,6 @@ import net.minecraft.world.phys.AABB;
 import java.util.List;
 
 public class BlockCharcoal extends SOMBlock {
-
    public static final BooleanProperty ON_FIRE = BooleanProperty.create("on_fire");
 
    public BlockCharcoal(BlockBehaviour.Properties props) {
@@ -117,7 +116,6 @@ public class BlockCharcoal extends SOMBlock {
 
    @Override
    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
-
       if (!state.getValue(ON_FIRE)) return;
       if (rand.nextInt(AMALGAM_CHANCE_DENOM) == 0) {
          tryAmalgam(state, world, pos);

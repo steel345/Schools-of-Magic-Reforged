@@ -1,1 +1,1 @@
-  Every scroll needs two things to begin. A /bScroll Seal/z, folded from /bhoneycomb/z and /blapis/z, sits at the centre of each forging. /bSpell Parchment/z, pressed from paper between two sticks, is the blank that activates the work in place of plain paper.
+  Every scroll needs two things to begin. A /bScroll Seal/z, folded from /bhoneycomb/z and /blapis/z, sits at the centre of each forging. An /bEmpty Scroll/z, rolled from /bpaper/z and bound with /bstring/z, is the blank that activates the work in place of plain paper.

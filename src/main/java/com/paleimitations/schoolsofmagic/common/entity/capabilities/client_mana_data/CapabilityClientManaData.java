@@ -22,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityClientManaData {
-
    public static final Capability<IClientManaData> CAP = CapabilityManager.get(new CapabilityToken<IClientManaData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "client_mana_data");
 
@@ -33,7 +32,6 @@ public class CapabilityClientManaData {
 
    @SubscribeEvent
    public static void clonePlayer(PlayerEvent.Clone event) {
-
       event.getOriginal().reviveCaps();
       try {
          IClientManaData original = getEffectVariables(event.getOriginal());

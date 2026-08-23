@@ -24,17 +24,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
-// A double left standing where the caster was. It holds their shape and their gear,
-// draws attackers onto itself, and goes off in a blinding flash the moment anything
-// lands a blow.
 public class EntityFlashDecoy extends LivingEntity {
-
    private static final EntityDataAccessor<Float> BLAST =
       SynchedEntityData.defineId(EntityFlashDecoy.class, EntityDataSerializers.FLOAT);
    private static final EntityDataAccessor<Byte> POSE_FLAGS =
       SynchedEntityData.defineId(EntityFlashDecoy.class, EntityDataSerializers.BYTE);
-   // Sent to clients. Held as a plain field it never crossed, so the double had no
-   // idea whose face to wear and fell back to a skin that does not exist.
+
    private static final EntityDataAccessor<java.util.Optional<UUID>> OWNER =
       SynchedEntityData.defineId(EntityFlashDecoy.class, EntityDataSerializers.OPTIONAL_UUID);
 
@@ -64,7 +59,6 @@ public class EntityFlashDecoy extends LivingEntity {
       this.entityData.define(OWNER, java.util.Optional.empty());
    }
 
-   // Takes on the caster's look, stance and gear so the copy is exact.
    public void copyFrom(Player player, float blast) {
       this.entityData.set(OWNER, java.util.Optional.of(player.getUUID()));
       this.entityData.set(BLAST, blast);
@@ -78,7 +72,7 @@ public class EntityFlashDecoy extends LivingEntity {
       this.yRotO = player.getYRot();
       this.setXRot(player.getXRot());
       this.xRotO = player.getXRot();
-      // Crouching, swimming, gliding: whatever they were doing when they slipped out.
+
       this.setPose(player.getPose());
       this.setShiftKeyDown(player.isShiftKeyDown());
       this.pending = new ItemStack[6];
@@ -91,7 +85,6 @@ public class EntityFlashDecoy extends LivingEntity {
       return this.entityData.get(OWNER).orElse(null);
    }
 
-   // Goes by the caster's name, not its own.
    @Override
    public net.minecraft.network.chat.Component getName() {
       UUID owner = this.getOwnerId();
@@ -117,7 +110,6 @@ public class EntityFlashDecoy extends LivingEntity {
       return this.storedPose() == net.minecraft.world.entity.Pose.CROUCHING;
    }
 
-   // Hangs exactly where it was made, in the air or otherwise.
    @Override
    public boolean isNoGravity() {
       return true;
@@ -142,12 +134,10 @@ public class EntityFlashDecoy extends LivingEntity {
       super.tick();
       this.setNoGravity(true);
       this.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
-      // Held against anything that would tidy the pose away.
+
       this.setPose(this.storedPose());
       if (!this.level().isClientSide) {
          if (this.pending != null) {
-            // Applied here rather than before spawning: setting it once the double is
-            // in the world makes the game notice the change and tell every client.
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                this.setItemSlot(slot, this.pending[slot.ordinal()]);
             }
@@ -158,7 +148,6 @@ public class EntityFlashDecoy extends LivingEntity {
       }
    }
 
-   // Anything that was coming for the caster turns on the double instead.
    private void drawAttention() {
       UUID owner = this.getOwnerId();
       if (owner == null) return;
@@ -174,8 +163,7 @@ public class EntityFlashDecoy extends LivingEntity {
    @Override
    public boolean hurt(DamageSource source, float amount) {
       if (this.level().isClientSide) return false;
-      // One flash only. Two doubles standing together would otherwise set each other
-      // off, over and over, until the stack ran out.
+
       if (this.bursting || this.isRemoved()) return false;
       this.burst();
       return true;
@@ -183,7 +171,7 @@ public class EntityFlashDecoy extends LivingEntity {
 
    private void burst() {
       this.bursting = true;
-      // Gone before the blast lands, so nothing it hurts can reach back for it.
+
       this.discard();
       float blast = this.entityData.get(BLAST);
       AABB reach = this.getBoundingBox().inflate(FLASH_RANGE);

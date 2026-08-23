@@ -16,7 +16,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 
 public class MysteriousApplicationRecipe extends CustomRecipe {
-
    public MysteriousApplicationRecipe(ResourceLocation id, CraftingBookCategory category) {
       super(id, category);
    }

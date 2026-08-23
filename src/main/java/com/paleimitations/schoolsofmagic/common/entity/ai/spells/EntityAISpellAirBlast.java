@@ -95,11 +95,15 @@ public class EntityAISpellAirBlast extends EntityAIUseSpell {
       zRatio = event.getRatioZ();
       if (target.getRandom().nextDouble() * 1.25 >= target.getAttribute(Attributes.KNOCKBACK_RESISTANCE).getValue()) {
          target.hasImpulse = true;
-         float f = Mth.sqrt((float)(xRatio * xRatio + zRatio * zRatio));
+
+         double f = Math.sqrt(xRatio * xRatio + zRatio * zRatio);
+         if (f < 1.0E-4D) {
+            return;
+         }
          Vec3 dm = target.getDeltaMovement();
-         double mx = dm.x / 2.0 - xRatio / (double)f * (double)strength;
+         double mx = dm.x / 2.0 - xRatio / f * (double)strength;
          double my = dm.y;
-         double mz = dm.z / 2.0 - zRatio / (double)f * (double)strength;
+         double mz = dm.z / 2.0 - zRatio / f * (double)strength;
          if (target.onGround()) {
             my = my / 2.0 + (double)strength;
             if (my > 0.4) {

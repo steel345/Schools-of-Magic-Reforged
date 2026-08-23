@@ -24,7 +24,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BlockPlantPitcher extends SOMPlant {
-
    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -74,5 +73,4 @@ public class BlockPlantPitcher extends SOMPlant {
    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
       builder.add(FACING, TYPE);
    }
-
 }

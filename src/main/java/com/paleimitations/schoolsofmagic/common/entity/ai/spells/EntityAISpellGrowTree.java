@@ -32,7 +32,6 @@ public class EntityAISpellGrowTree extends EntityAIUseSpell {
 
    @Override
    protected void castSpell() {
-
    }
 
    @Override

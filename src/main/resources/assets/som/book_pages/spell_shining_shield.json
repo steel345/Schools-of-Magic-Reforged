@@ -7,6 +7,10 @@
     {
       "type": "text",
       "text": "  Shining Shield summons a ring of sunlit shields that turn slowly around you and block what comes at you.\n\n  It needs concentration. Hold right click while the ring is gathered.\n\n  Every blow that lands is stopped completely, the attacker is thrown back, and the shield that stopped it breaks.\n\n  How many shields you get depends on the spell charge level: 2 at level 4, 3 at level 5, 4 at level 6, 4 at level 7, and 5 at level 8.\n\n  The ring lasts 30 seconds, or until every shield is gone.\n\n  It costs 60 mana and needs spell charge level 4."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_shining_shield.desc"
     }
   ]
 }

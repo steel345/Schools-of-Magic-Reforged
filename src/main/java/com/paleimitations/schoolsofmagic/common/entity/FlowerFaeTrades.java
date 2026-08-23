@@ -14,7 +14,6 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.ItemLike;
 
 public final class FlowerFaeTrades {
-
    private FlowerFaeTrades() {}
 
    public static void build(MerchantOffers offers, String color, RandomSource random) {

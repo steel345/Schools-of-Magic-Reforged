@@ -13,7 +13,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class BookSmithingHandler {
-
    @SubscribeEvent
    public static void onTick(TickEvent.PlayerTickEvent event) {
       if (event.phase != TickEvent.Phase.END || !(event.player instanceof ServerPlayer sp)) {

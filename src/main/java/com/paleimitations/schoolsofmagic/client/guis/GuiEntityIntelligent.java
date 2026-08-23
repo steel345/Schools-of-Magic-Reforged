@@ -39,7 +39,6 @@ public class GuiEntityIntelligent extends EffectRenderingInventoryScreen<Contain
 
    @Override
    protected void renderLabels(GuiGraphics gg, int mouseX, int mouseY) {
-
    }
 
    @Override

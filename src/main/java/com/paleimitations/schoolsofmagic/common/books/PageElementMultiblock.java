@@ -14,12 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-// Patchouli-style multiblock preview: renders a small 3D build on the page,
-// slowly spinning and (optionally) assembling itself one layer at a time. The
-// structure is authored as layered character patterns with a char -> BlockState
-// legend, exactly like a jigsaw pattern. x,y are the CENTRE of the preview.
 public class PageElementMultiblock extends PageElement {
-   private final BlockState[][][] grid; // [layer(y)][row(z)][col(x)]
+   private final BlockState[][][] grid;
    private final int w, d, h;
    public final float size;
    public final float tilt;
@@ -81,9 +77,6 @@ public class PageElementMultiblock extends PageElement {
       com.mojang.blaze3d.systems.RenderSystem.depthMask(true);
       com.mojang.blaze3d.platform.Lighting.setupFor3DItems();
 
-      // Screen-pixel depth in the flat GUI; on the 3D book z is a real world offset —
-      // the build must sit in front of the page or the book clips it flat. podiumLift
-      // controls how far in front (tune per page via "lift").
       double z = isGUI ? 250.0D : this.podiumLift;
       PoseStack pose = gg.pose();
       pose.pushPose();

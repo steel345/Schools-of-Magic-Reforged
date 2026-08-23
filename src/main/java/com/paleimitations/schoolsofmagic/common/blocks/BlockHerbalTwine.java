@@ -23,7 +23,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockHerbalTwine extends SOMBlock implements EntityBlock {
-
    protected static final VoxelShape TWINE_SHAPE = Block.box(7.0D, 5.0D, 7.0D, 9.0D, 16.0D, 9.0D);
    public static final EnumProperty<EnumPlantType> TYPE = EnumProperty.create("type", EnumPlantType.class);
    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);

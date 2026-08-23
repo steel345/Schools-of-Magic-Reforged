@@ -29,12 +29,8 @@ public class PacketOpenLecternPage {
 
    public static void handle(PacketOpenLecternPage msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
-      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-         if (msg.stack.isEmpty()) return;
-         com.paleimitations.schoolsofmagic.common.items.ItemPageBase.ensurePage(msg.stack);
-         net.minecraft.client.Minecraft.getInstance().setScreen(
-            new com.paleimitations.schoolsofmagic.client.guis.GuiLecternPage(msg.stack, msg.pos));
-      }));
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
+         com.paleimitations.schoolsofmagic.client.guis.LecternPageOpener.open(msg.pos, msg.stack)));
       context.setPacketHandled(true);
    }
 }

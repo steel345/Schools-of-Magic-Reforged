@@ -3,7 +3,6 @@ package com.paleimitations.schoolsofmagic.common.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class SOMClientConfig {
-
    public static final ForgeConfigSpec SPEC;
 
    public static ForgeConfigSpec.DoubleValue BOOK_TEXT_SCALE;

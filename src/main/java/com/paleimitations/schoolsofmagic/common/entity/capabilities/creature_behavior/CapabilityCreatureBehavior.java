@@ -48,7 +48,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityCreatureBehavior {
-
    public static final Capability<ICreatureBehavior> CAP = CapabilityManager.get(new CapabilityToken<ICreatureBehavior>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "creature_behavior");
 

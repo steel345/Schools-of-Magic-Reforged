@@ -11,10 +11,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
-// /setmagiclevel <level> - sets the magician level by writing the matching amount
-// of magician XP (the level is derived from XP, it is not stored on its own).
 public class CommandSetMagicLevel {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(
          Commands.literal("setmagiclevel")
@@ -26,8 +23,6 @@ public class CommandSetMagicLevel {
       );
    }
 
-   // Levelling spends 50 + 10*level XP per level, so reaching level N costs the sum
-   // of every step below it; one spare point puts the player just inside the level.
    private static float xpForLevel(int level) {
       float total = 0.0F;
       for (int i = 0; i < level; i++) total += 50.0F + i * 10.0F;

@@ -19,12 +19,20 @@ public class PotionElement extends PotionBasic {
       this.elementSup = elementSup;
    }
 
+   public static int proficiencyBonus(net.minecraft.world.entity.LivingEntity entity, MagicElement element) {
+      if (entity == null || element == null) return 0;
+      net.minecraft.world.effect.MobEffect effect = net.minecraftforge.registries.ForgeRegistries.MOB_EFFECTS
+         .getValue(new ResourceLocation("som", element.getName()));
+      if (effect == null) return 0;
+      MobEffectInstance held = entity.getEffect(effect);
+      return held == null ? 0 : held.getAmplifier() + 1;
+   }
+
    @Override
    public void initializeClient(Consumer<IClientMobEffectExtensions> consumer) {
       consumer.accept(new IClientMobEffectExtensions() {
          @Override
          public boolean isVisibleInGui(MobEffectInstance effect) {
-
             return false;
          }
 
@@ -32,8 +40,11 @@ public class PotionElement extends PotionBasic {
          public boolean renderInventoryIcon(MobEffectInstance effect,
                                             EffectRenderingInventoryScreen<?> screen,
                                             GuiGraphics gg, int x, int y, int blitOffset) {
-
-            return drawElementIcon(gg, x - 1, y + 6, 22, 22);
+            gg.pose().pushPose();
+            gg.pose().translate(-2.3F, 6.0F, 0.0F);
+            boolean drawn = drawElementIcon(gg, x, y, 22, 22);
+            gg.pose().popPose();
+            return drawn;
          }
 
          private boolean drawElementIcon(GuiGraphics gg, int x, int y, int destW, int destH) {

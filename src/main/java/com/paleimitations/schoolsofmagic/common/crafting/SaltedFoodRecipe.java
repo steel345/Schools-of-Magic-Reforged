@@ -15,7 +15,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 
 public class SaltedFoodRecipe extends CustomRecipe {
-
    public SaltedFoodRecipe(ResourceLocation id, CraftingBookCategory category) {
       super(id, category);
    }

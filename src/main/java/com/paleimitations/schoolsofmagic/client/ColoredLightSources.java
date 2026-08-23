@@ -6,14 +6,15 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-// The world's coloured lights. Candidates are found by an occasional sweep of the
-// nearby chunks, but their colour and whether they are lit at all is read fresh every
-// frame, so a fire that goes out stops lighting the room on the very next one.
 public class ColoredLightSources {
-
    public record Source(double x, double y, double z, float r, float g, float b,
                         float radius, float strength) {}
 
+   private static final int MAX_ENTITY_LIGHTS = 8;
+   private static final float FIRE_RADIUS = 15.0F;
+   private static final float FIRE_R = 1.0F;
+   private static final float FIRE_G = 0.45F;
+   private static final float FIRE_B = 0.12F;
 
    private static final List<BlockEntity> CANDIDATES = new ArrayList<>();
    private static final List<Source> LIVE = new ArrayList<>();
@@ -30,7 +31,6 @@ public class ColoredLightSources {
       return CANDIDATES.size();
    }
 
-   // Rebuilt each frame from the current state of each candidate.
    public static List<Source> live() {
       LIVE.clear();
       for (BlockEntity be : CANDIDATES) {
@@ -46,10 +46,25 @@ public class ColoredLightSources {
             com.paleimitations.schoolsofmagic.common.config.SOMClientConfig.coloredLightRadius(),
             com.paleimitations.schoolsofmagic.common.config.SOMClientConfig.coloredLightStrength()));
       }
+      addEntitySources(LIVE);
       return LIVE;
    }
 
-   // Worth keeping in the list even while dark, since it may be lit again.
+   private static void addEntitySources(List<Source> out) {
+      net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
+      if (mc.level == null || mc.player == null) return;
+      net.minecraft.world.phys.AABB near = mc.player.getBoundingBox().inflate(64.0D);
+      int added = 0;
+      for (com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall ball
+            : mc.level.getEntitiesOfClass(
+                 com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall.class, near)) {
+         if (added++ >= MAX_ENTITY_LIGHTS) break;
+         out.add(new Source(
+            ball.getX(), ball.getY() + ball.getBbHeight() * 0.5D, ball.getZ(),
+            FIRE_R, FIRE_G, FIRE_B, FIRE_RADIUS, 1.0F));
+      }
+   }
+
    private static boolean couldLight(BlockEntity be) {
       return be instanceof com.paleimitations.schoolsofmagic.common.tileentity.TileEntityRitualCenter;
    }

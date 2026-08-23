@@ -5,18 +5,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 
-// The state of the solar eclipse: how far the shadow has crept across the sun, how
-// long it still has to run, and which day the next one falls on.
 public class EclipseData extends SavedData {
-
    public static final String NAME = "som_eclipse";
 
-   // Five drawn stages, plus stage 0 for an ordinary sun.
    public static final int MAX_STAGE = 5;
-   // Fifteen seconds on each stage while the shadow closes, and again while it
-   // withdraws.
+
    public static final int TICKS_PER_STAGE = 300;
-   // Eight minutes held at totality.
+
    public static final int TOTALITY_TICKS = 9600;
    public static final int INGRESS_TICKS = MAX_STAGE * TICKS_PER_STAGE;
    public static final int EGRESS_START = INGRESS_TICKS + TOTALITY_TICKS;
@@ -64,7 +59,6 @@ public class EclipseData extends SavedData {
       return this.elapsed;
    }
 
-   // 0 for an untouched sun, rising to 5 at totality and back down as it clears.
    public int getStage() {
       if (!this.running) return 0;
       if (this.elapsed < INGRESS_TICKS) {
@@ -104,13 +98,11 @@ public class EclipseData extends SavedData {
       return level.getDayTime() / DAY >= this.nextEclipseDay;
    }
 
-   // Only ever begins while the sun is up, so the shadow has something to cross.
    public static boolean isDaylight(Level level) {
       long time = level.getDayTime() % DAY;
       return time > 1000L && time < 11000L;
    }
 
-   // The eclipse holds the sun where it stood, so the day never turns over.
    public void holdTime(ServerLevel level) {
       level.setDayTime(this.frozenDayTime);
    }

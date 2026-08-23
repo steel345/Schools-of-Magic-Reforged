@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderFlowerFae extends MobRenderer<EntityFlowerFae, ModelOrchidFae<EntityFlowerFae>> {
-
    private static final ResourceLocation[] TEXTURES = buildTextures();
 
    private static ResourceLocation[] buildTextures() {

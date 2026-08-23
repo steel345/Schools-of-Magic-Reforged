@@ -127,8 +127,6 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
       };
    }
 
-   // Screen-space click region of the search bar (book is drawn at 0.504 scale,
-   // translated to (73.886, 1.642)); TEX (36,44) maps to about (leftPos+81, topPos+12).
    private boolean overBar(double mouseX, double mouseY) {
       float bx = this.leftPos + BOOK_TX + BOOK_SCALE * (-20.0F + barTexX());
       float by = this.topPos + BOOK_TY + BOOK_SCALE * (-23.0F + barTexY());
@@ -149,16 +147,13 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
       gg.blit(getTexture(), this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
    }
 
-   // The book is drawn with this transform: translate(BOOK_TX, BOOK_TY) then
-   // scale(BOOK_SCALE) then translate(-20,-23). All the search geometry below is
-   // in that inner "book texture" (256-space) so the bar/results land on the page.
    private static final float BOOK_TX = 73.88618F;
    private static final float BOOK_TY = 1.642276F;
    private static final float BOOK_SCALE = 0.50406504F;
 
    private static final float TEX_TEXT_SCALE = 0.75F;
    private static final float TEX_RESULT_SCALE = 0.55F;
-   // Knowledge book: bar at top; table of contents: bar at the bottom.
+
    private float barTexX() { return isKnowledgeBook() ? 42.0F : 44.0F; }
    private float barTexY() { return isKnowledgeBook() ? 53.0F : 188.0F; }
    private int texClip()   { return isKnowledgeBook() ? 43 : 78; }
@@ -178,17 +173,14 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
          (mouseY - this.topPos) - 1.642276F,
          this, podium.handler.getStackInSlot(0), 0.0F, podium, false);
       if (searchUiActive()) {
-         // Same transform the book is drawn with, so text/results land on the page.
          gg.pose().pushPose();
          gg.pose().scale(BOOK_SCALE, BOOK_SCALE, 1.0F);
          gg.pose().translate(-20.0F, -23.0F, 0.0F);
 
          if (isTocPage()) {
             if (!this.results.isEmpty()) {
-               // While searching, cover the contents entries so results don't overlap them.
                gg.blit(TABLE_OF_CONTENTS, 0, 0, 0, 0, 256, 256);
             } else {
-               // Otherwise only the bottom search-bar strip, so the contents list stays visible.
                gg.blit(TABLE_OF_CONTENTS, 34, 183, 34, 183, 108, 22);
             }
          }
@@ -238,6 +230,26 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
       this.addRenderableWidget(new TurnPageButton(podium, true, this.leftPos + 38, this.topPos + 46));
    }
 
+   private boolean clickedQuill(double mx, double my) {
+      TileEntityPodium podium = getPodium();
+      IBook book = getPodiumBook();
+      if (podium == null || book == null || book.getCurrentPage() == null) return false;
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout layout =
+         book.getPageLayouts().get(book.getPage());
+      if (layout != null && layout.finished) return false;
+      for (com.paleimitations.schoolsofmagic.common.books.PageElement e : book.getCurrentPage().elements) {
+         if (e instanceof com.paleimitations.schoolsofmagic.common.books.PageElementQuill quill
+               && com.paleimitations.schoolsofmagic.common.books.PageElementQuill.isOverScreen(mx, my)) {
+            quill.press();
+            this.minecraft.setScreen(
+               new com.paleimitations.schoolsofmagic.client.guis.editor.GuiBookEditor(
+                  this, podium.getBlockPos(), book.getPage(), layout));
+            return true;
+         }
+      }
+      return false;
+   }
+
    @Override
    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
       if (this.typing) {
@@ -268,9 +280,12 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
 
    @Override
    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+      if (button == 0 && clickedQuill(mouseX, mouseY)) {
+         return true;
+      }
       if (searchUiActive() && overBar(mouseX, mouseY)) {
          this.typing = true;
-         // Map the click into the field's font-unit space (same transform the text uses).
+
          float originX = this.leftPos + BOOK_TX + BOOK_SCALE * (-20.0F + barTexX());
          float sf = BOOK_SCALE * TEX_TEXT_SCALE;
          float fx = (float) (mouseX - originX) / sf;
@@ -292,7 +307,6 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
                   net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
             com.paleimitations.schoolsofmagic.client.KnowledgeSearch.Hit h = this.results.get(hit);
             if (h.pageIndex >= 0) {
-               // Table-of-contents result: jump the podium book to the matching page.
                IBook b = getPodiumBook();
                if (b != null) { b.setPage(h.pageIndex); b.setSubPage(0); }
                PacketHandler.INSTANCE.sendToServer(new PacketTurnPage(h.pageIndex, 0, getPodium().getBlockPos()));

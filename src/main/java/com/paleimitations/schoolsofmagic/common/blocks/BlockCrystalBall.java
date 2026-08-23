@@ -15,7 +15,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockCrystalBall extends SOMBlock {
-
    protected static final VoxelShape CRYSTAL_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 11.0D, 12.0D);
 
    public BlockCrystalBall(BlockBehaviour.Properties props) {
@@ -24,7 +23,6 @@ public class BlockCrystalBall extends SOMBlock {
 
    @Override
    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-
       if (level.isClientSide) {
          SchoolsOfMagic.proxy.openCrystalBall(player);
       }

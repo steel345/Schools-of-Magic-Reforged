@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BlockPlantAloe extends SOMPlant {
-
    public BlockPlantAloe(BlockBehaviour.Properties props) {
       super(props);
    }

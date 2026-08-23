@@ -6,11 +6,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-// Server-side registry of active knowledge "loans": a book borrowed from a shelf
-// and now held in the reading workstation, with the workstation's own book set
-// aside (floating) to swap back. Keyed by the workstation position.
 public class KnowledgeLoans {
-
    public static class Loan {
       public final BlockPos shelf;
       public final int slot;

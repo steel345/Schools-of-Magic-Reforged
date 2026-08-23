@@ -16,4 +16,13 @@ public class SOMPickax extends PickaxeItem {
    public boolean isFoil(ItemStack stack) {
       return this == ItemRegistry.pickaxe_light.get() ? true : super.isFoil(stack);
    }
+
+   @Override
+   public boolean isValidRepairItem(net.minecraft.world.item.ItemStack toRepair,
+         net.minecraft.world.item.ItemStack repair) {
+      if (SOMMetalTiers.isModIngot(repair)) {
+         return SOMMetalTiers.mendsWith(this.getTier(), repair);
+      }
+      return super.isValidRepairItem(toRepair, repair);
+   }
 }

@@ -23,7 +23,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CopperKeyHandler {
-
    private static boolean isDoorlike(BlockState state) {
       return state.getBlock() instanceof DoorBlock || state.getBlock() instanceof TrapDoorBlock;
    }

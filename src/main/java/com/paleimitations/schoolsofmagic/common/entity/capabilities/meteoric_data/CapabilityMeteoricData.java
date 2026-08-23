@@ -29,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityMeteoricData {
-
    public static final Capability<IMeteoricData> CAP = CapabilityManager.get(new CapabilityToken<IMeteoricData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "meteoric_data");
 

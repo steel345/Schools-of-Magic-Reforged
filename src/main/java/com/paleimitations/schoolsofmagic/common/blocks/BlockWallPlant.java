@@ -13,7 +13,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
 public class BlockWallPlant extends BlockWalls implements IPlantable {
-
    public BlockWallPlant(BlockBehaviour.Properties props) {
       super(props);
    }

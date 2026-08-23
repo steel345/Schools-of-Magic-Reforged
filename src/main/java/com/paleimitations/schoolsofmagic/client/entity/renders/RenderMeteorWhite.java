@@ -57,11 +57,7 @@ public class RenderMeteorWhite extends EntityRenderer<EntityMeteor> {
       super.render(entity, entityYaw, partialTicks, pose, buffer, packedLight);
    }
 
-   // The sheath of fire the meteor falls in. Built like the vanilla burning overlay,
-   // but drained of colour to the same ashen white as the fires it leaves behind.
    private void renderPaleFlame(EntityMeteor entity, PoseStack pose, MultiBufferSource buffer) {
-      // The mod's own greyscale flame, not the vanilla one: an orange texture just
-      // stays orange however it is tinted.
       TextureAtlasSprite flame = net.minecraft.client.Minecraft.getInstance().getModelManager()
          .getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS)
          .getSprite(new ResourceLocation("som", "blocks/fire"));

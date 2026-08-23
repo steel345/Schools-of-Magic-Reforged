@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class GuiRingSpellRing {
-
    private static int animationTick;
    private static int prevSlot;
    private static int animateSlot;
@@ -96,7 +95,7 @@ public class GuiRingSpellRing {
       int yPos = gg.guiHeight() / 2 - 57;
       ResourceLocation bg = ringBg(ring);
 
-      gg.blit(bg, xPos, yPos, 0, 115, 114, 114);
+      gg.blit(bg, xPos, yPos, 0, 115, 114, 114, 256, 257);
 
       int slots = ringSlots(mana);
       int sel = mana.getCurrentSpellSlot() % slots;
@@ -110,7 +109,7 @@ public class GuiRingSpellRing {
 
       if (animationTick > 0) animationTick--;
       if (prevSlot != sel) {
-         if (animationTick < 36) animationTick += 18;
+         if (animationTick < 24) animationTick += 12;
          animateSlot = prevSlot;
       }
       if (animationTick == 0) animateSlot = sel;
@@ -122,10 +121,10 @@ public class GuiRingSpellRing {
       }
       float angle = animateSlot == sel
          ? (float) sel / (float) slots * 360.0F
-         : ((float) sel + difference * ((float) animationTick + mc.getPartialTick()) / 18.0F) / (float) slots * 360.0F;
+         : ((float) sel + difference * ((float) animationTick + mc.getPartialTick()) / 12.0F) / (float) slots * 360.0F;
       if (difference > 0.0F && Math.abs(difference) >= (float) (slots - 1)) {
          difference = (float) (animateSlot - sel - slots);
-         angle = ((float) sel + difference * ((float) animationTick + mc.getPartialTick()) / 18.0F) / (float) slots * 360.0F;
+         angle = ((float) sel + difference * ((float) animationTick + mc.getPartialTick()) / 12.0F) / (float) slots * 360.0F;
       }
 
       for (int i = 0; i < slots; i++) {
@@ -134,7 +133,7 @@ public class GuiRingSpellRing {
          gg.pose().pushPose();
          gg.pose().translate(gg.guiWidth() / 2.0F, gg.guiHeight() / 2.0F, 0.0F);
          gg.pose().mulPose(Axis.ZP.rotationDegrees(-angle + (float) i / (float) slots * 360.0F));
-         gg.blit(bg, -19, -54 - 19, 38, 0, 38, 38);
+         gg.blit(bg, -19, -54 - 19, 38, 0, 38, 38, 256, 257);
          if (sp != null) drawIcon(gg, 0.0F, -radius, sp);
          gg.pose().popPose();
       }

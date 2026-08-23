@@ -18,10 +18,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.MOD)
 public class CapabilityRegistry {
-
    @SubscribeEvent
    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-
       event.register(IWandData.class);
       event.register(IBook.class);
       event.register(IPage.class);

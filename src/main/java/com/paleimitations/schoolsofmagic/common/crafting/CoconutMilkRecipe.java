@@ -15,7 +15,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 
 public class CoconutMilkRecipe extends CustomRecipe {
-
    public CoconutMilkRecipe(ResourceLocation id, CraftingBookCategory category) {
       super(id, category);
    }
@@ -63,7 +62,6 @@ public class CoconutMilkRecipe extends CustomRecipe {
       NonNullList<ItemStack> remainders = NonNullList.withSize(inv.getContainerSize(), ItemStack.EMPTY);
       for (int i = 0; i < inv.getContainerSize(); i++) {
          if (isCoconut(inv.getItem(i))) {
-
             remainders.set(i, new ItemStack(Items.BOWL, 2));
          }
       }

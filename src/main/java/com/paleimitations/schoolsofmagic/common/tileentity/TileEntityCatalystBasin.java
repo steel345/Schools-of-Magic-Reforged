@@ -77,7 +77,6 @@ public class TileEntityCatalystBasin extends BlockEntity implements MenuProvider
          return;
       }
       if (this.level.isClientSide) {
-
          if (this.brew) {
             this.spawnBrewParticles();
          }

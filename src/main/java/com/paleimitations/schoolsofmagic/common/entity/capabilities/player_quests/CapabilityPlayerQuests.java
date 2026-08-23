@@ -38,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityPlayerQuests {
-
    public static final Capability<IPlayerQuests> CAP = CapabilityManager.get(new CapabilityToken<IPlayerQuests>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "player_quests");
 
@@ -47,8 +46,6 @@ public class CapabilityPlayerQuests {
       return entity.getCapability(CAP).orElse(null);
    }
 
-   // The quest page is drawn client-side, so the progress has to be mirrored there;
-   // without this the client never learns a quest started or was passed.
    public static void sync(net.minecraft.server.level.ServerPlayer player) {
       IPlayerQuests quests = getPlayerQuests(player);
       if (!(quests instanceof net.minecraftforge.common.util.INBTSerializable<?>)) return;
@@ -111,7 +108,7 @@ public class CapabilityPlayerQuests {
                cap2.reset();
             }
          }
-         // Keep the open quest page in step with the server.
+
          if (living instanceof net.minecraft.server.level.ServerPlayer sp && sp.tickCount % 20 == 0) {
             sync(sp);
          }

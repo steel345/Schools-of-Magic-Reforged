@@ -16,10 +16,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-// Client -> Server: move the clicked search result out of its shelf into a nearby
-// empty lectern (the functional core of the fetch animation).
 public class PacketKnowledgeFetch {
-
    private final BlockPos shelf;
    private final int slot;
    private final BlockPos reading;
@@ -54,8 +51,6 @@ public class PacketKnowledgeFetch {
          if (msg.slot < 0 || msg.slot >= shelfBe.getContainerSize()) return;
          if (shelfBe.getItem(msg.slot).isEmpty()) return;
 
-         // The found book goes into the reading workstation itself; its own book
-         // (the Book of Knowledge) floats out to make room.
          final BlockPos station = msg.reading;
          BlockEntity readingBe = level.getBlockEntity(station);
          boolean podium = readingBe instanceof com.paleimitations.schoolsofmagic.common.tileentity.TileEntityPodium;
@@ -76,7 +71,6 @@ public class PacketKnowledgeFetch {
          shelfBe.setChanged();
          level.playSound(null, msg.shelf, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
 
-         // The reading book snaps shut before floating out.
          level.playSound(null, station,
             com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.BOOK_CLOSE.get(),
             SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -86,7 +80,6 @@ public class PacketKnowledgeFetch {
          final BlockPos shelfPos = msg.shelf;
          final int shelfSlot = msg.slot;
 
-         // Clients render: found flies shelf -> station, book pops station -> float.
          PacketHandler.INSTANCE.send(
             net.minecraftforge.network.PacketDistributor.NEAR.with(() ->
                new net.minecraftforge.network.PacketDistributor.TargetPoint(
@@ -100,7 +93,7 @@ public class PacketKnowledgeFetch {
                p.floatedBook = knowledge.copy();
                p.handler.setStackInSlot(0, found.copy());
                p.floated = true;
-               // Reset to closed so the swapped-in book reopens (with its open sound).
+
                p.bookState = com.paleimitations.schoolsofmagic.common.tileentity.TileEntityPodium.EnumState.CLOSED;
                p.animationTick = 0;
                p.sendUpdates();

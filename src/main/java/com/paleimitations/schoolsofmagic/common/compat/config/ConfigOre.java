@@ -1,7 +1,6 @@
 package com.paleimitations.schoolsofmagic.common.compat.config;
 
 public class ConfigOre {
-
    public static final String CATEGORY_NAME_ORES = "ores";
 
    public static int[] magicGemOreRarity = new int[16];
@@ -16,7 +15,6 @@ public class ConfigOre {
    public static int copperMaxVein = 8;
 
    static {
-
       for (int i = 0; i < 16; i++) {
          magicGemOreRarity[i] = 2;
          magicGemOreMinVein[i] = 1;
@@ -38,7 +36,6 @@ public class ConfigOre {
             magicGemOreMaxVein[i] = max;
          }
       } catch (IllegalStateException ignored) {
-
       }
    }
 }

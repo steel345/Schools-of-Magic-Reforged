@@ -28,7 +28,7 @@ public class SpellHealing extends Spell {
          new ResourceLocation("som", "healing"),
          15.0F,
          false,
-         0,
+         10,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),

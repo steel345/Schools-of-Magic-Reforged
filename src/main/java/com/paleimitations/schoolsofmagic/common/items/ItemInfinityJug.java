@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ItemInfinityJug extends Item {
-
    public ItemInfinityJug(Properties props) {
       super(props);
    }

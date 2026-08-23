@@ -47,7 +47,6 @@ public class PageElement {
 
    @OnlyIn(Dist.CLIENT)
    public void drawTexturedModalRect(GuiGraphics gg, ResourceLocation texture, int x, int y, int textureX, int textureY, int width, int height) {
-
       gg.blit(texture, x, y, textureX, textureY, width, height);
    }
 
@@ -60,7 +59,7 @@ public class PageElement {
          gg.renderItem(stack, x, y);
          gg.renderItemDecorations(font, stack, x, y);
       } else {
-
+         mc.renderBuffers().bufferSource().endBatch();
          com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
          com.mojang.blaze3d.systems.RenderSystem.depthMask(true);
          com.mojang.blaze3d.platform.Lighting.setupFor3DItems();
@@ -73,6 +72,18 @@ public class PageElement {
          buf.endBatch();
          pose.popPose();
          com.mojang.blaze3d.platform.Lighting.setupForFlatItems();
+
+         if (stack.getCount() > 1) {
+            String count = String.valueOf(stack.getCount());
+            int countX = x + 19 - 2 - font.width(count);
+            int countY = y + 6 + 3;
+            gg.pose().pushPose();
+            gg.pose().translate(0.0F, 0.0F, -0.1F);
+            gg.drawString(font, count, countX + 1, countY + 1, 0xFF3F3F3F, false);
+            gg.pose().translate(0.0F, 0.0F, -0.1F);
+            gg.drawString(font, count, countX, countY, 0xFFFFFFFF, false);
+            gg.pose().popPose();
+         }
          com.mojang.blaze3d.systems.RenderSystem.depthMask(false);
          com.mojang.blaze3d.systems.RenderSystem.disableDepthTest();
       }

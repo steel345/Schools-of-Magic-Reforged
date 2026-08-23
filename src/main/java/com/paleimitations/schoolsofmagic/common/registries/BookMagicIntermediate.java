@@ -117,7 +117,7 @@ public class BookMagicIntermediate {
       if (MortarRecipeRegistry.UNICORN_HORN != null) {
          unicornPage.addElement(new PageElementMortarRecipe(MortarRecipeRegistry.UNICORN_HORN, 139, 126));
       }
-      // Only built to assemble its elements; drop the unlocked copy it self-registered.
+
       BookPageRegistry.PAGES.remove(unicornPage);
       new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
             "bmi_page1", com.paleimitations.schoolsofmagic.common.books.PageUnlocks.UNICORN, unicornPage.elements)
@@ -179,8 +179,7 @@ public class BookMagicIntermediate {
       RecipeRitualCrafting knowledgeRitual = RecipeRegistry.getRitualRecipe(new ItemStack(ItemRegistry.book_of_knowledge.get()));
       java.util.List<PageElement> bokEls = Lists.newArrayList();
       bokEls.add(new PageElementStandardText("page.rc_book_of_knowledge.title", 72, 58, 99, 16, 0, true));
-      // Subpage 0 uses the left column (the recipe sits on the right); overflow flows
-      // to the standard two-column layout on subpage 1.
+
       bokEls.add(new PageElementParagraphs("rc_book_of_knowledge", 0.75F, 0, 2,
          new ParagraphBox(23, 74, 0, 99, 116),
          new ParagraphBox(23, 50, 1, 99, 140),
@@ -338,6 +337,13 @@ public class BookMagicIntermediate {
          new BookPageCraftingRitualRecipe(divRitual).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       }
 
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmi_looking_glass").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
+            "bmi_magic_mirror",
+            com.paleimitations.schoolsofmagic.common.books.PageUnlocks.MAGIC_MIRROR,
+            com.paleimitations.schoolsofmagic.common.books.BookPageJson.elementsFor("bmi_magic_mirror"))
+         .addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+
       BookPageChapter wandChapter = new BookPageChapter(null);
       wandChapter.elements.add(new PageElementTitle("page.bmi_wand_chapter.title", 72, 58, 99, 16, 0, true));
       wandChapter.addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
@@ -429,16 +435,17 @@ public class BookMagicIntermediate {
       new BookPage("bmi_advring", ringEls).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
       new BookPageChapter(null).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new SpellThornRing()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSmokeScry()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new SpellEnergize()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new SpellFirering()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new SpellRaiseZombie()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new SpellInvisibility()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new SpellShulkerBullet()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellHealing()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSummonBee()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellRumor()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellCounterspell()).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+      SpellRegistry.addSorted(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK,
+         new SpellThornRing(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSmokeScry(),
+         new SpellEnergize(),
+         new SpellFirering(),
+         new SpellRaiseZombie(),
+         new SpellInvisibility(),
+         new SpellShulkerBullet(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellHealing(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSummonBee(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellRumor(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellCounterspell());
    }
 }

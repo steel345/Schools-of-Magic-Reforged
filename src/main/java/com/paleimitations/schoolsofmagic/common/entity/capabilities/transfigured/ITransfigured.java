@@ -7,7 +7,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 public interface ITransfigured {
-
    @Deprecated int getEntityId();
 
    @Nullable ResourceLocation getEntityKey();

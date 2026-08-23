@@ -30,7 +30,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class RitualRecipeCategory implements IRecipeCategory<RecipeRitualCrafting> {
-
    public static final RecipeType<RecipeRitualCrafting> TYPE =
       RecipeType.create(References.MODID, "ritual_crafting", RecipeRitualCrafting.class);
    private static final ResourceLocation TEXTURE =

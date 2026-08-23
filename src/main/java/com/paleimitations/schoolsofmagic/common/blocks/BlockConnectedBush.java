@@ -33,7 +33,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
 public class BlockConnectedBush extends SOMBlock implements IPlantable, BonemealableBlock {
-
    public static final BooleanProperty UP = BooleanProperty.create("up");
    public static final BooleanProperty DOWN = BooleanProperty.create("down");
    public static final BooleanProperty NORTH = BooleanProperty.create("north");
@@ -125,7 +124,6 @@ public class BlockConnectedBush extends SOMBlock implements IPlantable, Bonemeal
    @Override
    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
       if (state.getValue(FLOWERING)) {
-
          if (this == BlockRegistry.bush.get()) {
             world.setBlockAndUpdate(pos, state.setValue(FLOWERING, false));
             if (!player.getInventory().add(new ItemStack(ItemRegistry.brambleberry.get())) && !world.isClientSide) {
@@ -145,7 +143,6 @@ public class BlockConnectedBush extends SOMBlock implements IPlantable, Bonemeal
          }
       }
       if (player.getItemInHand(hand).getItem() == Items.SHEARS) {
-
          int leaves = state.getValue(LEAVES);
          if (leaves <= 0) {
             return InteractionResult.PASS;
@@ -195,5 +192,4 @@ public class BlockConnectedBush extends SOMBlock implements IPlantable, Bonemeal
    public BlockState getPlant(BlockGetter world, BlockPos pos) {
       return this.defaultBlockState();
    }
-
 }

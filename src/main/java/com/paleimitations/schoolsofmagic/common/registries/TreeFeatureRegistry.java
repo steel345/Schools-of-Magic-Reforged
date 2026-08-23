@@ -14,7 +14,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TreeFeatureRegistry {
-
    public static final DeferredRegister<Feature<?>> FEATURES =
       DeferredRegister.create(ForgeRegistries.FEATURES, SchoolsOfMagic.MODID);
 

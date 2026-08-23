@@ -39,7 +39,6 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 
 public class BookMagicAdvanced {
-
    private static final ResourceLocation PAPER = new ResourceLocation("som", "textures/gui/books/paper_default.png");
 
    private static ItemStack batWing() {
@@ -57,8 +56,7 @@ public class BookMagicAdvanced {
    private static BookPage chartPage(String name, PageElement... chart) {
       List<PageElement> els = Lists.newArrayList();
       els.add(new PageElementStandardText("page." + name + ".title", 72, 58, 99, 16, 0, true));
-      // Text flows left of the chart on subpage 0, then into full two-column
-      // subpages so long entries continue instead of cutting off.
+
       els.add(new PageElementParagraphs(name, 0.75F, 0, 2,
          new ParagraphBox(23, 75, 0, 99, 115),
          new ParagraphBox(23, 50, 1, 99, 140),
@@ -372,16 +370,17 @@ public class BookMagicAdvanced {
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_potion_bag").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new SpellWitherBlight()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new SpellShadowSpy()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFangMangle()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new SpellFuelFurnace()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new SpellEarthquake()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new SpellFieryBlessing()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new SpellSpectralHand()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellThunderstroke()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFastForward()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
-      new BookPageSpell(new com.paleimitations.schoolsofmagic.common.spells.spells.SpellTranslocation()).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      SpellRegistry.addSorted(BookPageRegistry.ADVANCED_MAGIC_BOOK,
+         new SpellWitherBlight(),
+         new SpellShadowSpy(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFangMangle(),
+         new SpellFuelFurnace(),
+         new SpellEarthquake(),
+         new SpellFieryBlessing(),
+         new SpellSpectralHand(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellThunderstroke(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFastForward(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellTranslocation());
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
    }
 }

@@ -87,7 +87,6 @@ public class ClientEffectEvents {
    public static void onRenderSpell(RenderLevelStageEvent event) {
       if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_PARTICLES) return;
       if (Minecraft.getInstance().level != null) {
-
          for (Player player : Minecraft.getInstance().level.players()) {
             if (!player.isAlive()) continue;
             IManaData manaData = player.getCapability(CapabilityManaData.CAP).orElse(null);
@@ -130,7 +129,6 @@ public class ClientEffectEvents {
          }
       }
       if (Minecraft.getInstance().level != null) {
-
          for (Player player : Minecraft.getInstance().level.players()) {
             if (!player.isAlive()) continue;
             IManaData manaData = player.getCapability(CapabilityManaData.CAP).orElse(null);
@@ -174,7 +172,6 @@ public class ClientEffectEvents {
 
    @SubscribeEvent
    public static void spellCamera(ViewportEvent.ComputeCameraAngles event) {
-
       Entity ent = event.getCamera().getEntity();
       if (ent == null) return;
       IManaData manaData = ent.getCapability(CapabilityManaData.CAP).orElse(null);
@@ -192,6 +189,7 @@ public class ClientEffectEvents {
       PoseStack pose = event.getPoseStack();
       LocalPlayer self = Minecraft.getInstance().player;
       if (self == null) return;
+      if (com.paleimitations.schoolsofmagic.client.ClientWandDisplay.flatModel()) return;
 
       if (event.getItemStack().getItem() == ItemRegistry.wand_advanced.get()) {
          boolean isRight = self.getMainArm() == HumanoidArm.RIGHT;
@@ -290,7 +288,6 @@ public class ClientEffectEvents {
          event.setRoll((float) (25.0 * Math.sin((double) (amp + 1) * (f1 + (double) tick) / 20.0)));
       }
       if (!player.hasEffect(PotionRegistry.paralysis.get()) && player.hasEffect(PotionRegistry.sleep.get())) {
-
       }
       if (player.hasEffect(PotionRegistry.sneezing.get())) {
          IEffectVariables vars = player.getCapability(CapabilityEffectVariables.CAP).orElse(null);
@@ -474,7 +471,6 @@ public class ClientEffectEvents {
             || player.hasEffect(PotionRegistry.paralysis.get()))     wanted = "shaders/post/desaturate.json";
 
       if (wanted == null) {
-
          if (somInstalledShader != null && renderer.currentEffect() != null) {
             renderer.shutdownEffect();
          }

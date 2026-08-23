@@ -6,7 +6,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 public final class ModifierRegistry {
-
    private static final Map<Item, TeaModifier> MODIFIERS = new HashMap<>();
 
    static {

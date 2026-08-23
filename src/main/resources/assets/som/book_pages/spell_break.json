@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:break"
+    },
+    {
+      "type": "text",
+      "text": "  Break undoes whatever holds a block together with a simple right-click.\n\n  A weak charge only loosens soft things. The stronger the charge you spend, the harder the stone it will undo.\n\n  Charge 1 - hardness 2, dirt, stone, cobble and planks\n  Charge 2 - hardness 2.5\n  Charge 3 - hardness 3, most ores and deepslate\n  Charge 4 - hardness 5, iron, gold and diamond blocks\n  Charge 5 - hardness 15\n  Charge 6 - hardness 30, ender chests and ancient debris\n  Charge 7 - hardness 50, obsidian and netherite\n  Charge 8 - hardness 100\n  Charge 9 - anything that can be broken at all.\n\n  What the world holds unbreakable stays so. No charge will move bedrock."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_break.desc"
+    }
+  ]
+}

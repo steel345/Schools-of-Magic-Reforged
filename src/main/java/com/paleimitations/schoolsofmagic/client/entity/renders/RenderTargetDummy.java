@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import org.joml.Matrix4f;
 
 public class RenderTargetDummy extends MobRenderer<EntityTargetDummy, ModelTargetDummy> {
-
    private static final ResourceLocation TEXTURE = new ResourceLocation("som", "textures/entity/target_dummy.png");
    private static final ResourceLocation BASE_TEXTURE = new ResourceLocation("minecraft", "textures/entity/armorstand/wood.png");
 

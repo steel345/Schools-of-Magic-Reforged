@@ -129,7 +129,6 @@ public class EntityThrowablePotion extends ThrowableItemProjectile {
    @Override
    protected void onHit(HitResult result) {
       if (!this.level().isClientSide) {
-
          List<MobEffectInstance> list = this.storedEffects;
          int radius = this.storedRadius;
          int filter = this.storedFilter;

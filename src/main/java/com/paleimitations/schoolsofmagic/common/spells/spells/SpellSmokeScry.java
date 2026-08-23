@@ -32,7 +32,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import com.mojang.datafixers.util.Pair;
 
 public class SpellSmokeScry extends Spell {
-
    private static final int DURATION = 1200;
 
    public SpellSmokeScry() {

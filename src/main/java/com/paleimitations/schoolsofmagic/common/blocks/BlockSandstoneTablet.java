@@ -27,7 +27,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockSandstoneTablet extends SOMBlock implements EntityBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
    protected static final VoxelShape WEST_SHAPE  = Block.box(0.0D, 0.0D, 0.0D, 2.0D, 16.0D, 16.0D);
@@ -81,7 +80,6 @@ public class BlockSandstoneTablet extends SOMBlock implements EntityBlock {
 
    @Override
    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
-
       Direction f = state.getValue(FACING);
       if (f == Direction.SOUTH) return NORTH_SHAPE;
       if (f == Direction.WEST)  return EAST_SHAPE;

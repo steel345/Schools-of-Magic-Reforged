@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class StructureFoundation {
-
    private StructureFoundation() {}
 
    public static void fill(WorldGenLevel level, int x0, int y0, int z0, int x1, int y1, int z1) {

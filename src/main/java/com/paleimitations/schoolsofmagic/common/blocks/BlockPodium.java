@@ -37,7 +37,6 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockPodium extends SOMBlock implements EntityBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
    public static final BooleanProperty IS_LEFT = BooleanProperty.create("is_left");
    public static final EnumProperty<EnumWoodType> TYPE = EnumProperty.create("type", EnumWoodType.class);
@@ -67,7 +66,6 @@ public class BlockPodium extends SOMBlock implements EntityBlock {
 
    @Override
    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-
       Direction face = state.getValue(FACING);
 
       EnumWoodType wood = EnumWoodType.values()[0];
@@ -95,12 +93,10 @@ public class BlockPodium extends SOMBlock implements EntityBlock {
 
       if (player.isShiftKeyDown() && !slot0.isEmpty()) {
          if (!world.isClientSide) {
-            // A loaned (floated) book flies back to its shelf instead of being taken.
             if (com.paleimitations.schoolsofmagic.common.handlers.KnowledgeLoans.get(leftPos) != null) {
                com.paleimitations.schoolsofmagic.common.handlers.KnowledgeReverse.reverse(
                   (net.minecraft.server.level.ServerLevel) world, leftPos);
             } else if (tb.floated && !tb.floatedBook.isEmpty()) {
-               // Loan lost (e.g. after restart): restore the book, hand over the found one.
                ItemStack found = handler.getStackInSlot(0).copy();
                handler.setStackInSlot(0, tb.floatedBook.copy());
                tb.floated = false;
@@ -156,7 +152,6 @@ public class BlockPodium extends SOMBlock implements EntityBlock {
       }
 
       if (!world.isClientSide && player instanceof ServerPlayer sp) {
-
          if (!slot0.isEmpty()) ItemBookBase.refreshIfPristine(slot0);
          NetworkHooks.openScreen(sp, tb, leftPos);
       }
@@ -218,5 +213,4 @@ public class BlockPodium extends SOMBlock implements EntityBlock {
          net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
       return java.util.Collections.singletonList(VariantDrop.variantStack(this, state, TYPE));
    }
-
 }

@@ -15,7 +15,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockMud extends SOMBlock {
-
    protected static final VoxelShape SOUL_SAND_SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 10.4, 16.0);
    public static final BooleanProperty FULL = BooleanProperty.create("full");
 
@@ -40,7 +39,6 @@ public class BlockMud extends SOMBlock {
       Block ab = above.getBlock();
       if (ab instanceof BlockPlantWaterplant) return false;
       if (ab instanceof BlockMagicPlant) {
-
          try {
             EnumMagicType t = above.getValue(BlockMagicPlant.TYPE);
             if (t == EnumMagicType.HYDROMANCY) return false;

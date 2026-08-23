@@ -26,7 +26,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockPlantShrooms extends SOMPlant {
-
    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -67,7 +66,6 @@ public class BlockPlantShrooms extends SOMPlant {
 
    @Override
    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-
       entity.makeStuckInBlock(state, new Vec3(0.8D, 0.9D, 0.8D));
       super.entityInside(state, level, pos, entity);
    }

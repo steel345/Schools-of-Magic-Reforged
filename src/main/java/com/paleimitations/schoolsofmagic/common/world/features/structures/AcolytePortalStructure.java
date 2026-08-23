@@ -11,7 +11,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 
 public class AcolytePortalStructure extends Structure {
-
    public static final Codec<AcolytePortalStructure> CODEC = RecordCodecBuilder.create(in -> in.group(
       settingsCodec(in)
    ).apply(in, AcolytePortalStructure::new));

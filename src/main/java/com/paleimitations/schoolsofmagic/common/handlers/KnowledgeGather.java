@@ -13,11 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-// Server-side: gather every item from chiseled bookshelves within RADIUS of an
-// origin. Chiseled bookshelves do not sync their contents to the client, so this
-// runs on the server and the results are sent to the client to be searched.
 public class KnowledgeGather {
-
    public static final int RADIUS = 60;
    public static final int CAP = 256;
 

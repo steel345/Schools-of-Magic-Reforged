@@ -17,7 +17,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ItemMagicPlantSeed extends Item implements IMagicType {
-
    private static RegistryObject<Block> cropFor(int meta) {
       switch (meta) {
          case 0:  return BlockRegistry.crop_pyromancy;

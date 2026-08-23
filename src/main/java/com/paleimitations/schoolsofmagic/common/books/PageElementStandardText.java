@@ -34,7 +34,7 @@ public class PageElementStandardText extends PageElement {
    public void drawElement(GuiGraphics gg, float mouseX, float mouseY, int xIn, int yIn, boolean isGUI, int target) {
       Minecraft mc = Minecraft.getInstance();
       Font font = mc.font;
-      String s = I18n.get(this.textLocation);
+      String s = com.paleimitations.schoolsofmagic.common.books.BookTextOverride.titleOr(I18n.get(this.textLocation));
       if (this.bold) s = "§l" + s;
       int textWidth = font.width(s);
       int textHeight = font.lineHeight;
@@ -47,6 +47,11 @@ public class PageElementStandardText extends PageElement {
       }
       gg.pose().pushPose();
       gg.pose().scale(scaler, scaler, scaler);
+
+      if (com.paleimitations.schoolsofmagic.client.BookRichText.isCapturing()) {
+         com.paleimitations.schoolsofmagic.client.BookRichText.captureLine(
+            gg, font, s, Math.round(drawX / scaler), Math.round(drawY / scaler));
+      }
       gg.drawString(font, com.paleimitations.schoolsofmagic.client.GrimoireScramble.apply(s), Math.round(drawX / scaler), Math.round(drawY / scaler), this.fontColor, false);
       gg.pose().popPose();
    }

@@ -22,7 +22,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class TeapotRecipeCategory implements IRecipeCategory<RecipeTea> {
-
    public static final RecipeType<RecipeTea> TYPE =
       RecipeType.create(References.MODID, "tea_making", RecipeTea.class);
    private static final ResourceLocation TEXTURE =
@@ -76,6 +75,5 @@ public class TeapotRecipeCategory implements IRecipeCategory<RecipeTea> {
 
    @Override
    public void draw(RecipeTea recipe, IRecipeSlotsView slots, GuiGraphics gg, double mouseX, double mouseY) {
-
    }
 }

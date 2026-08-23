@@ -23,7 +23,7 @@ public class ContainerPotionBag extends AbstractContainerMenu {
    public ContainerPotionBag(int id, Inventory playerInventory, Player player) {
       super(MenuTypeRegistry.POTION_BAG.get(), id);
       this.player = player;
-      // The bag may be held in the main hand or worn in the charm slot.
+
       ItemStack main = player.getMainHandItem();
       ItemStack source = main.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.potion_bag.get()
          ? main : charmBag(player);

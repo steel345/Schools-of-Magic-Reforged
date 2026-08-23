@@ -36,12 +36,10 @@ public class SOMJeiPlugin implements IModPlugin {
 
    @Override
    public void registerItemSubtypes(ISubtypeRegistration reg) {
-
       IIngredientSubtypeInterpreter<ItemStack> byDamage = (stack, ctx) -> Integer.toString(stack.getDamageValue());
       for (RegistryObject<Item> ro : ItemRegistry.ITEMS.getEntries()) {
          Item item = ro.get();
          if (item instanceof IItemMetaHandler) {
-
             if (item == ItemRegistry.bi_magic_plant.get()) continue;
             reg.registerSubtypeInterpreter(item, byDamage);
          }
@@ -132,7 +130,6 @@ public class SOMJeiPlugin implements IModPlugin {
       IIngredientSubtypeInterpreter<ItemStack> byWandTier = (stack, ctx) -> Integer.toString(stack.getDamageValue());
 
       IIngredientSubtypeInterpreter<ItemStack> byWandAssembly = (stack, ctx) -> {
-
          com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData d =
             com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.CapabilityWandData.getCapability(stack);
          if (d != null && d.getCoreType() != null) {
@@ -253,7 +250,6 @@ public class SOMJeiPlugin implements IModPlugin {
       s.setDamageValue(damage);
       return s;
    }
-
 
    @Override
    public void registerRecipes(IRecipeRegistration reg) {

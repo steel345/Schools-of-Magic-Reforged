@@ -14,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class WildMushroomFeature extends Feature<NoneFeatureConfiguration> {
-
    public WildMushroomFeature() {
       super(NoneFeatureConfiguration.CODEC);
    }

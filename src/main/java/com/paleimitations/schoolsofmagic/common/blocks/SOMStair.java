@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SOMStair extends StairBlock {
-
    public SOMStair(Supplier<BlockState> baseState, BlockBehaviour.Properties props) {
       super(baseState, props);
    }

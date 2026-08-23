@@ -16,7 +16,6 @@ import net.minecraft.util.Tuple;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
-
    private int spellSlot = 0;
    private Spell[] spells = new Spell[20];
    private float mana = SOMConfig.starterMana;
@@ -127,7 +126,6 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
          this.addElementXP(element, mana * (SOMConfig.manaXPRate + this.xpBonusRate) * 1.3333334F * (1.0F / (float) elements.size()));
       }
       for (MagicSchool school : schools) {
-
          this.addSchoolXP(school, mana * (SOMConfig.manaXPRate + this.xpBonusRate) * 1.2F * (1.0F / (float) schools.size()));
       }
       if (magicTool != null) {
@@ -239,7 +237,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public int getSparkLimit() {
-      return Math.min(this.getLevel() / 15 + 1, 10);
+      return Math.min((this.getLevel() - 1) / 15 + 1, 10);
    }
 
    @Override
@@ -264,7 +262,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void addMagicianXP(float magicianXP) {
-      if (this.getLevel() < SOMConfig.maxLevel) {
+      if (this.getLevel() - 1 < SOMConfig.maxLevel) {
          this.magicianXP += magicianXP;
       }
    }
@@ -291,10 +289,10 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public int getLevel() {
-      int level = 0;
+      int level = 1;
       float magicianXPTemp = this.magicianXP;
       int nextLevel;
-      while (magicianXPTemp > 0.0F && magicianXPTemp > (float) (nextLevel = 50 + level * 10)) {
+      while (magicianXPTemp > 0.0F && magicianXPTemp > (float) (nextLevel = 50 + (level - 1) * 10)) {
          magicianXPTemp -= (float) nextLevel;
          ++level;
       }
@@ -314,7 +312,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
    @Override
    public int getMaxMana() {
       int i = (int) SOMConfig.starterMana;
-      for (int k = 0; k < this.getLevel(); ++k) {
+      for (int k = 0; k < this.getLevel() - 1; ++k) {
          if (k < 5) {
             i += 5;
          } else if (k >= 5 && k < 10) {
@@ -346,7 +344,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    public static int getMaxMana(int level) {
       int i = (int) SOMConfig.starterMana;
-      for (int k = 0; k < level; ++k) {
+      for (int k = 0; k < level - 1; ++k) {
          if (k < 5) {
             i += 5;
          } else if (k >= 5 && k < 10) {
@@ -697,30 +695,21 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       return this.charges[chargeLevel] < this.getMaxCharges(chargeLevel, this.getLevel());
    }
 
+   private static final int[] MAX_CHARGES_BY_TIER = { 8, 6, 5, 5, 5, 4, 4, 3, 2 };
+   private static final int LEVELS_PER_CHARGE = 5;
+
    @Override
    public int getMaxCharges(int chargeLevel, int level) {
-      switch (chargeLevel) {
-         case 0:
-            return 2 + Math.min(6, (level + 1) / 5);
-         case 1:
-            return Math.min(6, level / 5);
-         case 2:
-            return level < 9 ? 0 : Math.min(5, (level - 4) / 5);
-         case 3:
-            return level < 13 ? 0 : Math.min(5, (level - 8) / 5);
-         case 4:
-            return level < 16 ? 0 : Math.min(5, (level - 10) / 6);
-         case 5:
-            return level < 20 ? 0 : Math.min(4, (level - 11) / 8);
-         case 6:
-            return level < 25 ? 0 : Math.min(4, (level - 11) / 9);
-         case 7:
-            return level < 30 ? 0 : Math.min(3, (level - 24) / 6);
-         case 8:
-            return level < 32 ? 0 : (level < 50 ? 1 : 2);
-         default:
-            return 1;
+      if (chargeLevel < 0 || chargeLevel >= MAX_CHARGES_BY_TIER.length) {
+         return 1;
       }
+      int unlockLevel = CHARGE_UNLOCK_LEVELS[chargeLevel];
+      if (level < unlockLevel) {
+         return 0;
+      }
+      int opening = chargeLevel == 0 ? 2 : 1;
+      int earned = opening + (level - unlockLevel) / LEVELS_PER_CHARGE;
+      return Math.min(MAX_CHARGES_BY_TIER[chargeLevel], earned);
    }
 
    @Override

@@ -19,7 +19,6 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class TileEntityRendererCatalystBasin implements BlockEntityRenderer<TileEntityCatalystBasin> {
-
    public TileEntityRendererCatalystBasin(BlockEntityRendererProvider.Context ctx) {
    }
 

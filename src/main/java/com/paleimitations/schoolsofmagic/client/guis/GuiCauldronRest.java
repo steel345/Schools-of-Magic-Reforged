@@ -62,7 +62,6 @@ public class GuiCauldronRest extends Screen {
 
    @Override
    public void render(GuiGraphics gg, int mouseX, int mouseY, float partialTicks) {
-
       if (this.tb.getPhase() != TileEntityCauldron.EnumPotionPhase.RESTING && !this.tb.isLidded()) {
          reopenCauldronScreen();
          return;

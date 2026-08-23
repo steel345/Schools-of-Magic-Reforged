@@ -18,7 +18,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class Gem extends Block {
-
    public static final EnumProperty<EnumGemState> TYPE = EnumProperty.create("type", EnumGemState.class);
    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
@@ -51,7 +50,6 @@ public class Gem extends Block {
 
    @Override
    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-
       Direction face = ctx.getClickedFace();
       BlockState st = this.defaultBlockState().setValue(FACING, face);
       if (canSurvive(st, ctx.getLevel(), ctx.getClickedPos())) return st;

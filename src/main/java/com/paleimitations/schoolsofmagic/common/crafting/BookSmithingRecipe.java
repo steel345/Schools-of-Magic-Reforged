@@ -17,7 +17,6 @@ import net.minecraft.world.item.crafting.SmithingRecipe;
 import net.minecraft.world.level.Level;
 
 public class BookSmithingRecipe implements SmithingRecipe {
-
    private final ResourceLocation id;
 
    public BookSmithingRecipe(ResourceLocation id) {

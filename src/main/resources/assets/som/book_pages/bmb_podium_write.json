@@ -1,0 +1,12 @@
+{
+  "elements": [
+    {
+      "type": "title",
+      "text": "page.bmb_podium_write.title"
+    },
+    {
+      "type": "text",
+      "text": "  /bWrite/z is for fixing words. Insert adds pages; Write changes what is already on them.\n\n  It needs /bInk/z, either an /bInk Sac/z or /bBlack Dye/z, in the same slot the paper went in. One is used up each time you finish.\n\n  There are three buttons. One changes the /bTitle/z of the page, one changes its /bText/z, and one changes the name of the /bBook/z.\n\n  Press a button and the page shows you its plain words. Type, and what you type goes in.\n\n  Press the same button again to finish, and the ink is used. /bRight click/z it instead and your changes are thrown away, the old words come back, and the ink is still used.\n\n  Know what this does and does not do. It only changes words. Pictures, recipes, and any spell tied to the page all stay where they were.\n\n  A page you rewrite also remembers the words it replaced. If a later version changes them, your copy steps aside and you read the new ones."
+    }
+  ]
+}

@@ -41,7 +41,6 @@ public final class RecipeRegistry {
     }
 
     public static RecipeMortNPest getMortarRecipe(ItemStack output) {
-
         for (RecipeMortNPest r : mortnpestRecipes) {
             ItemStack ro = r.getOutput();
             ItemStack rs = r.getOutputSecondary();
@@ -62,7 +61,6 @@ public final class RecipeRegistry {
     }
 
     public static RecipeMortNPest getMortarRecipe(EnumPlantType plantType) {
-
         for (RecipeMortNPest r : mortnpestRecipes) {
             ItemStack out = r.getOutput();
             if (out.getItem() == ItemRegistry.crushed_plant.get()
@@ -93,7 +91,6 @@ public final class RecipeRegistry {
     }
 
     public static RecipeRitualCrafting getRitualRecipe(ItemStack output) {
-
         for (RecipeRitualCrafting r : ritualRecipes) {
             ItemStack ro = r.getOutput();
             if (ItemStack.isSameItem(ro, output)
@@ -127,7 +124,6 @@ public final class RecipeRegistry {
     }
 
     public static RecipeCatalystBasin getCatalystRecipe(ItemStack output) {
-
         for (RecipeCatalystBasin r : catalystRecipes) {
             ItemStack ro = r.getOutput();
             if (ItemStack.isSameItem(ro, output) && ro.getDamageValue() == output.getDamageValue()) {

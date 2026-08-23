@@ -20,7 +20,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CopperKeyGlowRenderer {
-
    private static final Map<BlockPos, Long> GLOW = new HashMap<>();
 
    public static void addGlow(BlockPos pos, long until) {

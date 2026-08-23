@@ -145,7 +145,6 @@ public class ClientProxy extends CommonProxy {
 
    @Override
    public void registerTileEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
-
       event.registerBlockEntityRenderer(TileEntityRegistry.CAULDRON.get(), TileEntityRendererCauldron::new);
       event.registerBlockEntityRenderer(TileEntityRegistry.PODIUM.get(), TileEntityRendererPodium::new);
       event.registerBlockEntityRenderer(TileEntityRegistry.PEDESTAL.get(), com.paleimitations.schoolsofmagic.client.tileentity.renderers.TileEntityRendererPedestal::new);
@@ -175,7 +174,6 @@ public class ClientProxy extends CommonProxy {
 
    @Override
    public void preInit() {
-
       ImitationSpriteLibrary.init();
 
       SOMConfig.clientPreInit();
@@ -200,7 +198,6 @@ public class ClientProxy extends CommonProxy {
 
    @Override
    public void Init() {
-
       SOMFoliageColorizer.registerBlockColors();
       SOMGrassColorizer.registerBlockColors();
       SOMPotionBlockColorizer.registerBlockColors();

@@ -1,7 +1,6 @@
 package com.paleimitations.schoolsofmagic.common.brewing;
 
 public final class TeaModifier {
-
    public final String descriptor;
    public final int waterTintColor;
    public final int potencyBonus;

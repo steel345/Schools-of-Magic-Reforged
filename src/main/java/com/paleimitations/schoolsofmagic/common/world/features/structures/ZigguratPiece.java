@@ -29,7 +29,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 
 public class ZigguratPiece extends TemplateStructurePiece {
-
    private final long zigSeed;
    private final boolean foundation;
    private final Rotation rotation;
@@ -71,7 +70,6 @@ public class ZigguratPiece extends TemplateStructurePiece {
    }
 
    static StructurePlaceSettings makeSettings(Rotation rotation) {
-
       return new StructurePlaceSettings().setMirror(Mirror.NONE).setRotation(rotation)
          .addProcessor(BlockIgnoreProcessor.STRUCTURE_BLOCK);
    }
@@ -111,7 +109,6 @@ public class ZigguratPiece extends TemplateStructurePiece {
          }
 
          if (s.getBlock() == BlockRegistry.zig_mural.get()) {
-
             int xv = Math.max(1, Math.min(11, 18 - (z - bb.minZ())));
             int yv = this.foundation ? 6 : Math.max(1, Math.min(6, 5 - (y - bb.minY())));
             level.setBlock(m, s.setValue(com.paleimitations.schoolsofmagic.common.blocks.BlockZigMural.X, xv)
@@ -156,7 +153,6 @@ public class ZigguratPiece extends TemplateStructurePiece {
 
    @Override
    protected void handleDataMarker(String name, BlockPos pos, ServerLevelAccessor level, RandomSource random, BoundingBox box) {
-
       if (name.equals("treasure")) {
          level.setBlock(pos.below(), Blocks.GOLD_BLOCK.defaultBlockState(), 2);
          level.setBlock(pos, Blocks.CHEST.defaultBlockState(), 2);
@@ -198,7 +194,6 @@ public class ZigguratPiece extends TemplateStructurePiece {
 
       if (name.equals("brewing_stand")) { level.setBlock(pos, Blocks.BREWING_STAND.defaultBlockState(), 2); return; }
       if (name.startsWith("spear_")) {
-
          net.minecraft.core.Direction f;
          switch (name.substring(6)) {
             case "n": f = net.minecraft.core.Direction.NORTH; break;
@@ -213,7 +208,6 @@ public class ZigguratPiece extends TemplateStructurePiece {
          return;
       }
       if (name.startsWith("dark_crystal")) {
-
          level.setBlock(pos, BlockRegistry.dark_crystal.get().defaultBlockState()
             .setValue(com.paleimitations.schoolsofmagic.common.blocks.BlockDarkCrystal.TYPE, curseFor(name)), 2);
          return;
@@ -352,7 +346,6 @@ public class ZigguratPiece extends TemplateStructurePiece {
       if (be instanceof RandomizableContainerBlockEntity c) {
          c.setLootTable(table, random.nextLong());
       } else if (be instanceof com.paleimitations.schoolsofmagic.common.tileentity.TileEntitySmallVase v) {
-
          fillVase(level, pos, v, table, random);
       }
    }

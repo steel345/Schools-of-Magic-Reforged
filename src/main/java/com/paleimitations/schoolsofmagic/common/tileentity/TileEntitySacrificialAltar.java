@@ -77,7 +77,6 @@ public class TileEntitySacrificialAltar extends BlockEntity {
    }
 
    public void tick() {
-
       if (this.entity_class == 0 && this.level != null && !this.level.isClientSide) {
          this.entity_class = 1 + this.random.nextInt(5);
          this.setChanged();

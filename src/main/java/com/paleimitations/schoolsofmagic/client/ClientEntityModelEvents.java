@@ -30,7 +30,6 @@ public class ClientEntityModelEvents {
          && cap.isAsleep()
          && !event.getEntity().isInvisible()
          && event.getRenderer().getModel() instanceof CowModel) {
-
       }
    }
 

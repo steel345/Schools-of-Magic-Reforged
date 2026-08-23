@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SmokeScryManager {
-
    private static final List<Scry> ACTIVE = new ArrayList<>();
 
    private static class Scry {

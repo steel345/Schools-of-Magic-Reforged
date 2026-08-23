@@ -256,7 +256,6 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
    }
 
    public void tick() {
-      // Clear a corrupt float state (floated but nothing set aside to return).
       if (this.level != null && !this.level.isClientSide && this.floated && this.floatedBook.isEmpty()) {
          this.floated = false;
          this.sendUpdates();
@@ -316,8 +315,7 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
             zD = 0.0f;
          }
          Player player = this.level.getNearestPlayer((double)((float)this.worldPosition.getX() + xD), (double)this.worldPosition.getY(), (double)((float)this.worldPosition.getZ() + zD), 30.0, false);
-         // A knowledge fetch briefly forces the reading book shut before it floats out.
-         // Once swapped, the book on the podium (the found book) opens normally again.
+
          if (this.forceCloseTicks > 0) {
             this.forceCloseTicks--;
             if (this.bookState == EnumState.OPEN || this.bookState == EnumState.OPEN_BOOK
@@ -335,6 +333,8 @@ public class TileEntityPodium extends BlockEntity implements net.minecraft.world
             this.bookState = EnumState.OPEN_BOOK;
             if (!this.level.isClientSide) this.level.playSound(null, this.worldPosition, SOMSoundHandler.BOOK_OPEN.get(), SoundSource.BLOCKS, 0.8f, 1.0f);
             this.animationTick = 0;
+            this.prevPage = this.page;
+            this.prevSubPage = this.subpage;
          }
          if (this.bookState == EnumState.OPEN && (this.prevPage < this.page || this.prevSubPage < this.subpage && this.prevPage == this.page)) {
             this.bookState = EnumState.TURN_PAGE_FORWARD;

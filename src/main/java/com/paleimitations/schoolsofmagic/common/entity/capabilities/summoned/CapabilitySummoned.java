@@ -25,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilitySummoned {
-
    public static final Capability<ISummoned> CAP = CapabilityManager.get(new CapabilityToken<ISummoned>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "summoned");
 

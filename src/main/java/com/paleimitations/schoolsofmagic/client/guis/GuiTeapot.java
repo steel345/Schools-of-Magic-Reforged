@@ -47,7 +47,6 @@ public class GuiTeapot extends AbstractContainerScreen<ContainerTeapot> {
       if (te != null && te.getLevel() != null
             && com.paleimitations.schoolsofmagic.common.tileentity.TileEntityTeapot
                .isHeatSourceBelow(te.getLevel(), te.getBlockPos())) {
-
          gg.blit(TEXTURE, this.leftPos + 34, this.topPos + 61, 179, 65, 7, 10);
       }
    }

@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockMagicPlanks extends Block {
-
    public static final EnumProperty<EnumMagicWood> TYPE = EnumProperty.create("type", EnumMagicWood.class);
 
    public BlockMagicPlanks(BlockBehaviour.Properties props) {
@@ -82,5 +81,4 @@ public class BlockMagicPlanks extends Block {
             .defaultBlockState().setValue(BlockRottedPlanks.TYPE, rotType));
       }
    }
-
 }

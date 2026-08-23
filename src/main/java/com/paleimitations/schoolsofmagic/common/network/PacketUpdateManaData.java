@@ -33,23 +33,8 @@ public class PacketUpdateManaData {
 
    public static void handle(PacketUpdateManaData msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
-      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-         Entity entity = Minecraft.getInstance().level.getEntity(msg.entityID);
-         if (entity instanceof LivingEntity) {
-            IManaData cap = entity.getCapability(CapabilityManaData.CAP).orElse(null);
-            if (cap != null) {
-
-               boolean self = entity == Minecraft.getInstance().player;
-               int slot = cap.getCurrentSpellSlot();
-               cap.deserializeNBT(msg.data);
-               if (self && Minecraft.getInstance().level != null
-                     && Minecraft.getInstance().level.getGameTime()
-                        - com.paleimitations.schoolsofmagic.client.ClientEffectEvents.lastSpellScrollTime < 10L) {
-                  cap.setCurrentSpellSlot(slot);
-               }
-            }
-         }
-      }));
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
+         com.paleimitations.schoolsofmagic.client.ClientManaSync.applyMana(msg.entityID, msg.data)));
       context.setPacketHandled(true);
    }
 }

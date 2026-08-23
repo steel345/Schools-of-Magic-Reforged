@@ -9,7 +9,6 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public interface ICreatureBehavior {
-
    CompoundTag serializeNBT();
 
    void deserializeNBT(CompoundTag var1);

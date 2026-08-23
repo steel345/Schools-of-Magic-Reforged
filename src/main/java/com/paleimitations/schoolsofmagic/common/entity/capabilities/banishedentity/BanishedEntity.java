@@ -9,7 +9,6 @@ import net.minecraft.nbt.Tag;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class BanishedEntity implements INBTSerializable<CompoundTag>, IBanishedEntity {
-
    private Map<CompoundTag, Vec3i> banishedEntity = Maps.newHashMap();
 
    public BanishedEntity() {
@@ -55,7 +54,6 @@ public class BanishedEntity implements INBTSerializable<CompoundTag>, IBanishedE
 
    @Override
    public void banishEntity(net.minecraft.world.entity.EntityType<?> type, CompoundTag entityData, int timer) {
-
       net.minecraft.resources.ResourceLocation key =
             net.minecraftforge.registries.ForgeRegistries.ENTITY_TYPES.getKey(type);
       if (key != null) entityData.putString("som:typeKey", key.toString());

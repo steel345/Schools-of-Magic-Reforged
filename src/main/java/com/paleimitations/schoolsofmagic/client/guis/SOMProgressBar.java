@@ -37,6 +37,16 @@ public class SOMProgressBar {
       return (int) (this.min != 0.0F && this.max != 0.0F ? this.min / this.max * (float) this.height : 0.0F);
    }
 
+   public void draw(GuiGraphics gg, float fraction) {
+      float oldMin = this.min;
+      float oldMax = this.max;
+      this.min = Math.max(0.0F, Math.min(1.0F, fraction));
+      this.max = 1.0F;
+      this.draw(gg);
+      this.min = oldMin;
+      this.max = oldMax;
+   }
+
    public void draw(GuiGraphics gg) {
       switch (this.direction) {
          case DOWN_TO_UP:

@@ -33,7 +33,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockBrazier extends Block implements EntityBlock {
-
    public static final IntegerProperty FLAME = IntegerProperty.create("flame", 0, 6);
 
    public static final net.minecraft.world.level.block.state.properties.BooleanProperty COLORED =
@@ -123,7 +122,7 @@ public class BlockBrazier extends Block implements EntityBlock {
       }
 
       if (ritualActivator) {
-         if (flame > 0 && isWandOrStick) {
+         if (flame > 0 && isWandOrStick && world.getBlockState(pos.below()).is(net.minecraft.world.level.block.Blocks.LOOM)) {
             int dyeSlot = -1;
             for (int i = 0; i < center.handler.getSlots(); i++) {
                if (center.handler.getStackInSlot(i).getItem() instanceof net.minecraft.world.item.DyeItem) {
@@ -228,7 +227,6 @@ public class BlockBrazier extends Block implements EntityBlock {
    }
 
    private void deliverToOwner(Level level, BlockPos pos, TileEntityRitualCenter brazier, ItemStack stack) {
-
       java.util.UUID ownerId = brazier.getOwnerID();
       if (ownerId != null) {
          stack.getOrCreateTag().putUUID("ownerID", ownerId);
@@ -258,7 +256,6 @@ public class BlockBrazier extends Block implements EntityBlock {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return new TileEntityRitualCenter(pos, state);
    }
 

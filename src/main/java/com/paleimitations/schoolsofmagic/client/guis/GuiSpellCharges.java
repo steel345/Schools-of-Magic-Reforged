@@ -27,7 +27,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiSpellCharges {
-
    private static final ResourceLocation SPELL_CHARGE_ICONS = new ResourceLocation("som", "textures/gui/spell_charge_icons.png");
 
    public static boolean isHudOpen() {
@@ -156,11 +155,11 @@ public class GuiSpellCharges {
          float countdown = (float) data.getCountdowns()[i];
          float maxCountdown = (float) ManaData.MAX_COUNTDOWNS[i];
          float cooldown = (maxCountdown - countdown) / maxCountdown;
-         gg.blit(hud, 0, 38 * i, isSelected ? 0 : 38, 0, 38, 38);
+         gg.blit(hud, 0, 38 * i, isSelected ? 0 : 38, 0, 38, 38, 256, 257);
          int a = data.getMaxCharges(i, level);
          int b = data.getCharges()[i];
          for (int j = 1; j <= a; j++) {
-            gg.blit(hud, 16 * j + 19, 38 * i + 9, 76, 0, 20, 20);
+            gg.blit(hud, 16 * j + 19, 38 * i + 9, 76, 0, 20, 20, 256, 257);
             if (j <= b) {
                if (usable) {
                   gg.blit(SPELL_CHARGE_ICONS, 16 * j + 21, 38 * i + 12, 14 * i, 192 + (isSelected ? 0 : 14), 14, 14);
@@ -189,14 +188,14 @@ public class GuiSpellCharges {
       float maxCountdown = (float) ManaData.MAX_COUNTDOWNS[i];
       float cooldown = (maxCountdown - countdown) / maxCountdown;
 
-      gg.blit(hud, 0, screenH - 38, 0, 77, 38, 38);
+      gg.blit(hud, 0, screenH - 38, 0, 77, 38, 38, 256, 257);
       this.drawSpellIcon32(gg, spell, 3, screenH - 35);
 
       gg.pose().pushPose();
       float scale = 0.65F;
       gg.pose().translate(38.0F * (1.0F - scale) / 2.0F, (float) screenH - 38.0F * (1.0F + scale), 0.0F);
       gg.pose().scale(scale, scale, 1.0F);
-      gg.blit(hud, 0, 0, 38, 0, 38, 38);
+      gg.blit(hud, 0, 0, 38, 0, 38, 38, 256, 257);
       gg.blit(SPELL_CHARGE_ICONS, 3, 3, i % 3 * 32 + 96, i / 3 * 32, 32, 32);
       gg.blit(SPELL_CHARGE_ICONS, 3, 3 + Math.round(32.0F * countdown / maxCountdown),
          i % 3 * 32, i / 3 * 32 + (usable ? 0 : 96) + Math.round(32.0F * countdown / maxCountdown),
@@ -204,7 +203,7 @@ public class GuiSpellCharges {
       int a = data.getMaxCharges(i, level);
       int b = data.getCharges()[i];
       for (int j = 1; j <= a; j++) {
-         gg.blit(hud, 9, -1 - 16 * j, 136, 0, 20, 20);
+         gg.blit(hud, 9, -1 - 16 * j, 136, 0, 20, 20, 256, 257);
          if (j <= b) {
             if (usable) {
                gg.blit(SPELL_CHARGE_ICONS, 12, 3 - 16 * j, 14 * i, 192, 14, 14);
@@ -236,7 +235,7 @@ public class GuiSpellCharges {
          net.minecraft.client.gui.Font font = Minecraft.getInstance().font;
          int rawUses = spell.getRemainingUses() > 0 ? spell.getRemainingUses() : spell.getUsesPerCharge(i);
          String remUses = String.valueOf(smoothUses(spell, rawUses));
-         gg.blit(hud, 40, screenH - 29, 167, 21, 21, 20);
+         gg.blit(hud, 40, screenH - 29, 167, 21, 21, 20, 256, 257);
          float scaleUses = Math.min(11.0F / (float) font.width(remUses), 10.0F / 9.0F);
          gg.pose().pushPose();
          gg.pose().translate(51.0F - (float) font.width(remUses) * scaleUses / 2.0F, (float) screenH - 18.0F - 9.0F * scaleUses / 2.0F, 0.0F);
@@ -279,7 +278,7 @@ public class GuiSpellCharges {
       gg.pose().pushPose();
       gg.pose().translate(40.0F, (float) (screenH - 13), 0.0F);
       gg.pose().scale(0.65F, 0.65F, 1.0F);
-      gg.blit(hud, 0, 0, 101, 49, 72, 12);
+      gg.blit(hud, 0, 0, 101, 49, 72, 12, 256, 257);
       if (width > 0) {
          gg.blit(SPELL_CHARGE_ICONS, 4, 4, 101, 151 + 4 * chargeLevel, width, 4);
       }

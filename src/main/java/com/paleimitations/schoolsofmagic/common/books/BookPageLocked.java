@@ -9,8 +9,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-// A page that hides its real content until the player has met its unlock condition
-// (see PageUnlocks). While locked it shows the "Page Locked" placeholder.
 public class BookPageLocked extends BookPage {
    private final String unlockKey;
 
@@ -23,8 +21,6 @@ public class BookPageLocked extends BookPage {
       return this.unlockKey;
    }
 
-   // True once unlocked but before the player has actually opened the page, so the
-   // contents list can flag it as new.
    @OnlyIn(Dist.CLIENT)
    public boolean isNew() {
       return this.unlockKey != null
@@ -38,8 +34,6 @@ public class BookPageLocked extends BookPage {
       return com.paleimitations.schoolsofmagic.client.ClientPageUnlocks.has(this.unlockKey);
    }
 
-   // True when the page's real content is currently sealed (used to keep locked
-   // text out of search results so it can't be read as a spoiler).
    @OnlyIn(Dist.CLIENT)
    public boolean isContentHidden() {
       return !unlocked();
@@ -49,8 +43,6 @@ public class BookPageLocked extends BookPage {
    @OnlyIn(Dist.CLIENT)
    public void drawPage(GuiGraphics gg, float mouseX, float mouseY, int x, int y, boolean isGUI, int subpage) {
       if (unlocked()) {
-         // Opening the page clears its "new" marker (locally at once, and once on
-         // the server so it stays cleared).
          if (this.unlockKey != null
             && com.paleimitations.schoolsofmagic.client.ClientPageUnlocks.clearUnread(this.unlockKey)) {
             com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(

@@ -4,7 +4,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BannerPattern;
 
 public class PatternHandler {
-
    public static void initCraftingBanners() {
    }
 

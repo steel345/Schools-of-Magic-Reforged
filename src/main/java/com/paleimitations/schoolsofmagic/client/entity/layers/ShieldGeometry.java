@@ -5,11 +5,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
-// The shield, cut straight out of its authored model: every face, in place, with the
-// mapping it was drawn with. Generated from models/entity/shining_shield.json so the
-// shape and texture match the model exactly, without going through the block atlas.
 public final class ShieldGeometry {
-
    private ShieldGeometry() {
    }
 

@@ -26,7 +26,7 @@ public class SpellCounterspell extends Spell {
          new ResourceLocation("som", "counterspell"),
          25.0F,
          false,
-         9,
+         10,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),

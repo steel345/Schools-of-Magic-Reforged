@@ -13,9 +13,6 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 
-// The hip pouch worn in the charm slot (Blockbench export). Its part is placed with
-// the same origin convention as a humanoid model, so rendering it inside the body
-// part's transform lands it on the hip and moves it with the body.
 public class ModelWornPouch {
    public static final ModelLayerLocation LAYER =
       new ModelLayerLocation(new ResourceLocation("som", "worn_pouch"), "main");

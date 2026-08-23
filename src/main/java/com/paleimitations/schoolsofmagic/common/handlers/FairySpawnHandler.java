@@ -22,7 +22,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class FairySpawnHandler {
-
    private static final ResourceKey<Level> FAEGROVE =
       ResourceKey.create(Registries.DIMENSION, new ResourceLocation(SchoolsOfMagic.MODID, "faegrove"));
 

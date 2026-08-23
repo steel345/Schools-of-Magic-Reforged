@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BlockWallPyracantha extends BlockWalls {
-
    public BlockWallPyracantha(BlockBehaviour.Properties props) {
       super(props);
    }
@@ -37,7 +36,6 @@ public class BlockWallPyracantha extends BlockWalls {
 
    @Override
    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-
       level.destroyBlock(pos, true);
    }
 }

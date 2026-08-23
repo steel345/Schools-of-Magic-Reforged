@@ -22,7 +22,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class RingComboCategory implements IRecipeCategory<RecipeRitualCrafting> {
-
    public static final RecipeType<RecipeRitualCrafting> TYPE =
       RecipeType.create(References.MODID, "ring_combinations", RecipeRitualCrafting.class);
    private static final ResourceLocation TEXTURE =
@@ -91,6 +90,5 @@ public class RingComboCategory implements IRecipeCategory<RecipeRitualCrafting> 
 
    @Override
    public void draw(RecipeRitualCrafting recipe, IRecipeSlotsView slots, GuiGraphics gg, double mouseX, double mouseY) {
-
    }
 }

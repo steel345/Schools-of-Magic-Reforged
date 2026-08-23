@@ -5,7 +5,6 @@ import org.joml.Vector3f;
 import net.minecraft.client.model.geom.ModelPart;
 
 public class MowzieModelRenderer {
-
    public final ModelPart part;
 
    public float initRotateAngleX;

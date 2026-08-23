@@ -55,6 +55,24 @@ public final class SOMItemModelProperties {
          return (idx + 0.5F) / 17.0F;
       });
 
+      ItemProperties.register(ItemRegistry.magic_mirror.get(),
+         new net.minecraft.resources.ResourceLocation("using"),
+         (stack, level, living, seed) ->
+            living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
+
+      ItemProperties.register(ItemRegistry.magic_mirror.get(),
+         new net.minecraft.resources.ResourceLocation("som", "scrying"),
+         (stack, level, living, seed) -> {
+            if (living == null || !living.isUsingItem() || living.getUseItem() != stack) {
+               return 0.0F;
+            }
+            if (!com.paleimitations.schoolsofmagic.common.items.ItemMagicMirror.hasBoundPos(stack)) {
+               return 0.0F;
+            }
+            return stack.getItem().getUseDuration(stack) - living.getUseItemRemainingTicks()
+               >= com.paleimitations.schoolsofmagic.common.items.ItemMagicMirror.CHANNEL_TICKS ? 1.0F : 0.0F;
+         });
+
       ItemProperties.register(ItemRegistry.spellbook.get(),                LINKS, SOMItemModelProperties::linksValue);
       ItemProperties.register(ItemRegistry.basic_spellbook.get(),          LINKS, SOMItemModelProperties::linksValue);
       ItemProperties.register(ItemRegistry.intermediate_spellbook.get(),   LINKS, SOMItemModelProperties::linksValue);
@@ -69,6 +87,19 @@ public final class SOMItemModelProperties {
             if (slots > 4) slots = 4;
             return (slots - 1 + 0.5F) / 4.0F;
          });
+
+      ResourceLocation wandFlat = new ResourceLocation("som", "wand_flat");
+      ResourceLocation wandSmall = new ResourceLocation("som", "wand_small");
+      ResourceLocation wandRank = new ResourceLocation("som", "wand_rank");
+      for (net.minecraft.world.item.Item wand : new net.minecraft.world.item.Item[]{
+            ItemRegistry.wand_apprentice.get(), ItemRegistry.wand_advanced.get()}) {
+         ItemProperties.register(wand, wandFlat,
+            (stack, level, living, seed) -> ClientWandDisplay.flatModel() ? 1.0F : 0.0F);
+         ItemProperties.register(wand, wandSmall,
+            (stack, level, living, seed) -> ClientWandDisplay.smallIcons() ? 1.0F : 0.0F);
+         ItemProperties.register(wand, wandRank,
+            (stack, level, living, seed) -> net.minecraft.util.Mth.clamp(stack.getDamageValue(), 0, 3));
+      }
 
       ItemProperties.register(ItemRegistry.brass_whistle.get(), new ResourceLocation("som", "aged"),
          (stack, level, living, seed) -> com.paleimitations.schoolsofmagic.common.items.ItemBrassWhistle.isAged(stack) ? 1.0F : 0.0F);

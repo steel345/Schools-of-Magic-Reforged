@@ -19,11 +19,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
-// Keeps the ring of shields a caster is carrying, spends one for every blow they take
-// and tells nearby clients how many are left so the ring can be drawn.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ShiningShieldHandler {
-
    public static class Ring {
       public int shields;
       public int hitsLeft;
@@ -56,7 +53,6 @@ public class ShiningShieldHandler {
          new PacketShiningShield(player.getUUID(), shieldsOf(player.getUUID())));
    }
 
-   // Every blow is turned aside whole; the shield that took it is what pays.
    @SubscribeEvent(priority = EventPriority.HIGHEST)
    public static void onAttacked(LivingAttackEvent event) {
       if (!(event.getEntity() instanceof Player player)) return;
@@ -64,8 +60,7 @@ public class ShiningShieldHandler {
       Ring ring = RINGS.get(player.getUUID());
       if (ring == null || ring.shields <= 0) return;
       if (event.getSource().is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)) return;
-      // A ring of shields turns aside what comes at the caster. It has nothing to say
-      // about the ground rushing up to meet them.
+
       if (event.getSource().is(net.minecraft.tags.DamageTypeTags.IS_FALL)) return;
 
       event.setCanceled(true);
@@ -75,12 +70,10 @@ public class ShiningShieldHandler {
          ring.hitsLeft = ring.hitsEach;
       }
 
-      // An arrow is sent back the way it came, at whoever loosed it.
       if (event.getSource().getDirectEntity() instanceof net.minecraft.world.entity.projectile.Projectile shot) {
          reflect(shot, player);
       }
 
-      // Whatever struck the shield is thrown back from it.
       if (event.getSource().getEntity() instanceof net.minecraft.world.entity.LivingEntity attacker) {
          double dx = attacker.getX() - player.getX();
          double dz = attacker.getZ() - player.getZ();
@@ -99,9 +92,6 @@ public class ShiningShieldHandler {
       sync(player);
    }
 
-   // Turned about and sent back, now owned by the caster so it can hurt whoever
-   // loosed it. A fresh copy is used because a projectile that has already struck
-   // will not strike again.
    private static void reflect(net.minecraft.world.entity.projectile.Projectile shot, Player player) {
       net.minecraft.world.entity.Entity thrower = shot.getOwner();
       net.minecraft.world.phys.Vec3 back = shot.getDeltaMovement().scale(-1.0D);
@@ -123,7 +113,7 @@ public class ShiningShieldHandler {
       sent.setPos(shot.getX(), shot.getY(), shot.getZ());
       sent.setDeltaMovement(back);
       sent.hasImpulse = true;
-      // Aimed the way it now travels, or it will fly sideways.
+
       sent.setYRot((float) (Math.atan2(back.x, back.z) * (180.0D / Math.PI)));
       sent.setXRot((float) (Math.atan2(back.y,
          Math.sqrt(back.x * back.x + back.z * back.z)) * (180.0D / Math.PI)));
@@ -132,7 +122,6 @@ public class ShiningShieldHandler {
       player.level().addFreshEntity(sent);
    }
 
-   // Small sparks struck off the face of the shield.
    private static void sparks(Player player) {
       if (!(player.level() instanceof ServerLevel sl)) return;
       sl.sendParticles(net.minecraft.core.particles.ParticleTypes.LAVA,

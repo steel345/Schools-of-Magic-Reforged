@@ -18,7 +18,6 @@ import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.resources.ResourceKey;
 
 public class SOMSapling extends SaplingBlock {
-
    public static final EnumProperty<EnumMagicWood> TYPE = EnumProperty.create("type", EnumMagicWood.class);
 
    public SOMSapling(AbstractTreeGrower grower, BlockBehaviour.Properties props) {
@@ -29,7 +28,6 @@ public class SOMSapling extends SaplingBlock {
    }
 
    public SOMSapling(BlockBehaviour.Properties props) {
-
       super(new SOMTreeGrower(MAGIC_TREE_FEATURE), props);
       this.registerDefaultState(this.stateDefinition.any()
          .setValue(STAGE, 0)
@@ -65,7 +63,6 @@ public class SOMSapling extends SaplingBlock {
 
       level.setBlock(pos, level.getFluidState(pos).createLegacyBlock(), 4);
       if (!holder.value().place(level, level.getChunkSource().getGenerator(), random, pos)) {
-
          level.setBlock(pos, state, 4);
       }
    }

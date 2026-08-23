@@ -12,7 +12,6 @@ import terrablender.api.Region;
 import terrablender.api.RegionType;
 
 public class SOMRegion extends Region {
-
    public SOMRegion(ResourceLocation name, int weight) {
       super(name, RegionType.OVERWORLD, weight);
    }
@@ -21,7 +20,6 @@ public class SOMRegion extends Region {
    public void addBiomes(net.minecraft.core.Registry<Biome> registry,
          Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
       this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-
          builder.replaceBiome(Biomes.FOREST, SOMBiomes.ACOLYTE_WOODS);
          builder.replaceBiome(Biomes.BIRCH_FOREST, SOMBiomes.VERMILION_GROVE);
          builder.replaceBiome(Biomes.TAIGA, SOMBiomes.BASTION_WOODS);

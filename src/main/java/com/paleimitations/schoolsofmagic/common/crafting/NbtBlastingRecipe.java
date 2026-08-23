@@ -13,7 +13,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class NbtBlastingRecipe extends BlastingRecipe {
-
    public NbtBlastingRecipe(ResourceLocation id, String group, CookingBookCategory category,
                             Ingredient ingredient, ItemStack result, float experience, int cookingTime) {
       super(id, group, category, ingredient, result, experience, cookingTime);

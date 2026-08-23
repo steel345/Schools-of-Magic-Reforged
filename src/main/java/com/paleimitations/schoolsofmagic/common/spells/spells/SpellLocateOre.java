@@ -90,7 +90,6 @@ public class SpellLocateOre extends Spell {
    }
 
    private boolean isOre(Level world, BlockPos pos) {
-
       net.minecraft.world.level.block.state.BlockState state = world.getBlockState(pos);
       if (state.is(Tags.Blocks.ORES) || state.getBlock() instanceof BlockMagicOre) {
          return true;

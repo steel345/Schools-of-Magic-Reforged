@@ -17,7 +17,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class LabyrinthMazeFeature extends Feature<NoneFeatureConfiguration> {
-
    private static final int WALL_HEIGHT = 5;
 
    public LabyrinthMazeFeature() {
@@ -40,7 +39,6 @@ public class LabyrinthMazeFeature extends Feature<NoneFeatureConfiguration> {
       BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
       for (int dx = 0; dx < 16; dx++) {
          for (int dz = 0; dz < 16; dz++) {
-
             int num = (dz / 2) + (dx / 2) * 8;
             boolean pathCell = map[num];
             int wx = baseX + dx, wz = baseZ + dz;
@@ -49,7 +47,6 @@ public class LabyrinthMazeFeature extends Feature<NoneFeatureConfiguration> {
             if (!isFaeSurface(level, pos.set(wx, surfaceY, wz))) continue;
 
             if (pathCell) {
-
                for (int h = 1; h <= WALL_HEIGHT + 1; h++) {
                   pos.set(wx, surfaceY + h, wz);
                   BlockState s = level.getBlockState(pos);
@@ -58,7 +55,6 @@ public class LabyrinthMazeFeature extends Feature<NoneFeatureConfiguration> {
                   }
                }
             } else {
-
                level.setBlock(pos.set(wx, surfaceY, wz), wallVariant(rand), 2);
                for (int h = 1; h <= WALL_HEIGHT; h++) {
                   if (h > 3 && rand.nextFloat() < 0.30F) continue;

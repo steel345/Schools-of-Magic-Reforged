@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockMagicGemBlock extends Block {
-
    public static final EnumProperty<EnumMagicType> TYPE = EnumProperty.create("type", EnumMagicType.class);
 
    public BlockMagicGemBlock(BlockBehaviour.Properties props) {
@@ -33,5 +32,4 @@ public class BlockMagicGemBlock extends Block {
          BlockState state, net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
       return java.util.Collections.singletonList(VariantDrop.variantStack(this, state, TYPE));
    }
-
 }

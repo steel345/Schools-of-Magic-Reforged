@@ -23,13 +23,11 @@ public class ContainerHerbPouch extends AbstractContainerMenu {
 
    public ContainerHerbPouch(int id, Inventory playerInventory, Player player) {
       super(MenuTypeRegistry.HERB_POUCH.get(), id);
-      // The pouch may be held in the main hand or worn in the charm slot.
+
       ItemStack main = player.getMainHandItem();
       ItemStack source = main.getItem() instanceof ItemHerbPouch ? main : charmPouch(player);
       this.handler = source.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
 
-      // Pouch storage: 4x5 grid, positioned to line up with the brown cells drawn
-      // in the herbalist_pouch.png texture.
       int[] cols = {52, 71, 91, 110};
       int[] rows = {5, 23, 41, 59, 77};
       int index = 0;
@@ -41,7 +39,7 @@ public class ContainerHerbPouch extends AbstractContainerMenu {
             }
          }
       }
-      // Player inventory + hotbar (standard vanilla layout at x8).
+
       int invX = 8;
       int invY = 109;
       for (int y = 0; y < 3; ++y) {
@@ -54,7 +52,6 @@ public class ContainerHerbPouch extends AbstractContainerMenu {
       }
    }
 
-   // The pouch may hang from the belt or sit in the charm slot.
    private static ItemStack charmPouch(Player player) {
       return com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots
          .findWornPouch(player, s -> s.getItem() instanceof ItemHerbPouch);
@@ -67,7 +64,6 @@ public class ContainerHerbPouch extends AbstractContainerMenu {
 
    @Override
    public void clicked(int slotId, int dragType, ClickType clickTypeIn, Player playerIn) {
-      // Never let the open pouch item itself be moved out of the hand.
       if (slotId >= 0 && this.getSlot(slotId) != null && this.getSlot(slotId).getItem() == playerIn.getMainHandItem()) {
          return;
       }
@@ -84,7 +80,7 @@ public class ContainerHerbPouch extends AbstractContainerMenu {
          previous = current.copy();
          int handlerSlots = this.handler.getSlots();
          boolean intoPouch = fromSlot >= handlerSlots;
-         // Only vegetation may shift into the pouch.
+
          if (intoPouch && !current.is(ItemHerbPouch.VEGETATION)) return ItemStack.EMPTY;
          boolean failed = intoPouch
             ? !this.moveItemStackTo(current, 0, handlerSlots, false)

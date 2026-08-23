@@ -15,7 +15,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 
 public class WhistleWaxRecipe extends CustomRecipe {
-
    public WhistleWaxRecipe(ResourceLocation id, CraftingBookCategory category) {
       super(id, category);
    }

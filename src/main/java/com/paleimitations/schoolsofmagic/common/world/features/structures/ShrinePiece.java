@@ -33,7 +33,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 
 public class ShrinePiece extends TemplateStructurePiece {
-
    private final String element;
 
    public ShrinePiece(StructureTemplateManager manager, String element, BlockPos pos) {

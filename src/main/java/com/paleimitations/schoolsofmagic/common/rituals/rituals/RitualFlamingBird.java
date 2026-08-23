@@ -34,7 +34,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class RitualFlamingBird extends Ritual {
-
    private static final int FLASK_AT = 5;
    private static final int RISE_END = 24;
    private static final int TWIRL_END = 44;

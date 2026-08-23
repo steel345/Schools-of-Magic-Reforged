@@ -53,15 +53,15 @@ public class SpellWaterJet extends Spell {
                double x = playerIn.getX() - living.getX();
                double z = playerIn.getZ() - living.getZ();
                living.knockback(5.0 / Utils.getDistance(living.blockPosition(), playerIn.blockPosition()), x, z);
-               living.hurt(worldIn.damageSources().playerAttack(playerIn), 2.0F);
+               living.hurt(worldIn.damageSources().playerAttack(playerIn), this.scaleDamage(2.0F));
                if (living.isOnFire()) {
                   living.clearFire();
                }
                if (living instanceof Blaze) {
-                  living.hurt(worldIn.damageSources().playerAttack(playerIn), 3.5F);
+                  living.hurt(worldIn.damageSources().playerAttack(playerIn), this.scaleDamage(3.5F));
                }
                if (living instanceof MagmaCube) {
-                  living.hurt(worldIn.damageSources().playerAttack(playerIn), 1.5F);
+                  living.hurt(worldIn.damageSources().playerAttack(playerIn), this.scaleDamage(1.5F));
                }
             }
          }

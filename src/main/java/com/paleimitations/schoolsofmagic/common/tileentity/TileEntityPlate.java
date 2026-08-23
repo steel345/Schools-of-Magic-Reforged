@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TileEntityPlate extends BlockEntity implements Clearable {
-
    private ItemStack item = ItemStack.EMPTY;
 
    public TileEntityPlate(BlockPos pos, BlockState state) {

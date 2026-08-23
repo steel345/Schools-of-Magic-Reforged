@@ -3,11 +3,12 @@ package com.paleimitations.schoolsofmagic.common.network;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.talisman_data.CapabilityTalismanData;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.talisman_data.ITalismanData;
 import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
 public class PacketSyncTalismanData {
@@ -30,19 +31,17 @@ public class PacketSyncTalismanData {
    }
 
    public static void handle(PacketSyncTalismanData msg, Supplier<NetworkEvent.Context> ctx) {
-      ctx.get().enqueueWork(() -> apply(msg));
-      ctx.get().setPacketHandled(true);
-   }
-
-   private static void apply(PacketSyncTalismanData msg) {
-      Minecraft mc = Minecraft.getInstance();
-      if (mc.level == null) return;
-      Entity entity = mc.level.getEntity(msg.playerId);
-      if (entity instanceof Player player) {
-         ITalismanData data = CapabilityTalismanData.get(player);
-         if (data != null) {
-            data.setTalisman(msg.talisman);
+      NetworkEvent.Context context = ctx.get();
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+         Entity entity = com.paleimitations.schoolsofmagic.client.ClientEntityLookup.byId(msg.playerId);
+         if (entity == null) return;
+         if (entity instanceof Player player) {
+            ITalismanData data = CapabilityTalismanData.get(player);
+            if (data != null) {
+               data.setTalisman(msg.talisman);
+            }
          }
-      }
+      }));
+      context.setPacketHandled(true);
    }
 }

@@ -129,7 +129,6 @@ public class TileEntitySpearTrap extends BlockEntity {
          if (this.level.isEmptyBlock(high))
             this.level.setBlockAndUpdate(high, BlockRegistry.trap_spike.get().defaultBlockState().setValue(BlockTrapSpike.FACING, facing).setValue(BlockTrapSpike.HALF, BlockTrapSpike.EnumBlockHalf.UPPER));
          if (this.dmgCd <= 0) {
-
             AABB spikeLow = new AABB(this.worldPosition.relative(facing));
             AABB spikeHigh = new AABB(this.worldPosition.relative(facing, 2));
             boolean pricked = false;

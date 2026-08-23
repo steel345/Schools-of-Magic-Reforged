@@ -10,7 +10,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 public class PatternRegistry {
-
    public static final DeferredRegister<BannerPattern> PATTERNS =
       DeferredRegister.create(Registries.BANNER_PATTERN, References.MODID);
 

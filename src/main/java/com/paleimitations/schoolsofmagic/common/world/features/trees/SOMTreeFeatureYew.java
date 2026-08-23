@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMTreeFeatureYew extends SOMTreeFeature {
-
    @Override protected RegistryObject<Block> log() { return BlockRegistry.log_yew; }
    @Override protected RegistryObject<Block> leaves() { return BlockRegistry.leaves_yew; }
 

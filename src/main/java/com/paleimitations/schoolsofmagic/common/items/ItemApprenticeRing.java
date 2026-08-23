@@ -16,6 +16,22 @@ public class ItemApprenticeRing extends Item {
    }
 
    @Override
+   public int getMaxDamage(ItemStack stack) {
+      if (!com.paleimitations.schoolsofmagic.common.compat.SOMConfig.wandRingDurability()) {
+         return 0;
+      }
+      return com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.WandMetalPerk.readMetal(stack) != null
+         ? 735 : 250;
+   }
+
+   @Override
+   public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+      return ItemBaseWand.isMetalIngot(
+         com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.WandMetalPerk.readMetal(toRepair),
+         repair);
+   }
+
+   @Override
    public void appendHoverText(ItemStack stack, Level level, java.util.List<net.minecraft.network.chat.Component> tooltip,
          net.minecraft.world.item.TooltipFlag flag) {
       com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumGemType gem =

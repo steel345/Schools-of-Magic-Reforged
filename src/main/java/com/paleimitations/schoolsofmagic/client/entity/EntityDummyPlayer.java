@@ -12,7 +12,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class EntityDummyPlayer extends AbstractClientPlayer {
-
    public EntityDummyPlayer(ClientLevel level, GameProfile gameProfile) {
       super(level, gameProfile);
    }

@@ -9,9 +9,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 
-// /eclipse start and /eclipse stop: call the shadow down, or send it away.
 public class CommandEclipse {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(
          Commands.literal("eclipse")

@@ -34,8 +34,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class SpellDry extends Spell {
-   // The sun-dry sound is ~1s; the "sizzle" lands partway in, so the actual drying
-   // is held back this many ticks (~0.45s) after the sound starts.
    private static final int DRY_DELAY = 9;
 
    public SpellDry() {
@@ -179,15 +177,10 @@ public class SpellDry extends Spell {
       return true;
    }
 
-   // Play the sun-dry sound the moment the spell is cast (caster hears it locally;
-   // the server broadcasts it to everyone else).
    private void castChime(Player player) {
       player.playSound(SOMSoundHandler.SUN_DRY.get(), 1.0F, player.getRandom().nextFloat() * 0.2F + 0.9F);
    }
 
-   // Holds the actual drying back ~0.45s so it lands with the sizzle in the sound.
-   // The block change runs server-side; the original white flare + smoke are shown
-   // client-side, timed to the same moment.
    private void scheduleDry(Level world, BlockPos pos, double fxY, Runnable serverEffect) {
       final BlockPos p = pos.immutable();
       if (world.isClientSide) {

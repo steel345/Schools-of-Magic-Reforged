@@ -82,6 +82,9 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
       this.addRenderableWidget(new PodiumSwitchButton(podium, 3, 4, this.leftPos + 54, this.topPos + 130));
       this.addRenderableWidget(new PodiumSwitchButton(podium, 3, 5, this.leftPos + 154, this.topPos + 130));
 
+      this.addRenderableWidget(new TurnPageButton(podium, true,  this.leftPos + 168, this.topPos + 36));
+      this.addRenderableWidget(new TurnPageButton(podium, false, this.leftPos + 200, this.topPos + 36));
+
       this.addRenderableWidget(new SwitchStateButton(EnumPersonalizeState.STICKER, this.leftPos + 147, this.topPos + 12));
       this.addRenderableWidget(new SwitchStateButton(EnumPersonalizeState.INSERT,  this.leftPos + 176, this.topPos + 12));
       this.addRenderableWidget(new SwitchStateButton(EnumPersonalizeState.WRITE,   this.leftPos + 205, this.topPos + 12));
@@ -101,12 +104,73 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
       this.addRenderableWidget(new EditButton(EditButton.Kind.TITLE, this.leftPos + 146, this.topPos + 61));
       this.addRenderableWidget(new EditButton(EditButton.Kind.PAGE,  this.leftPos + 146, this.topPos + 79));
       this.addRenderableWidget(new EditButton(EditButton.Kind.BOOK,  this.leftPos + 146, this.topPos + 97));
+
+      this.bookNameBox = new EditBox(this.font, this.leftPos + 60, this.topPos + 70, 110, 12, Component.empty());
+      this.bookNameBox.setMaxLength(48);
+      this.bookNameBox.setBordered(true);
+      this.bookNameBox.setVisible(false);
+      ItemStack held = podium.handler.getStackInSlot(0);
+      if (held.hasCustomHoverName()) {
+         this.bookNameBox.setValue(held.getHoverName().getString());
+      }
+
+      this.addWidget(this.bookNameBox);
+   }
+
+   private EditBox bookNameBox;
+
+   private void commitWrittenPage() {
+      TileEntityPodium podium = getPodium();
+      if (podium == null) return;
+      BookPageWriteable page = currentWriteablePage();
+      if (page == null) return;
+      PacketHandler.INSTANCE.sendToServer(
+         new com.paleimitations.schoolsofmagic.common.network.PacketWritePage(
+            podium.getBlockPos(), podium.getPage(), page.getName()));
+      writeState = EnumWriteState.NONE;
+   }
+
+   @Override
+   public void removed() {
+      if (state == EnumPersonalizeState.WRITE
+            && (writeState == EnumWriteState.PAGE || writeState == EnumWriteState.TITLE)) {
+         commitWrittenPage();
+      }
+      super.removed();
+   }
+
+   private void commitBookName() {
+      TileEntityPodium podium = getPodium();
+      if (podium == null || this.bookNameBox == null) return;
+      PacketHandler.INSTANCE.sendToServer(
+         new com.paleimitations.schoolsofmagic.common.network.PacketRenameBook(
+            podium.getBlockPos(), this.bookNameBox.getValue()));
+      writeState = EnumWriteState.NONE;
    }
 
    private boolean draggingSticker = false;
 
    @Override
    public boolean mouseClicked(double mx, double my, int button) {
+      if (button == 0 && clickedQuill(mx, my)) {
+         return true;
+      }
+
+      if (button == 0 && editingText() && placeCaretFromClick(mx, my)) {
+         this.editAnchor = this.caret;
+         this.draggingCaret = true;
+         return true;
+      }
+
+      if (button == 0) {
+         TileEntityPodium podium = getPodium();
+         if (podium != null) {
+            PodiumGuiHelper.clickGuiSubject(
+               (float) (mx - this.leftPos) - 17.886177F,
+               (float) (my - this.topPos) - 10.642276F,
+               podium.handler.getStackInSlot(0), podium, false);
+         }
+      }
       if (state == EnumPersonalizeState.STICKER && button == 0) {
          double sx = this.leftPos + stickerX;
          double sy = this.topPos + stickerY;
@@ -120,6 +184,10 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
 
    @Override
    public boolean mouseDragged(double mx, double my, int button, double dx, double dy) {
+      if (draggingCaret && button == 0 && editingText()) {
+         placeCaretFromClick(mx, my);
+         return true;
+      }
       if (draggingSticker && button == 0) {
          stickerX = (float) Math.max(0, Math.min(200, mx - this.leftPos));
          stickerY = (float) Math.max(0, Math.min(135, my - this.topPos));
@@ -130,6 +198,10 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
 
    @Override
    public boolean mouseReleased(double mx, double my, int button) {
+      if (draggingCaret && button == 0) {
+         draggingCaret = false;
+         return true;
+      }
       if (draggingSticker && button == 0) {
          draggingSticker = false;
          return true;
@@ -150,6 +222,355 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
       TileEntityPodium p = getPodium();
       if (p == null) return null;
       return p.handler.getStackInSlot(0).getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
+   }
+
+   private String convertedCurrentPage() {
+      IBook book = currentBook();
+      BookPage page = book == null ? null : book.getCurrentPage();
+      if (page == null) {
+         return new BookPageWriteable("", "").getName();
+      }
+      String title = "";
+      StringBuilder body = new StringBuilder();
+      for (PageElement element : page.elements) {
+         if (element instanceof PageElementTitle t
+               && t.text != null && t.text.length > 0 && t.text[0] != null) {
+            if (title.isEmpty()) title = t.text[0];
+         } else if (element instanceof com.paleimitations.schoolsofmagic.common.books.PageElementStandardText s) {
+            if (title.isEmpty()) {
+               title = net.minecraft.client.resources.language.I18n.get(s.textLocation);
+            }
+         } else if (element instanceof com.paleimitations.schoolsofmagic.common.books.PageElementParagraphs p) {
+            p.loadText();
+            for (String line : p.text) {
+               if (line == null || line.isEmpty()) continue;
+               if (body.length() > 0) body.append("\n\n");
+               body.append(line);
+            }
+         }
+      }
+
+      title = title.replace("<title>", "").replace("<paragraph>", "");
+      String text = body.toString().replace("<title>", "").replace("<paragraph>", "");
+      return new BookPageWriteable(title, text).getName();
+   }
+
+   private com.paleimitations.schoolsofmagic.common.books.BookTextOverride editBuffer;
+   private int editPage = -1;
+   private int caret = -1;
+   private boolean previewCaretShown;
+   private boolean draggingCaret;
+
+   private int editAnchor = -1;
+
+   private boolean hasSelection() {
+      return this.editAnchor >= 0 && this.caret >= 0 && this.editAnchor != this.caret;
+   }
+
+   private int selFrom() { return Math.min(this.caret, this.editAnchor); }
+
+   private int selTo() { return Math.max(this.caret, this.editAnchor); }
+
+   private int[] toParaSrc(int index) {
+      boolean title = writeState == EnumWriteState.TITLE;
+      if (title) return new int[]{-1, index};
+      String cur = editedText(false);
+      int at = Math.max(0, Math.min(this.caret < 0 ? cur.length() : this.caret, cur.length()));
+      String shown = this.previewCaretShown
+         ? cur.substring(0, at) + "_" + cur.substring(at) : cur;
+      int shownIndex = this.previewCaretShown && index >= at ? index + 1 : index;
+      String[] paras = shown.split("<~>", -1);
+      int off = 0;
+      for (int i = 0; i < paras.length; i++) {
+         if (shownIndex <= off + paras[i].length()) return new int[]{i, shownIndex - off};
+         off += paras[i].length() + 3;
+      }
+      return new int[]{paras.length - 1, paras[paras.length - 1].length()};
+   }
+
+   private void drawEditSelection(GuiGraphics gg) {
+      if (!editingText() || !hasSelection()) return;
+      int[] from = toParaSrc(selFrom());
+      int[] to = toParaSrc(selTo());
+      for (com.paleimitations.schoolsofmagic.client.BookRichText.Hit h
+            : com.paleimitations.schoolsofmagic.client.BookRichText.captured()) {
+         boolean after = h.para > from[0] || (h.para == from[0] && h.src >= from[1]);
+         boolean before = h.para < to[0] || (h.para == to[0] && h.src < to[1]);
+         if (after && before) {
+            gg.fill(Math.round(h.x0) - this.leftPos, Math.round(h.y0) - this.topPos,
+               Math.round(h.x1) - this.leftPos, Math.round(h.y1) - this.topPos, 0x804A90D9);
+         }
+      }
+   }
+
+   private void deleteEditSelection(boolean title) {
+      if (!hasSelection()) return;
+      String cur = editedText(title);
+      int from = Math.max(0, Math.min(selFrom(), cur.length()));
+      int to = Math.max(0, Math.min(selTo(), cur.length()));
+      setEditedText(title, cur.substring(0, from) + cur.substring(to));
+      this.caret = from;
+      this.editAnchor = from;
+   }
+
+   private boolean editingText() {
+      return state == EnumPersonalizeState.WRITE && this.editBuffer != null
+         && (writeState == EnumWriteState.TITLE || writeState == EnumWriteState.PAGE);
+   }
+
+   private boolean placeCaretFromClick(double mx, double my) {
+      if (!editingText()) return false;
+      int[] hit = com.paleimitations.schoolsofmagic.client.BookRichText.indexAt(mx, my);
+      if (hit == null) return false;
+      boolean title = writeState == EnumWriteState.TITLE;
+
+      if (title != (hit[0] < 0)) return false;
+
+      String cur = editedText(title);
+      int at = Math.max(0, Math.min(this.caret < 0 ? cur.length() : this.caret, cur.length()));
+      String shown = this.previewCaretShown
+         ? cur.substring(0, at) + "_" + cur.substring(at) : cur;
+
+      int idx;
+      if (title) {
+         idx = hit[1];
+      } else {
+         String[] paras = shown.split("<~>", -1);
+         if (hit[0] >= paras.length) return false;
+         int off = 0;
+         for (int i = 0; i < hit[0]; i++) off += paras[i].length() + 3;
+         idx = off + hit[1];
+      }
+
+      if (this.previewCaretShown && idx > at) idx--;
+      this.caret = Math.max(0, Math.min(idx, cur.length()));
+      return true;
+   }
+
+   private com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout currentLayout() {
+      IBook book = currentBook();
+      return book == null ? null : book.getPageLayouts().get(book.getPage());
+   }
+
+   private com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Element layoutPiece(
+         com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind kind) {
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout layout = currentLayout();
+      if (layout == null) return null;
+      for (com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Element e : layout.elements) {
+         if (e.kind == kind) return e;
+      }
+      return null;
+   }
+
+   private String writeableTitle() {
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Element laid =
+         layoutPiece(com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TITLE);
+      if (laid != null) return laid.value == null ? "" : laid.value;
+      BookPageWriteable page = currentWriteablePage();
+      if (page == null) return null;
+      for (PageElement e : page.elements) {
+         if (e instanceof PageElementTitle t && t.text != null && t.text.length > 0) {
+            return t.text[0] == null ? "" : t.text[0];
+         }
+      }
+      return "";
+   }
+
+   private String writeableBody() {
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Element laid =
+         layoutPiece(com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TEXT);
+      if (laid != null) return laid.value == null ? "" : laid.value;
+      BookPageWriteable page = currentWriteablePage();
+      if (page == null) return null;
+      for (PageElement e : page.elements) {
+         if (e instanceof com.paleimitations.schoolsofmagic.common.books.PageElementWriteableParagraphs p) {
+            return p.text == null ? "" : p.text;
+         }
+      }
+      return "";
+   }
+
+   private String shippedTitle() {
+      String own = writeableTitle();
+      if (own != null) return own;
+      IBook book = currentBook();
+      BookPage page = book == null ? null : book.getCurrentPage();
+      if (page == null) return "";
+      for (PageElement e : page.elements) {
+         if (e instanceof PageElementTitle t && t.text != null && t.text.length > 0 && t.text[0] != null) {
+            return t.text[0];
+         }
+         if (e instanceof com.paleimitations.schoolsofmagic.common.books.PageElementStandardText s) {
+            return net.minecraft.client.resources.language.I18n.get(s.textLocation);
+         }
+      }
+      return "";
+   }
+
+   private String shippedBody() {
+      String own = writeableBody();
+      if (own != null) return own;
+      IBook book = currentBook();
+      BookPage page = book == null ? null : book.getCurrentPage();
+      if (page == null) return "";
+      for (PageElement e : page.elements) {
+         if (e instanceof com.paleimitations.schoolsofmagic.common.books.PageElementParagraphs p) {
+            p.loadText();
+            return String.join("<~>", p.text);
+         }
+      }
+      return "";
+   }
+
+   private com.paleimitations.schoolsofmagic.common.books.BookTextOverride livePreview() {
+      if (this.editBuffer == null || state != EnumPersonalizeState.WRITE
+            || (writeState != EnumWriteState.TITLE && writeState != EnumWriteState.PAGE)) {
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.clearEditPreview();
+         return null;
+      }
+      boolean title = writeState == EnumWriteState.TITLE;
+      String cur = editedText(title);
+      int at = Math.max(0, Math.min(this.caret < 0 ? cur.length() : this.caret, cur.length()));
+
+      this.previewCaretShown = (System.currentTimeMillis() / 500L) % 2L == 0L;
+      String shown = this.previewCaretShown
+         ? cur.substring(0, at) + "_" + cur.substring(at) : cur;
+      com.paleimitations.schoolsofmagic.common.books.BookTextOverride preview =
+         new com.paleimitations.schoolsofmagic.common.books.BookTextOverride(
+            title ? shown : this.editBuffer.title,
+            title ? this.editBuffer.body : shown,
+            this.editBuffer.originalTitle, this.editBuffer.originalBody);
+
+      com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.setEditPreview(
+         layoutPiece(com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TITLE),
+         preview.title,
+         layoutPiece(com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TEXT),
+         preview.body);
+      return preview;
+   }
+
+   private String editedText(boolean title) {
+      if (this.editBuffer == null) return "";
+      return title ? this.editBuffer.title : this.editBuffer.body;
+   }
+
+   private void setEditedText(boolean title, String value) {
+      if (this.editBuffer == null) return;
+      if (title) this.editBuffer.title = value; else this.editBuffer.body = value;
+   }
+
+   private void typeInto(char c, boolean title) {
+      deleteEditSelection(title);
+      String cur = editedText(title);
+      int at = Math.max(0, Math.min(this.caret < 0 ? cur.length() : this.caret, cur.length()));
+      setEditedText(title, cur.substring(0, at) + c + cur.substring(at));
+      this.caret = at + 1;
+      this.editAnchor = this.caret;
+   }
+
+   private void backspaceEdit(boolean title) {
+      if (hasSelection()) {
+         deleteEditSelection(title);
+         return;
+      }
+      String cur = editedText(title);
+      int at = Math.max(0, Math.min(this.caret < 0 ? cur.length() : this.caret, cur.length()));
+      if (at == 0 || cur.isEmpty()) return;
+      setEditedText(title, cur.substring(0, at - 1) + cur.substring(at));
+      this.caret = at - 1;
+      this.editAnchor = this.caret;
+   }
+
+   private void moveCaret(int by) {
+      String cur = editedText(writeState == EnumWriteState.TITLE);
+      int at = this.caret < 0 ? cur.length() : this.caret;
+      this.caret = Math.max(0, Math.min(at + by, cur.length()));
+
+      if (!net.minecraft.client.gui.screens.Screen.hasShiftDown()) this.editAnchor = this.caret;
+   }
+
+   private void beginEdit() {
+      IBook book = currentBook();
+      if (book == null) return;
+      this.editPage = book.getPage();
+      com.paleimitations.schoolsofmagic.common.books.BookTextOverride existing =
+         book.getTextOverrides().get(this.editPage);
+      String shippedT = shippedTitle();
+      String shippedB = shippedBody();
+      this.editBuffer = existing != null
+         ? new com.paleimitations.schoolsofmagic.common.books.BookTextOverride(
+              existing.title, existing.body, shippedT, shippedB)
+         : new com.paleimitations.schoolsofmagic.common.books.BookTextOverride(
+              shippedT, shippedB, shippedT, shippedB);
+      this.caret = writeState == EnumWriteState.TITLE
+         ? this.editBuffer.title.length() : this.editBuffer.body.length();
+      this.editAnchor = this.caret;
+   }
+
+   private void sendEdit(boolean clear) {
+      TileEntityPodium podium = getPodium();
+      if (podium == null || this.editBuffer == null || this.editPage < 0) return;
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout layout = currentLayout();
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Element laidTitle =
+         layoutPiece(com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TITLE);
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Element laidText =
+         layoutPiece(com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TEXT);
+      BookPageWriteable writeable = currentWriteablePage();
+
+      if (layout != null && (laidTitle != null || laidText != null)) {
+         if (!clear) {
+            if (laidTitle != null) laidTitle.value = this.editBuffer.title;
+            if (laidText != null) laidText.value = this.editBuffer.body;
+         }
+         PacketHandler.INSTANCE.sendToServer(
+            new com.paleimitations.schoolsofmagic.common.network.PacketSetPageLayout(
+               podium.getBlockPos(), this.editPage, layout.save()));
+      } else if (writeable != null) {
+         if (!clear) applyToWriteable(writeable);
+         commitWrittenPage();
+      } else {
+         PacketHandler.INSTANCE.sendToServer(
+            new com.paleimitations.schoolsofmagic.common.network.PacketSetPageOverride(
+               podium.getBlockPos(), this.editPage, clear,
+               this.editBuffer.title, this.editBuffer.body,
+               this.editBuffer.originalTitle, this.editBuffer.originalBody));
+      }
+      this.editBuffer = null;
+      this.editPage = -1;
+      this.caret = -1;
+      this.editAnchor = -1;
+      com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.clearEditPreview();
+   }
+
+   private void applyToWriteable(BookPageWriteable page) {
+      for (PageElement e : page.elements) {
+         if (e instanceof PageElementTitle t && t.text != null && t.text.length > 0) {
+            t.text[0] = this.editBuffer.title;
+         } else if (e instanceof com.paleimitations.schoolsofmagic.common.books.PageElementWriteableParagraphs p) {
+            p.text = this.editBuffer.body;
+         }
+      }
+   }
+
+   private boolean clickedQuill(double mx, double my) {
+      IBook book = currentBook();
+      BookPage page = book == null ? null : book.getCurrentPage();
+      if (page == null) return false;
+      TileEntityPodium podium = getPodium();
+      if (podium == null) return false;
+      com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout layout =
+         book.getPageLayouts().get(book.getPage());
+      if (layout != null && layout.finished) return false;
+      for (PageElement e : page.elements) {
+         if (e instanceof com.paleimitations.schoolsofmagic.common.books.PageElementQuill quill
+               && com.paleimitations.schoolsofmagic.common.books.PageElementQuill.isOverScreen(mx, my)) {
+            quill.press();
+            this.minecraft.setScreen(new com.paleimitations.schoolsofmagic.client.guis.editor.GuiBookEditor(
+               this, podium.getBlockPos(), book.getPage(), layout));
+            return true;
+         }
+      }
+      return false;
    }
 
    private BookPageWriteable currentWriteablePage() {
@@ -195,15 +616,15 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
    public boolean charTyped(char c, int modifiers) {
       if (state == EnumPersonalizeState.WRITE && writeState != EnumWriteState.NONE) {
          switch (writeState) {
-            case PAGE: {
-               BookPageWriteable w = currentWriteablePage();
-               if (w != null) { w.editText(c, -1); return true; }
-               break;
-            }
+            case PAGE:
+               typeInto(c, false); return true;
             case TITLE:
-               appendTitleChar(currentTitleElement(false), c); return true;
+               typeInto(c, true); return true;
             case BOOK:
-               appendTitleChar(currentTitleElement(true),  c); return true;
+               if (this.bookNameBox != null && this.bookNameBox.isVisible()) {
+                  return this.bookNameBox.charTyped(c, modifiers);
+               }
+               return true;
             default:
          }
       }
@@ -212,8 +633,22 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
 
    @Override
    public boolean keyPressed(int key, int scan, int mods) {
-      if (state == EnumPersonalizeState.WRITE && writeState != EnumWriteState.NONE) {
+      if (this.bookNameBox != null && this.bookNameBox.isVisible()) {
+         if (key == GLFW.GLFW_KEY_ENTER || key == GLFW.GLFW_KEY_KP_ENTER) {
+            commitBookName();
+            return true;
+         }
+         if (key == GLFW.GLFW_KEY_ESCAPE) {
+            writeState = EnumWriteState.NONE;
+            return true;
+         }
+         if (this.bookNameBox.keyPressed(key, scan, mods)) {
+            return true;
+         }
 
+         return true;
+      }
+      if (state == EnumPersonalizeState.WRITE && writeState != EnumWriteState.NONE) {
          int legacy = switch (key) {
             case GLFW.GLFW_KEY_BACKSPACE -> 14;
             case GLFW.GLFW_KEY_ENTER     -> 28;
@@ -224,15 +659,35 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
          boolean ctrlV = (key == GLFW.GLFW_KEY_V) && ((mods & GLFW.GLFW_MOD_CONTROL) != 0);
          switch (writeState) {
             case PAGE: {
-               BookPageWriteable w = currentWriteablePage();
-               if (w == null) break;
-               if (ctrlV) { w.editText((char)0, 0); return true; }
-               if (legacy >= 0) { w.editText('\0', legacy); return true; }
-               break;
+               if (key == GLFW.GLFW_KEY_ESCAPE) { writeState = EnumWriteState.NONE; sendEdit(false); return true; }
+               if (key == GLFW.GLFW_KEY_LEFT)  { moveCaret(-1); return true; }
+               if (key == GLFW.GLFW_KEY_RIGHT) { moveCaret(1); return true; }
+               if (key == GLFW.GLFW_KEY_HOME)  { this.caret = 0; return true; }
+               if (key == GLFW.GLFW_KEY_END)   { this.caret = editedText(false).length(); return true; }
+               if (key == GLFW.GLFW_KEY_BACKSPACE) { backspaceEdit(false); return true; }
+               if (key == GLFW.GLFW_KEY_ENTER || key == GLFW.GLFW_KEY_KP_ENTER) { typeInto('\n', false); return true; }
+               if (ctrlV) {
+                  for (char ch : net.minecraft.client.Minecraft.getInstance()
+                        .keyboardHandler.getClipboard().toCharArray()) {
+                     typeInto(ch, false);
+                  }
+                  return true;
+               }
+
+               return true;
             }
             case TITLE:
-               if (key == GLFW.GLFW_KEY_BACKSPACE) { backspaceTitle(currentTitleElement(false)); return true; }
-               break;
+               if (key == GLFW.GLFW_KEY_ENTER || key == GLFW.GLFW_KEY_KP_ENTER) {
+                  writeState = EnumWriteState.NONE;
+                  sendEdit(false);
+                  return true;
+               }
+               if (key == GLFW.GLFW_KEY_LEFT)  { moveCaret(-1); return true; }
+               if (key == GLFW.GLFW_KEY_RIGHT) { moveCaret(1); return true; }
+               if (key == GLFW.GLFW_KEY_HOME)  { this.caret = 0; return true; }
+               if (key == GLFW.GLFW_KEY_END)   { this.caret = editedText(true).length(); return true; }
+               if (key == GLFW.GLFW_KEY_BACKSPACE) { backspaceEdit(true); return true; }
+               return true;
             case BOOK:
                if (key == GLFW.GLFW_KEY_BACKSPACE) { backspaceTitle(currentTitleElement(true)); return true; }
                break;
@@ -244,9 +699,68 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
 
    @Override
    public void render(GuiGraphics gg, int mouseX, int mouseY, float partialTicks) {
+      if (this.bookNameBox != null) {
+         boolean naming = state == EnumPersonalizeState.WRITE && writeState == EnumWriteState.BOOK;
+         if (naming != this.bookNameBox.isVisible()) {
+            this.bookNameBox.setVisible(naming);
+            this.bookNameBox.setFocused(naming);
+            if (naming) {
+               this.setFocused(this.bookNameBox);
+            }
+         }
+      }
+
+      com.paleimitations.schoolsofmagic.common.books.BookTextOverride.setPreview(livePreview());
       this.renderBackground(gg);
       super.render(gg, mouseX, mouseY, partialTicks);
+      com.paleimitations.schoolsofmagic.common.books.BookTextOverride.setPreview(null);
       this.renderTooltip(gg, mouseX, mouseY);
+   }
+
+   private static final String CARET = "_";
+   private PageElementTitle caretTitle;
+   private com.paleimitations.schoolsofmagic.common.books.PageElementWriteableParagraphs caretBody;
+
+   private boolean showCaret() {
+      if (state != EnumPersonalizeState.WRITE) return false;
+      if (writeState != EnumWriteState.TITLE && writeState != EnumWriteState.PAGE) return false;
+      return (System.currentTimeMillis() / 500L) % 2L == 0L;
+   }
+
+   private void insertCaret() {
+      if (writeState == EnumWriteState.TITLE) {
+         PageElementTitle title = currentTitleElement(false);
+         if (title == null) return;
+         if (title.text == null || title.text.length == 0 || title.text[0] == null) return;
+         this.caretTitle = title;
+         title.text[0] = title.text[0] + CARET;
+         return;
+      }
+      BookPageWriteable page = currentWriteablePage();
+      if (page == null) return;
+      for (PageElement element : page.elements) {
+         if (element instanceof com.paleimitations.schoolsofmagic.common.books.PageElementWriteableParagraphs body) {
+            this.caretBody = body;
+            body.text = body.text + CARET;
+            return;
+         }
+      }
+   }
+
+   private void removeCaret() {
+      if (this.caretTitle != null) {
+         String cur = this.caretTitle.text[0];
+         if (cur != null && cur.endsWith(CARET)) {
+            this.caretTitle.text[0] = cur.substring(0, cur.length() - 1);
+         }
+         this.caretTitle = null;
+      }
+      if (this.caretBody != null) {
+         if (this.caretBody.text.endsWith(CARET)) {
+            this.caretBody.text = this.caretBody.text.substring(0, this.caretBody.text.length() - 1);
+         }
+         this.caretBody = null;
+      }
    }
 
    @Override
@@ -269,9 +783,18 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
 
       gg.pose().pushPose();
       gg.pose().translate(17.886177F, 10.642276F, 0.0F);
-      PodiumGuiHelper.renderGuiSubject(gg, mouseX - this.leftPos - 8.886178F, mouseY - this.topPos - 10.642276F,
-         this, podium.handler.getStackInSlot(0), 0.0F, podium, false);
+
+      boolean capture = editingText();
+      if (capture) com.paleimitations.schoolsofmagic.client.BookRichText.beginCapture();
+      try {
+         PodiumGuiHelper.renderGuiSubject(gg, mouseX - this.leftPos - 17.886177F, mouseY - this.topPos - 10.642276F,
+            this, podium.handler.getStackInSlot(0), 0.0F, podium, false);
+      } finally {
+         if (capture) com.paleimitations.schoolsofmagic.client.BookRichText.endCapture();
+      }
       gg.pose().popPose();
+
+      if (capture) drawEditSelection(gg);
 
       if (this.state == EnumPersonalizeState.STICKER) {
          ItemStack consumable = podium.handler.getStackInSlot(1);
@@ -281,7 +804,6 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
             BookElementSticker.EnumSticker esticker =
                BookElementSticker.EnumSticker.getSticker(consumable.getTag().getString("sticker"));
             if (esticker != null) {
-
                if (book != null && book.getCurrentPage() != null) {
                   float scale = 0.50406504F;
                   gg.pose().pushPose();
@@ -309,6 +831,13 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
          drawFitCentered(gg, "gui.edit_title.name", 195.0F, 67.0F);
          drawFitCentered(gg, "gui.edit_page.name",  195.0F, 85.0F);
          drawFitCentered(gg, "gui.edit_book.name",  195.0F, 103.0F);
+      }
+
+      if (this.bookNameBox != null && this.bookNameBox.isVisible()) {
+         gg.pose().pushPose();
+         gg.pose().translate(-this.leftPos, -this.topPos, 300.0F);
+         this.bookNameBox.render(gg, mouseX, mouseY, 0.0F);
+         gg.pose().popPose();
       }
    }
 
@@ -338,7 +867,6 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
       @Override public void onPress() { state = target; }
       @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
       @Override public void renderWidget(GuiGraphics gg, int mx, int my, float pt) {
-
          boolean active = (state == target);
          boolean hov = mx >= getX() && my >= getY() && mx < getX() + width && my < getY() + height;
          gg.blit(FINAL, getX(), getY(), active ? 143 : (hov ? 120 : 97), 0, 23, 19);
@@ -357,11 +885,11 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
          this.kind = kind;
       }
       private boolean isStickerMode() { return state == EnumPersonalizeState.STICKER; }
-      private boolean isArrow() { return kind == Kind.UP || kind == Kind.DOWN || kind == Kind.LEFT || kind == Kind.RIGHT; }
+
+      private boolean isArrow() { return kind != Kind.CONFIRM; }
       private int holdFrames = -1;
 
       @Override public void render(GuiGraphics gg, int mx, int my, float pt) {
-
          this.visible = isStickerMode();
 
          if (holdFrames >= 0) {
@@ -392,6 +920,8 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
             case DOWN  -> { if (stickerY < 135) stickerY++; }
             case LEFT  -> { if (stickerX > 0)   stickerX--; }
             case RIGHT -> { if (stickerX < 200) stickerX++; }
+            case CW    -> stickerR = (stickerR + 1.0F) % 360.0F;
+            case CCW   -> stickerR = (stickerR - 1.0F + 360.0F) % 360.0F;
             default -> {}
          }
       }
@@ -409,7 +939,6 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
       }
       @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
       @Override public void renderWidget(GuiGraphics gg, int mx, int my, float pt) {
-
          boolean hov = mx >= getX() && my >= getY() && mx < getX() + width && my < getY() + height;
          int v = switch (kind) {
             case UP -> 42; case LEFT -> 54; case DOWN -> 66; case RIGHT -> 78;
@@ -449,6 +978,35 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
       stickerX = 100.0F; stickerY = 67.0F; stickerR = 0.0F;
    }
 
+   private boolean hasPaper() {
+      TileEntityPodium p = getPodium();
+      return p != null && p.handler.getStackInSlot(1).is(net.minecraft.world.item.Items.PAPER);
+   }
+
+   private boolean hasInk() {
+      TileEntityPodium p = getPodium();
+      if (p == null) return false;
+      ItemStack stack = p.handler.getStackInSlot(1);
+      return stack.is(net.minecraft.world.item.Items.INK_SAC)
+         || stack.is(net.minecraft.world.item.Items.BLACK_DYE);
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   static class TurnPageButton extends AbstractButton {
+      private final boolean isBack;
+      private final TileEntityPodium podium;
+      TurnPageButton(TileEntityPodium podium, boolean isBack, int posX, int posY) {
+         super(posX, posY, 29, 19, Component.empty());
+         this.podium = podium; this.isBack = isBack;
+      }
+      @Override public void onPress() { this.podium.turnPage(!isBack); }
+      @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
+      @Override public void renderWidget(GuiGraphics gg, int mx, int my, float pt) {
+         boolean hov = mx >= getX() && my >= getY() && mx < getX() + width && my < getY() + height;
+         gg.blit(GuiPodiumRead.ICONS, getX(), getY(), hov ? 29 : 0, isBack ? 23 : 42, 29, 19);
+      }
+   }
+
    @OnlyIn(Dist.CLIENT)
    private class InsertButton extends AbstractButton {
       enum Kind { TABLE_OF_CONTENTS, CHAPTER, PAGE }
@@ -463,23 +1021,27 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
          super.render(gg, mx, my, pt);
       }
       @Override public void onPress() {
-         if (!isInsertMode()) return;
+         if (!isInsertMode() || !hasPaper()) return;
          TileEntityPodium podium = getPodium();
          if (podium == null) return;
 
          String pageKey = switch (kind) {
             case TABLE_OF_CONTENTS -> "table_content";
             case CHAPTER -> "chapter";
-            case PAGE -> "";
+            case PAGE -> "writeable";
          };
-         if (pageKey.isEmpty()) return;
+
          PacketHandler.INSTANCE.sendToServer(new com.paleimitations.schoolsofmagic.common.network.PacketInsertPage(
-            podium.getPage(), pageKey, podium.getBlockPos()));
+            podium.getPage(), pageKey, podium.getBlockPos(), false, 1));
+         net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+            net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+               net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
       }
       @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
       @Override public void renderWidget(GuiGraphics gg, int mx, int my, float pt) {
          boolean hov = mx >= getX() && my >= getY() && mx < getX() + width && my < getY() + height;
-         gg.blit(FINAL, getX(), getY(), hov ? 109 : 97, 78, 12, 12);
+         boolean usable = hasPaper();
+         gg.blit(FINAL, getX(), getY(), usable ? (hov ? 109 : 97) : 121, 78, 12, 12);
       }
    }
 
@@ -496,6 +1058,38 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
          this.visible = isWriteMode();
          super.render(gg, mx, my, pt);
       }
+
+      private boolean usable() {
+         return hasInk();
+      }
+
+      @Override public boolean mouseClicked(double mx, double my, int button) {
+         if (button == 1 && isWriteMode() && usable() && this.isMouseOver(mx, my)) {
+            TileEntityPodium podium = getPodium();
+            IBook book = currentBook();
+            if (podium != null && book != null) {
+               if (kind == Kind.BOOK) {
+                  PacketHandler.INSTANCE.sendToServer(
+                     new com.paleimitations.schoolsofmagic.common.network.PacketRenameBook(
+                        podium.getBlockPos(), ""));
+               } else {
+                  PacketHandler.INSTANCE.sendToServer(
+                     new com.paleimitations.schoolsofmagic.common.network.PacketSetPageOverride(
+                        podium.getBlockPos(), book.getPage(), true, "", "", "", ""));
+               }
+               writeState = EnumWriteState.NONE;
+               editBuffer = null;
+               editPage = -1;
+               caret = -1;
+               net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+                  net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+                     net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            }
+            return true;
+         }
+         return super.mouseClicked(mx, my, button);
+      }
+
       @Override public void onPress() {
          if (!isWriteMode()) return;
 
@@ -504,13 +1098,30 @@ public class GuiPodiumFinalize extends AbstractContainerScreen<ContainerPodiumFi
             case TITLE -> EnumWriteState.TITLE;
             case BOOK -> EnumWriteState.BOOK;
          };
-         writeState = (writeState == target) ? EnumWriteState.NONE : target;
+
+         boolean closing = (writeState == target);
+         if (!closing && !usable()) return;
+         writeState = closing ? EnumWriteState.NONE : target;
+         if (target != EnumWriteState.BOOK) {
+            if (closing) {
+               sendEdit(false);
+            } else {
+               beginEdit();
+            }
+         }
+         net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+            net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+               net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
       }
       @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
       @Override public void renderWidget(GuiGraphics gg, int mx, int my, float pt) {
          boolean hov = mx >= getX() && my >= getY() && mx < getX() + width && my < getY() + height;
+         boolean on = usable();
 
-         gg.blit(FINAL, getX(), getY(), hov ? 109 : 97, 78, 12, 12);
+         boolean active = (kind == Kind.PAGE && writeState == EnumWriteState.PAGE)
+            || (kind == Kind.TITLE && writeState == EnumWriteState.TITLE)
+            || (kind == Kind.BOOK && writeState == EnumWriteState.BOOK);
+         gg.blit(FINAL, getX(), getY(), on ? (hov || active ? 109 : 97) : 121, 78, 12, 12);
       }
    }
 }

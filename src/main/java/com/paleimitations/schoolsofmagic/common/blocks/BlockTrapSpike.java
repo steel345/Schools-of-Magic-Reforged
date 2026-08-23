@@ -25,7 +25,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockTrapSpike extends SOMBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.FACING;
    public static final EnumProperty<EnumBlockHalf> HALF = EnumProperty.create("half", EnumBlockHalf.class);
 
@@ -95,7 +94,6 @@ public class BlockTrapSpike extends SOMBlock {
    }
 
    public boolean canBlockStay(Level level, BlockPos pos, BlockState state) {
-
       return true;
    }
 

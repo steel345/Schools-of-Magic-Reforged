@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class SummonedBeeHandler {
-
    private static final String KEY = "som_bee_caster";
 
    @SubscribeEvent

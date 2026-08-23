@@ -26,7 +26,7 @@ public final class SOMRenderLayers {
 
       "SOMDoor", "TrapDoorBlock");
 
-   private static final Set<String> TRANSLUCENT = Set.of("BlockGem", "BlockCrystalBall", "BlockFaegrovePortal");
+   private static final Set<String> TRANSLUCENT = Set.of("BlockGem", "BlockCrystalBall", "BlockFaegrovePortal", "BlockLookingGlass");
 
    private SOMRenderLayers() {}
 

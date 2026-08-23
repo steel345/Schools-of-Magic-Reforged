@@ -49,12 +49,12 @@ public class PageElementSpellInfo extends PageElement {
       gg.setColor(cr, cg, cb, 1.0F);
       this.drawTexturedModalRect(gg, SPELL_ICONS, 96 + xIn, 75 + yIn, 96, 120, 21, 110);
 
-      float f = this.spell.getCost() / (float) ManaData.getMaxMana(this.spell.getMinimumMagicianLevel() + 1);
+      float f = this.spell.getCost() / (float) ManaData.getMaxMana(this.spell.getMinimumMagicianLevel());
       this.drawTexturedModalRect(gg, SPELL_ICONS, 104 + xIn, 96 + yIn + Math.round(75.0F * (1.0F - f)),
          117, 120 + Math.round(75.0F * (1.0F - f)), 5, Math.round(75.0F * f));
       gg.setColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-      drawStandardText(gg, String.valueOf(this.spell.getMinimumMagicianLevel() + 1), 11, 11,
+      drawStandardText(gg, String.valueOf(Math.max(1, this.spell.getMinimumMagicianLevel())), 11, 11,
          107 + xIn, 86 + yIn, Color.WHITE.getRGB(), true, false);
       drawStandardText(gg, String.valueOf(this.spell.getCost() * (this.spell.isPerSecond() ? 20.0F : 1.0F)), 9, 6,
          106.5F + xIn, 177.5F + yIn, Color.WHITE.getRGB(), true, false);

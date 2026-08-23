@@ -1,6 +1,16 @@
 {
   "elements": [
-    { "type": "spell", "spell": "sundial" },
-    { "type": "text", "text": "  Sundial tells you the time of day, wherever you are. It reads the sun through stone, so it works just as well at the bottom of a mine as it does out in the open.\n\n  Cast it and the time appears above your hotbar: the hour and minute, whether it is morning, afternoon, evening or night, and which day you are on.\n\n  It costs 5 mana and needs no spell charge at all, so you can cast it at any level and as often as you like.\n\n  It does nothing to the world and nothing to anything living. It only looks and tells you what it sees." }
+    {
+      "type": "spell",
+      "spell": "sundial"
+    },
+    {
+      "type": "text",
+      "text": "  Sundial tells you the time of day, wherever you are. It reads the sun through stone, so it works just as well at the bottom of a mine as it does out in the open.\n\n  Cast it and the time appears above your hotbar: the hour and minute, whether it is morning, afternoon, evening or night, and which day you are on.\n\n  It costs 5 mana and needs no spell charge at all, so you can cast it at any level and as often as you like.\n\n  It does nothing to the world and nothing to anything living. It only looks and tells you what it sees."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_sundial.desc"
+    }
   ]
 }

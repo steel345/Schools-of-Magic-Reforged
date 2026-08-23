@@ -17,7 +17,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMTreeFeatureBigJungle extends SOMBigTreeFeature {
-
    private static final RegistryObject<Block> LOG    = RegistryObject.create(new ResourceLocation("jungle_log"),    ForgeRegistries.BLOCKS);
    private static final RegistryObject<Block> LEAVES = RegistryObject.create(new ResourceLocation("jungle_leaves"), ForgeRegistries.BLOCKS);
 
@@ -102,7 +101,6 @@ public class SOMTreeFeatureBigJungle extends SOMBigTreeFeature {
             for (int j4 = pos.getZ() - i3; j4 <= pos.getZ() + i3; j4++) {
                BlockPos lp = new BlockPos(l3, i2, j4);
                if (w.getBlockState(lp).is(BlockTags.LEAVES)) {
-
                   if (rand.nextInt(4) == 0 && w.isEmptyBlock(lp.west()))  addVine(w, lp.west(),  VineBlock.EAST,  rand);
                   if (rand.nextInt(4) == 0 && w.isEmptyBlock(lp.east()))  addVine(w, lp.east(),  VineBlock.WEST,  rand);
                   if (rand.nextInt(4) == 0 && w.isEmptyBlock(lp.north())) addVine(w, lp.north(), VineBlock.SOUTH, rand);

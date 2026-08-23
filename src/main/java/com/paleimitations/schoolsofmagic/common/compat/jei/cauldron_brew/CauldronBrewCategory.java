@@ -18,7 +18,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class CauldronBrewCategory implements IRecipeCategory<CauldronBrewRecipe> {
-
    public static final RecipeType<CauldronBrewRecipe> TYPE =
       RecipeType.create(References.MODID, "cauldron_brew", CauldronBrewRecipe.class);
    private static final ResourceLocation TEXTURE =

@@ -10,7 +10,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.EntityBlock;
 
 public abstract class SOMBlockContainer extends net.minecraft.world.level.block.Block implements EntityBlock {
-
    public SOMBlockContainer(BlockBehaviour.Properties props) {
       super(props);
    }

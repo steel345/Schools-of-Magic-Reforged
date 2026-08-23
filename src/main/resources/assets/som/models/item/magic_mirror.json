@@ -1,0 +1,17 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "som:items/gold_mirror",
+    "layer1": "som:items/gold_mirror_overlay"
+  },
+  "overrides": [
+    {
+      "predicate": { "using": 1 },
+      "model": "som:item/magic_mirror_raised"
+    },
+    {
+      "predicate": { "som:scrying": 1 },
+      "model": "som:item/magic_mirror_scrying"
+    }
+  ]
+}

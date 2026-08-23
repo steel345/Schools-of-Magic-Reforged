@@ -47,6 +47,7 @@ public class RenderHandler {
       event.registerEntityRenderer(EntityRegistry.MAGIC_CHAIN.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMagicChain::new);
       event.registerEntityRenderer(EntityRegistry.MAGIC_RUNE.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMagicRune::new);
       event.registerEntityRenderer(EntityRegistry.MAGIC_BOLT.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderMagicBolt::new);
+      event.registerEntityRenderer(EntityRegistry.FIRE_BALL.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderFireBall::new);
       event.registerEntityRenderer(EntityRegistry.STARFALL_CLOUD.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderStarfallCloud::new);
       event.registerEntityRenderer(EntityRegistry.PLASMA_ORB.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderPlasmaOrb::new);
       event.registerEntityRenderer(EntityRegistry.FOCUS_BALL.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderFocusBall::new);
@@ -96,8 +97,8 @@ public class RenderHandler {
 
    @SubscribeEvent
    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelCocoon.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelCocoon::createBodyLayer);
+      reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelFireBall.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelFireBall::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelDemon.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelDemon::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelDryad.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelDryad::createBodyLayer);
       reg(event, com.paleimitations.schoolsofmagic.client.entity.model.ModelToad.LAYER_LOCATION, com.paleimitations.schoolsofmagic.client.entity.model.ModelToad::createBodyLayer);

@@ -113,7 +113,6 @@ public class EntityAICraft extends Goal {
 
    private CraftingRecipe findMatchingRecipe(List<ItemStack> stacks, Level world) {
       CraftingContainer crafter = new TransientCraftingContainer(new AbstractContainerMenu(null, -1){
-
          @Override
          public ItemStack quickMoveStack(Player player, int index) {
             return ItemStack.EMPTY;
@@ -251,7 +250,6 @@ public class EntityAICraft extends Goal {
             boolean bl = flag = j > 0;
          }
          if (flag) {
-
             destination.setChanged();
          }
       } else {

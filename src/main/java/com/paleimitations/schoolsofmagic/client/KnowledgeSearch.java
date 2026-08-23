@@ -24,11 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-// Matches a supplied set of books/scrolls/pages/notes (gathered server-side from
-// nearby chiseled bookshelves) against a query, and produces title + snippet hits.
 @OnlyIn(Dist.CLIENT)
 public class KnowledgeSearch {
-
    public static final int RADIUS = 60;
 
    public static class Hit {
@@ -53,8 +50,6 @@ public class KnowledgeSearch {
       }
    }
 
-   // Searches the pages of a single open book (page titles + text) and returns hits
-   // that jump to the matching page.
    public static List<Hit> searchBook(com.paleimitations.schoolsofmagic.common.items.capabilities.book.IBook book, String query) {
       List<Hit> hits = new ArrayList<>();
       if (book == null || query == null) return hits;
@@ -81,7 +76,6 @@ public class KnowledgeSearch {
       return hits;
    }
 
-   // A locked page whose advancement isn't earned yet keeps its content out of search.
    public static boolean isPageHidden(com.paleimitations.schoolsofmagic.common.books.BookPage page) {
       return page instanceof com.paleimitations.schoolsofmagic.common.books.BookPageLocked bl && bl.isContentHidden();
    }
@@ -103,9 +97,6 @@ public class KnowledgeSearch {
       return "";
    }
 
-   // Books and page-like items (grimoire pages, spell scrolls, spell notes) can be
-   // fetched; contentless items like blank parchment cannot, so clicking them does
-   // nothing.
    public static boolean isWorkstationRenderable(ItemStack st) {
       if (st == null || st.isEmpty()) return false;
       if (st.getCapability(CapabilityBook.BOOK_CAPABILITY).isPresent()) return true;

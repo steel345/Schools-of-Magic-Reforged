@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class PotionBagRadialHandler {
-
     private static double lastX = 0.0;
     private static double lastY = 0.0;
     private static boolean primed = false;

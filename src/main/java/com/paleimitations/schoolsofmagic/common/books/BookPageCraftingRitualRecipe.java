@@ -45,7 +45,6 @@ public class BookPageCraftingRitualRecipe extends BookPage {
    }
 
    private static String descKey(ItemStack stack) {
-
       String id = stack.getDescriptionId();
       String tail;
       String[] a = id.split("item\\.");

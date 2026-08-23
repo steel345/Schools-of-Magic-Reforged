@@ -1,0 +1,12 @@
+{
+  "elements": [
+    {
+      "type": "title",
+      "text": "page.bmb_book_editor2.title"
+    },
+    {
+      "type": "text",
+      "text": "  On the right is the drawer. It has three faces.\n\n  /bItems/z holds everything the world can give you, with a bar to search by name. Drag one onto the page to place it, or onto a socket to fill it. Drop the same thing twice in one place and it stacks.\n\n  A /bSpawn Egg/z works two ways. Drag it out normally and it becomes the creature itself, standing on the page. /bRight click/z to pick it up instead and it stays an egg.\n\n  /bColor/z gives you the wheel and every colour the books already use, the schools included, with a box for typing a colour code. It paints the piece you have picked up. The shimmering one is not a colour; it makes the letters run through the whole rainbow.\n\n  /bTemplates/z holds the recipe frames the printed pages use: the crafting grid, the furnace, the mortar, the ritual circle and the rest. Click one to place it where that frame usually goes, then drag items onto its sockets.\n\n  When you are done, /bDone/z saves it and leaves the page open to more work. /bCancel/z walks away and costs nothing.\n\n  /bFinish/z is final. The quill leaves the page and you cannot open it again. Be sure before you press it."
+    }
+  ]
+}

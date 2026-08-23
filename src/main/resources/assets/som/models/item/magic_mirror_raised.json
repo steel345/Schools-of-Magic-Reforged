@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "som:items/gold_mirror",
+    "layer1": "som:items/gold_mirror_overlay"
+  },
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [ 0, 180, 0 ],
+      "translation": [ 2, 1, -14 ],
+      "scale": [ 1.4, 1.4, 1.4 ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [ 0, 180, 0 ],
+      "translation": [ 2, 1, -14 ],
+      "scale": [ 1.4, 1.4, 1.4 ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [ 0, 180, 0 ],
+      "translation": [ -4, 4, -1 ],
+      "scale": [ 0.9, 0.9, 0.9 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ 0, 180, 0 ],
+      "translation": [ -4, 4, -1 ],
+      "scale": [ 0.9, 0.9, 0.9 ]
+    }
+  }
+}

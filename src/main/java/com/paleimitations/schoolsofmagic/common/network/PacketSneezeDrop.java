@@ -9,7 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
 public class PacketSneezeDrop {
-
    public PacketSneezeDrop() {
    }
 

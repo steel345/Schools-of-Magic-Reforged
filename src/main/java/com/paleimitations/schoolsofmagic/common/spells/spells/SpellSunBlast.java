@@ -31,16 +31,13 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PacketDistributor;
 
-// A pillar of solar light called down where the caster looks. The sound, the blow
-// and the beam all land at once.
 public class SpellSunBlast extends Spell {
-
    private static final double RANGE = 24.0D;
    private static final double COLUMN_RADIUS = 1.5D;
    private static final double COLUMN_HEIGHT = 24.0D;
    private static final float DAMAGE = 8.0F;
    private static final int BURN_SECONDS = 5;
-   // The beam lives 20 ticks; it catches them alight three fifths of the way in.
+
    private static final int IGNITE_DELAY = 12;
 
    public SpellSunBlast() {
@@ -83,8 +80,6 @@ public class SpellSunBlast extends Spell {
       Vec3 target = hit.getType() == HitResult.Type.MISS ? far : hit.getLocation();
 
       if (!worldIn.isClientSide) {
-         // From the caster, so it is heard the moment the spell goes off rather than
-         // faintly from wherever the beam landed.
          worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
             SOMSoundHandler.SUN_BLAST.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
@@ -99,8 +94,7 @@ public class SpellSunBlast extends Spell {
             living.hurt(worldIn.damageSources().indirectMagic(playerIn, playerIn), damage);
             struck.add(living);
          }
-         // The blow lands at once, but the light only sets them alight once the
-         // shaft has nearly burned itself out.
+
          KnowledgeAnimations.schedule(IGNITE_DELAY, () -> {
             for (LivingEntity living : struck) {
                if (!living.isAlive()) continue;
@@ -116,8 +110,6 @@ public class SpellSunBlast extends Spell {
       return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
    }
 
-   // Smoke boiling off a body as the light takes hold, wrapped around the whole of
-   // it rather than pinned to its feet.
    private static void smother(Level worldIn, LivingEntity target) {
       if (!(worldIn instanceof net.minecraft.server.level.ServerLevel sl)) return;
       double width = target.getBbWidth();

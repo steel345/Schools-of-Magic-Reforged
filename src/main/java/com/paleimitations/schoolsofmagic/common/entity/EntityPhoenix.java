@@ -46,7 +46,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 
 public class EntityPhoenix extends ShoulderRidingEntity implements FlyingAnimal {
-
    public Goal follow;
    private Goal lookGoal;
    private Goal wanderGoal;

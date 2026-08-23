@@ -7,6 +7,7 @@ import com.paleimitations.schoolsofmagic.common.books.BookPageSpell;
 import com.paleimitations.schoolsofmagic.common.spells.Spell;
 import com.paleimitations.schoolsofmagic.common.spells.SpellHelper;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellBlaze;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellDefuse;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellDry;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellEarthquake;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellElectrocute;
@@ -17,19 +18,25 @@ import com.paleimitations.schoolsofmagic.common.spells.spells.SpellFuelFurnace;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellGale;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellGrowApple;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellGrowth;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellIceShell;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellIgnite;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellIncinerate;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellInvisibility;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellIronHide;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellLaunchStone;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellLevitate;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellLocateLava;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellLocateWater;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellLocateOre;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellMeteorStrike;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellMutateSkeleton;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellMutateZombie;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellPhantomFire;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellPollenCloud;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellPractice;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellRaiseSkeleton;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellRaiseZombie;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellSeaTrade;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellShadowSpy;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellShulkerBullet;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellSpectralHand;
@@ -38,6 +45,9 @@ import com.paleimitations.schoolsofmagic.common.spells.spells.SpellTremor;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellWaterJet;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellWinterRoar;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellWitherBlight;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellBreak;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellFireBall;
+import com.paleimitations.schoolsofmagic.common.spells.spells.SpellFortifiedBreath;
 import com.paleimitations.schoolsofmagic.common.spells.spells.SpellZephyr;
 
 import java.util.ArrayList;
@@ -57,7 +67,6 @@ public class SpellRegistry {
     }
 
     public static void init() {
-
         com.paleimitations.schoolsofmagic.common.spells.SpellHelper.registerHelperOnly(
             new com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom());
 
@@ -66,6 +75,7 @@ public class SpellRegistry {
         tryRegister("incinerate",     SpellIncinerate::new);
         tryRegister("ignite",         SpellIgnite::new);
         tryRegister("locate_lava",    SpellLocateLava::new);
+        tryRegister("locate_water",   SpellLocateWater::new);
         tryRegister("fiery_blessing", SpellFieryBlessing::new);
         tryRegister("phantom_fire",   SpellPhantomFire::new);
         tryRegister("fuel_furnace",   SpellFuelFurnace::new);
@@ -75,6 +85,15 @@ public class SpellRegistry {
         tryRegister("scorch",         com.paleimitations.schoolsofmagic.common.spells.spells.SpellScorch::new);
 
         tryRegister("zephyr",         SpellZephyr::new);
+        tryRegister("fortified_breath", SpellFortifiedBreath::new);
+        tryRegister("fireball",       SpellFireBall::new);
+        tryRegister("break",          SpellBreak::new);
+        tryRegister("sea_trade",      SpellSeaTrade::new);
+        tryRegister("practice",       SpellPractice::new);
+        tryRegister("defuse",         SpellDefuse::new);
+        tryRegister("levitate",       SpellLevitate::new);
+        tryRegister("iron_hide",      SpellIronHide::new);
+        tryRegister("ice_shell",  SpellIceShell::new);
         tryRegister("gale",           SpellGale::new);
 
         tryRegister("launch_stone",   SpellLaunchStone::new);
@@ -126,26 +145,45 @@ public class SpellRegistry {
         tryRegister("counterspell",   com.paleimitations.schoolsofmagic.common.spells.spells.SpellCounterspell::new);
     }
 
-    public static List<BookPage> getPagesBySchool(MagicSchool school) {
+    public static final java.util.Comparator<Spell> BY_POWER =
+        java.util.Comparator.comparingInt(Spell::getMinimumMagicianLevel)
+            .thenComparingDouble(Spell::getCost)
+            .thenComparing(Spell::getName);
+
+    public static void addSorted(List<BookPage> book, Spell... spells) {
+        ArrayList<Spell> list = new ArrayList<>(java.util.Arrays.asList(spells));
+        list.sort(BY_POWER);
+        for (Spell spell : list) new BookPageSpell(spell).addToList(book);
+    }
+
+    private static List<BookPage> pagesOf(List<Spell> spells) {
+        spells.sort(BY_POWER);
         ArrayList<BookPage> pages = new ArrayList<>();
-        for (Spell spell : SPELLS) {
-            if (spell.getSchools().contains(school)) pages.add(new BookPageSpell(spell));
-        }
+        for (Spell spell : spells) pages.add(new BookPageSpell(spell));
         return pages;
     }
 
-    public static List<BookPage> getPagesByElement(MagicElement element) {
-        ArrayList<BookPage> pages = new ArrayList<>();
+    public static List<BookPage> getPagesBySchool(MagicSchool school) {
+        ArrayList<Spell> found = new ArrayList<>();
         for (Spell spell : SPELLS) {
-            if (spell.getElements().contains(element)) pages.add(new BookPageSpell(spell));
+            if (spell.getSchools().contains(school)) found.add(spell);
         }
-        return pages;
+        return pagesOf(found);
+    }
+
+    public static List<BookPage> getPagesByElement(MagicElement element) {
+        ArrayList<Spell> found = new ArrayList<>();
+        for (Spell spell : SPELLS) {
+            if (spell.getElements().contains(element)) found.add(spell);
+        }
+        return pagesOf(found);
     }
 
     public static List<BookPage> getPages() {
         ArrayList<Spell> sorted = new ArrayList<>(SPELLS);
         sorted.sort(java.util.Comparator.comparingInt(
-            s -> s.getElements().isEmpty() ? 999 : s.getElements().get(0).getId()));
+            (Spell s) -> s.getElements().isEmpty() ? 999 : s.getElements().get(0).getId())
+            .thenComparing(BY_POWER));
         ArrayList<BookPage> pages = new ArrayList<>();
         for (Spell spell : sorted) pages.add(new BookPageSpell(spell));
         return pages;

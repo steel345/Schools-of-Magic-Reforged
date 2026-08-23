@@ -32,7 +32,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EntityEvents {
-
    private static ItemStack ingredientStack(int count, int meta) {
       ItemStack stack = new ItemStack(ItemRegistry.ingredient.get(), count);
       stack.setDamageValue(meta);

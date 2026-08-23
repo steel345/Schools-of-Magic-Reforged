@@ -3,11 +3,12 @@ package com.paleimitations.schoolsofmagic.common.network;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.charm_data.CapabilityCharmData;
 import com.paleimitations.schoolsofmagic.common.entity.capabilities.charm_data.ICharmData;
 import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
 public class PacketSyncCharmData {
@@ -30,19 +31,17 @@ public class PacketSyncCharmData {
    }
 
    public static void handle(PacketSyncCharmData msg, Supplier<NetworkEvent.Context> ctx) {
-      ctx.get().enqueueWork(() -> apply(msg));
-      ctx.get().setPacketHandled(true);
-   }
-
-   private static void apply(PacketSyncCharmData msg) {
-      Minecraft mc = Minecraft.getInstance();
-      if (mc.level == null) return;
-      Entity entity = mc.level.getEntity(msg.playerId);
-      if (entity instanceof Player player) {
-         ICharmData data = CapabilityCharmData.get(player);
-         if (data != null) {
-            data.setCharm(msg.charm);
+      NetworkEvent.Context context = ctx.get();
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+         Entity entity = com.paleimitations.schoolsofmagic.client.ClientEntityLookup.byId(msg.playerId);
+         if (entity == null) return;
+         if (entity instanceof Player player) {
+            ICharmData data = CapabilityCharmData.get(player);
+            if (data != null) {
+               data.setCharm(msg.charm);
+            }
          }
-      }
+      }));
+      context.setPacketHandled(true);
    }
 }

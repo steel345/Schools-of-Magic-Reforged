@@ -11,7 +11,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SOMPlant extends BushBlock {
-
    protected static final VoxelShape BUSH_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 
    public SOMPlant(BlockBehaviour.Properties props) {

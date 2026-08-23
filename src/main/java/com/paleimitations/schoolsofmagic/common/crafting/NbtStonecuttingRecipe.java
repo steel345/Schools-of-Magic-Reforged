@@ -12,7 +12,6 @@ import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class NbtStonecuttingRecipe extends StonecutterRecipe {
-
    public NbtStonecuttingRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack result) {
       super(id, group, ingredient, result);
    }

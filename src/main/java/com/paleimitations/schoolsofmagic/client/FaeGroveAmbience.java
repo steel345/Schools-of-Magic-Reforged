@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class FaeGroveAmbience {
-
    private static final ResourceKey<Level> FAEGROVE =
       ResourceKey.create(Registries.DIMENSION, new ResourceLocation("som", "faegrove"));
 

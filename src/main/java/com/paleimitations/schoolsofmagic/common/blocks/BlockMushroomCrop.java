@@ -23,7 +23,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
 public class BlockMushroomCrop extends BushBlock implements BonemealableBlock, IPlantable {
-
    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
 
    private static final net.minecraft.world.phys.shapes.VoxelShape[] SHAPE_BY_AGE = new net.minecraft.world.phys.shapes.VoxelShape[]{
@@ -58,7 +57,6 @@ public class BlockMushroomCrop extends BushBlock implements BonemealableBlock, I
 
    @Override
    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-
       if (state.is(Blocks.MYCELIUM)) return true;
       if (state.is(Blocks.PODZOL)) return true;
       if (state.is(Blocks.GRASS_BLOCK)) return true;
@@ -99,7 +97,6 @@ public class BlockMushroomCrop extends BushBlock implements BonemealableBlock, I
       int j = this.getMaxAge();
       if (i > j) i = j;
       if (i == j) {
-
          if (state.getBlock() == BlockRegistry.mushroom_crop_dark.get()) {
             level.setBlock(pos, BlockRegistry.mushroom_dark.get().defaultBlockState(), 2);
          } else if (state.getBlock() == BlockRegistry.mushroom_crop_pink.get()) {

@@ -17,7 +17,6 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class CharmActivationHandler {
-
    @SubscribeEvent
    public static void onKey(InputEvent.Key event) {
       if (event.getAction() != GLFW.GLFW_PRESS) return;
@@ -33,7 +32,7 @@ public class CharmActivationHandler {
             new com.paleimitations.schoolsofmagic.common.network.PacketOpenHerbPouch());
          return;
       }
-      // The potion bag charm is handled by PotionCharmHandler (radial + arm/throw).
+
       if (charm.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.potion_bag.get()) return;
       if (charm.getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null) == null) return;
       ItemBookBase.ensureInitialized(charm);

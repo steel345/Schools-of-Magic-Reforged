@@ -28,7 +28,7 @@ public class PageElementManaMinLevel extends PageElement {
    public void drawElement(GuiGraphics gg, float mouseX, float mouseY, int xIn, int yIn, boolean isGUI, int target) {
       Minecraft mc = Minecraft.getInstance();
       Font font = mc.font;
-      String s = String.valueOf(this.spell.getMinimumMagicianLevel());
+      String s = String.valueOf(Math.max(1, this.spell.getMinimumMagicianLevel()));
       int textWidth = font.width(s);
       int textHeight = 9;
       float scaler = Math.min((float)this.width / textWidth, (float)this.height / textHeight);

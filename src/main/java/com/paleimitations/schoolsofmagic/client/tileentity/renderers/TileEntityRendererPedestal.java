@@ -21,7 +21,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class TileEntityRendererPedestal implements BlockEntityRenderer<TileEntityPedestal> {
-
    public TileEntityRendererPedestal(BlockEntityRendererProvider.Context context) {
    }
 
@@ -63,7 +62,7 @@ public class TileEntityRendererPedestal implements BlockEntityRenderer<TileEntit
          case CLOSED -> { yD = -0.28F; angle = 0.0F; }
          case OPEN_BOOK -> { angle = -45.0F * progress; yD = -0.28F + 0.28F * progress; }
          case CLOSE_BOOK -> { angle = -45.0F + 45.0F * progress; yD = -0.28F * progress; }
-         default -> { angle = -45.0F; yD = (float) Math.sin((float) te.getLevel().getDayTime() / 20.0F) * 0.05F + 0.05F; }
+         default -> { angle = -45.0F; yD = (float) Math.sin(((float) te.getLevel().getGameTime() + partialTicks) * 0.05F) * 0.05F + 0.05F; }
       }
 
       pose.pushPose();
@@ -94,7 +93,9 @@ public class TileEntityRendererPedestal implements BlockEntityRenderer<TileEntit
          gg.pose().scale(0.00493F, 0.00493F, 0.00493F);
          try {
             BookPage pageToDraw = book.getCurrentPage();
+            com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.begin(book);
             if (pageToDraw != null) pageToDraw.drawPage(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage());
+            com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, 0, 0, false);
             for (BookElementSticker sticker : book.getStickers()) {
                if (sticker != null) sticker.drawElement(gg, 0.0F, 0.0F, 0, 0, false, book.getSubPage(), book.getPage());
             }

@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:iron_hide"
+    },
+    {
+      "type": "text",
+      "text": "  Ironhide hardens your skin against harm.\n\n  It gives 8 armour, and every hit that lands does a whole heart less damage.\n\n  Hold the spell to concentrate. The stronger the charge, the longer it lasts. Cast it on another creature to give the hide to them instead."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_iron_hide.desc"
+    }
+  ]
+}

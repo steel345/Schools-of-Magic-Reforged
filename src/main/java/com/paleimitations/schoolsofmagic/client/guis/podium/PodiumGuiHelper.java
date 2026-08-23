@@ -49,7 +49,6 @@ public class PodiumGuiHelper {
 
    public PodiumGuiHelper() {}
 
-   // The (page, subpage) of the k-th content spread, or null.
    public static int[] spreadToPageSub(IBook book, int k) {
       if (book == null || k < 0) return null;
       java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages = book.getBookPages();
@@ -78,9 +77,6 @@ public class PodiumGuiHelper {
       pose.popPose();
    }
 
-   // 0-based index of the current visible spread among content spreads (each
-   // non-blank sub-page of a non table-of-contents / non-chapter page). The two
-   // halves of a spread are numbered 2*index+1 (left) and 2*index+2 (right).
    public static int spreadIndex(IBook book) {
       if (book == null) return -1;
       java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages = book.getBookPages();
@@ -114,9 +110,16 @@ public class PodiumGuiHelper {
       gg.blit(book.getLinkLocation(), 0, 0, 0, 0, 256, 256);
       gg.blit(PAGE_DEFAULT, 0, 0, 0, 0, 256, 256);
       if (book.getBookPage(page) != null) {
-         book.getBookPage(page).drawPage(gg,
-            mouseX / scale + (smaller ? 0 : 20),
-            mouseY / scale + (smaller ? 0 : 23), 0, 0, true, 0);
+         com.paleimitations.schoolsofmagic.common.books.BookTextOverride.beginPage(book.getTextOverrides().get(page));
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.begin(book, page);
+         try {
+            book.getBookPage(page).drawPage(gg,
+               mouseX / scale + (smaller ? 0 : 20),
+               mouseY / scale + (smaller ? 0 : 23), 0, 0, true, 0);
+         } finally {
+            com.paleimitations.schoolsofmagic.common.books.BookTextOverride.endPage();
+         }
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, 0, 0, true);
       }
       pose.popPose();
    }
@@ -160,7 +163,14 @@ public class PodiumGuiHelper {
          float mouseX1 = mouseX / scale + (smaller ? 0 : 20);
          float mouseY1 = mouseY / scale + (smaller ? 0 : 23);
          if (!book.getBookPages().isEmpty() && book.getCurrentPage() != null) {
-            book.getCurrentPage().drawPage(gg, mouseX1, mouseY1, 0, 0, true, book.getSubPage());
+            com.paleimitations.schoolsofmagic.common.books.BookTextOverride.beginPage(book.getTextOverrides().get(book.getPage()));
+            com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.begin(book);
+            try {
+               book.getCurrentPage().drawPage(gg, mouseX1, mouseY1, 0, 0, true, book.getSubPage());
+            } finally {
+               com.paleimitations.schoolsofmagic.common.books.BookTextOverride.endPage();
+            }
+            com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, 0, 0, true);
          }
          for (BookElementSticker sticker : book.getStickers()) {
             if (sticker != null) sticker.drawElement(gg, mouseX1, mouseY1, 0, 0, true, book.getSubPage(), book.getPage());
@@ -273,8 +283,6 @@ public class PodiumGuiHelper {
       }
    }
 
-   // Full-size (256) rendering of a loose page / scroll / parchment / spell notes,
-   // used by the lectern reading screen so every type reads at full page size.
    public static void renderGuiSubjectFull(GuiGraphics gg, float mouseX, float mouseY, ItemStack stack) {
       IPage pageCap = stack.getCapability(CapabilityPage.PAGE_CAPABILITY).orElse(null);
       ISpellModifier mod = stack.getCapability(CapabilitySpellModifier.SPELL_MODIFIER_CAPABILITY).orElse(null);

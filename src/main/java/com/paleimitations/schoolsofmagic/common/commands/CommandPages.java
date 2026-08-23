@@ -10,9 +10,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
-// /unlockpages and /lockpages: unlock every gated book page, or relock them all.
 public class CommandPages {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(
          Commands.literal("unlockpages")

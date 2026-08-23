@@ -20,7 +20,6 @@ import net.minecraft.world.item.ItemStack;
 
 public class LayerWand<T extends LivingEntity, M extends HumanoidModel<T>>
       extends RenderLayer<T, M> {
-
    private static final Map<String, ResourceLocation> LAYERED_LOCATION_CACHE = Maps.newHashMap();
 
    public LayerWand(LivingEntityRenderer<T, M> renderer) {
@@ -31,7 +30,6 @@ public class LayerWand<T extends LivingEntity, M extends HumanoidModel<T>>
    public void render(PoseStack pose, MultiBufferSource buf, int packedLight,
                       T entity, float limbSwing, float limbSwingAmount,
                       float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-
       boolean flag = entity.getMainArm() == HumanoidArm.RIGHT;
       ItemStack stackLeftHandFromPlayer = flag ? entity.getOffhandItem() : entity.getMainHandItem();
       ItemStack stackRightHandFromPlayer = flag ? entity.getMainHandItem() : entity.getOffhandItem();
@@ -51,7 +49,7 @@ public class LayerWand<T extends LivingEntity, M extends HumanoidModel<T>>
 
    private void renderHeldItem(PoseStack pose, MultiBufferSource buf, int packedLight,
                                T entity, ItemStack stack, HumanoidArm handSide) {
-
+      if (com.paleimitations.schoolsofmagic.client.ClientWandDisplay.flatModel()) return;
       boolean isApprentice = stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemApprenticeWand;
       IWandData data = stack.getCapability(CapabilityWandData.WAND_DATA_CAPABILITY).orElse(null);
       if (data == null) return;
@@ -64,12 +62,10 @@ public class LayerWand<T extends LivingEntity, M extends HumanoidModel<T>>
       boolean flag = handSide == HumanoidArm.LEFT;
       pose.translate((float) (flag ? -1 : 1) / 16.0F, 0.125F, -0.625F);
       if (isApprentice) {
-
          int rank = net.minecraft.util.Mth.clamp(stack.getDamageValue(), 0, 3);
          new com.paleimitations.schoolsofmagic.client.items.models.ModelApprenticeWand()
             .render(pose, buf, packedLight, 0.0625F, rank);
       } else {
-
          ModelWand.getWandTexture(data);
          new ModelWand().render(pose, buf, packedLight, 0.0625F);
       }

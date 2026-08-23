@@ -36,7 +36,7 @@ public class BookPageTableContent extends BookPage {
             int yi = 65 + i % segment * 18;
             int targeti = i / (segment * 2);
             PageElementChapterEntry entry = new PageElementChapterEntry(title, "", chapter.page, xi, yi, targeti, 99, 8);
-            // Collect the chapter's own pages so the row can flag newly unlocked ones.
+
             java.util.List<BookPage> inChapter = Lists.newArrayList();
             for (int p = chapter.page + 1; p < book.getBookPages().size(); p++) {
                BookPage bp = book.getBookPage(p);

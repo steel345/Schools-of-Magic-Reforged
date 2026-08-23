@@ -11,7 +11,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 
 public class ShrineStructure extends Structure {
-
    public static final Codec<ShrineStructure> CODEC = RecordCodecBuilder.create(in -> in.group(
       settingsCodec(in),
       Codec.STRING.fieldOf("element").forGetter(s -> s.element)

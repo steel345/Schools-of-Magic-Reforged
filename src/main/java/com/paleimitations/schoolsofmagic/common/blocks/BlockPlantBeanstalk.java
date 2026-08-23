@@ -24,7 +24,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockPlantBeanstalk extends SOMPlant {
-
    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
    protected static final VoxelShape TOP_SHAPE = Block.box(0.0D, 15.68D, 0.0D, 16.0D, 16.0D, 16.0D);
@@ -67,7 +66,6 @@ public class BlockPlantBeanstalk extends SOMPlant {
 
    @Override
    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-
       return state.is(this)
           || (BlockRegistry.block_mud != null && state.is(BlockRegistry.block_mud.get()))
           || state.is(Blocks.GRASS_BLOCK) || state.is(Blocks.DIRT) || state.is(Blocks.SAND);

@@ -115,7 +115,6 @@ public class SpellFirering extends Spell {
          float k = 8.0F;
 
          for (int jx = 0; (float)jx < k; jx++) {
-
             if (worldIn.isClientSide) {
                if (this.modifiers.containsKey(Spell.EnumSpellModifier.CRYOMANCY)) {
                   EffectHelper.createColoredFireRingParticle(

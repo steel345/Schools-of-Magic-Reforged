@@ -23,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityBanishedBlocks {
-
    public static final Capability<IBanishedBlocks> BANISHED_BLOCKS_CAPABILITY = CapabilityManager.get(new CapabilityToken<IBanishedBlocks>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "banished_blocks");
 
@@ -58,7 +57,6 @@ public class CapabilityBanishedBlocks {
 
    @SubscribeEvent
    public static void update(TickEvent.LevelTickEvent event) {
-
       if (event.phase != TickEvent.Phase.END) return;
       if (event.side != net.minecraftforge.fml.LogicalSide.SERVER) return;
       Level world = event.level;

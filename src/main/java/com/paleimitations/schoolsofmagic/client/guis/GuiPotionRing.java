@@ -24,15 +24,12 @@ public class GuiPotionRing {
 
    public GuiPotionRing() {}
 
-   // The bag being shown in the ring: the one held in hand, or the one worn in the
-   // charm slot (held open with the charm key). Returns EMPTY when no ring applies.
    public static ItemStack activeBag(Player player) {
       if (player.getMainHandItem().getItem() == ItemRegistry.potion_bag.get()
          && ClientProxy.OPEN_SPELL_RING.isDown()) {
          return player.getMainHandItem();
       }
-      // Each key opens the bag in its own slot: the charm key never reaches the belt
-      // and the belt key never reaches the charm slot.
+
       java.util.function.Predicate<ItemStack> isBag = s -> s.getItem() == ItemRegistry.potion_bag.get();
       if (ClientProxy.CHARM_ACTIVATE.isDown()) {
          ItemStack worn = com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots
@@ -49,7 +46,6 @@ public class GuiPotionRing {
 
    @SubscribeEvent
    public void renderPotionRing(RenderGuiOverlayEvent.Post event) {
-
       if (event.getOverlay() != VanillaGuiOverlay.HOTBAR.type()) return;
       Minecraft mc = Minecraft.getInstance();
       LocalPlayer player = mc.player;

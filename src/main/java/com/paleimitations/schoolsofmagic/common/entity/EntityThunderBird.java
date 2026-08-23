@@ -16,7 +16,6 @@ import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 
 public class EntityThunderBird extends EntityPhoenix {
-
    private int thunderCooldown;
    private boolean stormSpawned;
    private int departTimer;

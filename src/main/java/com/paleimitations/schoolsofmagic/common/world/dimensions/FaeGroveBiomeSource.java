@@ -13,7 +13,6 @@ import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate;
 
 public class FaeGroveBiomeSource extends BiomeSource {
-
    public static final Codec<FaeGroveBiomeSource> CODEC = RecordCodecBuilder.create(i -> i.group(
       Biome.CODEC.fieldOf("labyrinth").forGetter(s -> s.labyrinth),
       Biome.CODEC.fieldOf("acolyte").forGetter(s -> s.acolyte),

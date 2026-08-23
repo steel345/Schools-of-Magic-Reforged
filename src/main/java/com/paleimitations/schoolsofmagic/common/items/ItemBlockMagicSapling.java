@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 
 public class ItemBlockMagicSapling extends BlockItem {
-
    public ItemBlockMagicSapling(Block block, Item.Properties props) {
       super(block, props);
    }

@@ -27,7 +27,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockPlantGrowingBush extends SOMPlant implements BonemealableBlock {
-
    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
    public static final IntegerProperty POSITION = IntegerProperty.create("position", 0, 3);
    protected static final VoxelShape OLEAND_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
@@ -56,7 +55,6 @@ public class BlockPlantGrowingBush extends SOMPlant implements BonemealableBlock
       while (level.getBlockState(pos.below(i)).getBlock() == this) i++;
       if (this == BlockRegistry.plant_ocotillo.get() && age > 2 && i > 1) {
          if (!level.isClientSide) {
-
             ItemStack drop = new ItemStack(ItemRegistry.item_ocotillo_flowers.get());
             popResource((ServerLevel) level, pos, drop);
 
@@ -82,7 +80,6 @@ public class BlockPlantGrowingBush extends SOMPlant implements BonemealableBlock
          if (i < 4) {
             int age = state.getValue(AGE);
             if (age == 3 && i < 3) {
-
                level.setBlockAndUpdate(pos.above(), this.defaultBlockState().setValue(POSITION, 3));
                level.setBlock(pos, state.setValue(AGE, 0).setValue(POSITION, computeOcotilloPosition(level, pos)), 2);
             } else if (age < 3) {

@@ -7,7 +7,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class EntityBlockProjectile extends ThrowableProjectile {
-
    protected EntityBlockProjectile(EntityType<? extends EntityBlockProjectile> type, Level level) {
       super(type, level);
    }

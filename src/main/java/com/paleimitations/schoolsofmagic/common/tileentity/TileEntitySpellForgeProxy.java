@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TileEntitySpellForgeProxy extends BlockEntity {
-
    public TileEntitySpellForgeProxy(BlockPos pos, BlockState state) {
       super(TileEntityRegistry.SPELL_FORGE_PROXY.get(), pos, state);
    }

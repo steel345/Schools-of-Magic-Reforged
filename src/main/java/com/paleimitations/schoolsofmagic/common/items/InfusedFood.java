@@ -10,7 +10,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 
 public final class InfusedFood {
-
    private static final String KEY = "SomInfused";
    private static final String EFFECTS = "Effects";
    private static final String INFUSER = "Infuser";

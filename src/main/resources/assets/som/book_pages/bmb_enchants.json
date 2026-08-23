@@ -1,0 +1,6 @@
+{
+  "elements": [
+    { "type": "title", "text": "Enchantments" },
+    { "type": "text", "text": "  Two new enchantments you will encounter in a magical world, and an ordinary /benchanting table/z will offer them both.\n\n  /bMagic Protection/z guards against the harm no armour turns aside: the spells of witches, the venom of a potion thrown, the bite of a curse. Each level of it turns away a fifth of that damage, so a full set carrying the fourth level leaves only a fifth to reach you. It sits on armour, and like the other protections it will not share a piece with them.\n\n  /bMana Repair/z is the rarer find. Set upon anything that wears, it mends that one thing and nothing else, drawing a point of /bmana/z for a point of repair, once each second. It will not touch your pool below fifty, so a tired magician mends nothing until they have rested. Every enchanted tool tends only to itself, so a wand and a pickaxe both bearing it each draw their own mana." }
+  ]
+}

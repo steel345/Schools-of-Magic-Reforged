@@ -20,7 +20,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
 public class CommandZiggurat {
-
    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
       dispatcher.register(Commands.literal("zig").requires(s -> s.hasPermission(2)).executes(CommandZiggurat::run));
    }

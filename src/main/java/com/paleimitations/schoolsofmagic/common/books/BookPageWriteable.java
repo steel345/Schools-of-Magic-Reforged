@@ -17,10 +17,18 @@ public class BookPageWriteable extends BookPage {
    }
 
    public BookPageWriteable(String title, String text) {
-      super("writeable", Lists.newArrayList(new PageElement[]{
-         new PageElementTitle(title, 72, 58, 99, 16, 0, true),
-         new PageElementWriteableParagraphs(text, 0.75F, 0)
-      }));
+      super("writeable", Lists.newArrayList(
+         (title == null || title.isEmpty()) && (text == null || text.isEmpty())
+            ? new PageElement[]{
+               new PageElementTitle(title, 72, 58, 99, 16, 0, true),
+               new PageElementWriteableParagraphs(text, 0.75F, 0),
+
+               new PageElementQuill(61, 95)
+            }
+            : new PageElement[]{
+               new PageElementTitle(title, 72, 58, 99, 16, 0, true),
+               new PageElementWriteableParagraphs(text, 0.75F, 0)
+            }));
    }
 
    public void editText(char typedChar, int keyCode) {
@@ -73,7 +81,8 @@ public class BookPageWriteable extends BookPage {
       String s = "writeable";
       for (PageElement element : this.elements) {
          if (element instanceof PageElementTitle) {
-            s = s + "<title>" + ((PageElementTitle)element).text;
+            String[] lines = ((PageElementTitle)element).text;
+            s = s + "<title>" + (lines != null && lines.length > 0 && lines[0] != null ? lines[0] : "");
          }
       }
       for (PageElement element : this.elements) {

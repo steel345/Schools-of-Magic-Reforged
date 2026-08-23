@@ -12,12 +12,10 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
 final class IngredientFactory {
-
    private IngredientFactory() {
    }
 
    static Ingredient of(Object obj) {
-
       if (obj instanceof Ingredient ing) {
          return ing;
       }
@@ -42,7 +40,6 @@ final class IngredientFactory {
 
    private static Ingredient modMaterial(String name) {
       switch (name) {
-
          case "ingotSilver":  return Ingredient.of(metaStack(com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ingot, 0));
          case "ingotCopper":  return Ingredient.of(metaStack(com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ingot, 2));
          case "ingotBronze":  return Ingredient.of(metaStack(com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ingot, 4));
@@ -104,7 +101,6 @@ final class IngredientFactory {
    }
 
    static TagKey<Item> oreNameToTag(String oreName) {
-
       switch (oreName) {
          case "plankWood": return ItemTags.create(new ResourceLocation("minecraft", "planks"));
          case "stickWood": return ItemTags.create(new ResourceLocation("forge", "rods/wooden"));
@@ -119,7 +115,6 @@ final class IngredientFactory {
       String material = idx < oreName.length() ? oreName.substring(idx).toLowerCase(Locale.ROOT) : "";
       String path;
       if (material.isEmpty()) {
-
          switch (prefix) {
             case "slimeball": path = "slimeballs"; break;
             case "bone":      path = "bones";      break;

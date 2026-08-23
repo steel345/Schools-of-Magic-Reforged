@@ -15,7 +15,6 @@ import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
 
 public class PotionCharmRecipe extends ShapedRecipe {
-
    public PotionCharmRecipe(ResourceLocation id, ShapedRecipe base, ItemStack result) {
       super(id, base.getGroup(), base.category(), base.getWidth(), base.getHeight(),
             base.getIngredients(), result, base.showNotification());

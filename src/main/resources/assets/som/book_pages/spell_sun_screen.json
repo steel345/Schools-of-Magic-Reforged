@@ -7,6 +7,10 @@
     {
       "type": "text",
       "text": "  Sunscreen wards a creature against burning in daylight, exactly as the salve does, but without spending any.\n\n  Cast it on yourself or touch it onto another creature. Whatever it is put on stops burning right away and stays warded for 30 seconds.\n\n  It works on anything that can burn, and also on the undead and on piglins, who prevent them from becoming zombified. It does nothing to something already immune to fire.\n\n  It costs 10 mana."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_sun_screen.desc"
     }
   ]
 }

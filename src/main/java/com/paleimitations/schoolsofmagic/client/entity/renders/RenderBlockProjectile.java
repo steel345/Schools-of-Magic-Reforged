@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 
 public class RenderBlockProjectile<T extends EntityBlockProjectile> extends EntityRenderer<T> {
-
    public RenderBlockProjectile(EntityRendererProvider.Context context) {
       super(context);
    }

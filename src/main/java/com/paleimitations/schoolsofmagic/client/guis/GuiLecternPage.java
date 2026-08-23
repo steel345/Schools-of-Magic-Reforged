@@ -18,7 +18,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiLecternPage extends Screen {
-
    private static final ResourceLocation PAPER = new ResourceLocation("som", "textures/gui/books/paper.png");
 
    private final ItemStack stack;
@@ -56,8 +55,6 @@ public class GuiLecternPage extends Screen {
       int ol = (this.width - 256) / 2;
       int ot = (this.height - 256) / 2 - 20;
 
-      // Every type - grimoire page, scroll, parchment, spell notes - renders at
-      // full 256 page size, centred, so scrolls read exactly like pages.
       gg.pose().pushPose();
       gg.pose().translate(ol, ot, 0.0F);
       PodiumGuiHelper.renderGuiSubjectFull(gg, mouseX - ol, mouseY - ot, this.stack);

@@ -140,5 +140,13 @@
         0.9
       ]
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:wand_flat": 1
+      },
+      "model": "som:item/wand_advanced_flat"
+    }
+  ]
 }

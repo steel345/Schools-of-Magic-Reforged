@@ -8,9 +8,7 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMComposter {
-
    public static void register() {
-
       addBlocks(0.3F,
          BlockRegistry.leaves_ash, BlockRegistry.leaves_elder, BlockRegistry.leaves_hanging_willow,
          BlockRegistry.leaves_palm, BlockRegistry.leaves_pine, BlockRegistry.leaves_verde,

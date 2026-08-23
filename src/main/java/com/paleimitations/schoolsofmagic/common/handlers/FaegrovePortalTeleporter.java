@@ -16,7 +16,6 @@ import net.minecraftforge.common.util.ITeleporter;
 import java.util.function.Function;
 
 public class FaegrovePortalTeleporter implements ITeleporter {
-
    private final boolean toFae;
    private final BlockPos sourceAnchor;
 

@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RingRecipeRegistry {
-
    private static final IWandData.EnumHandleType[] METALS = {
       IWandData.EnumHandleType.COPPER, IWandData.EnumHandleType.BRONZE, IWandData.EnumHandleType.BRASS,
       IWandData.EnumHandleType.GOLD, IWandData.EnumHandleType.SILVER, IWandData.EnumHandleType.IRON,

@@ -26,9 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-// The same warding the salve gives, worked without the salve.
 public class SpellSunScreen extends Spell {
-
    private static final int DURATION = 600;
 
    public SpellSunScreen() {
@@ -57,8 +55,6 @@ public class SpellSunScreen extends Spell {
       return 0;
    }
 
-   // Matches the salve exactly: anything that burns, plus the undead and piglins,
-   // which burn for reasons of their own.
    private static boolean canApply(LivingEntity target) {
       return !target.fireImmune() || target.getMobType() == MobType.UNDEAD || target instanceof AbstractPiglin;
    }

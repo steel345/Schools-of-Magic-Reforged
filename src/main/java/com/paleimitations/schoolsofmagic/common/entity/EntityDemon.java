@@ -86,7 +86,7 @@ public class EntityDemon extends EntityMagician {
 
          net.minecraft.network.chat.Component.literal("The Demon of the Ziggurat"),
 
-         net.minecraft.world.BossEvent.BossBarColor.RED,
+         net.minecraft.world.BossEvent.BossBarColor.WHITE,
          net.minecraft.world.BossEvent.BossBarOverlay.PROGRESS).setDarkenScreen(true);
    private BlockPos homePos;
    private static final double LEASH = 26.0D;
@@ -154,7 +154,7 @@ public class EntityDemon extends EntityMagician {
    }
 
    public static AttributeSupplier.Builder createAttributes() {
-      return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 100.0D);
+      return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 200.0D);
    }
 
    @Override

@@ -20,7 +20,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockCoconut extends HorizontalDirectionalBlock {
-
    protected static final VoxelShape COCOA_SOUTH_SHAPE = Block.box(5.0D, 5.0D, 11.0D, 11.0D, 11.0D, 16.0D);
    protected static final VoxelShape COCOA_NORTH_SHAPE = Block.box(5.0D, 5.0D, 0.0D, 11.0D, 11.0D, 5.0D);
    protected static final VoxelShape COCOA_WEST_SHAPE  = Block.box(0.0D, 5.0D, 5.0D, 5.0D, 11.0D, 11.0D);

@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class TalismanSlotInventoryHandler {
-
    private static final ResourceLocation GHOST =
       new ResourceLocation("som", "textures/gui/ghost_necklace.png");
 

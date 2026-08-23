@@ -6,10 +6,8 @@ public class WorldGeneratorRegistry {
     }
 
     public static void initializeWorldGen() {
-
     }
 
     public static void registerWorldGen(Object worldGenClass, int weightedProbability) {
-
     }
 }

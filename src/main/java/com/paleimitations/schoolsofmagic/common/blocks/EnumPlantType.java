@@ -58,7 +58,6 @@ public enum EnumPlantType implements StringRepresentable {
 
    @Override
    public String getSerializedName() {
-
       if (this == MAYBELL) return "valleylily";
       return this.name().toLowerCase();
    }
@@ -82,7 +81,6 @@ public enum EnumPlantType implements StringRepresentable {
    }
 
    public ItemStack getItemStack() {
-
       ItemStack stack = new ItemStack(ItemRegistry.crushed_plant.get());
       stack.setDamageValue(this.ordinal());
       return stack;

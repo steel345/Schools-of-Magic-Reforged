@@ -14,8 +14,6 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkHooks;
 
-// Client asks the server to open the default potion bag GUI for the bag worn in the
-// charm slot.
 public class PacketOpenPotionBag {
    public PacketOpenPotionBag() {}
 

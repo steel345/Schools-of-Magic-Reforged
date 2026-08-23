@@ -12,7 +12,6 @@ public class SOMParticleFactory {
 
    @Nullable
    public static Particle createParticle(SOMParticleType particleType, Level world, double x, double y, double z, double vx, double vy, double vz, float rotationX, float rotationY, float rotationZ, float alpha) {
-
       if (!(world instanceof ClientLevel clientLevel)) {
          return null;
       }
@@ -22,7 +21,6 @@ public class SOMParticleFactory {
 
       net.minecraft.client.particle.SpriteSet set = SOMParticleProviders.SPRITES.get(particleType);
       if (set != null) {
-
          if (p instanceof IAnimatedParticle a) {
             a.setSprites(set);
          } else if (p instanceof net.minecraft.client.particle.TextureSheetParticle tsp) {

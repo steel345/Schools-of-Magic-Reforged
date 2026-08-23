@@ -33,8 +33,6 @@ public class PageElementParagraphs extends PageElement {
       this.boxes = Lists.newArrayList(boxes);
    }
 
-   // Patchouli-style: resolve the body from a translation key (whose value may use
-   // \n / \n\n for line and paragraph breaks) instead of a lang/book .txt file.
    public static PageElementParagraphs fromLangKey(String langKey, float scale, int fontColor, int target, ParagraphBox... boxes) {
       PageElementParagraphs p = new PageElementParagraphs(langKey, scale, fontColor, target, boxes);
       p.fromLang = true;
@@ -45,9 +43,6 @@ public class PageElementParagraphs extends PageElement {
    public void loadText() {
       this.text.clear();
       if (this.fromLang) {
-         // The language table isn't ready during postInit, so defer to the first
-         // draw/measure (ensureResolved). Resolving early would treat a real key as
-         // literal; resolving late lets us fall back to the literal inline text.
          this.resolved = false;
          return;
       }
@@ -68,9 +63,6 @@ public class PageElementParagraphs extends PageElement {
       markRich();
    }
 
-   // Plain, code-free lines for search indexing. Resolves the body (inline/lang or
-   // file) and strips both vanilla and "/" formatting codes so a word that follows
-   // a code still matches, and snippets don't show the codes.
    @OnlyIn(Dist.CLIENT)
    public List<String> getSearchLines() {
       if (this.fromLang) ensureResolved();
@@ -87,12 +79,10 @@ public class PageElementParagraphs extends PageElement {
       return out;
    }
 
-   // Resolve a lang-key body the first time the language table is actually ready.
    @OnlyIn(Dist.CLIENT)
    private void ensureResolved() {
       if (!this.fromLang || this.resolved) return;
-      // If the value is a known translation key, use the translation; otherwise the
-      // value IS the body text (written inline in the JSON).
+
       String v = net.minecraft.client.resources.language.I18n.get(this.textLocation);
       String body = (v != null && !v.equals(this.textLocation)) ? v : this.textLocation;
       this.text = Lists.newArrayList(body.split("<~>"));
@@ -109,7 +99,7 @@ public class PageElementParagraphs extends PageElement {
    }
 
    @OnlyIn(Dist.CLIENT)
-   private java.util.List<com.paleimitations.schoolsofmagic.client.BookRichText.ParagraphBoxRef> boxRefs() {
+   protected java.util.List<com.paleimitations.schoolsofmagic.client.BookRichText.ParagraphBoxRef> boxRefs() {
       java.util.List<com.paleimitations.schoolsofmagic.client.BookRichText.ParagraphBoxRef> refs = Lists.newArrayList();
       for (ParagraphBox b : this.boxes) {
          refs.add(b == null ? null : new com.paleimitations.schoolsofmagic.client.BookRichText.ParagraphBoxRef(
@@ -123,7 +113,6 @@ public class PageElementParagraphs extends PageElement {
       return i <= this.subpage;
    }
 
-   // The authored scale times the player's book-text-size setting (default 1.0).
    private float effScale() {
       return this.scale * com.paleimitations.schoolsofmagic.common.config.SOMClientConfig.bookTextScale();
    }
@@ -171,8 +160,23 @@ public class PageElementParagraphs extends PageElement {
    @OnlyIn(Dist.CLIENT)
    public void drawElement(GuiGraphics gg, float mouseX, float mouseY, int xIn, int yIn, boolean isGUI, int subpage) {
       ensureResolved();
+
+      List<String> shipped = this.text;
+      String rewritten = BookTextOverride.bodyOr(null);
+      if (rewritten != null) {
+         this.text = Lists.newArrayList(rewritten.split("<~>"));
+      }
+      try {
+         drawResolved(gg, mouseX, mouseY, xIn, yIn, isGUI, subpage);
+      } finally {
+         this.text = shipped;
+      }
+   }
+
+   private void drawResolved(GuiGraphics gg, float mouseX, float mouseY, int xIn, int yIn, boolean isGUI, int subpage) {
       float sc = effScale();
-      if (this.rich) {
+
+      if (this.rich || com.paleimitations.schoolsofmagic.client.BookRichText.isCapturing()) {
          com.paleimitations.schoolsofmagic.client.BookRichText.render(gg, this.text, boxRefs(), sc, xIn, yIn, subpage, this.fontColor);
          return;
       }
@@ -218,10 +222,6 @@ public class PageElementParagraphs extends PageElement {
       return Arrays.asList(wrapFormattedStringToWidth(str, wrapWidth).split("\n"));
    }
 
-   // Explicit line breaks are separated out first and put back afterwards, so a
-   // blank line written into the text stays exactly one blank line. Feeding them
-   // through the wrapper made it emit a break for the newline and another for the
-   // wrap, which doubled the gap between every paragraph.
    private static String wrapFormattedStringToWidth(String str, int wrapWidth) {
       if (str == null || str.isEmpty() || wrapWidth <= 0) return str;
       String[] lines = str.split("\n", -1);
@@ -237,9 +237,6 @@ public class PageElementParagraphs extends PageElement {
       return (char) 10;
    }
 
-   // Walked rather than recursed, and made to always advance. If the width is too
-   // narrow to fit even one character, the old form took nothing off the front and
-   // called itself with the same text again, which ran the stack out.
    private static String wrapOneLine(String line, int wrapWidth) {
       if (line.isEmpty()) return line;
       StringBuilder out = new StringBuilder(line.length() + 8);

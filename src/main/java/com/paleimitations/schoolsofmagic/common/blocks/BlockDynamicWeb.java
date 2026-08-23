@@ -21,14 +21,12 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockDynamicWeb extends WebBlock implements EntityBlock {
-
    public BlockDynamicWeb(BlockBehaviour.Properties props) {
       super(props);
    }
 
    @Override
    public RenderShape getRenderShape(BlockState state) {
-
       return RenderShape.ENTITYBLOCK_ANIMATED;
    }
 
@@ -56,7 +54,6 @@ public class BlockDynamicWeb extends WebBlock implements EntityBlock {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return new TileEntityDynamicWeb(pos, state);
    }
 }

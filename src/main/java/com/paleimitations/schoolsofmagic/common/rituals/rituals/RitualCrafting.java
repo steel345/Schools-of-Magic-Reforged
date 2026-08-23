@@ -188,7 +188,6 @@ public class RitualCrafting extends Ritual {
       if (t == GROW_END) {
          this.recipe = this.getRecipe(ritualCenter);
          if (this.recipe != null) {
-
             deliverResult(ritualCenter, worldIn, pos, this.recipe.getOutput().copy());
             if (this.recipe.getOutput().getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.magic_broom.get()) {
                deliverResult(ritualCenter, worldIn, pos, new net.minecraft.world.item.ItemStack(com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.bottle_empty.get()));

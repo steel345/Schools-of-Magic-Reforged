@@ -112,7 +112,6 @@ public class SpellSpectralHand extends SpellTimed {
             }
          }
          if (this.grabbedStack.isEmpty() && this.grabbedEntity == 0) {
-
             for (ItemEntity item : worldIn.getEntitiesOfClass(ItemEntity.class, new AABB(pos).inflate(1.5))) {
                if (item.getBoundingBox().intersects(aabb)) {
                   this.grabbedStack = item.getItem().copy();
@@ -288,7 +287,6 @@ public class SpellSpectralHand extends SpellTimed {
       if (manaData.getCurrentSpell() == this && player.isShiftKeyDown() && this.casting && !ClientProxy.OPEN_SPELL_RING.isDown()) {
          double dW = event.getScrollDelta();
          if (dW != 0.0) {
-
             this.handDistance += dW * 0.5;
             if (this.handDistance < 1.0) {
                this.handDistance = 1.0;
@@ -348,7 +346,6 @@ public class SpellSpectralHand extends SpellTimed {
    }
 
    public boolean onPlayerDestroyBlock(Player player, BlockPos pos) {
-
       return player.level().destroyBlock(pos, !player.isCreative(), player);
    }
 
@@ -468,7 +465,6 @@ public class SpellSpectralHand extends SpellTimed {
    }
 
    public boolean attackEntityAsMob(Player attacker, Entity entityIn) {
-
       float f = (float) attacker.getAttributeValue(Attributes.ATTACK_DAMAGE);
       boolean flag = entityIn.isAttackable() && !entityIn.skipAttackInteraction(attacker);
       if (flag) {

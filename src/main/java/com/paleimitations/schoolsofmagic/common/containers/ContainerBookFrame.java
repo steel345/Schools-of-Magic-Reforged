@@ -12,7 +12,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerBookFrame extends AbstractContainerMenu {
-
    public static final int FRAME_X = 64;
    public static final int FRAME_Y = 221;
    public static final int FRAME_SPACING = 22;

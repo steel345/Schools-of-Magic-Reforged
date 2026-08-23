@@ -337,9 +337,7 @@ public class TileEntityDemonHeart extends BlockEntity {
    }
 
    public void tick() {
-
       if (this.level != null && !this.level.isClientSide && this.level.getGameTime() % 20L == 0L && (this.activated || this.isZigguratHeart())) {
-
          this.level.playSound(null, this.worldPosition, SOMSoundHandler.HEART_AMBIENT.get(), SoundSource.BLOCKS, 4.0F, 1.0F);
 
          for (Player pl : this.level.getEntitiesOfClass(Player.class,

@@ -28,7 +28,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockVaseMedium extends BlockVaseSmall {
-
    public static final EnumProperty<EnumBlockHalf> HALF = EnumProperty.create("half", EnumBlockHalf.class);
    protected static final VoxelShape FULL_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
@@ -64,7 +63,6 @@ public class BlockVaseMedium extends BlockVaseSmall {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return state.getValue(HALF) == EnumBlockHalf.LOWER ? new TileEntityUndeadVase(pos, state) : null;
    }
 

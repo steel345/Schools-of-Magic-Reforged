@@ -16,8 +16,7 @@
         "som:ore_copper_small",
         "som:ore_silver_upper",
         "som:ore_silver_middle",
-        "som:ore_silver_small",
-        "som:ore_salt"
+        "som:ore_silver_small"
     ],
     "step": "underground_ores"
 }

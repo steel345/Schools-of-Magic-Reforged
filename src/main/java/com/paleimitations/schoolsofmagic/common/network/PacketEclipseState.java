@@ -7,7 +7,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
-// Tells clients how far the eclipse has progressed, so the sky can be drawn to match.
 public class PacketEclipseState {
    private final boolean running;
    private final int stage;

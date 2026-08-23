@@ -24,10 +24,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-// Lays a light on something so it can be picked out through walls and darkness.
 public class SpellIlluminate extends Spell {
-
-   // Ten seconds to begin with, and another ten for every level of charge.
    private static final int BASE_TICKS = 200;
 
    public SpellIlluminate() {

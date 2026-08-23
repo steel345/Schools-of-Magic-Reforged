@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockTrapSpikeBase extends SOMBlock implements EntityBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
    public BlockTrapSpikeBase(BlockBehaviour.Properties props) {

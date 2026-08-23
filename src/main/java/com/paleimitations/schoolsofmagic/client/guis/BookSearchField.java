@@ -6,11 +6,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.glfw.GLFW;
 
-// A tiny caret-aware text field the book search bars drive manually, so it works
-// the same on the plain book Screen and the podium's container screen.
 @OnlyIn(Dist.CLIENT)
 public class BookSearchField {
-
    private final Font font;
    public int maxLength = 120;
    private String value = "";
@@ -62,7 +59,6 @@ public class BookSearchField {
       }
    }
 
-   // clickFontX: click X relative to the text origin, in unscaled font units.
    public void clickAt(float clickFontX, int clipWidth) {
       updateScroll(clipWidth);
       int idx = this.displayStart;
@@ -85,7 +81,6 @@ public class BookSearchField {
       }
    }
 
-   // Draws at the current pose origin (already translated/scaled). clipWidth in font units.
    public void render(GuiGraphics gg, int clipWidth, boolean showCursor) {
       updateScroll(clipWidth);
       int end = this.displayStart;

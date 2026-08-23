@@ -98,8 +98,6 @@ public class PotionBag extends ItemPotionry {
       return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
    }
 
-   // Include the bag's contents in the network share tag so the potions are visible
-   // client-side (e.g. the charm radial), which capabilities don't sync by default.
    @Override
    public CompoundTag getShareTag(ItemStack stack) {
       CompoundTag base = stack.getTag();
@@ -125,8 +123,6 @@ public class PotionBag extends ItemPotionry {
       }
    }
 
-   // Throws the currently-selected potion out of the bag (used by the charm's
-   // armed-throw). Returns true if a potion was thrown.
    public static boolean throwSelected(Level world, Player player, ItemStack bag) {
       IItemHandler handler = bag.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
       if (handler == null) return false;
@@ -134,7 +130,6 @@ public class PotionBag extends ItemPotionry {
       if (slot < 0 || slot >= handler.getSlots()) slot = 0;
       ItemStack selected = handler.getStackInSlot(slot);
       if (selected.isEmpty()) {
-         // Fall back to the first non-empty potion in the bag.
          for (int i = 0; i < handler.getSlots(); i++) {
             if (!handler.getStackInSlot(i).isEmpty()) { slot = i; selected = handler.getStackInSlot(i); break; }
          }

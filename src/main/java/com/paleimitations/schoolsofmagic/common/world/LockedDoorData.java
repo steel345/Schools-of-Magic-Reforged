@@ -8,7 +8,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
 public class LockedDoorData extends SavedData {
-
    private static final String NAME = "som_locked_doors";
    private final Set<Long> locked = new HashSet<>();
 

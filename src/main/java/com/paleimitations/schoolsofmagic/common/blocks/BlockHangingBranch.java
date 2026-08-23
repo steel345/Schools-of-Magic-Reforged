@@ -25,7 +25,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockHangingBranch extends LeavesBlock {
-
    public BlockHangingBranch(BlockBehaviour.Properties props) {
       super(props);
       this.registerDefaultState(this.defaultBlockState()
@@ -59,7 +58,6 @@ public class BlockHangingBranch extends LeavesBlock {
                   && Math.abs(np.getZ() - start.getZ()) <= 10
                   && Math.abs(np.getY() - start.getY()) <= 32;
             if (s.is(BlockTags.LOGS)) {
-
                if (s.hasProperty(net.minecraft.world.level.block.RotatedPillarBlock.AXIS)
                      && s.getValue(net.minecraft.world.level.block.RotatedPillarBlock.AXIS) == Direction.Axis.Y) {
                   return true;
@@ -86,7 +84,6 @@ public class BlockHangingBranch extends LeavesBlock {
    @Override
    public BlockState updateShape(BlockState state, Direction dir, BlockState neighbor,
                                  LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-
       level.scheduleTick(pos, this, 1);
 
       return state;
@@ -104,7 +101,6 @@ public class BlockHangingBranch extends LeavesBlock {
 
    @Override
    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
-
       ItemStack stack = new ItemStack(ItemRegistry.bi_magic_sapling.get());
       CompoundTag bs = new CompoundTag();
       bs.putString("type", "willow");

@@ -24,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class SOMPotionUtils {
-
    private static ItemStack m(net.minecraft.world.item.Item item, int variant) {
       ItemStack s = new ItemStack(item);
       s.setDamageValue(variant);
@@ -258,7 +257,6 @@ public class SOMPotionUtils {
                s1 = s1 + " " + I18n.get("potion.potency." + potioneffect.getAmplifier()).trim();
             }
             if (potioneffect.getDuration() > 20) {
-
                s1 = s1 + " (" + MobEffectUtil.formatDuration(potioneffect, durationFactor).getString() + ")";
             }
             if (potion.isBeneficial()) {

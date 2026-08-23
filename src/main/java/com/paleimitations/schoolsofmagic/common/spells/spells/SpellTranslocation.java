@@ -29,7 +29,7 @@ public class SpellTranslocation extends Spell {
          new ResourceLocation("som", "translocation"),
          10.0F,
          false,
-         13,
+         15,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),

@@ -11,20 +11,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-// A small Patchouli-like rich-text layer for book paragraphs. Inline codes:
-//   /b bold   /i italic   /z reset   /n newline
-//   /s-NNN    set text size in percent (100 = default)
-//   /#RRGGBB  custom colour
-//   named colours (rainbow + extras): /red (/r), /orange, /yellow, /green,
-//     /blue, /indigo, /violet, /purple, /pink, /cyan, /aqua, /white, /black,
-//     /gray, /brown, /gold, /lime, /magenta  (aliases /bold /italic /reset ok)
-//   /rainbow  colour each following character across the spectrum
-// Anything after a lone '/' that is not a known code is left as literal text, so
-// ordinary slashes in prose are untouched. Pages with no codes never reach this
-// class; they keep the original renderer exactly.
 @OnlyIn(Dist.CLIENT)
 public class BookRichText {
-
    private static final int DEFAULT = 0;
    private static final Map<String, Integer> COLORS = new HashMap<>();
    static {
@@ -38,15 +26,14 @@ public class BookRichText {
       COLORS.put("white", 0xF5F5F5);  COLORS.put("black", 0x1A1A1A);
       COLORS.put("gray", 0x7F8C8D);   COLORS.put("grey", 0x7F8C8D);
       COLORS.put("brown", 0x795548);  COLORS.put("gold", 0xC49B2E);
-      // One code per school of magic, using that school's own element colour (kept
-      // in step with MagicElementRegistry) so mentions always read in-theme.
+
       COLORS.put("pyromancy", 0xA22626);    COLORS.put("heliomancy", 0xE96400);
       COLORS.put("aeromancy", 0xFABC28);    COLORS.put("geomancy", 0x65B41C);
       COLORS.put("animancy", 0x536729);     COLORS.put("electromancy", 0x1E8496);
       COLORS.put("hydromancy", 0x339BDA);   COLORS.put("cryomancy", 0x35379F);
       COLORS.put("hieromancy", 0x7327B1);
-      // Chaotimancy reads hot pink; /Ct is its short code.
-      COLORS.put("chaotics", 0xD70076);     COLORS.put("ct", 0xD70076);
+
+      COLORS.put("chaotimancy", 0xD70076);
       COLORS.put("auramancy", 0xE0769C);    COLORS.put("astromancy", 0xD8DEDE);
       COLORS.put("infernality", 0xA5A8AA);  COLORS.put("spectromancy", 0x707274);
       COLORS.put("umbramancy", 0x313335);   COLORS.put("necromancy", 0x704626);
@@ -61,18 +48,93 @@ public class BookRichText {
 
    private static final class G {
       final char c; final int color; final boolean bold, italic; final float size;
-      G(char c, Style st, int rainbowColor) {
+
+      final int src;
+      G(char c, Style st, int rainbowColor, int src) {
          this.c = c;
          this.color = st.rainbow && c != ' ' ? rainbowColor : st.color;
          this.bold = st.bold; this.italic = st.italic; this.size = st.size;
+         this.src = src;
       }
+   }
+
+   public static final class Hit {
+      public final float x0, y0, x1, y1;
+      public final int para, src;
+      Hit(float x0, float y0, float x1, float y1, int para, int src) {
+         this.x0 = x0; this.y0 = y0; this.x1 = x1; this.y1 = y1;
+         this.para = para; this.src = src;
+      }
+   }
+
+   private static boolean capturing;
+   private static final List<Hit> HITS = new ArrayList<>();
+
+   public static void beginCapture() { capturing = true; HITS.clear(); }
+
+   public static void endCapture() { capturing = false; }
+
+   public static boolean isCapturing() { return capturing; }
+
+   public static void clearCapture() { capturing = false; HITS.clear(); }
+
+   public static java.util.List<Hit> captured() { return HITS; }
+
+   public static void captureLine(GuiGraphics gg, Font font, String text, int x, int y) {
+      if (!capturing || gg == null || text == null) return;
+      org.joml.Matrix4f m = gg.pose().last().pose();
+      float gx = x;
+      for (int i = 0; i < text.length(); i++) {
+         float adv = font.width(String.valueOf(text.charAt(i)));
+         org.joml.Vector4f a = m.transform(new org.joml.Vector4f(gx, y, 0.0F, 1.0F));
+         org.joml.Vector4f b = m.transform(new org.joml.Vector4f(gx + adv, y + font.lineHeight, 0.0F, 1.0F));
+         HITS.add(new Hit(Math.min(a.x(), b.x()), Math.min(a.y(), b.y()),
+            Math.max(a.x(), b.x()), Math.max(a.y(), b.y()), -1, i));
+         gx += adv;
+      }
+   }
+
+   private static final float SLACK = 12.0F;
+
+   public static int[] indexAt(double sx, double sy) {
+      if (HITS.isEmpty()) return null;
+
+      Float lineY = null;
+      for (Hit h : HITS) {
+         if (sy >= h.y0 && sy < h.y1) { lineY = h.y0; break; }
+      }
+      if (lineY == null) return null;
+      List<Hit> line = new ArrayList<>();
+      for (Hit h : HITS) {
+         if (h.y0 == lineY) line.add(h);
+      }
+      if (line.isEmpty()) return null;
+      line.sort((a, b) -> Float.compare(a.x0, b.x0));
+      Hit first = line.get(0);
+      Hit last = line.get(line.size() - 1);
+      if (sx < first.x0 - SLACK || sx >= last.x1 + SLACK) return null;
+      if (sx < first.x0) return new int[]{first.para, first.src};
+      if (sx >= last.x1) return new int[]{last.para, last.src + 1};
+      for (Hit h : line) {
+         if (sx >= h.x0 && sx < h.x1) {
+            return new int[]{h.para, sx < (h.x0 + h.x1) / 2.0F ? h.src : h.src + 1};
+         }
+      }
+      return new int[]{last.para, last.src + 1};
    }
 
    private static final class Line { final int start, next; final float maxSize; final List<G> glyphs;
       Line(List<G> g, int start, int next, float maxSize) { this.glyphs = g; this.start = start; this.next = next; this.maxSize = maxSize; } }
 
-   // The visible text with all "/" codes removed (e.g. "/bBroom/z" -> "Broom").
-   // Used so search matches words that sit right after a formatting code.
+   public static java.util.List<java.util.Map.Entry<String, Integer>> palette() {
+      java.util.List<java.util.Map.Entry<String, Integer>> out = new ArrayList<>(COLORS.entrySet());
+      out.removeIf(e -> e.getKey().length() < 3);
+      out.sort(java.util.Map.Entry.comparingByKey());
+      java.util.Set<Integer> seen = new java.util.HashSet<>();
+      out.removeIf(e -> !seen.add(e.getValue()));
+      return out;
+   }
+
    public static String stripCodes(String s) {
       if (s == null) return "";
       StringBuilder sb = new StringBuilder();
@@ -90,7 +152,6 @@ public class BookRichText {
       return sb.toString();
    }
 
-   // Fast pre-check so callers only switch to this path when a code really exists.
    public static boolean hasCodes(String s) {
       if (s == null) return false;
       int i = -1;
@@ -100,8 +161,6 @@ public class BookRichText {
       return false;
    }
 
-   // Applies a code found at index i (the '/') to st (may be null to just probe).
-   // Returns the index just past the code, or i if it was not a valid code.
    private static int readCode(String s, int i, Style st) {
       int n = s.length();
       char c1 = s.charAt(i + 1);
@@ -121,9 +180,7 @@ public class BookRichText {
          }
          return i;
       }
-      // Match the LONGEST known keyword that starts right after the slash, so a code
-      // glued to the following word still parses (e.g. "/rred" = red + "red",
-      // "/rainbowshimmering" = rainbow + "shimmering").
+
       String lower = s.toLowerCase();
       for (String kw : KEYWORDS) {
          if (lower.startsWith(kw, i + 1)) {
@@ -146,7 +203,6 @@ public class BookRichText {
       }
    }
 
-   // All keywords, longest first, so startsWith finds the longest match.
    private static final java.util.List<String> KEYWORDS;
    static {
       java.util.List<String> ks = new ArrayList<>(COLORS.keySet());
@@ -176,24 +232,22 @@ public class BookRichText {
             if (adv > i) { i = adv; continue; }
          }
          if (c == '§' && i + 1 < n && applyVanilla(st, Character.toLowerCase(s.charAt(i + 1)))) { i += 2; continue; }
-         if (c == '\\' && i + 1 < n && s.charAt(i + 1) == '/') { out.add(new G('/', st, 0)); i += 2; continue; }
-         if (c == '\n') { out.add(new G('\n', st, 0)); i++; continue; }
+         if (c == '\\' && i + 1 < n && s.charAt(i + 1) == '/') { out.add(new G('/', st, 0, i)); i += 2; continue; }
+         if (c == '\n') { out.add(new G('\n', st, 0, i)); i++; continue; }
          int rc = 0;
          if (st.rainbow && c != ' ') { rc = rainbow(rainbowIndex); rainbowIndex++; }
-         out.add(new G(c, st, rc));
+         out.add(new G(c, st, rc, i));
          i++;
       }
       return out;
    }
 
-   // Vanilla § formatting so codes can be mixed with the "/" codes and still measure
-   // correctly. Returns true if the char was a recognised format code (then consumed).
    private static boolean applyVanilla(Style st, char f) {
       switch (f) {
          case 'l': st.bold = true; return true;
          case 'o': st.italic = true; return true;
          case 'r': st.color = DEFAULT; st.bold = false; st.italic = false; st.rainbow = false; st.size = 100f; return true;
-         case 'k': case 'm': case 'n': return true; // obfuscate/strike/underline: consume, not modelled
+         case 'k': case 'm': case 'n': return true;
          default:
             int col = vanillaColor(f);
             if (col >= 0) { st.color = col; st.rainbow = false; return true; }
@@ -250,14 +304,14 @@ public class BookRichText {
       return lines;
    }
 
-   // Lays every paragraph through the boxes. When draw is true it renders onto
-   // subpage; otherwise it just reports whether subpage gets any content.
    private static boolean flow(GuiGraphics gg, Font font, List<String> paragraphs, List<ParagraphBoxRef> boxes,
                                float scale, int xIn, int yIn, int subpage, boolean draw, int defaultColor) {
       boolean found = false;
       int boxId = 0;
       float yCursor = 0f;
+      int paraIndex = -1;
       for (String para : paragraphs) {
+         paraIndex++;
          List<G> remaining = parse(para);
          boolean flag = true;
          while (flag) {
@@ -276,7 +330,7 @@ public class BookRichText {
                if (box.target == subpage) {
                   found = true;
                   if (!draw) return true;
-                  drawLine(gg, font, ln, xI, yI + Math.round(yCursor), defaultColor);
+                  drawLine(gg, font, ln, xI, yI + Math.round(yCursor), defaultColor, scale, paraIndex);
                }
                yCursor += lh;
                placed++;
@@ -295,9 +349,22 @@ public class BookRichText {
       return found;
    }
 
-   private static void drawLine(GuiGraphics gg, Font font, Line ln, int xI, int yBase, int defaultColor) {
+   private static void drawLine(GuiGraphics gg, Font font, Line ln, int xI, int yBase, int defaultColor, float scale, int paraIndex) {
       float x = 0f;
       int i = 0, n = ln.glyphs.size();
+      if (capturing && gg != null) {
+         org.joml.Matrix4f m = gg.pose().last().pose();
+         float gx = xI;
+         for (G g : ln.glyphs) {
+            float adv = advance(font, g);
+            float gh = font.lineHeight * g.size / 100f;
+            org.joml.Vector4f a = m.transform(new org.joml.Vector4f(gx, yBase, 0.0F, 1.0F));
+            org.joml.Vector4f b = m.transform(new org.joml.Vector4f(gx + adv, yBase + gh, 0.0F, 1.0F));
+            HITS.add(new Hit(Math.min(a.x(), b.x()), Math.min(a.y(), b.y()),
+               Math.max(a.x(), b.x()), Math.max(a.y(), b.y()), paraIndex, g.src));
+            gx += adv;
+         }
+      }
       while (i < n) {
          G first = ln.glyphs.get(i);
          int j = i;
@@ -315,7 +382,10 @@ public class BookRichText {
          styled = GrimoireScramble.apply(styled);
          int color = first.color == DEFAULT ? defaultColor : first.color;
          gg.pose().pushPose();
-         gg.pose().translate(xI + x, yBase, 0.0F);
+
+         float snapX = scale > 0.0F ? Math.round((xI + x) * scale) / scale : (xI + x);
+         float snapY = scale > 0.0F ? Math.round(yBase * scale) / scale : yBase;
+         gg.pose().translate(snapX, snapY, 0.0F);
          gg.pose().scale(first.size / 100f, first.size / 100f, 1.0F);
          gg.drawString(font, styled, 0, 0, color, false);
          gg.pose().popPose();
@@ -324,7 +394,6 @@ public class BookRichText {
       }
    }
 
-   // Public entry points used by PageElementParagraphs.
    public static void render(GuiGraphics gg, List<String> paragraphs, List<ParagraphBoxRef> boxes,
                              float scale, int xIn, int yIn, int subpage, int defaultColor) {
       Font font = net.minecraft.client.Minecraft.getInstance().font;
@@ -339,7 +408,6 @@ public class BookRichText {
       return flow(null, font, paragraphs, boxes, scale, 0, 0, subpage, false, 0);
    }
 
-   // A lightweight view of a ParagraphBox so this client class stays decoupled.
    public static final class ParagraphBoxRef {
       public final int x, y, target, width, height;
       public ParagraphBoxRef(int x, int y, int target, int width, int height) {

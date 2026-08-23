@@ -9,7 +9,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class SOMBigTreeFeature extends SOMTreeFeature {
-
    protected boolean placeTreeOfHeight(WorldGenLevel world, BlockPos pos, int iInt, int hInt, int height) {
       int i = pos.getX(), j = pos.getY(), k = pos.getZ();
       BlockPos.MutableBlockPos m = new BlockPos.MutableBlockPos();

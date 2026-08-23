@@ -18,10 +18,7 @@ import net.minecraft.world.level.block.entity.LecternBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.PacketDistributor;
 
-// Returns a borrowed book from a workstation: the found book flies back to its
-// shelf and the workstation's own book floats back into place.
 public class KnowledgeReverse {
-
    public static boolean reverse(ServerLevel level, BlockPos station) {
       KnowledgeLoans.Loan loan = KnowledgeLoans.get(station);
       if (loan == null) return false;

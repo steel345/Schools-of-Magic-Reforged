@@ -8,6 +8,12 @@
           "type": "minecraft:loot_table",
           "name": "minecraft:chests/simple_dungeon"
         }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.35
+        }
       ]
     },
     {
@@ -16,12 +22,12 @@
         {
           "type": "minecraft:item",
           "name": "som:feather_phoenix",
-          "weight": 3
+          "weight": 1
         },
         {
           "type": "minecraft:item",
           "name": "som:feather_thunderbird",
-          "weight": 3
+          "weight": 1
         },
         {
           "type": "minecraft:item",
@@ -31,7 +37,7 @@
         {
           "type": "minecraft:item",
           "name": "som:item_diamond_dust",
-          "weight": 3,
+          "weight": 2,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -46,7 +52,7 @@
         {
           "type": "minecraft:item",
           "name": "som:gem_chunk",
-          "weight": 4,
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -61,7 +67,7 @@
         {
           "type": "minecraft:item",
           "name": "som:gem_dust",
-          "weight": 5,
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -90,7 +96,7 @@
         },
         {
           "type": "minecraft:empty",
-          "weight": 18
+          "weight": 35
         }
       ]
     }

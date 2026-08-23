@@ -19,7 +19,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockMushroomStalk extends SOMPlant {
-
    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 2);
 
    private static final VoxelShape SHAPE_TYPE0 = Shapes.or(

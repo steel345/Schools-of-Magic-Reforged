@@ -22,7 +22,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class EntityTargetDummy extends PathfinderMob {
-
    private static final int DPS_WINDOW = 100;
 
    private static class Hit {

@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
 public class TileEntityDarkCrystal extends BlockEntity {
-
    private int counter = 0;
    private transient int whisperCd = 0;
 

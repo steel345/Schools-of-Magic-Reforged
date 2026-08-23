@@ -66,6 +66,7 @@ public class PotionRegistry {
    public static final RegistryObject<MobEffect> flight = EFFECTS.register("flight", () -> new PotionFlight(MobEffectCategory.BENEFICIAL, 9858367));
    public static final RegistryObject<MobEffect> toads_tongue = EFFECTS.register("toads_tongue", () -> new PotionToadsTongue(MobEffectCategory.BENEFICIAL, 16101875));
    public static final RegistryObject<MobEffect> frostbite = EFFECTS.register("frostbite", () -> new PotionFrostbite(MobEffectCategory.HARMFUL, 11914999));
+   public static final RegistryObject<MobEffect> iron_hide = EFFECTS.register("iron_hide", () -> new com.paleimitations.schoolsofmagic.common.potions.potions.PotionIronHide(MobEffectCategory.BENEFICIAL, 7699344));
    public static final RegistryObject<MobEffect> greasy_skin = EFFECTS.register("greasy_skin", () -> new PotionGreasySkin(MobEffectCategory.HARMFUL, 11638342));
    public static final RegistryObject<MobEffect> hallucination = EFFECTS.register("hallucination", () -> new PotionBasic(MobEffectCategory.HARMFUL, 5908419));
    public static final RegistryObject<MobEffect> haze = EFFECTS.register("haze", () -> new PotionBasic(MobEffectCategory.HARMFUL, 0xFFFFFF));

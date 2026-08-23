@@ -16,13 +16,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-// Vanilla only forms a nether portal when the fire is lit in the overworld or the
-// nether (BaseFireBlock.onPlace -> inPortalDimension), so lighting an obsidian frame
-// in the Faegrove does nothing. Fire itself still places fine there, so once it has
-// been lit we complete the portal ourselves.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class FaegrovePortalHandler {
-
    @SubscribeEvent
    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
       Level level = event.getLevel();
@@ -32,8 +27,7 @@ public class FaegrovePortalHandler {
          && event.getItemStack().getItem() != Items.FIRE_CHARGE) {
          return;
       }
-      // The fire lands on the clicked face; give vanilla a tick to place it, then
-      // build the portal around it.
+
       BlockPos firePos = event.getPos().relative(event.getFace()).immutable();
       KnowledgeAnimations.schedule(1, () -> tryFormPortal(serverLevel, firePos));
    }

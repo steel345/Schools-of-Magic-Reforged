@@ -41,6 +41,18 @@ public class PacketRemovePage {
       buf.writeInt(this.page);
    }
 
+   private static <T> void reindex(java.util.Map<Integer, T> byPage, int removed) {
+      if (byPage == null || byPage.isEmpty()) return;
+      java.util.Map<Integer, T> moved = new java.util.HashMap<>();
+      for (java.util.Map.Entry<Integer, T> e : byPage.entrySet()) {
+         int p = e.getKey();
+         if (p == removed) continue;
+         moved.put(p > removed ? p - 1 : p, e.getValue());
+      }
+      byPage.clear();
+      byPage.putAll(moved);
+   }
+
    public static void handle(PacketRemovePage msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
       context.enqueueWork(() -> {
@@ -53,10 +65,42 @@ public class PacketRemovePage {
             TileEntityPodium podium = (TileEntityPodium)te;
             IBook book = podium.handler.getStackInSlot(0).getCapability(CapabilityBook.BOOK_CAPABILITY).orElse(null);
             if (book != null) {
+               if (book.getBookPages().isEmpty() || msg.page < 0
+                     || msg.page >= book.getBookPages().size()) {
+                  return;
+               }
+               BookPage cut = book.getBookPage(msg.page);
+               if (cut == null) {
+                  return;
+               }
+
+               if (cut instanceof com.paleimitations.schoolsofmagic.common.books.BookPageWriteable) {
+                  com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout laid =
+                     book.getPageLayouts().get(msg.page);
+                  if (laid != null) {
+                     for (com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Element el
+                           : laid.elements) {
+                        for (com.paleimitations.schoolsofmagic.common.books.PageElement pe : cut.elements) {
+                           if (el.kind == com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TITLE
+                                 && pe instanceof com.paleimitations.schoolsofmagic.common.books.PageElementTitle t
+                                 && t.text != null && t.text.length > 0) {
+                              t.text[0] = el.value == null ? "" : el.value;
+                           } else if (el.kind == com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout.Kind.TEXT
+                                 && pe instanceof com.paleimitations.schoolsofmagic.common.books.PageElementWriteableParagraphs p) {
+                              p.text = el.value == null ? "" : el.value;
+                           }
+                        }
+                     }
+                  }
+               }
+
                List<BookPage> pages = Lists.newArrayList();
                ItemStack output = new ItemStack(ItemRegistry.grimoire_page.get());
                IPage page = output.getCapability(CapabilityPage.PAGE_CAPABILITY).orElse(null);
-               page.setBookPage(book.getBookPage(msg.page));
+               if (page == null) {
+                  return;
+               }
+               page.setBookPage(cut);
                Containers.dropItemStack(
                   podium.getLevel(),
                   (double)podium.getBlockPos().getX() + 0.5,
@@ -67,10 +111,8 @@ public class PacketRemovePage {
 
                for (BookElementSticker sticker : book.getStickers()) {
                   if (sticker.page == msg.page) {
-                     ItemStack stack = new ItemStack(ItemRegistry.sticker.get());
-                     CompoundTag nbt = new CompoundTag();
-                     nbt.putString("sticker", sticker.sticker.getSerializedName());
-                     stack.setTag(nbt);
+                     ItemStack stack = com.paleimitations.schoolsofmagic.common.items.ItemSticker
+                        .makeSticker(sticker.sticker.getSerializedName());
                      Containers.dropItemStack(
                         podium.getLevel(),
                         (double)podium.getBlockPos().getX() + 0.5,
@@ -97,6 +139,9 @@ public class PacketRemovePage {
                      pageN++;
                   }
                }
+
+               reindex(book.getPageLayouts(), msg.page);
+               reindex(book.getTextOverrides(), msg.page);
 
                book.setStickers(stickers);
                book.setBookPages(pages);

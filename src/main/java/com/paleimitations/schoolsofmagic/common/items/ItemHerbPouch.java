@@ -29,14 +29,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 
-// A dyeable pouch (behaves like leather armour: default leather tint, dye it with
-// dyes). Right-click opens its GUI. Only vegetation (the som:vegetation tag) can
-// be stored inside.
 public class ItemHerbPouch extends Item implements DyeableLeatherItem {
    public static final TagKey<Item> VEGETATION = ItemTags.create(new ResourceLocation("som", "vegetation"));
    public static final int SLOTS = 20;
-   // Lighter default tan than vanilla leather (0xA06540), so an undyed pouch reads
-   // light; the old leather brown now belongs to the potion bag.
+
    private static final int DEFAULT_COLOR = 0xC8965A;
 
    public ItemHerbPouch(Item.Properties props) {

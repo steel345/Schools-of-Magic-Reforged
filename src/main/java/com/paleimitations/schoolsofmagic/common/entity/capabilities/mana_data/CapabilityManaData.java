@@ -32,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityManaData {
-
    public static final Capability<IManaData> CAP = CapabilityManager.get(new CapabilityToken<IManaData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "mana_data");
 
@@ -43,7 +42,6 @@ public class CapabilityManaData {
 
    @SubscribeEvent
    public static void clonePlayer(PlayerEvent.Clone event) {
-
       event.getOriginal().reviveCaps();
       try {
          IManaData original = getEffectVariables(event.getOriginal());
@@ -110,7 +108,7 @@ public class CapabilityManaData {
                cap.addDeadMana(0.25F);
             }
          }
-         int level = cap.getLevel() + 1;
+         int level = cap.getLevel();
          if (level < 5) {
             cap.addMana(0.025F);
          } else if (level >= 5 && level < 10) {

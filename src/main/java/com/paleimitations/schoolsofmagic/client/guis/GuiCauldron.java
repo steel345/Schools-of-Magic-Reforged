@@ -48,7 +48,6 @@ public class GuiCauldron extends AbstractContainerScreen<ContainerCauldron> {
 
    @Override
    public void render(GuiGraphics gg, int mouseX, int mouseY, float partialTicks) {
-
       TileEntityCauldron tb = this.menu.getTile();
       if (tb != null) {
          if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.RESTING || tb.isLidded()) {

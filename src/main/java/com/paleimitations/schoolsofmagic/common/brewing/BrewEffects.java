@@ -12,7 +12,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 
 public final class BrewEffects {
-
    public static final Map<String, Supplier<MobEffect>> EFFECTS = new HashMap<>();
 
    public static final Set<String> POWERFUL =

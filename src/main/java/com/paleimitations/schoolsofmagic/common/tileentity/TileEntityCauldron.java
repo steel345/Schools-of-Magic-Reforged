@@ -27,7 +27,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityCauldron extends BlockEntity implements net.minecraft.world.MenuProvider {
-
    @Override
    public net.minecraft.network.chat.Component getDisplayName() {
       return net.minecraft.network.chat.Component.translatable("container.gui_cauldron");

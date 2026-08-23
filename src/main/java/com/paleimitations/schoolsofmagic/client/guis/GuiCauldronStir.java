@@ -66,7 +66,6 @@ public class GuiCauldronStir extends Screen {
 
    @Override
    public void render(GuiGraphics gg, int mouseX, int mouseY, float partialTicks) {
-
       if (this.tb.getPhase() != TileEntityCauldron.EnumPotionPhase.STIRRING) {
          reopenCauldronScreen();
          return;

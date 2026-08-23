@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class BlockOrefalling extends FallingBlock {
-
    private final Item drop;
 
    public BlockOrefalling(BlockBehaviour.Properties props, Item drop) {

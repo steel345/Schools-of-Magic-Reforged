@@ -16,7 +16,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class MowzieModelBase<T extends Entity> extends EntityModel<T> {
-
    protected final ModelPart root;
    protected List<MowzieModelRenderer> parts = new ArrayList<>();
 
@@ -51,7 +50,6 @@ public abstract class MowzieModelBase<T extends Entity> extends EntityModel<T> {
    }
 
    protected void addChildTo(MowzieModelRenderer child, MowzieModelRenderer parent) {
-
    }
 
    public void faceTarget(MowzieModelRenderer box, float f, float f3, float f4) {

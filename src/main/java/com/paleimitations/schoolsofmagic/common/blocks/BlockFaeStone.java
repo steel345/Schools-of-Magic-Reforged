@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockFaeStone extends Block {
-
    public static final EnumProperty<EnumFaeStone> VARIANT = EnumProperty.create("variant", EnumFaeStone.class);
 
    public BlockFaeStone(BlockBehaviour.Properties props) {
@@ -30,7 +29,6 @@ public class BlockFaeStone extends Block {
    @Override
    public java.util.List<net.minecraft.world.item.ItemStack> getDrops(
          BlockState state, net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
-
       net.minecraft.world.item.ItemStack tool = builder.getOptionalParameter(
             net.minecraft.world.level.storage.loot.parameters.LootContextParams.TOOL);
       boolean silk = tool != null && tool.getEnchantmentLevel(

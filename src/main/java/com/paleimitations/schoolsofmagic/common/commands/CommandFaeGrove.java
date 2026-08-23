@@ -17,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 public class CommandFaeGrove {
-
    public static final ResourceKey<Level> FAEGROVE =
       ResourceKey.create(Registries.DIMENSION, new ResourceLocation("som", "faegrove"));
 

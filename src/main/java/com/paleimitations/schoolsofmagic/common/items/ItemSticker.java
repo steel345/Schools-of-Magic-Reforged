@@ -29,5 +29,4 @@ public class ItemSticker extends Item {
       stack.getOrCreateTag().put("display", display);
       return stack;
    }
-
 }

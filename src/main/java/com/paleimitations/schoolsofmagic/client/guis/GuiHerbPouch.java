@@ -34,8 +34,6 @@ public class GuiHerbPouch extends AbstractContainerScreen<ContainerHerbPouch> {
       this.renderTooltip(gg, mouseX, mouseY);
    }
 
-   // Suppress the vanilla 16x16 hover highlight on pouch slots; we draw a 2px-inset
-   // one in renderSlot instead.
    @Override
    public int getSlotColor(int index) {
       if (index >= 0 && index < this.menu.slots.size() && this.menu.slots.get(index) instanceof SlotHerb) {
@@ -53,8 +51,6 @@ public class GuiHerbPouch extends AbstractContainerScreen<ContainerHerbPouch> {
    protected void renderLabels(GuiGraphics gg, int mouseX, int mouseY) {
    }
 
-   // Render pouch-slot contents 2px smaller on every side (12x12 instead of 16x16),
-   // with a matching 2px-inset hover highlight drawn at exact pixel coords.
    @Override
    public void renderSlot(GuiGraphics gg, Slot slot) {
       if (slot instanceof SlotHerb) {

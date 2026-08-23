@@ -7,11 +7,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-// Draws a page of search hits as hoverable text buttons (title line + sentence
-// line) in two columns (left page + right page). Buttons do nothing themselves.
 @OnlyIn(Dist.CLIENT)
 public class KnowledgeResultsView {
-
    public static int pageCount(int total, int perPage) {
       if (total <= 0) return 1;
       return (total + perPage - 1) / perPage;
@@ -21,7 +18,6 @@ public class KnowledgeResultsView {
       return (font.lineHeight + 1) * 2 + 2;
    }
 
-   // Local coords of hit i within the page, filling column-by-column.
    private static float[] slotXY(Font font, int slot, int perPage, float colGap) {
       int rows = Math.max(1, perPage / 2);
       int col = slot / rows;

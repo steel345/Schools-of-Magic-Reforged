@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TileEntityPedestal extends BlockEntity {
-
    private ItemStack item = ItemStack.EMPTY;
 
    public float bookRotation;
@@ -100,6 +99,8 @@ public class TileEntityPedestal extends BlockEntity {
          this.bookState = TileEntityPodium.EnumState.OPEN_BOOK;
          this.level.playLocalSound(cx, cy, cz, SOMSoundHandler.BOOK_OPEN.get(), SoundSource.BLOCKS, 0.8F, 1.0F, false);
          this.animationTick = 0;
+         this.prevPage = this.page;
+         this.prevSubpage = this.subpage;
       }
       if (this.bookState == TileEntityPodium.EnumState.OPEN
             && (this.prevPage < this.page || (this.prevSubpage < this.subpage && this.prevPage == this.page))) {

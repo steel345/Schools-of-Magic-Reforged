@@ -29,7 +29,6 @@ public class RenderThornRing extends EntityRenderer<EntityThornRing> {
                       PoseStack pose, MultiBufferSource buf, int packedLight) {
       float f = entity.getAnimationProgress(partialTicks);
       if (f != 0.0F) {
-
          float f1 = 1.0F;
          if (f > 0.9F) f1 = (float) ((double) f1 * ((1.0 - (double) f) / 0.1F));
          pose.pushPose();

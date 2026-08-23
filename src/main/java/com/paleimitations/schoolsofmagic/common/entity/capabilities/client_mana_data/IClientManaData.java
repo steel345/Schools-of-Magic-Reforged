@@ -5,7 +5,6 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public interface IClientManaData {
-
    boolean isSimpleGui();
 
    void setSimpleGui(boolean var1);

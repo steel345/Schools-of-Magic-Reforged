@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockMagicCrop extends SOMCrop implements IPlantable {
-
    public BlockMagicCrop(net.minecraft.world.level.block.state.BlockBehaviour.Properties props) {
       super(props);
    }
@@ -111,7 +110,6 @@ public class BlockMagicCrop extends SOMCrop implements IPlantable {
       };
 
       if (!mature) {
-
          drops.add(oneSeed.get());
          return drops;
       }
@@ -134,5 +132,4 @@ public class BlockMagicCrop extends SOMCrop implements IPlantable {
 
       return drops;
    }
-
 }

@@ -30,7 +30,6 @@ public class SOMPotionBlockColorizer implements BlockColor {
             return wall.getColor();
          }
          if (be instanceof TileEntityRitualCenter rc) {
-
             if (state.hasProperty(com.paleimitations.schoolsofmagic.common.blocks.BlockBrazier.COLORED)
                   && state.getValue(com.paleimitations.schoolsofmagic.common.blocks.BlockBrazier.COLORED)) {
                int tint = rc.getFireTint();

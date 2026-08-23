@@ -140,5 +140,71 @@
         0.9
       ]
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 0,
+        "som:wand_rank": 0
+      },
+      "model": "som:item/wand_apprentice_flat_0"
+    },
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 0,
+        "som:wand_rank": 1
+      },
+      "model": "som:item/wand_apprentice_flat_1"
+    },
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 0,
+        "som:wand_rank": 2
+      },
+      "model": "som:item/wand_apprentice_flat_2"
+    },
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 0,
+        "som:wand_rank": 3
+      },
+      "model": "som:item/wand_apprentice_flat_3"
+    },
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 1,
+        "som:wand_rank": 0
+      },
+      "model": "som:item/wand_apprentice_small_0"
+    },
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 1,
+        "som:wand_rank": 1
+      },
+      "model": "som:item/wand_apprentice_small_1"
+    },
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 1,
+        "som:wand_rank": 2
+      },
+      "model": "som:item/wand_apprentice_small_2"
+    },
+    {
+      "predicate": {
+        "som:wand_flat": 1,
+        "som:wand_small": 1,
+        "som:wand_rank": 3
+      },
+      "model": "som:item/wand_apprentice_small_3"
+    }
+  ]
 }

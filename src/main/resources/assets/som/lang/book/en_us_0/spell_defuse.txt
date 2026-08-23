@@ -1,0 +1,1 @@
+  Defuse stops things that are about to blow up. Everything within eight blocks is calmed at once.<~><~>  A creeper stops swelling and forgets you for half a minute. Lit TNT turns back into a block you can pick up.<~><~>  Neither is harmed, and a creeper will come back to it once the half minute is up.

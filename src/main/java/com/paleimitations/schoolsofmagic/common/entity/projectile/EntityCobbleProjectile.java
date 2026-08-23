@@ -17,7 +17,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 
 public class EntityCobbleProjectile extends EntityBlockProjectile {
-
    public EntityCobbleProjectile(EntityType<? extends EntityCobbleProjectile> type, Level level) {
       super(type, level);
    }
@@ -64,7 +63,6 @@ public class EntityCobbleProjectile extends EntityBlockProjectile {
    protected void onHitBlock(BlockHitResult result) {
       super.onHitBlock(result);
       if (!this.level().isClientSide) {
-
          BlockPos placePos = result.getBlockPos().relative(result.getDirection());
          if (this.level().getBlockState(placePos).canBeReplaced()) {
             this.level().setBlockAndUpdate(placePos, Blocks.COBBLESTONE.defaultBlockState());

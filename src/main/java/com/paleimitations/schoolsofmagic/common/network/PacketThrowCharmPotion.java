@@ -12,7 +12,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
-// Client asks the server to throw the selected potion from the potion bag charm.
 public class PacketThrowCharmPotion {
    private final int slot;
 
@@ -37,8 +36,8 @@ public class PacketThrowCharmPotion {
          if (bag.isEmpty()) return;
          if (msg.slot >= 0) bag.setDamageValue(msg.slot);
          if (PotionBag.throwSelected(sp.level(), sp, bag)) {
-            sp.swing(net.minecraft.world.InteractionHand.MAIN_HAND, true); // right-click hand animation
-            // The bag may hang from either slot, so refresh both views of it.
+            sp.swing(net.minecraft.world.InteractionHand.MAIN_HAND, true);
+
             ICharmData charm = CapabilityCharmData.get(sp);
             if (charm != null && charm.getCharm() == bag) charm.setCharm(bag);
             CapabilityCharmData.sync(sp);

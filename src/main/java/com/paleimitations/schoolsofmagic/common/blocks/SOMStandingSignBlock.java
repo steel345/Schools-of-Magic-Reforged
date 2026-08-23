@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class SOMStandingSignBlock extends StandingSignBlock {
-
    public SOMStandingSignBlock(BlockBehaviour.Properties props, WoodType type) {
       super(props, type);
    }

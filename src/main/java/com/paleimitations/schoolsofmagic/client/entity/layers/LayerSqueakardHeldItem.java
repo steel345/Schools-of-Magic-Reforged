@@ -17,7 +17,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class LayerSqueakardHeldItem extends RenderLayer<EntitySqueakard, ModelSqueakard<EntitySqueakard>> {
-
    public LayerSqueakardHeldItem(RenderSqueakard renderer) {
       super(renderer);
    }

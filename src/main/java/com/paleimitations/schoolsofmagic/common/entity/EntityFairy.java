@@ -40,7 +40,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class EntityFairy extends Allay {
-
    private static final EntityDataAccessor<Integer> VARIANT =
       SynchedEntityData.defineId(EntityFairy.class, EntityDataSerializers.INT);
 

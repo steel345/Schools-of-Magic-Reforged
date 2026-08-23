@@ -20,12 +20,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-// Reads the hour off a sun the caster cannot see. Works as well a hundred blocks down
-// as it does in open field.
 public class SpellSundial extends Spell {
-
    private static final long DAY = 24000L;
-   // Minecraft opens its day at dawn rather than at midnight.
+
    private static final long DAWN_OFFSET = 6L;
 
    public SpellSundial() {

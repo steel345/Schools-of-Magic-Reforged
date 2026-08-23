@@ -18,7 +18,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
 public class BlockUnlitWallTorch extends WallTorchBlock implements SimpleWaterloggedBlock {
-
    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
    public BlockUnlitWallTorch(Properties properties) {

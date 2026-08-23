@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.joml.Matrix4f;
 
 public class TileEntityRendererDynamicWeb implements BlockEntityRenderer<TileEntityDynamicWeb> {
-
    public TileEntityRendererDynamicWeb(BlockEntityRendererProvider.Context ctx) {
    }
 

@@ -10,7 +10,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMTreeFeatureBigDarkOak extends SOMBigTreeFeature {
-
    private static final RegistryObject<Block> LOG    = RegistryObject.create(new ResourceLocation("dark_oak_log"),    ForgeRegistries.BLOCKS);
    private static final RegistryObject<Block> LEAVES = RegistryObject.create(new ResourceLocation("dark_oak_leaves"), ForgeRegistries.BLOCKS);
 

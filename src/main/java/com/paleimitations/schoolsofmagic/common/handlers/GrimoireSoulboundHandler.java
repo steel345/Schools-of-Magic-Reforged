@@ -17,7 +17,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GrimoireSoulboundHandler {
-
    private static final Map<UUID, List<ItemStack>> KEPT = new HashMap<>();
 
    @SubscribeEvent

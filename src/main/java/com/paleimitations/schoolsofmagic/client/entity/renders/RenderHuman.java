@@ -25,7 +25,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class RenderHuman extends MobRenderer<EntityHuman, PlayerModel<EntityHuman>> {
-
    public RenderHuman(EntityRendererProvider.Context context) {
       super(context, new PlayerModel<>(context.bakeLayer(ModelLayers.PLAYER), false), 0.5F);
       this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()));

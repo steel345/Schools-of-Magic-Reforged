@@ -16,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class MortNPestRecipeCategory implements IRecipeCategory<RecipeMortNPest> {
-
    public static final RecipeType<RecipeMortNPest> TYPE =
       RecipeType.create(References.MODID, "mort_n_pest", RecipeMortNPest.class);
    private static final ResourceLocation TEXTURE =
@@ -54,7 +53,6 @@ public class MortNPestRecipeCategory implements IRecipeCategory<RecipeMortNPest>
 
    @Override
    public void setRecipe(IRecipeLayoutBuilder builder, RecipeMortNPest recipe, IFocusGroup focuses) {
-
       Ingredient in1 = recipe.getInput();
       if (in1 != null && !in1.isEmpty()) {
          builder.addSlot(RecipeIngredientRole.INPUT, 6, 17).addIngredients(in1);

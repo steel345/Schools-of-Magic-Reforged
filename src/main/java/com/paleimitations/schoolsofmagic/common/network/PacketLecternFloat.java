@@ -9,9 +9,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-// Server -> Client: mark a lectern's Book of Knowledge as floated (empty clears it).
 public class PacketLecternFloat {
-
    private final BlockPos pos;
    private final ItemStack book;
 

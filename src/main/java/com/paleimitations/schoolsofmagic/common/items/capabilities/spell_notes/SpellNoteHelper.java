@@ -21,7 +21,6 @@ public class SpellNoteHelper {
          SpellNotes notes = spell_note.getCapability(CapabilitySpellNotes.SPELL_NOTES_CAPABILITY).orElse(null).getSpellNotes();
 
          for (int i = 0; i < handler.getSlots(); i++) {
-
             if (!applyIngredient(notes, handler.getStackInSlot(i))) {
                return null;
             }

@@ -183,16 +183,16 @@ public class SpellCustom extends Spell {
    }
 
    private int shapeLevel() {
-      if (this.shape == null) return 2;
+      if (this.shape == null) return 3;
       switch (this.shape) {
-         case PROJECTILE: case BOLT: return 3;
-         case SELF: case TOUCH: case RUNE: return 2;
-         case WALL: case CHAIN: return 5;
-         case WAVE: return 6;
-         case BEAM: case STARFALL: return 8;
-         case PLASMA: return 5;
-         case FOCUS: return 4;
-         default: return 2;
+         case PROJECTILE: case BOLT: return 4;
+         case SELF: case TOUCH: case RUNE: return 3;
+         case WALL: case CHAIN: return 6;
+         case WAVE: return 7;
+         case BEAM: case STARFALL: return 9;
+         case PLASMA: return 6;
+         case FOCUS: return 5;
+         default: return 3;
       }
    }
 

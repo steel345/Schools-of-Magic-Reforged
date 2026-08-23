@@ -19,7 +19,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class CreativeTabContents {
-
     public enum Tab { EQUIPMENT, MATERIALS, BLOCKS, PLANTS }
 
     private static final Map<String, Tab> ITEM_TAB = Map.<String, Tab>ofEntries(
@@ -190,6 +189,12 @@ public class CreativeTabContents {
     private static final Set<String> FORCE_HIDDEN_PATHS = Set.of(
         "phantom_fire",
 
+        "ziggurat_door_key",
+        "ziggurat_door_wall",
+
+        "salt_ore",
+        "deepslate_salt_ore",
+
         "plant_algae",
         "plant_duckweed",
         "plant_bladderwort",
@@ -228,8 +233,6 @@ public class CreativeTabContents {
         }
 
         if (target == Tab.MATERIALS) {
-            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.brass_whistle.get()));
-            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.herb_pouch.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.spell_parchment.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.scroll_seal.get()));
             output.accept(com.paleimitations.schoolsofmagic.common.crafting.CoconutMilkRecipe.coconutMilk());
@@ -251,7 +254,7 @@ public class CreativeTabContents {
         }
     }
 
-    private static final Set<String> EXTRA_BLOCKS_TAB = Set.of("tile_lapis", "ore_silver", "ore_copper", "block_mud", "unlit_torch", "block_of_salt");
+    private static final Set<String> EXTRA_BLOCKS_TAB = Set.of("tile_lapis", "ore_silver", "ore_copper", "block_mud", "unlit_torch", "block_of_salt", "looking_glass");
 
     private static boolean isHidden(String path) {
         if (FORCE_HIDDEN_PATHS.contains(path)) return true;
@@ -260,7 +263,6 @@ public class CreativeTabContents {
     }
 
     private static Tab resolveTab(Item item) {
-
         if (item instanceof BlockItem bi) {
             Block b = bi.getBlock();
             for (Class<?> c = b.getClass(); c != null && c != Block.class && c != Object.class; c = c.getSuperclass()) {
@@ -283,7 +285,6 @@ public class CreativeTabContents {
     }
 
     private static void emitEntries(net.minecraft.world.item.CreativeModeTab.Output output, Item item, ResourceLocation id) {
-
         if (item == ItemRegistry.potion_drinkable.get()) {
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.infinity_jug.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.sun_screen.get()));
@@ -291,20 +292,26 @@ public class CreativeTabContents {
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.mutandis.get()));
         }
 
-        if (item == ItemRegistry.ziggurat_door_key.get()) {
-            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.silver_bell.get()));
-        }
-
         if (item == ItemRegistry.bone_knife.get()) {
             output.accept(new net.minecraft.world.item.ItemStack(item));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.silver_bell.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_mirror.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.brass_whistle.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.copper_key.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_letter.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.mysterious_application.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.broom.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_broom.get()));
             return;
         }
 
-        if (item == ItemRegistry.magic_letter.get()) {
+        if (item == ItemRegistry.magic_letter.get() || item == ItemRegistry.mysterious_application.get()) {
+            return;
+        }
+
+        if (item == ItemRegistry.potion_bag.get()) {
             output.accept(new net.minecraft.world.item.ItemStack(item));
-            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.mysterious_application.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.herb_pouch.get()));
             return;
         }
         if (item == ItemRegistry.bi_cauldron.get()) { emitCauldronVariants(output, item); return; }
@@ -322,8 +329,6 @@ public class CreativeTabContents {
         }
         if (item == ItemRegistry.bi_ore_steel.get()) {
             output.accept(new net.minecraft.world.item.ItemStack(item));
-            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_salt_ore.get()));
-            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_deepslate_salt_ore.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_fae_salt_ore.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_gypsum_salt_ore.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bi_mud_marble_salt_ore.get()));
@@ -467,7 +472,6 @@ public class CreativeTabContents {
     }
 
     private static void emitTeaVariants(net.minecraft.world.item.CreativeModeTab.Output output, Item item) {
-
         for (com.paleimitations.schoolsofmagic.common.recipes.RecipeTea recipe :
              com.paleimitations.schoolsofmagic.common.registries.RecipeRegistry.teaRecipes) {
             if (recipe.getEffect() == null) continue;
@@ -493,7 +497,6 @@ public class CreativeTabContents {
 
     private static void emitMagicOreVariants(net.minecraft.world.item.CreativeModeTab.Output output, Item item, String langKey) {
         for (EnumMagicType t : EnumMagicType.values()) {
-
             if (langKey.endsWith("ore_gem_deepslate") && !isDeepslateGemElement(t)) {
                 continue;
             }
@@ -676,7 +679,6 @@ public class CreativeTabContents {
     }
 
     private static void emitBookshelfVariants(net.minecraft.world.item.CreativeModeTab.Output output, Item item) {
-
         for (EnumWoodType w : EnumWoodType.values()) {
             ItemStack stack = new ItemStack(item);
             CompoundTag bs = new CompoundTag(); bs.putString("type", w.getSerializedName());
@@ -709,7 +711,6 @@ public class CreativeTabContents {
         }
     }
 
-
     private static void emitQuestVariants(net.minecraft.world.item.CreativeModeTab.Output output, Item item) {
         String[] questIds = { "som:brew_potion", "som:build_golem", "som:enchant_item",
                               "som:intermediate_arcana", "som:advanced_arcana" };
@@ -722,7 +723,6 @@ public class CreativeTabContents {
     }
 
     private static void emitStickerVariants(net.minecraft.world.item.CreativeModeTab.Output output, Item item) {
-
         for (String s : STICKER_NAMES) {
             output.accept(com.paleimitations.schoolsofmagic.common.items.ItemSticker.makeSticker(s));
         }

@@ -4,7 +4,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class ClientManaData implements IClientManaData, INBTSerializable<CompoundTag> {
-
    private boolean isSimpleGui = true;
    private int guiStyle = 0;
    private int guiColor = 0;

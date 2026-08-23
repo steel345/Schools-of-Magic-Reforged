@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public final class WandPersonality {
-
    private WandPersonality() {}
 
    public enum Personality { WANDERING, ADVENTUROUS, AMBIVALENT }

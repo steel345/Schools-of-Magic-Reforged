@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class LecternPageCache {
-
    private static final Map<BlockPos, ItemStack> CACHE = new HashMap<>();
 
    private LecternPageCache() {}

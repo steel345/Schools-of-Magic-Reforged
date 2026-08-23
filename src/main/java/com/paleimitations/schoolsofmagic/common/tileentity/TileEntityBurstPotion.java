@@ -33,7 +33,6 @@ public class TileEntityBurstPotion extends BlockEntity {
    private boolean isLingering = false;
    private boolean isDecorative = false;
    public static final Predicate<LivingEntity> WATER_SENSITIVE = new Predicate<LivingEntity>(){
-
       public boolean apply(@Nullable LivingEntity p_apply_1_) {
          return TileEntityBurstPotion.isWaterSensitiveEntity(p_apply_1_);
       }

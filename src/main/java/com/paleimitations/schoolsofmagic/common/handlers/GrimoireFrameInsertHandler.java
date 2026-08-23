@@ -18,7 +18,6 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GrimoireFrameInsertHandler {
-
    @SubscribeEvent(priority = EventPriority.HIGH)
    public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
       if (event.getHand() != InteractionHand.MAIN_HAND) {

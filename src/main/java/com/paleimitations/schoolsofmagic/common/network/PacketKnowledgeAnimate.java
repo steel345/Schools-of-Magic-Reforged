@@ -9,9 +9,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-// Server -> Client: play the smooth flying-book animation (rendered client-side).
 public class PacketKnowledgeAnimate {
-
    public final BlockPos shelf;
    public final BlockPos lectern;
    public final BlockPos reading;

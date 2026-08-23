@@ -68,6 +68,11 @@ public class ItemPageBase extends Item {
       }
    }
 
+   private static String stripFormatting(String s) {
+      return s.indexOf('/') < 0 ? s
+         : s.replaceAll("/(#[0-9a-fA-F]{6}|[sS]-\\d+|bold|italic|reset|rainbow|[biz])", "");
+   }
+
    public Component getName(ItemStack stack) {
       ensurePage(stack);
       IPage data = CapabilityPage.getCapability(stack);
@@ -78,6 +83,15 @@ public class ItemPageBase extends Item {
                if (element instanceof PageElementStandardText) {
                   title = I18n.get(((PageElementStandardText)element).textLocation);
                   break;
+               }
+
+               if (element instanceof com.paleimitations.schoolsofmagic.common.books.PageElementTitle t) {
+                  String raw = t.text != null && t.text.length > 0 && t.text[0] != null ? t.text[0] : "";
+                  if (!raw.isEmpty()) {
+                     title = stripFormatting(raw);
+                     break;
+                  }
+                  continue;
                }
                if (!(element instanceof PageElementSpellInfo)) continue;
                title = I18n.get("spell." + ((PageElementSpellInfo)element).spell.getName() + ".name") + " " + I18n.get("title.spell_page.name");

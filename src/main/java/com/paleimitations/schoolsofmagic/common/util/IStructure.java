@@ -5,6 +5,5 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 public interface IStructure {
-
    ServerLevel worldServer = ServerLifecycleHooks.getCurrentServer().getLevel(Level.OVERWORLD);
 }

@@ -104,7 +104,6 @@ public class WeatherSoulFog extends WeatherBase {
 
    @Override
    public boolean canEffect(Level world, BlockPos pos) {
-
       return (!this.isNatural || world.getBiome(pos).value().hasPrecipitation())
          && (
             !this.isLocal
@@ -177,7 +176,6 @@ public class WeatherSoulFog extends WeatherBase {
       float start = this.mix(0.75F * event.getFarPlaneDistance(), 0.0F, fog_strength);
       float end = this.mix(event.getFarPlaneDistance(), 45.0F, far_mod);
       if (fog_strength > 0.0F && start < f * 0.75F && end < f) {
-
          event.setNearPlaneDistance(start);
          event.setFarPlaneDistance(end);
       }

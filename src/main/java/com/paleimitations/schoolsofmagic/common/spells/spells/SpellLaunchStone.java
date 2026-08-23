@@ -46,7 +46,6 @@ public class SpellLaunchStone extends Spell {
    @Override
    public InteractionResultHolder<ItemStack> rightClickEffect(Level worldIn, Player playerIn, InteractionHand hand) {
       if (this.castSpell(playerIn, 0.0F)) {
-
          if (!worldIn.isClientSide) {
             EntityCobbleProjectile stone = new EntityCobbleProjectile(worldIn, playerIn);
             stone.setPos(playerIn.getX(), playerIn.getY() + (double) playerIn.getEyeHeight() - 0.1, playerIn.getZ());

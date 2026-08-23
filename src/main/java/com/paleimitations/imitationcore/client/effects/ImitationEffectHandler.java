@@ -102,7 +102,6 @@ public final class ImitationEffectHandler {
    }
 
    private void register(IImitationEffect effect) {
-
       if (!Minecraft.getInstance().isSameThread()) {
          return;
       }

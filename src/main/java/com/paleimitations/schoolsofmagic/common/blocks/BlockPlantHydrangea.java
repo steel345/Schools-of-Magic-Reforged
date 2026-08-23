@@ -19,7 +19,6 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
 public class BlockPlantHydrangea extends SOMBlock implements IPlantable {
-
    public static final IntegerProperty POSITION = IntegerProperty.create("position", 0, 3);
    protected static final VoxelShape BUSH_SHAPE = Block.box(1.6D, 0.0D, 1.6D, 14.4D, 16.0D, 14.4D);
 

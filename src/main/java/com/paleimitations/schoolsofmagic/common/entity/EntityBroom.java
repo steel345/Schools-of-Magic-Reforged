@@ -36,7 +36,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
 public class EntityBroom extends PathfinderMob {
-
    private static final EntityDataAccessor<Integer> SWEEP =
       SynchedEntityData.defineId(EntityBroom.class, EntityDataSerializers.INT);
    public static final int SWEEP_DURATION = 11;

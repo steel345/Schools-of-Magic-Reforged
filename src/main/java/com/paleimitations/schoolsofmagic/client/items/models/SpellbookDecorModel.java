@@ -37,7 +37,6 @@ import net.minecraftforge.client.model.geometry.IUnbakedGeometry;
 import net.minecraftforge.client.model.geometry.UnbakedGeometryHelper;
 
 public class SpellbookDecorModel {
-
    private static final String[] LEATHER = {
       "default", "white", "orange", "magenta", "light_blue", "yellow", "lime", "pink",
       "gray", "silver", "cyan", "purple", "blue", "brown", "green", "red", "black"

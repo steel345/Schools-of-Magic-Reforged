@@ -27,7 +27,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilitySpellButton {
-
    public static final Capability<ISpellButton> CAP = CapabilityManager.get(new CapabilityToken<ISpellButton>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "spell_button");
 

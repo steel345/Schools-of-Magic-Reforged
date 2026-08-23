@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockMetal extends Block {
-
    public static final EnumProperty<EnumMetal> TYPE = EnumProperty.create("type", EnumMetal.class);
 
    public BlockMetal(BlockBehaviour.Properties props) {
@@ -34,5 +33,4 @@ public class BlockMetal extends Block {
          net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
       return java.util.Collections.singletonList(VariantDrop.variantStack(this, state, TYPE));
    }
-
 }

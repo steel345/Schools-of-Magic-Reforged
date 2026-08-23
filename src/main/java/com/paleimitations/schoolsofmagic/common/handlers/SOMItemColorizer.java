@@ -29,12 +29,10 @@ public class SOMItemColorizer implements ItemColor {
 
    @Override
    public int getColor(ItemStack stack, int tintIndex) {
-
       if (stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemPotionCharm charm) {
          return tintIndex == 0 ? charm.getColorFor(stack) : 0xFFFFFFFF;
       }
 
-      // Herb pouch: dyed base (layer 0) like leather, overlay (layer 1) untinted.
       if (stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemHerbPouch pouch) {
          return tintIndex == 0 ? pouch.getColor(stack) : 0xFFFFFFFF;
       }

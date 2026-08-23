@@ -12,6 +12,7 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public interface IManaData {
+   int[] CHARGE_UNLOCK_LEVELS = { 1, 5, 10, 15, 20, 25, 30, 35, 40 };
 
    int getCurrentSpellSlot();
 

@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ClientDummyTicker {
-
    @SubscribeEvent
    public static void onClientTick(TickEvent.ClientTickEvent event) {
       if (event.phase != TickEvent.Phase.END) {

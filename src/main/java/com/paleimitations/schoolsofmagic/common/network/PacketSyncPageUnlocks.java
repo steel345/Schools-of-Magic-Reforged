@@ -5,10 +5,10 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
-// Mirrors the player's unlocked page keys (and which are still flagged new) to their
-// client.
 public class PacketSyncPageUnlocks {
    private final Set<String> keys;
    private final Set<String> unread;
@@ -41,8 +41,9 @@ public class PacketSyncPageUnlocks {
    }
 
    public static void handle(PacketSyncPageUnlocks msg, Supplier<NetworkEvent.Context> ctx) {
-      ctx.get().enqueueWork(() ->
-         com.paleimitations.schoolsofmagic.client.ClientPageUnlocks.set(msg.keys, msg.unread));
-      ctx.get().setPacketHandled(true);
+      NetworkEvent.Context context = ctx.get();
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
+         com.paleimitations.schoolsofmagic.client.ClientPageUnlocks.set(msg.keys, msg.unread)));
+      context.setPacketHandled(true);
    }
 }

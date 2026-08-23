@@ -21,13 +21,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
 
-// Draws the shadow crossing the sun and drains the light out of the sky as it goes.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EclipseSkyHandler {
-
    private static final ResourceLocation ECLIPSE = new ResourceLocation("som", "textures/environment/eclipse.png");
    private static final int FRAMES = 5;
-   // How dark the world goes at totality: near enough to night.
+
    private static final float MAX_DARKEN = 1.0F;
 
    @SubscribeEvent
@@ -37,7 +35,6 @@ public class EclipseSkyHandler {
       ClientEclipse.tick();
    }
 
-   // The sky itself. Drawn after vanilla's, so it lies over the sun.
    @SubscribeEvent
    public static void onRenderSky(RenderLevelStageEvent event) {
       if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_SKY) return;
@@ -57,31 +54,21 @@ public class EclipseSkyHandler {
       RenderSystem.setShader(GameRenderer::getPositionColorShader);
       RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-      // The real sun goes first, under a round patch of plain sky. Round, so there
-      // are no corners to catch the eye, and in the sky's own untouched colour so it
-      // vanishes into the background. The shell below then dims patch and sky alike,
-      // which keeps them matched however dark it gets.
       pose.pushPose();
       pose.mulPose(Axis.YP.rotationDegrees(-90.0F));
       pose.mulPose(Axis.XP.rotationDegrees(mc.level.getTimeOfDay(event.getPartialTick()) * 360.0F));
       sunHider(pose.last().pose(), skyColour(mc, event.getPartialTick()));
       pose.popPose();
 
-      // Everything vanilla drew — blue sky, stars, and the patch above — is buried
-      // under a shell of night, so nothing of the old sky shows through.
       pose.pushPose();
       nightShell(pose.last().pose(), darkness);
       pose.popPose();
 
-      // Vanilla's celestial frame, unaltered, so the disc lands on the sun exactly
-      // rather than beside it. Any offset here reads as a second sun.
       pose.pushPose();
       pose.mulPose(Axis.YP.rotationDegrees(-90.0F));
       pose.mulPose(Axis.XP.rotationDegrees(mc.level.getTimeOfDay(event.getPartialTick()) * 360.0F));
       Matrix4f matrix = pose.last().pose();
 
-      // Added to the sky exactly as vanilla adds the sun, so the black ground of the
-      // art contributes nothing and only the lit part of the disc shows.
       RenderSystem.setShader(GameRenderer::getPositionTexShader);
       RenderSystem.setShaderTexture(0, ECLIPSE);
       RenderSystem.blendFunc(com.mojang.blaze3d.platform.GlStateManager.SourceFactor.SRC_ALPHA,
@@ -103,7 +90,6 @@ public class EclipseSkyHandler {
       return new float[]{(float) c.x, (float) c.y, (float) c.z};
    }
 
-   // A disc of sky big enough to swallow the sun's quad whole.
    private static void sunHider(Matrix4f matrix, float[] colour) {
       float radius = 46.0F;
       float dist = 99.5F;
@@ -119,7 +105,6 @@ public class EclipseSkyHandler {
       com.mojang.blaze3d.vertex.BufferUploader.drawWithShader(buf.end());
    }
 
-   // A box of night around the camera, just inside where the sky was drawn.
    private static void nightShell(Matrix4f matrix, float darkness) {
       float d = 99.0F;
       float a = Mth.clamp(darkness * MAX_DARKEN, 0.0F, 1.0F);
@@ -133,7 +118,6 @@ public class EclipseSkyHandler {
       com.mojang.blaze3d.vertex.BufferUploader.drawWithShader(buf.end());
    }
 
-   // Five of the six sides: the ground below never needs covering.
    private static void face(BufferBuilder buf, Matrix4f m, float a, float d, int side) {
       float[][] c = switch (side) {
          case 0 -> new float[][]{{-d, d, -d}, {d, d, -d}, {d, d, d}, {-d, d, d}};
@@ -147,8 +131,6 @@ public class EclipseSkyHandler {
       }
    }
 
-   // Stage 1 is the newborn eclipse at the right of the strip, and the shadow walks
-   // leftwards from there to totality at the far end.
    private static int frameFor(float shownStage) {
       int stage = Mth.clamp(Math.round(shownStage), 1, FRAMES);
       return FRAMES - stage;
@@ -166,8 +148,6 @@ public class EclipseSkyHandler {
       com.mojang.blaze3d.vertex.BufferUploader.drawWithShader(buf.end());
    }
 
-   // The sky dimming alone leaves the ground lit as if it were noon, so the whole
-   // view is drawn down with it.
    @SubscribeEvent
    public static void onOverlay(net.minecraftforge.client.event.RenderGuiOverlayEvent.Pre event) {
       if (!event.getOverlay().id().equals(
@@ -183,7 +163,6 @@ public class EclipseSkyHandler {
          mc.getWindow().getGuiScaledHeight(), alpha);
    }
 
-   // Pulls the fog down with the sky, so the land dims rather than the sky alone.
    @SubscribeEvent
    public static void onFogColour(ViewportEvent.ComputeFogColor event) {
       float darkness = ClientEclipse.getDarkness();

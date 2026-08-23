@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "BAB", "ABA", "BAB" ],
+  "key": {
+    "A": { "item": "som:gem_spectromancy" },
+    "B": { "item": "minecraft:glass" }
+  },
+  "result": { "item": "som:looking_glass", "count": 5 }
+}

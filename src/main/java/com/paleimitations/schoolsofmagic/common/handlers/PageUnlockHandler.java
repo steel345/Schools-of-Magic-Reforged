@@ -24,11 +24,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
-// Watches for the world events that unlock book pages, then records the unlock,
-// mirrors it to the client and shows the "New pages unlocked" toast.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class PageUnlockHandler {
-
    public static void sync(ServerPlayer player) {
       PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player),
          new PacketSyncPageUnlocks(PageUnlocks.get(player), PageUnlocks.getUnread(player)));
@@ -41,14 +38,53 @@ public class PageUnlockHandler {
          new PacketPageUnlockToast(new ResourceLocation(SchoolsOfMagic.MODID, bookItem)));
    }
 
-   // Living through a darkened sun is what teaches you to write about one.
    public static void eclipseSeen(ServerPlayer player) {
       unlock(player, PageUnlocks.ECLIPSE, "intermediate_spellbook");
    }
 
    @SubscribeEvent
    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
-      if (event.getEntity() instanceof ServerPlayer sp) sync(sp);
+      if (event.getEntity() instanceof ServerPlayer sp) {
+         sync(sp);
+         com.paleimitations.schoolsofmagic.common.commands.CommandWandDisplay.syncTo(sp);
+         announceBookUpdates(sp);
+      }
+   }
+
+   private static void announceBookUpdates(ServerPlayer player) {
+      if (com.paleimitations.schoolsofmagic.common.books.PageUnlocks.getRevision(player)
+            >= com.paleimitations.schoolsofmagic.common.books.BookUpdates.REVISION) {
+         return;
+      }
+      com.paleimitations.schoolsofmagic.common.books.PageUnlocks.setRevision(player,
+         com.paleimitations.schoolsofmagic.common.books.BookUpdates.REVISION);
+
+      for (String bookPath : com.paleimitations.schoolsofmagic.common.books.BookUpdates.CHANGED.keySet()) {
+         if (!carries(player, bookPath)) continue;
+         boolean flagged = false;
+         for (String page : com.paleimitations.schoolsofmagic.common.books.BookUpdates.changedIn(bookPath)) {
+            flagged |= com.paleimitations.schoolsofmagic.common.books.PageUnlocks.flagChanged(player, page);
+         }
+         if (flagged) {
+            PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player),
+               new com.paleimitations.schoolsofmagic.common.network.PacketPageUpdateToast(
+                  new ResourceLocation(SchoolsOfMagic.MODID, bookPath)));
+         }
+      }
+      sync(player);
+   }
+
+   private static boolean carries(ServerPlayer player, String bookPath) {
+      net.minecraft.world.item.Item book = net.minecraftforge.registries.ForgeRegistries.ITEMS
+         .getValue(new ResourceLocation(SchoolsOfMagic.MODID, bookPath));
+      if (book == null) return false;
+      for (net.minecraft.world.item.ItemStack stack : player.getInventory().items) {
+         if (stack.getItem() == book) return true;
+      }
+      for (net.minecraft.world.item.ItemStack stack : player.getInventory().offhand) {
+         if (stack.getItem() == book) return true;
+      }
+      return false;
    }
 
    @SubscribeEvent
@@ -65,9 +101,7 @@ public class PageUnlockHandler {
    public static void onBlockBreak(BlockEvent.BreakEvent event) {
       if (!(event.getPlayer() instanceof ServerPlayer sp)) return;
       Block block = event.getState().getBlock();
-      if (block == BlockRegistry.salt_ore.get()
-         || block == BlockRegistry.deepslate_salt_ore.get()
-         || block == BlockRegistry.fae_salt_ore.get()
+      if (block == BlockRegistry.fae_salt_ore.get()
          || block == BlockRegistry.gypsum_salt_ore.get()
          || block == BlockRegistry.mud_marble_salt_ore.get()
          || block == BlockRegistry.block_of_salt.get()) {
@@ -100,6 +134,17 @@ public class PageUnlockHandler {
       if (hasPureCopper(sp)) {
          unlock(sp, PageUnlocks.COPPER_KEY, "basic_spellbook");
       }
+
+      if (holds(sp, com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.magic_mirror.get())) {
+         unlock(sp, PageUnlocks.MAGIC_MIRROR, "intermediate_spellbook");
+      }
+   }
+
+   private static boolean holds(ServerPlayer player, net.minecraft.world.item.Item item) {
+      for (ItemStack stack : player.getInventory().items) {
+         if (stack.getItem() == item) return true;
+      }
+      return false;
    }
 
    private static boolean hasPureCopper(ServerPlayer player) {

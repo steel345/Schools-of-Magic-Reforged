@@ -26,10 +26,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-// A hanging bead of daylight. It lights the room, and anything undead standing in
-// its reach remembers what daylight is for.
 public class SpellSolarOrb extends Spell {
-
    private static final double PLACE_RANGE = 6.0D;
    private static final double BURN_RANGE = 5.0D;
    private static final int BURN_SECONDS = 4;
@@ -75,7 +72,6 @@ public class SpellSolarOrb extends Spell {
          return new InteractionResultHolder<>(InteractionResult.PASS, held);
       }
 
-      // Vanilla's own light block, set as bright as it goes.
       worldIn.setBlock(at, com.paleimitations.schoolsofmagic.common.registries.BlockRegistry.solar_orb.get()
          .defaultBlockState(), 3);
       worldIn.playSound(null, at, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.2F);
@@ -88,7 +84,6 @@ public class SpellSolarOrb extends Spell {
       return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
    }
 
-   // The first empty block the caster is looking at, or just in front of them.
    private BlockPos findSpot(Level worldIn, Player playerIn) {
       Vec3 hit = SpellUtils.rayTrace(playerIn, PLACE_RANGE, 1.0F, false).getLocation();
       BlockPos spot = BlockPos.containing(hit);
@@ -99,5 +94,4 @@ public class SpellSolarOrb extends Spell {
       }
       return null;
    }
-
 }

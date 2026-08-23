@@ -16,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class ItemSunscreen extends Item {
-
    private static final int DURATION = 600;
 
    public ItemSunscreen(Properties props) {

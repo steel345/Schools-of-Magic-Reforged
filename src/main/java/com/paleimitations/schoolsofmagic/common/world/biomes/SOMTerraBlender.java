@@ -11,7 +11,6 @@ public final class SOMTerraBlender {
    private SOMTerraBlender() {}
 
    public static void register() {
-
       Regions.register(new SOMRegion(new ResourceLocation(SchoolsOfMagic.MODID, "overworld"), 14));
       SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, SchoolsOfMagic.MODID, makeSurfaceRules());
    }

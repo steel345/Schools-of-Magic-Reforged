@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockMagicPlant extends BushBlock {
-
    public static final EnumProperty<EnumMagicType> TYPE = EnumProperty.create("type", EnumMagicType.class);
 
    public BlockMagicPlant(BlockBehaviour.Properties props) {

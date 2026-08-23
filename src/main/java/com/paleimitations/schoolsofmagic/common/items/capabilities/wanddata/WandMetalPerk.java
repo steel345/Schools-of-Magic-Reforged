@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public final class WandMetalPerk {
-
    private WandMetalPerk() {}
 
    public static final float ALL_POWER = 2.0F * WandGemBuff.POWER_BONUS_LEVELS;

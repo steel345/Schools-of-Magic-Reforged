@@ -39,7 +39,6 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class EntityFlowerFae extends Animal implements net.minecraft.world.item.trading.Merchant {
-
    public static final String[] VARIANTS = {
       "blue", "blue_peach", "blue_pink", "blue_purple", "blue_purple_blush", "blue_snow",
       "blue_sunset", "blue_white", "light_pink", "peach", "peach_pink", "pink",

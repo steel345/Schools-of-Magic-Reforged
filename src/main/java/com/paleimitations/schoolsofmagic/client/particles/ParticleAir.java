@@ -5,7 +5,6 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.TextureSheetParticle;
 
 public class ParticleAir extends TextureSheetParticle {
-
    public ParticleAir(ClientLevel world, double xCoordIn, double yCoordIn, double zCoordIn, int particleAge, int particleMaxAge, float red, float green, float blue, float alpha) {
       super(world, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
       this.rCol = red;
@@ -25,7 +24,6 @@ public class ParticleAir extends TextureSheetParticle {
 
    @Override
    public void move(double x, double y, double z) {
-
    }
 
    @Override

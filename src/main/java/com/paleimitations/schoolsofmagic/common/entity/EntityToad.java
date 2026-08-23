@@ -394,7 +394,6 @@ public class EntityToad extends Animal {
    @Nullable
    @Override
    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
-
       spawnData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
       int i = this.getRandomToadType();
       boolean flag = false;

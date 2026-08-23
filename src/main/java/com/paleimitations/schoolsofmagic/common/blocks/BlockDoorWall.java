@@ -22,7 +22,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockDoorWall extends SOMBlock {
-
    public static final BooleanProperty KEYHOLE = BooleanProperty.create("keyhole");
    public static final BooleanProperty LOCKED = BooleanProperty.create("locked");
 

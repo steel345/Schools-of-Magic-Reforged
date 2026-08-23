@@ -6,6 +6,7 @@ import com.paleimitations.schoolsofmagic.common.registries.BasinRecipeRegistry;
 import com.paleimitations.schoolsofmagic.common.registries.BiomeRegistry;
 import com.paleimitations.schoolsofmagic.common.registries.BlockRegistry;
 import com.paleimitations.schoolsofmagic.common.registries.BookPageRegistry;
+import com.paleimitations.schoolsofmagic.common.registries.EnchantmentRegistry;
 import com.paleimitations.schoolsofmagic.common.registries.BuyableRegistry;
 import com.paleimitations.schoolsofmagic.common.registries.DimensionRegistry;
 import com.paleimitations.schoolsofmagic.common.registries.EntityRegistry;
@@ -31,13 +32,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 
 public class RegistryHandler {
-
    public static void register(IEventBus modBus) {
       BlockRegistry.register(modBus);
       ItemRegistry.register(modBus);
       TileEntityRegistry.register(modBus);
       EntityRegistry.register(modBus);
       PotionRegistry.register(modBus);
+      EnchantmentRegistry.register(modBus);
       PotionTypeRegistry.register(modBus);
       MenuTypeRegistry.register(modBus);
       StructureRegistry.register(modBus);
@@ -53,7 +54,6 @@ public class RegistryHandler {
 
    public static void commonSetup(FMLCommonSetupEvent event) {
       event.enqueueWork(() -> {
-
          net.minecraftforge.common.crafting.CraftingHelper.register(
             com.paleimitations.schoolsofmagic.common.crafting.BlockStateVariantIngredient.ID,
             com.paleimitations.schoolsofmagic.common.crafting.BlockStateVariantIngredient.SERIALIZER);
@@ -87,10 +87,8 @@ public class RegistryHandler {
    }
 
    public static void loadComplete(FMLLoadCompleteEvent event) {
-
    }
 
    public static void serverStarting(ServerStartingEvent event) {
-
    }
 }

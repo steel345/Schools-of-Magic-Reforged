@@ -12,7 +12,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
 public class SOMChestBoat extends ChestBoat {
-
    private static final EntityDataAccessor<String> WOOD =
       SynchedEntityData.defineId(SOMChestBoat.class, EntityDataSerializers.STRING);
 

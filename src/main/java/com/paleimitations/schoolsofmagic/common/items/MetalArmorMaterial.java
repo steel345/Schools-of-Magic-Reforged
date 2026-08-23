@@ -4,25 +4,32 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import com.paleimitations.schoolsofmagic.common.blocks.EnumMetal;
+import com.paleimitations.schoolsofmagic.common.registries.ItemRegistry;
+
 public enum MetalArmorMaterial implements ArmorMaterial {
-   SILVER("silver", new int[]{2, 5, 6, 2}, 15, 0, 12),
-   COPPER("copper", new int[]{2, 5, 6, 2}, 15, 60, 0),
-   BRONZE("bronze", new int[]{1, 3, 5, 2}, 7, 65, 25),
-   BRASS("brass", new int[]{3, 6, 7, 3}, 10, 0, 9),
-   STEEL("steel", new int[]{1, 4, 5, 1}, 15, 0, 9);
+   SILVER("silver", EnumMetal.SILVER, new int[]{2, 5, 6, 2}, 15, 0, 12),
+   COPPER("copper", EnumMetal.COPPER, new int[]{2, 5, 6, 2}, 15, 60, 0),
+   BRONZE("bronze", EnumMetal.BRONZE, new int[]{1, 3, 5, 2}, 7, 65, 25),
+   BRASS("brass", EnumMetal.BRASS, new int[]{3, 6, 7, 3}, 10, 0, 9),
+   STEEL("steel", EnumMetal.STEEL, new int[]{1, 4, 5, 1}, 15, 0, 9);
 
    private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
 
    private final String metal;
+
+   private final EnumMetal metalType;
    private final int[] protection;
    private final int durabilityMultiplier;
    private final int durabilityBonus;
    private final int enchantment;
 
-   MetalArmorMaterial(String metal, int[] protection, int durabilityMultiplier, int durabilityBonus, int enchantment) {
+   MetalArmorMaterial(String metal, EnumMetal metalType, int[] protection, int durabilityMultiplier, int durabilityBonus, int enchantment) {
       this.metal = metal;
+      this.metalType = metalType;
       this.protection = protection;
       this.durabilityMultiplier = durabilityMultiplier;
       this.durabilityBonus = durabilityBonus;
@@ -49,9 +56,19 @@ public enum MetalArmorMaterial implements ArmorMaterial {
       return SoundEvents.ARMOR_EQUIP_IRON;
    }
 
+   public EnumMetal getMetalType() {
+      return this.metalType;
+   }
+
+   public ItemStack getIngot() {
+      ItemStack ingot = new ItemStack(ItemRegistry.ingot.get());
+      ingot.setDamageValue(this.metalType.getIndex());
+      return ingot;
+   }
+
    @Override
    public Ingredient getRepairIngredient() {
-      return Ingredient.EMPTY;
+      return Ingredient.of(this.getIngot());
    }
 
    @Override

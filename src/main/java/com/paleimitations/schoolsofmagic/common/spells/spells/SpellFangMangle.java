@@ -31,7 +31,7 @@ public class SpellFangMangle extends Spell {
          new ResourceLocation("som", "fang_mangle"),
          20.0F,
          false,
-         9,
+         10,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),

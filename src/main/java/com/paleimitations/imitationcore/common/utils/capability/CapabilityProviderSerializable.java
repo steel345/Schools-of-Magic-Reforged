@@ -9,7 +9,6 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public class CapabilityProviderSerializable<HANDLER extends INBTSerializable<Tag>>
       extends CapabilityProviderSimple<HANDLER> implements INBTSerializable<Tag> {
-
    public CapabilityProviderSerializable(Capability<HANDLER> capability, @Nullable Direction facing, HANDLER instance) {
       super(instance, capability, facing);
    }

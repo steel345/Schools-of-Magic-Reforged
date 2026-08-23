@@ -16,7 +16,6 @@ import net.minecraft.world.item.crafting.SmithingRecipe;
 import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 
 public class BookDecorJeiRecipes {
-
    private static ItemStack ingot(int meta) {
       ItemStack s = new ItemStack(ItemRegistry.ingot.get());
       s.setDamageValue(meta);

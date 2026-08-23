@@ -22,27 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting;
 
-// A Patchouli-style, declaratively-authored page. Write
-// assets/som/book_pages/<name>.json with an ordered "elements" array; the pieces
-// auto-stack down the page and the body auto-flows into the standard two-column
-// template (title + body on the SAME page, overflowing to further spreads).
-//
-//   { "elements": [
-//       { "type": "image", "image": "som:textures/gui/books/header.png", "width": 116, "height": 31 },
-//       { "type": "3d", "item": "minecraft:lodestone", "size": 24, "spin": true },
-//       { "type": "multiblock", "size": 15, "build": true,
-//         "legend": { "L": "minecraft:lapis_block", "G": "minecraft:gold_block" },
-//         "pattern": [ ["LLL","L L","LLL"], ["   "," G ","   "] ] },
-//       { "type": "title", "text": "page.som.my_page.title" },
-//       { "type": "text",  "text": "page.som.my_page.text" }
-//   ] }
-//
-// Any figure may carry x_pos/y_pos to place it absolutely; otherwise it is
-// centred and stacked. The JSON is read off the classpath so the element
-// structure exists on both sides (no desync); text is resolved from the "text"
-// translation key on the client. Existing hand-built pages are unaffected.
 public class BookPageJson extends BookPage {
-
    private static final int CENTER_X = 128;
 
    public BookPageJson(String name) {
@@ -76,14 +56,10 @@ public class BookPageJson extends BookPage {
       return o.has(key) && o.get(key).isJsonPrimitive() ? o.get(key).getAsString() : null;
    }
 
-   // True when a page of this name is authored as JSON, so other page types can
-   // prefer it over their built-in layout.
    public static boolean exists(String name) {
       return read(name) != null;
    }
 
-   // The elements of a JSON-authored page, for pages that are assembled in code but
-   // want to be overridable by a JSON file.
    public static List<PageElement> elementsFor(String name) {
       return buildElements(name);
    }
@@ -94,12 +70,10 @@ public class BookPageJson extends BookPage {
       if (root == null || !root.has("elements") || !root.get("elements").isJsonArray()) return els;
 
       int cursorY = 6;
-      int rightTop = 50; // right page has no title, so its column starts near the top
-      // A spell/potion figure occupies the whole left page, so the body starts on the
-      // right instead of underneath it.
+      int rightTop = 50;
+
       boolean leftFigure = false;
-      // Pre-pass: a recipe/template on the right half must be known BEFORE any text is
-      // laid out, regardless of element order, so the body never flows under it.
+
       boolean rightTemplate = false;
       for (JsonElement je : root.getAsJsonArray("elements")) {
          if (!je.isJsonObject()) continue;
@@ -125,8 +99,7 @@ public class BookPageJson extends BookPage {
                int yp = i(o, "y_pos", -1);
                int y = yp >= 0 ? yp : cursorY;
                els.add(new PageElementImage(new ResourceLocation(img), xp, y, 0, 0, w, h, 1.0F, false));
-               // A full-canvas header overlay (its art baked near the top) reserves a
-               // header band; a small banner just advances by its own height.
+
                if (h >= 150) { cursorY = Math.max(cursorY, 90); rightTop = Math.max(rightTop, 90); }
                else cursorY = y + h + 5;
                break;
@@ -135,7 +108,7 @@ public class BookPageJson extends BookPage {
                String key = s(o, "text");
                if (key == null) break;
                int yp = i(o, "y_pos", -1);
-               // Match the rest of the book's pages (title y58, body starts y65).
+
                int y = yp >= 0 ? yp : (cursorY <= 6 ? 58 : cursorY);
                els.add(new PageElementStandardText(key, 72, y, 99, 16, 0, true));
                cursorY = y + 7;
@@ -189,13 +162,11 @@ public class BookPageJson extends BookPage {
                break;
             }
             case "spotlight": {
-               // A centred row of enlarged item icons under the title; the body then
-               // makes room and flows below (like the mushroom pages).
                List<ItemStack> items = itemList(o);
                if (items.isEmpty()) break;
                float scale = f(o, "scale", 2.0F);
                int iconW = Math.round(16.0F * scale);
-               int gap = Math.round(8.0F * scale);
+               int gap = i(o, "gap", Math.round(8.0F * scale));
                int total = items.size() * iconW + (items.size() - 1) * gap;
                int startX = i(o, "x_pos", (256 - total) / 2);
                int y = i(o, "y_pos", cursorY + 2);
@@ -204,7 +175,9 @@ public class BookPageJson extends BookPage {
                }
                int bottom = y + iconW + 8;
                cursorY = bottom;
-               rightTop = Math.max(rightTop, bottom);
+               if (startX + total > 128) {
+                  rightTop = Math.max(rightTop, bottom);
+               }
                break;
             }
             case "template": {
@@ -220,9 +193,13 @@ public class BookPageJson extends BookPage {
                if (addRecipe(type, o, els)) rightTemplate = true;
                break;
             }
+            case "description": {
+               String key = s(o, "text");
+               if (key == null) break;
+               els.add(new PageElementDescription(key));
+               break;
+            }
             case "spell": {
-               // The spell's own info block fills the left page; the body text then
-               // flows down the right-hand column.
                String id = s(o, "spell");
                com.paleimitations.schoolsofmagic.common.spells.Spell spell = findSpell(id);
                if (spell == null) break;
@@ -231,8 +208,6 @@ public class BookPageJson extends BookPage {
                break;
             }
             case "potion_effect": {
-               // A full potion figure (lock, sigil, icon, ingredient, bottle, timer)
-               // on the left, plus whatever recipes make that ingredient.
                net.minecraft.world.effect.MobEffect effect =
                   ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(s(o, "effect") == null ? "" : s(o, "effect")));
                if (effect == null) break;
@@ -243,8 +218,7 @@ public class BookPageJson extends BookPage {
                if (school == null || element == null) break;
                net.minecraft.world.effect.MobEffectInstance inst = new net.minecraft.world.effect.MobEffectInstance(
                   effect, i(o, "duration", 3600), i(o, "amplifier", 0));
-               // The ingredient is whatever the cauldron brews this effect from; an
-               // explicit "ingredient" only acts as an override.
+
                ItemStack ingredient = o.has("ingredient") ? itemStack(s(o, "ingredient"), 1) : brewingIngredient(effect);
                els.addAll(BookPagePotionEffect.visualElements(inst, ingredient, school, element));
                addIngredientRecipes(ingredient, els);
@@ -256,21 +230,17 @@ public class BookPageJson extends BookPage {
                if (key == null) break;
                boolean explicitY = o.has("y_pos");
                int textTop = i(o, "y_pos", cursorY);
-               // The left column sits below the title; the right page has no title, so
-               // its column starts near the top (unless the author pinned text y_pos,
-               // in which case both columns honour it).
+
                int rightColTop = explicitY ? textTop : rightTop;
                int hL = Math.max(24, 188 - textTop);
                int hR = Math.max(24, 188 - rightColTop);
                List<ParagraphBox> boxes = Lists.newArrayList();
-               // A spell/potion figure owns the left page, so the body starts in the
-               // right column; otherwise it starts on the left as usual.
+
                if (leftFigure) {
                   boxes.add(new ParagraphBox(134, rightColTop, 0, 99, hR));
                } else {
                   boxes.add(new ParagraphBox(23, textTop, 0, 99, hL));
-                  // A side template (recipe on the right half) keeps the first page one
-                  // column so the body doesn't run under it; later spreads use both.
+
                   if (!rightTemplate) boxes.add(new ParagraphBox(134, rightColTop, 0, 99, hR));
                }
                boxes.add(new ParagraphBox(23, 50, 1, 99, 140));
@@ -286,9 +256,6 @@ public class BookPageJson extends BookPage {
       return els;
    }
 
-   // Builds a recipe template element from JSON. Returns true if it sits on the
-   // right half (so the body text stays in the left column). Positions default to
-   // the right side and can be overridden with x_pos/y_pos.
    private static boolean addRecipe(String kind, JsonObject o, List<PageElement> els) {
       switch (kind) {
          case "crafting": {
@@ -375,8 +342,6 @@ public class BookPageJson extends BookPage {
       return null;
    }
 
-   // Finds what the cauldron brews a given effect from, by scanning the brewing
-   // recipes for one whose result carries that effect and taking its catalyst.
    private static ItemStack brewingIngredient(net.minecraft.world.effect.MobEffect effect) {
       for (net.minecraftforge.common.brewing.IBrewingRecipe recipe
            : net.minecraftforge.common.brewing.BrewingRecipeRegistry.getRecipes()) {
@@ -395,7 +360,6 @@ public class BookPageJson extends BookPage {
       return ItemStack.EMPTY;
    }
 
-   // Mirrors the potion pages: show how the brewing ingredient itself is made.
    private static void addIngredientRecipes(ItemStack ingredient, List<PageElement> els) {
       if (ingredient.isEmpty()) return;
       if (ingredient.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.crushed_plant.get()) {
@@ -465,10 +429,20 @@ public class BookPageJson extends BookPage {
 
    private static ItemStack itemStack(String id, int count) {
       if (id == null || id.isEmpty()) return ItemStack.EMPTY;
+      int at = id.indexOf('@');
+      int damage = 0;
+      if (at > 0) {
+         try {
+            damage = Math.max(0, Integer.parseInt(id.substring(at + 1)));
+         } catch (NumberFormatException ignored) {
+         }
+         id = id.substring(0, at);
+      }
       Item it = ForgeRegistries.ITEMS.getValue(new ResourceLocation(id));
       if (it == null) return ItemStack.EMPTY;
       ItemStack st = new ItemStack(it);
       st.setCount(Math.max(1, count));
+      if (damage > 0) st.setDamageValue(damage);
       return st;
    }
 

@@ -16,6 +16,15 @@
       }
     ]
   },
+  "spells.recall": {
+    "subtitle": "spells.recall",
+    "sounds": [
+      {
+        "name": "som:spells/recall",
+        "stream": true
+      }
+    ]
+  },
   "spells.whisper": {
     "subtitle": "spells.whisper",
     "sounds": [

@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class ModelMagicCircle<T extends Entity> extends MowzieModelBase<T> {
-
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "magic_circle"), "main");
 
@@ -34,6 +33,5 @@ public class ModelMagicCircle<T extends Entity> extends MowzieModelBase<T> {
    @Override
    public void setupAnim(T entity, float limbSwing, float limbSwingAmount,
                          float ageInTicks, float netHeadYaw, float headPitch) {
-
    }
 }

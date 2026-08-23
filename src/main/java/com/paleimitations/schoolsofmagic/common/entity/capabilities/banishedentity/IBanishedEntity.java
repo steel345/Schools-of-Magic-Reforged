@@ -8,7 +8,6 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public interface IBanishedEntity {
-
    Map<CompoundTag, Vec3i> getBanishedEntity();
 
    void setBanishedEntity(Map<CompoundTag, Vec3i> var1);
@@ -18,7 +17,6 @@ public interface IBanishedEntity {
    @Deprecated void banishEntity(int var1, CompoundTag var2, int var3);
 
    default void banishEntity(EntityType<?> type, CompoundTag entityData, int timer) {
-
       banishEntity(0, entityData, timer);
    }
 

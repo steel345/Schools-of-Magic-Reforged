@@ -13,7 +13,6 @@ public class BookPagePlantDescription extends BookPage {
    public final IMagicType type;
 
    private static String resolveTitleKey(EnumPlantType plantType) {
-
       switch (plantType) {
          case PYROMANCY: case HELIOMANCY: case AEROMANCY: case GEOMANCY:
          case ANIMANCY: case ELECTROMANCY: case HYDROMANCY: case CRYOMANCY:
@@ -57,7 +56,6 @@ public class BookPagePlantDescription extends BookPage {
       }
 
       if (plantType.getIndex() < 18 && plantType.getIndex() > 0) {
-
          ItemStack seedKey = new ItemStack(ItemRegistry.seed_magic_plant.get());
          seedKey.setDamageValue(plantType.getIndex() - 1);
          for (RecipeMortNPest recipe : RecipeRegistry.getMortarRecipeByInput(seedKey)) {

@@ -12,8 +12,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
-// Washes the colour out of the flames a meteor leaves behind, so they burn a pale
-// ashen white rather than orange.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Bus.MOD)
 public class SOMMeteorFireColorizer implements BlockColor {
    public static final SOMMeteorFireColorizer INSTANCE = new SOMMeteorFireColorizer();

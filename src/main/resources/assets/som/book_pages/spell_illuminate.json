@@ -7,6 +7,10 @@
     {
       "type": "text",
       "text": "  Illuminate lays a light on a creature so you can pick it out through walls and in the dark. It is the glowing effect, nothing more.\n\n  Cast it on yourself or touch it onto another creature. It works on anything living, friendly or not.\n\n  How long it lasts depends on the spell charge level you cast it at. Level 0 gives 10 seconds, and every level above that adds another 10: 20 seconds at level 1, 30 at level 2, and so on.\n\n  It costs 10 mana."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_illuminate.desc"
     }
   ]
 }

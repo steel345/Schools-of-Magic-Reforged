@@ -17,7 +17,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 public class ItemSilverBell extends Item {
-
    public ItemSilverBell(Properties props) {
       super(props);
    }

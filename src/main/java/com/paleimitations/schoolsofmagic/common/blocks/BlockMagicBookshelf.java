@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockMagicBookshelf extends Block {
-
    public static final EnumProperty<EnumWoodType> TYPE = EnumProperty.create("type", EnumWoodType.class);
 
    public BlockMagicBookshelf(BlockBehaviour.Properties props) {
@@ -46,5 +45,4 @@ public class BlockMagicBookshelf extends Block {
          net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
       return java.util.Collections.singletonList(VariantDrop.variantStack(this, state, TYPE));
    }
-
 }

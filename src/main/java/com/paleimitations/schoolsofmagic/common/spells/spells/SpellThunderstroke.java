@@ -33,7 +33,7 @@ public class SpellThunderstroke extends Spell {
          new ResourceLocation("som", "thunderstroke"),
          25.0F,
          false,
-         13,
+         15,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),

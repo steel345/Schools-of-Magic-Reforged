@@ -17,7 +17,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import java.util.List;
 
 public class SetRandomSpell extends LootItemConditionalFunction {
-
    public static LootItemFunctionType TYPE;
 
    protected SetRandomSpell(List<LootItemCondition> conditionsIn) {

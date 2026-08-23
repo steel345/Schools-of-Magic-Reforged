@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockDirectional extends SOMBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
    public BlockDirectional(BlockBehaviour.Properties props) {

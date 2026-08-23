@@ -6,7 +6,6 @@ import java.util.Map;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class SOMFairyConfig {
-
    public static final ForgeConfigSpec SPEC;
 
    public static ForgeConfigSpec.DoubleValue PERK_RADIUS;

@@ -31,7 +31,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class RitualNatureSpirit extends Ritual {
-
    private static final int EMERGE_START = 5;
    private static final int TWIRL_END = 42;
    private static final int FORM_END = 82;

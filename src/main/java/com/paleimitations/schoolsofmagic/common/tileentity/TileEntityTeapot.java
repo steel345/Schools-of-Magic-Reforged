@@ -123,7 +123,6 @@ public class TileEntityTeapot extends BlockEntity {
       }
 
       if (this.level.isClientSide) {
-
          return;
       }
 

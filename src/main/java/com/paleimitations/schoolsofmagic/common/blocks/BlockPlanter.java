@@ -14,7 +14,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockPlanter extends Block {
-
    public static final EnumProperty<EnumWoodType> TYPE = EnumProperty.create("type", EnumWoodType.class);
    public static final BooleanProperty NORTH = BooleanProperty.create("north");
    public static final BooleanProperty SOUTH = BooleanProperty.create("south");
@@ -74,5 +73,4 @@ public class BlockPlanter extends Block {
          net.minecraft.world.level.storage.loot.LootParams.Builder builder) {
       return java.util.Collections.singletonList(VariantDrop.variantStack(this, state, TYPE));
    }
-
 }

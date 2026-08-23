@@ -26,7 +26,6 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.RegistryObject;
 
 public class BookSpellwork {
-
    private static final float TEXT_SCALE = 0.75F;
 
    private static ItemStack stack(RegistryObject<Item> item) {
@@ -161,9 +160,9 @@ public class BookSpellwork {
          }), stack(ItemRegistry.scroll_seal, 0), 38, 90, 0),
          new PageElementStandardText("page.spellwork_scroll_parchment.title", 184, 58, 99, 16, 0, true),
          new PageElementCraftingRecipe(Lists.newArrayList(new ItemStack[]{
-            e, new ItemStack(Items.STICK), e,
-            e, new ItemStack(Items.PAPER), e,
-            e, new ItemStack(Items.STICK), e
+            new ItemStack(Items.STRING), new ItemStack(Items.PAPER), e,
+            e, e, e,
+            e, e, e
          }), stack(ItemRegistry.spell_parchment), 150, 90, 0)
       })).addToList(BookPageRegistry.SPELLWORK_BOOK);
 

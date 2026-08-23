@@ -4,7 +4,6 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public final class SOMWoodTypes {
-
    public static final WoodType ACOLYTE   = WoodType.register(new WoodType("som:acolyte",   BlockSetType.OAK));
    public static final WoodType VERMILION = WoodType.register(new WoodType("som:vermilion", BlockSetType.OAK));
    public static final WoodType BASTION   = WoodType.register(new WoodType("som:bastion",   BlockSetType.OAK));

@@ -5,7 +5,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 public final class SOMBoats {
-
    public static final String[] WOODS = { "ash", "elder", "pine", "willow", "yew", "verde" };
 
    private SOMBoats() {}

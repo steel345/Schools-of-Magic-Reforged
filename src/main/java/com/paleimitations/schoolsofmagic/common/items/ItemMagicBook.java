@@ -25,7 +25,6 @@ public class ItemMagicBook extends ItemBookBase implements IMagicType {
    }
 
    public static ItemStack initializeBook(ItemStack stack) {
-
       stack.getOrCreateTag().putInt("CustomModelData", stack.getDamageValue() + 1);
       IBook book = CapabilityBook.getCapability(stack);
       if (book != null) {
@@ -143,7 +142,6 @@ public class ItemMagicBook extends ItemBookBase implements IMagicType {
 
    @Override
    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> items) {
-
       for (int i = 0; i < EnumMagicType.values().length; ++i) {
          ItemStack stack = new ItemStack(this);
          stack.setDamageValue(i);

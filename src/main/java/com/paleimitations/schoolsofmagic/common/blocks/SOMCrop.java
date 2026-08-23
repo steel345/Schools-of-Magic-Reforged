@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class SOMCrop extends CropBlock {
-
    public SOMCrop(BlockBehaviour.Properties props) {
       super(props);
    }

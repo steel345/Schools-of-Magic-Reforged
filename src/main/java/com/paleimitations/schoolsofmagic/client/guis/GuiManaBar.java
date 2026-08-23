@@ -401,12 +401,28 @@ public class GuiManaBar {
       this.progressBarMana.draw(gg);
       this.progressBarDeadMana.setMin(Math.round(mana.getDeadMana())).setMax(mana.getMaxMana());
       this.progressBarDeadMana.draw(gg);
+
+      float concentration = concentrationProgress(player);
+      if (concentration <= 0.0F) {
+         concentration = com.paleimitations.schoolsofmagic.client.events.RingHudHandler.concentrationProgress();
+      }
+      if (concentration > 0.0F) {
+         int opposite = 0xFFFFFF ^ manaTextColor;
+         float cr = Math.max(0.55F, (opposite >> 16 & 0xFF) / 255.0F);
+         float cg = Math.max(0.55F, (opposite >> 8 & 0xFF) / 255.0F);
+         float cb = Math.max(0.55F, (opposite & 0xFF) / 255.0F);
+         com.mojang.blaze3d.systems.RenderSystem.setShaderColor(cr, cg, cb, 1.0F);
+         this.progressBarDeadMana.draw(gg, concentration);
+         this.progressBarMana.draw(gg, concentration);
+         gg.flush();
+         com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+      }
       this.progressBarXP
          .setMin(Math.round(mana.getMagicianXPToNextLevel().getA()))
          .setMax(Math.round(mana.getMagicianXPToNextLevel().getB()));
       this.progressBarXP.draw(gg);
       this.drawManaPool(gg, loctaion, poolX + xPos, poolY + yPos, poolTextX, poolTextY, poolWidth, poolHeight, guiColor, manaTextColor, mana.getMana());
-      this.drawCenteredTextWithinBox(gg, levelBox, levelTextColor, (float) xPos + levelTextX, (float) yPos + levelTextY, String.valueOf(mana.getLevel() + 1));
+      this.drawCenteredTextWithinBox(gg, levelBox, levelTextColor, (float) xPos + levelTextX, (float) yPos + levelTextY, String.valueOf(mana.getLevel()));
       if (mana.getMana() + mana.getDeadMana() == (float) mana.getMaxMana()) {
          this.drawGem(gg, isVertical, loctaion, gemX + xPos, gemY + yPos, gemTextX, gemTextY, gemWidth, gemHeight, guiColor);
       }
@@ -414,6 +430,19 @@ public class GuiManaBar {
 
       com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
       com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+   }
+
+   private static float concentrationProgress(net.minecraft.world.entity.player.Player player) {
+      if (player == null || !player.isUsingItem()) return 0.0F;
+      net.minecraft.world.item.ItemStack using = player.getUseItem();
+      if (!(using.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemBaseWand wand)) return 0.0F;
+      com.paleimitations.schoolsofmagic.common.spells.Spell spell = wand.getCurrentSpell(player, using);
+      if (spell == null || spell.getUseLength() <= 0) return 0.0F;
+      int total = using.getUseDuration();
+      if (total <= 0) total = spell.getUseLength();
+      if (total <= 0) return 0.0F;
+      float used = (float) (total - player.getUseItemRemainingTicks()) + Minecraft.getInstance().getPartialTick();
+      return net.minecraft.util.Mth.clamp(used / (float) total, 0.0F, 1.0F);
    }
 
    private void drawCenteredTextWithinBox(GuiGraphics gg, float boxSize, int textColor, float x, float y, String s) {

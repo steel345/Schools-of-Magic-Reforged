@@ -1,8 +1,6 @@
 package com.paleimitations.schoolsofmagic.common.network;
 
-import com.paleimitations.schoolsofmagic.SchoolsOfMagic;
 import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
@@ -31,13 +29,8 @@ public class PacketOpenLecternBook {
 
    public static void handle(PacketOpenLecternBook msg, Supplier<NetworkEvent.Context> ctx) {
       NetworkEvent.Context context = ctx.get();
-      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-         net.minecraft.world.entity.player.Player player = Minecraft.getInstance().player;
-         if (player == null || msg.book.isEmpty()) return;
-         com.paleimitations.schoolsofmagic.common.items.ItemBookBase.ensureInitialized(msg.book);
-         com.paleimitations.schoolsofmagic.common.items.ItemBookBase.refreshIfPristine(msg.book);
-         SchoolsOfMagic.proxy.openStandardBook(player, msg.book, msg.pos);
-      }));
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->
+         com.paleimitations.schoolsofmagic.client.ClientLecternBook.open(msg.book, msg.pos)));
       context.setPacketHandled(true);
    }
 }

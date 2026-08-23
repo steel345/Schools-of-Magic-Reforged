@@ -40,7 +40,6 @@ public class ParticleSnore extends TextureSheetParticle {
 
    @Override
    public void render(VertexConsumer buffer, Camera renderInfo, float partialTicks) {
-
       if (this.sprite == null) return;
       float f = ((float)this.age + partialTicks) / (float)this.lifetime * 32.0F;
       f = Mth.clamp(f, 0.0F, 1.0F);

@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockTile extends Block {
-
    public static final EnumProperty<EnumTileStyles> VARIANT = EnumProperty.create("variant", EnumTileStyles.class);
 
    public BlockTile(BlockBehaviour.Properties props) {

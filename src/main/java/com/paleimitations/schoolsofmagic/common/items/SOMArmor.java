@@ -8,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class SOMArmor extends ArmorItem {
-
    public static final ArmorMaterial MATERIAL = new ArmorMaterial() {
       private final int[] durabilities = new int[]{13, 15, 16, 11};
       private final int[] protections = new int[]{4, 7, 9, 4};

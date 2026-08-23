@@ -31,7 +31,6 @@ public class TileEntityHerbalTwine extends BlockEntity {
    }
 
    public void incrementDry() {
-
       int newAge = this.level.getBlockState(this.worldPosition).getValue(BlockHerbalTwine.AGE) + 1;
       EnumPlantType type = this.getPlantType();
       this.level.setBlockAndUpdate(this.worldPosition, BlockRegistry.herbal_twine.get().defaultBlockState()
@@ -61,7 +60,6 @@ public class TileEntityHerbalTwine extends BlockEntity {
 
    public static ItemStack getDriedItem(ItemStack stack) {
       if (stack.getItem() == BlockRegistry.magic_plant.get().asItem()) {
-
          net.minecraft.nbt.CompoundTag tag = stack.getTag();
          String type = (tag != null && tag.contains("BlockStateTag"))
             ? tag.getCompound("BlockStateTag").getString("type") : "pyromancy";

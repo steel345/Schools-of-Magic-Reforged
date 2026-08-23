@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class BlockMagicOre extends Block {
-
    public static final EnumProperty<EnumMagicType> TYPE = EnumProperty.create("type", EnumMagicType.class);
 
    private static final Set<EnumMagicType> DIAMOND_XP_TYPES = EnumSet.of(
@@ -56,5 +55,4 @@ public class BlockMagicOre extends Block {
          net.minecraft.world.level.block.state.BlockState state) {
       return VariantDrop.variantStack(this, state, TYPE);
    }
-
 }

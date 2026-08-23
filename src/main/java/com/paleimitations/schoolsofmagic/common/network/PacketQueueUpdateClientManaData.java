@@ -9,7 +9,6 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
 
 public class PacketQueueUpdateClientManaData {
-
    public PacketQueueUpdateClientManaData() {
    }
 

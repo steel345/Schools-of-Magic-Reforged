@@ -16,6 +16,11 @@ public final class WandIconCache {
    private static final ResourceLocation DEFAULT_FALLBACK =
       new ResourceLocation("som", "textures/items/wand_core_ash.png");
    private static final Map<String, ResourceLocation> CACHE = new HashMap<>();
+   private static final Map<ResourceLocation, NativeImage> IMAGES = new HashMap<>();
+
+   public static NativeImage getImage(ResourceLocation id) {
+      return IMAGES.get(id);
+   }
 
    private WandIconCache() {}
 
@@ -27,19 +32,72 @@ public final class WandIconCache {
       String core = data.getCoreType().getSerializedName();
       String handle = data.getHandleType().getSerializedName();
       String gem = data.getGemType().getSerializedName();
-      String key = core + "_" + handle + "_" + gem;
+      boolean small = com.paleimitations.schoolsofmagic.client.ClientWandDisplay.smallIcons();
+      String key = (small ? "s_" : "l_") + core + "_" + handle + "_" + gem;
       ResourceLocation cached = CACHE.get(key);
       if (cached != null) return cached;
 
-      NativeImage base = loadLayer("wand_core_" + core);
-      if (base == null) return DEFAULT_FALLBACK;
-      blendOnto(base, loadLayer("wand_handle_" + handle));
-      blendOnto(base, loadLayer("wand_gem_" + gem));
+      NativeImage base = null;
+      if (small) {
+         NativeImage coreImg = loadLayer(smallCore(core) + "_core_wand");
+         NativeImage handleImg = loadLayer(smallHandle(handle) + "_wand_handle");
+         NativeImage gemImg = loadLayer(smallGem(gem) + "_wand_gem");
+         if (coreImg != null && handleImg != null && gemImg != null) {
+            blendOnto(coreImg, handleImg);
+            blendOnto(coreImg, gemImg);
+            base = coreImg;
+         }
+      }
+      if (base == null) {
+         base = loadLayer("wand_core_" + core);
+         if (base == null) return DEFAULT_FALLBACK;
+         blendOnto(base, loadLayer("wand_handle_" + handle));
+         blendOnto(base, loadLayer("wand_gem_" + gem));
+      }
 
       ResourceLocation id = new ResourceLocation("som", "dynamic/wand_icon_" + key);
       Minecraft.getInstance().getTextureManager().register(id, new DynamicTexture(base));
       CACHE.put(key, id);
+      IMAGES.put(id, base);
       return id;
+   }
+
+   private static String smallCore(String core) {
+      switch (core) {
+         case "dark_oak": return "darkoak";
+         case "ash":      return "acolyte";
+         case "elder":    return "vermillion";
+         case "pine":     return "bastion";
+         case "yew":      return "evermore";
+         case "verde":    return "jubilee";
+         default:         return core;
+      }
+   }
+
+   private static String smallHandle(String handle) {
+      return "void".equals(handle) ? "tenebrium" : handle;
+   }
+
+   private static String smallGem(String gem) {
+      switch (gem) {
+         case "ruby":         return "pyromancy";
+         case "sunstone":     return "heliomancy";
+         case "citrine":      return "aeromancy";
+         case "peridot":      return "geomancy";
+         case "jade":         return "animancy";
+         case "turquoise":    return "electromancy";
+         case "aquamarine":   return "aqua";
+         case "sapphire":     return "cryomancy";
+         case "amethyst":     return "hieromancy";
+         case "garnet":       return "chaotimancy";
+         case "rose_quartz":  return "auramancy";
+         case "moonstone":    return "astromancy";
+         case "putridite":    return "infernality";
+         case "opal":         return "spectromancy";
+         case "onyx":         return "umbramancy";
+         case "smoky_quartz": return "necromancy";
+         default:             return gem;
+      }
    }
 
    private static NativeImage loadLayer(String name) {

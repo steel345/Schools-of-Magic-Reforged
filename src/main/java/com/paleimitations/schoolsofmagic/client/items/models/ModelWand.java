@@ -20,7 +20,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class ModelWand {
-
    private static final ResourceLocation DEFAULT_TEXTURE =
       new ResourceLocation("som", "textures/entity/wand/core_ash.png");
    protected static ResourceLocation lastTexture = DEFAULT_TEXTURE;
@@ -79,7 +78,6 @@ public class ModelWand {
       new ResourceLocation("som", "textures/entity/wand/apprentice.png");
 
    public static ResourceLocation getWandTexture(IWandData data) {
-
       if (data == null || data.getCoreType() == null) {
          lastTexture = APPRENTICE_TEXTURE;
          return APPRENTICE_TEXTURE;

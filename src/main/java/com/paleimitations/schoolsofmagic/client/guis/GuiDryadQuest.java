@@ -21,8 +21,6 @@ import net.minecraft.world.item.ItemStack;
 
 import org.lwjgl.glfw.GLFW;
 
-// The written test a dryad hands over: the trial explained in full, with the button
-// to begin it and, once passed, to claim the core it promises.
 public class GuiDryadQuest extends Screen {
    private static final ResourceLocation QUEST = new ResourceLocation("som", "textures/gui/quest_paper.png");
 
@@ -104,7 +102,6 @@ public class GuiDryadQuest extends Screen {
          gg.blit(QUEST, ox + 13, oy + 9, 158, 0, 22, 22);
       }
 
-      // Title, scaled to fit the banner.
       Component title = Component.literal(this.quest.getName());
       int tw = this.font.width(title);
       float scale = Math.min(126.0F / tw, 17.0F / this.font.lineHeight);
@@ -117,7 +114,6 @@ public class GuiDryadQuest extends Screen {
          0, false);
       gg.pose().popPose();
 
-      // The trial, written out; the dryad's third line is the explanation.
       String explanation = this.quest.getDialog(2);
       if (explanation == null) explanation = this.quest.getDialog(1);
       if (explanation != null) {
@@ -129,14 +125,12 @@ public class GuiDryadQuest extends Screen {
          gg.pose().popPose();
       }
 
-      // What the test asks of you, pictured at the top of the page.
       ItemStack icon = com.paleimitations.schoolsofmagic.common.entity.DryadQuests.getIcon(
          ItemDryadQuest.getQuestId(this.stack));
       if (!icon.isEmpty()) {
          gg.renderItem(icon, 72 + ox, 12 + oy);
       }
 
-      // The core it pays out, and the time left while the trial runs.
       ItemStack reward = new ItemStack(ItemRegistry.wand_core.get());
       reward.setDamageValue(ItemDryadQuest.getWood(this.stack));
       gg.renderItem(reward, 16 + ox, 136 + oy);

@@ -25,7 +25,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockGemCluster extends Block implements BonemealableBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.FACING;
    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
@@ -89,7 +88,6 @@ public class BlockGemCluster extends Block implements BonemealableBlock {
 
    @Override
    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
-
       if (state.getValue(AGE) < 3 && rand.nextInt(12) == 0) {
          level.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), 2);
       }

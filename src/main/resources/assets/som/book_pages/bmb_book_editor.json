@@ -1,0 +1,12 @@
+{
+  "elements": [
+    {
+      "type": "title",
+      "text": "page.bmb_book_editor.title"
+    },
+    {
+      "type": "text",
+      "text": "  The quill on a blank page opens the /bScriptorium/z. There a Magician lays out a page how they want it, instead of how it was printed.\n\n  It only opens from that quill, and only while the page is unfinished. The book sits open in the middle, and what you build is what the page becomes.\n\n  On the left are the pieces you can add. /b+ Text/z puts a block of writing where the printed pages put theirs. /b+ Title/z puts a heading where a printed heading goes. /b+ Slot/z puts an empty socket for an item.\n\n  /bLeft click/z a piece to pick it up, then drag it to move it. Drag one off the page to throw it away. /bRight click/z one to throw it away where it stands.\n\n  A piece of writing you have picked up shows its plain words with the cursor in them. Click where you want to write, drag across words to select them, and type.\n\n  /bBold/z and /bItalic/z change whatever you have selected, or the whole piece if nothing is. /bBigger/z and /bSmaller/z change its size.\n\n  If you make a mistake, /bCtrl and Z/z undoes it, and keeps going back as far as you need."
+    }
+  ]
+}

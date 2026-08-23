@@ -2,16 +2,12 @@ package com.paleimitations.schoolsofmagic.common.network;
 
 import java.util.function.Supplier;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
-// Tells a client that book pages just unlocked, so it can show the toast with the
-// owning book's icon.
 public class PacketPageUnlockToast {
    private final ResourceLocation bookItem;
 
@@ -28,12 +24,9 @@ public class PacketPageUnlockToast {
    }
 
    public static void handle(PacketPageUnlockToast msg, Supplier<NetworkEvent.Context> ctx) {
-      ctx.get().enqueueWork(() -> {
-         Item item = ForgeRegistries.ITEMS.getValue(msg.bookItem);
-         ItemStack icon = item == null ? ItemStack.EMPTY : new ItemStack(item);
-         Minecraft.getInstance().getToasts().addToast(
-            new com.paleimitations.schoolsofmagic.client.ToastPagesUnlocked(icon));
-      });
-      ctx.get().setPacketHandled(true);
+      NetworkEvent.Context context = ctx.get();
+      context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT,
+         () -> () -> com.paleimitations.schoolsofmagic.client.ToastPagesUnlocked.show(msg.bookItem)));
+      context.setPacketHandled(true);
    }
 }

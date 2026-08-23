@@ -7,6 +7,10 @@
     {
       "type": "text",
       "text": "  Flash Decoy moves you to wherever you are looking, up to 15 blocks away, and leaves a copy of yourself standing where you were.\n\n  The copy wears your skin, your armour and whatever you were holding, in the stance you were in when you left.\n\n  Anything that was attacking you turns on the copy instead. The moment something hits it, it goes off in a blinding flash.\n\n  The flash hits everything within 6 blocks for 4 damage and blinds it for 10 seconds.\n\n  Higher spell charge levels add 1 damage each, up to a maximum of 8.\n\n  If nothing ever strikes it, the copy fades on its own after 10 seconds.\n\n  It costs 25 mana and needs spell charge level 4."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_flash_decoy.desc"
     }
   ]
 }

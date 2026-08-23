@@ -3,7 +3,6 @@ package com.paleimitations.schoolsofmagic.common.world.features.structures;
 import net.minecraft.util.RandomSource;
 
 public final class MagicianNames {
-
    private static final String[] START = {
       "A","L","Au","B","Br","C","Cr","D","Dr","E","Ea","J","F","Fr","G","Gr","P","H","I","J","K","Kr","L","M","N","O",
       "S","S","P","Ph","Pr","Qu","R","S","Sc","B","Sh","Sp","S","St","Str","T","T","Tr","U","V","W","B","X","Y","Z" };

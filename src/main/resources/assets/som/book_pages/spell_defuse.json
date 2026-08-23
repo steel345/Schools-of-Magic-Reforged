@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:defuse"
+    },
+    {
+      "type": "text",
+      "text": "  Defuse stops things that are about to blow up. Everything within eight blocks is calmed at once.\n\n  A creeper stops swelling and forgets you for half a minute. Lit TNT turns back into a block you can pick up."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_defuse.desc"
+    }
+  ]
+}

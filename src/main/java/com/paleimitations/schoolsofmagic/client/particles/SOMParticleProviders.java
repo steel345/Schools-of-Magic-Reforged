@@ -16,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SOMParticleProviders {
-
     public static final java.util.Map<SOMParticleType, SpriteSet> SPRITES =
         new java.util.EnumMap<>(SOMParticleType.class);
 
@@ -37,6 +36,8 @@ public class SOMParticleProviders {
         event.registerSpriteSet(ParticleTypeRegistry.ORB.get(),        s -> { SPRITES.put(SOMParticleType.ORB, s);        return new ProviderOrb(s); });
         event.registerSpriteSet(ParticleTypeRegistry.ORB_CORE.get(),   s -> { SPRITES.put(SOMParticleType.ORB_CORE, s);   return new ProviderOrbCore(s); });
         event.registerSpriteSet(ParticleTypeRegistry.SPARKLE_STAR.get(), s -> { SPRITES.put(SOMParticleType.SPARKLE_STAR, s); return new ProviderSparkleStar(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.SPARKLE_RAY.get(), s -> { SPRITES.put(SOMParticleType.SPARKLE_RAY, s); return new ProviderSparkleRay(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.SCULK_BLOOM.get(), s -> { SPRITES.put(SOMParticleType.SCULK_BLOOM, s); return new ProviderSculkBloom(s); });
         event.registerSpriteSet(ParticleTypeRegistry.PLASMA.get(),     ParticlePlasma.Provider::new);
     }
 
@@ -44,7 +45,6 @@ public class SOMParticleProviders {
         protected final SpriteSet sprites;
         BaseProvider(SpriteSet sprites) { this.sprites = sprites; }
         protected void applySprite(Particle p) {
-
             if (p instanceof IAnimatedParticle a) {
                 a.setSprites(sprites);
             } else if (p instanceof TextureSheetParticle tsp) {
@@ -116,6 +116,23 @@ public class SOMParticleProviders {
             applySprite(p); return p;
         }
     }
+    private static final class ProviderSculkBloom extends BaseProvider {
+        ProviderSculkBloom(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleSculkBloom(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
+    private static final class ProviderSparkleRay extends BaseProvider {
+        private static final double R = 115.0D / 255.0D;
+        private static final double G = 39.0D / 255.0D;
+        private static final double B = 177.0D / 255.0D;
+        ProviderSparkleRay(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleSparkleStar(l, x, y, z, R, G, B, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
     private static final class ProviderSparkleStar extends BaseProvider {
         ProviderSparkleStar(SpriteSet s) { super(s); }
         @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
@@ -154,7 +171,6 @@ public class SOMParticleProviders {
     private static final class ProviderAir extends BaseProvider {
         ProviderAir(SpriteSet s) { super(s); }
         @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
-
             Particle p = new ParticleAir(l, x, y, z, 0, 40, 1f, 1f, 1f, 1f);
             applySprite(p); return p;
         }

@@ -17,7 +17,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 public class ItemBrassWhistle extends Item {
-
    private static final int CLEAN_TICKS = 100;
 
    public ItemBrassWhistle(Properties properties) {

@@ -3,15 +3,15 @@
 <~><~>  /b/heliomancyHeliomancy/z is the magic of light best embodied by the sun.
 <~><~>  /b/aeromancyAeromancy/z is the magic of air and the atmosphere.
 <~><~>  /b/geomancyGeomancy/z is the magic of the earth and its rocky depths.
-<~><~>  /b/animancyAnimancy/z is the magic of the natural world and living things.
+<~><~>  /b/animancyAnimancy/z is the magic of the natural world, living things and their life force.
 <~><~>  /b/electromancyElectromancy/z is the magic of electric energy and lightning.
 <~><~>  /b/hydromancyHydromancy/z is the magic of water and the ocean.
 <~><~>  /b/cryomancyCryomancy/z is the magic of ice and snow.
 <~><~>  /b/hieromancyHieromancy/z is the magic of order, peace, and structure.
-<~><~>  /b/CtChaotimancy/z is the magic of disorder, entropy, and chaos.
+<~><~>  /b/chaotimancyChaotimancy/z is the magic of disorder, entropy, and chaos.
 <~><~>  /b/auramancyAuramancy/z is the magic of the fairies and fae.
 <~><~>  /b/astromancyAstromancy/z is the magic of space and time.
 <~><~>  /b/infernalityInfernality/z is the demonic magic of the nether.
 <~><~>  /b/spectromancySpectromancy/z is the magic of the soul and spirits.
 <~><~>  /b/umbramancyUmbramancy/z is the magic of darkness, shadows, and the void.
-<~><~>  /b/necromancyNecromancy/z is the magic of death and dead things.
+<~><~>  /b/necromancyNecromancy/z is the magic of death and undead things.

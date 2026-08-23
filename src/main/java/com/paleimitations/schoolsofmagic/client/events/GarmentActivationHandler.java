@@ -20,11 +20,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.glfw.GLFW;
 
-// Activating a worn garment. The belt behaves exactly like the charm slot for a
-// pouch or bag, and the grimoire slot opens the book it holds.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class GarmentActivationHandler {
-
    @SubscribeEvent
    public static void onKey(InputEvent.Key event) {
       if (event.getAction() != GLFW.GLFW_PRESS) return;
@@ -36,7 +33,7 @@ public class GarmentActivationHandler {
       } else if (ClientProxy.GRIMOIRE_ACTIVATE.matches(event.getKey(), event.getScanCode())) {
          activateGrimoire(mc);
       }
-      // The crown and cape hold nothing yet, so their keys have nothing to run.
+
    }
 
    private static void activateBelt(Minecraft mc) {
@@ -44,7 +41,7 @@ public class GarmentActivationHandler {
       if (worn.getItem() instanceof ItemHerbPouch) {
          PacketHandler.INSTANCE.sendToServer(new PacketOpenHerbPouch());
       }
-      // A potion bag opens its ring, which PotionCharmHandler drives while held.
+
    }
 
    private static void activateGrimoire(Minecraft mc) {

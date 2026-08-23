@@ -20,7 +20,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(SchoolsOfMagic.MODID)
 public class SchoolsOfMagic {
-
    public static final String MODID = "som";
    public static SchoolsOfMagic instance;
 
@@ -56,7 +55,6 @@ public class SchoolsOfMagic {
    }
 
    private void commonSetup(final FMLCommonSetupEvent event) {
-
       event.enqueueWork(() -> proxy.preInit());
 
       event.enqueueWork(com.paleimitations.schoolsofmagic.common.blocks.SOMWoodTypes::init);
@@ -130,7 +128,6 @@ public class SchoolsOfMagic {
    }
 
    private void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-
       proxy.registerTileEntityRenders(event);
    }
 

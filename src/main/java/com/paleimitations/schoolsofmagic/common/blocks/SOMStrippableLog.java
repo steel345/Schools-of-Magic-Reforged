@@ -11,7 +11,6 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public class SOMStrippableLog extends RotatedPillarBlock {
-
    private final Supplier<? extends net.minecraft.world.level.block.Block> stripped;
 
    public SOMStrippableLog(BlockBehaviour.Properties props,

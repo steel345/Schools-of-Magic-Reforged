@@ -20,7 +20,6 @@ import java.util.WeakHashMap;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SaltEvents {
-
    private static final Map<LivingEntity, double[]> LAST_SAFE = new WeakHashMap<>();
    private static final int MAX_SCAN = 384;
 

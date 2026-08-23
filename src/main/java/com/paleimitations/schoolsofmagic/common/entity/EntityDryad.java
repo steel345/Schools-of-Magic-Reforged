@@ -194,8 +194,6 @@ public class EntityDryad extends EntityMagician {
             }
             if (entity == this && playerQuest.getQuestID() == this.getQuestID()) {
                if (playerQuest.hasSucceeded()) {
-                  // The core is claimed from the written test, not from talking, so
-                  // the page stays the single place the reward is handed over.
                   if (!this.level().isClientSide) {
                      player.sendSystemMessage(Component.literal("You are worthy. Claim your reward on the test I gave you."));
                   }
@@ -322,9 +320,6 @@ public class EntityDryad extends EntityMagician {
                player.sendSystemMessage(Component.literal(quest.getDialog(this.getDialogNumber())));
             }
             if (this.getDialogNumber() == 3) {
-               // The dryad hands over a written test rather than starting it on the
-               // spot; the page carries the explanation and the start button. It is
-               // only ever offered once per dryad.
                if (!this.level().isClientSide) {
                   if (this.hasTestPage(player)) {
                      player.sendSystemMessage(Component.literal("You already carry my test."));
@@ -344,8 +339,6 @@ public class EntityDryad extends EntityMagician {
       return super.mobInteract(player, hand);
    }
 
-   // True when the player is already carrying this dryad's written test, so it is
-   // never handed out twice.
    public boolean hasTestPage(Player player) {
       for (ItemStack stack : player.getInventory().items) {
          if (!(stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemDryadQuest)) continue;
@@ -362,8 +355,6 @@ public class EntityDryad extends EntityMagician {
       return core == null || core.isEmpty() ? 0 : core.getDamageValue();
    }
 
-   // Begins the test written on a quest page, applying whatever the test sets in
-   // motion (the poison of the fortitude trial, the champion of the strength trial).
    public void beginQuest(Player player) {
       Quest quest = this.getQuest();
       IPlayerQuests playerQuest = player.getCapability(CapabilityPlayerQuests.CAP).orElse(null);
@@ -388,8 +379,6 @@ public class EntityDryad extends EntityMagician {
       }
    }
 
-   // A slain dryad usually yields its core. A ritual blade makes it far more
-   // reliable: a bone knife most of the time, an athame always.
    @Override
    protected void dropCustomDeathLoot(net.minecraft.world.damagesource.DamageSource source, int looting, boolean recentlyHit) {
       super.dropCustomDeathLoot(source, looting, recentlyHit);
@@ -505,8 +494,7 @@ public class EntityDryad extends EntityMagician {
    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
       spawnData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
       int i = this.getDryadTypeForBiome(level);
-      // The tree type is shared across a grove, but every dryad sets its own test so
-      // a grove does not offer the same trial over and over.
+
       int j = this.getRandomQuest();
       if (spawnData instanceof DryadData) {
          i = ((DryadData)spawnData).typeData;
@@ -518,8 +506,6 @@ public class EntityDryad extends EntityMagician {
       return spawnData;
    }
 
-   // Once a test is passed the dryad thinks up a different one, so returning to the
-   // same dryad never gives the same trial twice in a row.
    public void rerollQuest() {
       int previous = this.getQuestID();
       int next = previous;
@@ -530,8 +516,6 @@ public class EntityDryad extends EntityMagician {
       this.setDialogNumber(0);
    }
 
-   // Every trial that can actually be completed, drawn evenly. The Tests of
-   // Responsibility (4-9) are left out: nothing ever marks them as passed.
    private static final int[] WINNABLE_QUESTS = {
       0, 1, 2, 3,
       10, 11, 12, 13, 14, 15,

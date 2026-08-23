@@ -26,7 +26,7 @@ public class SpellSnowball extends Spell {
          new ResourceLocation("som", "snowball"),
          5.0F,
          false,
-         0,
+         1,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),

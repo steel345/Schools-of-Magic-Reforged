@@ -80,7 +80,6 @@ public class BanishedBlocks implements INBTSerializable<CompoundTag>, IBanishedB
          comp.putInt("Countdown", this.countdowns.get(pos).intValue());
          BlockState state = this.previousStates.get(pos);
          if (state != null) {
-
             comp.put("State", NbtUtils.writeBlockState(state));
          }
          nbtTagListIn.add(comp);

@@ -41,7 +41,6 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockCauldron extends SOMBlockContainer {
-
    protected static final VoxelShape SHAPE = Shapes.or(
       Block.box(2.0D,  0.0D,  2.0D, 14.0D,  3.5D, 14.0D),
       Block.box(2.0D,  0.0D,  2.0D, 14.0D, 12.0D,  3.0D),
@@ -70,7 +69,6 @@ public class BlockCauldron extends SOMBlockContainer {
    @Override
    @Nullable
    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-
       return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite()).setValue(TYPE, EnumCauldronType.values()[0]);
    }
 
@@ -292,7 +290,6 @@ public class BlockCauldron extends SOMBlockContainer {
             boolean levelOk = result.isItemBrew() ? tb.getLiquidLevel() == 3 : tb.getLiquidLevel() > 0;
             if (result.isValid() && levelOk
                && tb.getFluidType() == com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER) {
-
                float cost = result.getManaCost();
                com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.IManaData mana =
                   player.getCapability(com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.CapabilityManaData.CAP).orElse(null);
@@ -339,7 +336,6 @@ public class BlockCauldron extends SOMBlockContainer {
          }
          if (tb.getPhase() == TileEntityCauldron.EnumPotionPhase.COMPLETE && tb.getLiquidLevel() > 0
             && tb.getBrewResult().getPotionItem().getItem() == ItemRegistry.potion_lingering.get()) {
-
             boolean anyArrow = false;
             boolean onlyArrows = true;
             for (int i = 0; i < 9; i++) {

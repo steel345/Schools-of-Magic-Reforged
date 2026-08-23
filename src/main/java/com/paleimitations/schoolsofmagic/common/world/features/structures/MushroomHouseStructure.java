@@ -12,7 +12,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 
 public class MushroomHouseStructure extends Structure {
-
    public static final Codec<MushroomHouseStructure> CODEC = RecordCodecBuilder.create(in -> in.group(
       settingsCodec(in),
       ResourceLocation.CODEC.fieldOf("template").forGetter(s -> s.template)

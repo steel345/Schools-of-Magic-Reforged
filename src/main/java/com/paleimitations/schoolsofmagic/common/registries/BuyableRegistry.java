@@ -46,7 +46,6 @@ public class BuyableRegistry {
             persistModifierCap(scroll);
 
             if (mod.id == 16) {
-
                 FloatRange[] schoolRanges = emptySchools();
                 FloatRange[] elementRanges = emptyElements();
                 elementRanges[mod.level - 1] = new FloatRange(10.0F, 50.0F);
@@ -60,7 +59,6 @@ public class BuyableRegistry {
                     new FloatRange(50.0F, 100.0F),
                     5);
             } else if (new IntegerRange(6, 11).inRange(mod.id)) {
-
                 FloatRange[] schoolRanges = emptySchools();
                 schoolRanges[mod.id - 6] = new FloatRange(5.0F, 30.0F);
                 new Buyable(
@@ -73,7 +71,6 @@ public class BuyableRegistry {
                     new FloatRange(50.0F, 100.0F),
                     7);
             } else if (new IntegerRange(12, 13).inRange(mod.id)) {
-
                 FloatRange[] schoolRanges = emptySchools();
                 schoolRanges[MagicSchoolRegistry.abjuration.getId()] = new FloatRange(5.0F, 30.0F);
                 new Buyable(
@@ -86,7 +83,6 @@ public class BuyableRegistry {
                     new FloatRange(50.0F, 100.0F),
                     5);
             } else if (mod.id == 14) {
-
                 new Buyable(
                     scroll,
                     new FloatRange(10.0F, 50.0F),
@@ -97,7 +93,6 @@ public class BuyableRegistry {
                     new FloatRange(50.0F, 100.0F),
                     5);
             } else {
-
                 FloatRange[] schoolRanges = emptySchools();
                 if (mod.id == 1) {
                     schoolRanges[MagicSchoolRegistry.transfiguration.getId()] =

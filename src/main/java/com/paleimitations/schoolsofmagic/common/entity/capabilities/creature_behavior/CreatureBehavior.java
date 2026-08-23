@@ -10,7 +10,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class CreatureBehavior implements ICreatureBehavior, INBTSerializable<CompoundTag> {
-
    private boolean isAngry;
    private boolean isAfraid;
    private boolean isInfatuated;
@@ -293,7 +292,6 @@ public class CreatureBehavior implements ICreatureBehavior, INBTSerializable<Com
 
    @Override
    public boolean isOnTargetTeam(Entity entityIn, UUID id) {
-
       if (entityIn == null || id == null) {
          return false;
       }

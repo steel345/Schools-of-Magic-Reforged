@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class SOMCommands {
-
    @SubscribeEvent
    public static void onRegisterCommands(RegisterCommandsEvent event) {
       CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
@@ -26,5 +25,6 @@ public class SOMCommands {
       CommandPages.register(dispatcher);
       CommandEclipse.register(dispatcher);
       CommandSetMagicLevel.register(dispatcher);
+      CommandWandDisplay.register(dispatcher);
    }
 }

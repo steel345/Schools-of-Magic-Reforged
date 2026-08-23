@@ -25,10 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-// Step away and leave yourself behind. Whatever was hunting the caster keeps hunting
-// the double, right up until it strikes and the thing goes off in their face.
 public class SpellFlashDecoy extends Spell {
-
    private static final double RANGE = 15.0D;
    private static final float BASE_BLAST = 4.0F;
    private static final float MAX_BLAST = 8.0F;
@@ -59,7 +56,6 @@ public class SpellFlashDecoy extends Spell {
       return 4;
    }
 
-   // Four to begin with, a point for every level held above, and never past eight.
    private float blast() {
       float extra = Math.max(0, this.lastSpellChargeLevel - this.getMinimumSpellChargeLevel());
       return Math.min(MAX_BLAST, BASE_BLAST + extra);
@@ -77,8 +73,6 @@ public class SpellFlashDecoy extends Spell {
 
       Vec3 to = SpellUtils.rayTrace(playerIn, RANGE, 1.0F, false).getLocation();
 
-      // The double is made first, out of the caster as they still stand, so it keeps
-      // the exact stance and gear they had before they moved.
       EntityFlashDecoy decoy = new EntityFlashDecoy(worldIn);
       decoy.copyFrom(playerIn, this.blast());
       worldIn.addFreshEntity(decoy);

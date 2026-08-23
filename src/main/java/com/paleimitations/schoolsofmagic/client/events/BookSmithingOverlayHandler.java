@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class BookSmithingOverlayHandler {
-
    private static final ResourceLocation BOOK_ICON =
       new ResourceLocation("som", "item/book_smithing_overlay");
 

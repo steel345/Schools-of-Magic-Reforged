@@ -13,7 +13,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
 public class ItemFlyingOintment extends Item {
-
    private static final int DURATION = 600;
 
    public ItemFlyingOintment(Properties props) {

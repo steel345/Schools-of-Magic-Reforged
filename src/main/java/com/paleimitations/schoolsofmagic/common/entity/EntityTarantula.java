@@ -154,7 +154,6 @@ public class EntityTarantula extends Spider {
    }
 
    public static AttributeSupplier.Builder createAttributes() {
-
       return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.45).add(Attributes.MAX_HEALTH, 80.0).add(Attributes.FOLLOW_RANGE, 24.0).add(Attributes.ATTACK_DAMAGE, 8.0);
    }
 

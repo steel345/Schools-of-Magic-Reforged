@@ -18,7 +18,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
-// Start or claim the test written on a dryad quest page.
 public class PacketDryadQuest {
    public static final int START = 0;
    public static final int CLAIM = 1;
@@ -76,9 +75,9 @@ public class PacketDryadQuest {
             core.setDamageValue(ItemDryadQuest.getWood(stack));
             if (!sp.addItem(core)) sp.drop(core, false);
             quests.reset();
-            // The dryad sets a fresh trial for next time rather than repeating this one.
+
             if (entity instanceof EntityDryad dryad) dryad.rerollQuest();
-            // The page is spent once the reward is taken.
+
             stack.shrink(1);
             CapabilityPlayerQuests.sync(sp);
             sp.sendSystemMessage(Component.literal("You are worthy."));

@@ -25,7 +25,6 @@ public class TileEntityRendererSpellObelisk implements BlockEntityRenderer<TileE
 
    @Override
    public void render(TileEntitySpellObelisk te, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
-
       int j = 0;
       if (te.hasLevel()) {
          BlockState state = te.getLevel().getBlockState(te.getBlockPos());

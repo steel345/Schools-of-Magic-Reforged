@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
 public class SOMFence extends FenceBlock {
-
    public SOMFence(BlockBehaviour.Properties props) {
       super(props);
    }

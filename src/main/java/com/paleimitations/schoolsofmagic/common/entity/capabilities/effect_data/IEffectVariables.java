@@ -4,7 +4,6 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public interface IEffectVariables {
-
    void startSneeze(float var1, float var2, float var3);
 
    float getSneezeOffset();

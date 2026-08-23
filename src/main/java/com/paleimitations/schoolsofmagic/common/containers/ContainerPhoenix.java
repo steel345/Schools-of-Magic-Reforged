@@ -12,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class ContainerPhoenix extends AbstractContainerMenu {
-
    public static final int COLUMNS = 5;
    private final EntityPhoenix entity;
    private final Container inv;

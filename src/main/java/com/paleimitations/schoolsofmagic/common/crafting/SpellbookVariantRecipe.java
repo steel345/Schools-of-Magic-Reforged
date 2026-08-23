@@ -14,7 +14,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 
 public class SpellbookVariantRecipe extends ShapedRecipe {
-
    public SpellbookVariantRecipe(ResourceLocation id, ShapedRecipe base, ItemStack result) {
       super(id, base.getGroup(), base.category(), base.getWidth(), base.getHeight(),
             base.getIngredients(), result, base.showNotification());
@@ -45,7 +44,6 @@ public class SpellbookVariantRecipe extends ShapedRecipe {
    public static class Serializer implements RecipeSerializer<SpellbookVariantRecipe> {
       @Override
       public SpellbookVariantRecipe fromJson(ResourceLocation id, JsonObject json) {
-
          ShapedRecipe base = RecipeSerializer.SHAPED_RECIPE.fromJson(id, json);
          int links = GsonHelper.getAsInt(json, "links", 0);
          String color = GsonHelper.getAsString(json, "color", "");
@@ -54,7 +52,6 @@ public class SpellbookVariantRecipe extends ShapedRecipe {
 
       @Override
       public SpellbookVariantRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-
          ShapedRecipe base = RecipeSerializer.SHAPED_RECIPE.fromNetwork(id, buf);
          return new SpellbookVariantRecipe(id, base, base.getResultItem(null));
       }

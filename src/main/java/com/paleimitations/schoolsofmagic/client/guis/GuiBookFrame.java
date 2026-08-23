@@ -17,7 +17,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
 public class GuiBookFrame extends AbstractContainerScreen<ContainerBookFrame> {
-
    private static final ResourceLocation MENU_OPTIONS = new ResourceLocation("som", "textures/gui/books/menu_options.png");
    private static final ResourceLocation PAGE_DEFAULT = new ResourceLocation("som", "textures/gui/books/paper_default.png");
    private static final ResourceLocation SLOTS = new ResourceLocation("som", "textures/gui/book_gui_slots.png");
@@ -181,7 +180,9 @@ public class GuiBookFrame extends AbstractContainerScreen<ContainerBookFrame> {
       gg.blit(Book.linkLocationFor(bookStack, book), x, y, 0, 0, 256, 256);
       gg.blit(PAGE_DEFAULT, x, y, 0, 0, 256, 256);
       if (book != null && book.getBookPages() != null && !book.getBookPages().isEmpty() && book.getCurrentPage() != null) {
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.begin(book);
          book.getCurrentPage().drawPage(gg, mx - x, my - y, x, y, true, book.getSubPage());
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, x, y, true);
          for (BookElementSticker sticker : book.getStickers()) {
             if (sticker != null) {
                sticker.drawElement(gg, mx - x, my - y, x, y, true, book.getSubPage(), book.getPage());
@@ -215,7 +216,7 @@ public class GuiBookFrame extends AbstractContainerScreen<ContainerBookFrame> {
       super.removed();
       ItemStack held = book();
       IBook b = bookCap();
-      if (held.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemSpellbook && b != null) {
+      if (held.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemBookBase && b != null) {
          com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
             new com.paleimitations.schoolsofmagic.common.network.PacketSetBookPage(b.getPage(), b.getSubPage()));
       }

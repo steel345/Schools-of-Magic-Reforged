@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockPillar extends SOMBlock {
-
    public static final EnumProperty<Direction.Axis> AXIS = EnumProperty.create("axis", Direction.Axis.class);
 
    public BlockPillar(BlockBehaviour.Properties props) {

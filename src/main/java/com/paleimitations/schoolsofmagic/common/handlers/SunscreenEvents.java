@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class SunscreenEvents {
-
    @SubscribeEvent
    public static void onTick(LivingEvent.LivingTickEvent event) {
       LivingEntity entity = event.getEntity();

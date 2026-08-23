@@ -115,7 +115,6 @@ public class WeatherWind extends WeatherBase {
 
    @Override
    public boolean canEffect(Level world, BlockPos pos) {
-
       return (!this.isNatural || !world.getBiome(pos).value().hasPrecipitation())
          && (
             !this.isLocal
@@ -192,9 +191,12 @@ public class WeatherWind extends WeatherBase {
                my += (double)strength;
             }
 
-            float f = Mth.sqrt((float)(xRatio * xRatio + zRatio * zRatio));
-            mx -= xRatio / (double)f * (double)strength;
-            mz -= zRatio / (double)f * (double)strength;
+            double f = Math.sqrt(xRatio * xRatio + zRatio * zRatio);
+            if (f < 1.0E-4D) {
+               return;
+            }
+            mx -= xRatio / f * (double)strength;
+            mz -= zRatio / f * (double)strength;
             base.setDeltaMovement(mx, my, mz);
          }
       }
@@ -257,7 +259,6 @@ public class WeatherWind extends WeatherBase {
       float start = this.mix(0.75F * event.getFarPlaneDistance(), 0.0F, fog_strength);
       float end = this.mix(event.getFarPlaneDistance(), 45.0F, far_mod);
       if (fog_strength > 0.0F && start < f * 0.75F && end < f) {
-
          event.setNearPlaneDistance(start);
          event.setFarPlaneDistance(end);
       }

@@ -22,7 +22,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockSpear extends SOMBlock {
-
    public static final EnumProperty<DoubleBlockHalf> HALF =
       net.minecraft.world.level.block.state.properties.BlockStateProperties.DOUBLE_BLOCK_HALF;
 
@@ -46,7 +45,6 @@ public class BlockSpear extends SOMBlock {
 
    @Override
    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
-
       return Shapes.empty();
    }
 
@@ -63,7 +61,6 @@ public class BlockSpear extends SOMBlock {
    @Override
    public void setPlacedBy(Level level, BlockPos pos, BlockState state,
                            LivingEntity placer, net.minecraft.world.item.ItemStack stack) {
-
       level.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 3);
    }
 
@@ -84,7 +81,6 @@ public class BlockSpear extends SOMBlock {
    @Override
    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
       if (!level.isClientSide() && player.isCreative()) {
-
          preventCreativeDropFromOtherHalf(level, pos, state, player);
       }
       super.playerWillDestroy(level, pos, state, player);
@@ -103,7 +99,6 @@ public class BlockSpear extends SOMBlock {
    @Override
    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
       if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-
          BlockState below = world.getBlockState(pos.below());
          return below.isFaceSturdy(world, pos.below(), Direction.UP);
       }

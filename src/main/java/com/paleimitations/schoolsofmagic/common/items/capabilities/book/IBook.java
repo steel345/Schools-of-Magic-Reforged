@@ -45,6 +45,14 @@ public interface IBook extends IBookPageHolder {
 
    List<BookPageChapter> getChapters();
 
+   java.util.Map<Integer, com.paleimitations.schoolsofmagic.common.books.BookTextOverride> getTextOverrides();
+
+   void setTextOverride(int page, com.paleimitations.schoolsofmagic.common.books.BookTextOverride override);
+
+   java.util.Map<Integer, com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout> getPageLayouts();
+
+   void setPageLayout(int page, com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout layout);
+
    List<BookElementSticker> getStickers();
 
    void setStickers(List<BookElementSticker> var1);

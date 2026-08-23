@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityWeatherEffect {
-
    public static final Capability<IWeatherStorage> CAPABILITY_WEATHER_STORAGE = CapabilityManager.get(new CapabilityToken<IWeatherStorage>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "weather_storage");
 

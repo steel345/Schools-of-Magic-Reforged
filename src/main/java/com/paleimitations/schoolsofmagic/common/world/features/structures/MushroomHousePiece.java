@@ -16,7 +16,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlac
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 public class MushroomHousePiece extends TemplateStructurePiece {
-
    public MushroomHousePiece(StructureTemplateManager manager, ResourceLocation template, BlockPos pos) {
       super(StructureRegistry.MUSHROOM_HOUSE_PIECE.get(), 0, manager, template, template.toString(), makeSettings(), pos);
    }

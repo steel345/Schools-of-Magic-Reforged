@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class SOMSettingsButtonInjector {
-
    @SubscribeEvent
    public static void onScreenInit(ScreenEvent.Init.Post event) {
       if (!(event.getScreen() instanceof OptionsScreen options)) return;

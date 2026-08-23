@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMTreeFeatureAsh extends SOMTreeFeature {
-
    @Override protected RegistryObject<Block> log() { return BlockRegistry.log_ash; }
    @Override protected RegistryObject<Block> leaves() { return BlockRegistry.leaves_ash; }
 

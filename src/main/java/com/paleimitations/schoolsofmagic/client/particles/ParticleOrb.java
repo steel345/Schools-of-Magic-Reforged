@@ -5,10 +5,7 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.particle.TextureSheetParticle;
 
-// The orb's own light, run straight through its seven frames in order and held on
-// the last so the glow sits rather than flickering back to the start.
 public class ParticleOrb extends TextureSheetParticle implements IAnimatedParticle {
-
    private final boolean core;
    private float baseSize;
 
@@ -32,7 +29,7 @@ public class ParticleOrb extends TextureSheetParticle implements IAnimatedPartic
       this.lifetime = core ? 4 : 26;
       this.hasPhysics = false;
       this.alpha = 1.0F;
-      // Yellow, as sunlight is.
+
       this.rCol = 1.0F;
       this.gCol = 0.85F;
       this.bCol = 0.30F;
@@ -71,7 +68,6 @@ public class ParticleOrb extends TextureSheetParticle implements IAnimatedPartic
       this.xd *= 0.9D;
       this.zd *= 0.9D;
       if (!this.core) {
-         // The lesser lights drift up off the body of the orb, thinning as they go.
          float left = 1.0F - this.age / (float) this.lifetime;
          this.quadSize = this.baseSize * left;
          this.alpha = left;

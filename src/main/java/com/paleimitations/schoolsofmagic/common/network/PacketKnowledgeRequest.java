@@ -10,9 +10,7 @@ import net.minecraftforge.network.PacketDistributor;
 import java.util.List;
 import java.util.function.Supplier;
 
-// Client -> Server: asks the server to gather books from nearby chiseled bookshelves.
 public class PacketKnowledgeRequest {
-
    private final BlockPos origin;
 
    public PacketKnowledgeRequest(BlockPos origin) {

@@ -367,15 +367,19 @@ public class BookPageRegistry {
         if (name.equalsIgnoreCase("table_content")) {
             return new BookPageTableContent(null);
         }
-        if (name.length() > 9 && name.substring(0, 9).equalsIgnoreCase("writeable")) {
+
+        if (name.length() >= 9 && name.substring(0, 9).equalsIgnoreCase("writeable")) {
+            String rest = name.substring(9);
             String title = "";
             String paragraph = "";
-            if (name.substring(9).split("<title>").length > 1) {
-                String[] strs = name.substring(9).split("<title>")[0].split("<paragraph>");
-                if (strs.length > 1) {
-                    paragraph = strs[1];
-                }
-                title = strs[0];
+            int t = rest.indexOf("<title>");
+            int p = rest.indexOf("<paragraph>");
+            if (t >= 0) {
+                int end = p > t ? p : rest.length();
+                title = rest.substring(t + "<title>".length(), end);
+            }
+            if (p >= 0) {
+                paragraph = rest.substring(p + "<paragraph>".length());
             }
             return new BookPageWriteable(title, paragraph);
         }
@@ -386,7 +390,6 @@ public class BookPageRegistry {
     }
 
     public static BookPage getPotionEffectPage(MobEffect potion) {
-
         for (BookPagePotionEffect p : POTION_EFFECT_PAGES) {
             if (p.potion.getEffect().equals(potion)) return p;
         }

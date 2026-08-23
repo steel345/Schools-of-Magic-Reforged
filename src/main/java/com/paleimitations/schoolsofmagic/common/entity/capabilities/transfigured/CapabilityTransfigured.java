@@ -28,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityTransfigured {
-
    public static final Capability<ITransfigured> CAP = CapabilityManager.get(new CapabilityToken<ITransfigured>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "transfigured");
 

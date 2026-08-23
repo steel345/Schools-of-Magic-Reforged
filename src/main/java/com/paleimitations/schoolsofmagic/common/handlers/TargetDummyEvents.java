@@ -15,7 +15,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class TargetDummyEvents {
-
    @SubscribeEvent
    public static void onInteractWithArmorStand(PlayerInteractEvent.EntityInteractSpecific event) {
       tryBuild(event, event.getTarget());

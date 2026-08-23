@@ -26,7 +26,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityCharmData {
-
    public static final Capability<ICharmData> CAP = CapabilityManager.get(new CapabilityToken<ICharmData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "charm_data");
 
@@ -40,6 +39,22 @@ public class CapabilityCharmData {
       if (data == null) return;
       PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player),
          new PacketSyncCharmData(player.getId(), data.getCharm()));
+   }
+
+   private static final java.util.Map<java.util.UUID, net.minecraft.world.item.ItemStack> LAST_SYNCED =
+      new java.util.HashMap<>();
+
+   @SubscribeEvent
+   public static void onPlayerTick(net.minecraftforge.event.TickEvent.PlayerTickEvent event) {
+      if (event.phase != net.minecraftforge.event.TickEvent.Phase.END) return;
+      if (!(event.player instanceof ServerPlayer sp)) return;
+      ICharmData data = get(sp);
+      if (data == null) return;
+      net.minecraft.world.item.ItemStack now = data.getCharm();
+      net.minecraft.world.item.ItemStack was = LAST_SYNCED.get(sp.getUUID());
+      if (was != null && net.minecraft.world.item.ItemStack.matches(was, now)) return;
+      LAST_SYNCED.put(sp.getUUID(), now.copy());
+      sync(sp);
    }
 
    @SubscribeEvent

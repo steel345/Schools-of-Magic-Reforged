@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class GuiPhoenix extends AbstractContainerScreen<ContainerPhoenix> {
-
    private static final ResourceLocation TEXTURE = new ResourceLocation("minecraft", "textures/gui/container/horse.png");
    private final EntityPhoenix entity;
    private float xMouse;

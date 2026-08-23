@@ -11,7 +11,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 public class Teleport {
-
    public static void teleportToDim(ServerPlayer player, ServerLevel destination, double x, double y, double z) {
       if (destination == null) {
          throw new IllegalArgumentException("The realm you seek does not exist!");
@@ -46,7 +45,6 @@ public class Teleport {
       if (run) {
          throw new IllegalArgumentException("The biome you seek does not exist!");
       } else {
-
          player.teleportTo(world, (double)x, (double)y, (double)z, player.getYRot(), player.getXRot());
       }
    }

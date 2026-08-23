@@ -44,7 +44,6 @@ public class GuiSpellRing {
 
    @SubscribeEvent
    public void renderSpellRing(RenderGuiOverlayEvent.Post event) {
-
       if (event.getOverlay() != VanillaGuiOverlay.HOTBAR.type()) return;
       Minecraft mc = Minecraft.getInstance();
       LocalPlayer player = mc.player;
@@ -59,7 +58,7 @@ public class GuiSpellRing {
       int xPos = gg.guiWidth() / 2 - 57;
       int yPos = gg.guiHeight() / 2 - 57;
 
-      gg.blit(getTexture(wandData), xPos, yPos, 0, 115, 114, 114);
+      gg.blit(getTexture(wandData), xPos, yPos, 0, 115, 114, 114, 256, 257);
 
       if (manaData.getCurrentSpell() != null) {
          Component s = manaData.getCurrentSpell() instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom cs && cs.hasName()
@@ -70,7 +69,7 @@ public class GuiSpellRing {
 
       if (this.animationTick > 0) this.animationTick--;
       if (this.prevSlot != manaData.getCurrentSpellSlot()) {
-         if (this.animationTick < 36) this.animationTick += 18;
+         if (this.animationTick < 24) this.animationTick += 12;
          this.animateSlot = this.prevSlot;
       }
       if (this.animationTick == 0) this.animateSlot = manaData.getCurrentSpellSlot();
@@ -82,10 +81,10 @@ public class GuiSpellRing {
       }
       float angle = this.animateSlot == manaData.getCurrentSpellSlot()
          ? (float) manaData.getCurrentSpellSlot() / (float) spells * 360.0F
-         : ((float) manaData.getCurrentSpellSlot() + difference * ((float) this.animationTick + mc.getPartialTick()) / 18.0F) / (float) spells * 360.0F;
+         : ((float) manaData.getCurrentSpellSlot() + difference * ((float) this.animationTick + mc.getPartialTick()) / 12.0F) / (float) spells * 360.0F;
       if (difference > 0.0F && Math.abs(difference) >= (float) (spells - 1)) {
          difference = (float) (this.animateSlot - manaData.getCurrentSpellSlot() - spells);
-         angle = ((float) manaData.getCurrentSpellSlot() + difference * ((float) this.animationTick + mc.getPartialTick()) / 18.0F) / (float) spells * 360.0F;
+         angle = ((float) manaData.getCurrentSpellSlot() + difference * ((float) this.animationTick + mc.getPartialTick()) / 12.0F) / (float) spells * 360.0F;
       }
 
       for (int i = 0; i < spells; i++) {
@@ -145,8 +144,7 @@ public class GuiSpellRing {
    }
 
    public void drawSpellSlot(GuiGraphics gg, IWandData wand) {
-
-      gg.blit(getTexture(wand), -19, -54 - 19, 38, 0, 38, 38);
+      gg.blit(getTexture(wand), -19, -54 - 19, 38, 0, 38, 38, 256, 257);
    }
 
    private static String metalName(IWandData wand, boolean apprentice) {

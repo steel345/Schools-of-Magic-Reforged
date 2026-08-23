@@ -22,9 +22,6 @@ public class BookPagePotionEffect extends BookPage {
    public final MagicSchool school;
    public final MagicElement element;
 
-   // The left-hand furniture of a potion page: tinted lock, school sigil, effect
-   // icon, brewing ingredient, resulting bottle and the duration readout. Shared so
-   // JSON-authored pages can lay out an identical potion figure.
    public static java.util.List<PageElement> visualElements(MobEffectInstance potion, ItemStack ingredient,
                                                             MagicSchool school, MagicElement category) {
       return Lists.newArrayList(new PageElement[]{
@@ -71,7 +68,6 @@ public class BookPagePotionEffect extends BookPage {
       int i = 0;
       int j = 0;
       if (ingredient.getItem() == ItemRegistry.crushed_plant.get()) {
-
          int plantIdx = ingredient.getDamageValue();
          if (plantIdx < 0 || plantIdx >= EnumPlantType.values().length) plantIdx = 0;
          this.addElement(new PageElementHerbalTwineRecipe(EnumPlantType.values()[plantIdx], 157, 91));

@@ -13,7 +13,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 
 public class SOMStumpFeature extends Feature<BlockStateConfiguration> {
-
    public SOMStumpFeature() {
       super(BlockStateConfiguration.CODEC);
    }

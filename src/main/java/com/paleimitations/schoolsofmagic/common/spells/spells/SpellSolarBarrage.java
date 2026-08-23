@@ -30,20 +30,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.network.PacketDistributor;
 
-// The sky answers all at once. Held until the light gathers, then loosed as a
-// scattering of solar shafts, one onto each of several attackers at the same moment.
 @net.minecraftforge.fml.common.Mod.EventBusSubscriber(
    modid = com.paleimitations.schoolsofmagic.SchoolsOfMagic.MODID,
    bus = net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.FORGE)
 public class SpellSolarBarrage extends Spell {
-
    private static final double RANGE = 16.0D;
    private static final float DAMAGE = 8.0F;
    private static final int BURN_SECONDS = 5;
    private static final int IGNITE_DELAY = 12;
    private static final int WIND_UP = 40;
-   // One beam in five bursts on impact. Sized like TNT, but set to harm only what is
-   // standing there: no block is broken and no fire is left behind.
+
    private static final float BURST_CHANCE = 0.2F;
    private static final float BURST_POWER = 4.0F;
 
@@ -73,7 +69,6 @@ public class SpellSolarBarrage extends Spell {
       return 5;
    }
 
-   // Held with the pose, so the light has to be gathered before it falls.
    @Override
    public UseAnim getAction() {
       return UseAnim.BOW;
@@ -84,8 +79,6 @@ public class SpellSolarBarrage extends Spell {
       return WIND_UP;
    }
 
-   // Four shafts at the charge it can first be cast, and one more for every level
-   // held above that.
    private int beamCount() {
       return 4 + Math.max(0, this.lastSpellChargeLevel - this.getMinimumSpellChargeLevel());
    }
@@ -125,8 +118,6 @@ public class SpellSolarBarrage extends Spell {
                com.paleimitations.schoolsofmagic.client.SunBeamRenderer.SUN, true));
 
          if (playerIn.getRandom().nextFloat() < BURST_CHANCE) {
-            // The caster is held clear of their own burst. explode runs start to
-            // finish here, so the shield is only up for this one blast.
             shielded = playerIn;
             try {
                worldIn.explode(playerIn, target.getX(), target.getY() + 0.5D, target.getZ(),
@@ -137,7 +128,6 @@ public class SpellSolarBarrage extends Spell {
          }
       }
 
-      // Alight three fifths of the way through the shafts, as a single blast does.
       KnowledgeAnimations.schedule(IGNITE_DELAY, () -> {
          for (LivingEntity target : targets) {
             if (target.isAlive()) target.setSecondsOnFire(burn);
@@ -145,8 +135,6 @@ public class SpellSolarBarrage extends Spell {
       });
    }
 
-   // Whatever is coming for the caster is taken first; anything else hostile makes up
-   // the rest, so a barrage still falls when nothing has noticed them yet.
    private List<LivingEntity> pickTargets(Level worldIn, Player playerIn) {
       AABB around = playerIn.getBoundingBox().inflate(RANGE);
       List<LivingEntity> attacking = new ArrayList<>();

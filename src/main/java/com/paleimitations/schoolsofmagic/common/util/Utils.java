@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
@@ -102,11 +101,8 @@ public class Utils {
             if (!entity.isAlive() || !entity.getUUID().equals(uuid)) continue;
             return entity;
          }
-      } else if (level instanceof ClientLevel cl) {
-         for (Entity entity : cl.entitiesForRendering()) {
-            if (!entity.isAlive() || !entity.getUUID().equals(uuid)) continue;
-            return entity;
-         }
+      } else if (level.isClientSide) {
+         return com.paleimitations.schoolsofmagic.client.ClientEntityLookup.byUuid(level, uuid);
       }
       return null;
    }

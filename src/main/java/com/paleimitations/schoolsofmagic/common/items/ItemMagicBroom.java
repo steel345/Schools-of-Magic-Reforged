@@ -13,7 +13,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 public class ItemMagicBroom extends Item {
-
    public ItemMagicBroom(Properties props) {
       super(props);
    }
@@ -21,6 +20,11 @@ public class ItemMagicBroom extends Item {
    @Override
    public boolean isFoil(ItemStack stack) {
       return true;
+   }
+
+   @Override
+   public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+      return repair.is(net.minecraft.world.item.Items.WHEAT);
    }
 
    @Override

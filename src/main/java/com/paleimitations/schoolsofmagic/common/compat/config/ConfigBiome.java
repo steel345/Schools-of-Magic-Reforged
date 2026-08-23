@@ -1,7 +1,6 @@
 package com.paleimitations.schoolsofmagic.common.compat.config;
 
 public class ConfigBiome {
-
    public static final String CATEGORY_NAME_BIOMES = "biomes";
 
    public static int acolyteWoods_rarity = 6;
@@ -20,14 +19,12 @@ public class ConfigBiome {
    }
 
    public static void syncConfig(boolean loadFromConfigFile, boolean readFieldsFromConfig) {
-
       try {
          acolyteWoods_rarity = com.paleimitations.schoolsofmagic.common.compat.SOMConfig.biome_acolyte_woods_weight.get();
          autumnWoods_rarity = com.paleimitations.schoolsofmagic.common.compat.SOMConfig.biome_autumn_woods_weight.get();
          vermilionGrove_rarity = com.paleimitations.schoolsofmagic.common.compat.SOMConfig.biome_vermilion_grove_weight.get();
          sinisterSwamp_rarity = com.paleimitations.schoolsofmagic.common.compat.SOMConfig.biome_sinister_swamp_weight.get();
       } catch (IllegalStateException ignored) {
-
       }
 
    }

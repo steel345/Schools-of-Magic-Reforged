@@ -55,7 +55,6 @@ public class SpellMeteorStrike extends Spell {
    @Override
    public ItemStack finishHoldEffect(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
       if (entityLiving instanceof Player playerIn && this.castSpell(playerIn, 0.0F)) {
-
          if (!worldIn.isClientSide) {
             Vec3 target = SpellUtils.rayTrace(playerIn, 40.0, 1.0F, true).getLocation();
             EntityMeteor meteor = new EntityMeteor(worldIn, playerIn);

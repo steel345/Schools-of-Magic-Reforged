@@ -12,7 +12,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockGoldCoins extends Block {
-
    public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 8);
    protected static final VoxelShape[] SHAPE_BY_LAYER = new VoxelShape[]{
       Block.box(0.0, 0.0, 0.0, 16.0, 0.0, 16.0),

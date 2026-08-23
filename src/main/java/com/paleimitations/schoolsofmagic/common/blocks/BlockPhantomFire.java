@@ -30,7 +30,6 @@ public class BlockPhantomFire extends FireBlock {
 
    @Override
    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-
    }
 
    @Override
@@ -45,7 +44,6 @@ public class BlockPhantomFire extends FireBlock {
 
    @Override
    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-
       level.scheduleTick(pos, this, 30 + random.nextInt(10));
       if (!this.canSurvive(state, level, pos)) {
          level.removeBlock(pos, false);

@@ -12,7 +12,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 
 public class SOMDeadLogFeature extends Feature<BlockStateConfiguration> {
-
    public SOMDeadLogFeature() {
       super(BlockStateConfiguration.CODEC);
    }

@@ -30,14 +30,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
-// Runs the eclipse: creeps it across the sun, holds the day still while it lasts,
-// and makes the dark hours meaner than usual.
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class EclipseHandler {
-
-   // Hostile things hit half again as hard under the shadow.
    public static final float MONSTER_DAMAGE_MULT = 1.5F;
-   // How often the extra spawn sweep runs, and how many it tries each sweep.
+
    private static final int SPAWN_INTERVAL = 40;
    private static final int SPAWN_ATTEMPTS = 6;
    private static final int SPAWN_MIN_RANGE = 24;
@@ -79,7 +75,7 @@ public class EclipseHandler {
       if (stageChanged || level.getGameTime() % 100L == 0L) {
          broadcast(level, data);
       }
-      // Anyone stood under an open sky while it happens learns what it was.
+
       if (data.isRunning() && level.getGameTime() % 40L == 0L) {
          for (ServerPlayer player : level.players()) {
             if (level.canSeeSky(player.blockPosition())) {
@@ -134,7 +130,6 @@ public class EclipseHandler {
          new PacketEclipseState(data.isRunning(), data.getStage(), data.getElapsed()));
    }
 
-   // The shadow emboldens whatever crawls under it.
    @SubscribeEvent
    public static void onHurt(LivingHurtEvent event) {
       Entity attacker = event.getSource().getEntity();
@@ -143,8 +138,6 @@ public class EclipseHandler {
       event.setAmount(event.getAmount() * MONSTER_DAMAGE_MULT);
    }
 
-   // A second helping of natural spawns on top of whatever the world already does,
-   // which is what doubles the pressure while the eclipse holds.
    private static void extraSpawns(ServerLevel level) {
       RandomSource rand = level.getRandom();
       for (ServerPlayer player : level.players()) {

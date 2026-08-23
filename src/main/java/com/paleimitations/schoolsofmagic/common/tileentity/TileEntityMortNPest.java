@@ -42,7 +42,6 @@ public class TileEntityMortNPest extends BlockEntity implements MenuProvider {
    };
    private Random random;
    private Worker worker = new Worker(this.maxCooldown, false, () -> {}, () -> {
-
       ++this.crush;
       this.setCanPress(true);
    });
@@ -74,7 +73,6 @@ public class TileEntityMortNPest extends BlockEntity implements MenuProvider {
          RecipeMortNPest rep = this.getRecipe();
          this.maxCrush = rep.getCrush();
          if (this.maxCrush == this.crush) {
-
             ItemStack out = rep.getOutput();
             ItemStack input0 = this.handler.getStackInSlot(0);
             if (out.getItem() == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.crushed_plant.get()

@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:ice_shell"
+    },
+    {
+      "type": "text",
+      "text": "  Ice Shell closes a shell of ice around the caster, two blocks tall and sealed overhead. Nothing gets in, and nothing gets out.\n\n  While it holds you take no damage at all. The cold shows on your hearts and at the edges of your sight, but it does not bite.\n\n  You cannot move inside it, nor even turn your head. You wait, and the shell waits with you.\n\n  It holds for five seconds, and one second longer for every charge above the first it is cast with.\n\n  The ice is not endless. Take fifty hearts worth of punishment against it and the shell shatters into shards. Cast at the very strongest charge and it will not break at all."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_ice_shell.desc"
+    }
+  ]
+}

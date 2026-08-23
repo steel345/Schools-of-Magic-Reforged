@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class InfusedFoodEvents {
-
    @SubscribeEvent
    public static void onTooltip(ItemTooltipEvent event) {
       ItemStack stack = event.getItemStack();

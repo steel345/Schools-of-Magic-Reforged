@@ -23,7 +23,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockVaseSmall extends SOMBlock implements EntityBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
    protected static final VoxelShape BUSH_SHAPE = Block.box(3.2D, 0.0D, 3.2D, 12.8D, 16.0D, 12.8D);
 
@@ -73,7 +72,6 @@ public class BlockVaseSmall extends SOMBlock implements EntityBlock {
    @Override
    @Nullable
    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-
       return new TileEntitySmallVase(pos, state);
    }
 }

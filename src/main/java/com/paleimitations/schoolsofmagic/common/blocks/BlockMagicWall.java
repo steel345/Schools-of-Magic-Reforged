@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockMagicWall extends Block implements EntityBlock {
-
    public BlockMagicWall(BlockBehaviour.Properties props) {
       super(props);
    }

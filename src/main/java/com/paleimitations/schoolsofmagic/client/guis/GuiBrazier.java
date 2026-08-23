@@ -62,8 +62,6 @@ public class GuiBrazier extends AbstractContainerScreen<ContainerBrazier> {
       int tick = (net.minecraft.client.Minecraft.getInstance().player != null)
          ? net.minecraft.client.Minecraft.getInstance().player.tickCount : 0;
 
-      // The brazier's slot layout is exactly the JEI ritual layout shifted by (+35, +8),
-      // so translate by that offset and use JEI's exact coordinates/scales.
       gg.pose().pushPose();
       gg.pose().translate(35.0F, 8.0F, 0.0F);
 

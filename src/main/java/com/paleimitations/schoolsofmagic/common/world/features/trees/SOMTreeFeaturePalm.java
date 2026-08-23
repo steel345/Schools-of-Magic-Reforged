@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraftforge.registries.RegistryObject;
 
 public class SOMTreeFeaturePalm extends SOMTreeFeature {
-
    @Override protected RegistryObject<Block> log()    { return BlockRegistry.log_palm; }
    @Override protected RegistryObject<Block> leaves() { return BlockRegistry.leaves_palm; }
 

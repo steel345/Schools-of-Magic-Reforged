@@ -30,7 +30,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockPlate extends BaseEntityBlock {
-
    protected static final VoxelShape[] STACKS = new VoxelShape[]{
       Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.75D, 15.0D),
       Block.box(1.0D, 0.0D, 1.0D, 15.0D, 3.0D, 15.0D),

@@ -18,7 +18,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class ModelTarantula<T extends Entity> extends MowzieModelBase<T> {
-
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "tarantula"), "main");
 
@@ -114,7 +113,6 @@ public class ModelTarantula<T extends Entity> extends MowzieModelBase<T> {
    }
 
    public static LayerDefinition createBodyLayer() {
-
       MeshDefinition mesh = new MeshDefinition();
       PartDefinition body = mesh.getRoot().addOrReplaceChild("body",
          CubeListBuilder.create().texOffs(0, 45).addBox(-6.5F, -4.0F, -13.0F, 13, 6, 15),
@@ -158,7 +156,6 @@ public class ModelTarantula<T extends Entity> extends MowzieModelBase<T> {
    @Override
    public void renderToBuffer(PoseStack pose, VertexConsumer buf, int light, int overlay,
                               float r, float g, float b, float a) {
-
       pose.pushPose();
       pose.translate(this.body.part.x / 16.0F, this.body.part.y / 16.0F, this.body.part.z / 16.0F);
       pose.scale(2.0F, 2.0F, 2.0F);
@@ -314,7 +311,6 @@ public class ModelTarantula<T extends Entity> extends MowzieModelBase<T> {
    }
 
    public void rear(int tickUp, int tickDown) {
-
    }
 
    private static final class ModelPetSpiderLegHelper {

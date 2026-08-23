@@ -27,7 +27,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityRingData {
-
    public static final Capability<IRingData> CAP = CapabilityManager.get(new CapabilityToken<IRingData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "ring_data");
 

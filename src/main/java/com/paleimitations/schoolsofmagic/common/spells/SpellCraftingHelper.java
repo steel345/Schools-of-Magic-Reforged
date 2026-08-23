@@ -16,7 +16,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.items.IItemHandler;
 
 public class SpellCraftingHelper {
-
    private static List<Recipe> RECIPES = null;
 
    private static final class Recipe {

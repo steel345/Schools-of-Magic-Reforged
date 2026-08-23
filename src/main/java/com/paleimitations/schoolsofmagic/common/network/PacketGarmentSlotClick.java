@@ -11,7 +11,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
-// Swaps the carried stack with one of the four garment slots.
 public class PacketGarmentSlotClick {
    private final int slot;
 

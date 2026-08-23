@@ -8,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 public final class WandGemBuff {
-
    private WandGemBuff() {}
 
    public static final float POWER_BONUS_LEVELS = 1.0F / 3.0F;

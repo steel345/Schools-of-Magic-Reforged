@@ -612,7 +612,6 @@ public class SpellUtils {
    }
 
    public static void fullTrades(Level worldIn, Player playerIn, Villager entityIn, RandomSource rand) {
-
       net.minecraft.world.entity.npc.VillagerProfession profession = entityIn.getVillagerData().getProfession();
       it.unimi.dsi.fastutil.ints.Int2ObjectMap<net.minecraft.world.entity.npc.VillagerTrades.ItemListing[]> tradesByLevel =
             net.minecraft.world.entity.npc.VillagerTrades.TRADES.get(profession);
@@ -626,7 +625,6 @@ public class SpellUtils {
                   net.minecraft.world.item.trading.MerchantOffer offer = listing.getOffer(entityIn, rand);
                   if (offer != null) offers.add(offer);
                } catch (Throwable t) {
-
                   Utils.getLogger().debug("fullTrades: skipped a listing for {}: {}", profession, t.toString());
                }
             }
@@ -675,7 +673,6 @@ public class SpellUtils {
    }
 
    public static void cureZombie(Level worldIn, Player playerIn, ZombieVillager entity, RandomSource rand) {
-
       entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 0));
       entity.level().levelEvent((Player)null, 1027, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), 0);
    }
@@ -888,7 +885,6 @@ public class SpellUtils {
    }
 
    public static void partSea(Level worldIn, Player playerIn, RandomSource rand) {
-
       BlockPos pos = playerIn.blockPosition();
       IBanishedBlocks blocks = worldIn.getCapability(CapabilityBanishedBlocks.BANISHED_BLOCKS_CAPABILITY).orElse(null);
       Direction facing = playerIn.getDirection();
@@ -1141,7 +1137,6 @@ public class SpellUtils {
       base.discard();
    }
 
-   // A few slow puffs of skulls curling off the ground where the dead are called up.
    private static void skullPuffs(Level worldIn, double x, double y, double z, RandomSource rand) {
       if (!(worldIn instanceof net.minecraft.server.level.ServerLevel sl)) return;
       int puffs = 3 + rand.nextInt(2);
@@ -1170,7 +1165,7 @@ public class SpellUtils {
       if (!worldIn.isClientSide) {
          worldIn.addFreshEntity(zombie);
       }
-      // A shaft of grave-light instead of the old thunderclap and smoke.
+
       if (!worldIn.isClientSide) {
          worldIn.playSound(null, zombie.getX(), zombie.getY(), zombie.getZ(),
             (rand.nextBoolean() ? SOMSoundHandler.SUMMON_SPELL_A : SOMSoundHandler.SUMMON_SPELL_B).get(),
@@ -1219,7 +1214,7 @@ public class SpellUtils {
          }
          living.discard();
       }
-      // The same grave-light shaft the raising spells throw up.
+
       if (!worldIn.isClientSide) {
          worldIn.playSound(null, living.getX(), living.getY(), living.getZ(),
             (rand.nextBoolean() ? SOMSoundHandler.CAST_SPELL_A : SOMSoundHandler.CAST_SPELL_B).get(),
@@ -1269,7 +1264,7 @@ public class SpellUtils {
          }
          living.discard();
       }
-      // The same grave-light shaft the raising spells throw up.
+
       if (!worldIn.isClientSide) {
          worldIn.playSound(null, living.getX(), living.getY(), living.getZ(),
             (rand.nextBoolean() ? SOMSoundHandler.CAST_SPELL_A : SOMSoundHandler.CAST_SPELL_B).get(),
@@ -1296,7 +1291,7 @@ public class SpellUtils {
       if (!worldIn.isClientSide) {
          worldIn.addFreshEntity(zombie);
       }
-      // A shaft of grave-light instead of the old thunderclap and smoke.
+
       if (!worldIn.isClientSide) {
          worldIn.playSound(null, zombie.getX(), zombie.getY(), zombie.getZ(),
             (rand.nextBoolean() ? SOMSoundHandler.SUMMON_SPELL_A : SOMSoundHandler.SUMMON_SPELL_B).get(),
@@ -1677,7 +1672,6 @@ public class SpellUtils {
          level.addFreshEntity(entity);
          return entity;
       } catch (Throwable t) {
-
          FallingBlockEntity entity = FallingBlockEntity.fall(level, pos, state);
          level.setBlock(pos, state, 3);
          return entity;

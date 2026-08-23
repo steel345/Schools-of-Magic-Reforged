@@ -32,7 +32,6 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 public class EntityAcolyteWisp extends PathfinderMob implements FlyingAnimal {
-
    private boolean resting;
 
    public EntityAcolyteWisp(EntityType<? extends PathfinderMob> type, Level level) {
@@ -132,7 +131,6 @@ public class EntityAcolyteWisp extends PathfinderMob implements FlyingAnimal {
    }
 
    static class WispFlyGoal extends Goal {
-
       private final EntityAcolyteWisp wisp;
       private final double speed;
       private int stuckTicks;
@@ -196,7 +194,6 @@ public class EntityAcolyteWisp extends PathfinderMob implements FlyingAnimal {
    }
 
    static class WispRestGoal extends Goal {
-
       private final EntityAcolyteWisp wisp;
       private BlockPos leafPos;
 

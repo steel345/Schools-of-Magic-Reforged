@@ -62,13 +62,13 @@ public class SpellWinterRoar extends Spell {
                if (rand.nextBoolean()) {
                   living.addEffect(new MobEffectInstance(PotionRegistry.frostbite.get(), 200 + Math.round(this.getPowerBonus(playerIn) * 40.0F)));
                }
-               living.hurt(worldIn.damageSources().playerAttack(playerIn), 4.0F);
+               living.hurt(worldIn.damageSources().playerAttack(playerIn), this.scaleDamage(4.0F));
                living.clearFire();
                if (living instanceof Blaze) {
-                  living.hurt(worldIn.damageSources().playerAttack(playerIn), 3.5F);
+                  living.hurt(worldIn.damageSources().playerAttack(playerIn), this.scaleDamage(3.5F));
                }
                if (living instanceof MagmaCube) {
-                  living.hurt(worldIn.damageSources().playerAttack(playerIn), 1.5F);
+                  living.hurt(worldIn.damageSources().playerAttack(playerIn), this.scaleDamage(1.5F));
                }
             }
          }

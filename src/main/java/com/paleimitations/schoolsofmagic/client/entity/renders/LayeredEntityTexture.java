@@ -18,7 +18,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public final class LayeredEntityTexture {
-
    private static final Map<String, ResourceLocation> CACHE = Maps.newHashMap();
 
    private LayeredEntityTexture() {}

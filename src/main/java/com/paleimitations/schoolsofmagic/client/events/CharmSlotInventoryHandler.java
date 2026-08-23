@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class CharmSlotInventoryHandler {
-
    private static final ResourceLocation GHOST =
       new ResourceLocation("som", "textures/gui/overlay_charm.png");
 
@@ -47,6 +46,11 @@ public class CharmSlotInventoryHandler {
       ICharmData charm = CapabilityCharmData.get(player);
       ItemStack stack = charm != null ? charm.getCharm() : ItemStack.EMPTY;
 
+      boolean hovered = over(mx, my, x, y);
+      if (hovered) {
+         gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
+      }
+
       if (stack.isEmpty()) {
          gg.blit(GHOST, x, y, 0, 0, 16, 16, 16, 16);
       } else {
@@ -55,8 +59,7 @@ public class CharmSlotInventoryHandler {
       }
 
       ItemStack carried = screen.getMenu().getCarried();
-      if (over(mx, my, x, y)) {
-         gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
+      if (hovered) {
          if (!carried.isEmpty()) {
             gg.renderItem(carried, (int) mx - 8, (int) my - 8);
             gg.renderItemDecorations(Minecraft.getInstance().font, carried, (int) mx - 8, (int) my - 8);

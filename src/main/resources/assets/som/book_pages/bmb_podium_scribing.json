@@ -1,0 +1,12 @@
+{
+  "elements": [
+    {
+      "type": "title",
+      "text": "page.bmb_podium_scribing.title"
+    },
+    {
+      "type": "text",
+      "text": "  A Magician who only reads is half a Magician. The last tab of the /bPodium/z is where you stop reading and start writing.\n\n  Put a book on the Podium and open that tab. There are three trades in it: stickers, /bInsert/z, and /bWrite/z.\n\n  Each one has to be paid for. The Podium has a single slot, and the buttons stay dark until you put the right thing in it.\n\n  /bInsert/z needs /bPaper/z. With a sheet in the slot you can add three things to the book.\n\n  A /bTable of Contents/z goes to the front, and a book can only have one. A /bChapter/z splits what comes after it from what came before. A /bWritable Page/z is a blank page, and that is the useful one.\n\n  Each is added just after the page you are on, so turn to the right place first.\n\n  A blank page does not stay blank. Look at it and you will see a quill sitting in the middle."
+    }
+  ]
+}

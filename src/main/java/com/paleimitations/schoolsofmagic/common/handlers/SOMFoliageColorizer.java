@@ -19,13 +19,11 @@ public class SOMFoliageColorizer implements BlockColor {
 
    @Override
    public int getColor(BlockState state, BlockAndTintGetter worldIn, BlockPos pos, int tintIndex) {
-
       return worldIn != null && pos != null ? BiomeColors.getAverageFoliageColor(worldIn, pos) : -1;
    }
 
    @SubscribeEvent
    public static void registerColors(RegisterColorHandlersEvent.Block event) {
-
       event.register(INSTANCE,
          BlockRegistry.plant_mistletoe.get(), BlockRegistry.magic_leaves1.get(),
          BlockRegistry.bush.get(),

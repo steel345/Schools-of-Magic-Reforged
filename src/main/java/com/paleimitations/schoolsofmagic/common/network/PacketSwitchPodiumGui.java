@@ -72,7 +72,6 @@ public class PacketSwitchPodiumGui {
             TileEntityPodium podium = (TileEntityPodium) te;
             Entity entity = sender.serverLevel().getEntity(msg.entityID);
             if (entity instanceof ServerPlayer targetPlayer) {
-
                openPodiumMenu(targetPlayer, podium, msg.gui);
             }
          }

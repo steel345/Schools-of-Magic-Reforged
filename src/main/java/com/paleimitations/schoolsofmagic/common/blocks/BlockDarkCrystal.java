@@ -18,7 +18,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockDarkCrystal extends Block implements net.minecraft.world.level.block.EntityBlock {
-
    public static final EnumProperty<Curse> TYPE = EnumProperty.create("type", Curse.class);
    private static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 15.0D, 13.0D);
 

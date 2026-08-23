@@ -20,7 +20,9 @@ public enum SOMParticleType {
    SKULL("skull", 11, false),
    ORB("orb", 12, false),
    ORB_CORE("orb_core", 13, false),
-   SPARKLE_STAR("sparkle_star", 14, false);
+   SPARKLE_STAR("sparkle_star", 14, false),
+   SPARKLE_RAY("sparkle_ray", 15, false),
+   SCULK_BLOOM("sculk_bloom", 16, false);
 
    private final String particleName;
    private final int particleID;

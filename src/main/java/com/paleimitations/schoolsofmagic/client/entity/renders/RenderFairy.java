@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderFairy extends MobRenderer<EntityFairy, EntityModel<EntityFairy>> {
-
    @SuppressWarnings("unchecked")
    public RenderFairy(EntityRendererProvider.Context ctx) {
       super(ctx, (EntityModel<EntityFairy>) (EntityModel<?>) new AllayModel(ctx.bakeLayer(ModelLayers.ALLAY)), 0.3F);

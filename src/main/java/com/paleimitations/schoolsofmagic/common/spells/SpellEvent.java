@@ -46,8 +46,6 @@ public class SpellEvent {
             return;
          }
 
-         // Casting at a mob bypasses the wand's own use paths, so the cooldown is
-         // gated and applied here too.
          if (spell.getCooldownTicks() > 0 && player.getCooldowns().isOnCooldown(held.getItem())) {
             event.setCanceled(true);
             event.setCancellationResult(net.minecraft.world.InteractionResult.sidedSuccess(player.level().isClientSide));

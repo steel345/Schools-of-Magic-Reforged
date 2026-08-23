@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class RenderSqueakard extends MobRenderer<EntitySqueakard, ModelSqueakard<EntitySqueakard>> {
-
    private static final ResourceLocation FALLBACK = new ResourceLocation("som", "textures/entity/squeakard/fur0.png");
 
    public RenderSqueakard(EntityRendererProvider.Context context) {

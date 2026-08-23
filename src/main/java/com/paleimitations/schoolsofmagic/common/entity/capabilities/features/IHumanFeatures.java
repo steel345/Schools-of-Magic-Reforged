@@ -4,7 +4,6 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public interface IHumanFeatures {
-
    String getFirstName();
 
    String getLastName();

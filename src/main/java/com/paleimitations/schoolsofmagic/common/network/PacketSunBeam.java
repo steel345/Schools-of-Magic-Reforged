@@ -7,8 +7,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 
-// Tells nearby clients to throw up a light shaft at a spot, in a given colour and
-// with the collapse it should use.
 public class PacketSunBeam {
    private final double x, y, z;
    private final float r, g, b;

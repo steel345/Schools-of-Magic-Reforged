@@ -34,7 +34,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.EnumMap;
 
 public class BlockSacrificialAltar extends SOMBlock implements EntityBlock {
-
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
    public static final EnumProperty<Part> PART = EnumProperty.create("part", Part.class);
 

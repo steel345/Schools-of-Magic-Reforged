@@ -77,7 +77,6 @@ public class SpellTremor extends SpellTimed {
                if (state.is(BlockTags.DIRT) || state.is(BlockTags.SAND) || state.is(BlockTags.BASE_STONE_OVERWORLD) || state.is(Blocks.GRASS_BLOCK)) {
                   this.posits.add(pos);
                   if (!world.isClientSide) {
-
                      FallingBlockEntity entity = FallingBlockEntity.fall(world, pos, state);
                      IMeteoricData data = entity.getCapability(CapabilityMeteoricData.CAP).orElse(null);
                      if (data != null) {

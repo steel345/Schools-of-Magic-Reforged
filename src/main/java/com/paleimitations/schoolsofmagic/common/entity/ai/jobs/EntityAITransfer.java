@@ -112,7 +112,6 @@ public class EntityAITransfer extends Goal {
             boolean bl = flag = j > 0;
          }
          if (flag) {
-
             destination.setChanged();
          }
       } else {

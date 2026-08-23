@@ -100,7 +100,6 @@ public class ImitationSpiteEffect extends AbstractImitationEffect {
    }
 
    public int getBrightnessForRender(float partial) {
-
       return net.minecraft.client.renderer.LightTexture.FULL_BRIGHT;
    }
 

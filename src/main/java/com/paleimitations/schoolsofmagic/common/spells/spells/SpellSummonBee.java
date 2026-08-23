@@ -36,7 +36,7 @@ public class SpellSummonBee extends Spell {
          new ResourceLocation("som", "summon_bee"),
          25.0F,
          false,
-         5,
+         10,
          0,
          generateSchoolMap(new Entry[0]),
          generateElementMap(new Entry[0]),
@@ -50,11 +50,6 @@ public class SpellSummonBee extends Spell {
 
    public SpellSummonBee(CompoundTag nbt) {
       this.deserializeNBT(nbt);
-   }
-
-   @Override
-   public int getMinimumSpellChargeLevel() {
-      return 1;
    }
 
    public int getDurationForCharge(int chargeLevel) {

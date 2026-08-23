@@ -26,7 +26,6 @@ import org.joml.Vector3f;
 
 @OnlyIn(Dist.CLIENT)
 public final class ClientUtil {
-
    private static final VertexFormat VERTEX_FORMAT = DefaultVertexFormat.NEW_ENTITY;
 
    public ClientUtil() {

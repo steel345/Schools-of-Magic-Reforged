@@ -23,10 +23,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class SOMEvents {
-
     @SubscribeEvent
     public static void onBreakBlock(BlockEvent.BreakEvent event) {
-
         net.minecraft.world.level.LevelAccessor accessor = event.getLevel();
         if (!(accessor instanceof net.minecraft.server.level.ServerLevel serverLevel)) return;
         Player player = event.getPlayer();

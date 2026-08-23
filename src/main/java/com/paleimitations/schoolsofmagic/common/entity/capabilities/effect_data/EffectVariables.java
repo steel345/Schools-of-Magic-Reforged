@@ -4,7 +4,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class EffectVariables implements INBTSerializable<CompoundTag>, IEffectVariables {
-
    private float sneezeOffset = 0.0F;
    private float timeToSneeze = 0.0F;
    private float returnFromSneeze = 0.0F;

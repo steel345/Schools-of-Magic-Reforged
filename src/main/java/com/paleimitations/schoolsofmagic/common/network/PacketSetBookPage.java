@@ -1,6 +1,6 @@
 package com.paleimitations.schoolsofmagic.common.network;
 
-import com.paleimitations.schoolsofmagic.common.items.ItemSpellbook;
+import com.paleimitations.schoolsofmagic.common.items.ItemBookBase;
 import com.paleimitations.schoolsofmagic.common.items.capabilities.book.CapabilityBook;
 import com.paleimitations.schoolsofmagic.common.items.capabilities.book.IBook;
 import java.util.function.Supplier;
@@ -35,10 +35,10 @@ public class PacketSetBookPage {
             return;
          }
          ItemStack held = sp.getMainHandItem();
-         if (!(held.getItem() instanceof ItemSpellbook)) {
+         if (!(held.getItem() instanceof ItemBookBase)) {
             held = sp.getOffhandItem();
          }
-         if (!(held.getItem() instanceof ItemSpellbook)) {
+         if (!(held.getItem() instanceof ItemBookBase)) {
             return;
          }
          IBook book = CapabilityBook.getCapability(held);

@@ -12,7 +12,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class WaterShoreGrassFeature extends Feature<NoneFeatureConfiguration> {
-
    public WaterShoreGrassFeature() {
       super(NoneFeatureConfiguration.CODEC);
    }

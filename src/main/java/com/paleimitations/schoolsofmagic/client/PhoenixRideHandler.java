@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT)
 public class PhoenixRideHandler {
-
    private static boolean lastUp;
    private static boolean lastDown;
    private static boolean lastSprint;

@@ -39,7 +39,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityQuestData {
-
    public static final Capability<IQuestData> CAP = CapabilityManager.get(new CapabilityToken<IQuestData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "quest_data");
 
@@ -62,7 +61,6 @@ public class CapabilityQuestData {
 
    @SubscribeEvent
    public static void clonePlayer(PlayerEvent.Clone event) {
-
       event.getOriginal().reviveCaps();
       try {
          IQuestData original = getQuestData(event.getOriginal());

@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class MysteriousDeliveryHandler {
-
    @SubscribeEvent
    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
       if (event.phase != TickEvent.Phase.END) return;

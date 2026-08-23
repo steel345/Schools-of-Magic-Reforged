@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class OtherPlayerHandler {
-
    public static final String ALIAS = "Other Player";
 
    @SubscribeEvent

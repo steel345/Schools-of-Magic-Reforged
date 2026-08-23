@@ -30,7 +30,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityCurseCords {
-
    public static final Capability<ICurseCords> CURSE_CORDS_CAPABILITY = CapabilityManager.get(new CapabilityToken<ICurseCords>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "curse_coords");
 
@@ -126,7 +125,6 @@ public class CapabilityCurseCords {
 
             if (cords != null) { cords.removeZigCurseCord(event.getPos()); cords.removeHeartCord(event.getPos()); }
          } else if (!world.isClientSide) {
-
             net.minecraft.world.level.block.Block b = world.getBlockState(event.getPos()).getBlock();
 
             boolean breakable = b instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockRottedChest
@@ -146,7 +144,6 @@ public class CapabilityCurseCords {
    public static void zigBlockPlaceCurse(BlockEvent.EntityPlaceEvent event) {
       Level world = (Level) event.getLevel();
       if (world != null) {
-
          net.minecraft.world.entity.player.Player placer = (event.getEntity() instanceof net.minecraft.world.entity.player.Player p) ? p : null;
 
          if (placer == null) return;

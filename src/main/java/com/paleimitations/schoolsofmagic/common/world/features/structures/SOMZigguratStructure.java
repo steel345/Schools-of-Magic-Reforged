@@ -23,7 +23,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 
 public class SOMZigguratStructure extends Structure {
-
    public static final Codec<SOMZigguratStructure> CODEC = simpleCodec(SOMZigguratStructure::new);
 
    private static final int[] DX = {-61,-61,-61,-29,-29,-29,-61,-61,-61,-29,-29,-29,3,3,3,35};
@@ -68,7 +67,6 @@ public class SOMZigguratStructure extends Structure {
       long zigSeed = origin.asLong();
 
       return Optional.of(new GenerationStub(origin, builder -> {
-
          BlockPos altarLink = null, tabletLink = null;
          for (int r = 0; r < 16; r++) {
             try {

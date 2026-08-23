@@ -8,10 +8,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SOMKeyBindings {
-
    @SubscribeEvent
    public static void onRegister(RegisterKeyMappingsEvent event) {
-
       event.register(ClientProxy.OPEN_SPELL_RING);
       event.register(ClientProxy.TALISMAN_ACTIVATE);
       event.register(ClientProxy.CHARM_ACTIVATE);

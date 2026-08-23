@@ -26,7 +26,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, bus = Bus.FORGE)
 public class CapabilityTalismanData {
-
    public static final Capability<ITalismanData> CAP = CapabilityManager.get(new CapabilityToken<ITalismanData>(){});
    public static final ResourceLocation ID = new ResourceLocation("som", "talisman_data");
 
