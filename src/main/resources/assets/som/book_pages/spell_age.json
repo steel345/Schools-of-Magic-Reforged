@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:age"
+    },
+    {
+      "type": "text",
+      "text": "  Age hurries time along for every animal around the caster. It needs concentration, though a special one only used in peculiar spells.\n\n  Every young creature around grows to an adult at once, villagers and monsters included. Grown animals waiting to breed again are ready immediately, and sheep grow back the wool they were shorn of.\n\n  It reaches 6 blocks at a first level charge, and 2 blocks further for every charge level above that."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_age.desc"
+    }
+  ]
+}

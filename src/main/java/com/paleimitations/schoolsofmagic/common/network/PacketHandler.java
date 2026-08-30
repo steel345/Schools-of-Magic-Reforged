@@ -114,6 +114,20 @@ public class PacketHandler {
       INSTANCE.registerMessage(nextID(), PacketIceShell.class, PacketIceShell::encode, PacketIceShell::new, PacketIceShell::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketEclipseState.class, PacketEclipseState::encode, PacketEclipseState::new, PacketEclipseState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketSetMirrorCoords.class, PacketSetMirrorCoords::encode, PacketSetMirrorCoords::new, PacketSetMirrorCoords::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketRiftView.class, PacketRiftView::encode, PacketRiftView::new, PacketRiftView::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketGaianWarriorBar.class, PacketGaianWarriorBar::encode, PacketGaianWarriorBar::new, PacketGaianWarriorBar::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketEarthenRide.class, PacketEarthenRide::encode, PacketEarthenRide::new, PacketEarthenRide::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketDazzlingLight.class, PacketDazzlingLight::encode, PacketDazzlingLight::new, PacketDazzlingLight::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketTeleportPuff.class, PacketTeleportPuff::encode, PacketTeleportPuff::new, PacketTeleportPuff::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketGaseousForm.class, PacketGaseousForm::encode, PacketGaseousForm::new, PacketGaseousForm::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketAlarmAlert.class, PacketAlarmAlert::encode, PacketAlarmAlert::new, PacketAlarmAlert::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketAlarmSound.class, PacketAlarmSound::encode, PacketAlarmSound::new, PacketAlarmSound::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketSilence.class, PacketSilence::encode, PacketSilence::new, PacketSilence::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketAnimalScry.class, PacketAnimalScry::encode, PacketAnimalScry::new, PacketAnimalScry::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketBiomeScry.class, PacketBiomeScry::encode, PacketBiomeScry::new, PacketBiomeScry::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+      INSTANCE.registerMessage(nextID(), PacketScryTrail.class, PacketScryTrail::encode, PacketScryTrail::new, PacketScryTrail::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketAstralSwell.class, PacketAstralSwell::encode, PacketAstralSwell::new, PacketAstralSwell::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketShiningShield.class, PacketShiningShield::encode, PacketShiningShield::new, PacketShiningShield::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketNecklaceBreak.class, PacketNecklaceBreak::encode, PacketNecklaceBreak::new, PacketNecklaceBreak::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
    }
 }

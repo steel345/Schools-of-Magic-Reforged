@@ -58,7 +58,7 @@ public class SpellIlluminate extends Spell {
    }
 
    private void apply(Level world, LivingEntity target) {
-      target.addEffect(new MobEffectInstance(MobEffects.GLOWING, this.duration(), 0, false, true, true));
+      this.applyEffect(target, new MobEffectInstance(MobEffects.GLOWING, this.duration(), 0, false, true, true));
       world.playSound(null, target.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME,
          SoundSource.PLAYERS, 0.8F, 1.6F);
    }

@@ -16,7 +16,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -30,6 +29,9 @@ public class SpellSolarOrb extends Spell {
    private static final double PLACE_RANGE = 6.0D;
    private static final double BURN_RANGE = 5.0D;
    private static final int BURN_SECONDS = 4;
+   private static final int CONCENTRATION_TICKS = 40;
+   private static final int BASE_LIFETIME = 1200;
+   private static final int LIFETIME_PER_CHARGE = 600;
 
    public SpellSolarOrb() {
       super(
@@ -58,30 +60,47 @@ public class SpellSolarOrb extends Spell {
    }
 
    @Override
+   public int getUseLength() {
+      return CONCENTRATION_TICKS;
+   }
+
+   @Override
+   public net.minecraft.world.item.UseAnim getAction() {
+      return net.minecraft.world.item.UseAnim.BOW;
+   }
+
+   @Override
    public InteractionResultHolder<ItemStack> rightClickEffect(Level worldIn, Player playerIn, InteractionHand hand) {
       ItemStack held = playerIn.getItemInHand(hand);
-      if (!this.castSpell(playerIn, 0.0F)) {
+      if (!playerIn.isCreative() && !this.canCastSpell(playerIn, 0.0F)) {
          return new InteractionResultHolder<>(InteractionResult.PASS, held);
       }
-      if (worldIn.isClientSide) {
-         return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
-      }
+      return InteractionResultHolder.success(held);
+   }
+
+   @Override
+   public ItemStack finishHoldEffect(ItemStack stack, Level worldIn, net.minecraft.world.entity.LivingEntity entityLiving) {
+      if (!(entityLiving instanceof Player playerIn)) return stack;
+      if (!this.castSpell(playerIn, 0.0F)) return stack;
+      if (worldIn.isClientSide) return stack;
 
       BlockPos at = this.findSpot(worldIn, playerIn);
-      if (at == null) {
-         return new InteractionResultHolder<>(InteractionResult.PASS, held);
-      }
+      if (at == null) return stack;
 
       worldIn.setBlock(at, com.paleimitations.schoolsofmagic.common.registries.BlockRegistry.solar_orb.get()
          .defaultBlockState(), 3);
-      worldIn.playSound(null, at, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.2F);
+      if (worldIn.getBlockEntity(at) instanceof com.paleimitations.schoolsofmagic.common.tileentity.TileEntitySolarOrb orb) {
+         orb.setLifetime(this.scaleDuration(BASE_LIFETIME
+            + LIFETIME_PER_CHARGE * (this.currentSpellChargeLevel - this.getMinimumSpellChargeLevel())));
+      }
+      worldIn.playSound(null, at, com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PHANTOM_FIRE.get(),
+         SoundSource.PLAYERS, 1.0F, playerIn.getRandom().nextFloat() * 0.4F + 0.8F);
 
       if (worldIn instanceof ServerLevel sl) {
-         sl.sendParticles(ParticleTypeRegistry.ORB.get(),
-            at.getX() + 0.5D, at.getY() + 0.5D, at.getZ() + 0.5D, 6, 0.2D, 0.2D, 0.2D, 0.0D);
+         sl.sendParticles(ParticleTypeRegistry.SPARKLE_STAR.get(),
+            at.getX() + 0.5D, at.getY() + 0.5D, at.getZ() + 0.5D, 0, 1.0D, 0.72D, 0.22D, 1.0D);
       }
-
-      return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
+      return stack;
    }
 
    private BlockPos findSpot(Level worldIn, Player playerIn) {

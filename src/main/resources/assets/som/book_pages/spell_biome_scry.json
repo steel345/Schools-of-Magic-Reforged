@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:biome_scry"
+    },
+    {
+      "type": "text",
+      "text": "  Biome Scry asks the world where something is. Casting it lays out every land the world knows of, and the bar at the top searches the list by name.\n\n  Double-click one and the spell goes looking. What comes back is a trail of green light pointing the way, and it is a long way more often than not.\n\n  Follow it far enough and the trail becomes a cross laid on the ground. Stand on the cross and the spell is spent."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_biome_scry.desc"
+    }
+  ]
+}

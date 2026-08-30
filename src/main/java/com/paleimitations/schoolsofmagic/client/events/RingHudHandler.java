@@ -69,7 +69,7 @@ public class RingHudHandler {
       boolean channeled = spell instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom sc && sc.isChanneled();
       boolean concentration = spell instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom scc && scc.isConcentration();
       net.minecraft.world.item.Item ringItem =
-         com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player).getRing().getItem();
+         com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).getItem();
       boolean onCd = player.getCooldowns().isOnCooldown(ringItem);
       boolean chargeUp = spell != null
          && !(spell instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom)
@@ -95,6 +95,14 @@ public class RingHudHandler {
 
       if (concActive) {
          chargeTicks++;
+         if (chargeTicks == 1 && spell.getAction() != net.minecraft.world.item.UseAnim.NONE
+               && spell.hasCastingFlourish()) {
+            if (!spell.isVEConcentration()) {
+               player.playSound((player.getRandom().nextBoolean()
+                  ? com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_A
+                  : com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_B).get(), 1.0F, 1.0F);
+            }
+         }
          if (concentration) {
             com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
                new com.paleimitations.schoolsofmagic.common.network.PacketRingConcentrate());
@@ -108,7 +116,7 @@ public class RingHudHandler {
                   new com.paleimitations.schoolsofmagic.common.network.PacketRingConcentration());
             } else {
                net.minecraft.world.item.ItemStack ringStack =
-                  com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player).getRing();
+                  com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player);
                spell.finishHoldEffect(ringStack, player.level(), player);
                com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.sendToServer(
                   new com.paleimitations.schoolsofmagic.common.network.PacketRingHold(0, true));
@@ -122,14 +130,17 @@ public class RingHudHandler {
 
       if (holdActive) {
          net.minecraft.world.item.ItemStack ringStack =
-            com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player).getRing();
+            com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player);
          holdTicks++;
          holdLength = spell.getUseLength();
 
-         if (holdTicks == 1 && spell.getAction() != net.minecraft.world.item.UseAnim.NONE) {
-            player.playSound((player.getRandom().nextBoolean()
-               ? com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_A
-               : com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_B).get(), 1.0F, 1.0F);
+         if (holdTicks == 1 && spell.getAction() != net.minecraft.world.item.UseAnim.NONE
+               && spell.hasCastingFlourish()) {
+            if (!spell.isVEConcentration()) {
+               player.playSound((player.getRandom().nextBoolean()
+                  ? com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_A
+                  : com.paleimitations.schoolsofmagic.common.handlers.SOMSoundHandler.PRE_SPELL_B).get(), 1.0F, 1.0F);
+            }
          }
          if (spell.getAction() != net.minecraft.world.item.UseAnim.NONE) {
             com.paleimitations.schoolsofmagic.common.items.ItemBaseWand.spawnCastingParticles(
@@ -171,8 +182,8 @@ public class RingHudHandler {
       Minecraft mc = Minecraft.getInstance();
       if (mc.player == null || mc.screen != null || !mc.options.keyShift.isDown()) return;
       IRingData ring = CapabilityRingData.get(mc.player);
-      if (ring == null || ring.getRing().isEmpty()
-            || !(ring.getRing().getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemApprenticeRing)) return;
+      if (ring == null || !com.paleimitations.schoolsofmagic.common.items.RingItemHelper.casts(
+            com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(mc.player))) return;
       for (int i = 0; i < 9; i++) {
          if (mc.options.keyHotbarSlots[i].matches(event.getKey(), event.getScanCode())) {
             while (mc.options.keyHotbarSlots[i].consumeClick()) {}
@@ -190,7 +201,7 @@ public class RingHudHandler {
       LocalPlayer player = mc.player;
       if (player == null || player.isSpectator() || mc.options.hideGui) return;
       IRingData ring = CapabilityRingData.get(player);
-      if (ring == null || ring.getRing().isEmpty()) return;
+      if (ring == null || com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).isEmpty()) return;
 
       int mask = ring.getSpellSlots();
       if (mask == 0) return;

@@ -71,7 +71,7 @@ public class SpellSundial extends Spell {
       long hour = (ticks / 1000L + DAWN_OFFSET) % 24L;
       long minute = (ticks % 1000L) * 60L / 1000L;
       long day = worldIn.getDayTime() / DAY;
-      return String.format("%02d:%02d  -  %s, day %d", hour, minute, partOfDay(hour), day);
+      return String.format("%02d:%02d  ;  %s, day %d", hour, minute, partOfDay(hour), day);
    }
 
    private static String partOfDay(long hour) {

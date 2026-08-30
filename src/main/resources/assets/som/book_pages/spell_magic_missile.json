@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:magic_missile"
+    },
+    {
+      "type": "text",
+      "text": "  Magic Missile is the first evocation most astromancers ever learn. A mote of starlight is drawn out of the space and hurled forward, spinning as it flies until it strikes.\n\n  Under open sun the stars are faint, and the missile carries only 3.5 damage. Out of the sunlight, at night it strikes for the full 7. Either way half of the blow is the star's own magic magic, which armour does little to turn aside."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_magic_missile.desc"
+    }
+  ]
+}

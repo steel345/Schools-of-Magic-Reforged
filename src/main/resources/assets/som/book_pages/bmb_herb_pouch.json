@@ -1,7 +1,7 @@
 {
   "elements": [
     { "type": "title", "text": "The Herb Pouch" },
-    { "type": "text", "text": "  A magician wandering the wilds will gather far more herbs than a satchel can hold /bplants/z, leaves, saplings, dried and crushed herbs, pulps and pastes.\n\n  The /bHerb Pouch/z is the herbalist's neat trick: a soft dyed pouch that holds only living things you have picked. Craft one as shown, dye it like leather, and right-click to open it.\n\n  Put it on your /bBelt/z and it rides on your hip; press the /bbelt key/z to open it while it is worn. It sits just as well in the /bCharm slot/z, where the /bcharm key/z opens it instead. Each key reaches only its own slot." },
+    { "type": "text", "text": "  A magician wandering the wilds will gather far more herbs than a satchel can hold /bplants/z, leaves, saplings, dried and crushed herbs, pulps and pastes.\n\n  The /bHerb Pouch/z is the herbalist's neat trick: a soft dyed pouch that holds only living things you have picked. Craft one as shown, dye it like leather, and right-click to open it.\n\n  Put it on your /bBelt/z and it rides on your hip; press the /bbelt key/z to open it while it is worn. It sits just as well in the /bCharm slot/z, where the /bcharm key/z opens it instead. Each key reaches only its own slot.\n\n The pouch is /bdyeable/z like leather armor.  " },
     { "type": "crafting", "result": "som:herb_pouch", "y_pos": 92,
       "pattern": ["minecraft:string","minecraft:gold_nugget","minecraft:string",
                   "minecraft:leather","minecraft:chest","minecraft:leather",

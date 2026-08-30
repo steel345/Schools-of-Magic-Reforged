@@ -1,0 +1,7 @@
+{
+  "elements": [
+    { "type": "title", "text": "Wizard Robe" },
+    { "type": "text", "text": "  Four /bEnhanced Magic Cloth/z, two /bMagic Thread/z and an iron chestplate at the /bBrazier/z for 70 mana." },
+    { "type": "ritual", "result": "som:wizard_chestplate" }
+  ]
+}

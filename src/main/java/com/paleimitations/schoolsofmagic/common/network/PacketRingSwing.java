@@ -24,10 +24,10 @@ public class PacketRingSwing {
          if (sp == null || !RingCastHandler.isRingActive(sp)) return;
          IManaData mana = sp.getCapability(CapabilityManaData.CAP).orElse(null);
          IRingData ring = CapabilityRingData.get(sp);
-         if (mana == null || ring == null || ring.getRing().isEmpty()) return;
+         if (mana == null || ring == null || com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(sp).isEmpty()) return;
          Spell spell = mana.getCurrentSpell();
          if (spell != null) {
-            spell.swingEffect(sp, ring.getRing());
+            spell.swingEffect(sp, com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(sp));
          }
       });
       ctx.get().setPacketHandled(true);

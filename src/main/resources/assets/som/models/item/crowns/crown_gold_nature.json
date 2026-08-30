@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/crown/crown_gold",
+    "layer1": "som:items/crown/crown_nature_gem"
+  }
+}

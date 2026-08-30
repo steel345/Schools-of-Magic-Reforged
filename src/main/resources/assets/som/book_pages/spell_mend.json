@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:mend"
+    },
+    {
+      "type": "text",
+      "text": "  Mend puts a block back the way it was meant to be. Right-click what you want made whole.\n\n  Cracked bricks close up again, of stone, deepslate, nether brick or blackstone. Cobble knits back into the stone it was broken from, and stone settles into smooth stone.\n\n  It works the same on any stone family, ours or another's, so long as the broken form is named after the whole one. Fae stone, gypsum and mud marble mend a step at a time: cracked bricks to bricks, cobble to stone.\n\n  A log put right sheds its bark. A chipped anvil comes back whole.\n\n  What Mend does can be set in the config, and anything you add there is mended before the rules above are tried.\n\n  It costs 12 mana and needs spell charge level 1."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_mend.desc"
+    }
+  ]
+}

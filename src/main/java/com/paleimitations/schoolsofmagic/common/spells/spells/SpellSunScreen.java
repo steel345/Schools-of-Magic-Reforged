@@ -59,8 +59,8 @@ public class SpellSunScreen extends Spell {
       return !target.fireImmune() || target.getMobType() == MobType.UNDEAD || target instanceof AbstractPiglin;
    }
 
-   private static void apply(LivingEntity target) {
-      target.addEffect(new MobEffectInstance(PotionRegistry.sunscreen.get(), DURATION, 0, false, true, true));
+   private void apply(LivingEntity target) {
+      this.applyEffect(target, new MobEffectInstance(PotionRegistry.sunscreen.get(), DURATION, 0, false, true, true));
       target.clearFire();
       target.level().playSound(null, target.blockPosition(), SoundEvents.SLIME_SQUISH,
          SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -72,7 +72,7 @@ public class SpellSunScreen extends Spell {
       if (!canApply(playerIn) || !this.castSpell(playerIn, 0.0F)) {
          return new InteractionResultHolder<>(InteractionResult.PASS, held);
       }
-      if (!worldIn.isClientSide) apply(playerIn);
+      if (!worldIn.isClientSide) this.apply(playerIn);
       return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
    }
 
@@ -85,7 +85,7 @@ public class SpellSunScreen extends Spell {
    public void interactionEffect(Level world, Player player, LivingEntity livingBase) {
       if (!canApply(livingBase)) return;
       if (this.castSpell(player, 0.0F) && !world.isClientSide) {
-         apply(livingBase);
+         this.apply(livingBase);
       }
    }
 }

@@ -37,6 +37,7 @@ public class SpellTremor extends SpellTimed {
    public BlockPos orgin;
    public UUID caster;
    public List<BlockPos> posits = Lists.newArrayList();
+   private final java.util.Set<Long> lifted = new java.util.HashSet<>();
 
    public SpellTremor() {
       super(new ResourceLocation("som", "tremor"), SOMConfig.tremor_cost, false, SOMConfig.tremor_minLevel, 0, generateSchoolMap(new Map.Entry[0]), generateElementMap(new Map.Entry[0]), Lists.newArrayList(new MagicSchool[]{MagicSchoolRegistry.evocation}), Lists.newArrayList(new MagicElement[]{MagicElementRegistry.geomancy}), Lists.newArrayList(), false, Spell.EnumCastType.CONE, 25);
@@ -71,11 +72,12 @@ public class SpellTremor extends SpellTimed {
          float curRad = (float) this.castTick / 2.0F + 1.5F;
          float prevRad = (float) this.castTick / 2.0F + 0.5F;
          for (BlockPos pos : BlockPosUtils.getAllInShellAlongAngle(this.orgin, (double) curRad, (double) prevRad, this.direction, 20.0F)) {
-            if (pos != null && !this.posits.contains(pos) && !this.posits.contains(pos.above()) && !world.isEmptyBlock(pos) && world.getBlockEntity(pos) == null && (world.isEmptyBlock(pos.above()) || world.getBlockState(pos.above()).canBeReplaced())) {
+            if (pos != null && !this.lifted.contains(pos.asLong()) && !this.lifted.contains(pos.above().asLong()) && !world.isEmptyBlock(pos) && world.getBlockEntity(pos) == null && (world.isEmptyBlock(pos.above()) || world.getBlockState(pos.above()).canBeReplaced())) {
                BlockState state = world.getBlockState(pos);
 
                if (state.is(BlockTags.DIRT) || state.is(BlockTags.SAND) || state.is(BlockTags.BASE_STONE_OVERWORLD) || state.is(Blocks.GRASS_BLOCK)) {
                   this.posits.add(pos);
+                  this.lifted.add(pos.asLong());
                   if (!world.isClientSide) {
                      FallingBlockEntity entity = FallingBlockEntity.fall(world, pos, state);
                      IMeteoricData data = entity.getCapability(CapabilityMeteoricData.CAP).orElse(null);
@@ -86,7 +88,7 @@ public class SpellTremor extends SpellTimed {
                      entity.setDeltaMovement(0.0, 0.45, 0.0);
                      entity.hasImpulse = true;
                   }
-                  for (Entity entity : world.getEntitiesOfClass(Entity.class, new AABB(pos.above()))) {
+                  for (Entity entity : this.shaken(world, pos)) {
                      if (!(entity instanceof FallingBlockEntity) && !entity.getUUID().equals(this.caster) && entity.onGround()) {
                         entity.push(0.0, 0.55, 0.0);
                         entity.setOnGround(false);
@@ -112,6 +114,7 @@ public class SpellTremor extends SpellTimed {
       this.direction = 0.0F;
       this.caster = null;
       this.posits = Lists.newArrayList();
+      this.lifted.clear();
    }
 
    @Override
@@ -144,5 +147,28 @@ public class SpellTremor extends SpellTimed {
          positsIn.add(BlockPos.of(nbt.getLong("posit_" + i)));
       }
       this.posits = positsIn;
+      this.lifted.clear();
+      for (BlockPos pos : positsIn) this.lifted.add(pos.asLong());
+   }
+
+   private java.util.List<Entity> ring;
+   private int ringTick = -1;
+
+   // one entity sweep per tick for the whole ring, a query per block was the other half of the lag
+   private java.util.List<Entity> shaken(Level world, BlockPos pos) {
+      if (this.ringTick != this.castTick) {
+         this.ringTick = this.castTick;
+         double reach = (double) this.castTick / 2.0D + 3.0D;
+         this.ring = world.getEntitiesOfClass(Entity.class,
+            new AABB(this.orgin).inflate(reach, 4.0D, reach));
+      }
+      if (this.ring.isEmpty()) return java.util.Collections.emptyList();
+
+      java.util.List<Entity> here = new java.util.ArrayList<>();
+      AABB box = new AABB(pos.above());
+      for (Entity entity : this.ring) {
+         if (entity.getBoundingBox().intersects(box)) here.add(entity);
+      }
+      return here;
    }
 }

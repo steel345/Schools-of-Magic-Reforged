@@ -39,6 +39,10 @@ public class TileEntityRegistry {
       TILE_ENTITIES.register("podium", () ->
          BlockEntityType.Builder.of(TileEntityPodium::new, BlockRegistry.podium.get()).build(null));
 
+   public static final RegistryObject<BlockEntityType<com.paleimitations.schoolsofmagic.common.tileentity.TileEntitySolarOrb>> SOLAR_ORB =
+      TILE_ENTITIES.register("solar_orb", () ->
+         BlockEntityType.Builder.of(com.paleimitations.schoolsofmagic.common.tileentity.TileEntitySolarOrb::new, BlockRegistry.solar_orb.get()).build(null));
+
    public static final RegistryObject<BlockEntityType<TileEntityDemonHeart>> DEMON_HEART =
       TILE_ENTITIES.register("demon_heart", () ->
          BlockEntityType.Builder.of(TileEntityDemonHeart::new, BlockRegistry.demon_heart.get()).build(null));

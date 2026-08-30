@@ -201,6 +201,24 @@ public class SpellDry extends Spell {
       }
    }
 
+   public static BlockState sunDried(Level world, BlockPos pos, BlockState state) {
+      net.minecraft.world.level.block.Block block = state.getBlock();
+      if (block instanceof WetSpongeBlock) return Blocks.SPONGE.defaultBlockState();
+      if (block == Blocks.CLAY) return Blocks.TERRACOTTA.defaultBlockState();
+      if (block instanceof TallGrassBlock) return Blocks.DEAD_BUSH.defaultBlockState();
+      if (block instanceof BlockMud) return Blocks.COARSE_DIRT.defaultBlockState();
+      if (block == Blocks.GRASS_BLOCK) return Blocks.DIRT.defaultBlockState();
+      if (block == Blocks.FARMLAND && state.getValue(BlockStateProperties.MOISTURE) > 0) {
+         return state.setValue(BlockStateProperties.MOISTURE, 0);
+      }
+      if (block instanceof LayeredCauldronBlock && state.getValue(LayeredCauldronBlock.LEVEL) > 0) {
+         int left = state.getValue(LayeredCauldronBlock.LEVEL) - 1;
+         return left > 0 ? state.setValue(LayeredCauldronBlock.LEVEL, left) : Blocks.CAULDRON.defaultBlockState();
+      }
+      net.minecraft.world.level.block.Block configured = SOMConfig.getDryResult(block);
+      return configured == null || configured == block ? null : configured.defaultBlockState();
+   }
+
    private static BlockState driedSkull(BlockState in, boolean highestTier) {
       net.minecraft.world.level.block.Block b = in.getBlock();
       boolean heads = SOMConfig.dryHeadsToSkulls();

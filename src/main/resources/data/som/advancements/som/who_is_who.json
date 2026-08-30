@@ -1,0 +1,15 @@
+{
+  "parent": "som:som/advanced_spellslinger",
+  "display": {
+    "icon": { "item": "minecraft:player_head" },
+    "title": { "translate": "advancements.som.who_is_who.title" },
+    "description": { "translate": "advancements.som.who_is_who.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": {
+    "cast_decoy": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [ [ "cast_decoy" ] ]
+}

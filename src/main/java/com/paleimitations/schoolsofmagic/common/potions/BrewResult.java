@@ -104,7 +104,7 @@ public class BrewResult {
             meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
             new ItemStack(Items.BLAZE_ROD),
             new ItemStack(Items.GLOWSTONE_DUST),
-            new ItemStack(ItemRegistry.magic_diamond.get()),
+            meta(ItemRegistry.gem_chunk.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.HYDROMANCY.getIndex()),
             new ItemStack(Items.SNOW_BLOCK))) {
          this.setupItemBrew(ItemRegistry.infinity_jug.get(), 0x0A1E78, 100);
       } else if (this.matchesRecipe(handler,

@@ -199,6 +199,13 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return this.getUsesPerCharge(chargeLevel);
    }
 
+   public void setChargeLevel(int level) {
+      if (level == this.currentSpellChargeLevel) return;
+      this.currentSpellChargeLevel = level;
+      this.remainingUses = 0;
+      this.maxUses = 0;
+   }
+
    public int getRemainingUses() {
       return this.remainingUses;
    }
@@ -223,6 +230,13 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return false;
    }
 
+
+   public static final int VE_CONCENTRATION_TICKS = 30;
+
+   // VE concentration: short hold, vanish sound in place of the flourish, shrinking circles at the head
+   public boolean isVEConcentration() {
+      return false;
+   }
 
    public boolean hasCastingFlourish() {
       return true;
@@ -313,6 +327,13 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return entity.getCapability(CapabilityManaData.CAP).orElse(null);
    }
 
+   public static float skillDiscount(int level) {
+      if (level >= 30) return 0.20F;
+      if (level >= 15) return 0.10F;
+      if (level >= 5) return 0.05F;
+      return 0.0F;
+   }
+
    public float getDiscount(Player player, float wandDiscount) {
       IManaData mana = this.getManaHandler(player);
       float discount = wandDiscount;
@@ -325,6 +346,15 @@ public class Spell implements INBTSerializable<CompoundTag> {
          discount += 0.05F * (float) (effect.getAmplifier() + 1);
       }
       discount += mana.getManaDiscountRate();
+      if (com.paleimitations.schoolsofmagic.common.items.WizardRobes.fullSet(player)) {
+         discount += com.paleimitations.schoolsofmagic.common.items.WizardRobes.DISCOUNT;
+      }
+
+      float affinity = 0.0F;
+      for (MagicElement element : this.getElements()) {
+         affinity = Math.max(affinity, skillDiscount(mana.getElementLevel(element)));
+      }
+      discount += affinity;
 
       for (ItemStack grimoire : player.getInventory().items) {
          if (grimoire.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemSpellbook) {
@@ -356,7 +386,7 @@ public class Spell implements INBTSerializable<CompoundTag> {
          bonus += (float) (effect.getAmplifier() + 1) * 0.5F;
       }
       for (EnumSpellModifier mod : this.modifiers.keySet()) {
-         if (mod.id != 2 && mod.id != 6 && mod.id != 7 && mod.id != 8 && mod.id != 9 && mod.id != 10 && mod.id != 11 || !(this.modifiers.get(mod) instanceof Float)) continue;
+         if (mod.id != 2 && mod.id != 5 && mod.id != 6 && mod.id != 7 && mod.id != 8 && mod.id != 9 && mod.id != 10 && mod.id != 11 || !(this.modifiers.get(mod) instanceof Float)) continue;
          bonus += ((Float) this.modifiers.get(mod)).floatValue();
       }
       bonus += this.getGemPowerBonus(player);
@@ -407,8 +437,8 @@ public class Spell implements INBTSerializable<CompoundTag> {
       if (gem == null) {
          com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData ring =
             com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player);
-         if (ring != null && !ring.getRing().isEmpty()) {
-            gem = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getGem(ring.getRing());
+         if (ring != null && !com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).isEmpty()) {
+            gem = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getGem(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player));
          }
       }
       if (gem == null) return 0.0F;
@@ -428,6 +458,28 @@ public class Spell implements INBTSerializable<CompoundTag> {
          base += com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.WandMetalPerk.ELEMENTAL_BOOST;
       }
       return base;
+   }
+
+   private static final java.util.WeakHashMap<Player, Long> LAST_WARNING = new java.util.WeakHashMap<>();
+
+   // use() fires every tick while right click is held, so an unthrottled message floods chat and hangs the client for a moment
+   private static void warn(Player player, String message) {
+      if (player.level().isClientSide) return;
+      long now = player.level().getGameTime();
+      Long last = LAST_WARNING.get(player);
+      if (last != null && now - last < 40L) return;
+      LAST_WARNING.put(player, now);
+      player.sendSystemMessage(Component.literal(message));
+   }
+
+   public boolean canStartCast(Player player) {
+      if (!this.canCastSpell(player, 0.0F)) return false;
+      IManaData handler = this.getManaHandler(player);
+      if (handler != null && !handler.hasChargeLevel(this.currentSpellChargeLevel)) {
+         fizzle(player);
+         return false;
+      }
+      return true;
    }
 
    public boolean canCastSpell(Player player, float wandDiscount) {
@@ -456,9 +508,7 @@ public class Spell implements INBTSerializable<CompoundTag> {
          return false;
       }
       if (handler.getLevel() < this.getMinimumMagicianLevel()) {
-         if (!player.level().isClientSide) {
-            player.sendSystemMessage(Component.literal("You aren't high enough level to use this spell."));
-         }
+         warn(player, "You aren't high enough level to use this spell.");
          return false;
       }
       for (i = 0; i < MagicElementRegistry.ELEMENTS.size(); ++i) {
@@ -467,16 +517,12 @@ public class Spell implements INBTSerializable<CompoundTag> {
          int level = handler.getElementLevel(element)
             + com.paleimitations.schoolsofmagic.common.potions.potions.PotionElement.proficiencyBonus(player, element);
          if (level >= this.getMinimumElementLevels()[i]) continue;
-         if (!player.level().isClientSide) {
-            player.sendSystemMessage(Component.literal("You aren't high enough level to use this spell."));
-         }
+         warn(player, "You aren't high enough level to use this spell.");
          return false;
       }
       for (i = 0; i < MagicSchoolRegistry.SCHOOLS.size(); ++i) {
          if (handler.getSchoolLevel(MagicSchoolRegistry.getSchoolFromId(i)) >= this.getMinimumSchoolLevels()[i]) continue;
-         if (!player.level().isClientSide) {
-            player.sendSystemMessage(Component.literal("You aren't high enough level to use this spell."));
-         }
+         warn(player, "You aren't high enough level to use this spell.");
          return false;
       }
       if (!this.materialComponents.isEmpty()) {
@@ -487,9 +533,7 @@ public class Spell implements INBTSerializable<CompoundTag> {
             break;
          }
          if (!hasComponent) {
-            if (!player.level().isClientSide) {
-               player.sendSystemMessage(Component.literal("You're missing a material component."));
-            }
+            warn(player, "You're missing a material component.");
             return false;
          }
       }
@@ -642,6 +686,64 @@ public class Spell implements INBTSerializable<CompoundTag> {
       return level;
    }
 
+   public float getDurationBonus() {
+      return this.sumModifier(3);
+   }
+
+   public float getAreaBonus() {
+      return this.sumModifier(4);
+   }
+
+   public int scaleDuration(int ticks) {
+      return Math.max(1, Math.round(ticks * (1.0F + this.getDurationBonus())));
+   }
+
+   public double scaleArea(double area) {
+      return area * (1.0D + this.getAreaBonus());
+   }
+
+   public boolean isAdditive() {
+      return this.hasModifier(14);
+   }
+
+   public boolean isPetFriendly() {
+      return this.hasModifier(12);
+   }
+
+   public boolean isPassiveFriendly() {
+      return this.hasModifier(13);
+   }
+
+   public boolean hasModifier(int id) {
+      for (EnumSpellModifier mod : this.modifiers.keySet()) {
+         if (mod.id == id) return true;
+      }
+      return false;
+   }
+
+   private float sumModifier(int id) {
+      float f = 0.0F;
+      for (EnumSpellModifier mod : this.modifiers.keySet()) {
+         if (mod.id == id && this.modifiers.get(mod) instanceof Float value) f += value;
+      }
+      return f;
+   }
+
+   public void applyEffect(LivingEntity target, MobEffectInstance effect) {
+      if (target == null || effect == null) return;
+      int duration = this.scaleDuration(effect.getDuration());
+      MobEffectInstance existing = target.getEffect(effect.getEffect());
+      if (this.isAdditive() && existing != null && existing.getAmplifier() == effect.getAmplifier()) {
+         duration += existing.getDuration();
+      }
+      target.addEffect(new MobEffectInstance(effect.getEffect(), duration, effect.getAmplifier(),
+         effect.isAmbient(), effect.isVisible(), effect.showIcon()));
+   }
+
+   public void applyEffect(LivingEntity target, net.minecraft.world.effect.MobEffect effect, int duration, int amplifier) {
+      this.applyEffect(target, new MobEffectInstance(effect, duration, amplifier));
+   }
+
    private float getXPBonus() {
       float f = 0.0F;
       for (EnumSpellModifier mod : this.modifiers.keySet()) {
@@ -666,16 +768,28 @@ public class Spell implements INBTSerializable<CompoundTag> {
          case 11: reqSchool = MagicSchoolRegistry.illusion; break;
          default: reqSchool = null;
       }
-      boolean ok = ((mid == 0 || mid == 1 || mid == 2 || mid == 17) && info instanceof Float)
+      boolean scalar = mid == 0 || mid == 1 || mid == 2 || mid == 3 || mid == 4 || mid == 5 || mid == 17;
+      boolean flag = mid == 12 || mid == 13 || mid == 14 || mid == 16;
+      boolean ok = (scalar && info instanceof Float)
          || (reqSchool != null && info instanceof Float)
-         || (mid == 15 && info instanceof Integer);
+         || (mid == 15 && info instanceof Integer)
+         || flag;
       if (!ok || (reqSchool != null && !this.schools[reqSchool.getId()])) {
          return new InteractionResultHolder<>(InteractionResult.FAIL, this);
       }
+
+      MagicElement added = mid == 16 ? MagicElementRegistry.getElementFromId(modifier.level - 1) : null;
+      if (mid == 16 && (added == null || this.elements[added.getId()])) {
+         return new InteractionResultHolder<>(InteractionResult.FAIL, this);
+      }
+
       this.modifiers.keySet().removeIf(m -> m.id == mid);
       this.modifiers.put(modifier, info);
       if (mid == 0 && info instanceof Float) {
          this.cost *= (Float) info;
+      }
+      if (added != null) {
+         this.elements[added.getId()] = true;
       }
       if (reqSchool != null) {
          int n = reqSchool.getId();

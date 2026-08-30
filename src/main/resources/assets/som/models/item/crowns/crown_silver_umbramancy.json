@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/crown/crown_silver",
+    "layer1": "som:items/crown/crown_umbramancy_gem"
+  }
+}

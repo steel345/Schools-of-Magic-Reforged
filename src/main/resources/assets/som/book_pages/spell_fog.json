@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:fog"
+    },
+    {
+      "type": "text",
+      "text": "  Fog creates a thick bank of fog rises and stays there.\n\n  It does not follow the caster. Anything standing in it is hard to see.\n\n  The last five seconds are the fog clearing, and it hides nothing by the end of them.\n\n  It holds for 10 seconds, and 5 seconds longer for every charge level above the first."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_fog.desc"
+    }
+  ]
+}

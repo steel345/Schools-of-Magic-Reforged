@@ -1,0 +1,10 @@
+{
+  "elements": [
+    { "type": "title", "text": "Enhanced Magic Cloth" },
+    { "type": "text", "text": "  Eight /bMagic Cloth/z around one /bLiquid Magic/z gives eight /bEnhanced Magic Cloth/z.\n\n  The flask survives the crafting and is left behind for you." },
+    { "type": "crafting", "result": "som:enhanced_magic_cloth", "count": 8,
+      "pattern": ["som:magic_cloth", "som:magic_cloth", "som:magic_cloth",
+                  "som:magic_cloth", "som:liquid_magic", "som:magic_cloth",
+                  "som:magic_cloth", "som:magic_cloth", "som:magic_cloth"] }
+  ]
+}

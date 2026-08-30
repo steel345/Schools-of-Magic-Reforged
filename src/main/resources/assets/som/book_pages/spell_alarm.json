@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:alarm"
+    },
+    {
+      "type": "text",
+      "text": "  Alarm sets a rune into the ground where the caster is looking. It needs concentration.\n\n  The rune watches 8 blocks at the lowest charge, and 3 blocks further for every charge level above it. When anything but the caster comes that close they are told, wherever they are, and offered the chance to sound it.\n\n  Sounding it deals 3 damage to everything near the rune and rings for a minute. The rune is spent after that, or as soon as the caster stands on it.\n\n  Left alone it watches for as long as it takes."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_alarm.desc"
+    }
+  ]
+}

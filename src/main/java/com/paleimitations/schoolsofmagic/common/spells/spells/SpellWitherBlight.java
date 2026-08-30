@@ -39,7 +39,8 @@ public class SpellWitherBlight extends Spell {
          double d6 = vec.y * (1.0 + 0.15 * (double) this.getPowerBonus(playerIn));
          double d7 = vec.z * (1.0 + 0.15 * (double) this.getPowerBonus(playerIn));
          EntityPotionShot entityspell = new EntityPotionShot(worldIn, playerIn);
-         entityspell.addEffect(new MobEffectInstance(MobEffects.WITHER, 400 + Math.round(40.0F * this.getPowerBonus(playerIn)), 2));
+         entityspell.addEffect(new MobEffectInstance(MobEffects.WITHER,
+            this.scaleDuration(400 + Math.round(40.0F * this.getPowerBonus(playerIn))), 2));
          entityspell.shoot(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 0.75F * (1.0F + 0.15F * this.getPowerBonus(playerIn)), this.getPowerBonus(playerIn) > 5.0F ? 0.0F : 1.0F - 0.2F * this.getPowerBonus(playerIn));
          playerIn.playSound(SOMSoundHandler.WITHER_BLIGHT.get(), 1.0F, playerIn.getRandom().nextFloat() * 0.4F + 0.8F);
          if (!worldIn.isClientSide) {

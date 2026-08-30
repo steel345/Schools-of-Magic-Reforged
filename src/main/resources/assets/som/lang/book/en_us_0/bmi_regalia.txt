@@ -1,0 +1,7 @@
+  There are three shapes of tablet, and each gives a different piece.
+<~><~>  A /bRing/z goes on your ring slot. A /bNecklace/z goes in your talisman slot. A /bCrown/z goes on your crown slot. Any of the three can be carried in your charm slot instead.
+<~><~>  Worn plain, with no gem in them, they are simply armour. A ring is worth 2 armour, a necklace 4, and a crown 5.
+<~><~>  Set a gem into one at the /bBrazier/z and it stops being armour and starts being magic. A necklace takes a /bUnicorn Horn/z along with the gem, and a crown takes a /bThunderbird Feather/z.
+<~><~>  A set crown or necklace works exactly as an advanced ring does. It gives you spell slots that grow with your level, up to ten, and the same gem and metal bonuses. An apprentice crown or necklace has four slots.
+<~><~>  A necklace with a horn in it will hold you together once. If a blow would kill you the necklace breaks instead and you live. A crown with a feather in it keeps your head clear, so nothing can blind or confuse you, and a hit no longer bites deeper while you are concentrating.
+<~><~>  All of them wear as you cast. Mend one on an anvil with an ingot of its own metal.

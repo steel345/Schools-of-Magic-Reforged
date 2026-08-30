@@ -27,6 +27,10 @@ public class PotionRepellant extends MobEffect {
       super.applyEffectTick(entityLivingBaseIn, amplifier);
       new Random();
       Level world = entityLivingBaseIn.level();
+      // effects tick on both sides, and getAllEntities is server only
+      if (world.isClientSide) {
+         return;
+      }
 
       for (Entity e : ((ServerLevel)world).getAllEntities()) {
          if (e instanceof Mob
@@ -39,7 +43,8 @@ public class PotionRepellant extends MobEffect {
          }
       }
 
-      if (entityLivingBaseIn.getMobType() == MobType.ARTHROPOD && entityLivingBaseIn.getEffect(this).getDuration() % 20 == 0) {
+      net.minecraft.world.effect.MobEffectInstance self = entityLivingBaseIn.getEffect(this);
+      if (entityLivingBaseIn.getMobType() == MobType.ARTHROPOD && self != null && self.getDuration() % 20 == 0) {
          entityLivingBaseIn.hurt(world.damageSources().cactus(), 1.0F);
       }
    }

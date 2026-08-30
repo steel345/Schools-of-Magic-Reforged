@@ -19,7 +19,11 @@ public class PacketCharmSlotClick {
    public void encode(FriendlyByteBuf buf) {}
 
    public static boolean accepts(ItemStack stack) {
-      return stack.getItem() == ItemRegistry.copper_key.get()
+      return com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.isRing(stack)
+         || com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.isCrown(stack)
+         || com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.isNecklace(stack)
+         || stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemApprenticeRing
+         || stack.getItem() == ItemRegistry.copper_key.get()
          || stack.getItem() == ItemRegistry.herb_pouch.get()
          || stack.getItem() == ItemRegistry.potion_bag.get()
          || stack.getCapability(CapabilityBook.BOOK_CAPABILITY).isPresent();

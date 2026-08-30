@@ -139,9 +139,6 @@ public class GarmentSlotInventoryHandler {
 
          ItemStack worn = data == null ? ItemStack.EMPTY : data.getGarment(i);
          boolean hovered = over(mx, my, x, y);
-         if (hovered) {
-            gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
-         }
 
          if (worn.isEmpty()) {
             gg.blit(OVERLAYS[i], x, y, 0, 0, 16, 16, 16, 16);
@@ -149,6 +146,9 @@ public class GarmentSlotInventoryHandler {
             gg.renderItem(worn, x, y);
             gg.renderItemDecorations(Minecraft.getInstance().font, worn, x, y);
          }
+
+         // the lighter goes on last, over the item and its bar rather than under them
+         if (hovered) gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
 
          if (hovered) {
             if (!carried.isEmpty()) {

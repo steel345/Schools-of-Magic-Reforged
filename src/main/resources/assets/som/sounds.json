@@ -16,6 +16,124 @@
       }
     ]
   },
+  "spells.shroom_use1": {
+    "subtitle": "spells.shroom_use",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_use1"
+      }
+    ]
+  },
+  "spells.shroom_use2": {
+    "subtitle": "spells.shroom_use",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_use2"
+      }
+    ]
+  },
+  "spells.shroom_use3": {
+    "subtitle": "spells.shroom_use",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_use3"
+      }
+    ]
+  },
+  "spells.shroom_explode1": {
+    "subtitle": "spells.shroom_explode",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_explode1"
+      }
+    ]
+  },
+  "spells.shroom_explode2": {
+    "subtitle": "spells.shroom_explode",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_explode2"
+      }
+    ]
+  },
+  "spells.shroom_explode3": {
+    "subtitle": "spells.shroom_explode",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_explode3"
+      }
+    ]
+  },
+  "spells.shroom_explode4": {
+    "subtitle": "spells.shroom_explode",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_explode4"
+      }
+    ]
+  },
+  "spells.shroom_explode5": {
+    "subtitle": "spells.shroom_explode",
+    "sounds": [
+      {
+        "name": "som:spells/shroom_explode5"
+      }
+    ]
+  },
+  "spells.focus": {
+    "subtitle": "spells.focus",
+    "sounds": [
+      {
+        "name": "som:spells/focus",
+        "stream": true
+      }
+    ]
+  },
+  "spells.vanish": {
+    "subtitle": "spells.vanish",
+    "sounds": [
+      {
+        "name": "som:spells/vanish",
+        "stream": true
+      }
+    ]
+  },
+  "spells.dazzling_light": {
+    "subtitle": "spells.dazzling_light",
+    "sounds": [
+      {
+        "name": "som:spells/dazzling_light",
+        "stream": true
+      }
+    ]
+  },
+  "spells.tp_out": {
+    "subtitle": "spells.tp_out",
+    "sounds": [
+      {
+        "name": "som:spells/tp_out",
+        "stream": true
+      }
+    ]
+  },
+  "spells.tp_in": {
+    "subtitle": "spells.tp_in",
+    "sounds": [
+      {
+        "name": "som:spells/tp_in",
+        "stream": true
+      }
+    ]
+  },
+  "spells.chimes": {
+    "subtitle": "spells.chimes",
+    "sounds": [
+      {
+        "name": "som:spells/chimes",
+        "stream": true
+      }
+    ]
+  },
   "spells.recall": {
     "subtitle": "spells.recall",
     "sounds": [
@@ -135,6 +253,15 @@
       }
     ]
   },
+  "spells.cast_spell_wave": {
+    "subtitle": "spells.cast_spell",
+    "sounds": [
+      {
+        "name": "som:spells/cast_spell_wave",
+        "stream": false
+      }
+    ]
+  },
   "spells.cast_spell1": {
     "subtitle": "spells.cast_spell",
     "sounds": [
@@ -221,6 +348,15 @@
     "sounds": [
       {
         "name": "som:spells/earthquake_impact",
+        "stream": true
+      }
+    ]
+  },
+  "spells.spell_bolt": {
+    "subtitle": "spells.spell_bolt",
+    "sounds": [
+      {
+        "name": "som:spells/spell_bolt",
         "stream": true
       }
     ]

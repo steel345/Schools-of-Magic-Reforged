@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "CLC",
+    "CCC"
+  ],
+  "key": {
+    "C": { "item": "som:magic_cloth" },
+    "L": { "item": "som:liquid_magic" }
+  },
+  "result": {
+    "item": "som:enhanced_magic_cloth",
+    "count": 8
+  }
+}

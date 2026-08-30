@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:shroomlucination"
+    },
+    {
+      "type": "text",
+      "text": "  Shroomlucination conjures a mushroom and throws it.\n\n  A mushroom that strikes a creature square on does 1 damage, and the burst shoves everything standing near it back a step.\n\n  Where it lands it bursts, throwing up a puff of spores three blocks across, coloured after the cap it came from. The puff hangs for three seconds.\n\n  Anything caught in the burst, or that walks into what is left of it, is left bewildered, seeing things and slowed for ten seconds, and ten seconds longer for every charge level above the first. The caster is untouched by their own spores."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_shroomlucination.desc"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:whirlwind"
+    },
+    {
+      "type": "text",
+      "text": "  Whirlwind throws a tornado the way the caster is facing. It needs concentration.\n\n  It keeps to the ground it crosses and does not turn aside. Anything it touches in the direction its sent is dragged in, carried round the inside and up, and thrown off the top.\n\n  It blows for 10 seconds, and 5 seconds longer for every charge level above the first.\n\n  At the highest tier spellcharge it can lock on to a targetand not let it go until the spell is over.  "
+    },
+    {
+      "type": "description",
+      "text": "page.spell_whirlwind.desc"
+    }
+  ]
+}

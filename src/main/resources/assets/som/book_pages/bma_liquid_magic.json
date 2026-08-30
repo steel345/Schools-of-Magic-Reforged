@@ -1,0 +1,7 @@
+{
+  "elements": [
+    { "type": "title", "text": "Liquid Magic" },
+    { "type": "text", "text": "  Put a /bSupercharged Diamond/z in the mortar and pestle and a /bWater Flask/z in the bottle slot, then crush.\n\n  The diamond leaves its dust behind in the input slot, and the flask fills with /bLiquid Magic/z.\n\n  A Water Flask is filled the same way a bottle is, by right clicking water or a full cauldron with a /bGlass Flask/z in hand." },
+    { "type": "mortar", "result": "som:liquid_magic" }
+  ]
+}

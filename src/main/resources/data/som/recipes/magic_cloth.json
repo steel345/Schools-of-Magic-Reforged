@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "tag": "minecraft:wool" },
+    { "item": "minecraft:stick" },
+    { "item": "minecraft:lapis_lazuli" },
+    { "item": "minecraft:string" }
+  ],
+  "result": {
+    "item": "som:magic_cloth",
+    "count": 2
+  }
+}

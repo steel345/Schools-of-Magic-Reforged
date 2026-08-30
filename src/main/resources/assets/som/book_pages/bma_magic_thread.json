@@ -1,0 +1,7 @@
+{
+  "elements": [
+    { "type": "title", "text": "Magic Thread" },
+    { "type": "text", "text": "  One /bMagic Cloth/z and two string at the /bBrazier/z for 40 mana gives two /bMagic Thread/z.\n\n  Thread is what holds the robes onto the iron underneath. Every piece of the set wants at least one." },
+    { "type": "ritual", "result": "som:magic_thread" }
+  ]
+}

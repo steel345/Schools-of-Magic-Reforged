@@ -23,6 +23,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
@@ -84,6 +86,15 @@ public class SpellSolarBarrage extends Spell {
    }
 
    @Override
+   public InteractionResultHolder<ItemStack> rightClickEffect(Level worldIn, Player playerIn, InteractionHand hand) {
+      ItemStack held = playerIn.getItemInHand(hand);
+      if (!playerIn.isCreative() && !this.canCastSpell(playerIn, 0.0F)) {
+         return new InteractionResultHolder<>(net.minecraft.world.InteractionResult.PASS, held);
+      }
+      return InteractionResultHolder.success(held);
+   }
+
+   @Override
    public ItemStack finishHoldEffect(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
       if (entityLiving instanceof Player playerIn && this.castSpell(playerIn, 0.0F)) {
          if (!worldIn.isClientSide) {
@@ -130,13 +141,22 @@ public class SpellSolarBarrage extends Spell {
 
       KnowledgeAnimations.schedule(IGNITE_DELAY, () -> {
          for (LivingEntity target : targets) {
-            if (target.isAlive()) target.setSecondsOnFire(burn);
+            if (!target.isAlive()) continue;
+            target.setSecondsOnFire(burn);
+            if (worldIn instanceof net.minecraft.server.level.ServerLevel sl) {
+               sl.sendParticles(net.minecraft.core.particles.ParticleTypes.SMOKE,
+                  target.getX(), target.getY() + target.getBbHeight() * 0.5D, target.getZ(),
+                  12, target.getBbWidth() * 0.6D, target.getBbHeight() * 0.4D, target.getBbWidth() * 0.6D, 0.01D);
+               sl.sendParticles(net.minecraft.core.particles.ParticleTypes.LARGE_SMOKE,
+                  target.getX(), target.getY() + target.getBbHeight() * 0.5D, target.getZ(),
+                  6, target.getBbWidth() * 0.5D, target.getBbHeight() * 0.35D, target.getBbWidth() * 0.5D, 0.015D);
+            }
          }
       });
    }
 
    private List<LivingEntity> pickTargets(Level worldIn, Player playerIn) {
-      AABB around = playerIn.getBoundingBox().inflate(RANGE);
+      AABB around = playerIn.getBoundingBox().inflate(this.scaleArea(RANGE));
       List<LivingEntity> attacking = new ArrayList<>();
       List<LivingEntity> others = new ArrayList<>();
 

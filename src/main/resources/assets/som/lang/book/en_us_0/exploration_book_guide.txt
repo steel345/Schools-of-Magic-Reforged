@@ -1,2 +1,2 @@
   Should you wish to range further afield, seek out a copy of the /bAdventurer's Codex/z. It gathers what is known of the old ruins and hidden worlds, and of the wonders and dangers that wait within them.
-<~><~>  It is bound at a brazier rather than a workbench. Lay a /bplain book/z upon the flames together with a /bspruce sapling/z, a piece of /blapis/z, a /bblank map/z and a /bsac of ink/z, and the heat will draw the pages into one.
+<~><~>  It is bound at a brazier rather than a workbench. Lay a /bplain book/z upon the flames together with a /bspruce sapling/z, a piece of /blapis/z, a /bblank map/z, a /bsac of ink/z and an /biron ingot/z, and the heat will draw the pages into one.

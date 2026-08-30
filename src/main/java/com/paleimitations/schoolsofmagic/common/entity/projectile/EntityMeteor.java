@@ -61,9 +61,21 @@ public class EntityMeteor extends EntityBlockProjectile {
       super.onHit(result);
       if (!this.level().isClientSide) {
          this.level().explode(this, this.getX(), this.getY(), this.getZ(), 8.0F, Level.ExplosionInteraction.TNT);
+         this.shockwave();
          this.scatterFire();
          this.discard();
       }
+   }
+
+   private void shockwave() {
+      if (!(this.level() instanceof net.minecraft.server.level.ServerLevel level)) return;
+      BlockPos spot = this.blockPosition();
+      for (int drop = 0; drop < 8 && level.getBlockState(spot.below()).isAir(); ++drop) {
+         spot = spot.below();
+      }
+      // count has to be zero or the client rolls its own random speeds and the ring size gets thrown away
+      level.sendParticles(com.paleimitations.schoolsofmagic.common.registries.ParticleTypeRegistry.SHOCKWAVE.get(),
+         this.getX(), spot.getY() + 0.08D, this.getZ(), 0, 7.0D, 0.0D, 0.0D, 1.0D);
    }
 
    private void scatterFire() {

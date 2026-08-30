@@ -1,0 +1,56 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/crown/crown_iron"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:variant": 0.0625
+      },
+      "model": "som:item/crown_iron"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.1875
+      },
+      "model": "som:item/crown_gold"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.3125
+      },
+      "model": "som:item/crown_copper"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.4375
+      },
+      "model": "som:item/crown_brass"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.5625
+      },
+      "model": "som:item/crown_bronze"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.6875
+      },
+      "model": "som:item/crown_silver"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.8125
+      },
+      "model": "som:item/crown_steel"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.9375
+      },
+      "model": "som:item/crown_void"
+    }
+  ]
+}

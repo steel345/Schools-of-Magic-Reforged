@@ -32,10 +32,9 @@ public class GuiRingSpellRing {
       net.minecraft.world.item.ItemStack ring = net.minecraft.world.item.ItemStack.EMPTY;
       net.minecraft.client.player.LocalPlayer p = net.minecraft.client.Minecraft.getInstance().player;
       if (p != null) {
-         IRingData rd = CapabilityRingData.get(p);
-         if (rd != null) ring = rd.getRing();
+         ring = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(p);
       }
-      if (ring.hasTag() && ring.getTag().contains("ring_metal")) {
+      if (com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.gemOf(ring) != null) {
          int level = mana.getLevel();
          if (level < 5) return 3;
          else if (level < 10) return 4;
@@ -50,9 +49,11 @@ public class GuiRingSpellRing {
 
    private static ResourceLocation ringBg(IRingData ring) {
       String m = "gold";
-      net.minecraft.world.item.ItemStack rs = ring.getRing();
-      if (rs.hasTag()) {
-         String mm = rs.getTag().getString("ring_metal");
+      net.minecraft.world.item.ItemStack rs = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(net.minecraft.client.Minecraft.getInstance().player);
+      com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumHandleType metal =
+         com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.metalOf(rs);
+      if (metal != null) {
+         String mm = metal.getSerializedName();
          switch (mm) {
             case "gold": case "silver": case "void": case "copper":
             case "bronze": case "brass": case "iron": case "steel": m = mm; break;
@@ -67,7 +68,7 @@ public class GuiRingSpellRing {
       if (!com.paleimitations.schoolsofmagic.common.handlers.RingCastHandler.isRingActive(player)) return null;
       if (player.getMainHandItem().getCapability(CapabilityWandData.WAND_DATA_CAPABILITY).isPresent()) return null;
       IRingData ring = CapabilityRingData.get(player);
-      if (ring == null || ring.getRing().isEmpty()) return null;
+      if (ring == null || com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).isEmpty()) return null;
       return ring;
    }
 
@@ -142,7 +143,7 @@ public class GuiRingSpellRing {
       gg.pose().translate(gg.guiWidth() / 2.0F, gg.guiHeight() / 2.0F, 0.0F);
       gg.pose().scale(3.0F, 3.0F, 1.0F);
       gg.pose().translate(-8.0F, -8.0F, 0.0F);
-      gg.renderItem(ring.getRing(), 0, 0);
+      gg.renderItem(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player), 0, 0);
       gg.flush();
       gg.pose().popPose();
 

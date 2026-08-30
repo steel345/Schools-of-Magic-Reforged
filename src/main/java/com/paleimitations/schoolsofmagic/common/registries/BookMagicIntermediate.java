@@ -35,6 +35,19 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 
 public class BookMagicIntermediate {
+
+
+   // the four tablets are all the same nine slots with a different thing in the middle
+   private static PageElementCraftingRecipe tablet(net.minecraft.world.item.ItemStack middle,
+         net.minecraft.world.item.Item out, int x, int y, int target) {
+      ItemStack t = new ItemStack(ItemRegistry.porcelain_tablet.get());
+      return new PageElementCraftingRecipe(Lists.newArrayList(new ItemStack[]{
+         ItemStack.EMPTY, t.copy(), ItemStack.EMPTY,
+         t.copy(), middle, t.copy(),
+         ItemStack.EMPTY, t.copy(), ItemStack.EMPTY
+      }), new ItemStack(out, 4), x, y, target);
+   }
+
    private static ItemStack stack(net.minecraft.world.item.Item item, int meta) {
       ItemStack s = new ItemStack(item);
       s.setDamageValue(meta);
@@ -337,6 +350,8 @@ public class BookMagicIntermediate {
          new BookPageCraftingRitualRecipe(divRitual).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       }
 
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmi_skills").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bmi_looking_glass").addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       new com.paleimitations.schoolsofmagic.common.books.BookPageLocked(
             "bmi_magic_mirror",
@@ -434,18 +449,74 @@ public class BookMagicIntermediate {
          new ParagraphBox(23, 76, 0, 99, 114)));
       new BookPage("bmi_advring", ringEls).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
 
+      new BookPage("bmi_runeforge", Lists.newArrayList(new PageElement[]{
+         new PageElementStandardText("page.bmi_runeforge.title", 72, 58, 99, 16, 0, true),
+         new PageElementParagraphs("bmi_runeforge", 0.75F, 0, 2,
+            new ParagraphBox(23, 76, 0, 99, 114),
+            new ParagraphBox(134, 50, 0, 99, 55),
+            new ParagraphBox(23, 50, 1, 99, 55),
+            new ParagraphBox(134, 50, 1, 99, 55),
+            new ParagraphBox(23, 50, 2, 99, 55),
+            new ParagraphBox(134, 50, 2, 99, 140)),
+
+         new PageElementCraftingRecipe(Lists.newArrayList(new ItemStack[]{
+            new ItemStack(ItemRegistry.item_porcelain.get()), new ItemStack(ItemRegistry.item_porcelain.get()), new ItemStack(ItemRegistry.item_porcelain.get()),
+            new ItemStack(ItemRegistry.item_porcelain.get()), new ItemStack(Items.ITEM_FRAME), new ItemStack(ItemRegistry.item_porcelain.get()),
+            new ItemStack(ItemRegistry.item_porcelain.get()), new ItemStack(ItemRegistry.item_porcelain.get()), new ItemStack(ItemRegistry.item_porcelain.get())
+         }), new ItemStack(ItemRegistry.porcelain_tablet.get(), 4), 159, 110, 0),
+
+         tablet(new ItemStack(Items.IRON_HELMET), ItemRegistry.porcelain_crown_tablet.get(), 48, 110, 1),
+         tablet(new ItemStack(Items.IRON_INGOT), ItemRegistry.porcelain_ring_tablet.get(), 159, 110, 1),
+         tablet(new ItemStack(Items.STRING), ItemRegistry.porcelain_necklace_tablet.get(), 48, 110, 2)
+      })).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+
+      new BookPage("bmi_regalia", Lists.newArrayList(new PageElement[]{
+         new PageElementStandardText("page.bmi_regalia.title", 72, 58, 99, 16, 0, true),
+         new PageElementParagraphs("bmi_regalia", 0.75F, 0, 3,
+            new ParagraphBox(23, 76, 0, 99, 114),
+            new ParagraphBox(134, 50, 0, 99, 140),
+            new ParagraphBox(23, 50, 1, 99, 140),
+            new ParagraphBox(134, 50, 1, 99, 140),
+            new ParagraphBox(23, 50, 2, 99, 55),
+            new ParagraphBox(134, 50, 2, 99, 55),
+            new ParagraphBox(23, 50, 3, 99, 140),
+            new ParagraphBox(134, 50, 3, 99, 140)),
+
+         new PageElementCraftingRecipe(Lists.newArrayList(new ItemStack[]{
+            ItemStack.EMPTY, new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_INGOT),
+            new ItemStack(Items.GOLD_INGOT), ItemStack.EMPTY, new ItemStack(Items.GOLD_INGOT),
+            ItemStack.EMPTY, new ItemStack(Items.DIAMOND), ItemStack.EMPTY
+         }), new ItemStack(ItemRegistry.apprentice_necklace.get()), 159, 110, 2),
+
+         new PageElementCraftingRecipe(Lists.newArrayList(new ItemStack[]{
+            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+            new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.DIAMOND), new ItemStack(Items.GOLD_INGOT),
+            new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.GOLD_INGOT)
+         }), new ItemStack(ItemRegistry.apprentice_crown.get()), 48, 110, 2)
+      })).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
+
       new BookPageChapter(null).addToList(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK);
       SpellRegistry.addSorted(BookPageRegistry.INTERMEDIATE_MAGIC_BOOK,
-         new SpellThornRing(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSmokeScry(),
-         new SpellEnergize(),
-         new SpellFirering(),
-         new SpellRaiseZombie(),
-         new SpellInvisibility(),
-         new SpellShulkerBullet(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellHealing(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSummonBee(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellZephyr(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFastForward(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFirering(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellIncinerate(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellElectrocute(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellThornRing(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellThunderstroke(),
          new com.paleimitations.schoolsofmagic.common.spells.spells.SpellRumor(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellCounterspell());
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellCounterspell(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellIceShell(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellDefuse(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSpectralHand(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellLevitate(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellHealing(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellTranslocation(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellIronHide(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellInvisibility(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellShadowSpy(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSummonBee(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellLusterTool(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellMagicMissile());
    }
 }

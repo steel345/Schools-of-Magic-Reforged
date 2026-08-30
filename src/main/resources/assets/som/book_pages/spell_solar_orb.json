@@ -6,7 +6,7 @@
     },
     {
       "type": "text",
-      "text": "  Solar Orb conjures a small bead of daylight where you are looking, up to 6 blocks away. It hangs in the air, glows at full brightness, and is small enough to walk straight through.\n\n  It burns any undead creatures that come near it. It does not go out on its own. Break it and it disappears.\n\n  It costs 20 mana and needs spell charge level 1."
+      "text": "  Solar Orb conjures a small sun where you are looking, up to 6 blocks away. It hangs in the air, glows at full brightness, and is small enough to walk straight through.\n\n  It needs concentration. Hold right click until the cast finishes. Let go early and nothing happens.\n\n  The orb gathers itself as it arrives, then turns quietly in place. It flares at any undead creature that comes within five blocks, setting it alight for five seconds. Each creature is caught only once.\n\n  It lasts a minute, and thirty seconds longer for every charge above the first it is cast with. At the end it bursts and dissolves away, and it does the same if you break it early.\n\n  It costs 20 mana and needs spell charge level 1."
     },
     {
       "type": "description",

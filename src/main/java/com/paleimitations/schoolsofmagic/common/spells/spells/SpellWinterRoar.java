@@ -60,7 +60,7 @@ public class SpellWinterRoar extends Spell {
                double z = playerIn.getZ() - living.getZ();
                living.knockback(10.0 / Utils.getDistance(living.blockPosition(), playerIn.blockPosition()), x, z);
                if (rand.nextBoolean()) {
-                  living.addEffect(new MobEffectInstance(PotionRegistry.frostbite.get(), 200 + Math.round(this.getPowerBonus(playerIn) * 40.0F)));
+                  this.applyEffect(living, new MobEffectInstance(PotionRegistry.frostbite.get(), 200 + Math.round(this.getPowerBonus(playerIn) * 40.0F)));
                }
                living.hurt(worldIn.damageSources().playerAttack(playerIn), this.scaleDamage(4.0F));
                living.clearFire();

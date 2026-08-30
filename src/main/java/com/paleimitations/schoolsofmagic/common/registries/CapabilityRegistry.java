@@ -21,6 +21,8 @@ public class CapabilityRegistry {
    @SubscribeEvent
    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
       event.register(IWandData.class);
+      event.register(com.paleimitations.schoolsofmagic.common.entity.capabilities.rift_storage.IRiftStorage.class);
+      event.register(com.paleimitations.schoolsofmagic.common.world.capabilities.placedblocks.IPlacedBlocks.class);
       event.register(IBook.class);
       event.register(IPage.class);
       event.register(ISpellModifier.class);

@@ -20,6 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> {
    public static final ResourceLocation TABLE_OF_CONTENTS = new ResourceLocation("som", "textures/gui/books/paper_default_table_of_contents.png");
+   public static final ResourceLocation MENU_OPTIONS = new ResourceLocation("som", "textures/gui/books/menu_options.png");
    public static final ResourceLocation ICONS = new ResourceLocation("som", "textures/gui/podium/icons.png");
    public static final ResourceLocation ICON_BAR = new ResourceLocation("som", "textures/gui/podium/icon_bar.png");
    public static final ResourceLocation ASH_READ = new ResourceLocation("som", "textures/gui/podium/ash_read.png");
@@ -35,6 +36,7 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
    public static final ResourceLocation DARK_OAK_READ = new ResourceLocation("som", "textures/gui/podium/dark_oak_read.png");
    public static final ResourceLocation JUNGLE_READ = new ResourceLocation("som", "textures/gui/podium/jungle_read.png");
 
+   private final java.util.List<MenuButton> menuButtons = new java.util.ArrayList<>();
    private com.paleimitations.schoolsofmagic.client.guis.BookSearchField search;
    private boolean typing = false;
    private java.util.List<com.paleimitations.schoolsofmagic.client.KnowledgeSearch.Hit> results = new java.util.ArrayList<>();
@@ -136,6 +138,12 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
    }
 
    @Override
+   protected void containerTick() {
+      super.containerTick();
+      search().tick();
+   }
+
+   @Override
    public void render(GuiGraphics gg, int mouseX, int mouseY, float partialTicks) {
       this.renderBackground(gg);
       super.render(gg, mouseX, mouseY, partialTicks);
@@ -145,6 +153,21 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
    @Override
    protected void renderBg(GuiGraphics gg, float partialTicks, int mouseX, int mouseY) {
       gg.blit(getTexture(), this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+
+      boolean hasBook = getPodiumBook() != null;
+      for (MenuButton button : this.menuButtons) {
+         button.visible = hasBook;
+         button.active = hasBook;
+      }
+      if (!hasBook) return;
+
+      com.mojang.blaze3d.systems.RenderSystem.enableBlend();
+      com.mojang.blaze3d.systems.RenderSystem.defaultBlendFunc();
+      gg.pose().pushPose();
+      gg.pose().translate(menuLeft(), this.topPos + MENU_TOP, 0.0F);
+      gg.pose().scale(MENU_SCALE, MENU_SCALE, 1.0F);
+      gg.blit(MENU_OPTIONS, 0, 0, MENU_STRIP_U, MENU_STRIP_V, MENU_STRIP_W, MENU_STRIP_H);
+      gg.pose().popPose();
    }
 
    private static final float BOOK_TX = 73.88618F;
@@ -156,7 +179,7 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
 
    private float barTexX() { return isKnowledgeBook() ? 42.0F : 44.0F; }
    private float barTexY() { return isKnowledgeBook() ? 53.0F : 188.0F; }
-   private int texClip()   { return isKnowledgeBook() ? 43 : 78; }
+   private int texClip()   { return 43; }
    private static final float TEX_RESULT_X = 24.0F;
    private static final float TEX_RESULT_Y = 64.0F;
    private static final int RESULT_WIDTH = 180;
@@ -228,6 +251,14 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
       this.addRenderableWidget(new PodiumSwitchButton(podium, 0, 5, this.leftPos + 154, this.topPos + 130));
       this.addRenderableWidget(new TurnPageButton(podium, false, this.leftPos + 189, this.topPos + 46));
       this.addRenderableWidget(new TurnPageButton(podium, true, this.leftPos + 38, this.topPos + 46));
+
+      this.menuButtons.clear();
+      this.addMenuButton(70, 19, this::onPrev);
+      this.addMenuButton(93, 14, this::onBackChapter);
+      this.addMenuButton(112, 14, this::onIndex);
+      this.addMenuButton(130, 14, this::onClose);
+      this.addMenuButton(149, 14, this::onNextChapter);
+      this.addMenuButton(167, 19, this::onNext);
    }
 
    private boolean clickedQuill(double mx, double my) {
@@ -389,6 +420,130 @@ public class GuiPodiumRead extends AbstractContainerScreen<ContainerPodiumRead> 
                && mouseX < this.getX() + this.width && mouseY < this.getY() + this.height;
          int u = canTurn() ? (hovered ? 29 : 0) : 58;
          gg.blit(ICONS, this.getX(), this.getY(), u, this.isBack ? 23 : 42, 29, 19);
+      }
+   }
+
+   // the podium draws its book at half size, so the bar has to shrink with it
+   private static final float MENU_SCALE = BOOK_SCALE;
+   private static final int MENU_TOP = -5;
+
+   private static final int MENU_STRIP_U = 58;
+   private static final int MENU_STRIP_V = 8;
+   private static final int MENU_STRIP_W = 140;
+   private static final int MENU_STRIP_H = 33;
+   private static final int MENU_BUTTON_DROP = 8;
+
+   private float menuLeft() {
+      return this.leftPos + 128 - (128 - MENU_STRIP_U) * MENU_SCALE;
+   }
+
+   private void addMenuButton(int uBase, int width, Runnable onPress) {
+      int x = Math.round(menuLeft() + (uBase - MENU_STRIP_U) * MENU_SCALE);
+      int y = Math.round(this.topPos + MENU_TOP + MENU_BUTTON_DROP * MENU_SCALE);
+      MenuButton button = new MenuButton(x, y, uBase, width, onPress);
+      this.menuButtons.add(button);
+      this.addRenderableWidget(button);
+   }
+
+   private void playTurn() {
+      net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+         net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+            net.minecraft.sounds.SoundEvents.BOOK_PAGE_TURN, 1.0F));
+   }
+
+   private void jumpTo(int page) {
+      TileEntityPodium podium = getPodium();
+      IBook book = getPodiumBook();
+      if (podium == null || book == null) return;
+      book.setPage(page);
+      book.setSubPage(0);
+      podium.page = page;
+      podium.subpage = 0;
+      PacketHandler.INSTANCE.sendToServer(new PacketTurnPage(page, 0, podium.getBlockPos()));
+      playTurn();
+   }
+
+   private void onNext() {
+      if (!this.results.isEmpty()) {
+         if (this.resultPage < resultPages() - 1) this.resultPage++;
+         return;
+      }
+      TileEntityPodium podium = getPodium();
+      if (podium != null) podium.turnPage(true);
+   }
+
+   private void onPrev() {
+      if (!this.results.isEmpty()) {
+         if (this.resultPage > 0) this.resultPage--;
+         return;
+      }
+      TileEntityPodium podium = getPodium();
+      if (podium != null) podium.turnPage(false);
+   }
+
+   private void onNextChapter() {
+      IBook book = getPodiumBook();
+      if (book == null) return;
+      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages = book.getBookPages();
+      for (int i = book.getPage() + 1; i < pages.size(); i++) {
+         if (pages.get(i) instanceof com.paleimitations.schoolsofmagic.common.books.BookPageChapter) {
+            jumpTo(i);
+            return;
+         }
+      }
+   }
+
+   private void onBackChapter() {
+      IBook book = getPodiumBook();
+      if (book == null) return;
+      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages = book.getBookPages();
+      for (int i = book.getPage() - 1; i >= 0; i--) {
+         if (pages.get(i) instanceof com.paleimitations.schoolsofmagic.common.books.BookPageChapter) {
+            jumpTo(i);
+            return;
+         }
+      }
+   }
+
+   private void onIndex() {
+      IBook book = getPodiumBook();
+      if (book == null) return;
+      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages = book.getBookPages();
+      for (int i = 0; i < pages.size(); i++) {
+         if (pages.get(i) instanceof com.paleimitations.schoolsofmagic.common.books.BookPageTableContent) {
+            jumpTo(i);
+            return;
+         }
+      }
+      jumpTo(0);
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   class MenuButton extends AbstractButton {
+      private final int uBase;
+      private final int w;
+      private final Runnable onPress;
+
+      public MenuButton(int posX, int posY, int uBase, int width, Runnable onPress) {
+         super(posX, posY, Math.round(width * MENU_SCALE), Math.round(14 * MENU_SCALE), Component.empty());
+         this.uBase = uBase;
+         this.w = width;
+         this.onPress = onPress;
+      }
+
+      @Override public void onPress() { onPress.run(); }
+      @Override protected void updateWidgetNarration(NarrationElementOutput out) { defaultButtonNarrationText(out); }
+
+      @Override
+      public void renderWidget(GuiGraphics gg, int mouseX, int mouseY, float partialTicks) {
+         if (!this.visible) return;
+         boolean hovered = mouseX >= this.getX() && mouseY >= this.getY()
+               && mouseX < this.getX() + this.width && mouseY < this.getY() + this.height;
+         gg.pose().pushPose();
+         gg.pose().translate(this.getX(), this.getY(), 0.0F);
+         gg.pose().scale(MENU_SCALE, MENU_SCALE, 1.0F);
+         gg.blit(MENU_OPTIONS, 0, 0, this.uBase, hovered ? 41 : 55, this.w, 14);
+         gg.pose().popPose();
       }
    }
 }

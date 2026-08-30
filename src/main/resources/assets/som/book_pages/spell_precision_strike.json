@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:precision_strike"
+    },
+    {
+      "type": "text",
+      "text": "  Precision Strike answers every creature that is hunting you with a bolt of its own.\n\n  It needs concentration. Hold right click until the cast finishes. Let go early and nothing happens.\n\n  One bolt is loosed for each creature currently targeting you. Each bolt goes to the one that called it and hits for 4 damage.\n\n  There is no range to the spell. Distance does not matter, and walls do not stop the bolts. If nothing is hunting you, no bolts are loosed.\n\n  It costs 50 mana and needs spell charge level 5."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_precision_strike.desc"
+    }
+  ]
+}

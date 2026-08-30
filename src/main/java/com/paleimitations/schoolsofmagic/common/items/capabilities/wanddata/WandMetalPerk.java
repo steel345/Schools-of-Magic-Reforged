@@ -41,6 +41,9 @@ public final class WandMetalPerk {
          if (tag.contains("ring_metal")) {
             return fromName(tag.getString("ring_metal"));
          }
+         if (tag.contains("garment_metal")) {
+            return fromName(tag.getString("garment_metal"));
+         }
       }
       return null;
    }
@@ -55,8 +58,8 @@ public final class WandMetalPerk {
          }
       }
       IRingData ring = CapabilityRingData.get(player);
-      if (ring != null && !ring.getRing().isEmpty()) {
-         return readMetal(ring.getRing());
+      if (ring != null && !com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).isEmpty()) {
+         return readMetal(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player));
       }
       return null;
    }

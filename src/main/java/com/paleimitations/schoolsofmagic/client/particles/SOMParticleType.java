@@ -22,7 +22,14 @@ public enum SOMParticleType {
    ORB_CORE("orb_core", 13, false),
    SPARKLE_STAR("sparkle_star", 14, false),
    SPARKLE_RAY("sparkle_ray", 15, false),
-   SCULK_BLOOM("sculk_bloom", 16, false);
+   SCULK_BLOOM("sculk_bloom", 16, false),
+   SHOCKWAVE("shockwave", 17, false),
+   GAS("gas", 18, false),
+   HOURGLASS("hourglass", 19, false),
+   CAST_CIRCLE("cast_circle", 20, false),
+   SPORE("spore", 21, false),
+   SPORE_SEED("spore_seed", 22, false),
+   FOG("fog", 23, false);
 
    private final String particleName;
    private final int particleID;

@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:detect_breath"
+    },
+    {
+      "type": "text",
+      "text": "  Detect Breath listens for anything drawing breath nearby and outlines it. Players, animals and monsters all show, through walls and in the dark. It needs concentration.\n\n  The undead do not breathe, so it never finds them.\n\n  It hears 12 blocks at the lowest charge, and 5 blocks further for every charge level above it.\n\n  It holds for 10 seconds, and 5 seconds longer for every charge level above the first."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_detect_breath.desc"
+    }
+  ]
+}

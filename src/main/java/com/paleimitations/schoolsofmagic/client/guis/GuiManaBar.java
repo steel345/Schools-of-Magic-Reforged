@@ -51,7 +51,7 @@ public class GuiManaBar {
       if (player == null || player.isSpectator() || mc.options.hideGui) return;
       boolean wandHeld = player.getMainHandItem().getItem() instanceof ItemBaseWand
             || mc.screen instanceof GuiManaOptions
-            || com.paleimitations.schoolsofmagic.common.handlers.RingCastHandler.isRingActive(player)
+            || com.paleimitations.schoolsofmagic.common.handlers.RingCastHandler.isRingSlotSelected(player)
             || (player.getMainHandItem().getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemSpellbook
                 && com.paleimitations.schoolsofmagic.common.items.ItemSpellbook.isCastingMode(player.getMainHandItem()));
       if (!wandHeld) return;

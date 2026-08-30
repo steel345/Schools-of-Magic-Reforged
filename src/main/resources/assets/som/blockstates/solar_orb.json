@@ -1,7 +1,6 @@
 {
   "variants": {
-    "": {
-      "model": "som:block/solar_orb"
-    }
+    "lit=true": { "model": "som:block/solar_orb" },
+    "lit=false": { "model": "som:block/solar_orb" }
   }
 }

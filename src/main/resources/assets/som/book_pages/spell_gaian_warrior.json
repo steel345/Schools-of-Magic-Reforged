@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:gaian_warrior"
+    },
+    {
+      "type": "text",
+      "text": "  Gaian Warrior raises a golem out of the ground in front of the caster. It needs concentration, and one casting is all a spell charge will give.\n\n  What it is made of depends on the charge it was raised with. A second or third level charge gives clay, 20 health and 4 damage, standing 15 seconds. A fourth or fifth gives dirt, 25 health and 6 damage for 20 seconds. A sixth gives cobblestone, 35 health and 7 damage for 30 seconds. A seventh or eighth gives stone, 40 health and 8 damage for 40 seconds. A ninth raises deepslate, 50 health and 12 damage, and it stands a full minute.\n\n  Each is heavier than the last and throws what it hits further. The deepslate one strikes as hard as an iron golem.\n\n  It walks and fights as an iron golem does and answers for whoever raised it, coming for anything that strikes them and anything they strike. The bar at the bottom of the screen counts down what is left of it."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_gaian_warrior.desc"
+    }
+  ]
+}

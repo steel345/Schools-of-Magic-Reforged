@@ -6,9 +6,22 @@
     " G "
   ],
   "key": {
-    "A": { "tag": "forge:gems/diamond" },
-    "G": { "tag": "forge:ingots/gold" },
-    "D": { "type": "forge:nbt", "item": "som:gem_dust", "nbt": { "Damage": 10 } }
+    "A": {
+      "tag": "forge:gems/diamond"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    },
+    "D": {
+      "type": "forge:nbt",
+      "item": "som:gem_dust",
+      "nbt": {
+        "Damage": 10
+      }
+    }
   },
-  "result": { "item": "som:apprentice_ring", "count": 1 }
+  "result": {
+    "item": "som:apprentice_ring",
+    "count": 1
+  }
 }

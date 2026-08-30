@@ -32,9 +32,8 @@ public class RingRecipeRegistry {
             out.setHoverName(net.minecraft.network.chat.Component.literal("Magic Ring").withStyle(s -> s.withItalic(false)));
 
             List<Object> inputs = new ArrayList<>();
-            inputs.add(metal.item);
-            inputs.add(metal.item);
-            inputs.add(metal.item);
+            inputs.add(com.paleimitations.schoolsofmagic.common.items.ItemMetalGarment.of(
+               ItemRegistry.ring.get(), metal.getSerializedName()));
             if (gem == IWandData.EnumGemType.DIAMOND) {
                ItemStack ds = new ItemStack(ItemRegistry.gem_dust.get());
                ds.setDamageValue(10);

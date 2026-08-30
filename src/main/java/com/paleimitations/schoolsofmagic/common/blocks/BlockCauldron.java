@@ -41,6 +41,27 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class BlockCauldron extends SOMBlockContainer {
+   private static final int ENDLESS_WATER_SKILL = 5;
+
+   private static void drawFromBrew(TileEntityCauldron tb) {
+      if (tb.getBonusBottlesUsed() < tb.getBonusBottles()) {
+         tb.setBonusBottlesUsed(tb.getBonusBottlesUsed() + 1);
+      } else {
+         tb.setLiquidLevel(tb.getLiquidLevel() - 1);
+      }
+   }
+
+   private static int bonusBottlesFor(net.minecraft.world.entity.player.Player player) {
+      com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.IManaData mana =
+         player.getCapability(com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.CapabilityManaData.CAP).orElse(null);
+      if (mana == null) return 0;
+      int level = mana.getPotionLevel();
+      if (level >= 30) return 3;
+      if (level >= 15) return 2;
+      if (level >= 5) return 1;
+      return 0;
+   }
+
    protected static final VoxelShape SHAPE = Shapes.or(
       Block.box(2.0D,  0.0D,  2.0D, 14.0D,  3.5D, 14.0D),
       Block.box(2.0D,  0.0D,  2.0D, 14.0D, 12.0D,  3.0D),
@@ -116,7 +137,7 @@ public class BlockCauldron extends SOMBlockContainer {
             ItemStack stack = tb.getBrewResult().getPotionItem().copy();
             applyPotionData(stack, tb);
             if (player.getInventory().add(stack) && !player.getAbilities().instabuild) {
-               tb.setLiquidLevel(tb.getLiquidLevel() - 1);
+               drawFromBrew(tb);
                held.shrink(1);
             }
             world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BOTTLE_FILL,
@@ -242,16 +263,20 @@ public class BlockCauldron extends SOMBlockContainer {
             && tb.getLiquidLevel() == 3
             && tb.getBrewResult().getPotionItem().getItem() == ItemRegistry.potion_drinkable.get()
             && !tb.isLidded()) {
+            int charges = 3 + Math.max(0, tb.getBonusBottles() - tb.getBonusBottlesUsed());
             ItemStack stack = new ItemStack(ItemRegistry.potion_jug.get());
             stack.getCapability(CapabilityPotionData.POTION_DATA_CAPABILITY).ifPresent(d -> {
                d.setPotionEffects(tb.getBrewResult().getEffects());
-               d.setDrinkNumber(3);
+               d.setDrinkNumber(charges);
                d.setDrinkTime(tb.getBrewResult().getDrinkTime());
             });
             if (player.getInventory().add(stack) && !player.getAbilities().instabuild) {
-               held.shrink(1);
+               tb.setBonusBottlesUsed(tb.getBonusBottles());
                tb.setLiquidLevel(0);
+               held.shrink(1);
             }
+            world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BOTTLE_FILL,
+               net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
          }
          return InteractionResult.PASS;
@@ -272,9 +297,11 @@ public class BlockCauldron extends SOMBlockContainer {
                if (lingering) d.setLength(tb.getBrewResult().getLength());
             });
             if (player.getInventory().add(stack) && !player.getAbilities().instabuild) {
+               drawFromBrew(tb);
                held.shrink(1);
-               tb.setLiquidLevel(tb.getLiquidLevel() - 1);
             }
+            world.playSound(null, pos, net.minecraft.sounds.SoundEvents.BOTTLE_FILL,
+               net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
          }
          return InteractionResult.PASS;
@@ -300,9 +327,20 @@ public class BlockCauldron extends SOMBlockContainer {
                   }
                   return InteractionResult.SUCCESS;
                }
-               if (!free && mana != null && !world.isClientSide) {
-                  mana.setMana(mana.getMana() - cost);
+               if (result.isItemBrew()
+                     && ItemStack.isSameItem(result.getPotionItem(), new ItemStack(ItemRegistry.infinity_jug.get()))
+                     && !free && (mana == null || mana.getPotionLevel() < ENDLESS_WATER_SKILL)) {
+                  if (!world.isClientSide) {
+                     player.sendSystemMessage(net.minecraft.network.chat.Component.translatable(
+                        "message.som.brew_skill", ENDLESS_WATER_SKILL));
+                  }
+                  return InteractionResult.SUCCESS;
                }
+               if (!free && mana != null && !world.isClientSide) {
+                  mana.useMana(cost, com.google.common.collect.Lists.newArrayList(), com.google.common.collect.Lists.newArrayList(),
+                     com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.IManaData.EnumMagicTool.POTION);
+               }
+               tb.setBonusBottles(bonusBottlesFor(player));
                tb.setBrewResult(result);
                tb.setPhase(TileEntityCauldron.EnumPotionPhase.BREWING);
             } else {
@@ -330,7 +368,7 @@ public class BlockCauldron extends SOMBlockContainer {
                   com.paleimitations.schoolsofmagic.common.items.InfusedFood.infuse(copy, effects, infuser);
                   tb.handler.setStackInSlot(i, copy);
                }
-               tb.setLiquidLevel(tb.getLiquidLevel() - 1);
+               drawFromBrew(tb);
                return InteractionResult.SUCCESS;
             }
          }
@@ -361,12 +399,12 @@ public class BlockCauldron extends SOMBlockContainer {
                   tipped.getOrCreateTag().putInt("CustomPotionColor", color);
                   tb.handler.setStackInSlot(i, tipped);
                }
-               tb.setLiquidLevel(tb.getLiquidLevel() - 1);
+               drawFromBrew(tb);
             } else if (diamondOnly && tb.handler.getStackInSlot(0).getItem() == Items.DIAMOND) {
                ItemStack crystal = new ItemStack(ItemRegistry.potion_crystal.get());
                crystal.getCapability(CapabilityPotionData.POTION_DATA_CAPABILITY).ifPresent(d -> d.setPotionEffects(tb.getBrewResult().getEffects()));
                tb.handler.setStackInSlot(0, crystal);
-               tb.setLiquidLevel(tb.getLiquidLevel() - 1);
+               drawFromBrew(tb);
             } else {
                tb.setLiddedAndUpdate(true);
             }

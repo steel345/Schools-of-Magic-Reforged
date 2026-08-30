@@ -38,7 +38,7 @@ public class PacketSwapSpellCharge {
          if (cap != null) {
             Spell spell = cap.getSpell(msg.spellSlot);
             if (spell != null) {
-               spell.currentSpellChargeLevel = msg.chargeLevel;
+               spell.setChargeLevel(msg.chargeLevel);
             }
          }
       });

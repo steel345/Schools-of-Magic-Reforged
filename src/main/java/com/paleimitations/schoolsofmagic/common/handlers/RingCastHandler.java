@@ -48,6 +48,7 @@ public class RingCastHandler {
    @SubscribeEvent
    public static void onHurt(net.minecraftforge.event.entity.living.LivingHurtEvent event) {
       if (!(event.getEntity() instanceof Player player) || !isConcentrating(player)) return;
+      if (CrownClearHeadHandler.clearHeaded(player)) return;
       float mult = 2.0F;
       if (event.getSource().getDirectEntity() instanceof net.minecraft.world.entity.LivingEntity
             && !event.getSource().is(net.minecraft.tags.DamageTypeTags.IS_PROJECTILE)) {
@@ -68,9 +69,9 @@ public class RingCastHandler {
       if (was && !now) {
          IManaData mana = player.getCapability(CapabilityManaData.CAP).orElse(null);
          IRingData ring = CapabilityRingData.get(player);
-         if (mana != null && ring != null && !ring.getRing().isEmpty()
+         if (mana != null && ring != null && !com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).isEmpty()
                && mana.getCurrentSpell() instanceof SpellCustom sc) {
-            player.getCooldowns().addCooldown(ring.getRing().getItem(), sc.getCooldownTicks());
+            player.getCooldowns().addCooldown(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).getItem(), sc.getCooldownTicks());
          }
       }
       WAS_CHANNELING.put(player, now);
@@ -90,9 +91,14 @@ public class RingCastHandler {
    }
 
    public static boolean isRingActive(Player player) {
+      return isRingSlotSelected(player) && !GaseousFormHandler.isGas(player);
+   }
+
+   public static boolean isRingSlotSelected(Player player) {
       if (player == null) return false;
       IRingData ring = CapabilityRingData.get(player);
-      if (ring == null || ring.getRing().isEmpty() || !(ring.getRing().getItem() instanceof ItemApprenticeRing)) return false;
+      if (ring == null || !com.paleimitations.schoolsofmagic.common.items.RingItemHelper.casts(
+            com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player))) return false;
       int sel = player.getInventory().selected;
       return sel >= 0 && sel <= 8 && (ring.getSpellSlots() & (1 << sel)) != 0;
    }
@@ -110,7 +116,7 @@ public class RingCastHandler {
          return true;
       }
 
-      Item ringItem = CapabilityRingData.get(player).getRing().getItem();
+      Item ringItem = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).getItem();
       if (player.getCooldowns().isOnCooldown(ringItem)) return false;
       if (!ItemBaseWand.claimCast(player)) return false;
       if (channeled) keepChannel(player);
@@ -164,6 +170,15 @@ public class RingCastHandler {
       return null;
    }
 
+   private static boolean isMachine(net.minecraft.world.level.block.Block block) {
+      return block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockBrazier
+         || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockCauldron
+         || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockCatalystBasin
+         || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockSpellForge
+         || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockPodium
+         || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockPedestal;
+   }
+
    public static void clientTap(Player player) {
       if (!player.level().isClientSide || !isRingActive(player)) return;
       if (player.isShiftKeyDown() && tryBind(player)) {
@@ -176,7 +191,7 @@ public class RingCastHandler {
       if (spell == null) return;
       if (spell instanceof SpellCustom sc && (sc.isChanneled() || sc.isConcentration())) return;
       if (!(spell instanceof SpellCustom) && spell.getUseLength() > 1) return;
-      Item ringItem = CapabilityRingData.get(player).getRing().getItem();
+      Item ringItem = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).getItem();
       if (player.getCooldowns().isOnCooldown(ringItem)) return;
       player.swing(InteractionHand.MAIN_HAND);
       spell.rightClickEffect(player.level(), player, InteractionHand.MAIN_HAND);
@@ -208,6 +223,30 @@ public class RingCastHandler {
       if (event.getHand() != InteractionHand.MAIN_HAND || !isRingActive(player)) return;
       net.minecraft.world.level.block.Block block = event.getLevel().getBlockState(event.getPos()).getBlock();
 
+      if (player.isShiftKeyDown()
+            && (block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockPodium
+               || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockPedestal)) {
+         event.setCanceled(true);
+         event.setCancellationResult(InteractionResult.CONSUME);
+         if (player.level().isClientSide) {
+            PacketHandler.INSTANCE.sendToServer(
+               new com.paleimitations.schoolsofmagic.common.network.PacketRingBindPodium(event.getPos()));
+         }
+         return;
+      }
+
+      if (!player.isShiftKeyDown() && isMachine(block)) {
+         event.setCanceled(true);
+         event.setCancellationResult(InteractionResult.CONSUME);
+         if (player.level().isClientSide) {
+            net.minecraft.world.phys.BlockHitResult hit = event.getHitVec();
+            PacketHandler.INSTANCE.sendToServer(
+               new com.paleimitations.schoolsofmagic.common.network.PacketRingUseBlock(
+                  event.getPos(), hit.getDirection(), hit.getLocation(), hit.isInside()));
+         }
+         return;
+      }
+
       IManaData cmana = player.getCapability(CapabilityManaData.CAP).orElse(null);
       Spell cspell = cmana == null ? null : cmana.getCurrentSpell();
       if (!player.isShiftKeyDown() && cspell != null && !(cspell instanceof SpellCustom) && cspell.hasBlockEffect()) {
@@ -224,38 +263,12 @@ public class RingCastHandler {
          return;
       }
 
-      if (player.isShiftKeyDown()
-            && block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockPodium) {
-         event.setCanceled(true);
-         event.setCancellationResult(InteractionResult.CONSUME);
-         if (player.level().isClientSide) {
-            PacketHandler.INSTANCE.sendToServer(
-               new com.paleimitations.schoolsofmagic.common.network.PacketRingBindPodium(event.getPos()));
-         }
-         return;
-      }
       IManaData bmana = player.getCapability(CapabilityManaData.CAP).orElse(null);
       Spell bspell = bmana == null ? null : bmana.getCurrentSpell();
-      if (player.isShiftKeyDown() && bspell != null && !(bspell instanceof SpellCustom)
-            && !(block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockPodium)
-            && !(block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockPedestal)) {
+      if (player.isShiftKeyDown() && bspell != null && !(bspell instanceof SpellCustom)) {
          event.setCanceled(true);
          event.setCancellationResult(InteractionResult.CONSUME);
          clientTap(player);
-         return;
-      }
-      boolean ritual = block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockBrazier
-            || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockCauldron
-            || block instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockCatalystBasin;
-      if (ritual && player.getMainHandItem().isEmpty()) {
-         event.setCanceled(true);
-         event.setCancellationResult(InteractionResult.CONSUME);
-         if (player.level().isClientSide) {
-            net.minecraft.world.phys.BlockHitResult hit = event.getHitVec();
-            PacketHandler.INSTANCE.sendToServer(
-               new com.paleimitations.schoolsofmagic.common.network.PacketRingUseBlock(
-                  event.getPos(), hit.getDirection(), hit.getLocation(), hit.isInside()));
-         }
          return;
       }
       if (block instanceof net.minecraft.world.level.block.EntityBlock) {
@@ -276,7 +289,7 @@ public class RingCastHandler {
       Spell spell = mana == null ? null : mana.getCurrentSpell();
       if (spell != null && !(spell instanceof SpellCustom) && spell.hasInteractionEffect()
             && event.getTarget() instanceof net.minecraft.world.entity.LivingEntity living) {
-         if (!player.getCooldowns().isOnCooldown(CapabilityRingData.get(player).getRing().getItem())) {
+         if (!player.getCooldowns().isOnCooldown(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).getItem())) {
             spell.interactionEffect(player.level(), player, living);
          }
          return;
@@ -295,7 +308,7 @@ public class RingCastHandler {
       if (!player.level().isClientSide || !isRingActive(player)) return;
       Spell spell = ringSpell(player);
       if (spell == null) return;
-      ItemStack ring = CapabilityRingData.get(player).getRing();
+      ItemStack ring = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player);
       spell.swingEffect(player, ring);
       PacketHandler.INSTANCE.sendToServer(new com.paleimitations.schoolsofmagic.common.network.PacketRingSwing());
    }
@@ -316,7 +329,7 @@ public class RingCastHandler {
       if (!isRingActive(player)) return;
       Spell spell = ringSpell(player);
       if (spell == null) return;
-      ItemStack ring = CapabilityRingData.get(player).getRing();
+      ItemStack ring = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player);
       spell.attackEffect(ring, player, event.getTarget());
    }
 
@@ -335,7 +348,7 @@ public class RingCastHandler {
       IManaData mana = player.getCapability(CapabilityManaData.CAP).orElse(null);
       Spell spell = mana == null ? null : mana.getCurrentSpell();
       if (spell == null || spell instanceof SpellCustom) return;
-      ItemStack ringStack = CapabilityRingData.get(player).getRing();
+      ItemStack ringStack = com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player);
       spell.finishBreakEffect(ringStack, player.level(), event.getState(), event.getPos(), player);
    }
 }

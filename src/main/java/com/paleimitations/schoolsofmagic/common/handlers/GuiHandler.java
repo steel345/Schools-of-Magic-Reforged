@@ -22,6 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class GuiHandler {
    @OnlyIn(Dist.CLIENT)
    public static void register() {
+      MenuScreens.register(MenuTypeRegistry.RIFT.get(), com.paleimitations.schoolsofmagic.client.guis.GuiRift::new);
       MenuScreens.register(MenuTypeRegistry.CAULDRON.get(), GuiCauldron::new);
       MenuScreens.register(MenuTypeRegistry.POTION_BAG.get(), GuiPotionBag::new);
       MenuScreens.register(MenuTypeRegistry.HERB_POUCH.get(), com.paleimitations.schoolsofmagic.client.guis.GuiHerbPouch::new);

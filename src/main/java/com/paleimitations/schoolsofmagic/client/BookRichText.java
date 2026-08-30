@@ -33,7 +33,7 @@ public class BookRichText {
       COLORS.put("hydromancy", 0x339BDA);   COLORS.put("cryomancy", 0x35379F);
       COLORS.put("hieromancy", 0x7327B1);
 
-      COLORS.put("chaotimancy", 0xD70076);
+      COLORS.put("chaotimancy", 0xBC36B1);
       COLORS.put("auramancy", 0xE0769C);    COLORS.put("astromancy", 0xD8DEDE);
       COLORS.put("infernality", 0xA5A8AA);  COLORS.put("spectromancy", 0x707274);
       COLORS.put("umbramancy", 0x313335);   COLORS.put("necromancy", 0x704626);

@@ -76,6 +76,49 @@ public class CapabilityManaData {
       cap.addMana((float) cap.getMaxMana() * 0.5F);
    }
 
+   // what the pool comes back at on its own, before anything a robe or a charm has to say
+   private static float manaRate(int level) {
+      if (level < 5) {
+         return 0.025F;
+      } else if (level >= 5 && level < 10) {
+         return 0.03F;
+      } else if (level >= 10 && level < 15) {
+         return 0.04F;
+      } else if (level >= 15 && level < 20) {
+         return 0.05F;
+      } else if (level >= 20 && level < 25) {
+         return 0.06F;
+      } else if (level >= 25 && level < 30) {
+         return 0.08F;
+      } else if (level >= 30 && level < 35) {
+         return 0.1F;
+      } else if (level >= 35 && level < 40) {
+         return 0.12F;
+      } else if (level >= 40 && level < 45) {
+         return 0.15F;
+      } else if (level >= 45 && level < 50) {
+         return 0.18F;
+      } else if (level >= 50 && level < 55) {
+         return 0.22F;
+      } else if (level >= 55 && level < 60) {
+         return 0.26F;
+      } else if (level >= 60 && level < 65) {
+         return 0.3F;
+      } else if (level >= 65 && level < 70) {
+         return 0.35F;
+      } else if (level >= 70 && level < 75) {
+         return 0.4F;
+      } else if (level >= 75 && level < 80) {
+         return 0.45F;
+      } else if (level >= 80 && level < 85) {
+         return 0.5F;
+      } else if (level >= 85 && level < 90) {
+         return 0.58F;
+      } else {
+         return 0.7F;
+      }
+   }
+
    @SubscribeEvent
    public static void updatePlayerMana(LivingEvent.LivingTickEvent event) {
       LivingEntity living = event.getEntity();
@@ -83,7 +126,8 @@ public class CapabilityManaData {
          IManaData cap = player.getCapability(CAP).orElse(null);
          if (cap == null) return;
          if (!player.level().isClientSide) {
-            cap.tickCharges();
+            cap.tickCharges(com.paleimitations.schoolsofmagic.common.items.WizardRobes.fullSet(player)
+               ? 1.0F + com.paleimitations.schoolsofmagic.common.items.WizardRobes.CHARGE_SPEED : 1.0F);
             int largest = cap.getLargestChargeLevel();
             for (com.paleimitations.schoolsofmagic.common.spells.Spell s : cap.getSpells()) {
                if (s == null) continue;
@@ -108,46 +152,11 @@ public class CapabilityManaData {
                cap.addDeadMana(0.25F);
             }
          }
-         int level = cap.getLevel();
-         if (level < 5) {
-            cap.addMana(0.025F);
-         } else if (level >= 5 && level < 10) {
-            cap.addMana(0.03F);
-         } else if (level >= 10 && level < 15) {
-            cap.addMana(0.04F);
-         } else if (level >= 15 && level < 20) {
-            cap.addMana(0.05F);
-         } else if (level >= 20 && level < 25) {
-            cap.addMana(0.06F);
-         } else if (level >= 25 && level < 30) {
-            cap.addMana(0.08F);
-         } else if (level >= 30 && level < 35) {
-            cap.addMana(0.1F);
-         } else if (level >= 35 && level < 40) {
-            cap.addMana(0.12F);
-         } else if (level >= 40 && level < 45) {
-            cap.addMana(0.15F);
-         } else if (level >= 45 && level < 50) {
-            cap.addMana(0.18F);
-         } else if (level >= 50 && level < 55) {
-            cap.addMana(0.22F);
-         } else if (level >= 55 && level < 60) {
-            cap.addMana(0.26F);
-         } else if (level >= 60 && level < 65) {
-            cap.addMana(0.3F);
-         } else if (level >= 65 && level < 70) {
-            cap.addMana(0.35F);
-         } else if (level >= 70 && level < 75) {
-            cap.addMana(0.4F);
-         } else if (level >= 75 && level < 80) {
-            cap.addMana(0.45F);
-         } else if (level >= 80 && level < 85) {
-            cap.addMana(0.5F);
-         } else if (level >= 85 && level < 90) {
-            cap.addMana(0.58F);
-         } else {
-            cap.addMana(0.7F);
+         float rate = manaRate(cap.getLevel());
+         if (com.paleimitations.schoolsofmagic.common.items.WizardRobes.fullSet(player)) {
+            rate *= 1.0F + com.paleimitations.schoolsofmagic.common.items.WizardRobes.MANA_SPEED;
          }
+         cap.addMana(rate);
          if (!player.level().isClientSide) {
             int curLevel = cap.getLevel();
             Integer prevLevel = LAST_LEVEL.get(player.getUUID());

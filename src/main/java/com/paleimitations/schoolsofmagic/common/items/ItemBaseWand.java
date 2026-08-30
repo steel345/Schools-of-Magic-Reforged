@@ -102,7 +102,7 @@ public class ItemBaseWand extends Item {
       if (!(stack.getItem() instanceof ItemBaseWand)) {
          com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData ring =
             com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player);
-         stack = ring == null ? ItemStack.EMPTY : ring.getRing();
+         stack = ring == null ? ItemStack.EMPTY : RingItemHelper.getWorn(player);
       }
       return stack.isEmpty() || !stack.isDamageableItem() ? null : stack;
    }
@@ -121,7 +121,7 @@ public class ItemBaseWand extends Item {
       if (!(stack.getItem() instanceof ItemBaseWand)) {
          com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData ring =
             com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player);
-         stack = ring == null ? ItemStack.EMPTY : ring.getRing();
+         stack = ring == null ? ItemStack.EMPTY : RingItemHelper.getWorn(player);
       }
       if (stack.isEmpty() || !stack.isDamageableItem()) {
          return;
@@ -211,10 +211,14 @@ public class ItemBaseWand extends Item {
          return new InteractionResultHolder<>(InteractionResult.PASS, stack);
       }
 
+      if (cur != null && cur.getUseLength() > 0 && !playerIn.isCreative() && !cur.canStartCast(playerIn)) {
+         return new InteractionResultHolder<>(InteractionResult.PASS, stack);
+      }
+
       boolean alreadyHolding = playerIn.isUsingItem();
       playerIn.startUsingItem(handIn);
       if (cur != null && cur.isHeldSpell() && cur.getAction() != UseAnim.NONE
-            && cur.hasCastingFlourish() && !alreadyHolding && !worldIn.isClientSide
+            && cur.hasCastingFlourish() && !cur.isVEConcentration() && !alreadyHolding && !worldIn.isClientSide
             && (playerIn.isCreative() || cur.canCastSpell(playerIn, 0.0F))) {
          worldIn.playSound(null, playerIn.getX(), playerIn.getY(), playerIn.getZ(),
             (playerIn.getRandom().nextBoolean()
@@ -282,6 +286,18 @@ public class ItemBaseWand extends Item {
       double b = (colour & 0xFF) / 255.0D;
       net.minecraft.util.RandomSource rand = player.getRandom();
       double head = player.getEyeY() + 0.15D;
+      if (spell.isVEConcentration()) {
+         if (rand.nextInt(3) == 0) {
+            double angle = rand.nextDouble() * Math.PI * 2.0D;
+            double radius = 0.55D + rand.nextDouble() * 0.35D;
+            worldIn.addParticle(com.paleimitations.schoolsofmagic.common.registries.ParticleTypeRegistry.CAST_CIRCLE.get(),
+               player.getX() + Math.cos(angle) * radius,
+               player.getY() + 0.2D + rand.nextDouble() * (player.getBbHeight() - 0.2D),
+               player.getZ() + Math.sin(angle) * radius,
+               r, g, b);
+         }
+         return;
+      }
       for (int i = 0; i < 2; ++i) {
          worldIn.addParticle(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT,
             player.getX() + (rand.nextDouble() - 0.5D) * 0.3D,
@@ -399,17 +415,40 @@ public class ItemBaseWand extends Item {
       super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
    }
 
+   // a wand with fewer slots must not reach the slot a bigger wand was on, or it casts a spell it does not carry
+   public static void clampSlot(IManaData manaData, ItemStack stack) {
+      IWandData wandData = CapabilityWandData.getCapability(stack);
+      if (wandData == null) return;
+      int slots = slotCount(manaData, wandData);
+      if (manaData.getCurrentSpellSlot() >= slots) {
+         manaData.setCurrentSpellSlot(Math.max(0, slots - 1));
+      }
+   }
+
+   public static int slotCount(IManaData manaData, IWandData wandData) {
+      if (wandData.hasLimitedSlots()) return Math.max(1, wandData.getLimitedSlots());
+      int level = manaData.getLevel();
+      if (level < 5) return 3;
+      if (level < 10) return 4;
+      if (level < 15) return 5;
+      if (level < 20) return 6;
+      if (level < 25) return 7;
+      if (level < 30) return 8;
+      return level < 35 ? 9 : 10;
+   }
+
    public Spell getCurrentSpell(Entity entity, ItemStack stack) {
       if (entity instanceof Player) {
          IManaData manaData = entity.getCapability(CapabilityManaData.CAP).orElse(null);
          if (manaData != null) {
+            clampSlot(manaData, stack);
             Spell current = manaData.getCurrentSpell();
             if (current != null) {
                int min = current.getMinimumSpellChargeLevel();
                int max = Math.min(manaData.getLargestChargeLevel(), current.getMaximumSpellChargeLevel());
                if (max < min) max = min;
-               if (current.currentSpellChargeLevel < min) current.currentSpellChargeLevel = min;
-               else if (current.currentSpellChargeLevel > max) current.currentSpellChargeLevel = max;
+               if (current.currentSpellChargeLevel < min) current.setChargeLevel(min);
+               else if (current.currentSpellChargeLevel > max) current.setChargeLevel(max);
             }
             IWandData wandData = CapabilityWandData.getCapability(stack);
             if (wandData != null) {

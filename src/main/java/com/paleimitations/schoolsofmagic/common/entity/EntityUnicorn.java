@@ -15,7 +15,6 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -31,6 +30,7 @@ import javax.annotation.Nullable;
 
 public class EntityUnicorn extends AbstractHorse {
    private static final EntityDataAccessor<Boolean> HORN = SynchedEntityData.defineId(EntityUnicorn.class, EntityDataSerializers.BOOLEAN);
+   private static final EntityDataAccessor<Integer> COLOR = SynchedEntityData.defineId(EntityUnicorn.class, EntityDataSerializers.INT);
    private int regrow = 0;
 
    public EntityUnicorn(EntityType<? extends AbstractHorse> type, Level level) {
@@ -41,6 +41,7 @@ public class EntityUnicorn extends AbstractHorse {
    protected void defineSynchedData() {
       super.defineSynchedData();
       this.entityData.define(HORN, true);
+      this.entityData.define(COLOR, 0);
    }
 
    @Override
@@ -48,7 +49,15 @@ public class EntityUnicorn extends AbstractHorse {
       super.registerGoals();
       this.goalSelector.addGoal(1, new EntityAITurnInvisible(this));
       this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Player.class, 8.0F, 2.2, 2.2));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 300, true, false, null));
+      this.goalSelector.addGoal(5, new com.paleimitations.schoolsofmagic.common.entity.ai.EntityAIGrazeGrass(this));
+   }
+
+   public UnicornColor getColor() {
+      return UnicornColor.byId(this.entityData.get(COLOR));
+   }
+
+   public void setColor(UnicornColor color) {
+      this.entityData.set(COLOR, color.ordinal());
    }
 
    public boolean hasHorn() {
@@ -101,13 +110,24 @@ public class EntityUnicorn extends AbstractHorse {
    @Nullable
    @Override
    public AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel level, AgeableMob otherParent) {
-      return new EntityUnicorn(com.paleimitations.schoolsofmagic.common.registries.EntityRegistry.UNICORN.get(), this.level());
+      EntityUnicorn foal = new EntityUnicorn(com.paleimitations.schoolsofmagic.common.registries.EntityRegistry.UNICORN.get(), this.level());
+      UnicornColor from = otherParent instanceof EntityUnicorn other && this.random.nextBoolean() ? other.getColor() : this.getColor();
+      foal.setColor(this.random.nextInt(6) == 0 ? UnicornColor.random(this.random) : from);
+      return foal;
+   }
+
+   @Override
+   public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason,
+                                       @Nullable SpawnGroupData data, @Nullable CompoundTag nbt) {
+      this.setColor(UnicornColor.random(this.random));
+      return super.finalizeSpawn(level, difficulty, reason, data, nbt);
    }
 
    @Override
    public void addAdditionalSaveData(CompoundTag nbt) {
       super.addAdditionalSaveData(nbt);
       nbt.putBoolean("horn", this.hasHorn());
+      nbt.putInt("color", this.getColor().ordinal());
       nbt.putInt("regrow", this.regrow);
    }
 
@@ -118,6 +138,7 @@ public class EntityUnicorn extends AbstractHorse {
          this.setHorn(nbt.getBoolean("horn"));
       }
       this.regrow = nbt.getInt("regrow");
+      this.setColor(UnicornColor.byId(nbt.getInt("color")));
    }
 
    @Override

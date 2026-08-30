@@ -52,6 +52,10 @@ public interface IManaData {
 
    void tickCharges();
 
+   default void tickCharges(float speed) {
+      this.tickCharges();
+   }
+
    float getMana();
 
    void setMana(float var1);
@@ -93,6 +97,10 @@ public interface IManaData {
    float getXPBonusRate();
 
    void setXPBonusRate(float var1);
+
+   boolean isXPFrozen();
+
+   void setXPFrozen(boolean var1);
 
    float getMagicianXP();
 

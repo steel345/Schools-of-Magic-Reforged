@@ -144,6 +144,28 @@ public class EntityRegistry {
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicBolt>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicBolt::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(8).build("som_magic_bolt"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall>> FIRE_BALL = ENTITIES.register("som_fire_ball",
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFireBall::new, MobCategory.MISC).sized(1.5F, 1.5F).clientTrackingRange(12).build("som_fire_ball"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicMissile>> MAGIC_MISSILE = ENTITIES.register("som_magic_missile",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicMissile>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicMissile::new, MobCategory.MISC).sized(0.6F, 0.6F).clientTrackingRange(12).build("som_magic_missile"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityPrecisionBolt>> PRECISION_BOLT = ENTITIES.register("som_precision_bolt",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityPrecisionBolt>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityPrecisionBolt::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(16).build("som_precision_bolt"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityRift>> RIFT = ENTITIES.register("som_rift",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityRift>of(com.paleimitations.schoolsofmagic.common.entity.EntityRift::new, MobCategory.MISC).sized(1.6F, 2.4F).clientTrackingRange(10).build("som_rift"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityRiftItem>> RIFT_ITEM = ENTITIES.register("som_rift_item",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityRiftItem>of(com.paleimitations.schoolsofmagic.common.entity.EntityRiftItem::new, MobCategory.MISC).sized(0.6F, 0.35F).clientTrackingRange(8).build("som_rift_item"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityDisrupt>> DISRUPT = ENTITIES.register("som_disrupt",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityDisrupt>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityDisrupt::new, MobCategory.MISC).sized(0.35F, 0.35F).clientTrackingRange(12).build("som_disrupt"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFogBall>> FOG_BALL = ENTITIES.register("som_fog_ball",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFogBall>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFogBall::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(12).build("som_fog_ball"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityAnvilForge>> ANVIL_FORGE = ENTITIES.register("som_anvil_forge",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityAnvilForge>of(com.paleimitations.schoolsofmagic.common.entity.EntityAnvilForge::new, MobCategory.MISC).sized(0.8F, 0.4F).clientTrackingRange(8).build("som_anvil_forge"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityAlarmRune>> ALARM_RUNE = ENTITIES.register("som_alarm_rune",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityAlarmRune>of(com.paleimitations.schoolsofmagic.common.entity.EntityAlarmRune::new, MobCategory.MISC).sized(1.2F, 0.2F).clientTrackingRange(10).build("som_alarm_rune"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityTornado>> TORNADO = ENTITIES.register("som_tornado",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityTornado>of(com.paleimitations.schoolsofmagic.common.entity.EntityTornado::new, MobCategory.MISC).sized(3.2F, 6.0F).clientTrackingRange(12).build("som_tornado"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityGaianWarrior>> GAIAN_WARRIOR = ENTITIES.register("som_gaian_warrior",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityGaianWarrior>of(com.paleimitations.schoolsofmagic.common.entity.EntityGaianWarrior::new, MobCategory.MISC).sized(1.4F, 2.7F).clientTrackingRange(10).build("som_gaian_warrior"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityShroom>> SHROOM = ENTITIES.register("som_shroom",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityShroom>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityShroom::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(12).build("som_shroom"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicRune>> MAGIC_RUNE = ENTITIES.register("som_magic_rune",
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicRune>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityMagicRune::new, MobCategory.MISC).sized(1.0F, 0.2F).clientTrackingRange(8).build("som_magic_rune"));
 
@@ -180,6 +202,7 @@ public class EntityRegistry {
       event.put(ACOLYTE_WISP.get(), com.paleimitations.schoolsofmagic.common.entity.EntityAcolyteWisp.createAttributes().build());
       event.put(UNICORN.get(),    net.minecraft.world.entity.animal.horse.AbstractHorse.createBaseHorseAttributes().build());
       event.put(SQUEAKARD.get(),  EntitySqueakard.createAttributes().build());
+      event.put(GAIAN_WARRIOR.get(), com.paleimitations.schoolsofmagic.common.entity.EntityGaianWarrior.createAttributes().build());
       event.put(SPHINX.get(),     net.minecraft.world.entity.animal.Chicken.createAttributes().build());
       event.put(HUMAN.get(),      EntityHuman.createAttributes().build());
       event.put(TARANTULA.get(),  EntityTarantula.createAttributes().build());

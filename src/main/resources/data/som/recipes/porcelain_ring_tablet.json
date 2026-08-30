@@ -1,0 +1,74 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " T ",
+    "TCT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "som:porcelain_tablet"
+    },
+    "C": [
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "item": "minecraft:gold_ingot"
+      },
+      {
+        "item": "minecraft:copper_ingot"
+      },
+      {
+        "item": "minecraft:netherite_ingot"
+      },
+      {
+        "type": "forge:partial_nbt",
+        "item": "som:ingot",
+        "nbt": {
+          "Damage": 0
+        }
+      },
+      {
+        "type": "forge:partial_nbt",
+        "item": "som:ingot",
+        "nbt": {
+          "Damage": 2
+        }
+      },
+      {
+        "type": "forge:partial_nbt",
+        "item": "som:ingot",
+        "nbt": {
+          "Damage": 4
+        }
+      },
+      {
+        "type": "forge:partial_nbt",
+        "item": "som:ingot",
+        "nbt": {
+          "Damage": 6
+        }
+      },
+      {
+        "type": "forge:partial_nbt",
+        "item": "som:ingot",
+        "nbt": {
+          "Damage": 8
+        }
+      },
+      {
+        "type": "forge:partial_nbt",
+        "item": "som:ingot",
+        "nbt": {
+          "Damage": 9
+        }
+      }
+    ]
+  },
+  "result": {
+    "item": "som:porcelain_ring_tablet",
+    "count": 4
+  }
+}

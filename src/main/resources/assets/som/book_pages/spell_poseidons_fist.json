@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:poseidons_fist"
+    },
+    {
+      "type": "text",
+      "text": "  Poseidon's Fist raises a fist of water out in front of the caster and holds it there.\n\n  Crouch and turn the wheel to send it further out or bring it back in. It follows where you look, but slowly.\n\n  Right-click to close it on a creature. It cannot take anything above 50 health or bosses. Crouch while it holds one and it drags it under and make it suffocate.\n\n  Left-click to strike instead. The same motion, twice as quick, for 10 damage.\n\n  It holds for 15 seconds, and 5 seconds longer for every charge level above the first. Putting the wand away puts it out."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_poseidons_fist.desc"
+    }
+  ]
+}

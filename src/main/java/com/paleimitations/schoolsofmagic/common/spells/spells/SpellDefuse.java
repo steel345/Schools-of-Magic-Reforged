@@ -63,7 +63,7 @@ public class SpellDefuse extends Spell {
       playerIn.playSound(SoundEvents.FIRE_EXTINGUISH, 0.9F, 1.4F);
 
       if (!worldIn.isClientSide) {
-         AABB area = playerIn.getBoundingBox().inflate(RANGE);
+         AABB area = playerIn.getBoundingBox().inflate(this.scaleArea(RANGE));
          for (Entity entity : worldIn.getEntities(playerIn, area)) {
             if (entity instanceof Creeper creeper) {
                com.paleimitations.schoolsofmagic.common.handlers.DefusedCreepers.calm(creeper);

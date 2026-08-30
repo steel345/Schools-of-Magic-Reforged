@@ -18,6 +18,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -40,6 +41,23 @@ public class EntityFlashDecoy extends LivingEntity {
    private final net.minecraft.world.item.ItemStack[] gear = new ItemStack[6];
    private boolean bursting;
    private ItemStack[] pending;
+
+   // the flash decoy keeps the old fixed span, the illusion one sets its own
+   // chaotimancy, the colour the copies come apart in
+   private static final double CHAOS_R = 188.0D / 255.0D;
+   private static final double CHAOS_G = 54.0D / 255.0D;
+   private static final double CHAOS_B = 177.0D / 255.0D;
+
+   private int life = LIFETIME;
+
+   // a copy that walks. it holds its place beside the caster and does whatever they do
+   private boolean mirror;
+   private static final float FOOLED = 0.75F;
+
+   private int lastSwing = -99;
+   private boolean using;
+   private double offX;
+   private double offZ;
 
    public EntityFlashDecoy(EntityType<? extends EntityFlashDecoy> type, Level level) {
       super(type, level);
@@ -136,6 +154,10 @@ public class EntityFlashDecoy extends LivingEntity {
       this.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
 
       this.setPose(this.storedPose());
+
+      // vanilla drives the legs off the end of travel, and this thing never travels. worked out
+      // here instead, off how far it actually shifted since last tick, on both sides
+      this.calculateEntityAnimation(false);
       if (!this.level().isClientSide) {
          if (this.pending != null) {
             for (EquipmentSlot slot : EquipmentSlot.values()) {
@@ -143,9 +165,109 @@ public class EntityFlashDecoy extends LivingEntity {
             }
             this.pending = null;
          }
+         if (this.mirror) this.followOwner();
          if (this.tickCount == 1) this.drawAttention();
-         if (this.tickCount > LIFETIME) this.discard();
+         else if (this.mirror && this.tickCount % 20 == 0) this.keepAttention();
+         if (this.tickCount > this.life) {
+            this.burst();
+         }
       }
+   }
+
+   // it keeps its offset and copies the aim and the crouch, so the whole set moves as one
+   private void followOwner() {
+      UUID owner = this.getOwnerId();
+      if (owner == null) return;
+      Player caster = this.level().getPlayerByUUID(owner);
+      if (caster == null || !caster.isAlive()) return;
+
+      this.moveTo(caster.getX() + this.offX, caster.getY(), caster.getZ() + this.offZ,
+         caster.getYRot(), caster.getXRot());
+      this.yHeadRot = caster.yHeadRot;
+      this.yBodyRot = caster.yBodyRot;
+      this.entityData.set(POSE_FLAGS, (byte) caster.getPose().ordinal());
+      this.setShiftKeyDown(caster.isShiftKeyDown());
+
+      // whatever they are holding now, not whatever they held when it was cast
+      for (EquipmentSlot slot : EquipmentSlot.values()) {
+         ItemStack worn = caster.getItemBySlot(slot);
+         if (!ItemStack.matches(this.getItemBySlot(slot), worn)) {
+            this.setItemSlot(slot, worn.copy());
+         }
+      }
+
+      // the arm has to be swung properly rather than have its fields copied. swing sends the
+      // packet that makes every client play it, copying the numbers reaches nobody. the swing
+      // clock restarting is what marks a new one, so held down attacks come through as well
+      int swing = caster.swinging ? caster.swingTime : -99;
+      if (caster.swinging && swing <= this.lastSwing) {
+         this.swing(caster.swingingArm == null ? InteractionHand.MAIN_HAND : caster.swingingArm, true);
+      }
+      this.lastSwing = swing;
+
+      // holding right click is not a swing at all, it is the use pose. drawing a bow, eating,
+      // raising a shield and holding a wand out all come through here
+      if (caster.isUsingItem() && !this.using) {
+         this.startUsingItem(caster.getUsedItemHand());
+         this.using = true;
+      } else if (!caster.isUsingItem() && this.using) {
+         this.stopUsingItem();
+         this.using = false;
+      }
+   }
+
+   private java.util.List<EntityFlashDecoy> siblings() {
+      UUID owner = this.getOwnerId();
+      java.util.List<EntityFlashDecoy> rest = new java.util.ArrayList<>();
+      if (owner == null) return rest;
+
+      for (EntityFlashDecoy other : this.level().getEntitiesOfClass(EntityFlashDecoy.class,
+            this.getBoundingBox().inflate(48.0D))) {
+         if (other == this || other.isRemoved() || !other.mirror) continue;
+         if (owner.equals(other.getOwnerId())) rest.add(other);
+      }
+      return rest;
+   }
+
+   // whoever was swinging at this one is handed on to another copy, most of the time
+   private void handOver() {
+      java.util.List<EntityFlashDecoy> rest = this.siblings();
+      if (rest.isEmpty()) return;
+
+      for (Mob mob : this.level().getEntitiesOfClass(Mob.class, this.getBoundingBox().inflate(24.0D))) {
+         if (mob.getTarget() != this) continue;
+         if (this.random.nextFloat() > FOOLED) continue;
+         mob.setTarget(rest.get(this.random.nextInt(rest.size())));
+      }
+   }
+
+   // and anything that works out where the real one is gets turned back round, most of the time
+   private void keepAttention() {
+      UUID owner = this.getOwnerId();
+      if (owner == null) return;
+      Player caster = this.level().getPlayerByUUID(owner);
+      if (caster == null) return;
+
+      for (Mob mob : this.level().getEntitiesOfClass(Mob.class, this.getBoundingBox().inflate(24.0D))) {
+         if (mob.getTarget() != caster) continue;
+         if (this.random.nextFloat() > FOOLED) continue;
+         mob.setTarget(this);
+      }
+   }
+
+   // the bar is counting down the copies, so it stops when the last of them does
+   private void lastOneOut() {
+      UUID owner = this.getOwnerId();
+      if (owner == null) return;
+      Player caster = this.level().getPlayerByUUID(owner);
+      if (caster == null) return;
+
+      AABB around = caster.getBoundingBox().inflate(64.0D);
+      for (EntityFlashDecoy other : this.level().getEntitiesOfClass(EntityFlashDecoy.class, around)) {
+         if (other == this || other.isRemoved() || !other.mirror) continue;
+         if (owner.equals(other.getOwnerId())) return;
+      }
+      com.paleimitations.schoolsofmagic.common.spells.spells.DecoyBar.set(caster, 0);
    }
 
    private void drawAttention() {
@@ -169,11 +291,43 @@ public class EntityFlashDecoy extends LivingEntity {
       return true;
    }
 
-   private void burst() {
-      this.bursting = true;
+   public void setMirror(double offX, double offZ) {
+      this.mirror = true;
+      this.offX = offX;
+      this.offZ = offZ;
+   }
 
+   public void setLife(int ticks) {
+      this.life = ticks;
+   }
+
+   private void burst() {
+      if (this.bursting) return;
+      this.bursting = true;
       this.discard();
+
       float blast = this.entityData.get(BLAST);
+
+      // nothing to go off means it was only ever a picture of somebody. it comes apart quietly
+      if (blast <= 0.0F) {
+         this.level().playSound(null, this.getX(), this.getY(), this.getZ(),
+            SoundEvents.ILLUSIONER_MIRROR_MOVE, SoundSource.PLAYERS, 0.9F, 1.1F);
+         this.handOver();
+         this.lastOneOut();
+         if (this.level() instanceof ServerLevel quiet) {
+            // the mods spell cloud, tinted the colour of the school it came from. the seed carries
+            // the colour in the argument slots the puff has no room for
+            for (int i = 0; i < 3; i++) {
+               double sx = this.getX() + (this.random.nextDouble() - 0.5D) * 0.7D;
+               double sy = this.getY() + 0.4D + this.random.nextDouble() * 1.4D;
+               double sz = this.getZ() + (this.random.nextDouble() - 0.5D) * 0.7D;
+               quiet.sendParticles(
+                  com.paleimitations.schoolsofmagic.common.registries.ParticleTypeRegistry.SPORE_SEED.get(),
+                  sx, sy, sz, 0, CHAOS_R, CHAOS_G, CHAOS_B, 1.0D);
+            }
+         }
+         return;
+      }
       AABB reach = this.getBoundingBox().inflate(FLASH_RANGE);
       for (LivingEntity living : this.level().getEntitiesOfClass(LivingEntity.class, reach)) {
          if (living == this || !living.isAlive()) continue;
@@ -227,6 +381,10 @@ public class EntityFlashDecoy extends LivingEntity {
       UUID owner = this.getOwnerId();
       if (owner != null) nbt.putUUID("Owner", owner);
       nbt.putFloat("Blast", this.entityData.get(BLAST));
+      nbt.putInt("Life", this.life);
+      nbt.putBoolean("Mirror", this.mirror);
+      nbt.putDouble("OffX", this.offX);
+      nbt.putDouble("OffZ", this.offZ);
    }
 
    @Override

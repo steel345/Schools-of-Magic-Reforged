@@ -31,6 +31,7 @@ public class GuiStandardBook extends Screen {
    private static final ResourceLocation MENU_OPTIONS = new ResourceLocation("som", "textures/gui/books/menu_options.png");
    public static final ResourceLocation PAGE_DEFAULT = new ResourceLocation("som", "textures/gui/books/paper_default.png");
    private static final ResourceLocation BOOK_KNOWLADGE = new ResourceLocation("som", "textures/gui/books/book_knowladge.png");
+   private static final int KNOWLEDGE_TEXT_DROP = 8;
    private static final ResourceLocation PAGE_TOC = new ResourceLocation("som", "textures/gui/books/paper_default_table_of_contents.png");
 
    private final Player player;
@@ -195,7 +196,7 @@ public class GuiStandardBook extends Screen {
    private boolean searchUiActive() { return isKnowledgeBook() || isTocPage(); }
    private int offX() { return (this.width - 256) / 2; }
    private float barX() { return isKnowledgeBook() ? offX() + 42 : offX() + 44; }
-   private float barY() { return isKnowledgeBook() ? 53 : 188; }
+   private float barY() { return isKnowledgeBook() ? 54 : 188; }
    private float barScale() { return 0.55F; }
    private int barClip() { return isKnowledgeBook() ? 82 : 78; }
    private float resX() { return isKnowledgeBook() ? offX() + 30 : offX() + 24; }
@@ -253,6 +254,7 @@ public class GuiStandardBook extends Screen {
 
    @Override
    public void tick() {
+      search().tick();
       this.buttonNextPage.visible = true;
       this.buttonPreviousPage.visible = true;
       this.backChapter.visible = true;
@@ -299,8 +301,9 @@ public class GuiStandardBook extends Screen {
       boolean tocSearching = isTocPage() && !this.results.isEmpty();
       if (!tocSearching && !book.getBookPages().isEmpty() && book.getCurrentPage() != null) {
          com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.begin(book);
-         book.getCurrentPage().drawPage(gg, mouseX - offsetLeft, mouseY - offsetTop, offsetLeft, offsetTop, true, book.getSubPage());
-         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, offsetLeft, offsetTop, true);
+         int textTop = offsetTop + (isKnowledgeBook() ? KNOWLEDGE_TEXT_DROP : 0);
+         book.getCurrentPage().drawPage(gg, mouseX - offsetLeft, mouseY - textTop, offsetLeft, textTop, true, book.getSubPage());
+         com.paleimitations.schoolsofmagic.client.BookLayoutRenderer.end(gg, offsetLeft, textTop, true);
       }
       com.paleimitations.schoolsofmagic.client.GrimoireScramble.SCRAMBLE = false;
       for (BookElementSticker sticker : book.getStickers()) {
@@ -320,7 +323,7 @@ public class GuiStandardBook extends Screen {
          gg.pose().pushPose();
          gg.pose().translate(barX(), barY(), 0.0F);
          gg.pose().scale(barScale(), barScale(), 1.0F);
-         search().render(gg, Math.round(barClip() / barScale()), this.typing);
+         search().render(gg, barClip(), this.typing);
          gg.pose().popPose();
 
          if (!this.results.isEmpty()) {
@@ -369,7 +372,7 @@ public class GuiStandardBook extends Screen {
             && mouseY >= barY() - 3 && mouseY <= barY() + barScale() * 10 + 2) {
          this.typing = true;
          float fx = (float) (mouseX - barX()) / barScale();
-         search().clickAt(fx, Math.round(barClip() / barScale()));
+         search().clickAt(fx, barClip());
          return true;
       }
       this.typing = false;

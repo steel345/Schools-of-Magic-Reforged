@@ -103,7 +103,7 @@ public class SpellSpectralHand extends SpellTimed {
             this.grabbed = true;
             this.ungrabTick = 5;
             if (this.grabbedStack.isEmpty() && this.grabbedEntity == 0 && this.canGrabEntity) {
-               for (LivingEntity living : worldIn.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(5.0))) {
+               for (LivingEntity living : worldIn.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(this.scaleArea(5.0)))) {
                   if (living.getBoundingBox().intersects(aabb) && living != playerIn && living.getBbHeight() < this.grabEntitySize && living.getBbWidth() < this.grabEntitySize && !(living instanceof Player)) {
                      this.grabbedEntity = living.getId();
                      return InteractionResultHolder.success(playerIn.getItemInHand(hand));

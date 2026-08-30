@@ -74,7 +74,7 @@ public class SpellIronHide extends Spell {
    private void apply(Player caster, LivingEntity target) {
       int existing = target.hasEffect(PotionRegistry.iron_hide.get())
          ? target.getEffect(PotionRegistry.iron_hide.get()).getDuration() : 0;
-      target.addEffect(new MobEffectInstance(PotionRegistry.iron_hide.get(),
+      this.applyEffect(target, new MobEffectInstance(PotionRegistry.iron_hide.get(),
          this.hideDuration(caster) + existing));
       caster.playSound(SoundEvents.ANVIL_LAND, 0.5F, 1.6F);
    }

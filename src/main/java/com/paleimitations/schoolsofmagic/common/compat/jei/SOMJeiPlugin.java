@@ -155,6 +155,14 @@ public class SOMJeiPlugin implements IModPlugin {
       };
       registerIfPresent(reg, ItemRegistry.apprentice_ring, byRing);
 
+      IIngredientSubtypeInterpreter<ItemStack> byGarment = (stack, ctx) -> {
+         CompoundTag t = stack.getTag();
+         if (t == null) return "default";
+         return t.getString("garment_metal") + "|" + t.getString("garment_gem");
+      };
+      registerIfPresent(reg, ItemRegistry.advanced_crown, byGarment);
+      registerIfPresent(reg, ItemRegistry.advanced_necklace, byGarment);
+
       IIngredientSubtypeInterpreter<ItemStack> byQuest = (stack, ctx) -> {
          CompoundTag t = stack.getTag();
          return (t != null) ? t.getString("quest") : "";
@@ -239,6 +247,10 @@ public class SOMJeiPlugin implements IModPlugin {
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.RitualRecipeCategory(reg.getJeiHelpers().getGuiHelper()));
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.WandComboCategory(reg.getJeiHelpers().getGuiHelper()));
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.RingComboCategory(reg.getJeiHelpers().getGuiHelper()));
+      reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory(
+         reg.getJeiHelpers().getGuiHelper(), com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory.CROWN, ItemRegistry.advanced_crown.get(), "Crown"));
+      reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory(
+         reg.getJeiHelpers().getGuiHelper(), com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory.NECKLACE, ItemRegistry.advanced_necklace.get(), "Necklace"));
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.tea.TeapotRecipeCategory(reg.getJeiHelpers().getGuiHelper()));
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.spell_forge.SpellForgePointsCategory(reg.getJeiHelpers().getGuiHelper()));
       reg.addRecipeCategories(new com.paleimitations.schoolsofmagic.common.compat.jei.spell_forge.ScrollForgeCategory(reg.getJeiHelpers().getGuiHelper()));
@@ -281,6 +293,15 @@ public class SOMJeiPlugin implements IModPlugin {
       }
       reg.addRecipes(com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.RingComboCategory.TYPE,
          ringRecipes);
+
+      for (mezz.jei.api.recipe.RecipeType<com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting> type :
+            java.util.List.of(com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory.CROWN, com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory.NECKLACE)) {
+         java.util.List<com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting> made = new ArrayList<>();
+         for (com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting r : RecipeRegistry.ritualRecipes) {
+            if (r.getOutput().getItem() == com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory.itemFor(type)) made.add(r);
+         }
+         reg.addRecipes(type, made);
+      }
       reg.addRecipes(com.paleimitations.schoolsofmagic.common.compat.jei.tea.TeapotRecipeCategory.TYPE,
          new ArrayList<>(RecipeRegistry.teaRecipes));
 
@@ -295,9 +316,9 @@ public class SOMJeiPlugin implements IModPlugin {
             metaStack(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
             new ItemStack(net.minecraft.world.item.Items.BLAZE_ROD),
             new ItemStack(net.minecraft.world.item.Items.GLOWSTONE_DUST),
-            new ItemStack(ItemRegistry.magic_diamond.get()),
+            metaStack(ItemRegistry.gem_chunk.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.HYDROMANCY.getIndex()),
             new ItemStack(net.minecraft.world.item.Items.SNOW_BLOCK)),
-         new ItemStack(ItemRegistry.infinity_jug.get())));
+         new ItemStack(ItemRegistry.infinity_jug.get()), 5));
       brews.add(new com.paleimitations.schoolsofmagic.common.compat.jei.cauldron_brew.CauldronBrewRecipe(
          java.util.Arrays.asList(
             metaStack(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
@@ -339,6 +360,8 @@ public class SOMJeiPlugin implements IModPlugin {
          com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.RingComboCategory.TYPE);
       reg.addRecipeCatalyst(new ItemStack(BlockRegistry.brazier.get()),
          com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.WandComboCategory.TYPE);
+      reg.addRecipeCatalyst(new ItemStack(BlockRegistry.brazier.get()), com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory.CROWN);
+      reg.addRecipeCatalyst(new ItemStack(BlockRegistry.brazier.get()), com.paleimitations.schoolsofmagic.common.compat.jei.ritual_crafting.GarmentComboCategory.NECKLACE);
 
       reg.addRecipeCatalyst(new ItemStack(BlockRegistry.teapot.get()),
          com.paleimitations.schoolsofmagic.common.compat.jei.tea.TeapotRecipeCategory.TYPE);

@@ -252,6 +252,11 @@ public final class MortarRecipeRegistry {
             Items.SUGAR_CANE, ItemStack.EMPTY, 6,
             new ItemStack(Items.SUGAR, 2), ItemStack.EMPTY);
 
+        RecipeRegistry.registerMortarRecipe(
+            ItemRegistry.magic_diamond.get(), new ItemStack(ItemRegistry.bottle_water.get()), 10,
+            new ItemStack(ItemRegistry.item_diamond_dust.get()),
+            new ItemStack(ItemRegistry.liquid_magic.get()));
+
         BOTTLE_WORMWOOD = RecipeRegistry.registerMortarRecipe(
             metaBlock(BlockRegistry.magic_plant, EnumMagicType.SPECTROMANCY.getIndex()),
             new ItemStack(ItemRegistry.bottle_empty.get()), 6,

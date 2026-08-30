@@ -80,14 +80,28 @@ public class ModelApprenticeWand {
    }
 
    public void render(PoseStack pose, MultiBufferSource buf, int light, float scale, int rank) {
-      VertexConsumer vc = buf.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
+      this.render(pose, buf, light, scale, rank, 0xFFFFFF, false);
+   }
+
+   public void render(PoseStack pose, MultiBufferSource buf, int light, float scale, int rank, int tint, boolean glowing) {
+      float r = (tint >> 16 & 0xFF) / 255.0F;
+      float g = (tint >> 8 & 0xFF) / 255.0F;
+      float b = (tint & 0xFF) / 255.0F;
+
       pose.pushPose();
       pose.scale(0.2F, 0.2F, 0.2F);
       this.handle.xRot = (float) Math.PI;
       this.diamond1.visible = rank >= 1;
       this.diamond2.visible = rank >= 2;
       this.diamond3.visible = rank >= 3;
-      this.handle.render(pose, vc, light, OverlayTexture.NO_OVERLAY);
+
+      VertexConsumer vc = buf.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
+      this.handle.render(pose, vc, light, OverlayTexture.NO_OVERLAY, r, g, b, 1.0F);
+
+      if (glowing) {
+         VertexConsumer glow = buf.getBuffer(RenderType.eyes(TEXTURE));
+         this.handle.render(pose, glow, 15728880, OverlayTexture.NO_OVERLAY, r, g, b, 1.0F);
+      }
       pose.popPose();
    }
 }

@@ -104,7 +104,7 @@ public class SpellInvisibility extends Spell {
             i = entityLiving.getEffect(MobEffects.INVISIBILITY).getDuration();
          }
 
-         entityLiving.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration((Player)entityLiving) + i));
+         this.applyEffect(entityLiving, new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration((Player)entityLiving) + i));
          entityLiving.playSound(SOMSoundHandler.INVISIBILITY.get(), 1.0F, 1.0F);
       }
 
@@ -122,7 +122,7 @@ public class SpellInvisibility extends Spell {
             i = livingBase.getEffect(MobEffects.INVISIBILITY).getDuration();
          }
 
-         livingBase.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration(player) + i));
+         this.applyEffect(livingBase, new MobEffectInstance(MobEffects.INVISIBILITY, this.invisibilityDuration(player) + i));
          player.playSound(SOMSoundHandler.INVISIBILITY.get(), 1.0F, 1.0F);
       }
    }

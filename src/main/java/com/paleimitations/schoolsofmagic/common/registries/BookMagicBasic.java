@@ -572,15 +572,26 @@ public class BookMagicBasic {
 
       new BookPageChapter(null).addToList(BookPageRegistry.BASIC_MAGIC_BOOK);
       SpellRegistry.addSorted(BookPageRegistry.BASIC_MAGIC_BOOK,
-         new SpellBlaze(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellBlaze(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellLaunchStone(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellWaterJet(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellGale(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFortifiedBreath(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFieryBlessing(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellDry(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellIgnite(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellIlluminate(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellLocateLava(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFuelFurnace(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellBreak(),
          new com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrestidigitation(),
-         new SpellGrowApple(),
-         new SpellLocateOre(),
-         new SpellZephyr(),
-         new SpellWaterJet(),
-         new SpellWinterRoar(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSnowball(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellDry());
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSundial(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellLocateWater(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellLocateOre(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSeaTrade(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSmokeScry(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellTremor(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellPractice());
 
       BookPageChapter otherBooks = new BookPageChapter(null);
       otherBooks.elements.add(new PageElementTitle("page.other_books_chapter.title", 72, 58, 99, 16, 0, true));
@@ -594,7 +605,7 @@ public class BookMagicBasic {
             new ParagraphBox(23, 65, 0, 99, 140)),
          new PageElementCraftingRecipeSmall(Lists.newArrayList(new ItemStack[]{
             new ItemStack(Items.BOOK),
-            new ItemStack(Items.PURPLE_DYE),
+            new ItemStack(Items.IRON_INGOT),
             new ItemStack(ItemRegistry.item_porcelain.get()),
             stack(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.ROSE.getIndex())
          }), new ItemStack(ItemRegistry.tea_makers_guide.get()), 150, 95)
@@ -615,8 +626,8 @@ public class BookMagicBasic {
          new PageElementStandardText("page.bmb_alchemy_book.title", 72, 58, 99, 16, 0, true),
          new PageElementCraftingRecipe(
             Lists.newArrayList(new ItemStack[]{
-               new ItemStack(Items.BOOK), stack(ItemRegistry.ingot.get(), EnumMetal.STEEL.getIndex()), ItemStack.EMPTY,
-               new ItemStack(ItemRegistry.item_diamond_dust.get()), stack(ItemRegistry.ingot.get(), EnumMetal.BRONZE.getIndex()), ItemStack.EMPTY,
+               new ItemStack(Items.BOOK), stack(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.WHEAT.getIndex()), ItemStack.EMPTY,
+               new ItemStack(ItemRegistry.item_diamond_dust.get()), new ItemStack(Items.IRON_INGOT), ItemStack.EMPTY,
                ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
             }),
             new ItemStack(ItemRegistry.alchemical_manual.get()),
@@ -642,7 +653,7 @@ public class BookMagicBasic {
          new PageElementCraftingRecipe(
             Lists.newArrayList(new ItemStack[]{
                new ItemStack(Items.BOOK), stack(ItemRegistry.bottle.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumBottle.MANDRAKE.getIndex()), ItemStack.EMPTY,
-               new ItemStack(Items.CHARCOAL), stack(ItemRegistry.crushed_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumPlantType.HYDRANGEA.getIndex()), ItemStack.EMPTY,
+               new ItemStack(Items.CHARCOAL), new ItemStack(Items.IRON_INGOT), ItemStack.EMPTY,
                ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
             }),
             new ItemStack(ItemRegistry.ritual_compendium.get()),

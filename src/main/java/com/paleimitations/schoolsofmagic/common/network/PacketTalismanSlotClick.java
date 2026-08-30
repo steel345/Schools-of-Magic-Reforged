@@ -35,7 +35,8 @@ public class PacketTalismanSlotClick {
                talisman.setTalisman(ItemStack.EMPTY);
                changed = true;
             }
-         } else if (carried.getItem() instanceof ItemPotionCharm || carried.getItem() instanceof ItemTalismanOfKnowledge) {
+         } else if (carried.getItem() instanceof ItemPotionCharm || carried.getItem() instanceof ItemTalismanOfKnowledge
+               || com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.isNecklace(carried)) {
             changed = true;
             ItemStack one = carried.copy();
             one.setCount(1);

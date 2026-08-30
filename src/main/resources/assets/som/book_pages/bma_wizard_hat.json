@@ -1,0 +1,7 @@
+{
+  "elements": [
+    { "type": "title", "text": "Wizard Hat" },
+    { "type": "text", "text": "  Two /bEnhanced Magic Cloth/z, one /bMagic Thread/z and an iron helmet at the /bBrazier/z for 40 mana." },
+    { "type": "ritual", "result": "som:wizard_hat" }
+  ]
+}

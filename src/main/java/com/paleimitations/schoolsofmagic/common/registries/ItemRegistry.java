@@ -130,7 +130,9 @@ public class ItemRegistry {
       () -> new ItemTea(new Item.Properties().stacksTo(64)));
 
    public static final RegistryObject<Item> bottle_empty = ITEMS.register("bottle_empty",
-      () -> new ItemPotionry(new Item.Properties().stacksTo(64)));
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemGlassFlask(new Item.Properties().stacksTo(64)));
+   public static final RegistryObject<Item> bottle_water = ITEMS.register("bottle_water",
+      () -> new ItemPotionry(new Item.Properties().stacksTo(16)));
    public static final RegistryObject<Item> bottle = ITEMS.register("bottle",
       () -> new ItemBottle(new Item.Properties().stacksTo(16)));
    public static final RegistryObject<Item> bottle_egg = ITEMS.register("bottle_egg",
@@ -139,7 +141,7 @@ public class ItemRegistry {
    public static final RegistryObject<Item> potion_drinkable = ITEMS.register("potion_drinkable",
       () -> new ItemPotionDrink(new Item.Properties().stacksTo(16)));
    public static final RegistryObject<Item> potion_jug = ITEMS.register("potion_jug",
-      () -> new ItemPotionDrink(new Item.Properties().stacksTo(16)));
+      () -> new ItemPotionDrink(new Item.Properties().stacksTo(1)));
    public static final RegistryObject<Item> potion_throwable = ITEMS.register("potion_throwable",
       () -> new ItemPotionSplash(new Item.Properties().stacksTo(16)));
    public static final RegistryObject<Item> potion_lingering = ITEMS.register("potion_lingering",
@@ -250,16 +252,16 @@ public class ItemRegistry {
       () -> new ItemPotionry(new Item.Properties()));
    public static final RegistryObject<Item> feather_phoenix = ITEMS.register("feather_phoenix",
       () -> new ItemPotionry(new Item.Properties()));
+   public static final RegistryObject<Item> horn_unicorn = ITEMS.register("horn_unicorn",
+      () -> new ItemPotionry(new Item.Properties()));
+   public static final RegistryObject<Item> crushed_horn_unicorn = ITEMS.register("crushed_horn_unicorn",
+      () -> new ItemPotionry(new Item.Properties()));
    public static final RegistryObject<Item> brass_whistle = ITEMS.register("brass_whistle",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemBrassWhistle(new Item.Properties()));
    public static final RegistryObject<Item> mysterious_application = ITEMS.register("mysterious_application",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemMysteriousApplication(new Item.Properties()));
    public static final RegistryObject<Item> toad_spawn = ITEMS.register("toad_spawn",
       () -> new ToadSpawnPlacer(new Item.Properties()));
-   public static final RegistryObject<Item> horn_unicorn = ITEMS.register("horn_unicorn",
-      () -> new ItemPotionry(new Item.Properties()));
-   public static final RegistryObject<Item> crushed_horn_unicorn = ITEMS.register("crushed_horn_unicorn",
-      () -> new ItemPotionry(new Item.Properties()));
 
    public static final RegistryObject<Item> magic_mirror = ITEMS.register("magic_mirror",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemMagicMirror(
@@ -764,8 +766,54 @@ public class ItemRegistry {
          new net.minecraft.world.food.FoodProperties.Builder().nutrition(8).saturationMod(0.6F).build())));
    public static final RegistryObject<Item> item_porcelain = ITEMS.register("item_porcelain",
       () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties()));
+   public static final RegistryObject<Item> advanced_crown = ITEMS.register("advanced_crown",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemAdvancedGarment("crown", new Item.Properties()));
+   public static final RegistryObject<Item> advanced_necklace = ITEMS.register("advanced_necklace",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemAdvancedGarment("necklace", new Item.Properties()));
+   public static final RegistryObject<Item> apprentice_crown = ITEMS.register("apprentice_crown",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemAdvancedGarment("crown", new Item.Properties()));
+   public static final RegistryObject<Item> apprentice_necklace = ITEMS.register("apprentice_necklace",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemAdvancedGarment("necklace", new Item.Properties()));
+   public static final RegistryObject<Item> crown = ITEMS.register("crown",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemMetalGarment("crown", new Item.Properties()));
+   public static final RegistryObject<Item> necklace = ITEMS.register("necklace",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemMetalGarment("necklace", new Item.Properties()));
+   public static final RegistryObject<Item> ring = ITEMS.register("ring",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemMetalGarment("ring", new Item.Properties()));
+   public static final RegistryObject<Item> porcelain_tablet = ITEMS.register("porcelain_tablet",
+      () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties()));
+   public static final RegistryObject<Item> porcelain_crown_tablet = ITEMS.register("porcelain_crown_tablet",
+      () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties()));
+   public static final RegistryObject<Item> porcelain_ring_tablet = ITEMS.register("porcelain_ring_tablet",
+      () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties()));
+   public static final RegistryObject<Item> porcelain_necklace_tablet = ITEMS.register("porcelain_necklace_tablet",
+      () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties()));
    public static final RegistryObject<Item> item_diamond_dust = ITEMS.register("item_diamond_dust",
       () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties()));
+
+   public static final RegistryObject<Item> wizard_hat = ITEMS.register("wizard_hat",
+      () -> new com.paleimitations.schoolsofmagic.common.items.WizardRobes(
+         net.minecraft.world.item.ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> wizard_chestplate = ITEMS.register("wizard_chestplate",
+      () -> new com.paleimitations.schoolsofmagic.common.items.WizardRobes(
+         net.minecraft.world.item.ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> wizard_leggings = ITEMS.register("wizard_leggings",
+      () -> new com.paleimitations.schoolsofmagic.common.items.WizardRobes(
+         net.minecraft.world.item.ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> wizard_robe_feet = ITEMS.register("wizard_robe_feet",
+      () -> new com.paleimitations.schoolsofmagic.common.items.WizardRobes(
+         net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
+
+   public static final RegistryObject<Item> liquid_magic = ITEMS.register("liquid_magic",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemPotionry(
+         new Item.Properties().stacksTo(16).craftRemainder(bottle_empty.get())));
+   public static final RegistryObject<Item> magic_cloth = ITEMS.register("magic_cloth",
+      () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties().stacksTo(64)));
+   public static final RegistryObject<Item> magic_thread = ITEMS.register("magic_thread",
+      () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties().stacksTo(64)));
+   // crafting one of these hands the flask back, the magic is what gets used up
+   public static final RegistryObject<Item> enhanced_magic_cloth = ITEMS.register("enhanced_magic_cloth",
+      () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties().stacksTo(64)));
    public static final RegistryObject<Item> item_obsidian_shard = ITEMS.register("item_obsidian_shard",
       () -> new com.paleimitations.schoolsofmagic.common.items.SOMMaterial(new Item.Properties()));
    public static final RegistryObject<Item> item_ice_shard = ITEMS.register("item_ice_shard",

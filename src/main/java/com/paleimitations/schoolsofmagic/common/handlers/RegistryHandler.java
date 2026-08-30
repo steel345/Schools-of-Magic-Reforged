@@ -50,6 +50,7 @@ public class RegistryHandler {
       com.paleimitations.schoolsofmagic.common.registries.RecipeSerializerRegistry.register(modBus);
       com.paleimitations.schoolsofmagic.common.registries.PatternRegistry.register(modBus);
       com.paleimitations.schoolsofmagic.common.registries.BiomeSourceRegistry.register(modBus);
+      com.paleimitations.schoolsofmagic.common.registries.ChunkGeneratorRegistry.register(modBus);
    }
 
    public static void commonSetup(FMLCommonSetupEvent event) {

@@ -35,20 +35,36 @@ public class PacketRingBindPodium {
       ctx.get().enqueueWork(() -> {
          ServerPlayer player = ctx.get().getSender();
          if (player == null || !RingCastHandler.isRingActive(player)) return;
-         Level level = player.level();
-         BlockState state = level.getBlockState(msg.pos);
-         if (!(state.getBlock() instanceof BlockPodium)) return;
-         BlockEntity be = state.getValue(BlockPodium.IS_LEFT)
-            ? level.getBlockEntity(msg.pos)
-            : level.getBlockEntity(msg.pos.relative(state.getValue(BlockPodium.FACING).getCounterClockWise()));
-         if (!(be instanceof TileEntityPodium podium)) return;
-         Spell spell = podium.getSpell();
          IManaData mana = player.getCapability(CapabilityManaData.CAP).orElse(null);
          if (mana == null) return;
+
+         Spell spell = spellAt(player.level(), msg.pos);
          mana.setCurrentSpell(spell);
          player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
-            net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_CHIME, net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+            spell == null
+               ? net.minecraft.sounds.SoundEvents.BOOK_PAGE_TURN
+               : net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_CHIME,
+            net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+
+         com.paleimitations.schoolsofmagic.common.network.PacketHandler.INSTANCE.send(
+            net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player),
+            new PacketUpdateManaData(player.getId(), mana.serializeNBT()));
       });
       ctx.get().setPacketHandled(true);
+   }
+
+   private static Spell spellAt(Level level, BlockPos pos) {
+      BlockState state = level.getBlockState(pos);
+      if (state.getBlock() instanceof BlockPodium) {
+         BlockEntity be = state.getValue(BlockPodium.IS_LEFT)
+            ? level.getBlockEntity(pos)
+            : level.getBlockEntity(pos.relative(state.getValue(BlockPodium.FACING).getCounterClockWise()));
+         return be instanceof TileEntityPodium podium ? podium.getSpell() : null;
+      }
+      BlockEntity be = level.getBlockEntity(pos);
+      if (be instanceof com.paleimitations.schoolsofmagic.common.tileentity.TileEntityPedestal pedestal) {
+         return pedestal.getBoundSpell();
+      }
+      return null;
    }
 }

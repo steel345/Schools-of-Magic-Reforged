@@ -182,7 +182,7 @@ public class LevitationHold {
       net.minecraft.world.scores.PlayerTeam team = board.getPlayerTeam(GLOW_TEAM);
       if (team == null) {
          team = board.addPlayerTeam(GLOW_TEAM);
-         team.setColor(net.minecraft.ChatFormatting.BLUE);
+         team.setColor(net.minecraft.ChatFormatting.LIGHT_PURPLE);
          team.setSeeFriendlyInvisibles(false);
       }
       String name = entity.getScoreboardName();

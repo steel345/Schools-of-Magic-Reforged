@@ -75,17 +75,16 @@ public class GuiSpellRing {
       if (this.animationTick == 0) this.animateSlot = manaData.getCurrentSpellSlot();
       this.prevSlot = manaData.getCurrentSpellSlot();
       int spells = getSlotNumber(manaData, wandData);
-      float difference = (float) (this.animateSlot - manaData.getCurrentSpellSlot());
-      if (Math.abs(difference) >= (float) (spells - 1) && difference < 0.0F) {
-         difference = (float) (this.animateSlot - manaData.getCurrentSpellSlot() + spells);
-      }
-      float angle = this.animateSlot == manaData.getCurrentSpellSlot()
-         ? (float) manaData.getCurrentSpellSlot() / (float) spells * 360.0F
-         : ((float) manaData.getCurrentSpellSlot() + difference * ((float) this.animationTick + mc.getPartialTick()) / 12.0F) / (float) spells * 360.0F;
-      if (difference > 0.0F && Math.abs(difference) >= (float) (spells - 1)) {
-         difference = (float) (this.animateSlot - manaData.getCurrentSpellSlot() - spells);
-         angle = ((float) manaData.getCurrentSpellSlot() + difference * ((float) this.animationTick + mc.getPartialTick()) / 12.0F) / (float) spells * 360.0F;
-      }
+      int current = manaData.getCurrentSpellSlot();
+
+      float difference = (float) (this.animateSlot - current);
+      while (difference > spells / 2.0F) difference -= spells;
+      while (difference < -spells / 2.0F) difference += spells;
+
+      float travel = this.animateSlot == current
+         ? 0.0F
+         : difference * ((float) this.animationTick + mc.getPartialTick()) / 12.0F;
+      float angle = ((float) current + travel) / (float) spells * 360.0F;
 
       for (int i = 0; i < spells; i++) {
          float radius = 54.0F;
@@ -167,14 +166,6 @@ public class GuiSpellRing {
    }
 
    public static int getSlotNumber(IManaData manaData, IWandData wandData) {
-      if (wandData.hasLimitedSlots()) return wandData.getLimitedSlots();
-      int level = manaData.getLevel();
-      if (level < 5) return 3;
-      else if (level < 10) return 4;
-      else if (level < 15) return 5;
-      else if (level < 20) return 6;
-      else if (level < 25) return 7;
-      else if (level < 30) return 8;
-      else return level < 35 ? 9 : 10;
+      return com.paleimitations.schoolsofmagic.common.items.ItemBaseWand.slotCount(manaData, wandData);
    }
 }

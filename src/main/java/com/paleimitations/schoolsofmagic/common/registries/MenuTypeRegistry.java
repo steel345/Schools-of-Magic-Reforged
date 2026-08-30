@@ -24,6 +24,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class MenuTypeRegistry {
    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, "som");
 
+   public static final RegistryObject<MenuType<com.paleimitations.schoolsofmagic.common.containers.ContainerRift>> RIFT =
+      MENUS.register("rift", () -> IForgeMenuType.create(com.paleimitations.schoolsofmagic.common.containers.ContainerRift::new));
    public static final RegistryObject<MenuType<ContainerCatalystBasin>> CATALYST_BASIN =
       MENUS.register("catalyst_basin", () -> IForgeMenuType.create(ContainerCatalystBasin::new));
    public static final RegistryObject<MenuType<ContainerCauldron>> CAULDRON =

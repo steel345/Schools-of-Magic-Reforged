@@ -26,6 +26,15 @@ public class CommonProxy {
    public void loadBookPageText(BookPage page) {
    }
 
+   public void openBiomeScry(Player player) {
+   }
+
+   public void openAlarm(int rune, boolean on) {
+   }
+
+   public void openAnimalScry(Player player) {
+   }
+
    public void openCrystalBall(Player player) {
    }
 

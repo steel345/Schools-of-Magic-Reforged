@@ -25,12 +25,12 @@ public class PacketRingConcentration {
          if (player == null || !RingCastHandler.isRingActive(player)) return;
          IManaData mana = player.getCapability(CapabilityManaData.CAP).orElse(null);
          IRingData ring = CapabilityRingData.get(player);
-         if (mana == null || ring == null || ring.getRing().isEmpty()) return;
+         if (mana == null || ring == null || com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).isEmpty()) return;
          Spell spell = mana.getCurrentSpell();
          if (!(spell instanceof SpellCustom sc) || !sc.isConcentration()) return;
-         if (player.getCooldowns().isOnCooldown(ring.getRing().getItem())) return;
-         spell.finishHoldEffect(ring.getRing(), player.level(), player);
-         player.getCooldowns().addCooldown(ring.getRing().getItem(), sc.getCooldownTicks());
+         if (player.getCooldowns().isOnCooldown(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).getItem())) return;
+         spell.finishHoldEffect(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player), player.level(), player);
+         player.getCooldowns().addCooldown(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).getItem(), sc.getCooldownTicks());
       });
       ctx.get().setPacketHandled(true);
    }

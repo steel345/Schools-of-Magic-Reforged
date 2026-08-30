@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:silence"
+    },
+    {
+      "type": "text",
+      "text": "  Silence stops the caster making any noise. Walking, running, digging and falling are all silent while it holds. It needs concentration.\n\n  Anything that hunts by sound loses track of them as well.\n\n  It is not perfect. Now and then a sound gets through.\n\n  It holds for 10 seconds, and 5 seconds longer for every charge level above the first."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_silence.desc"
+    }
+  ]
+}

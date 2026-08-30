@@ -11,6 +11,10 @@ public class DimensionRegistry {
             net.minecraft.core.registries.Registries.DIMENSION,
             new ResourceLocation(SchoolsOfMagic.MODID, "fae_grove"));
 
+    public static final ResourceKey<Level> ASTRAL_PLANE_RIFT = ResourceKey.create(
+            net.minecraft.core.registries.Registries.DIMENSION,
+            new ResourceLocation(SchoolsOfMagic.MODID, "astral_plane_rift"));
+
     public static void registerDimensions() {
     }
 }

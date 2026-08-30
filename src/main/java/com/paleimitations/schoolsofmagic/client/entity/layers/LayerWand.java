@@ -79,4 +79,5 @@ public class LayerWand<T extends LivingEntity, M extends HumanoidModel<T>>
    protected void translateToHand(PoseStack pose, HumanoidArm side) {
       this.getParentModel().translateToHand(side, pose);
    }
+
 }

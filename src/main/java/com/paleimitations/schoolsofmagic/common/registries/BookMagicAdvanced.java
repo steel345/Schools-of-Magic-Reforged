@@ -334,7 +334,7 @@ public class BookMagicAdvanced {
             meta(ItemRegistry.seed_magic_plant.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.ANIMANCY.getIndex()),
             new ItemStack(Items.BLAZE_ROD),
             new ItemStack(Items.GLOWSTONE_DUST),
-            new ItemStack(ItemRegistry.magic_diamond.get()),
+            meta(ItemRegistry.gem_chunk.get(), com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.HYDROMANCY.getIndex()),
             new ItemStack(Items.SNOW_BLOCK)
          }), new ItemStack(ItemRegistry.infinity_jug.get())))
          .addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
@@ -369,18 +369,38 @@ public class BookMagicAdvanced {
 
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_potion_bag").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
+      // cloth, thread and what they are worked into
+      new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_robesintro").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_magic_cloth").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_magic_thread").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_liquid_magic").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_enhanced_cloth").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_wizard_hat").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_wizard_robe").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_wizard_pants").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_wizard_boots").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
       SpellRegistry.addSorted(BookPageRegistry.ADVANCED_MAGIC_BOOK,
-         new SpellWitherBlight(),
-         new SpellShadowSpy(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFangMangle(),
-         new SpellFuelFurnace(),
-         new SpellEarthquake(),
-         new SpellFieryBlessing(),
-         new SpellSpectralHand(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellThunderstroke(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellFastForward(),
-         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellTranslocation());
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSunBlast(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrecisionStrike(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellMend(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellShiningShield(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellGaseousForm(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellTeleport(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellDazzlingLight(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellAge(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellEarthenElevator(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellShroomlucination(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellGaianWarrior(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellRift(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellWhirlwind(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellSolarBarrage(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellAnimalScry(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellBiomeScry(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellDecoy(),
+         new com.paleimitations.schoolsofmagic.common.spells.spells.SpellPoseidonsFist());
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
    }
 }

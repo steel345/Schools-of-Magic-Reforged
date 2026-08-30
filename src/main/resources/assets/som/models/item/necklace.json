@@ -1,0 +1,56 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/necklace/necklace_iron"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:variant": 0.0625
+      },
+      "model": "som:item/necklace_iron"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.1875
+      },
+      "model": "som:item/necklace_gold"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.3125
+      },
+      "model": "som:item/necklace_copper"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.4375
+      },
+      "model": "som:item/necklace_brass"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.5625
+      },
+      "model": "som:item/necklace_bronze"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.6875
+      },
+      "model": "som:item/necklace_silver"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.8125
+      },
+      "model": "som:item/necklace_steel"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.9375
+      },
+      "model": "som:item/necklace_void"
+    }
+  ]
+}

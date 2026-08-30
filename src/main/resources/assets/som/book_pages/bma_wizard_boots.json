@@ -1,0 +1,7 @@
+{
+  "elements": [
+    { "type": "title", "text": "Wizard Boots" },
+    { "type": "text", "text": "  Two /bEnhanced Magic Cloth/z, one /bMagic Thread/z and iron boots at the /bBrazier/z for 30 mana." },
+    { "type": "ritual", "result": "som:wizard_robe_feet" }
+  ]
+}

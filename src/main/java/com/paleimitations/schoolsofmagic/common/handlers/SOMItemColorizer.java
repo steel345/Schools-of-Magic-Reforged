@@ -99,6 +99,7 @@ public class SOMItemColorizer implements ItemColor {
          ItemRegistry.potion_drinkable.get(), ItemRegistry.potion_throwable.get(), ItemRegistry.potion_lingering.get(),
          ItemRegistry.potion_jug.get(), ItemRegistry.potion_burst.get(), ItemRegistry.potion_crystal.get(),
          ItemRegistry.potion_charm.get(), ItemRegistry.herb_pouch.get(),
+         ItemRegistry.bottle_water.get(),
          ItemRegistry.teacup.get(), ItemRegistry.spell_modifier_scroll.get(),
          ItemRegistry.spellbook.get(),
          ItemRegistry.basic_spellbook.get(), ItemRegistry.intermediate_spellbook.get(),

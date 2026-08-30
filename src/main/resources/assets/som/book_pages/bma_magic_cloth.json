@@ -1,0 +1,10 @@
+{
+  "elements": [
+    { "type": "title", "text": "Magic Cloth" },
+    { "type": "text", "text": "  One wool, one stick, one lapis and one string on a bench gives two /bMagic Cloth/z. Any colour of wool will do.\n\n  It is the base for everything else here, and it is also what mends a worn piece of the robes on an anvil." },
+    { "type": "crafting", "result": "som:magic_cloth", "count": 2,
+      "pattern": ["minecraft:white_wool", "minecraft:stick", "minecraft:lapis_lazuli",
+                  "minecraft:string", "", "",
+                  "", "", ""] }
+  ]
+}

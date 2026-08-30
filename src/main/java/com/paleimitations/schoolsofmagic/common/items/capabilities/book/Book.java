@@ -176,24 +176,6 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.complete_spellbook.get()) {
          return DyeColor.BROWN;
       }
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.exploration_book.get()) {
-         return DyeColor.CYAN;
-      }
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.alchemical_manual.get()) {
-         return DyeColor.BLACK;
-      }
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.tea_makers_guide.get()) {
-         return DyeColor.PURPLE;
-      }
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellworkers_handbook.get()) {
-         return DyeColor.RED;
-      }
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ritual_compendium.get()) {
-         return DyeColor.BLUE;
-      }
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.book_of_knowledge.get()) {
-         return DyeColor.GREEN;
-      }
       if (it instanceof com.paleimitations.schoolsofmagic.common.items.ItemMagicBook) {
          return magicSchoolColor(stack.getDamageValue());
       }
@@ -204,14 +186,14 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       if (stack == null) return 2;
       net.minecraft.world.item.Item it = stack.getItem();
       if (it instanceof com.paleimitations.schoolsofmagic.common.items.ItemMagicBook) return 5;
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.exploration_book.get()) return 5;
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.alchemical_manual.get()) return 6;
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.tea_makers_guide.get()) return 5;
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellworkers_handbook.get()) return 5;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.exploration_book.get()) return 2;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.alchemical_manual.get()) return 2;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.tea_makers_guide.get()) return 2;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellworkers_handbook.get()) return 2;
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.complete_spellbook.get()) return 6;
       if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.spellbook.get()) return 4;
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ritual_compendium.get()) return 5;
-      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.book_of_knowledge.get()) return 5;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.ritual_compendium.get()) return 2;
+      if (it == com.paleimitations.schoolsofmagic.common.registries.ItemRegistry.book_of_knowledge.get()) return 2;
       return 2;
    }
 

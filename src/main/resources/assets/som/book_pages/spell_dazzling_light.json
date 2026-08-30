@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:dazzling_light"
+    },
+    {
+      "type": "text",
+      "text": "  Dazzling Light conjures a light show of beautiful stars, an excellent distraction that few can ignore. It needs concentration. Hold right click until the cast finishes and it goes off wherever the caster is looking, up to 20 blocks away.\n\n  It opens with a flash, blooms into spiralling stars, throws smaller bursts around itself, and finishes with one last spread that outshines the rest. The whole display lasts about ten seconds and lights everything around it a bright white. The bar at the bottom of the screen counts it down.\n\n  Every creature within 20 blocks is transfixed. They stop where they stand, turn to watch, and hold no target while the stars are in the sky. Strike one and it snaps out of it. Bosses are exempt from the hypnosis."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_dazzling_light.desc"
+    }
+  ]
+}

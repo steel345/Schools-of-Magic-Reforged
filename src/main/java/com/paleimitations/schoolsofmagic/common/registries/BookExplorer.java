@@ -70,7 +70,7 @@ public class BookExplorer {
       new BookPageStandardTitled("bce_fae1").addToList(BookPageRegistry.EXPLORER_CODEX);
       figurePage("bce_portal", acolytePortal()).addToList(BookPageRegistry.EXPLORER_CODEX);
       figurePage("bce_fae2",
-         new PageElementEntity(EntityRegistry.FLOWER_FAE.get(), 182, 120, 34, 0))
+         new PageElementEntity(EntityRegistry.FAIRY.get(), 182, 112, 70, 0))
          .addToList(BookPageRegistry.EXPLORER_CODEX);
       new BookPage("bce_fae3", Lists.newArrayList(new PageElement[]{
          new PageElementParagraphs("bce_fae3", 0.75F, 0, 2,
@@ -82,7 +82,9 @@ public class BookExplorer {
             new ParagraphBox(134, 50, 2, 99, 140))
       })).addToList(BookPageRegistry.EXPLORER_CODEX);
       new BookPageStandardTitled("bce_fae4").addToList(BookPageRegistry.EXPLORER_CODEX);
-      new BookPageStandardTitled("bce_fae5").addToList(BookPageRegistry.EXPLORER_CODEX);
+      figurePage("bce_fae5",
+         new PageElementEntity(EntityRegistry.FLOWER_FAE.get(), 182, 120, 34, 0))
+         .addToList(BookPageRegistry.EXPLORER_CODEX);
       new BookPageStandardTitled("bce_fae6").addToList(BookPageRegistry.EXPLORER_CODEX);
    }
 }

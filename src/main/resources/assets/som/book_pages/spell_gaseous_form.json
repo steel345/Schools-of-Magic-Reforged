@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:gaseous_form"
+    },
+    {
+      "type": "text",
+      "text": "  Gaseous Form turns the caster into a cloud of gas. Hold right click until the cast finishes and the chimes sound.\n\n  As a gas you cannot be seen, hit or shot at, and nothing can walk into you. You fly at a slow steady pace and pass straight through blocks. You cannot attack, mine, build, eat or cast while you are a cloud.\n\n  It lasts 20 seconds, and 10 seconds longer per charge level above the first.\n\n  Fire is the exception. Any flame or fireball turns you back and leaves you burning for five seconds. Water and lava do not burn you but you cannot hold together in either, and they cost you a heart every second.\n\n  Cast it at another creature instead and it becomes the gas. It keeps its usual behaviour but cannot attack or shoot anything until the time runs out. Bosses are exempt."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_gaseous_form.desc"
+    }
+  ]
+}

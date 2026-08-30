@@ -38,6 +38,13 @@ public class SOMParticleProviders {
         event.registerSpriteSet(ParticleTypeRegistry.SPARKLE_STAR.get(), s -> { SPRITES.put(SOMParticleType.SPARKLE_STAR, s); return new ProviderSparkleStar(s); });
         event.registerSpriteSet(ParticleTypeRegistry.SPARKLE_RAY.get(), s -> { SPRITES.put(SOMParticleType.SPARKLE_RAY, s); return new ProviderSparkleRay(s); });
         event.registerSpriteSet(ParticleTypeRegistry.SCULK_BLOOM.get(), s -> { SPRITES.put(SOMParticleType.SCULK_BLOOM, s); return new ProviderSculkBloom(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.HOURGLASS.get(), s -> { SPRITES.put(SOMParticleType.HOURGLASS, s); return new ProviderHourglass(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.CAST_CIRCLE.get(), s -> { SPRITES.put(SOMParticleType.CAST_CIRCLE, s); return new ProviderCastCircle(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.GAS.get(), s -> { SPRITES.put(SOMParticleType.GAS, s); return new ProviderGas(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.SHOCKWAVE.get(), s -> { SPRITES.put(SOMParticleType.SHOCKWAVE, s); return new ProviderShockwave(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.FOG.get(), s -> { SPRITES.put(SOMParticleType.FOG, s); return new ProviderFog(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.SPORE.get(), s -> { SPRITES.put(SOMParticleType.SPORE, s); return new ProviderSpore(s); });
+        event.registerSpriteSet(ParticleTypeRegistry.SPORE_SEED.get(), s -> new ProviderSporeSeed());
         event.registerSpriteSet(ParticleTypeRegistry.PLASMA.get(),     ParticlePlasma.Provider::new);
     }
 
@@ -50,6 +57,65 @@ public class SOMParticleProviders {
             } else if (p instanceof TextureSheetParticle tsp) {
                 tsp.setSpriteFromAge(sprites);
             }
+        }
+    }
+
+    private static final class ProviderSpore extends BaseProvider {
+        ProviderSpore(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            ParticleSpore p = new ParticleSpore(l, x, y, z, vx, vy, vz);
+            p.tint(SporeTint.red(), SporeTint.green(), SporeTint.blue());
+            p.sprites(this.sprites);
+            return p;
+        }
+    }
+
+    private static final class ProviderFog extends BaseProvider {
+        ProviderFog(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            ParticleFog p = new ParticleFog(l, x, y, z, vx, vy, vz);
+            // the spell puts how long the bank should hold in the vertical argument
+            if (vy > 1.0D) p.setLifetime((int) vy);
+            this.applySprite(p);
+            return p;
+        }
+    }
+
+    private static final class ProviderSporeSeed implements ParticleProvider<SimpleParticleType> {
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            return new ParticleSporeSeed(l, x, y, z, vx, vy, vz);
+        }
+    }
+
+    private static final class ProviderHourglass extends BaseProvider {
+        ProviderHourglass(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleHourglass(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
+
+    private static final class ProviderCastCircle extends BaseProvider {
+        ProviderCastCircle(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleCastCircle(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
+
+    private static final class ProviderGas extends BaseProvider {
+        ProviderGas(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleGas(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
+        }
+    }
+
+    private static final class ProviderShockwave extends BaseProvider {
+        ProviderShockwave(SpriteSet s) { super(s); }
+        @Override @Nullable public Particle createParticle(SimpleParticleType t, ClientLevel l, double x, double y, double z, double vx, double vy, double vz) {
+            Particle p = new ParticleShockwave(l, x, y, z, vx, vy, vz);
+            applySprite(p); return p;
         }
     }
 

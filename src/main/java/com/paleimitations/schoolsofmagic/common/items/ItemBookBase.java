@@ -82,8 +82,7 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
             book.setLinks(2);
          } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.complete_spellbook.get()))) {
             if (!book.isEdited() && book.getBookPages().isEmpty()) {
-               ArrayList pages = Lists.newArrayList(SpellRegistry.getPages());
-               pages.addAll(BookPageRegistry.POTION_EFFECT_PAGES);
+               ArrayList pages = Lists.newArrayList(BookPageRegistry.completeArcanaPages());
                book.setBookPages(pages);
             }
             book.setLinks(6);
@@ -92,38 +91,41 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
             if (!book.isEdited() && book.getBookPages().isEmpty()) {
                book.setBookPages(Lists.newArrayList(BookPageRegistry.TEA_BOOK));
             }
-            book.setLinks(6);
-            book.setColor(DyeColor.PURPLE);
+            book.setLinks(2);
+            book.setColor(null);
          } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.spellworkers_handbook.get()))) {
             if (!book.isEdited() && book.getBookPages().isEmpty()) {
                book.setBookPages(Lists.newArrayList(BookPageRegistry.SPELLWORK_BOOK));
             }
-            book.setLinks(5);
-            book.setColor(DyeColor.RED);
+            book.setLinks(2);
+            book.setColor(null);
          } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.exploration_book.get()))) {
             if (!book.isEdited() && book.getBookPages().isEmpty()) {
                book.setBookPages(Lists.newArrayList(BookPageRegistry.EXPLORER_CODEX));
             }
-            book.setLinks(5);
-            book.setColor(DyeColor.CYAN);
+            book.setLinks(2);
+            book.setColor(null);
          } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.alchemical_manual.get()))) {
             if (!book.isEdited() && book.getBookPages().isEmpty()) {
                book.setBookPages(Lists.newArrayList(BookPageRegistry.ALCHEMY_BOOK));
             }
-            book.setLinks(6);
-            book.setColor(DyeColor.BLACK);
+            book.setLinks(2);
+            book.setColor(null);
          } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.ritual_compendium.get()))) {
             if (!book.isEdited() && book.getBookPages().isEmpty()) {
                book.setBookPages(Lists.newArrayList(BookPageRegistry.RITUAL_BOOK));
             }
-            book.setLinks(5);
-            book.setColor(DyeColor.BLUE);
+            book.setLinks(2);
+            book.setColor(null);
+      } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.ritual_compendium.get()))) {
+         book.setLinks(2);
+         book.setColor(null);
          } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.book_of_knowledge.get()))) {
             if (!book.isEdited() && book.getBookPages().isEmpty()) {
                book.setBookPages(Lists.newArrayList(BookPageRegistry.KNOWLEDGE_BOOK));
             }
-            book.setLinks(5);
-            book.setColor(DyeColor.GREEN);
+            book.setLinks(2);
+            book.setColor(null);
          }
       }
       return stack;
@@ -147,20 +149,20 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
       IBook book = CapabilityBook.getCapability(stack);
       if (book == null) return;
       if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.spellworkers_handbook.get()))) {
-         book.setLinks(5);
-         book.setColor(DyeColor.RED);
+         book.setLinks(2);
+         book.setColor(null);
       } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.tea_makers_guide.get()))) {
-         book.setLinks(6);
-         book.setColor(DyeColor.PURPLE);
+         book.setLinks(2);
+         book.setColor(null);
       } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.exploration_book.get()))) {
-         book.setLinks(5);
-         book.setColor(DyeColor.CYAN);
+         book.setLinks(2);
+         book.setColor(null);
       } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.alchemical_manual.get()))) {
-         book.setLinks(6);
-         book.setColor(DyeColor.BLACK);
+         book.setLinks(2);
+         book.setColor(null);
       } else if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.book_of_knowledge.get()))) {
-         book.setLinks(5);
-         book.setColor(DyeColor.GREEN);
+         book.setLinks(2);
+         book.setColor(null);
       }
    }
 
@@ -205,8 +207,7 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
       if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.spellworkers_handbook.get()))) return BookPageRegistry.SPELLWORK_BOOK;
       if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.complete_spellbook.get()))) {
          java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> pages =
-            Lists.newArrayList(SpellRegistry.getPages());
-         pages.addAll(BookPageRegistry.POTION_EFFECT_PAGES);
+            Lists.newArrayList(BookPageRegistry.completeArcanaPages());
          return pages;
       }
       if (ItemStack.isSameItem(stack, new ItemStack(ItemRegistry.exploration_book.get()))) return BookPageRegistry.EXPLORER_CODEX;

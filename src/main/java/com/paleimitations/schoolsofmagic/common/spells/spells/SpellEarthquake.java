@@ -35,7 +35,10 @@ public class SpellEarthquake extends SpellTimed {
    public float damage;
    public BlockPos orgin;
    public UUID caster;
+   private static final int CONCENTRATION_TICKS = 40;
+
    public List<BlockPos> posits = Lists.newArrayList();
+   private final java.util.Set<Long> lifted = new java.util.HashSet<>();
 
    public SpellEarthquake() {
       super(
@@ -63,16 +66,37 @@ public class SpellEarthquake extends SpellTimed {
    }
 
    @Override
+   public net.minecraft.world.item.UseAnim getAction() {
+      return net.minecraft.world.item.UseAnim.BOW;
+   }
+
+   @Override
+   public int getUseLength() {
+      return CONCENTRATION_TICKS;
+   }
+
+   @Override
    public InteractionResultHolder<ItemStack> rightClickEffect(Level worldIn, Player playerIn, InteractionHand hand) {
-      if (!this.casting && this.castSpell(playerIn, 0.0F)) {
+      if (this.casting) {
+         return InteractionResultHolder.pass(playerIn.getItemInHand(hand));
+      }
+      if (!playerIn.isCreative() && !this.canCastSpell(playerIn, 0.0F)) {
+         return InteractionResultHolder.pass(playerIn.getItemInHand(hand));
+      }
+      playerIn.startUsingItem(hand);
+      return InteractionResultHolder.success(playerIn.getItemInHand(hand));
+   }
+
+   @Override
+   public ItemStack finishHoldEffect(ItemStack stack, Level worldIn, net.minecraft.world.entity.LivingEntity entityLiving) {
+      if (entityLiving instanceof Player playerIn && !this.casting && this.castSpell(playerIn, 0.0F)) {
          this.casting = true;
          this.castTick = 0;
 
          this.orgin = playerIn.blockPosition().below().relative(playerIn.getDirection());
          this.caster = playerIn.getUUID();
-         return InteractionResultHolder.success(playerIn.getItemInHand(hand));
       }
-      return InteractionResultHolder.pass(playerIn.getItemInHand(hand));
+      return super.finishHoldEffect(stack, worldIn, entityLiving);
    }
 
    @Override
@@ -85,8 +109,8 @@ public class SpellEarthquake extends SpellTimed {
 
          for (BlockPos pos : BlockPosUtils.getAllInShell(this.orgin, (double)curRad, (double)prevRad)) {
             if (pos != null
-               && !this.posits.contains(pos)
-               && !this.posits.contains(pos.above())
+               && !this.lifted.contains(pos.asLong())
+               && !this.lifted.contains(pos.above().asLong())
                && !world.isEmptyBlock(pos)
                && world.getBlockEntity(pos) == null
                && (
@@ -99,6 +123,7 @@ public class SpellEarthquake extends SpellTimed {
                   || state.is(net.minecraft.tags.BlockTags.BASE_STONE_OVERWORLD)
                   || state.is(Blocks.GRASS_BLOCK)) {
                   this.posits.add(pos);
+                  this.lifted.add(pos.asLong());
                   if (!world.isClientSide) {
                      FallingBlockEntity entity = FallingBlockEntity.fall(world, pos, state);
                      IMeteoricData data = entity.getCapability(CapabilityMeteoricData.CAP).orElse(null);
@@ -110,7 +135,7 @@ public class SpellEarthquake extends SpellTimed {
                      entity.hasImpulse = true;
                   }
 
-                  for (Entity entity : world.getEntitiesOfClass(Entity.class, new AABB(pos.above()))) {
+                  for (Entity entity : this.shaken(world, pos)) {
                      if (!(entity instanceof FallingBlockEntity) && !entity.getUUID().equals(this.caster) && entity.onGround()) {
                         entity.push(0.0, 1.0, 0.0);
                         entity.setOnGround(false);
@@ -135,6 +160,7 @@ public class SpellEarthquake extends SpellTimed {
       this.orgin = BlockPos.ZERO;
       this.caster = null;
       this.posits = Lists.newArrayList();
+      this.lifted.clear();
    }
 
    @Override
@@ -171,5 +197,28 @@ public class SpellEarthquake extends SpellTimed {
       }
 
       this.posits = positsIn;
+      this.lifted.clear();
+      for (BlockPos pos : positsIn) this.lifted.add(pos.asLong());
+   }
+
+   private java.util.List<Entity> ring;
+   private int ringTick = -1;
+
+   // one entity sweep per tick for the whole ring, a query per block was the other half of the lag
+   private java.util.List<Entity> shaken(Level world, BlockPos pos) {
+      if (this.ringTick != this.castTick) {
+         this.ringTick = this.castTick;
+         double reach = (double) this.castTick / 2.0D + 3.0D;
+         this.ring = world.getEntitiesOfClass(Entity.class,
+            new AABB(this.orgin).inflate(reach, 4.0D, reach));
+      }
+      if (this.ring.isEmpty()) return java.util.Collections.emptyList();
+
+      java.util.List<Entity> here = new java.util.ArrayList<>();
+      AABB box = new AABB(pos.above());
+      for (Entity entity : this.ring) {
+         if (entity.getBoundingBox().intersects(box)) here.add(entity);
+      }
+      return here;
    }
 }

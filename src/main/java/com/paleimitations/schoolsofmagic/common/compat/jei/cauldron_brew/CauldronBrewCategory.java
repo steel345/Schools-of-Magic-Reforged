@@ -74,5 +74,16 @@ public class CauldronBrewCategory implements IRecipeCategory<CauldronBrewRecipe>
 
    @Override
    public void draw(CauldronBrewRecipe recipe, IRecipeSlotsView slots, GuiGraphics gg, double mouseX, double mouseY) {
+      if (recipe.getPotionSkill() <= 0) return;
+      net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
+      Component line1 = Component.translatable("gui.jei.cauldron_brew.requires");
+      Component line2 = Component.translatable("gui.jei.cauldron_brew.skill")
+         .append(Component.literal(" " + recipe.getPotionSkill()));
+      gg.pose().pushPose();
+      gg.pose().scale(0.8F, 0.8F, 1.0F);
+      int ty = 158;
+      gg.drawString(font, line1, 2, ty, java.awt.Color.DARK_GRAY.getRGB(), false);
+      gg.drawString(font, line2, 2, ty + font.lineHeight, java.awt.Color.DARK_GRAY.getRGB(), false);
+      gg.pose().popPose();
    }
 }

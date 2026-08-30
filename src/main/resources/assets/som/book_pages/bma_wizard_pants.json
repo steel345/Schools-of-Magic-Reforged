@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "title",
+      "text": "Wizard Pants"
+    },
+    {
+      "type": "text",
+      "text": "  Three /bEnhanced Magic Cloth/z, two /bMagic Thread/z and iron leggings at the /bBrazier/z for 60 mana."
+    },
+    {
+      "type": "ritual",
+      "result": "som:wizard_leggings"
+    }
+  ]
+}

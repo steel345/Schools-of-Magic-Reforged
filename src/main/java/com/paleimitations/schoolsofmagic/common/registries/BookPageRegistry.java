@@ -78,6 +78,44 @@ public class BookPageRegistry {
         return p;
     }
 
+    public static List<BookPage> completeArcanaPages() {
+        List<BookPage> pages = Lists.newArrayList();
+        pages.add(new com.paleimitations.schoolsofmagic.common.books.BookPageTableContent(null));
+
+        List<BookPagePotionEffect> unplaced = Lists.newArrayList(POTION_EFFECT_PAGES);
+
+        for (MagicElement element : MagicElementRegistry.ELEMENTS) {
+            List<BookPage> spells = SpellRegistry.getPagesByElement(element);
+
+            List<BookPagePotionEffect> potions = Lists.newArrayList();
+            for (BookPagePotionEffect potion : POTION_EFFECT_PAGES) {
+                if (potion.element == element) potions.add(potion);
+            }
+            unplaced.removeAll(potions);
+
+            if (spells.isEmpty() && potions.isEmpty()) continue;
+
+            pages.add(arcanaChapter("element." + element.getName() + ".name"));
+            pages.addAll(spells);
+            pages.addAll(potions);
+        }
+
+        if (!unplaced.isEmpty()) {
+            pages.add(arcanaChapter("page.arcana_potions.title"));
+            pages.addAll(unplaced);
+        }
+
+        return pages;
+    }
+
+    private static com.paleimitations.schoolsofmagic.common.books.BookPageChapter arcanaChapter(String titleKey) {
+        com.paleimitations.schoolsofmagic.common.books.BookPageChapter chapter =
+            new com.paleimitations.schoolsofmagic.common.books.BookPageChapter(null);
+        chapter.elements.add(new com.paleimitations.schoolsofmagic.common.books.PageElementTitle(
+            titleKey, 72, 58, 99, 16, 0, true));
+        return chapter;
+    }
+
     public static void init() {
         BookMagicBasic.init();
         BookMagicIntermediate.init();

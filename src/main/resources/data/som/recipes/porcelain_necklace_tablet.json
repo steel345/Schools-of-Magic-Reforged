@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " T ",
+    "TCT",
+    " T "
+  ],
+  "key": {
+    "T": {
+      "item": "som:porcelain_tablet"
+    },
+    "C": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "som:porcelain_necklace_tablet",
+    "count": 4
+  }
+}

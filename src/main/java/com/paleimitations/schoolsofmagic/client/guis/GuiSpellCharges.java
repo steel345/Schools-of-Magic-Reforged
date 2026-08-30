@@ -80,10 +80,12 @@ public class GuiSpellCharges {
          }
       }
       IRingData ring = CapabilityRingData.get(player);
-      if (ring != null && !ring.getRing().isEmpty() && ring.getRing().hasTag()) {
-         String m = ring.getRing().getTag().getString("ring_metal");
-         if (validMetal(m)) {
-            return m;
+      if (ring != null) {
+         com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumHandleType worn =
+            com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.metalOf(
+               com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player));
+         if (worn != null && validMetal(worn.getSerializedName())) {
+            return worn.getSerializedName();
          }
       }
       return "gold";
@@ -91,7 +93,7 @@ public class GuiSpellCharges {
 
    public static boolean wandOrRingActive(LocalPlayer player) {
       return player.getMainHandItem().getItem() instanceof ItemBaseWand
-            || RingCastHandler.isRingActive(player)
+            || RingCastHandler.isRingSlotSelected(player)
             || (player.getMainHandItem().getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemSpellbook
                 && com.paleimitations.schoolsofmagic.common.items.ItemSpellbook.isCastingMode(player.getMainHandItem()));
    }

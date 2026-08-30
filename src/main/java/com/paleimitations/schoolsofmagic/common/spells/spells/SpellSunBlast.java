@@ -86,8 +86,8 @@ public class SpellSunBlast extends Spell {
          float damage = DAMAGE + this.getPowerBonus(playerIn);
          int burn = BURN_SECONDS + Math.round(this.getPowerBonus(playerIn));
          AABB column = new AABB(
-            target.x - COLUMN_RADIUS, target.y, target.z - COLUMN_RADIUS,
-            target.x + COLUMN_RADIUS, target.y + COLUMN_HEIGHT, target.z + COLUMN_RADIUS);
+            target.x - this.scaleArea(COLUMN_RADIUS), target.y, target.z - this.scaleArea(COLUMN_RADIUS),
+            target.x + this.scaleArea(COLUMN_RADIUS), target.y + COLUMN_HEIGHT, target.z + this.scaleArea(COLUMN_RADIUS));
          java.util.List<LivingEntity> struck = new java.util.ArrayList<>();
          for (Entity entity : worldIn.getEntities(playerIn, column)) {
             if (!(entity instanceof LivingEntity living) || entity.is(playerIn)) continue;
@@ -96,6 +96,7 @@ public class SpellSunBlast extends Spell {
          }
 
          KnowledgeAnimations.schedule(IGNITE_DELAY, () -> {
+            if (struck.isEmpty()) scorchGround(worldIn, hit, target);
             for (LivingEntity living : struck) {
                if (!living.isAlive()) continue;
                living.setSecondsOnFire(burn);
@@ -108,6 +109,27 @@ public class SpellSunBlast extends Spell {
                com.paleimitations.schoolsofmagic.client.SunBeamRenderer.SUN, true));
       }
       return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
+   }
+
+   private static void scorchGround(Level worldIn, HitResult hit, Vec3 target) {
+      if (!(worldIn instanceof net.minecraft.server.level.ServerLevel sl)) return;
+
+      int puffs = 12 + sl.getRandom().nextInt(6);
+      for (int i = 0; i < puffs; ++i) {
+         double ox = (sl.getRandom().nextDouble() - 0.5D) * 1.6D;
+         double oz = (sl.getRandom().nextDouble() - 0.5D) * 1.6D;
+         double oy = sl.getRandom().nextDouble() * 0.8D;
+         sl.sendParticles(net.minecraft.core.particles.ParticleTypes.SMOKE,
+            target.x + ox, target.y + oy, target.z + oz, 1, 0.0D, 0.02D, 0.0D, 0.01D);
+      }
+      sl.sendParticles(net.minecraft.core.particles.ParticleTypes.LARGE_SMOKE,
+         target.x, target.y + 0.4D, target.z, 6, 0.5D, 0.3D, 0.5D, 0.015D);
+
+      if (!(hit instanceof net.minecraft.world.phys.BlockHitResult block)) return;
+      net.minecraft.core.BlockPos pos = block.getBlockPos();
+      net.minecraft.world.level.block.state.BlockState state = sl.getBlockState(pos);
+      net.minecraft.world.level.block.state.BlockState dried = SpellDry.sunDried(sl, pos, state);
+      if (dried != null) sl.setBlockAndUpdate(pos, dried);
    }
 
    private static void smother(Level worldIn, LivingEntity target) {

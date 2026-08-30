@@ -54,7 +54,7 @@ public class SpellFieryBlessing extends Spell {
    public ItemStack finishHoldEffect(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
       if (entityLiving instanceof Player && !entityLiving.hasEffect(MobEffects.FIRE_RESISTANCE) && this.castSpell((Player)entityLiving, 0.0F)) {
          entityLiving.playSound(SOMSoundHandler.FIERY_BLESSING.get(), 1.0F, entityLiving.getRandom().nextFloat() * 0.4F + 0.8F);
-         entityLiving.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 400));
+         this.applyEffect(entityLiving, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 400));
       }
 
       return super.finishHoldEffect(stack, worldIn, entityLiving);
@@ -67,7 +67,7 @@ public class SpellFieryBlessing extends Spell {
    public void interactionEffect(Level world, Player player, LivingEntity livingBase) {
       if (!livingBase.hasEffect(MobEffects.FIRE_RESISTANCE) && this.castSpell(player, 0.0F)) {
          livingBase.playSound(SOMSoundHandler.FIERY_BLESSING.get(), 1.0F, livingBase.getRandom().nextFloat() * 0.4F + 0.8F);
-         livingBase.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 400));
+         this.applyEffect(livingBase, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 400));
       }
 
       super.interactionEffect(world, player, livingBase);

@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:earthen_elevator"
+    },
+    {
+      "type": "text",
+      "text": "  Earthen Elevator parts the ground above the caster and carries them up to the surface.\n\n  The earth opens only as far as the caster rises and closes again behind them, so nothing is lost.\n\n  It will not work if anything that is not earth stands between the caster and the sky. Dirt, stone, sand, gravel and ore all give way. A floor of planks does not, and the spell fails without being cast. Nor will it move earth that was put there by hand. Only ground that grew where it lies will part.\n\n  The lift holds for ten seconds at a first level charge, and five seconds longer for every charge level above that."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_earthen_elevator.desc"
+    }
+  ]
+}

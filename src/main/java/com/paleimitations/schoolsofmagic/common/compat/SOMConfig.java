@@ -13,6 +13,14 @@ public class SOMConfig {
    public static ForgeConfigSpec.BooleanValue enable_world_gen;
    public static ForgeConfigSpec.BooleanValue enable_mysterious_application_recipe;
    public static ForgeConfigSpec.BooleanValue enable_wand_ring_durability;
+   public static ForgeConfigSpec.BooleanValue keep_magic_on_death;
+
+   public static boolean keepMagicOnDeath() {
+      if (keep_magic_on_death == null || SPEC == null || !SPEC.isLoaded()) {
+         return true;
+      }
+      return keep_magic_on_death.get();
+   }
 
    public static boolean wandRingDurability() {
       if (enable_wand_ring_durability == null || SPEC == null || !SPEC.isLoaded()) {
@@ -36,6 +44,7 @@ public class SOMConfig {
    public static ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> dry_transforms;
    public static ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> fast_forward_transforms;
    public static ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> scorch_transforms;
+   public static ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> mend_transforms;
 
    public static float prestidigitation_cost = 10.0F;
    public static int prestidigitation_minLevel = 1;
@@ -73,7 +82,7 @@ public class SOMConfig {
 
    public static boolean passiveDeadManaHealing = true;
    public static boolean sleepDeadManaHealing = true;
-   public static float alarm_cost = 20.0F;
+   public static float alarm_cost = 35.0F;
    public static float banish_cost = 18.0F;
    public static float banish_rain_cost = 60.0F;
    public static float banish_thunderstorm_cost = 60.0F;
@@ -94,6 +103,9 @@ public class SOMConfig {
    public static float earth_blessing_cost = 10.0F;
    public static float earthquake_cost = 200.0F;
    public static float electrocute_cost = 0.5F;
+   public static float magic_missile_cost = 25.0F;
+   public static float precision_strike_cost = 50.0F;
+   public static float mend_cost = 12.0F;
    public static float sun_blast_cost = 50.0F;
    public static float solar_barrage_cost = 60.0F;
    public static float sundial_cost = 5.0F;
@@ -120,7 +132,29 @@ public class SOMConfig {
    public static float incinerate_cost = 10.0F;
    public static float infatuation_cost = 30.0F;
    public static float invisibility_cost = 30.0F;
+   public static float gaseous_form_cost = 65.0F;
    public static float ironhide_cost = 20.0F;
+   public static float teleport_cost = 25.0F;
+   public static float dazzling_light_cost = 80.0F;
+   public static float age_cost = 55.0F;
+   public static float earthen_elevator_cost = 45.0F;
+   public static float shroomlucination_cost = 30.0F;
+   public static float gaian_warrior_cost = 40.0F;
+   public static float rift_cost = 50.0F;
+   public static float poseidons_fist_cost = 60.0F;
+   public static float decoy_cost = 45.0F;
+   public static float biome_scry_cost = 45.0F;
+   public static float animal_scry_cost = 45.0F;
+   public static float whirlwind_cost = 60.0F;
+   public static float fog_cost = 20.0F;
+   public static float silence_cost = 20.0F;
+   public static float disrupt_flight_cost = 45.0F;
+   public static float detect_breath_cost = 15.0F;
+   public static boolean riftInfinite = true;
+
+   public static int riftSlotCap() {
+      return riftInfinite ? Integer.MAX_VALUE - 64 : 54;
+   }
    public static float launch_stone_cost = 10.0F;
    public static float levitate_cost = 25.0F;
    public static float light_axe_cost = 20.0F;
@@ -183,7 +217,7 @@ public class SOMConfig {
    public static float break_cost = 20.0F;
    public static float sea_trade_cost = 20.0F;
    public static int advancedArcanaLevel = 20;
-   public static int alarm_minLevel = 5;
+   public static int alarm_minLevel = 15;
    public static int banish_minLevel = 5;
    public static int banish_rain_minLevel = 5;
    public static int banish_thunderstorm_minLevel = 5;
@@ -201,6 +235,9 @@ public class SOMConfig {
    public static int earth_blessing_minLevel = 5;
    public static int earthquake_minLevel = 30;
    public static int electrocute_minLevel = 10;
+   public static int magic_missile_minLevel = 10;
+   public static int precision_strike_minLevel = 25;
+   public static int mend_minLevel = 5;
    public static int sun_blast_minLevel = 20;
    public static int solar_barrage_minLevel = 25;
    public static int sundial_minLevel = 1;
@@ -228,7 +265,24 @@ public class SOMConfig {
    public static int infatuation_minLevel = 5;
    public static int intermediateArcanaLevel = 5;
    public static int invisibility_minLevel = 10;
+   public static int gaseous_form_minLevel = 25;
    public static int ironhide_minLevel = 5;
+   public static int teleport_minLevel = 10;
+   public static int dazzling_light_minLevel = 25;
+   public static int age_minLevel = 20;
+   public static int earthen_elevator_minLevel = 15;
+   public static int shroomlucination_minLevel = 10;
+   public static int gaian_warrior_minLevel = 5;
+   public static int rift_minLevel = 20;
+   public static int poseidons_fist_minLevel = 30;
+   public static int decoy_minLevel = 15;
+   public static int biome_scry_minLevel = 25;
+   public static int animal_scry_minLevel = 25;
+   public static int whirlwind_minLevel = 30;
+   public static int fog_minLevel = 5;
+   public static int silence_minLevel = 5;
+   public static int disrupt_flight_minLevel = 15;
+   public static int detect_breath_minLevel = 5;
    public static int launch_stone_minLevel = 1;
    public static int levitate_minLevel = 15;
    public static int light_axe_minLevel = 5;
@@ -249,7 +303,7 @@ public class SOMConfig {
    public static int locate_ore_redstone_minLevel = 1;
    public static int locate_ore_silver_minLevel = 1;
    public static int manaExhaustionChance = 100;
-   public static int maxLevel = 300;
+   public static int maxLevel = 1000;
    public static int meteor_strike_minLevel = 35;
    public static int mow_grass_minLevel = 1;
    public static int mutate_skeleton_minLevel = 15;
@@ -297,6 +351,7 @@ public class SOMConfig {
       enable_world_gen = BUILDER.comment("Enable SOM world generation").define("enable_world_gen", true);
       enable_mysterious_application_recipe = BUILDER.comment("Enable the Mysterious Application crafting recipe").define("enable_mysterious_application_recipe", true);
       enable_wand_ring_durability = BUILDER.comment("Wands and rings wear out as you cast and must be repaired with their metal").define("enable_wand_ring_durability", true);
+      keep_magic_on_death = BUILDER.comment("Keep your magician level, mana and spell charges when you die").define("keep_magic_on_death", true);
       magic_regen_rate = BUILDER.comment("Ticks between mana regeneration ticks").defineInRange("magic_regen_rate", 20, 1, 200);
       BUILDER.pop();
 
@@ -367,6 +422,19 @@ public class SOMConfig {
                "minecraft:clay>minecraft:terracotta",
                "minecraft:mud>minecraft:packed_mud"),
             o -> o instanceof String && ((String) o).contains(">"));
+      mend_transforms = BUILDER
+         .comment("Extra block conversions the Mend spell applies, on top of the built-in ones (cracked back to whole, cobbled back to solid, logs stripped, stone smoothed, anvils repaired).")
+         .defineListAllowEmpty(java.util.List.of("mend_transforms"),
+            () -> java.util.Arrays.asList(
+               "minecraft:cracked_stone_bricks>minecraft:stone_bricks",
+               "minecraft:cracked_deepslate_bricks>minecraft:deepslate_bricks",
+               "minecraft:cracked_deepslate_tiles>minecraft:deepslate_tiles",
+               "minecraft:cracked_nether_bricks>minecraft:nether_bricks",
+               "minecraft:cracked_polished_blackstone_bricks>minecraft:polished_blackstone_bricks",
+               "minecraft:cobblestone>minecraft:stone",
+               "minecraft:cobbled_deepslate>minecraft:deepslate",
+               "minecraft:stone>minecraft:smooth_stone"),
+            o -> o instanceof String && ((String) o).contains(">"));
       BUILDER.pop();
 
       SPEC = BUILDER.build();
@@ -375,6 +443,7 @@ public class SOMConfig {
    private static java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block> dryMap;
    private static java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block> fastForwardMap;
    private static java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block> scorchMap;
+   private static java.util.Map<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block> mendMap;
 
    public static net.minecraft.world.level.block.Block getScorchResult(net.minecraft.world.level.block.Block source) {
       if (!SPEC.isLoaded()) {
@@ -384,6 +453,16 @@ public class SOMConfig {
          scorchMap = parseTransforms(scorch_transforms.get());
       }
       return scorchMap.get(source);
+   }
+
+   public static net.minecraft.world.level.block.Block getMendResult(net.minecraft.world.level.block.Block source) {
+      if (!SPEC.isLoaded()) {
+         return null;
+      }
+      if (mendMap == null) {
+         mendMap = parseTransforms(mend_transforms.get());
+      }
+      return mendMap.get(source);
    }
 
    public static net.minecraft.world.level.block.Block getDryResult(net.minecraft.world.level.block.Block source) {

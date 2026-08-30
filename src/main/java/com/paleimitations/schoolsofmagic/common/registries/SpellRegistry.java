@@ -80,6 +80,7 @@ public class SpellRegistry {
         tryRegister("phantom_fire",   SpellPhantomFire::new);
         tryRegister("fuel_furnace",   SpellFuelFurnace::new);
         tryRegister("dry",            SpellDry::new);
+        tryRegister("mend",           com.paleimitations.schoolsofmagic.common.spells.spells.SpellMend::new);
         tryRegister("prestidigitation", com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrestidigitation::new);
         tryRegister("smoke_scry",     com.paleimitations.schoolsofmagic.common.spells.spells.SpellSmokeScry::new);
         tryRegister("scorch",         com.paleimitations.schoolsofmagic.common.spells.spells.SpellScorch::new);
@@ -95,12 +96,30 @@ public class SpellRegistry {
         tryRegister("iron_hide",      SpellIronHide::new);
         tryRegister("ice_shell",  SpellIceShell::new);
         tryRegister("gale",           SpellGale::new);
+        tryRegister("age",            com.paleimitations.schoolsofmagic.common.spells.spells.SpellAge::new);
+        tryRegister("dazzling_light", com.paleimitations.schoolsofmagic.common.spells.spells.SpellDazzlingLight::new);
+        tryRegister("teleport",       com.paleimitations.schoolsofmagic.common.spells.spells.SpellTeleport::new);
+        tryRegister("gaseous_form",   com.paleimitations.schoolsofmagic.common.spells.spells.SpellGaseousForm::new);
 
+        tryRegister("rift", com.paleimitations.schoolsofmagic.common.spells.spells.SpellRift::new);
+        tryRegister("poseidons_fist", com.paleimitations.schoolsofmagic.common.spells.spells.SpellPoseidonsFist::new);
+        tryRegister("decoy", com.paleimitations.schoolsofmagic.common.spells.spells.SpellDecoy::new);
+        tryRegister("biome_scry", com.paleimitations.schoolsofmagic.common.spells.spells.SpellBiomeScry::new);
+        tryRegister("animal_scry", com.paleimitations.schoolsofmagic.common.spells.spells.SpellAnimalScry::new);
+        tryRegister("whirlwind", com.paleimitations.schoolsofmagic.common.spells.spells.SpellWhirlwind::new);
+        tryRegister("fog", com.paleimitations.schoolsofmagic.common.spells.spells.SpellFog::new);
+        tryRegister("silence", com.paleimitations.schoolsofmagic.common.spells.spells.SpellSilence::new);
+        tryRegister("disrupt_flight", com.paleimitations.schoolsofmagic.common.spells.spells.SpellDisruptFlight::new);
+        tryRegister("detect_breath", com.paleimitations.schoolsofmagic.common.spells.spells.SpellDetectBreath::new);
+        tryRegister("alarm", com.paleimitations.schoolsofmagic.common.spells.spells.SpellAlarm::new);
+        tryRegister("gaian_warrior", com.paleimitations.schoolsofmagic.common.spells.spells.SpellGaianWarrior::new);
+        tryRegister("earthen_elevator", com.paleimitations.schoolsofmagic.common.spells.spells.SpellEarthenElevator::new);
         tryRegister("launch_stone",   SpellLaunchStone::new);
         tryRegister("locate_ore",     SpellLocateOre::new);
         tryRegister("tremor",         SpellTremor::new);
         tryRegister("earthquake",     SpellEarthquake::new);
 
+        tryRegister("shroomlucination", com.paleimitations.schoolsofmagic.common.spells.spells.SpellShroomlucination::new);
         tryRegister("thorn_ring",     SpellThornRing::new);
         tryRegister("pollen_cloud",   SpellPollenCloud::new);
         tryRegister("growth",         SpellGrowth::new);
@@ -121,6 +140,7 @@ public class SpellRegistry {
         tryRegister("water_jet",      SpellWaterJet::new);
         tryRegister("winter_roar",    SpellWinterRoar::new);
 
+        tryRegister("magic_missile",  com.paleimitations.schoolsofmagic.common.spells.spells.SpellMagicMissile::new);
         tryRegister("shulker_bullet", SpellShulkerBullet::new);
         tryRegister("meteor_strike",  SpellMeteorStrike::new);
         tryRegister("spectral_hand",  SpellSpectralHand::new);
@@ -142,6 +162,7 @@ public class SpellRegistry {
         tryRegister("translocation",  com.paleimitations.schoolsofmagic.common.spells.spells.SpellTranslocation::new);
         tryRegister("rumor",          com.paleimitations.schoolsofmagic.common.spells.spells.SpellRumor::new);
         tryRegister("fast_forward",   com.paleimitations.schoolsofmagic.common.spells.spells.SpellFastForward::new);
+        tryRegister("precision_strike", com.paleimitations.schoolsofmagic.common.spells.spells.SpellPrecisionStrike::new);
         tryRegister("counterspell",   com.paleimitations.schoolsofmagic.common.spells.spells.SpellCounterspell::new);
     }
 

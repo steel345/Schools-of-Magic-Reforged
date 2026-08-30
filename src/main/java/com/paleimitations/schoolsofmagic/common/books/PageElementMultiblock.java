@@ -71,24 +71,26 @@ public class PageElementMultiblock extends PageElement {
       Minecraft mc = Minecraft.getInstance();
       float partial = mc.getFrameTime();
       float time = (mc.level != null ? mc.level.getGameTime() : 0L) + partial;
-      float yaw = this.spin ? (time * 1.1F) % 360.0F : 35.0F;
+      float yaw = isGUI ? (this.spin ? (time * 1.1F) % 360.0F : 35.0F) : 0.0F;
 
       com.mojang.blaze3d.systems.RenderSystem.enableDepthTest();
       com.mojang.blaze3d.systems.RenderSystem.depthMask(true);
       com.mojang.blaze3d.platform.Lighting.setupFor3DItems();
 
-      double z = isGUI ? 250.0D : this.podiumLift;
       PoseStack pose = gg.pose();
       pose.pushPose();
-      pose.translate(this.x + xIn, this.y + yIn, z);
-      float s = this.size;
-      float sy = -this.size;
-      if (!isGUI) {
-         PageElement3DModel.faceViewer(pose, mc);
-         s = this.size * PageElement3DModel.PODIUM_MAG;
-         sy = this.size * PageElement3DModel.PODIUM_MAG;
+
+      if (isGUI) {
+         pose.translate(this.x + xIn, this.y + yIn, 250.0D);
+         pose.scale(this.size, -this.size, this.size);
+      } else {
+         // flip with a real rotation, not a negative scale. a mirror reverses the winding and half the block faces get culled
+         pose.translate(0.0F, 0.0F, -58.0F);
+         pose.translate(this.x + xIn, this.y + yIn, 50.0D);
+         pose.mulPose(Axis.XP.rotationDegrees(180.0F));
+         pose.scale(this.size, this.size, this.size);
       }
-      pose.scale(s, sy, s);
+
       pose.mulPose(Axis.XP.rotationDegrees(this.tilt));
       pose.mulPose(Axis.YP.rotationDegrees(yaw));
       pose.translate(-this.w / 2.0F, -this.h / 2.0F, -this.d / 2.0F);

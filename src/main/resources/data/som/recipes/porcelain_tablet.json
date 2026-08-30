@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    "PFP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "som:item_porcelain"
+    },
+    "F": {
+      "item": "minecraft:item_frame"
+    }
+  },
+  "result": {
+    "item": "som:porcelain_tablet",
+    "count": 4
+  }
+}

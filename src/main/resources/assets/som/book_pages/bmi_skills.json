@@ -1,0 +1,6 @@
+{
+  "elements": [
+    { "type": "title", "text": "Skills and Affinities" },
+    { "type": "text", "text": "  The crystal shows two kinds of measure.\n\n  /bAffinities/z are the sixteen elements. You gain one by casting that element. Some spells and scrolls need it, and it makes those spells cheaper: 5 percent off at level 5, 10 at 15, 20 at 30.\n\n  /bSkills/z are everything else: the six schools of magic, and one skill for each craft. Casting raises /bSpell/z, rites raise /bRitual/z, brewing raises /bPotion/z.\n\n  Ritual skill makes every rite cheaper by the same amounts, and it stacks with affinity.\n\n  Potion skill stretches a brew: one extra draw at level 5, two at 15, three at 30. A flask turns those into extra charges instead.\n\n  Your /bmagician level/z rises with all of it. It sets your mana, your spell charges, and what you may cast." }
+  ]
+}

@@ -236,6 +236,9 @@ public class CreativeTabContents {
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.spell_parchment.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.scroll_seal.get()));
             output.accept(com.paleimitations.schoolsofmagic.common.crafting.CoconutMilkRecipe.coconutMilk());
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_thread.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_cloth.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.enhanced_magic_cloth.get()));
 
             for (RegistryObject<Item> dust : ItemRegistry.FAIRY_DUSTS) {
                 output.accept(new net.minecraft.world.item.ItemStack(dust.get()));
@@ -285,6 +288,37 @@ public class CreativeTabContents {
     }
 
     private static void emitEntries(net.minecraft.world.item.CreativeModeTab.Output output, Item item, ResourceLocation id) {
+        if (item == ItemRegistry.complete_spellbook.get()) return;
+        // these two are laid out with the rings, they do not answer for themselves as well
+        if (item == ItemRegistry.apprentice_crown.get() || item == ItemRegistry.apprentice_necklace.get()) return;
+
+        // the cloths sit at the end beside the coconut milk, and the magic goes with the yolk
+        if (item == ItemRegistry.liquid_magic.get() || item == ItemRegistry.magic_cloth.get()
+              || item == ItemRegistry.magic_thread.get() || item == ItemRegistry.enhanced_magic_cloth.get()) {
+            return;
+        }
+        if (item == ItemRegistry.wizard_hat.get() || item == ItemRegistry.wizard_chestplate.get()
+              || item == ItemRegistry.wizard_leggings.get() || item == ItemRegistry.wizard_robe_feet.get()) {
+            return;
+        }
+        if (item == ItemRegistry.talisman_of_knowledge.get()) {
+            output.accept(new net.minecraft.world.item.ItemStack(item));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.wizard_hat.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.wizard_chestplate.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.wizard_leggings.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.wizard_robe_feet.get()));
+            return;
+        }
+        if (item == ItemRegistry.bottle_egg.get()) {
+            output.accept(new net.minecraft.world.item.ItemStack(item));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.liquid_magic.get()));
+            return;
+        }
+        if (item == ItemRegistry.book_of_knowledge.get()) {
+            output.accept(new net.minecraft.world.item.ItemStack(item));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.complete_spellbook.get()));
+            return;
+        }
         if (item == ItemRegistry.potion_drinkable.get()) {
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.infinity_jug.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.sun_screen.get()));
@@ -305,7 +339,8 @@ public class CreativeTabContents {
             return;
         }
 
-        if (item == ItemRegistry.magic_letter.get() || item == ItemRegistry.mysterious_application.get()) {
+        if (item == ItemRegistry.magic_letter.get() || item == ItemRegistry.mysterious_application.get()
+                || item == ItemRegistry.copper_key.get()) {
             return;
         }
 
@@ -395,6 +430,12 @@ public class CreativeTabContents {
                 output.accept(r);
                 idx++;
             }
+
+            // and the other two follow straight after the rings, each plain one heading its own run
+            output.accept(new ItemStack(ItemRegistry.apprentice_crown.get()));
+            emitGarmentPresets(output, ItemRegistry.advanced_crown.get(), " Crown");
+            output.accept(new ItemStack(ItemRegistry.apprentice_necklace.get()));
+            emitGarmentPresets(output, ItemRegistry.advanced_necklace.get(), " Necklace");
             return;
         }
 
@@ -725,6 +766,29 @@ public class CreativeTabContents {
     private static void emitStickerVariants(net.minecraft.world.item.CreativeModeTab.Output output, Item item) {
         for (String s : STICKER_NAMES) {
             output.accept(com.paleimitations.schoolsofmagic.common.items.ItemSticker.makeSticker(s));
+        }
+    }
+
+    private static void emitGarmentPresets(net.minecraft.world.item.CreativeModeTab.Output output,
+                                           net.minecraft.world.item.Item item, String kind) {
+        com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumHandleType[] metals =
+            com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumHandleType.values();
+        int i = 0;
+        for (com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumGemType gem :
+                com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumGemType.values()) {
+            if (gem == com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.IWandData.EnumGemType.EMERALD) continue;
+
+            ItemStack g = com.paleimitations.schoolsofmagic.common.items.ItemAdvancedGarment.of(
+                item, metals[i % metals.length], gem);
+            com.paleimitations.schoolsofmagic.common.MagicElement el =
+                com.paleimitations.schoolsofmagic.common.items.capabilities.wanddata.WandGemBuff.getElement(gem);
+            String en = el != null ? el.getName() : gem.getSerializedName();
+            en = en.substring(0, 1).toUpperCase(java.util.Locale.ROOT) + en.substring(1);
+
+            g.setHoverName(net.minecraft.network.chat.Component.literal(en + kind)
+                .withStyle(st -> st.withItalic(false)));
+            output.accept(g);
+            i++;
         }
     }
 

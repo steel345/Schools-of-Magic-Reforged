@@ -4,7 +4,7 @@
     { "item": "minecraft:book" },
     { "item": "som:bottle", "type": "forge:partial_nbt", "nbt": "{Damage:3}" },
     { "item": "minecraft:charcoal" },
-    { "item": "som:crushed_plant", "type": "forge:partial_nbt", "nbt": "{Damage:27}" }
+    { "item": "minecraft:iron_ingot" }
   ],
   "result": { "item": "som:ritual_compendium", "count": 1 }
 }

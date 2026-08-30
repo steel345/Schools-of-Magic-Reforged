@@ -13,6 +13,7 @@ public class BookSearchField {
    private String value = "";
    private int caret = 0;
    private int displayStart = 0;
+   private int frame = 0;
 
    public BookSearchField(Font font) {
       this.font = font;
@@ -20,7 +21,11 @@ public class BookSearchField {
 
    public String getValue() { return this.value; }
 
+   // same idea as the vanilla box, a tick count the cursor blinks off, only slower
+   public void tick() { this.frame++; }
+
    public boolean charTyped(char c) {
+      this.frame = 0;
       if (c >= ' ' && c != 127 && this.value.length() < this.maxLength) {
          this.value = this.value.substring(0, this.caret) + c + this.value.substring(this.caret);
          this.caret++;
@@ -30,6 +35,7 @@ public class BookSearchField {
    }
 
    public boolean keyPressed(int key) {
+      this.frame = 0;
       switch (key) {
          case GLFW.GLFW_KEY_BACKSPACE:
             if (this.caret > 0) {
@@ -60,6 +66,7 @@ public class BookSearchField {
    }
 
    public void clickAt(float clickFontX, int clipWidth) {
+      this.frame = 0;
       updateScroll(clipWidth);
       int idx = this.displayStart;
       float acc = 0;
@@ -91,9 +98,10 @@ public class BookSearchField {
       String visible = this.value.substring(this.displayStart, end);
       gg.drawString(this.font, visible, 1, 1, 0x000000, false);
       gg.drawString(this.font, visible, 0, 0, 0xFFFFFF, false);
-      if (showCursor) {
+      if (showCursor && this.frame / 12 % 2 == 0) {
          int c = Math.min(this.caret, end);
          int cx = this.font.width(this.value.substring(this.displayStart, c));
+         gg.fill(cx + 1, 1, cx + 2, this.font.lineHeight, 0xFF000000);
          gg.fill(cx, 0, cx + 1, this.font.lineHeight - 1, 0xFFFFFFFF);
       }
    }

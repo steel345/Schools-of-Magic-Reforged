@@ -25,6 +25,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
    private boolean deadManaImmune = false;
    private float xpBonusRate = 0.0F;
    private int levelBonus = 0;
+   private boolean xpFrozen = false;
    private float magicianXP = 0.0F;
    private float[] elementXP = new float[MagicElementRegistry.ELEMENTS.size()];
    private float[] schoolXP = new float[MagicSchoolRegistry.SCHOOLS.size()];
@@ -262,13 +263,14 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void addMagicianXP(float magicianXP) {
-      if (this.getLevel() - 1 < SOMConfig.maxLevel) {
+      if (!this.capped(this.getLevel())) {
          this.magicianXP += magicianXP;
       }
    }
 
    @Override
    public void removeMagicianXP(float magicianXP) {
+      if (this.xpFrozen) return;
       this.magicianXP -= magicianXP;
       if (this.magicianXP < 0.0F) {
          this.magicianXP = 0.0F;
@@ -287,8 +289,40 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       return new Tuple<>(magicianXPTemp, (float) nextLevel);
    }
 
+   public static float xpForMagicianCap() {
+      float total = 0.0F;
+      for (int level = 1; level < SOMConfig.maxLevel - 1; level++) {
+         total += 50 + (level - 1) * 10;
+      }
+      return total + (50 + (SOMConfig.maxLevel - 2) * 10);
+   }
+
+   public static float xpForSkillCap() {
+      float total = 0.0F;
+      for (int level = 0; level < SOMConfig.maxLevel - 1; level++) {
+         total += 50 + level * 10;
+      }
+      return total + (50 + (SOMConfig.maxLevel - 1) * 10);
+   }
+
+   @Override
+   public boolean isXPFrozen() {
+      return this.xpFrozen;
+   }
+
+   @Override
+   public void setXPFrozen(boolean frozen) {
+      this.xpFrozen = frozen;
+   }
+
+   private boolean capped(int level) {
+      if (this.xpFrozen) return true;
+      return level >= SOMConfig.maxLevel;
+   }
+
    @Override
    public int getLevel() {
+      if (this.xpFrozen) return SOMConfig.maxLevel;
       int level = 1;
       float magicianXPTemp = this.magicianXP;
       int nextLevel;
@@ -406,16 +440,19 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void addElementXP(MagicElement element, float elementXP) {
+      if (this.capped(this.getElementLevel(element))) return;
       this.elementXP[element.getId()] = Math.min(this.elementXP[element.getId()] + elementXP, this.magicianXP);
    }
 
    @Override
    public void removeElementXP(MagicElement element, float elementXP) {
+      if (this.xpFrozen) return;
       this.elementXP[element.getId()] = Math.max(this.elementXP[element.getId()] - elementXP, 0.0F);
    }
 
    @Override
    public int getElementLevel(MagicElement element) {
+      if (this.xpFrozen) return SOMConfig.maxLevel;
       int level = 0;
       float elementXP = this.getElementXP(element);
       int nextLevel;
@@ -460,16 +497,19 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void addSchoolXP(MagicSchool school, float schoolXP) {
+      if (this.capped(this.getSchoolLevel(school))) return;
       this.schoolXP[school.getId()] = Math.min(this.schoolXP[school.getId()] + schoolXP, this.magicianXP);
    }
 
    @Override
    public void removeSchoolXP(MagicSchool school, float schoolXP) {
+      if (this.xpFrozen) return;
       this.schoolXP[school.getId()] = Math.max(this.schoolXP[school.getId()] - schoolXP, 0.0F);
    }
 
    @Override
    public int getSchoolLevel(MagicSchool school) {
+      if (this.xpFrozen) return SOMConfig.maxLevel;
       int level = 0;
       float schoolXP = this.getSchoolXP(school);
       int nextLevel;
@@ -504,6 +544,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void addSpellXP(float spellXP) {
+      if (this.capped(this.getSpellLevel())) return;
       this.spellXP += spellXP;
       if (this.spellXP > this.magicianXP) {
          this.spellXP = this.magicianXP;
@@ -512,6 +553,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void removeSpellXP(float spellXP) {
+      if (this.xpFrozen) return;
       this.spellXP -= spellXP;
       if (this.spellXP < 0.0F) {
          this.spellXP = 0.0F;
@@ -520,6 +562,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public int getSpellLevel() {
+      if (this.xpFrozen) return SOMConfig.maxLevel;
       int level = 0;
       float spellXPTemp = this.spellXP;
       int nextLevel;
@@ -554,6 +597,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void addPotionXP(float potionXP) {
+      if (this.capped(this.getPotionLevel())) return;
       this.potionXP += potionXP;
       if (this.potionXP > this.magicianXP) {
          this.potionXP = this.magicianXP;
@@ -562,6 +606,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void removePotionXP(float potionXP) {
+      if (this.xpFrozen) return;
       this.potionXP -= potionXP;
       if (this.potionXP < 0.0F) {
          this.potionXP = 0.0F;
@@ -570,6 +615,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public int getPotionLevel() {
+      if (this.xpFrozen) return SOMConfig.maxLevel;
       int level = 0;
       float potionXPTemp = this.potionXP;
       int nextLevel;
@@ -604,6 +650,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void addRitualXP(float ritualXP) {
+      if (this.capped(this.getRitualLevel())) return;
       this.ritualXP += ritualXP;
       if (this.ritualXP > this.magicianXP) {
          this.ritualXP = this.magicianXP;
@@ -612,6 +659,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public void removeRitualXP(float ritualXP) {
+      if (this.xpFrozen) return;
       this.ritualXP -= ritualXP;
       if (this.ritualXP < 0.0F) {
          this.ritualXP = 0.0F;
@@ -620,6 +668,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
 
    @Override
    public int getRitualLevel() {
+      if (this.xpFrozen) return SOMConfig.maxLevel;
       int level = 0;
       float ritualXPTemp = this.ritualXP;
       int nextLevel;
@@ -723,8 +772,15 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       return 8;
    }
 
+   private float chargeCarry;
+
    @Override
    public void tickCharges() {
+      this.tickCharges(1.0F);
+   }
+
+   @Override
+   public void tickCharges(float speed) {
       int curLevel = this.getLevel();
       for (int i = 0; i < 9; ++i) {
          int maxHere = this.getMaxCharges(i, curLevel);
@@ -735,9 +791,17 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       if (!PASSIVE_RECHARGE) {
          return;
       }
+      // anything over the plain rate is banked until it is worth a whole tick
+      int step = 1;
+      this.chargeCarry += speed - 1.0F;
+      if (this.chargeCarry >= 1.0F) {
+         step += (int) this.chargeCarry;
+         this.chargeCarry -= (int) this.chargeCarry;
+      }
+
       for (int i = 0; i < 9; ++i) {
          if (this.countdowns[i] > 0) {
-            this.countdowns[i]--;
+            this.countdowns[i] = Math.max(0, this.countdowns[i] - step);
          } else if (this.countdowns[i] == 0 && this.canAddCharge(i)) {
             this.addCharge(i);
             if (this.canAddCharge(i)) {
@@ -774,6 +838,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       nbt.putBoolean("deadManaImmune", this.deadManaImmune);
       nbt.putFloat("xpBonusRate", this.xpBonusRate);
       nbt.putInt("levelBonus", this.levelBonus);
+      nbt.putBoolean("xpFrozen", this.xpFrozen);
       nbt.putFloat("magicianXP", this.magicianXP);
       for (MagicElement element : MagicElementRegistry.ELEMENTS) {
          nbt.putFloat(element.getName() + "XP", this.elementXP[element.getId()]);
@@ -794,6 +859,8 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       for (int i = 0; i < 20; ++i) {
          if (nbt.contains("spell" + i) && nbt.contains("spellData" + i)) {
             this.spells[i] = SpellHelper.getSpellInstance(new ResourceLocation(nbt.getString("spell" + i)), nbt.getCompound("spellData" + i));
+         } else {
+            this.spells[i] = null;
          }
       }
       this.mana = nbt.getFloat("mana");
@@ -803,6 +870,7 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       this.deadManaImmune = nbt.getBoolean("deadManaImmune");
       this.xpBonusRate = nbt.getFloat("xpBonusRate");
       this.levelBonus = nbt.getInt("levelBonus");
+      this.xpFrozen = nbt.getBoolean("xpFrozen");
       this.magicianXP = nbt.getFloat("magicianXP");
       for (MagicElement element : MagicElementRegistry.ELEMENTS) {
          this.elementXP[element.getId()] = nbt.getFloat(element.getName() + "XP");

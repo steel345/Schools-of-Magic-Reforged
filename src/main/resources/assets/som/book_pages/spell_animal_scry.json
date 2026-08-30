@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:animal_scry"
+    },
+    {
+      "type": "text",
+      "text": "  Animal Scry listens for the living. Casting it lays out every beast that walks of its own accord, and the bar at the top searches the list by name.\n\n  Double-click one and a trail of pink light lies down on the ground pointing the way to the nearest of them.\n\n  Follow it and the trail becomes a cross where the beast stands. Stand on the cross and the spell is spent.\n\n  It only hears as far as the world is awake around you. Nothing sleeping in an unloaded land will answer."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_animal_scry.desc"
+    }
+  ]
+}

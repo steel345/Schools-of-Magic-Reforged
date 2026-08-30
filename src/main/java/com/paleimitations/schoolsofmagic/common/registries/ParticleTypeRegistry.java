@@ -28,6 +28,13 @@ public final class ParticleTypeRegistry {
    public static final RegistryObject<SimpleParticleType> ORB_CORE   = PARTICLES.register("orb_core",   () -> new SimpleParticleType(false));
    public static final RegistryObject<SimpleParticleType> SPARKLE_STAR = PARTICLES.register("sparkle_star", () -> new SimpleParticleType(false));
    public static final RegistryObject<SimpleParticleType> SPARKLE_RAY = PARTICLES.register("sparkle_ray", () -> new SimpleParticleType(false));
+   public static final RegistryObject<SimpleParticleType> FOG = PARTICLES.register("fog", () -> new SimpleParticleType(true));
+   public static final RegistryObject<SimpleParticleType> SPORE = PARTICLES.register("spore", () -> new SimpleParticleType(true));
+   public static final RegistryObject<SimpleParticleType> SPORE_SEED = PARTICLES.register("spore_seed", () -> new SimpleParticleType(true));
+   public static final RegistryObject<SimpleParticleType> HOURGLASS = PARTICLES.register("hourglass", () -> new SimpleParticleType(false));
+   public static final RegistryObject<SimpleParticleType> CAST_CIRCLE = PARTICLES.register("cast_circle", () -> new SimpleParticleType(false));
+   public static final RegistryObject<SimpleParticleType> GAS = PARTICLES.register("gas", () -> new SimpleParticleType(false));
+   public static final RegistryObject<SimpleParticleType> SHOCKWAVE = PARTICLES.register("shockwave", () -> new SimpleParticleType(false));
    public static final RegistryObject<SimpleParticleType> SCULK_BLOOM = PARTICLES.register("sculk_bloom", () -> new SimpleParticleType(false));
     public static final RegistryObject<com.paleimitations.schoolsofmagic.common.particles.PlasmaParticleType> PLASMA =
         PARTICLES.register("plasma", com.paleimitations.schoolsofmagic.common.particles.PlasmaParticleType::new);

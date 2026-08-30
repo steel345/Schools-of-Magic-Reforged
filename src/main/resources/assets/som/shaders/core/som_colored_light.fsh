@@ -43,7 +43,7 @@ void main() {
     // Faded rather than switched. Choosing between the two outright is what drew the
     // hard rectangles: neighbouring pixels landed on opposite sides of the test and
     // jumped between two different brightnesses.
-    float suspect = smoothstep(expected, expected * 4.0, step);
+    float suspect = smoothstep(expected * 0.4, expected * 8.0, step);
     if (len < 1.0e-9) {
         suspect = 1.0;
     }
@@ -56,8 +56,8 @@ void main() {
     // Wrapped rather than clamped at the terminator, so a slightly wrong normal only
     // shifts the shading a little instead of flipping it between lit and black.
     float lambert = dot(normal, toLight / dist) * 0.5 + 0.5;
-    lambert = lambert * lambert;
-    float facing = mix(lambert, 0.5, suspect);
+    lambert = mix(0.45, 1.0, lambert * lambert);
+    float facing = mix(lambert, 0.6, suspect);
 
     float fall = 1.0 - dist / LightPos.w;
     fall = fall * fall * fall;
@@ -66,6 +66,11 @@ void main() {
     // than drowned in flat colour.
     fall *= smoothstep(0.0, 0.9, dist);
 
-    vec3 lit = clamp(LightColor.rgb * fall * facing * LightColor.a, 0.0, 1.0);
-    fragColor = vec4(lit, 1.0);
+    vec3 lit = LightColor.rgb * fall * facing * LightColor.a;
+
+    // a touch of noise, otherwise the falloff steps in visible rings on flat ground
+    float grain = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
+    lit += (grain - 0.5) * (1.5 / 255.0);
+
+    fragColor = vec4(clamp(lit, 0.0, 1.0), 1.0);
 }

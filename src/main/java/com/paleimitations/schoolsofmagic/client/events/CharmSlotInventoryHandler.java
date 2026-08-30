@@ -47,9 +47,7 @@ public class CharmSlotInventoryHandler {
       ItemStack stack = charm != null ? charm.getCharm() : ItemStack.EMPTY;
 
       boolean hovered = over(mx, my, x, y);
-      if (hovered) {
-         gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
-      }
+
 
       if (stack.isEmpty()) {
          gg.blit(GHOST, x, y, 0, 0, 16, 16, 16, 16);
@@ -57,6 +55,9 @@ public class CharmSlotInventoryHandler {
          gg.renderItem(stack, x, y);
          gg.renderItemDecorations(Minecraft.getInstance().font, stack, x, y);
       }
+
+      // the lighter goes on last so it lies over the item and its bar rather than under them
+      if (hovered) gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
 
       ItemStack carried = screen.getMenu().getCarried();
       if (hovered) {

@@ -6,7 +6,7 @@
     },
     {
       "type": "text",
-      "text": "  Four commands change how wands look. Anyone can use them. They do not change how a wand works.\n\n  /b/16wands/z - small wand icons.\n\n  /b/32wands/z - big wand icons.\n\n  /b/2dwands/z - wands are held flat, like a sword.\n\n  /b/3dwands/z - wands are held as 3D models.\n\n  The setting is your own. Changing it only changes what you see."
+      "text": "  Four commands change how wands look. Anyone can use them. They do not change how a wand works.\n\n  /b/16wands/z; small wand icons.\n\n  /b/32wands/z; big wand icons.\n\n  /b/2dwands/z; wands are held flat.\n\n  /b/3dwands/z; wands are held as 3D models.\n\n  The setting is your own. Changing it only changes what you see."
     }
   ]
 }

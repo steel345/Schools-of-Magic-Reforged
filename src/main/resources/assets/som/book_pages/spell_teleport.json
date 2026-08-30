@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:teleport"
+    },
+    {
+      "type": "text",
+      "text": "  Teleport moves the caster to whatever block they are looking at. Right-click and you are simply there.\n\n  A first level charge reaches 12 blocks, and every charge level above that adds another 8.\n\n  If the spot is blocked the spell looks a little above and below it for somewhere the caster fits. If there is nowhere the caster fits, the spell does not go off and no mana is spent."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_teleport.desc"
+    }
+  ]
+}

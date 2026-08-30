@@ -49,6 +49,8 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
    private final LazyOptional<IItemHandler> handlerOpt = LazyOptional.of(() -> this.handler);
    private Random random;
    private int liquidLevel;
+   private int bonusBottlesUsed;
+   private int bonusBottles;
    private com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid fluidType =
       com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.WATER;
    private boolean lidded = false;
@@ -133,6 +135,8 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
       this.phase = EnumPotionPhase.fromName(nbt.getString("phase"));
       this.handler.deserializeNBT(nbt.getCompound("ItemStackHandler"));
       this.liquidLevel = nbt.getInt("liquidLevel");
+      this.bonusBottlesUsed = nbt.getInt("bonusBottlesUsed");
+      this.bonusBottles = nbt.getInt("bonusBottles");
       this.fluidType = com.paleimitations.schoolsofmagic.common.blocks.EnumCauldronFluid.fromName(nbt.getString("fluidType"));
    }
 
@@ -154,6 +158,8 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
       nbt.putBoolean("lidded", this.lidded);
       nbt.putString("phase", this.phase.getSerializedName());
       nbt.putInt("liquidLevel", this.liquidLevel);
+      nbt.putInt("bonusBottlesUsed", this.bonusBottlesUsed);
+      nbt.putInt("bonusBottles", this.bonusBottles);
       nbt.putString("fluidType", this.fluidType.name());
       nbt.put("ItemStackHandler", this.handler.serializeNBT());
    }
@@ -325,11 +331,34 @@ public class TileEntityCauldron extends BlockEntity implements net.minecraft.wor
       this.sendUpdates();
    }
 
+   public int getBonusBottles() {
+      return this.bonusBottles;
+   }
+
+   public void setBonusBottles(int bottles) {
+      this.bonusBottles = bottles;
+      this.bonusBottlesUsed = 0;
+      this.sendUpdates();
+   }
+
+   public int getBonusBottlesUsed() {
+      return this.bonusBottlesUsed;
+   }
+
+   public void setBonusBottlesUsed(int used) {
+      this.bonusBottlesUsed = used;
+      this.sendUpdates();
+   }
+
    public int getLiquidLevel() {
       return this.liquidLevel;
    }
 
    public void setLiquidLevel(int liquidLevel) {
+      if (liquidLevel > this.liquidLevel) {
+         this.bonusBottlesUsed = 0;
+         this.bonusBottles = 0;
+      }
       this.liquidLevel = liquidLevel;
       this.sendUpdates();
    }

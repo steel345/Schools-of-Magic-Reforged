@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:disrupt_flight"
+    },
+    {
+      "type": "text",
+      "text": "  Disrupt Flight throws a bolt that takes the air out from under whatever it hits.\n\n  Anything flying stops and falls. Elytra close, levitation and slow falling are cut, and any spell holding the target up ends. None of it comes back until it is cast or used again.\n\n  An elytra worn at the time takes five points of wear from the hit.\n\n  It does no damage of its own."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_disrupt_flight.desc"
+    }
+  ]
+}

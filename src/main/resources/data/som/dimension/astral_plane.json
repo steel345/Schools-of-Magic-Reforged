@@ -1,0 +1,10 @@
+{
+  "type": "som:astral_plane",
+  "generator": {
+    "type": "som:astral_corridor",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "minecraft:the_void"
+    }
+  }
+}

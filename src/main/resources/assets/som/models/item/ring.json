@@ -1,0 +1,56 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "som:items/ring_iron"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "som:variant": 0.0625
+      },
+      "model": "som:item/ring_iron"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.1875
+      },
+      "model": "som:item/ring_gold"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.3125
+      },
+      "model": "som:item/ring_copper"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.4375
+      },
+      "model": "som:item/ring_brass"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.5625
+      },
+      "model": "som:item/ring_bronze"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.6875
+      },
+      "model": "som:item/ring_silver"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.8125
+      },
+      "model": "som:item/ring_steel"
+    },
+    {
+      "predicate": {
+        "som:variant": 0.9375
+      },
+      "model": "som:item/ring_void"
+    }
+  ]
+}

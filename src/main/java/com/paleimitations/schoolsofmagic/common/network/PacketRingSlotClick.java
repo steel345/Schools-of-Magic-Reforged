@@ -34,7 +34,7 @@ public class PacketRingSlotClick {
                ring.setRing(ItemStack.EMPTY);
                changed = true;
             }
-         } else if (carried.getItem() instanceof ItemApprenticeRing) {
+         } else if (com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.isRing(carried)) {
             changed = true;
             ItemStack one = carried.copy();
             one.setCount(1);

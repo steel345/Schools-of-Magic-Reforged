@@ -97,7 +97,7 @@ public class GuiCrystalBall extends Screen {
 
       IManaData data = Minecraft.getInstance().player.getCapability(CapabilityManaData.CAP).orElse(null);
       if (data == null) { super.render(gg, parWidth, parHeight, partialTicks); return; }
-      int level = 1;
+      int level = 0;
       int xpWidth = 164;
       Color color = Color.WHITE;
       Tuple<Float, Float> xp = new Tuple<>(0.0F, 0.0F);

@@ -150,6 +150,7 @@ public class ClientProxy extends CommonProxy {
       event.registerBlockEntityRenderer(TileEntityRegistry.PEDESTAL.get(), com.paleimitations.schoolsofmagic.client.tileentity.renderers.TileEntityRendererPedestal::new);
       event.registerBlockEntityRenderer(TileEntityRegistry.PLATE.get(), com.paleimitations.schoolsofmagic.client.tileentity.renderers.TileEntityRendererPlate::new);
       event.registerBlockEntityRenderer(TileEntityRegistry.DEMON_HEART.get(), TileEntityRendererDemonHeart::new);
+      event.registerBlockEntityRenderer(TileEntityRegistry.SOLAR_ORB.get(), com.paleimitations.schoolsofmagic.client.tileentity.renderers.TileEntityRendererSolarOrb::new);
       event.registerBlockEntityRenderer(TileEntityRegistry.SANDSTONE_TABLET.get(), TileEntityRendererSandstoneTablet::new);
       event.registerBlockEntityRenderer(TileEntityRegistry.DYNAMIC_WEB.get(), TileEntityRendererDynamicWeb::new);
 
@@ -220,6 +221,26 @@ public class ClientProxy extends CommonProxy {
    @Override
    public void loadBookPageText(BookPage page) {
       BookTextManager.loadText(page);
+   }
+
+   @Override
+   public void openAlarm(int rune, boolean on) {
+      if (!on) return;
+      Minecraft.getInstance().execute(() -> {
+         // do not shove it in front of them while they are already in something else
+         if (Minecraft.getInstance().screen != null) return;
+         Minecraft.getInstance().setScreen(new com.paleimitations.schoolsofmagic.client.guis.GuiAlarm(rune));
+      });
+   }
+
+   @Override
+   public void openBiomeScry(Player player) {
+      Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreen(new com.paleimitations.schoolsofmagic.client.guis.GuiBiomeScry()));
+   }
+
+   @Override
+   public void openAnimalScry(Player player) {
+      Minecraft.getInstance().execute(() -> Minecraft.getInstance().setScreen(new com.paleimitations.schoolsofmagic.client.guis.GuiAnimalScry()));
    }
 
    @Override

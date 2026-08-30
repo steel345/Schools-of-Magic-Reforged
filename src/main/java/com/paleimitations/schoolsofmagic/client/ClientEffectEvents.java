@@ -338,7 +338,7 @@ public class ClientEffectEvents {
             int max = Math.min(mana.getLargestChargeLevel(), spell.getMaximumSpellChargeLevel());
             int level = j < min ? min : (j > max ? max : j);
             if (level != spell.currentSpellChargeLevel) {
-               spell.currentSpellChargeLevel = level;
+               spell.setChargeLevel(level);
                com.paleimitations.schoolsofmagic.common.items.ItemSpellbook.setSelectedSpell(held, spell);
                PacketHandler.INSTANCE.sendToServer(new com.paleimitations.schoolsofmagic.common.network.PacketSetGrimoireSpell(
                   spell.getResourceLocation().toString(), spell.serializeNBT()));
@@ -360,7 +360,7 @@ public class ClientEffectEvents {
             int max = Math.min(mana.getLargestChargeLevel(), spell.getMaximumSpellChargeLevel());
             int level = j < min ? min : (j > max ? max : j);
             if (level != spell.currentSpellChargeLevel) {
-               spell.currentSpellChargeLevel = level;
+               spell.setChargeLevel(level);
                PacketHandler.INSTANCE.sendToServer(
                   new com.paleimitations.schoolsofmagic.common.network.PacketSwapSpellCharge(mana.getCurrentSpellSlot(), level));
             }
@@ -391,7 +391,7 @@ public class ClientEffectEvents {
 
       com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData ring =
          com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.CapabilityRingData.get(player);
-      if (ClientProxy.OPEN_SPELL_RING.isDown() && ring != null && !ring.getRing().isEmpty()
+      if (ClientProxy.OPEN_SPELL_RING.isDown() && ring != null && !com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(player).isEmpty()
             && !(player.getMainHandItem().getItem() instanceof ItemBaseWand)) {
          int dW = (int) Math.signum(event.getScrollDelta());
          if (dW != 0) {

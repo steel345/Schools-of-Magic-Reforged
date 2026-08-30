@@ -53,18 +53,28 @@ public class PacketRingUseBlock {
    public static void handle(PacketRingUseBlock msg, Supplier<NetworkEvent.Context> ctx) {
       ctx.get().enqueueWork(() -> {
          ServerPlayer sp = ctx.get().getSender();
-         if (sp == null || !RingCastHandler.isRingActive(sp) || !sp.getMainHandItem().isEmpty()) return;
+         if (sp == null || !RingCastHandler.isRingActive(sp)) return;
          Level level = sp.level();
          if (!level.isLoaded(msg.pos)) return;
          BlockState state = level.getBlockState(msg.pos);
          BlockHitResult hit = new BlockHitResult(
             new Vec3(msg.x, msg.y, msg.z), Direction.values()[msg.dir], msg.pos, msg.inside);
+
+         // cauldron only brews when it sees a wand in hand so lend it one, everything else uses whats actually held or the wand flashes in your hotbar
+         boolean lendWand = sp.getMainHandItem().isEmpty()
+            && state.getBlock() instanceof com.paleimitations.schoolsofmagic.common.blocks.BlockCauldron;
+         if (!lendWand) {
+            state.use(level, sp, InteractionHand.MAIN_HAND, hit);
+            return;
+         }
+
          ItemStack orig = sp.getItemInHand(InteractionHand.MAIN_HAND);
          sp.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ItemRegistry.wand_apprentice.get()));
          try {
             state.use(level, sp, InteractionHand.MAIN_HAND, hit);
          } finally {
             sp.setItemInHand(InteractionHand.MAIN_HAND, orig);
+            sp.inventoryMenu.broadcastChanges();
          }
       });
       ctx.get().setPacketHandled(true);

@@ -37,14 +37,14 @@ public class PacketRingHold {
          if (sp == null || !RingCastHandler.isRingActive(sp)) return;
          IManaData mana = sp.getCapability(CapabilityManaData.CAP).orElse(null);
          IRingData ring = CapabilityRingData.get(sp);
-         if (mana == null || ring == null || ring.getRing().isEmpty()) return;
+         if (mana == null || ring == null || com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(sp).isEmpty()) return;
          Spell spell = mana.getCurrentSpell();
          if (spell == null || spell instanceof SpellCustom || spell.getUseLength() <= 1) return;
          RingCastHandler.keepConcentration(sp);
          if (msg.finish) {
-            spell.finishHoldEffect(ring.getRing(), sp.level(), sp);
+            spell.finishHoldEffect(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(sp), sp.level(), sp);
          } else {
-            spell.rightHoldEffect(ring.getRing(), sp, msg.count);
+            spell.rightHoldEffect(com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getWorn(sp), sp, msg.count);
          }
       });
       ctx.get().setPacketHandled(true);

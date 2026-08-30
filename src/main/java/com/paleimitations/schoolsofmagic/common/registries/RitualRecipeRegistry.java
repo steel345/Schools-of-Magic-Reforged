@@ -16,6 +16,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class RitualRecipeRegistry {
+    private static ItemStack named(ItemStack stack, String name) {
+        stack.setHoverName(net.minecraft.network.chat.Component.literal(name).withStyle(st -> st.withItalic(false)));
+        return stack;
+    }
+
     public static com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting CAULDRON_NORMAL;
     public static com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting CAULDRON_GOLD;
     public static com.paleimitations.schoolsofmagic.common.recipes.RecipeRitualCrafting CAULDRON_LION;
@@ -58,6 +63,56 @@ public class RitualRecipeRegistry {
     }
 
     public static void register() {
+        // the iron underneath is what the cloth is worked onto
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.wizard_hat.get()),
+            40, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.magic_thread.get()),
+            new ItemStack(Items.IRON_HELMET)
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.wizard_chestplate.get()),
+            70, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.magic_thread.get()),
+            new ItemStack(ItemRegistry.magic_thread.get()),
+            new ItemStack(Items.IRON_CHESTPLATE)
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.wizard_leggings.get()),
+            60, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.magic_thread.get()),
+            new ItemStack(ItemRegistry.magic_thread.get()),
+            new ItemStack(Items.IRON_LEGGINGS)
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.wizard_robe_feet.get()),
+            30, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.enhanced_magic_cloth.get()),
+            new ItemStack(ItemRegistry.magic_thread.get()),
+            new ItemStack(Items.IRON_BOOTS)
+        );
+
+        RecipeRegistry.registerRitualRecipe(
+            new ItemStack(ItemRegistry.magic_thread.get(), 2),
+            40, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+            new ItemStack(ItemRegistry.magic_cloth.get()),
+            new ItemStack(Items.STRING),
+            new ItemStack(Items.STRING)
+        );
+
         RecipeRegistry.registerRitualRecipe(
             new ItemStack(ItemRegistry.magic_mirror.get()),
             150, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
@@ -137,28 +192,22 @@ public class RitualRecipeRegistry {
         ).setNote("1-8 Moon Dew, +10 mana each");
 
         RecipeRegistry.registerRitualRecipe(
-            magicTome(EnumMagicType.INFERNALITY),
-            300, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
-            new ItemStack(Items.BOOK),
-            new ItemStack(Items.NETHER_STAR)
-        );
-
-        RecipeRegistry.registerRitualRecipe(
             new ItemStack(ItemRegistry.exploration_book.get()),
             50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
             new ItemStack(Items.BOOK),
             new ItemStack(Items.SPRUCE_SAPLING),
             new ItemStack(Items.LAPIS_LAZULI),
             new ItemStack(Items.MAP),
-            new ItemStack(Items.INK_SAC)
+            new ItemStack(Items.INK_SAC),
+            new ItemStack(Items.IRON_INGOT)
         );
 
         RecipeRegistry.registerRitualRecipe(
             new ItemStack(ItemRegistry.spellworkers_handbook.get()),
             50, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
             new ItemStack(Items.BOOK),
-            new ItemStack(Items.RED_DYE),
-            stack(ItemRegistry.ingot.get(), EnumMetal.BRASS.getIndex()),
+            new ItemStack(BlockRegistry.brazier.get()),
+            new ItemStack(Items.IRON_INGOT),
             stack(ItemRegistry.crushed_plant.get(), EnumPlantType.HYDRANGEA.getIndex())
         );
 
@@ -282,7 +331,8 @@ public class RitualRecipeRegistry {
             200, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
             Items.BOOK,
             Items.LAPIS_BLOCK,
-            Items.EXPERIENCE_BOTTLE
+            Items.EXPERIENCE_BOTTLE,
+            Items.IRON_INGOT
         );
 
         RecipeRegistry.registerRitualRecipe(
@@ -297,6 +347,34 @@ public class RitualRecipeRegistry {
             Items.CHEST,
             new ItemStack(ItemRegistry.crushed_horn_unicorn.get())
         );
+
+        // a forged crown or necklace and a stone, set together over the fire. every pairing is its
+        // own recipe so the brazier can show what it takes and what it gives
+        for (IWandData.EnumHandleType metal : IWandData.EnumHandleType.values()) {
+            for (IWandData.EnumGemType gem : IWandData.EnumGemType.values()) {
+                // emerald has no stone cut for it, the same seventeen a ring takes
+                if (gem == IWandData.EnumGemType.EMERALD) continue;
+                RecipeRegistry.registerRitualRecipe(
+                    named(com.paleimitations.schoolsofmagic.common.items.ItemAdvancedGarment.of(
+                        ItemRegistry.advanced_crown.get(), metal, gem), "Magic Crown"),
+                    100, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+                    com.paleimitations.schoolsofmagic.common.items.ItemMetalGarment.of(
+                        ItemRegistry.crown.get(), metal.getSerializedName()),
+                    new ItemStack(ItemRegistry.feather_thunderbird.get()),
+                    gem.item
+                );
+
+                RecipeRegistry.registerRitualRecipe(
+                    named(com.paleimitations.schoolsofmagic.common.items.ItemAdvancedGarment.of(
+                        ItemRegistry.advanced_necklace.get(), metal, gem), "Magic Necklace"),
+                    100, 0, 0, Maps.newHashMap(), Maps.newHashMap(),
+                    com.paleimitations.schoolsofmagic.common.items.ItemMetalGarment.of(
+                        ItemRegistry.necklace.get(), metal.getSerializedName()),
+                    new ItemStack(ItemRegistry.horn_unicorn.get()),
+                    gem.item
+                );
+            }
+        }
 
         for (IWandData.EnumCoreType core : IWandData.EnumCoreType.values()) {
             for (IWandData.EnumHandleType handle : IWandData.EnumHandleType.values()) {

@@ -209,6 +209,14 @@ public class Ritual implements INBTSerializable<CompoundTag> {
       }
 
       discount += mana.getManaDiscountRate();
+      discount += com.paleimitations.schoolsofmagic.common.spells.Spell.skillDiscount(mana.getRitualLevel());
+
+      float affinity = 0.0F;
+      for (MagicElement element : this.getElements()) {
+         affinity = Math.max(affinity,
+            com.paleimitations.schoolsofmagic.common.spells.Spell.skillDiscount(mana.getElementLevel(element)));
+      }
+      discount += affinity;
       return discount > 0.95F ? 0.95F : discount;
    }
 

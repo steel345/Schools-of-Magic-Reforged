@@ -96,7 +96,8 @@ public class BlockCatalystBasin extends SOMBlockContainer {
             }
             if (satisfied != null) {
                final RecipeCatalystBasin recipe = satisfied;
-               data.useMana(recipe.getManaCost(), recipe.getElementList(), recipe.getSchoolList(), null);
+               data.useMana(recipe.getManaCost(), recipe.getElementList(), recipe.getSchoolList(),
+                  com.paleimitations.schoolsofmagic.common.entity.capabilities.mana_data.IManaData.EnumMagicTool.POTION);
                basin.startReaction();
                player.getCapability(CapabilityQuestData.CAP).ifPresent(qdata -> {
                   for (Quest q : qdata.getQuests()) {

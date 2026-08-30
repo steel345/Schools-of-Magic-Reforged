@@ -24,6 +24,7 @@ public class CommandResetMagic {
       ServerPlayer player = source.getPlayerOrException();
       IManaData data = player.getCapability(CapabilityManaData.CAP).orElse(null);
       if (data != null) {
+         data.setXPFrozen(false);
          data.setMagicianXP(0.0F);
          data.setSpellXP(0.0F);
          data.setPotionXP(0.0F);

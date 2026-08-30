@@ -3,8 +3,8 @@
   "ingredients": [
     { "item": "minecraft:book" },
     { "item": "som:item_diamond_dust" },
-    { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:8}" },
-    { "item": "som:ingot", "type": "forge:partial_nbt", "nbt": "{Damage:4}" }
+    { "item": "som:crushed_plant", "type": "forge:partial_nbt", "nbt": "{Damage:22}" },
+    { "item": "minecraft:iron_ingot" }
   ],
   "result": { "item": "som:alchemical_manual", "count": 1 }
 }

@@ -1,0 +1,16 @@
+{
+  "elements": [
+    {
+      "type": "spell",
+      "spell": "som:decoy"
+    },
+    {
+      "type": "text",
+      "text": "  Decoy leaves copies of the caster standing in a ring where they were. Each one wears what they wear and holds what they hold, and none of them move. It needs concentration.\n\n  Anything that was hunting the caster turns on the nearest copy instead. One hit is all a copy will take, and it comes apart where it stood.\n\n  Three of them stand at the lowest charge, and one more for every charge level above it. They last 20 seconds, and 10 seconds longer for every charge level above the first."
+    },
+    {
+      "type": "description",
+      "text": "page.spell_decoy.desc"
+    }
+  ]
+}

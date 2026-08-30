@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "particle": "som:blocks/anvil_hot",
+    "body": "som:blocks/anvil_hot",
+    "top": "som:blocks/anvil_hot_top"
+  }
+}

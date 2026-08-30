@@ -1,0 +1,4 @@
+  Rings, crowns and necklaces are not made at a crafting table. They are beaten out on an /banvil/z.
+<~><~>  The anvil has to be hot. Set one on top of a fire, lava, a campfire, a lit furnace or a brazier and give it about seven seconds. You will see it glow, and it is ready when the glow is full. A cold anvil will not take the work at all.
+<~><~>  Right click the hot anvil with a /bPorcelain Tablet/z of the shape you want. Right click again with an ingot. Then left click with a pickaxe, axe, sword or shovel to strike it. Five blows finish the piece.
+<~><~>  Every blow costs the tool 3 durability, and there is a small chance the anvil chips. There is also one that the tablet shatters. Sneak and right click to take back anything left on the anvil.
