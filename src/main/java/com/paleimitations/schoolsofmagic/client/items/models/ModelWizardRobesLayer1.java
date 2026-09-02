@@ -12,8 +12,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 
-// the hat, the robe, the sleeves and the boots. it was drawn as one piece hung off its own root, so
-// every box here is that same box moved onto the limb that has to carry it
 public class ModelWizardRobesLayer1 extends HumanoidModel<LivingEntity> {
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "wizard_robes_layer_1"), "main");

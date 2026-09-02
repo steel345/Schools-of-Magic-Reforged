@@ -33,6 +33,10 @@ public interface IBook extends IBookPageHolder {
 
    default boolean isEdited() { return true; }
 
+   default java.util.Set<String> getRemovedPages() { return java.util.Collections.emptySet(); }
+
+   default void removePage(String id) {}
+
    default void setEdited(boolean edited) {}
 
    boolean hasConnection(Level var1, BlockPos var2, BlockState var3);

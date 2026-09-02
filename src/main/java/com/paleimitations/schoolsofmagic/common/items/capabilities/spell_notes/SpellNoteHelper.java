@@ -136,30 +136,55 @@ public class SpellNoteHelper {
          || stack.getItem() == ItemRegistry.ingredient.get();
    }
 
+   private static float affinity(Buyable buy, SpellNotes notes) {
+      float score = 0.0F;
+      for (int i = 0; i < 16 && i < notes.elementUnits.length; i++) {
+         if (buy.elementUnits[i].maximum > 0.0F || buy.ofElement[i]) score += notes.elementUnits[i];
+      }
+      for (int i = 0; i < 6 && i < notes.schoolUnits.length; i++) {
+         if (buy.schoolUnits[i].maximum > 0.0F || buy.ofSchool[i]) score += notes.schoolUnits[i];
+      }
+      return score;
+   }
+
+   private static float weight(Buyable buy, SpellNotes notes) {
+      return 1.0F + affinity(buy, notes) * 4.0F;
+   }
+
    public static void getOptions(SpellNotes spellNotes, List<ItemStack> options) {
       Random rand = new Random();
-      int desperate = 5;
-      List<Buyable> optionProto = Lists.newArrayList();
+      List<Buyable> picked = Lists.newArrayList();
+      float worth = spellNotes.magicValue();
 
-      while (options.size() < 7) {
-         desperate--;
-
-         for (int i = 0; i < 7; i++) {
-            List<Buyable> tierList = BuyableRegistry.getBuyablesByTier(i);
-            if (!tierList.isEmpty() && BuyableRegistry.chanceOfTier(i, spellNotes.luck)) {
-               int j = rand.nextInt(tierList.size());
-               if (!optionProto.contains(tierList.get(j)) && tierList.get(j).isBuyable(spellNotes, desperate <= 0)) {
-                  optionProto.add(tierList.get(j));
-               }
+      // every tier that opens goes into one pool, then the note itself decides what comes out of it.
+      // picking one per tier meant the low tiers filled the page with things the note never asked for
+      for (int pass = 0; pass < 40 && picked.size() < 7; pass++) {
+         boolean desperate = pass >= 20;
+         List<Buyable> pool = Lists.newArrayList();
+         for (int tier = 0; tier < 8; tier++) {
+            if (!BuyableRegistry.chanceOfTier(tier, spellNotes.luck, worth)) continue;
+            for (Buyable buy : BuyableRegistry.getBuyablesByTier(tier)) {
+               if (!picked.contains(buy) && buy.isBuyable(spellNotes, desperate)) pool.add(buy);
             }
          }
+         if (pool.isEmpty()) continue;
 
-         if (desperate < -20) {
-            break;
+         // if the note speaks of an element at all, only what answers to it is offered. falling back
+         // to the rest is for when there is nothing left of that element to give
+         List<Buyable> onTheme = Lists.newArrayList();
+         for (Buyable buy : pool) if (affinity(buy, spellNotes) > 0.0F) onTheme.add(buy);
+         if (!onTheme.isEmpty()) pool = onTheme;
+
+         float total = 0.0F;
+         for (Buyable buy : pool) total += weight(buy, spellNotes);
+         float roll = rand.nextFloat() * total;
+         for (Buyable buy : pool) {
+            roll -= weight(buy, spellNotes);
+            if (roll <= 0.0F) { picked.add(buy); break; }
          }
       }
 
-      for (Buyable buy : optionProto) {
+      for (Buyable buy : picked) {
          options.add(buy.getItemStack().copy());
       }
    }

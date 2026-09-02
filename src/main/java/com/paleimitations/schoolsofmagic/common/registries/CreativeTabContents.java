@@ -289,10 +289,8 @@ public class CreativeTabContents {
 
     private static void emitEntries(net.minecraft.world.item.CreativeModeTab.Output output, Item item, ResourceLocation id) {
         if (item == ItemRegistry.complete_spellbook.get()) return;
-        // these two are laid out with the rings, they do not answer for themselves as well
         if (item == ItemRegistry.apprentice_crown.get() || item == ItemRegistry.apprentice_necklace.get()) return;
 
-        // the cloths sit at the end beside the coconut milk, and the magic goes with the yolk
         if (item == ItemRegistry.liquid_magic.get() || item == ItemRegistry.magic_cloth.get()
               || item == ItemRegistry.magic_thread.get() || item == ItemRegistry.enhanced_magic_cloth.get()) {
             return;
@@ -307,6 +305,10 @@ public class CreativeTabContents {
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.wizard_chestplate.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.wizard_leggings.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.wizard_robe_feet.get()));
+            return;
+        }
+        if (item == ItemRegistry.horseshoe.get()) return;
+        if (item == ItemRegistry.rift_transistor.get() || item == ItemRegistry.bound_rift_transistor.get()) {
             return;
         }
         if (item == ItemRegistry.bottle_egg.get()) {
@@ -332,10 +334,13 @@ public class CreativeTabContents {
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_mirror.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.brass_whistle.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.copper_key.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.horseshoe.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_letter.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.mysterious_application.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.broom.get()));
             output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.magic_broom.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.rift_transistor.get()));
+            output.accept(new net.minecraft.world.item.ItemStack(ItemRegistry.bound_rift_transistor.get()));
             return;
         }
 
@@ -431,7 +436,6 @@ public class CreativeTabContents {
                 idx++;
             }
 
-            // and the other two follow straight after the rings, each plain one heading its own run
             output.accept(new ItemStack(ItemRegistry.apprentice_crown.get()));
             emitGarmentPresets(output, ItemRegistry.advanced_crown.get(), " Crown");
             output.accept(new ItemStack(ItemRegistry.apprentice_necklace.get()));

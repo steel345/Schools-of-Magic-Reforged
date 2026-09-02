@@ -9,7 +9,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-// the plating only counts while the piece is actually worn, and which slot it goes in is not the
 // same for all three, so the tooltip says both
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class GarmentTooltipHandler {

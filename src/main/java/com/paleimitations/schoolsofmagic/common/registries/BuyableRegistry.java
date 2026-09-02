@@ -146,15 +146,21 @@ public class BuyableRegistry {
     }
 
     public static boolean chanceOfTier(int tier, float luck) {
+        return chanceOfTier(tier, luck, 0.0F);
+    }
+
+    public static boolean chanceOfTier(int tier, float luck, float value) {
+        float rich = Math.max(0.0F, Math.min(1.0F, value / 200.0F));
+        float reach = rich * tier * 0.09F;
         switch (tier) {
             case 0: return rand.nextFloat() < 0.3f;
-            case 1: return rand.nextFloat() < 0.2f;
-            case 2: return rand.nextFloat() < 0.1f;
-            case 3: return rand.nextFloat() < 0.1f  + luck * 0.3f;
-            case 4: return rand.nextFloat() < 0.08f + luck * 0.3f;
-            case 5: return rand.nextFloat() < 0.08f + luck * 0.75f * 0.3f;
-            case 6: return rand.nextFloat() < 0.05f + luck * 0.5f * 0.3f;
-            case 7: return rand.nextFloat() < 0.01f + luck * 0.25f * 0.3f;
+            case 1: return rand.nextFloat() < 0.2f + reach;
+            case 2: return rand.nextFloat() < 0.1f + reach;
+            case 3: return rand.nextFloat() < 0.1f  + luck * 0.3f + reach;
+            case 4: return rand.nextFloat() < 0.08f + luck * 0.3f + reach;
+            case 5: return rand.nextFloat() < 0.08f + luck * 0.75f * 0.3f + reach;
+            case 6: return rand.nextFloat() < 0.05f + luck * 0.5f * 0.3f + reach;
+            case 7: return rand.nextFloat() < 0.01f + luck * 0.25f * 0.3f + reach;
         }
         return false;
     }

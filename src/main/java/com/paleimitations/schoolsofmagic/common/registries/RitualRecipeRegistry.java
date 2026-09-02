@@ -63,7 +63,6 @@ public class RitualRecipeRegistry {
     }
 
     public static void register() {
-        // the iron underneath is what the cloth is worked onto
         RecipeRegistry.registerRitualRecipe(
             new ItemStack(ItemRegistry.wizard_hat.get()),
             40, 0, 0, Maps.newHashMap(), Maps.newHashMap(),

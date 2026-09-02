@@ -156,6 +156,9 @@ public class EntityRegistry {
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityDisrupt>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityDisrupt::new, MobCategory.MISC).sized(0.35F, 0.35F).clientTrackingRange(12).build("som_disrupt"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFogBall>> FOG_BALL = ENTITIES.register("som_fog_ball",
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFogBall>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityFogBall::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(12).build("som_fog_ball"));
+   public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityHorseshoe>> HORSESHOE = ENTITIES.register("som_horseshoe",
+      () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.projectile.EntityHorseshoe>of(com.paleimitations.schoolsofmagic.common.entity.projectile.EntityHorseshoe::new, MobCategory.MISC).sized(0.4F, 0.4F).clientTrackingRange(12).build("som_horseshoe"));
+
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityAnvilForge>> ANVIL_FORGE = ENTITIES.register("som_anvil_forge",
       () -> EntityType.Builder.<com.paleimitations.schoolsofmagic.common.entity.EntityAnvilForge>of(com.paleimitations.schoolsofmagic.common.entity.EntityAnvilForge::new, MobCategory.MISC).sized(0.8F, 0.4F).clientTrackingRange(8).build("som_anvil_forge"));
    public static final RegistryObject<EntityType<com.paleimitations.schoolsofmagic.common.entity.EntityAlarmRune>> ALARM_RUNE = ENTITIES.register("som_alarm_rune",

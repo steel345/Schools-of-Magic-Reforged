@@ -48,6 +48,11 @@ public class SpellIgnite extends Spell {
    }
 
    @Override
+   public boolean handlesBlockFirst() {
+      return true;
+   }
+
+   @Override
    public InteractionResult blockClickEffect(
       Player player, Level worldIn, BlockPos pos, ItemStack itemstack, Direction facing, float hitX, float hitY, float hitZ
    ) {

@@ -15,6 +15,15 @@ public class Buyable {
    public final FloatRange[] elementUnits;
    public final boolean spark;
    public int tierValue;
+   // what school of magic this belongs to, which is not the same as what it demands to buy
+   public final boolean[] ofElement = new boolean[16];
+   public final boolean[] ofSchool = new boolean[6];
+
+   public Buyable belongsTo(boolean[] elements, boolean[] schools) {
+      if (elements != null) System.arraycopy(elements, 0, this.ofElement, 0, Math.min(elements.length, 16));
+      if (schools != null) System.arraycopy(schools, 0, this.ofSchool, 0, Math.min(schools.length, 6));
+      return this;
+   }
 
    public Buyable(
       ItemStack stack,
@@ -41,38 +50,39 @@ public class Buyable {
       BuyableRegistry.BUYABLES.add(this);
    }
 
+   // floor, not a window. inRange rejected notes that had too much of an element
+   private static boolean meets(FloatRange range, float have) {
+      if (range.minimum == 0.0F && range.maximum == 0.0F) return true;
+      return have >= range.minimum;
+   }
+
+   // a note made of nothing but gem dust has no magician or spell units at all, so these floors shut
+   // it out of everything. a note worth plenty overall clears them
+   private static boolean broad(FloatRange range, float have, float worth) {
+      if (meets(range, have)) return true;
+      return worth >= range.minimum * 3.0F;
+   }
+
    public boolean isBuyable(SpellNotes notes, boolean desperate) {
       if (desperate && this.magicValue.inRange(notes.magicValue())) {
          return true;
-      } else if (this.magicianUnits.inRange(notes.magicianUnits)
-         && this.spellUnits.inRange(notes.spellUnits)
-         && this.ritualUnits.inRange(notes.ritualUnits)
-         && this.potionUnits.inRange(notes.potionUnits)
-         && (!this.spark || notes.spark >= 0)) {
-         for (int i = 0; i < 6; i++) {
-            if (!this.schoolUnits[i].inRange(notes.schoolUnits[i])) {
-               return false;
-            }
-         }
-
-         for (int ix = 0; ix < 16; ix++) {
-            if (!this.elementUnits[ix].inRange(notes.elementUnits[ix])) {
-               return false;
-            }
-         }
-
-         if (this.spark) {
-            for (int ixx = 0; ixx < 16; ixx++) {
-               if (this.elementUnits[ixx].maximum > 0.0F && ixx == notes.spark) {
-                  return true;
-               }
-            }
-         }
-
-         return true;
-      } else {
+      }
+      float worth = notes.magicValue();
+      if (!broad(this.magicianUnits, notes.magicianUnits, worth)
+            || !broad(this.spellUnits, notes.spellUnits, worth)
+            || !broad(this.ritualUnits, notes.ritualUnits, worth)
+            || !broad(this.potionUnits, notes.potionUnits, worth)
+            || (this.spark && notes.spark < 0)) {
          return false;
       }
+
+      for (int i = 0; i < 6; i++) {
+         if (!meets(this.schoolUnits[i], notes.schoolUnits[i])) return false;
+      }
+      for (int i = 0; i < 16; i++) {
+         if (!meets(this.elementUnits[i], notes.elementUnits[i])) return false;
+      }
+      return true;
    }
 
    public ItemStack getItemStack() {

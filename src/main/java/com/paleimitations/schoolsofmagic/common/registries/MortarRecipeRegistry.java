@@ -112,7 +112,7 @@ public final class MortarRecipeRegistry {
 
     private static ItemStack metaBlock(net.minecraftforge.registries.RegistryObject<net.minecraft.world.level.block.Block> ro, int meta) {
         ItemStack s = new ItemStack(ro.get());
-        s.setDamageValue(meta);
+        if (ro != BlockRegistry.magic_plant) s.setDamageValue(meta);
 
         if (ro == BlockRegistry.magic_plant && meta >= 0
               && meta < com.paleimitations.schoolsofmagic.common.blocks.EnumMagicType.values().length) {

@@ -55,6 +55,19 @@ public class RingSlotInventoryHandler {
          gg.renderItemDecorations(Minecraft.getInstance().font, stack, x, y);
       }
 
+      if (Minecraft.getInstance().player != null
+            && !com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.shows(Minecraft.getInstance().player, com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.SHOW_RING)) {
+         // decorations carry two hundred of depth, the tint has to clear it
+         gg.pose().pushPose();
+         gg.pose().translate(0.0F, 0.0F, 300.0F);
+         // decorations carry two hundred of depth, the tint has to clear it
+         gg.pose().pushPose();
+         gg.pose().translate(0.0F, 0.0F, 300.0F);
+         gg.fillGradient(x, y, x + 16, y + 16, 0x66FF3030, 0x66FF3030);
+         gg.pose().popPose();
+         gg.pose().popPose();
+      }
+
       ItemStack carried = screen.getMenu().getCarried();
       if (over(mx, my, x, y)) {
          gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
@@ -89,7 +102,18 @@ public class RingSlotInventoryHandler {
       int x = screen.getGuiLeft() + RING_DX;
       int y = screen.getGuiTop() + RING_DY;
       if (over(mx, my, x, y)) {
-         PacketHandler.INSTANCE.sendToServer(new PacketRingSlotClick());
+         if (net.minecraft.client.gui.screens.Screen.hasShiftDown()) {
+                     PacketHandler.INSTANCE.sendToServer(
+               new com.paleimitations.schoolsofmagic.common.network.PacketToggleSlotShow(com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.SHOW_RING));
+            net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+               net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+                  net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+               net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+                  net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                  } else {
+                     PacketHandler.INSTANCE.sendToServer(new PacketRingSlotClick());
+                  }
          event.setCanceled(true);
       }
    }

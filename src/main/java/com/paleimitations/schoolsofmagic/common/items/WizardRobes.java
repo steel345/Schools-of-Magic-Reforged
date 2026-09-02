@@ -11,7 +11,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-// iron underneath, but the four together are what matter
 public class WizardRobes extends ArmorItem {
    public static final float CHARGE_SPEED = 0.35F;
    public static final float MANA_SPEED = 0.35F;
@@ -70,8 +69,7 @@ public class WizardRobes extends ArmorItem {
    @Override
    public void appendHoverText(ItemStack stack, net.minecraft.world.level.Level level,
          java.util.List<net.minecraft.network.chat.Component> tooltip, net.minecraft.world.item.TooltipFlag flag) {
-      Player wearer = net.minecraft.client.Minecraft.getInstance().player;
-      boolean whole = fullSet(wearer);
+      boolean whole = wearingItAll();
       net.minecraft.ChatFormatting tone = whole
          ? net.minecraft.ChatFormatting.BLUE : net.minecraft.ChatFormatting.DARK_GRAY;
 
@@ -88,6 +86,17 @@ public class WizardRobes extends ArmorItem {
          percent(WARD)).withStyle(tone));
 
       super.appendHoverText(stack, level, tooltip, flag);
+   }
+
+   // appendHoverText is not client only, so touching Minecraft here crashes a dedicated server
+   private static boolean wearingItAll() {
+      if (!net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) return false;
+      return clientWearingItAll();
+   }
+
+   @net.minecraftforge.api.distmarker.OnlyIn(net.minecraftforge.api.distmarker.Dist.CLIENT)
+   private static boolean clientWearingItAll() {
+      return fullSet(net.minecraft.client.Minecraft.getInstance().player);
    }
 
    private static String percent(float part) {
@@ -128,7 +137,6 @@ public class WizardRobes extends ArmorItem {
       });
    }
 
-   // nothing is given for a piece or three, only for the whole set
    public static boolean fullSet(Player player) {
       if (player == null) return false;
       for (EquipmentSlot slot : new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST,

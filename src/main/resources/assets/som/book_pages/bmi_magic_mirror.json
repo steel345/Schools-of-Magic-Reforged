@@ -1,7 +1,16 @@
 {
   "elements": [
-    { "type": "title", "text": "The Magic Mirror" },
-    { "type": "ritual", "result": "som:magic_mirror" },
-    { "type": "text", "text": "  Four /bgold ingots/z for the rim, one /bLooking Glass/z for the face, and one /bCrushed Unicorn Horn/z. Put them in the brazier and give the ritual /b150 mana/z.\n\n  Hold it up and keep holding. After four seconds it takes you home, to your bed if you have one, or to the world spawn if you do not. That costs /b50 mana/z. Let go early and nothing happens.\n\n  You can bind it instead. /bShift click a block/z to mark it, or shift click the air to open the glass and type the coordinates yourself. A bound mirror does not carry you anywhere. It opens a window, and you watch that place through the gap in the glass and walk around as you walk. Keeping it open costs /b5 mana each second/z.\n\n  Bind it to a /bCrystal Ball/z and it does something else. One click opens the ball's reading wherever you are, for /b10 mana/z. Clear the coordinates in the glass to unbind it.\n\n  Not every mirror is made. Old ones still turn up in /bdungeon chests/z now and then, but rarely." }
+    {
+      "type": "title",
+      "text": "The Magic Mirror"
+    },
+    {
+      "type": "ritual",
+      "result": "som:magic_mirror"
+    },
+    {
+      "type": "text",
+      "text": "  Four /bgold ingots/z for the rim, one /bLooking Glass/z for the face, and one /bCrushed Unicorn Horn/z. Put them in the brazier and give the ritual /b150 mana/z.\n\n  Hold it up and keep holding. After four seconds it takes you home, to your bed if you have one, or to the world spawn if you do not. That costs /b50 mana/z. Let go early and nothing happens.\n\n  You can bind it instead. /bShift click a block/z to mark it, or shift click the air to open the glass and type the coordinates yourself. A bound mirror does not carry you anywhere. It opens a window, and you watch that place through the gap in the glass and walk around as you walk. Keeping it open costs /b5 mana each second/z.\n\n  Bind it to a /bCrystal Ball/z and it does something else. One click opens the ball's reading wherever you are, for /b10 mana/z. Clear the coordinates in the glass to unbind it.\n\n  Not every mirror is made. Old ones still turn up in /bdungeon chests/z now and then, but rarely.\n\n  This mechanic's visuals will not work well with shaders."
+    }
   ]
 }

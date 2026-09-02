@@ -1,0 +1,15 @@
+{
+  "parent": "som:som/advanced_spellslinger",
+  "display": {
+    "icon": { "item": "som:bound_rift_transistor" },
+    "title": { "translate": "advancements.som.remote_connection.title" },
+    "description": { "translate": "advancements.som.remote_connection.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": {
+    "bind_rift": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [ [ "bind_rift" ] ]
+}

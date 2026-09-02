@@ -791,7 +791,6 @@ public class ManaData implements IManaData, INBTSerializable<CompoundTag> {
       if (!PASSIVE_RECHARGE) {
          return;
       }
-      // anything over the plain rate is banked until it is worth a whole tick
       int step = 1;
       this.chargeCarry += speed - 1.0F;
       if (this.chargeCarry >= 1.0F) {

@@ -14,7 +14,6 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-// the thunderbird feather in the band keeps the wearer's head clear. nothing that clouds what you
 // see or which way you are pointed can settle on you, and a hit while you are holding a spell
 // no longer bites twice as deep
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
@@ -37,7 +36,6 @@ public class CrownClearHeadHandler {
       event.setResult(Event.Result.DENY);
    }
 
-   // one may already be on when the crown goes on, and it would sit there until it ran out
    @SubscribeEvent
    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
       if (event.phase != TickEvent.Phase.END) return;

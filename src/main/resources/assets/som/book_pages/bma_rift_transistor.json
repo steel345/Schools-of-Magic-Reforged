@@ -1,0 +1,10 @@
+{
+  "elements": [
+    { "type": "title", "text": "Rift Transistor" },
+    { "type": "text", "text": "  A /bRift Transistor/z on its own does nothing at all. It is a remote waiting to be told where to point.\n\n  Sneak and right click one against a /brift/z and it binds to it, becoming a /bBound Rift Transistor/z.\n\n  Right click the transistor to open the bound rift. Consumes 1 durability.   " },
+    { "type": "crafting", "result": "som:rift_transistor",
+      "pattern": ["minecraft:iron_ingot", "minecraft:redstone", "minecraft:iron_ingot",
+                  "minecraft:iron_ingot", "minecraft:glowstone_dust", "minecraft:iron_ingot",
+                  "minecraft:iron_ingot", "minecraft:quartz", "minecraft:iron_ingot"] }
+  ]
+}

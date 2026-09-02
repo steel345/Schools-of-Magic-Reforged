@@ -1,1 +1,1 @@
-  Drags the world down into its deepest night.
+  Drags the world down into its deepest night.<~><~>  This mechanic's visuals will not work well with shaders.

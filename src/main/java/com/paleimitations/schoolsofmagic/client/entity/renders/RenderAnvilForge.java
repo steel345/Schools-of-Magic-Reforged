@@ -16,7 +16,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
-// the work sat on the anvil, and the anvil itself laid over in its hot skin as the fire takes it
 public class RenderAnvilForge extends EntityRenderer<EntityAnvilForge> {
    private static final ResourceLocation HAMMER =
       new ResourceLocation("som", "textures/items/hammer_overlay.png");
@@ -85,7 +84,6 @@ public class RenderAnvilForge extends EntityRenderer<EntityAnvilForge> {
       super.render(forge, yaw, partialTicks, pose, buf, light);
    }
 
-   // sat exactly over the metal, solid, and it comes and goes by growing out of nothing
    private void hammer(EntityAnvilForge forge, float partialTicks, float metal, float lie,
                        PoseStack pose, MultiBufferSource buf) {
       float grown = Mth.clamp(forge.shown() / (float) EntityAnvilForge.SHOW_TICKS, 0.0F, 1.0F);
@@ -101,13 +99,10 @@ public class RenderAnvilForge extends EntityRenderer<EntityAnvilForge> {
       pose.mulPose(Axis.ZP.rotationDegrees(forge.hammers() * TURN_PER_BLOW));
       pose.scale(size, size, size);
 
-      // the same pixel of plate the tablet and the ingot are, not a sheet of paper. the baked item
-      // model comes out of the generator already a sixteenth thick with its edges on it
       Minecraft mc = Minecraft.getInstance();
       net.minecraft.client.resources.model.BakedModel mark = mc.getModelManager().getModel(
          com.paleimitations.schoolsofmagic.client.HotAnvilRenderer.HotAnvilModels.HAMMER);
 
-      // shifted so the plate rests on the metal rather than straddling it
       pose.translate(-0.5F, -0.5F, -0.46875F);
       // cut out and two sided, the way an item sheet draws. blended it was sorting its own faces
       // away depending which side you stood on

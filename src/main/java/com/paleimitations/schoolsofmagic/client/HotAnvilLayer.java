@@ -6,8 +6,6 @@ import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.inventory.InventoryMenu;
 
-// the hot skin lies on a shape that folds back on itself, so growing it a hair cannot cover every
-// face at once. this pulls it towards the eye instead, which works whichever way a face points
 public class HotAnvilLayer extends RenderType {
    private HotAnvilLayer(String name, VertexFormat format, VertexFormat.Mode mode, int size,
                          boolean crumbling, boolean sorting, Runnable setup, Runnable clear) {

@@ -238,7 +238,8 @@ public class TileEntityRitualCenter extends BlockEntity {
 
    public void startRitual(Player player) {
       if (this.isOwner(player)) {
-         if (this.ritual != null && this.ritual.castRitual(player, this)) {
+         Ritual rite = this.getRitual();
+         if (rite != null && rite.castRitual(player, this)) {
             this.isActivated = true;
          }
       } else if (!player.level().isClientSide) {

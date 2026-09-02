@@ -129,5 +129,6 @@ public class PacketHandler {
       INSTANCE.registerMessage(nextID(), PacketAstralSwell.class, PacketAstralSwell::encode, PacketAstralSwell::new, PacketAstralSwell::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketShiningShield.class, PacketShiningShield::encode, PacketShiningShield::new, PacketShiningShield::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
       INSTANCE.registerMessage(nextID(), PacketNecklaceBreak.class, PacketNecklaceBreak::encode, PacketNecklaceBreak::new, PacketNecklaceBreak::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+      INSTANCE.registerMessage(nextID(), PacketToggleSlotShow.class, PacketToggleSlotShow::encode, PacketToggleSlotShow::new, PacketToggleSlotShow::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
    }
 }

@@ -144,8 +144,6 @@ public class EntityAnvilForge extends Entity {
          return state.hasProperty(CampfireBlock.LIT) && state.getValue(CampfireBlock.LIT);
       }
 
-      // anything that lights up because it is burning inside, furnaces and braziers alike, and
-      // whatever a mod has added that works the same way. a torch is only a light
       if (state.hasProperty(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT)) {
          return state.getValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT)
             && state.getLightEmission(level, pos) >= 8
@@ -236,7 +234,6 @@ public class EntityAnvilForge extends Entity {
       return true;
    }
 
-   // beaten hot, so it gives way now and then
    private void wearAnvil() {
       if (this.random.nextFloat() > 0.04F) return;
 

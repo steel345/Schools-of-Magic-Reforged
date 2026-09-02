@@ -34,6 +34,10 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
    private List<BookElementSticker> stickers = Lists.newArrayList();
 
    private boolean edited = false;
+   private final java.util.Set<String> removedPages = new java.util.LinkedHashSet<>();
+
+   @Override public java.util.Set<String> getRemovedPages() { return this.removedPages; }
+   @Override public void removePage(String id) { if (id != null) this.removedPages.add(id); }
 
    @Override public boolean isEdited() { return this.edited; }
    @Override public void setEdited(boolean edited) { this.edited = edited; }
@@ -493,6 +497,9 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       }
 
       nbt.putBoolean("edited", this.edited);
+      net.minecraft.nbt.ListTag torn = new net.minecraft.nbt.ListTag();
+      for (String id : this.removedPages) torn.add(net.minecraft.nbt.StringTag.valueOf(id));
+      nbt.put("removed_pages", torn);
       nbt.putInt("pages_size", this.pages.size());
 
       for (int i = 0; i < this.pages.size(); i++) {
@@ -544,6 +551,9 @@ public class Book implements INBTSerializable<CompoundTag>, IBook {
       this.links = nbt.getInt("links");
       this.tickToConnect = nbt.getInt("tickToConnect");
       this.edited = nbt.getBoolean("edited");
+      this.removedPages.clear();
+      net.minecraft.nbt.ListTag torn = nbt.getList("removed_pages", 8);
+      for (int i = 0; i < torn.size(); i++) this.removedPages.add(torn.getString(i));
       if (nbt.contains("color")) {
          this.color = DyeColor.byId(nbt.getInt("color"));
       }

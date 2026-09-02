@@ -81,7 +81,12 @@ public class KnowledgeSearch {
    }
 
    public static String pageTitle(com.paleimitations.schoolsofmagic.common.books.BookPage page) {
-      if (page == null || page.elements == null) return "";
+      if (page == null) return "";
+      if (page instanceof com.paleimitations.schoolsofmagic.common.books.BookPageSpell sp
+            && sp.getSpell() != null) {
+         return spellName(sp.getSpell());
+      }
+      if (page.elements == null) return "";
       for (PageElement el : page.elements) {
          if (el instanceof com.paleimitations.schoolsofmagic.common.books.PageElementTitle t
                && t.text != null && t.text.length > 0) {
@@ -171,8 +176,20 @@ public class KnowledgeSearch {
       }
    }
 
+   public static String spellName(com.paleimitations.schoolsofmagic.common.spells.Spell spell) {
+      String key = "spell." + spell.getName() + ".name";
+      String name = I18n.get(key);
+      return name.equals(key) ? spell.getName().replace('_', ' ') : name;
+   }
+
    private static void collectPageText(BookPage bp, List<String> out) {
-      if (bp == null || bp.elements == null) return;
+      if (bp == null) return;
+      if (bp instanceof com.paleimitations.schoolsofmagic.common.books.BookPageSpell sp
+            && sp.getSpell() != null) {
+         out.add(spellName(sp.getSpell()));
+         out.add(sp.getSpell().getName());
+      }
+      if (bp.elements == null) return;
       for (PageElement el : bp.elements) {
          if (el instanceof PageElementParagraphs p) {
             try { out.addAll(p.getSearchLines()); } catch (Throwable ignored) {}

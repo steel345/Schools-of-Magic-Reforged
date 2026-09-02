@@ -65,6 +65,14 @@ public class TileEntityMortNPest extends BlockEntity implements MenuProvider {
       return new ContainerMortNPest(id, playerInventory, this);
    }
 
+   private static void spend(net.minecraftforge.items.IItemHandlerModifiable inv, int slot) {
+      ItemStack in = inv.getStackInSlot(slot);
+      if (in.isEmpty()) return;
+      ItemStack left = in.copy();
+      left.shrink(1);
+      inv.setStackInSlot(slot, left.isEmpty() ? ItemStack.EMPTY : left);
+   }
+
    public void tick() {
       if (this.level != null && !this.canPress) {
          this.worker.doWork();
@@ -87,8 +95,8 @@ public class TileEntityMortNPest extends BlockEntity implements MenuProvider {
             if (!this.level.isClientSide) {
                this.level.addFreshEntity(outputItem_secondary);
             }
-            this.handler.setStackInSlot(0, ItemStack.EMPTY);
-            this.handler.setStackInSlot(1, ItemStack.EMPTY);
+            spend(this.handler, 0);
+            spend(this.handler, 1);
             Player player = this.level.getNearestPlayer((double)this.worldPosition.getX() + 0.5, (double)this.worldPosition.getY() + 0.5, (double)this.worldPosition.getZ() + 0.5, 5.0, false);
             if (player != null && player.containerMenu instanceof ContainerMortNPest && player.getCapability(CapabilityQuestData.CAP).isPresent()) {
                IQuestData data = player.getCapability(CapabilityQuestData.CAP).orElse(null);

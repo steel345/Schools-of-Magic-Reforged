@@ -86,8 +86,11 @@ public class ColoredLightSources {
          int tint = com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornRing.glowColor(player);
          if (tint == -1) continue;
          if (added++ >= MAX_ENTITY_LIGHTS) break;
+         float slice = mc.getFrameTime();
          out.add(new Source(
-            player.getX(), player.getY() + player.getBbHeight() * 0.6D, player.getZ(),
+            net.minecraft.util.Mth.lerp(slice, player.xOld, player.getX()),
+            net.minecraft.util.Mth.lerp(slice, player.yOld, player.getY()) + player.getBbHeight() * 0.6D,
+            net.minecraft.util.Mth.lerp(slice, player.zOld, player.getZ()),
             (tint >> 16 & 0xFF) / 255.0F,
             (tint >> 8 & 0xFF) / 255.0F,
             (tint & 0xFF) / 255.0F,

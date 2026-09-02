@@ -34,10 +34,10 @@ public class LayerWornNecklace<T extends LivingEntity, M extends HumanoidModel<T
                       float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
       if (!(entity instanceof Player player) || player.isInvisible()) return;
 
+      if (!com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.shows(player, com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.SHOW_TALISMAN)) return;
       ItemStack necklace = GarmentSlots.wornNecklace(player);
       if (necklace.isEmpty()) return;
 
-      // a chestplate takes the chest, and the two of them fighting over it reads as one broken thing
       if (!player.getInventory().getArmor(2).isEmpty()) return;
 
       int metal = LayerWornRing.metalTint(GarmentSlots.metalOf(necklace));

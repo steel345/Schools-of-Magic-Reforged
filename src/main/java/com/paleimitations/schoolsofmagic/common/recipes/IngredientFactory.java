@@ -165,16 +165,16 @@ final class IngredientFactory {
       if (!ItemStack.isSameItem(stack, supplied)) {
          return false;
       }
-      if (!supplied.isDamageableItem() && stack.getDamageValue() != supplied.getDamageValue()) {
-         return false;
-      }
-
       net.minecraft.nbt.CompoundTag rTag = stack.getTag();
       if (rTag != null && rTag.contains("BlockStateTag")) {
          net.minecraft.nbt.CompoundTag sTag = supplied.getTag();
          net.minecraft.nbt.CompoundTag suppliedBs = (sTag != null)
             ? sTag.getCompound("BlockStateTag") : new net.minecraft.nbt.CompoundTag();
          return rTag.getCompound("BlockStateTag").equals(suppliedBs);
+      }
+
+      if (!supplied.isDamageableItem() && stack.getDamageValue() != supplied.getDamageValue()) {
+         return false;
       }
       return true;
    }

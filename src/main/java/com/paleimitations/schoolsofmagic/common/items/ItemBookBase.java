@@ -169,30 +169,29 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
    public static void refreshIfPristine(ItemStack stack) {
       IBook book = CapabilityBook.getCapability(stack);
       if (book == null) return;
-
-      if (book.isEdited()) return;
-      if (book.getStickers() != null && !book.getStickers().isEmpty()) return;
       ensureCosmetics(stack);
+
       java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> def = defaultPagesFor(stack);
       if (def == null) return;
-      java.util.Set<String> defIds = new java.util.HashSet<>();
-      for (com.paleimitations.schoolsofmagic.common.books.BookPage p : def) defIds.add(pageId(p));
-      for (com.paleimitations.schoolsofmagic.common.books.BookPage p : book.getBookPages()) {
-         if (!defIds.contains(pageId(p))) return;
-      }
-      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> current = book.getBookPages();
-      boolean differs = current.size() != def.size();
-      if (!differs) {
-         for (int i = 0; i < def.size(); i++) {
-            if (!pageId(current.get(i)).equals(pageId(def.get(i)))) { differs = true; break; }
-         }
-      }
-      if (differs) {
-         book.setBookPages(Lists.newArrayList(def));
-      }
-   }
 
-   private static String pageId(com.paleimitations.schoolsofmagic.common.books.BookPage p) {
+      java.util.Set<String> torn = book.getRemovedPages();
+      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> current = book.getBookPages();
+
+      java.util.List<com.paleimitations.schoolsofmagic.common.books.BookPage> merged = Lists.newArrayList();
+      java.util.Set<String> printed = new java.util.HashSet<>();
+      for (com.paleimitations.schoolsofmagic.common.books.BookPage p : def) {
+         String id = pageId(p);
+         printed.add(id);
+         if (!torn.contains(id)) merged.add(p);
+      }
+
+      for (com.paleimitations.schoolsofmagic.common.books.BookPage p : current) {
+         if (!printed.contains(pageId(p))) merged.add(p);
+      }
+
+      book.setBookPages(merged);
+   }
+   public static String pageId(com.paleimitations.schoolsofmagic.common.books.BookPage p) {
       if (p instanceof com.paleimitations.schoolsofmagic.common.books.BookPageSpell sp && sp.getSpell() != null) {
          return "spell:" + sp.getSpell().getResourceLocation();
       }
@@ -232,8 +231,24 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
          if (ItemSpellbook.isCastingMode(itemstack)) {
             com.paleimitations.schoolsofmagic.common.spells.Spell sel = ItemSpellbook.castingInstance(playerIn, itemstack);
             if (sel != null) {
+               boolean alreadyHolding = playerIn.isUsingItem();
                playerIn.startUsingItem(handIn);
-               return sel.rightClickEffect(worldIn, playerIn, handIn);
+               InteractionResultHolder<ItemStack> res = sel.rightClickEffect(worldIn, playerIn, handIn);
+
+               // let go or everything watching for a raised hand thinks you are concentrating
+               if (!res.getResult().consumesAction() || !sel.isHeldSpell()) {
+                  if (!alreadyHolding) playerIn.stopUsingItem();
+               }
+               if (res.getResult().consumesAction()) {
+                  if (sel instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom sc) {
+                     if (!sc.isManualCooldown()) {
+                        playerIn.getCooldowns().addCooldown(itemstack.getItem(), sc.getCooldownTicks());
+                     }
+                  } else if (sel.getCooldownTicks() > 0) {
+                     playerIn.getCooldowns().addCooldown(itemstack.getItem(), sel.getCooldownTicks());
+                  }
+               }
+               return res;
             }
             return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
          }
@@ -291,6 +306,48 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
       return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
    }
 
+   @Override
+   public InteractionResult useOn(net.minecraft.world.item.context.UseOnContext context) {
+      Player player = context.getPlayer();
+      ItemStack stack = context.getItemInHand();
+      com.paleimitations.schoolsofmagic.common.spells.Spell sel =
+         player == null ? null : ItemSpellbook.castingInstance(player, stack);
+      if (sel != null) {
+         net.minecraft.world.phys.Vec3 hit = context.getClickLocation();
+         InteractionResult result = sel.blockClickEffect(player, context.getLevel(), context.getClickedPos(),
+            stack, context.getClickedFace(), (float) hit.x, (float) hit.y, (float) hit.z);
+         if (result == InteractionResult.SUCCESS || result == InteractionResult.CONSUME) {
+            if (sel.getCooldownTicks() > 0) {
+               player.getCooldowns().addCooldown(stack.getItem(), sel.getCooldownTicks());
+            }
+            return result;
+         }
+      }
+      return super.useOn(context);
+   }
+
+   @Override
+   public InteractionResult interactLivingEntity(ItemStack stack, Player player,
+         net.minecraft.world.entity.LivingEntity target, InteractionHand hand) {
+      com.paleimitations.schoolsofmagic.common.spells.Spell sel = ItemSpellbook.castingInstance(player, stack);
+      if (sel != null) {
+         InteractionResult result = sel.entityClickEffect(stack, player, target, hand);
+         if (result != InteractionResult.PASS) return result;
+      }
+      return super.interactLivingEntity(stack, player, target, hand);
+   }
+
+   @Override
+   public void releaseUsing(ItemStack stack, Level level, net.minecraft.world.entity.LivingEntity entity, int timeLeft) {
+      if (entity instanceof Player p) {
+         com.paleimitations.schoolsofmagic.common.spells.Spell sel = ItemSpellbook.castingInstance(p, stack);
+         if (sel instanceof com.paleimitations.schoolsofmagic.common.spells.spells.SpellCustom sc && sc.isChanneled()) {
+            p.getCooldowns().addCooldown(stack.getItem(), sc.getCooldownTicks());
+         }
+      }
+      super.releaseUsing(stack, level, entity, timeLeft);
+   }
+
    private static com.paleimitations.schoolsofmagic.common.spells.Spell castingSpell(ItemStack stack) {
       if (stack.getItem() instanceof ItemSpellbook && ItemSpellbook.isCastingMode(stack)) {
          return ItemSpellbook.selectedSpell(stack);
@@ -333,6 +390,7 @@ public class ItemBookBase extends BookItem implements ICreativeTabFiller {
    }
 
    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+      if (!worldIn.isClientSide && entityIn.tickCount % 100 == 0) refreshIfPristine(stack);
       IBook book = CapabilityBook.getCapability(stack);
       if (book != null && isSelected) {
          Vec3 vec3d = entityIn.getEyePosition(1.0f);

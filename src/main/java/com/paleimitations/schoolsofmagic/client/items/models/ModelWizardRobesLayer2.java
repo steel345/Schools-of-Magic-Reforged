@@ -12,7 +12,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 
-// the legs on their own, which is the layer vanilla keeps for the lower half
 public class ModelWizardRobesLayer2 extends HumanoidModel<LivingEntity> {
    public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(new ResourceLocation("som", "wizard_robes_layer_2"), "main");
@@ -31,8 +30,6 @@ public class ModelWizardRobesLayer2 extends HumanoidModel<LivingEntity> {
 
       root.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
       root.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
-      // the same brooch the hat wears. blockbench hangs it off the hat but it sits at the waist,
-      // so it belongs on the belt of the trousers rather than the head
       PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
       body.addOrReplaceChild("brooch", CubeListBuilder.create()
          .texOffs(68, 68).addBox(-1.1667F, -1.5F, -0.5F, 1.0F, 3.0F, 1.0F, none)

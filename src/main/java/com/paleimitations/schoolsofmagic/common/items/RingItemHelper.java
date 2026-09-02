@@ -18,7 +18,6 @@ public final class RingItemHelper {
       t.putInt("CustomModelData", cmd(metal, gem));
    }
 
-   // a set crown or necklace works the hand the same way a ring does, and any of the three casts
    // from the charm slot as well as from its own
    public static boolean casts(ItemStack stack) {
       if (stack.isEmpty()) return false;
@@ -51,7 +50,6 @@ public final class RingItemHelper {
       return casts(neck) ? neck : ItemStack.EMPTY;
    }
 
-   // only a ring goes on the hand, so the finger layer asks for one by itself
    public static ItemStack getWornRing(net.minecraft.world.entity.player.Player player) {
       if (player == null) return ItemStack.EMPTY;
       com.paleimitations.schoolsofmagic.common.entity.capabilities.ring_data.IRingData data =

@@ -26,14 +26,10 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-// an anvil sat over a fire goes hot whether anybody is working it or not, so this watches the ones
-// nearby rather than hanging off the work entity. the hot skin is the real anvil model with the
-// hot textures on it, so it lands exactly where a resource pack would have put it
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class HotAnvilRenderer {
    private static final int LOOK = 12;
 
-   // it sits in the fire a while before it shows, then comes up slowly
    private static final int SOAK = 80;
    private static final int FADE = 60;
    private static final int WARM = SOAK + FADE;
@@ -97,8 +93,6 @@ public class HotAnvilRenderer {
          pose.pushPose();
          pose.translate(at.getX() - eye.x, at.getY() - eye.y, at.getZ() - eye.z);
 
-         // the baked model comes out facing south, the blockstate is what turns it, and it is
-         // grown a hair so it covers the cold one instead of fighting it face to face
          pose.translate(0.5D, 0.5D, 0.5D);
          if (anvil.hasProperty(net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING)) {
             pose.mulPose(com.mojang.math.Axis.YP.rotationDegrees(
@@ -119,7 +113,6 @@ public class HotAnvilRenderer {
       buf.endBatch(HotAnvilLayer.FADING);
    }
 
-   // the model renderer has no say over alpha, so it is forced on the way through
    private record Faded(VertexConsumer out, float alpha) implements VertexConsumer {
       @Override
       public VertexConsumer vertex(double x, double y, double z) {

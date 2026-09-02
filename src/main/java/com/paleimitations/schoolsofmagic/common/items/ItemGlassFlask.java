@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -59,14 +58,7 @@ public class ItemGlassFlask extends ItemPotionry {
       player.awardStat(Stats.ITEM_USED.get(this));
 
       ItemStack water = new ItemStack(ItemRegistry.bottle_water.get());
-      if (!player.getAbilities().instabuild) {
-         held.shrink(1);
-         if (held.isEmpty()) {
-            player.setItemInHand(hand, water);
-         } else if (!player.getInventory().add(water)) {
-            player.drop(water, false);
-         }
-      }
-      return InteractionResultHolder.sidedSuccess(held, level.isClientSide);
+      return InteractionResultHolder.sidedSuccess(
+         net.minecraft.world.item.ItemUtils.createFilledResult(held, player, water), level.isClientSide);
    }
 }

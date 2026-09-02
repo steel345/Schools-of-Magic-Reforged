@@ -20,7 +20,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-// worn metal is still metal, gem or no gem. what is on the fingers, the head and round the neck
 // all counts, and one of each stacks
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class GarmentArmorHandler {
@@ -45,12 +44,10 @@ public class GarmentArmorHandler {
       IGarmentData garments = CapabilityGarmentData.get(player);
       if (garments != null && isCrown(garments.getGarment(IGarmentData.CROWN))) plate += CROWN;
 
-      // the necklace has its own slot sat over the ring one
       com.paleimitations.schoolsofmagic.common.entity.capabilities.talisman_data.ITalismanData talisman =
          com.paleimitations.schoolsofmagic.common.entity.capabilities.talisman_data.CapabilityTalismanData.get(player);
       if (talisman != null && isNecklace(talisman.getTalisman())) plate += NECKLACE;
 
-      // a second piece can ride in the charm pouch, and it counts on top of the first
       if (isRing(GarmentSlots.findCharmPouch(player, GarmentArmorHandler::isRing))) plate += RING;
       if (isCrown(GarmentSlots.findCharmPouch(player, GarmentArmorHandler::isCrown))) plate += CROWN;
       if (isNecklace(GarmentSlots.findCharmPouch(player, GarmentArmorHandler::isNecklace))) plate += NECKLACE;

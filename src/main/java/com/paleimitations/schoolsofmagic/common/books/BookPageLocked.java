@@ -51,6 +51,8 @@ public class BookPageLocked extends BookPage {
          super.drawPage(gg, mouseX, mouseY, x, y, isGUI, subpage);
          return;
       }
+      clearChangedMarker();
+
       Font font = Minecraft.getInstance().font;
       Component title = Component.translatable("book.page_locked.title");
       Component desc = Component.translatable("book.page_locked.desc");

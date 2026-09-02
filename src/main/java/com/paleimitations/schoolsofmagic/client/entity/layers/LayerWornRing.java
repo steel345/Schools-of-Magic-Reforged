@@ -37,6 +37,7 @@ public class LayerWornRing<T extends LivingEntity, M extends HumanoidModel<T>> e
                       float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
       if (!(entity instanceof Player player) || player.isInvisible()) return;
 
+      if (!com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.shows(player, com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.SHOW_RING)) return;
       ItemStack ring = wornRing(player);
       if (ring.isEmpty()) return;
 
@@ -49,7 +50,6 @@ public class LayerWornRing<T extends LivingEntity, M extends HumanoidModel<T>> e
       this.model.render(pose, band, light, OverlayTexture.NO_OVERLAY,
          (metal >> 16 & 0xFF) / 255.0F, (metal >> 8 & 0xFF) / 255.0F, (metal & 0xFF) / 255.0F, 1.0F);
 
-      // a plain band has no stone to lay over it
       int gem = stoneTint(ring);
       if (gem >= 0) {
          float r = (gem >> 16 & 0xFF) / 255.0F;

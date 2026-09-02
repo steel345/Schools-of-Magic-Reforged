@@ -1,6 +1,12 @@
 {
   "elements": [
-    { "type": "title", "text": "Trinket Slots" },
-    { "type": "text", "text": "  Open your inventory and look just above the off-hand (shield) slot: there sits a small /bcharm button/z. Click it and your worn magic is laid out; click it again and your armour returns exactly as it was.\n\n  With it open, three slots stand above the button. Nearest is the /bRing slot/z, for magic rings. Above that the /bTalisman slot/z, for necklaces and worn charms. Topmost is the /bCharm slot/z, which takes all wearable charms.\n\n  Where your armour was, four /bgarment slots/z appear: /bCrown/z, /bBody/z, /bBelt/z and /bGrimoire/z.\n\n  The /bBelt/z carries a all types of bags and pouches. The /bGrimoire/z slot holds any magic book or tome. Etc. Every slot answers its own key." }
+    {
+      "type": "title",
+      "text": "Trinket Slots"
+    },
+    {
+      "type": "text",
+      "text": "  Open your inventory and look just above the off-hand (shield) slot: there sits a small /bcharm button/z. Click it and your worn magic is laid out; click it again and your armour returns exactly as it was.\n\n  With it open, three slots stand above the button. Nearest is the /bRing slot/z, for magic rings. Above that the /bTalisman slot/z, for necklaces and worn charms. Topmost is the /bCharm slot/z, which takes all wearable charms.\n\n  Where your armour was, four /bgarment slots/z appear: /bCrown/z, /bBody/z, /bBelt/z and /bGrimoire/z.\n\n  The /bBelt/z carries a all types of bags and pouches. The /bGrimoire/z slot holds any magic book or tome. Etc. Every slot answers its own key.\n\n  Anything worn shows on you. Hold /bshift/z and click a slot to stop it showing, and the slot turns red to say so. Hold shift and click it again to bring it back. What it does for you does not change either way, only whether it can be seen."
+    }
   ]
 }

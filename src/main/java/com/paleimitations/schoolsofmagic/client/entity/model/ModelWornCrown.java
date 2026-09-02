@@ -28,7 +28,6 @@ public class ModelWornCrown {
 
       PartDefinition crown = partdefinition.addOrReplaceChild("crown", CubeListBuilder.create()
          .texOffs(0, 30).addBox(-4.0F, -5.0F, -4.0F, 8.0F, 5.0F, 8.0F, new CubeDeformation(0.02F)),
-         // the band is cut to the head exactly, so it needs lifting off the skin or the two flicker
          PartPose.offset(0.0F, -8.0F, 0.0F));
 
       return LayerDefinition.create(meshdefinition, 64, 64);

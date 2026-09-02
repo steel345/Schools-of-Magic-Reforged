@@ -25,9 +25,15 @@ public class GarmentData implements IGarmentData {
       this.garments[slot] = stack == null ? ItemStack.EMPTY : stack;
    }
 
+   private int hidden = 0;
+
+   @Override public int getHidden() { return this.hidden; }
+   @Override public void setHidden(int mask) { this.hidden = mask; }
+
    @Override
    public CompoundTag serializeNBT() {
       CompoundTag tag = new CompoundTag();
+      tag.putInt("hidden", this.hidden);
       for (int i = 0; i < SLOTS; i++) {
          if (!this.garments[i].isEmpty()) {
             tag.put("garment" + i, this.garments[i].save(new CompoundTag()));
@@ -38,6 +44,7 @@ public class GarmentData implements IGarmentData {
 
    @Override
    public void deserializeNBT(CompoundTag tag) {
+      this.hidden = tag.getInt("hidden");
       for (int i = 0; i < SLOTS; i++) {
          this.garments[i] = tag.contains("garment" + i)
             ? ItemStack.of(tag.getCompound("garment" + i)) : ItemStack.EMPTY;

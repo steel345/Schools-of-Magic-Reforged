@@ -37,7 +37,6 @@ import net.minecraft.world.level.block.Blocks;
 public class BookMagicIntermediate {
 
 
-   // the four tablets are all the same nine slots with a different thing in the middle
    private static PageElementCraftingRecipe tablet(net.minecraft.world.item.ItemStack middle,
          net.minecraft.world.item.Item out, int x, int y, int target) {
       ItemStack t = new ItemStack(ItemRegistry.porcelain_tablet.get());

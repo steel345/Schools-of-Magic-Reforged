@@ -57,6 +57,19 @@ public class CharmSlotInventoryHandler {
       }
 
       // the lighter goes on last so it lies over the item and its bar rather than under them
+      if (net.minecraft.client.Minecraft.getInstance().player != null
+            && !com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.shows(net.minecraft.client.Minecraft.getInstance().player,
+               com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.SHOW_CHARM)) {
+         // decorations carry two hundred of depth, the tint has to clear it
+         gg.pose().pushPose();
+         gg.pose().translate(0.0F, 0.0F, 300.0F);
+         // decorations carry two hundred of depth, the tint has to clear it
+         gg.pose().pushPose();
+         gg.pose().translate(0.0F, 0.0F, 300.0F);
+         gg.fillGradient(x, y, x + 16, y + 16, 0x66FF3030, 0x66FF3030);
+         gg.pose().popPose();
+         gg.pose().popPose();
+      }
       if (hovered) gg.fillGradient(x, y, x + 16, y + 16, 0x80FFFFFF, 0x80FFFFFF);
 
       ItemStack carried = screen.getMenu().getCarried();
@@ -92,7 +105,18 @@ public class CharmSlotInventoryHandler {
       int x = screen.getGuiLeft() + CHARM_DX;
       int y = screen.getGuiTop() + CHARM_DY;
       if (over(mx, my, x, y)) {
-         PacketHandler.INSTANCE.sendToServer(new PacketCharmSlotClick());
+         if (net.minecraft.client.gui.screens.Screen.hasShiftDown()) {
+                     PacketHandler.INSTANCE.sendToServer(
+               new com.paleimitations.schoolsofmagic.common.network.PacketToggleSlotShow(com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.SHOW_CHARM));
+            net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+               net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+                  net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+            net.minecraft.client.Minecraft.getInstance().getSoundManager().play(
+               net.minecraft.client.resources.sounds.SimpleSoundInstance.forUI(
+                  net.minecraft.sounds.SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                  } else {
+                     PacketHandler.INSTANCE.sendToServer(new PacketCharmSlotClick());
+                  }
          event.setCanceled(true);
       }
    }

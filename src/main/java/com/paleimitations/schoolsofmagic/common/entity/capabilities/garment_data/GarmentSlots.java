@@ -8,6 +8,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public class GarmentSlots {
+   public static boolean shows(Player player, int slot) {
+      IGarmentData data = CapabilityGarmentData.get(player);
+      return data == null || !data.isHidden(slot);
+   }
+
    public static boolean isPlain(ItemStack stack) {
       return stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemMetalGarment;
    }
@@ -59,7 +64,6 @@ public class GarmentSlots {
       return com.paleimitations.schoolsofmagic.common.items.RingItemHelper.getGem(stack);
    }
 
-   // the crown answers to its own slot, the necklace rides in the talisman one, and either can be
    // carried in the charm slot instead
    public static ItemStack wornCrown(Player player) {
       ItemStack head = getWorn(player, IGarmentData.CROWN);

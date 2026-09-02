@@ -211,7 +211,7 @@ public class SOMConfig {
    public static float winter_roar_cost = 9.0F;
    public static float wither_blight_cost = 15.0F;
    public static float wolf_strength_cost = 20.0F;
-   public static float zephyr_cost = 4.0F;
+   public static float zephyr_cost = 30.0F;
    public static float fortified_breath_cost = 15.0F;
    public static float fireball_cost = 80.0F;
    public static float break_cost = 20.0F;

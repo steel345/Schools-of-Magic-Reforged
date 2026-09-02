@@ -86,6 +86,7 @@ public class RenderHandler {
       event.registerEntityRenderer(EntityRegistry.FLASH_DECOY.get(),
          com.paleimitations.schoolsofmagic.client.entity.renders.RenderFlashDecoy::new);
       event.registerEntityRenderer(EntityRegistry.PHOENIX.get(), RenderPhoenix::new);
+      event.registerEntityRenderer(EntityRegistry.HORSESHOE.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderHorseshoe::new);
       event.registerEntityRenderer(EntityRegistry.THUNDER_BIRD.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderThunderBird::new);
       event.registerEntityRenderer(EntityRegistry.ACOLYTE_WISP.get(), com.paleimitations.schoolsofmagic.client.entity.renders.RenderAcolyteWisp::new);
       event.registerEntityRenderer(EntityRegistry.DRYAD.get(), RenderDryad::new);
@@ -177,6 +178,8 @@ public class RenderHandler {
             pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornRing<>(pr, event.getEntityModels()));
             pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornCrown<>(pr, event.getEntityModels()));
             pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornNecklace<>(pr, event.getEntityModels()));
+            pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornHorseshoe<>(pr));
+            pr.addLayer(new com.paleimitations.schoolsofmagic.client.entity.layers.LayerWornGrimoire<>(pr));
          }
       }
    }

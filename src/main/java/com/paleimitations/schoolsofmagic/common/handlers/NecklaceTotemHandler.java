@@ -19,7 +19,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
-// the horn in it is spent holding you together, and the necklace goes with it
 @Mod.EventBusSubscriber(modid = SchoolsOfMagic.MODID)
 public class NecklaceTotemHandler {
    @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -45,7 +44,6 @@ public class NecklaceTotemHandler {
          new PacketNecklaceBreak(player.getId(), shown));
    }
 
-   // it can be round the neck or in the charm slot, and whichever one holds it is the one that empties
    private static boolean clear(net.minecraft.server.level.ServerPlayer player, ItemStack worn) {
       ITalismanData talisman = CapabilityTalismanData.get(player);
       if (talisman != null && talisman.getTalisman() == worn) {

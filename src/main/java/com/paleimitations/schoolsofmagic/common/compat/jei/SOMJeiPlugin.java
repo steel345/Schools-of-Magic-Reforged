@@ -95,10 +95,24 @@ public class SOMJeiPlugin implements IModPlugin {
       registerIfPresent(reg, ItemRegistry.bi_tile_jade,        byVariantTag);
       registerIfPresent(reg, ItemRegistry.bi_tile_turquoise,   byVariantTag);
 
+      // these live in plain tags, the book capability answers the same for every one
       IIngredientSubtypeInterpreter<ItemStack> byBookColor = (stack, ctx) -> {
-         com.paleimitations.schoolsofmagic.common.items.capabilities.book.IBook b =
-            com.paleimitations.schoolsofmagic.common.items.capabilities.book.CapabilityBook.getCapability(stack);
-         return (b != null && b.getColor() != null) ? b.getColor().getSerializedName() : "default";
+         CompoundTag t = stack.getTag();
+         if (t == null) return "default";
+
+         String colour = t.contains("BookColor") ? Integer.toString(t.getInt("BookColor")) : "c";
+         String links = t.contains("BookLinks") ? Integer.toString(t.getInt("BookLinks")) : "l";
+         String decor = "";
+         CompoundTag d = stack.getTagElement(
+            com.paleimitations.schoolsofmagic.common.items.BookDecorations.TAG);
+         if (d != null && !d.isEmpty()) {
+            java.util.List<String> keys = new ArrayList<>(d.getAllKeys());
+            java.util.Collections.sort(keys);
+            StringBuilder sb = new StringBuilder();
+            for (String k : keys) sb.append(k).append("=").append(d.get(k)).append(",");
+            decor = sb.toString();
+         }
+         return colour + "|" + links + "|" + decor;
       };
       registerIfPresent(reg, ItemRegistry.spellbook,             byBookColor);
 

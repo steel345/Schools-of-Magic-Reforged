@@ -123,6 +123,10 @@ public class SpellAge extends Spell {
          sheep.setSheared(false);
          touched = true;
       }
+      if (living instanceof com.paleimitations.schoolsofmagic.common.entity.EntityUnicorn unicorn
+            && unicorn.growHorn()) {
+         touched = true;
+      }
       return touched;
    }
 

@@ -34,10 +34,10 @@ public class LayerWornCrown<T extends LivingEntity, M extends HumanoidModel<T>> 
                       float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
       if (!(entity instanceof Player player) || player.isInvisible()) return;
 
+      if (!com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.shows(player, com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.IGarmentData.CROWN)) return;
       ItemStack crown = GarmentSlots.wornCrown(player);
       if (crown.isEmpty()) return;
 
-      // a helmet has the head already, and two things fighting over it reads as one broken thing
       if (!player.getInventory().getArmor(3).isEmpty()) return;
 
       int metal = LayerWornRing.metalTint(GarmentSlots.metalOf(crown));

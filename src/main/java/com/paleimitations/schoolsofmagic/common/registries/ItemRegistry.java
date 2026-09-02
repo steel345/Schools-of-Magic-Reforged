@@ -132,7 +132,7 @@ public class ItemRegistry {
    public static final RegistryObject<Item> bottle_empty = ITEMS.register("bottle_empty",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemGlassFlask(new Item.Properties().stacksTo(64)));
    public static final RegistryObject<Item> bottle_water = ITEMS.register("bottle_water",
-      () -> new ItemPotionry(new Item.Properties().stacksTo(16)));
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemWaterFlask(new Item.Properties().stacksTo(16)));
    public static final RegistryObject<Item> bottle = ITEMS.register("bottle",
       () -> new ItemBottle(new Item.Properties().stacksTo(16)));
    public static final RegistryObject<Item> bottle_egg = ITEMS.register("bottle_egg",
@@ -803,6 +803,17 @@ public class ItemRegistry {
    public static final RegistryObject<Item> wizard_robe_feet = ITEMS.register("wizard_robe_feet",
       () -> new com.paleimitations.schoolsofmagic.common.items.WizardRobes(
          net.minecraft.world.item.ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
+
+   public static final RegistryObject<Item> horseshoe = ITEMS.register("horseshoe",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemHorseshoe(
+         new Item.Properties().stacksTo(1).durability(260)));
+
+   public static final RegistryObject<Item> rift_transistor = ITEMS.register("rift_transistor",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemRiftTransistor(false,
+         new Item.Properties().stacksTo(1)));
+   public static final RegistryObject<Item> bound_rift_transistor = ITEMS.register("bound_rift_transistor",
+      () -> new com.paleimitations.schoolsofmagic.common.items.ItemRiftTransistor(true,
+         new Item.Properties().durability(275).rarity(net.minecraft.world.item.Rarity.UNCOMMON)));
 
    public static final RegistryObject<Item> liquid_magic = ITEMS.register("liquid_magic",
       () -> new com.paleimitations.schoolsofmagic.common.items.ItemPotionry(

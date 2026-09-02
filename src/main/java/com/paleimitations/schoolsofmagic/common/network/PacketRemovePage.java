@@ -73,6 +73,7 @@ public class PacketRemovePage {
                if (cut == null) {
                   return;
                }
+               book.removePage(com.paleimitations.schoolsofmagic.common.items.ItemBookBase.pageId(cut));
 
                if (cut instanceof com.paleimitations.schoolsofmagic.common.books.BookPageWriteable) {
                   com.paleimitations.schoolsofmagic.common.books.editor.BookPageLayout laid =

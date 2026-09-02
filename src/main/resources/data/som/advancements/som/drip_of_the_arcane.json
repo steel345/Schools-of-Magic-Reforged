@@ -1,0 +1,15 @@
+{
+  "parent": "som:som/advanced_spellslinger",
+  "display": {
+    "icon": { "item": "som:wizard_hat" },
+    "title": { "translate": "advancements.som.drip_of_the_arcane.title" },
+    "description": { "translate": "advancements.som.drip_of_the_arcane.description" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false
+  },
+  "criteria": {
+    "wear_robes": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [ [ "wear_robes" ] ]
+}

@@ -61,6 +61,31 @@ public class BlockHerbalTwine extends SOMBlock implements EntityBlock {
    }
 
    @Override
+   public void neighborChanged(BlockState state, Level level, BlockPos pos, net.minecraft.world.level.block.Block block,
+         BlockPos from, boolean moving) {
+      super.neighborChanged(state, level, pos, block, from, moving);
+      if (level.isClientSide || state.canSurvive(level, pos)) return;
+
+      BlockEntity be = level.getBlockEntity(pos);
+      if (be instanceof TileEntityHerbalTwine tile && !tile.getStack().isEmpty()) {
+         net.minecraft.world.level.block.Block.popResource(level, pos, tile.getStack());
+         tile.setStack(ItemStack.EMPTY);
+      }
+      dropResources(state, level, pos);
+      level.removeBlock(pos, false);
+   }
+
+   @Override
+   public net.minecraft.world.level.block.state.BlockState updateShape(BlockState state,
+         net.minecraft.core.Direction dir, BlockState neighbour,
+         net.minecraft.world.level.LevelAccessor level, BlockPos pos, BlockPos neighbourPos) {
+      if (dir == net.minecraft.core.Direction.UP && !state.canSurvive(level, pos)) {
+         return net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
+      }
+      return super.updateShape(state, dir, neighbour, level, pos, neighbourPos);
+   }
+
+   @Override
    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
       ItemStack held = player.getItemInHand(hand);
       BlockEntity be = world.getBlockEntity(pos);

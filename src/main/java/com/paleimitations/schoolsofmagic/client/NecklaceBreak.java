@@ -7,7 +7,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 
-// the same show a totem puts on, with the necklace held up in its place
 public class NecklaceBreak {
    public static void play(int id, ItemStack shown) {
       Minecraft mc = Minecraft.getInstance();

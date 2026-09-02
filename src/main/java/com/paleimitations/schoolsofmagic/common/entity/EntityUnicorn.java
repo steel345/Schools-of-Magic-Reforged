@@ -68,6 +68,13 @@ public class EntityUnicorn extends AbstractHorse {
       this.entityData.set(HORN, horn);
    }
 
+   public boolean growHorn() {
+      if (this.hasHorn()) return false;
+      this.regrow = 0;
+      this.setHorn(true);
+      return true;
+   }
+
    @Override
    public void aiStep() {
       super.aiStep();

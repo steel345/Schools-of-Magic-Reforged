@@ -124,7 +124,8 @@ public class Spell implements INBTSerializable<CompoundTag> {
       boolean spark = this.requiresSpark();
       FloatRange magicRange = new FloatRange((float) (Math.max(k / 5, 1) * 5), (float) ((Math.max(k / 5, 1) + 1) * 5));
       int tier = Math.min(k / 8, 7);
-      return new Buyable(ItemPageBase.getSpellPage(this), magicianRange, spellRange, new FloatRange(0.0F, 0.0F), new FloatRange(0.0F, 0.0F), schoolRange, elementRange, spark, magicRange, tier);
+      return new Buyable(ItemPageBase.getSpellPage(this), magicianRange, spellRange, new FloatRange(0.0F, 0.0F), new FloatRange(0.0F, 0.0F), schoolRange, elementRange, spark, magicRange, tier)
+         .belongsTo(this.elements, this.schools);
    }
 
    public boolean isPerSecond() {
@@ -663,7 +664,7 @@ public class Spell implements INBTSerializable<CompoundTag> {
 
          if (this.isHeldSpell()) {
             this.channelWearTicks++;
-            int bar = Math.max(1, this.getUseLength());
+            int bar = Math.max(1, Math.min(this.getUseLength(), this.getMaxUsesPerCharge(this.currentSpellChargeLevel)));
             if (this.channelWearTicks >= bar) {
                this.channelWearTicks = 0;
                com.paleimitations.schoolsofmagic.common.items.ItemBaseWand.wearFromChannel(player);
@@ -931,6 +932,11 @@ public class Spell implements INBTSerializable<CompoundTag> {
    }
 
    public boolean rightHoldEffect(ItemStack stack, LivingEntity player, int count) {
+      return false;
+   }
+
+   // true means ask the spell before the block, or a block with a gui eats the cast
+   public boolean handlesBlockFirst() {
       return false;
    }
 

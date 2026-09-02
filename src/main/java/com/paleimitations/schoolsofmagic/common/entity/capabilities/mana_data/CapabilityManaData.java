@@ -76,7 +76,6 @@ public class CapabilityManaData {
       cap.addMana((float) cap.getMaxMana() * 0.5F);
    }
 
-   // what the pool comes back at on its own, before anything a robe or a charm has to say
    private static float manaRate(int level) {
       if (level < 5) {
          return 0.025F;

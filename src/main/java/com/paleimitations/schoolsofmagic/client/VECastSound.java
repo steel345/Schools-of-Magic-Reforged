@@ -51,7 +51,11 @@ public class VECastSound extends AbstractTickableSoundInstance {
       IManaData mana = player.getCapability(CapabilityManaData.CAP).orElse(null);
       Spell spell = mana == null ? null : mana.getCurrentSpell();
       if (spell == null || !spell.isVEConcentration()) return false;
-      return player.isUsingItem() || RingHudHandler.isChanneling();
+      if (player.isUsingItem()
+            && !(player.getUseItem().getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemBookBase)) {
+         return true;
+      }
+      return RingHudHandler.isChanneling();
    }
 
    @SubscribeEvent

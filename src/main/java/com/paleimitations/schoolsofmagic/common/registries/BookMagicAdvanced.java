@@ -369,7 +369,6 @@ public class BookMagicAdvanced {
 
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_potion_bag").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
-      // cloth, thread and what they are worked into
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_robesintro").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_magic_cloth").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
@@ -380,6 +379,7 @@ public class BookMagicAdvanced {
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_wizard_robe").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_wizard_pants").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
       new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_wizard_boots").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
+      new com.paleimitations.schoolsofmagic.common.books.BookPageJson("bma_rift_transistor").addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
 
       new BookPageChapter(null).addToList(BookPageRegistry.ADVANCED_MAGIC_BOOK);
       SpellRegistry.addSorted(BookPageRegistry.ADVANCED_MAGIC_BOOK,

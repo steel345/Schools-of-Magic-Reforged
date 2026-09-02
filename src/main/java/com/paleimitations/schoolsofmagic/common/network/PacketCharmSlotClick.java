@@ -23,6 +23,7 @@ public class PacketCharmSlotClick {
          || com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.isCrown(stack)
          || com.paleimitations.schoolsofmagic.common.entity.capabilities.garment_data.GarmentSlots.isNecklace(stack)
          || stack.getItem() instanceof com.paleimitations.schoolsofmagic.common.items.ItemApprenticeRing
+         || stack.getItem() == ItemRegistry.horseshoe.get()
          || stack.getItem() == ItemRegistry.copper_key.get()
          || stack.getItem() == ItemRegistry.herb_pouch.get()
          || stack.getItem() == ItemRegistry.potion_bag.get()

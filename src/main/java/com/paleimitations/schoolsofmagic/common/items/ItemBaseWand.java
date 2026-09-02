@@ -312,6 +312,30 @@ public class ItemBaseWand extends Item {
       return els.isEmpty() ? 0xFFFFFF : els.get(0).getColor();
    }
 
+   @Override
+   public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
+      Player player = context.getPlayer();
+      if (player == null) return InteractionResult.PASS;
+      Spell spell = this.getCurrentSpell(player, stack);
+      if (spell == null || !spell.handlesBlockFirst()) return InteractionResult.PASS;
+      if (spell.getCooldownTicks() > 0 && player.getCooldowns().isOnCooldown(stack.getItem())) {
+         return InteractionResult.PASS;
+      }
+
+      net.minecraft.core.BlockPos pos = context.getClickedPos();
+      net.minecraft.world.phys.Vec3 hit = context.getClickLocation();
+      InteractionResult result = spell.blockClickEffect(player, context.getLevel(), pos, stack,
+         context.getClickedFace(), (float) hit.x, (float) hit.y, (float) hit.z);
+      if (result != InteractionResult.SUCCESS && result != InteractionResult.CONSUME) {
+         return InteractionResult.PASS;
+      }
+      if (spell.getCooldownTicks() > 0) {
+         player.getCooldowns().addCooldown(stack.getItem(), spell.getCooldownTicks());
+      }
+      return result;
+   }
+
+   @Override
    public InteractionResult useOn(UseOnContext context) {
       Player player = context.getPlayer();
       Level worldIn = context.getLevel();
